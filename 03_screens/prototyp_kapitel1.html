@@ -5,12 +5,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
 <style>
+[hidden]{display:none!important}
 @font-face{font-family:'Inter Schule';src:url('fonts/Inter-Medium.woff2') format('woff2');font-weight:400 500;font-display:block}
 @font-face{font-family:'Inter Schule';src:url('fonts/Inter-SemiBold.woff2') format('woff2');font-weight:600 700;font-display:block}
 @font-face{font-family:'Inter Schule';src:url('fonts/Inter-ExtraBold.woff2') format('woff2');font-weight:800 900;font-display:block}
 .app,.app *{font-feature-settings:'cv05' 1,'cv11' 1}
 
-[hidden]{display:none!important}
 /* Layout: clickable phone prototype (real 360px CSS width) + evaluation panel beside it; stacks on narrow screens */
 :root{
   --bg:#F2EFE8; --fg:#24262B; --muted:#6A6D73; --line:#DEDAD0; --card:#FFFFFF; --focus:#214F97;
@@ -105,6 +105,18 @@ button:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
 .opt[aria-pressed="true"] .k{background:var(--mustard);color:var(--mustard-ink)}
 .opt:disabled{cursor:default;opacity:.55}
 .opt[aria-pressed="true"]:disabled{opacity:1}
+.prow{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:center;text-align:left;width:100%;border:2px solid var(--line);border-radius:14px;padding:9px 12px;background:var(--paper);cursor:pointer;font:inherit;color:inherit}
+.prow.act{border-color:var(--mustard-line);box-shadow:inset 0 0 0 1px var(--mustard-line);background:#FFF8E3}
+.prow:disabled{cursor:default}
+.name{font:700 calc(var(--fs) * .9)/1.2 var(--f-read);padding:5px 12px;border-radius:999px;background:var(--soft);color:var(--ink)}
+.slot{font:400 calc(var(--fs) * .85)/1.35 var(--f-read);color:var(--ink);min-width:0}
+.slot .hint{color:var(--muted)}
+.plabel{font:700 11px var(--f-ui);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-top:2px}
+.opt.place{grid-template-columns:minmax(0,1fr) auto;align-items:center}
+.opt.place .who{font:700 calc(var(--fs) * .75) var(--f-read);color:var(--ink)}
+.opt.place[aria-pressed="true"] .who{padding:3px 10px;border-radius:999px;background:var(--mustard)}
+.opt .k.empty{background:transparent;border:2px dashed #CFC6B3}
+.prow .name .s-b,.prow .name .s-r{}
 .fb{display:grid;grid-template-columns:44px minmax(0,1fr);gap:10px;align-items:start;border-radius:16px;padding:10px 12px;background:var(--thought);border:1px solid var(--thought-line)}
 .fb .txt{font-size:calc(var(--fs) * .9);line-height:1.45}
 .fb.help{background:#FFF8E3;border-color:#F0D98F}
@@ -154,7 +166,7 @@ button:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
         <div class="notch"><i></i></div>
         <div class="hdr">
           <button class="ib" id="back" aria-label="Zurück">←</button>
-          <div class="ttl"><b>Kapitel 1 · Spur 1</b><span>Wo ist der Mond?</span></div>
+          <div class="ttl"><b id="ttl">Kapitel 1 · Spur 1</b><span>Wo ist der Mond?</span></div>
           <div class="moon" id="moon" title="Mond-Fortschritt im Kapitel"></div>
           <div class="pearls" id="pearls" aria-label="Schimmer-Perlen"><span class="pp"></span><span id="pcount">0</span></div>
           <button class="ib" id="aa" aria-label="Lese-Einstellungen" aria-expanded="false">Aa</button>
@@ -168,83 +180,115 @@ button:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
       <div class="foot" id="foot"></div>
       <div class="home"><i></i></div>
     </div></div>
-    <span class="note">Прототип Сцены 1 · экран 360 px, как на телефоне</span>
+    <span class="note">Прототип Главы 1 · экран 360 px, как на телефоне</span>
   </div>
 
   <aside class="panel">
     <div>
-      <h1>Senf &amp; Nachthimmel</h1>
-      <p class="lead">Утверждённая палитра. Всё кликается: листай, открой задание, ошибись специально, найди доказательство, получи жемчужины. Текст настоящий, из v5.1; реплики гусенички при ошибке и подсказки — мои черновики.</p>
+      <h1>Lese-Fall: Spur im Text</h1>
+      <p class="lead">Прототип Главы 1 в утверждённом оформлении. Три сцены — три типа заданий: выбор ответа (Spur 1), соединить пары (Spur 3), расставить по порядку (Spur 5). Литературный текст из v5.1; реплики гусенички, наводки и подсказки — мои черновики.</p>
+    </div>
+    <div>
+      <h2>Сцена</h2>
+      <div class="seg" id="scenes">
+        <button data-sc="1" aria-pressed="true">Spur 1 · Auswahl</button>
+        <button data-sc="3" aria-pressed="false">Spur 3 · Paare</button>
+        <button data-sc="5" aria-pressed="false">Spur 5 · Reihenfolge</button>
+      </div>
     </div>
     <div>
       <h2>Что попробовать</h2>
       <ol class="try">
-        <li>Листай кнопками ‹ › или свайпом. Последняя точка с лупой — задание.</li>
-        <li>Нажми <b>Aa</b>: крупный шрифт — листов станет больше, но ты останешься на том же месте текста.</li>
-        <li>Там же выключи <b>Silbenfarben</b>.</li>
-        <li>В задании выбери <b>A</b> или <b>C</b> → «Zeig den Beweis!» → найди нужное предложение в тексте.</li>
-        <li>Ошибись ещё раз: появится «Weitere Hilfe», потом объяснение (1 жемчужина вместо 2).</li>
-        <li>После победы посмотри на луну в небе шапки.</li>
+        <li>Листай ‹ › или свайпом, последняя точка с лупой — задание.</li>
+        <li><b>Spur 3:</b> нажми на имя, потом на место. Одно место остаётся свободным.</li>
+        <li><b>Spur 5:</b> нажимай на действия по порядку — появятся номера 1–4. Повторное нажатие убирает номер.</li>
+        <li>Ошибись специально: «Zeig den Beweis!» → найди предложение сама, начиная с первого листа. Две промашки — появится наводка.</li>
+        <li>Реши все три — луна в шапке вырастет на три части из шести.</li>
       </ol>
     </div>
-    
-    
     <div>
-      <h2>Перейти сразу к состоянию</h2>
+      <h2>Перейти сразу</h2>
       <div class="jump" id="jump">
-        <button data-j="read">Чтение</button><button data-j="task">Задание</button><button data-j="wrong">Ошибка</button><button data-j="ev">Поиск доказательства</button><button data-j="win">Победа</button><button data-j="reset">Сначала</button>
+        <button data-j="read">Чтение</button><button data-j="task">Задание</button><button data-j="win">Победа</button><button data-j="reset">Всё сначала</button>
       </div>
     </div>
     <div class="idea">
-      <h2 style="margin:0">Идея: луна как прогресс главы</h2>
-      <p>Луна в небе шапки — не декор. Пока ничего не решено, там пунктирное пустое место. С каждой решённой сценой появляется кусочек: 6 сцен главы — полная луна. Так ребёнок видит свой прогресс, а сюжет («луна пропала») не раскрывается раньше времени.</p>
+      <h2 style="margin:0">Типичная ловушка в Spur 5</h2>
+      <p>В Spur 3 ребёнок видит, как Бен моет руки, — это первое, что он читает про Бена. В Spur 5 Бен рассказывает, что мытьё было последним. Кто не дочитал до «Und danach … bevor ich mir die Hände gewaschen habe», поставит мытьё на 1. Именно это предложение и есть доказательство.</p>
     </div>
-    <div>
-      <h2>Цвета</h2>
-      <div class="tokens">
-        <span class="tok"><b style="background:#1D2E57"></b>Небо #1D2E57</span>
-        <span class="tok"><b style="background:linear-gradient(#2C4176,#AEBDDB,#D9E0EE)"></b>Подложка: небо → #D9E0EE</span>
-        <span class="tok"><b style="background:#FFFDF8"></b>Лист #FFFDF8</span>
-        <span class="tok"><b style="background:#F4C243"></b>Горчица #F4C243</span>
-        <span class="tok"><b style="background:#F3F8EA"></b>Мысль #F3F8EA</span>
-        <span class="tok"><b style="background:#1D3F9E"></b>Слог #1D3F9E</span>
-        <span class="tok"><b style="background:#E8473A"></b>Слог #E8473A</span>
-      </div>
-    </div>
-    <p class="note">Гусеничка и картинка — заглушки, не фирменный арт Leseraupe. Шрифт и цвета слогов — как в Leseraupe (Inter с одноэтажной a и l с хвостиком).</p>
+    <p class="note">Гусеничка и картинка — заглушки. Шрифт и цвета слогов — как в Leseraupe.</p>
   </aside>
 </div>
 
 <script>
-/* ---------- content (Szene 1, v5.1; syllables marked with |) ---------- */
-const BLOCKS=[
- {id:"head",t:"head",title:"Ein The|a|ter für al|le"},
- {id:"p1",t:"p",s:["Heu|te ist Frei|tag.","Im Grup|pen|raum der Schu|le geht es be|son|ders leb|haft zu."]},
- {id:"p2",t:"p",s:["Mi|la, Ben und Os|kar be|rei|ten ei|ne Ü|ber|ra|schung vor: Am Nach|mit|tag wol|len sie den an|de|ren Kin|dern ein klei|nes The|a|ter|stück zei|gen."]},
- {id:"p3",t:"p",s:["Ben hat das Pup|pen|the|a|ter schon auf den Tisch ge|stellt.","Und Os|kar sitzt drau|ßen vor dem of|fe|nen Fens|ter auf der Hof|bank und bas|telt noch an ei|ner klei|nen grau|en Pa|pier|maus."]},
- {id:"p4",t:"p",s:["„Un|ser The|a|ter braucht noch ei|nen Him|mel!“, ruft Mi|la."]},
- {id:"p5",t:"p",s:["Sie zeigt Ben ei|nen gro|ßen gel|ben Mond aus Pap|pe.","Auf die wei|ße Rück|sei|te hat sie ei|nen win|zi|gen blau|en Stern ge|malt."]},
- {id:"p6",t:"p",s:["„Da|mit ich mei|nen Mond im|mer wie|der|er|ken|ne“, er|klärt sie stolz."]},
- {id:"p7",t:"p",s:["Ü|ber dem ro|ten Vor|hang hängt schon ei|ne wei|ße Wol|ke.","Links da|ne|ben soll der Mond sei|nen Platz be|kom|men."]},
- {id:"p8",t:"p",s:["Vom Blu|men|topf am Fens|ter schaut die klei|ne Le|se|rau|pe neu|gie|rig zu."]},
- {id:"th",t:"th",s:["„Ein Mond mit|ten am Tag?“, denkt sie.","„Die|se Kin|der ha|ben wirk|lich selt|sa|me I|de|en.“"]}
-];
-const EVIDENCE="p7-1";
-const TASK={intro:"Mi|la möch|te ih|ren Mond an der rich|ti|gen Stel|le auf|hän|gen. Am The|a|ter sind noch drei Plät|ze frei:",
- q:"Wo ge|hört der Mond laut Mi|las Plan hin?",
- o:[["A","Rechts ne|ben der wei|ßen Wol|ke ü|ber dem Vor|hang."],["B","Links ne|ben der wei|ßen Wol|ke ü|ber dem Vor|hang."],["C","Un|ten mit|ten vor dem ro|ten Vor|hang."]],right:1};
-const UI={
- wrong:"Hm, schau|en wir noch ein|mal ge|nau hin.",
- evAsk:"Wo soll der Mond hän|gen? Tip|pe auf den Satz, der es ver|rät.",
- evNo:"Die|ser Satz ver|rät es noch nicht. Such wei|ter!",
- evNo2:"Such dort, wo vom ro|ten Vor|hang und der wei|ßen Wol|ke er|zählt wird.",
- evYes:"Be|weis ge|fun|den!",
- help:"Lies dei|nen Be|weis noch ein|mal ge|nau: „Links da|ne|ben soll der Mond sei|nen Platz be|kom|men.“ Auf wel|cher Sei|te ne|ben der wei|ßen Wol|ke soll der Mond hän|gen?",
- explain:"Im Text steht: „Links da|ne|ben soll der Mond sei|nen Platz be|kom|men.“ Da|ne|ben heißt hier: ne|ben der wei|ßen Wol|ke. Da|rum ist B rich|tig.",
- win2a:"Spur ent|deckt!",win2b:"Du hast ge|nau hin|ge|se|hen. Der Mond hängt links ne|ben der Wol|ke.",
- win1a:"Ge|schafft!",win1b:"Jetzt weißt du, wo der Mond hängt. Beim nächs|ten Mal fin|dest du die Spur be|stimmt selbst.",
- end:"Hier geht es mit Sze|ne 2 wei|ter: „Ein selt|sa|mes Früh|stück“."
+/* ---------- content (v5.1; syllables marked with |) ---------- */
+const SC={
+ 1:{spur:1,blocks:[
+  {id:"head",t:"head",title:"Ein The|a|ter für al|le"},
+  {id:"p1",t:"p",s:["Heu|te ist Frei|tag.","Im Grup|pen|raum der Schu|le geht es be|son|ders leb|haft zu."]},
+  {id:"p2",t:"p",s:["Mi|la, Ben und Os|kar be|rei|ten ei|ne Ü|ber|ra|schung vor: Am Nach|mit|tag wol|len sie den an|de|ren Kin|dern ein klei|nes The|a|ter|stück zei|gen."]},
+  {id:"p3",t:"p",s:["Ben hat das Pup|pen|the|a|ter schon auf den Tisch ge|stellt.","Und Os|kar sitzt drau|ßen vor dem of|fe|nen Fens|ter auf der Hof|bank und bas|telt noch an ei|ner klei|nen grau|en Pa|pier|maus."]},
+  {id:"p4",t:"p",s:["„Un|ser The|a|ter braucht noch ei|nen Him|mel!“, ruft Mi|la."]},
+  {id:"p5",t:"p",s:["Sie zeigt Ben ei|nen gro|ßen gel|ben Mond aus Pap|pe.","Auf die wei|ße Rück|sei|te hat sie ei|nen win|zi|gen blau|en Stern ge|malt."]},
+  {id:"p6",t:"p",s:["„Da|mit ich mei|nen Mond im|mer wie|der|er|ken|ne“, er|klärt sie stolz."]},
+  {id:"p7",t:"p",s:["Ü|ber dem ro|ten Vor|hang hängt schon ei|ne wei|ße Wol|ke.","Links da|ne|ben soll der Mond sei|nen Platz be|kom|men."]},
+  {id:"p8",t:"p",s:["Vom Blu|men|topf am Fens|ter schaut die klei|ne Le|se|rau|pe neu|gie|rig zu."]},
+  {id:"th",t:"th",s:["„Ein Mond mit|ten am Tag?“, denkt sie.","„Die|se Kin|der ha|ben wirk|lich selt|sa|me I|de|en.“"]}],
+  task:{type:"choice",intro:"Mi|la möch|te ih|ren Mond an der rich|ti|gen Stel|le auf|hän|gen. Am The|a|ter sind noch drei Plät|ze frei:",q:"Wo ge|hört der Mond laut Mi|las Plan hin?",
+   o:["Rechts ne|ben der wei|ßen Wol|ke ü|ber dem Vor|hang.","Links ne|ben der wei|ßen Wol|ke ü|ber dem Vor|hang.","Un|ten mit|ten vor dem ro|ten Vor|hang."],right:1},
+  evPick:()=>"m",
+  ev:{m:{ask:"Wo soll der Mond hän|gen? Tip|pe auf den Satz, der es ver|rät.",ids:["p7-1"],near:"Such dort, wo vom ro|ten Vor|hang und der wei|ßen Wol|ke er|zählt wird.",
+   quote:"„Links da|ne|ben soll der Mond sei|nen Platz be|kom|men.“",help:"Auf wel|cher Sei|te ne|ben der wei|ßen Wol|ke soll der Mond hän|gen?"}},
+  explain:"Im Text steht: „Links da|ne|ben soll der Mond sei|nen Platz be|kom|men.“ Da|ne|ben heißt hier: ne|ben der wei|ßen Wol|ke. Da|rum ist B rich|tig.",
+  win:"Du hast ge|nau hin|ge|se|hen. Der Mond hängt links ne|ben der Wol|ke.",moonAfter:true,
+  next:"Hier geht es mit Spur 2 wei|ter: „Ein selt|sa|mes Früh|stück“."},
+ 3:{spur:3,blocks:[
+  {id:"head",t:"head",title:"Die Su|che be|ginnt"},
+  {id:"p1",t:"p",s:["„Ben!“, ruft Mi|la er|schro|cken, als sie mit den Pup|pen vom Schrank zu|rück|kommt.","„Mein Mond hängt nicht mehr am The|a|ter!“"]},
+  {id:"p2",t:"p",s:["Ben steht am Wasch|be|cken in der E|cke.","Er wäscht sich ge|ra|de ei|nen Trop|fen Kle|ber von den Fin|gern."]},
+  {id:"p3",t:"p",s:["„Ei|nen Mo|ment, ich wa|sche mir nur schnell die Hän|de“, sagt er.","„Dann kom|me ich zu dir.“"]},
+  {id:"p4",t:"p",s:["Mi|la hält es vor Auf|re|gung nicht län|ger aus.","Sie schaut hin|ter den ro|ten Vor|hang des The|a|ters.","Nichts."]},
+  {id:"p5",t:"p",s:["Un|ter dem gro|ßen Grup|pen|tisch liegt ein grü|ner Blei|stift.","Doch dort hat Mi|la noch gar nicht ge|sucht."]},
+  {id:"p6",t:"p",s:["Die Le|se|rau|pe streckt den Kopf zwi|schen zwei ech|ten Blät|tern her|vor."]},
+  {id:"th",t:"th",s:["„So vie|le Plät|ze“, denkt sie.","„A|ber wo sind die Kin|der ei|gent|lich ge|ra|de?","Wer schaut wo|hin?“"]}],
+  task:{type:"pair",intro:"Wer ist ge|ra|de wo? Ver|bin|de die bei|den Kin|der|na|men mit den pas|sen|den Or|ten aus der Ge|schich|te. Ein Ort bleibt frei.",
+   names:["Mi|la","Ben"],places:["hin|ter dem ro|ten Vor|hang","am Wasch|be|cken","un|ter dem gro|ßen Tisch"],right:[0,1]},
+  evPick:a=>a[0]!==0?"mila":"ben",
+  ev:{mila:{ask:"Wo sucht Mi|la ge|ra|de? Tip|pe auf den Satz, der es ver|rät.",ids:["p4-1"],near:"Such dort, wo Mi|la es nicht län|ger aus|hält.",
+    quote:"„Sie schaut hin|ter den ro|ten Vor|hang des The|a|ters.“",help:"Wer ist hier „sie“? Und wo|hin schaut sie?"},
+   ben:{ask:"Wo ist Ben ge|ra|de? Tip|pe auf den Satz, der es ver|rät.",ids:["p2-0"],near:"Such dort, wo von Bens Fin|gern die Re|de ist.",
+    quote:"„Ben steht am Wasch|be|cken in der E|cke.“",help:"Wel|cher Ort passt zu die|sem Satz?"}},
+  explain:"Im Text steht: „Ben steht am Wasch|be|cken in der E|cke.“ Und Mi|la: „Sie schaut hin|ter den ro|ten Vor|hang des The|a|ters.“ Un|ter dem Tisch hat Mi|la noch gar nicht ge|sucht. Die|ser Ort bleibt frei.",
+  win:"Ben steht am Wasch|be|cken, Mi|la sucht hin|ter dem Vor|hang. Un|ter dem Tisch hat noch nie|mand ge|sucht.",moonAfter:false,
+  next:"Hier geht es mit Spur 4 wei|ter: „Der fal|sche Mond“."},
+ 5:{spur:5,blocks:[
+  {id:"head",t:"head",title:"Ver|rä|te|ri|sche Fin|ger"},
+  {id:"p1",t:"p",s:["Mi|la legt den fal|schen Kreis ent|täuscht zu|rück auf den Tisch."]},
+  {id:"p2",t:"p",s:["Da|bei fällt ihr Blick auf Bens Hän|de."]},
+  {id:"p3",t:"p",s:["„Sag mal, Ben ...“, fragt sie lang|sam.","„Du hast dir doch e|ben Kle|ber von den Fin|gern ge|wa|schen.","Hast du et|was am The|a|ter re|pa|riert?“"]},
+  {id:"p4",t:"p",s:["Ben stutzt.","Ei|nen Mo|ment lang schaut er auf sei|ne Fin|ger."]},
+  {id:"p5",t:"p",s:["Dann klatscht er sich plötz|lich mit der fla|chen Hand an die Stirn."]},
+  {id:"p6",t:"p",s:["„Ach du mei|ne Gü|te!","Jetzt fällt es mir wie|der ein!“"]},
+  {id:"p7",t:"p",s:["„Was denn?“, fragt Mi|la ge|spannt."]},
+  {id:"p8",t:"p",s:["„Als du am Schrank warst, ha|be ich ge|se|hen, dass der Fa|den an dei|nem Mond ganz lo|cker war“, be|rich|tet Ben auf|ge|regt.","„Der Mond wä|re fast von al|lein he|run|ter|ge|fal|len!","Des|halb ha|be ich ihn vor|sich|tig ab|ge|nom|men.“"]},
+  {id:"p9",t:"p",s:["„Du hast ihn ab|ge|nom|men?“, ruft Mi|la."]},
+  {id:"p10",t:"p",s:["„Ja!","Ich ha|be den Fa|den mit ei|nem Trop|fen Kle|ber wie|der fest|ge|macht“, er|klärt Ben.","„Und da|nach ha|be ich den Mond zum Trock|nen weg|ge|legt, be|vor ich mir die Hän|de ge|wa|schen ha|be!“"]},
+  {id:"p11",t:"p",s:["Die Le|se|rau|pe wippt be|geis|tert auf ih|rem Blatt vor und zu|rück."]},
+  {id:"th",t:"th",s:["„A|ha!“, denkt sie.","„Ben woll|te hel|fen.","A|ber wo ist der Mond jetzt?“"]}],
+  task:{type:"seq",intro:"Jetzt wis|sen wir, wa|rum der Mond nicht mehr ü|ber dem Vor|hang hängt!",q:"Brin|ge Bens Hand|lun|gen in die rich|ti|ge zeit|li|che Rei|hen|fol|ge (1, 2, 3, 4):",
+   items:["Ben wäscht sich den Kle|ber am Wasch|be|cken von den Fin|gern.","Ben ent|deckt den lo|cke|ren Fa|den und nimmt den Mond vom The|a|ter ab.","Ben legt den re|pa|rier|ten Mond zum Trock|nen weg.","Ben klebt den lo|cke|ren Fa|den wie|der fest."],right:[4,1,3,2]},
+  evPick:a=>(a[0]!==4||a[2]!==3)?"spaet":"frueh",
+  ev:{spaet:{ask:"Was hat Ben ganz zum Schluss ge|macht? Tip|pe auf den Satz, der es ver|rät.",ids:["p10-2"],near:"Such in Bens letz|ter lan|ger Ant|wort.",
+    quote:"„Und da|nach ha|be ich den Mond zum Trock|nen weg|ge|legt, be|vor ich mir die Hän|de ge|wa|schen ha|be!“",help:"Ach|te auf die Wör|ter „da|nach“ und „be|vor“."},
+   frueh:{ask:"Was hat Ben als Ers|tes mit dem Mond ge|macht? Tip|pe auf den Satz, der es ver|rät.",ids:["p8-2"],near:"Such dort, wo Ben er|zählt, was er am Schrank ge|se|hen hat.",
+    quote:"„Des|halb ha|be ich ihn vor|sich|tig ab|ge|nom|men.“",help:"Was kommt zu|erst: den Mond ab|neh|men o|der den Fa|den fest|kle|ben?"}},
+  explain:"Ben hat zu|erst den lo|cke|ren Fa|den ent|deckt und den Mond ab|ge|nom|men. Dann hat er den Fa|den fest|ge|klebt. Da|nach hat er den Mond zum Trock|nen weg|ge|legt. Erst ganz am En|de hat er sich die Hän|de ge|wa|schen.",
+  win:"Ben hat den Mond ab|ge|nom|men, re|pa|riert und zum Trock|nen weg|ge|legt. Erst da|nach hat er sich die Hän|de ge|wa|schen.",moonAfter:false,
+  next:"Hier geht es mit Spur 6 wei|ter: „Das lee|re Tab|lett“."}
 };
+const UI={wrong:"Hm, schau|en wir noch ein|mal ge|nau hin.",evNo:"Die|ser Satz ver|rät es noch nicht. Such wei|ter!",
+ retry:"Ver|such es jetzt noch ein|mal.",win2a:"Spur ent|deckt!",win1a:"Ge|schafft!",
+ win1b:"Jetzt kennst du die Spur. Beim nächs|ten Mal fin|dest du sie be|stimmt selbst."};
 
 /* ---------- helpers ---------- */
 function syl(text){return text.split(" ").map(tok=>{const m=tok.match(/^([„“"(]*)(.*?)([.,!?:;“"”)]*)$/);return m[1]+m[2].split("|").map((p,i)=>`<span class="${i%2?'s-r':'s-b'}">${p}</span>`).join("")+m[3];}).join(" ");}
@@ -257,7 +301,7 @@ function raupe(mood="calm",cls="raupe"){
 }
 function illu(after){return `<svg viewBox="0 0 160 90" role="img" aria-label="Platzhalter: Puppentheater im Gruppenraum"><rect width="160" height="90" fill="#EEF1F3"/><rect x="0" y="66" width="160" height="24" fill="#DDE1E4"/><rect x="118" y="10" width="34" height="30" rx="2" fill="#DCE9F3" stroke="#C9CDD1"/><rect x="40" y="16" width="74" height="56" rx="3" fill="#CDBFA6"/><rect x="46" y="34" width="62" height="38" fill="#B9575C"/><path d="M46 34 Q61.5 46 77 34 Q92.5 46 108 34" fill="#A2474D"/><g fill="#fff"><circle cx="88" cy="25" r="5"/><circle cx="94" cy="23" r="6"/><circle cx="100" cy="26" r="4.5"/></g>${after?'<circle cx="73" cy="25" r="6.5" fill="#F2C94C"/>':''}<rect x="124" y="54" width="20" height="12" rx="2" fill="#C9B79A"/><g transform="translate(126 42)"><circle cx="0" cy="10" r="3.6" fill="#8E5BD8"/><circle cx="6" cy="8" r="4.2" fill="#F6C433"/><circle cx="12" cy="4" r="5" fill="#7DCB3A"/><circle cx="12.4" cy="3" r=".9" fill="#2A2622"/><circle cx="14.7" cy="3" r=".9" fill="#2A2622"/></g></svg>`;}
 const lupe=`<svg viewBox="0 0 18 18" aria-hidden="true"><circle cx="7.5" cy="7.5" r="5" fill="#CFE6F5" stroke="#2D3138" stroke-width="1.5"/><path d="M11.3 11.3 L16 16" stroke="#2D3138" stroke-width="2" stroke-linecap="round"/></svg>`;
-function moonSVG(k){ // k = solved scenes in chapter (0..6)
+function moonSVG(k){
   if(!k) return `<svg viewBox="0 0 34 34"><circle cx="17" cy="17" r="12" fill="none" stroke="#fff" stroke-opacity=".75" stroke-width="1.4" stroke-dasharray="3 3"/></svg>`;
   const off=24*(k/6)+0.5;
   return `<svg viewBox="0 0 34 34"><defs><mask id="mk"><rect width="34" height="34" fill="#fff"/><circle cx="${17-off}" cy="17" r="12.2" fill="#000"/></mask></defs><circle cx="17" cy="17" r="12" fill="none" stroke="#fff" stroke-opacity=".45" stroke-width="1.2" stroke-dasharray="3 3"/><circle cx="17" cy="17" r="12" fill="#F5C542" mask="url(#mk)"/></svg>`;
@@ -266,50 +310,77 @@ function moonSVG(k){ // k = solved scenes in chapter (0..6)
 /* ---------- state ---------- */
 const $=id=>document.getElementById(id);
 const app=$("app"),content=$("content"),measure=$("measure"),sheetEl=$("sheet"),foot=$("foot");
+let cur=1, sheets=[];
+const glob={pearls:0,solved:new Set(),lastGain:0};
+const S=()=>SC[cur];
+function emptyAns(){const t=S().task;return t.type==="choice"?null:t.type==="pair"?[null,null]:t.items.map(()=>0);}
+function fresh(){return {view:"read",sheet:0,anchor:"head",ans:emptyAns(),active:0,phase:"select",ev:false,evFound:false,evMiss:0,target:null,dir:1};}
 let st;
-function fresh(){return {view:"read",sheet:0,anchor:"head",sel:null,phase:"select",ev:false,evFound:false,pearls:0,solved:0,lastGain:0,dir:1};}
-st=fresh();
-let sheets=[];
+function complete(){const t=S().task,a=st.ans;return t.type==="choice"?a!==null:t.type==="pair"?a.every(x=>x!==null):a.every(x=>x>0);}
+function correct(){const t=S().task,a=st.ans;return t.type==="choice"?a===t.right:JSON.stringify(a)===JSON.stringify(t.right);}
 
 function blockHTML(b){
   if(b.t==="head") return `<div class="blk" data-b="${b.id}"><div class="illu">${illu(false)}</div><div class="title" style="margin-top:12px">${syl(b.title)}</div></div>`;
-  const sents=b.s.map((s,i)=>`<span class="sent" data-s="${b.id}-${i}">${syl(s)}</span>`).join(" ");
+  const F=(st&&st.evFound&&st.target)?S().ev[st.target].ids:[];
+  const sents=b.s.map((s,i)=>`<span class="sent${F.includes(b.id+"-"+i)?" found":""}" data-s="${b.id}-${i}">${syl(s)}</span>`).join(" ");
   if(b.t==="th") return `<div class="blk thought" data-b="${b.id}">${raupe("calm")}<div><div class="lbl">Raupen-Gedanke</div><div class="txt">${sents}</div></div></div>`;
   return `<div class="blk txt" data-b="${b.id}">${sents}</div>`;
 }
 function paginate(){
   const cs=getComputedStyle(sheetEl);
   const maxH=sheetEl.clientHeight-parseFloat(cs.paddingTop)-parseFloat(cs.paddingBottom);
-  sheets=[];let cur=[];measure.innerHTML="";
-  for(const b of BLOCKS){
+  sheets=[];let c=[];measure.innerHTML="";
+  for(const b of S().blocks){
     measure.insertAdjacentHTML("beforeend",blockHTML(b));
-    if(measure.scrollHeight>maxH+1&&cur.length){
-      // keep title block together with the first paragraph
-      if(cur.length===1&&cur[0].t==="head"){cur.push(b);sheets.push(cur);cur=[];measure.innerHTML="";continue;}
-      sheets.push(cur);cur=[b];measure.innerHTML=blockHTML(b);
-    } else cur.push(b);
+    if(measure.scrollHeight>maxH+1&&c.length){
+      if(c.length===1&&c[0].t==="head"){c.push(b);sheets.push(c);c=[];measure.innerHTML="";continue;}
+      sheets.push(c);c=[b];measure.innerHTML=blockHTML(b);
+    } else c.push(b);
   }
-  if(cur.length)sheets.push(cur);
+  if(c.length)sheets.push(c);
   measure.innerHTML="";
   const idx=sheets.findIndex(s=>s.some(b=>b.id===st.anchor));
   st.sheet=idx<0?0:idx;
 }
-function sheetOf(blockId){return sheets.findIndex(s=>s.some(b=>b.id===blockId));}
 
+/* ---------- task renderers ---------- */
+function taskHTML(locked){
+  const t=S().task,a=st.ans;
+  let h=`<div class="case">${lupe}Dein Ermittlerauftrag</div>${fbHTML()}${T(t.intro)}`+(t.q?`<div class="q">${T(t.q)}</div>`:"");
+  if(t.type==="choice"){
+    h+=`<div class="opts">`+t.o.map((o,i)=>`<button class="opt" data-o="${i}" aria-pressed="${a===i}" ${locked?"disabled":""}><span class="k">${"ABC"[i]}</span>${T(o)}</button>`).join("")+`</div>`;
+  } else if(t.type==="pair"){
+    h+=`<div class="opts">`+t.names.map((n,i)=>`<button class="prow ${st.active===i&&!locked?'act':''}" data-row="${i}" ${locked?"disabled":""}><span class="name">${syl(n)}</span><span class="slot">${a[i]===null?'<span class="hint">Ort wählen …</span>':'→ '+syl(t.places[a[i]])}</span></button>`).join("")+`</div>`;
+    h+=`<div class="plabel">Orte</div><div class="opts">`+t.places.map((p,j)=>{const who=a.indexOf(j);return `<button class="opt place" data-pl="${j}" aria-pressed="${who>=0}" ${locked?"disabled":""}>${T(p)}<span class="who">${who>=0?syl(t.names[who]):""}</span></button>`;}).join("")+`</div>`;
+  } else {
+    h+=`<div class="opts">`+t.items.map((it,i)=>`<button class="opt" data-sq="${i}" aria-pressed="${a[i]>0}" ${locked?"disabled":""}><span class="k ${a[i]?'':'empty'}">${a[i]||""}</span>${T(it)}</button>`).join("")+`</div>`;
+  }
+  return h;
+}
+
+function fbHTML(){
+  const sc=S(),E=st.target?sc.ev[st.target]:null;
+  if(st.phase==="wrong") return `<div class="fb">${raupe("think")}${T(UI.wrong)}</div>`;
+  if(st.phase==="retry") return `<div class="fb">${raupe("calm")}${T("Dein Be|weis: "+E.quote+" "+UI.retry)}</div>`;
+  if(st.phase==="help") return `<div class="fb help">${raupe("think")}${T("Lies dei|nen Be|weis noch ein|mal ge|nau: "+E.quote+" "+E.help)}</div>`;
+  if(st.phase==="explain") return `<div class="fb help">${raupe("calm")}${T(sc.explain)}</div>`;
+  return "";
+}
 /* ---------- render ---------- */
 function render(anim=true){
-  $("moon").innerHTML=moonSVG(st.solved);
-  $("pcount").textContent=st.pearls;
-  sheetEl.classList.toggle("scroll",st.view!=="read");
+  const sc=S();
+  $("ttl").textContent=`Kapitel 1 · Spur ${sc.spur}`;
+  $("moon").innerHTML=moonSVG(glob.solved.size);
+  $("pcount").textContent=glob.pearls;
   sheetEl.classList.toggle("ev",st.view==="read"&&st.ev&&!st.evFound);
   let html="",f="";
+  const E=st.target?sc.ev[st.target]:null;
   if(st.view==="read"){
-    const s=sheets[st.sheet]||[];
-    html=s.map(blockHTML).join("");
+    html=(sheets[st.sheet]||[]).map(blockHTML).join("");
     const last=st.sheet===sheets.length-1;
     if(st.ev){
       f=`<button class="nav" data-a="prev" ${st.sheet===0?"disabled":""} aria-label="Vorheriges Blatt">‹</button>`+
-        (st.evFound?`<button class="btn cta" data-a="totask">Zurück zum Auftrag</button>`:`<div class="banner" id="banner">${T(st.evMiss>=2?UI.evNo2:UI.evAsk)}</div>`)+
+        (st.evFound?`<button class="btn cta" data-a="totask">Zurück zum Auftrag</button>`:`<div class="banner" id="banner">${T(st.evMiss>=2?E.near:E.ask)}</div>`)+
         `<button class="nav" data-a="next" ${last?"disabled":""} aria-label="Nächstes Blatt">›</button>`;
     } else {
       const dots=sheets.map((_,i)=>`<i class="${i<=st.sheet?'on':''}"></i>`).join("")+lupe;
@@ -317,23 +388,18 @@ function render(anim=true){
     }
   } else if(st.view==="task"){
     const locked=["wrong","explain"].includes(st.phase);
-    html=`<div class="case">${lupe}Dein Ermittlerauftrag</div>${T(TASK.intro)}<div class="q">${T(TASK.q)}</div><div class="opts">`+
-      TASK.o.map((o,i)=>`<button class="opt" data-o="${i}" aria-pressed="${st.sel===i}" ${locked?"disabled":""}><span class="k">${o[0]}</span>${T(o[1])}</button>`).join("")+`</div>`;
-    if(st.phase==="wrong") html+=`<div class="fb">${raupe("think")}${T(UI.wrong)}</div>`;
-    if(st.phase==="retry") html+=`<div class="fb">${raupe("calm")}${T("Dein Be|weis: „Links da|ne|ben soll der Mond sei|nen Platz be|kom|men.“ Wähl jetzt noch ein|mal.")}</div>`;
-    if(st.phase==="help") html+=`<div class="fb help">${raupe("think")}${T(UI.help)}</div>`;
-    if(st.phase==="explain") html+=`<div class="fb help">${raupe("calm")}${T(UI.explain)}</div>`;
+    html=taskHTML(locked);
     const primary=st.phase==="wrong"?`<button class="btn cta" data-a="beweis">${lupe}Zeig den Beweis!</button>`
       :st.phase==="explain"?`<button class="btn cta" data-a="understood">Verstanden</button>`
-      :`<button class="btn cta" data-a="check" ${st.sel===null?"disabled":""}>Prüfen</button>`;
+      :`<button class="btn cta" data-a="check" ${complete()?"":"disabled"}>Prüfen</button>`;
     f=`<button class="btn" data-a="story">Zur Geschichte</button>${primary}`;
   } else if(st.view==="win"){
-    const full=st.lastGain===2;
-    html=`<div class="illu">${illu(true)}</div><div class="win">${raupe("happy","raupe big")}<div class="h">${syl(full?UI.win2a:UI.win1a)}</div>${T(full?UI.win2b:UI.win1b)}<span class="gain shine">${'<span class="pp"></span>'.repeat(st.lastGain)}+${st.lastGain} Schimmer-${st.lastGain>1?'Perlen':'Perle'}</span></div>`;
+    const full=glob.lastGain===2;
+    html=`<div class="illu">${illu(sc.moonAfter)}</div><div class="win">${raupe("happy","raupe big")}<div class="h">${syl(full?UI.win2a:UI.win1a)}</div>${T(full?sc.win:UI.win1b)}<span class="gain shine">${'<span class="pp"></span>'.repeat(glob.lastGain)}+${glob.lastGain} Schimmer-${glob.lastGain>1?'Perlen':'Perle'}</span></div>`;
     f=`<button class="btn" data-a="reread">Noch einmal lesen</button><button class="btn cta" data-a="end">Weiterlesen ›</button>`;
   } else {
-    html=`<div class="end">${raupe("calm","raupe big")}${T(UI.end)}<p class="note" style="color:#6E6A63">Прототип заканчивается здесь.</p></div>`;
-    f=`<button class="btn" data-a="reread">Szene 1 lesen</button><button class="btn cta" data-a="reset">Neu starten</button>`;
+    html=`<div class="end">${raupe("calm","raupe big")}${T(sc.next)}<p class="note" style="color:#6E6A63">В прототипе дальше — следующая тестовая сцена.</p></div>`;
+    f=`<button class="btn" data-a="reread">Noch einmal lesen</button><button class="btn cta" data-a="nextsc">Nächste Probe-Spur ›</button>`;
   }
   content.innerHTML=html;foot.innerHTML=f;
   if(anim){content.classList.remove("enter","back");void content.offsetWidth;content.classList.add("enter");if(st.dir<0)content.classList.add("back");}
@@ -341,6 +407,7 @@ function render(anim=true){
 }
 function go(n){if(n<0||n>=sheets.length)return;st.dir=n>st.sheet?1:-1;st.sheet=n;st.anchor=sheets[n][0].id;render();}
 function toTask(){st.view="task";st.dir=1;render();}
+function setScene(n){cur=n;st=fresh();paginate();render();$("scenes").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",+b.dataset.sc===n));}
 
 /* ---------- events ---------- */
 foot.addEventListener("click",e=>{
@@ -349,39 +416,44 @@ foot.addEventListener("click",e=>{
   if(a==="next"){if(st.sheet===sheets.length-1&&!st.ev)toTask();else go(st.sheet+1);}
   if(a==="story"){st.view="read";st.dir=-1;go(sheets.length-1);render();}
   if(a==="check"){
-    if(st.sel===TASK.right){const g=(st.phase==="select"||st.phase==="retry")?2:1;win(g);}
-    else if(st.phase==="select"){st.phase="wrong";render(false);}
-    else if(st.phase==="retry"){st.phase="help";st.sel=null;render(false);}
-    else if(st.phase==="help"){st.phase="explain";st.sel=TASK.right;render(false);}
+    if(correct()){win((st.phase==="select"||st.phase==="retry")?2:1);}
+    else if(st.phase==="select"){st.target=S().evPick(st.ans);st.phase="wrong";render(false);}
+    else if(st.phase==="retry"){st.phase="help";st.ans=emptyAns();st.active=0;render(false);}
+    else if(st.phase==="help"){st.phase="explain";st.ans=JSON.parse(JSON.stringify(S().task.right));render(false);}
   }
   if(a==="beweis"){st.ev=true;st.evFound=false;st.evMiss=0;st.view="read";st.dir=-1;st.sheet=0;st.anchor=sheets[0][0].id;render();}
-  if(a==="totask"){st.ev=false;st.phase="retry";st.sel=null;toTask();}
+  if(a==="totask"){st.ev=false;st.phase="retry";st.ans=emptyAns();st.active=0;toTask();}
   if(a==="understood")win(1);
   if(a==="reread"){st.view="read";st.dir=-1;st.sheet=0;st.anchor="head";render();}
   if(a==="end"){st.view="end";st.dir=1;render();}
-  if(a==="reset"){st=fresh();paginate();render();}
+  if(a==="nextsc"){setScene(cur===1?3:cur===3?5:1);}
 });
 function win(g){
-  if(!st.won){st.won=true;st.pearls+=g;st.solved=1;st.lastGain=g;}
+  if(!glob.solved.has(cur)){glob.solved.add(cur);glob.pearls+=g;glob.lastGain=g;}
   st.view="win";st.dir=1;render();
   const p=$("pearls");p.classList.remove("bump");void p.offsetWidth;p.classList.add("bump");
   $("moon").classList.add("glow");setTimeout(()=>$("moon").classList.remove("glow"),1600);
 }
 content.addEventListener("click",e=>{
-  const o=e.target.closest(".opt");
-  if(o&&!o.disabled){st.sel=+o.dataset.o;if(st.phase==="retry"||st.phase==="help"){} render(false);return;}
+  const t=S().task;
+  const o=e.target.closest("[data-o]");if(o&&!o.disabled){st.ans=+o.dataset.o;render(false);return;}
+  const r=e.target.closest("[data-row]");if(r&&!r.disabled){st.active=+r.dataset.row;render(false);return;}
+  const pl=e.target.closest("[data-pl]");
+  if(pl&&!pl.disabled){const j=+pl.dataset.pl;const other=st.ans.indexOf(j);if(other>=0)st.ans[other]=null;st.ans[st.active]=j;
+    const nxt=st.ans.findIndex(x=>x===null);st.active=nxt>=0?nxt:st.active;render(false);return;}
+  const sq=e.target.closest("[data-sq]");
+  if(sq&&!sq.disabled){const i=+sq.dataset.sq;if(st.ans[i]){st.ans[i]=0;}else{let n=1;while(st.ans.includes(n))n++;st.ans[i]=n;}render(false);return;}
   const s=e.target.closest(".sent");
   if(s&&st.view==="read"&&st.ev&&!st.evFound){
-    if(s.dataset.s===EVIDENCE){st.evFound=true;render(false);const f=content.querySelector(`[data-s="${EVIDENCE}"]`);f&&f.classList.add("found");}
-    else{s.classList.remove("nope");void s.offsetWidth;s.classList.add("nope");st.evMiss=(st.evMiss||0)+1;const b=$("banner");if(b)b.innerHTML=T(st.evMiss>=2?UI.evNo2:UI.evNo);}
+    const E=S().ev[st.target];
+    if(E.ids.includes(s.dataset.s)){st.evFound=true;render(false);}
+    else{s.classList.remove("nope");void s.offsetWidth;s.classList.add("nope");st.evMiss++;const b=$("banner");if(b)b.innerHTML=T(st.evMiss>=2?E.near:UI.evNo);}
   }
 });
-// swipe
 let sx=null,sy=null;
 sheetEl.addEventListener("pointerdown",e=>{sx=e.clientX;sy=e.clientY;});
 sheetEl.addEventListener("pointerup",e=>{if(sx===null||st.view!=="read")return;const dx=e.clientX-sx,dy=e.clientY-sy;sx=null;
   if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5){if(dx<0){if(st.sheet===sheets.length-1&&!st.ev)toTask();else go(st.sheet+1);}else go(st.sheet-1);}});
-// settings
 $("aa").addEventListener("click",()=>{const p=$("pop");p.hidden=!p.hidden;$("aa").setAttribute("aria-expanded",!p.hidden);});
 $("pop").addEventListener("click",e=>{
   const b=e.target.closest("[data-fs]");
@@ -389,16 +461,15 @@ $("pop").addEventListener("click",e=>{
   if(e.target.id==="sylsw"){const on=e.target.getAttribute("aria-pressed")!=="true";e.target.setAttribute("aria-pressed",on);app.classList.toggle("nosyl",!on);}
 });
 $("back").addEventListener("click",()=>{if(st.view==="task"){st.view="read";st.dir=-1;render();}else if(st.view==="read")go(st.sheet-1);});
-// panel
+$("scenes").addEventListener("click",e=>{const b=e.target.closest("[data-sc]");if(b)setScene(+b.dataset.sc);});
 $("jump").addEventListener("click",e=>{const j=e.target.closest("[data-j]")?.dataset.j;if(!j)return;
-  if(j==="reset"){st=fresh();paginate();render();return;}
-  st=Object.assign(fresh(),{pearls:st.pearls,solved:st.solved,won:st.won});
-  if(j==="read"){go(0);render();}
-  if(j==="task"){toTask();}
-  if(j==="wrong"){st.sel=0;st.phase="wrong";toTask();}
-  if(j==="ev"){st.phase="wrong";st.ev=true;st.evMiss=0;st.view="read";st.sheet=0;render();}
-  if(j==="win"){st.won=false;st.pearls=0;win(2);}
+  if(j==="reset"){glob.pearls=0;glob.solved.clear();setScene(1);return;}
+  st=fresh();paginate();
+  if(j==="read")render();
+  if(j==="task")toTask();
+  if(j==="win"){glob.solved.delete(cur);win(2);}
 });
+st=fresh();
 new ResizeObserver(()=>{if(st.view==="read"){paginate();render(false);}else paginate();}).observe(sheetEl);
 (document.fonts?document.fonts.ready:Promise.resolve()).then(()=>{paginate();render(false);});
 paginate();render(false);
