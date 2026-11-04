@@ -1,4 +1,4 @@
-# LESE-FALL — Die Leseraupe ermittelt
+# Lese-Fall: Spur im Text
 
 Детективная книга-приложение для самостоятельного чтения (немецкий, примерно 8+ лет, 2. Klasse). Продолжение приложения Leseraupe. Первая книга — **«Der verschwundene Mond»**: 4 главы, 24 сцены, в каждой задание `Dein Ermittlerauftrag`.
 
