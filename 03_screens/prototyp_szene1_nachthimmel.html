@@ -3,13 +3,18 @@
 <title>Lese-Fall Nachthimmel</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
 <style>
+@font-face{font-family:'Inter Schule';src:url('fonts/Inter-Medium.woff2') format('woff2');font-weight:400 500;font-display:block}
+@font-face{font-family:'Inter Schule';src:url('fonts/Inter-SemiBold.woff2') format('woff2');font-weight:600 700;font-display:block}
+@font-face{font-family:'Inter Schule';src:url('fonts/Inter-ExtraBold.woff2') format('woff2');font-weight:800 900;font-display:block}
+.app,.app *{font-feature-settings:'cv05' 1,'cv11' 1}
+
 [hidden]{display:none!important}
 /* Layout: clickable phone prototype (real 360px CSS width) + evaluation panel beside it; stacks on narrow screens */
 :root{
   --bg:#F2EFE8; --fg:#24262B; --muted:#6A6D73; --line:#DEDAD0; --card:#FFFFFF; --focus:#214F97;
-  --f-ui:"Inter",system-ui,sans-serif; --f-read:"Andika","Inter",sans-serif;
+  --f-ui:"Inter",system-ui,sans-serif; --f-read:"Inter Schule",system-ui,sans-serif; --f-app:"Inter Schule",system-ui,sans-serif;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#17181C;--fg:#ECEAE4;--muted:#A3A39E;--line:#33353A;--card:#222429;--focus:#8FB0EA;color-scheme:dark}}
 :root[data-theme="dark"]{--bg:#17181C;--fg:#ECEAE4;--muted:#A3A39E;--line:#33353A;--card:#222429;--focus:#8FB0EA;color-scheme:dark}
@@ -41,9 +46,9 @@ button:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
 .app{
   --sky1:#1D2E57; --sky2:#2C4176; --around:linear-gradient(#2C4176 0, #5A6FA0 22%, #AEBDDB 60%, #D9E0EE 100%); --paper:#FFFDF8; --ink:#2A2622; --ui:#2D3138; --muted:#6E6A63;
   --line:#ECE4D3; --mustard:#F4C243; --mustard-ink:#2A2210; --mustard-line:#D9A21E; --soft:#EEE8DB;
-  --thought:#F3F8EA; --thought-line:#D6E7BE; --fsoft:#FFFFFF; --fink:#2D3138; --dot:#8C9CBE; --doton:#1D2E57; --hl:#FFEDB8; --blue:#214F97; --red:#B72531; --fs:20px;
+  --thought:#F3F8EA; --thought-line:#D6E7BE; --fsoft:#FFFFFF; --fink:#2D3138; --dot:#8C9CBE; --doton:#1D2E57; --hl:#FFEDB8; --blue:#1D3F9E; --red:#E8473A; --fs:20px;
   height:100%;border-radius:36px;overflow:hidden;position:relative;display:grid;grid-template-rows:auto minmax(0,1fr) auto 20px;
-  background:var(--around);color:var(--ui);font-family:var(--f-ui)
+  background:var(--around);color:var(--ui);font-family:var(--f-app)
 }
 .top{position:relative;z-index:3;background:linear-gradient(170deg,var(--sky1),var(--sky2));color:#fff;padding:10px 12px 12px}
 .top::before{content:"";position:absolute;inset:0;pointer-events:none;background:
@@ -202,11 +207,11 @@ button:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
         <span class="tok"><b style="background:#FFFDF8"></b>Лист #FFFDF8</span>
         <span class="tok"><b style="background:#F4C243"></b>Горчица #F4C243</span>
         <span class="tok"><b style="background:#F3F8EA"></b>Мысль #F3F8EA</span>
-        <span class="tok"><b style="background:#214F97"></b>Слог #214F97</span>
-        <span class="tok"><b style="background:#B72531"></b>Слог #B72531</span>
+        <span class="tok"><b style="background:#1D3F9E"></b>Слог #1D3F9E</span>
+        <span class="tok"><b style="background:#E8473A"></b>Слог #E8473A</span>
       </div>
     </div>
-    <p class="note">Гусеничка и картинка — заглушки, не фирменный арт Leseraupe. Шрифт текста — Andika.</p>
+    <p class="note">Гусеничка и картинка — заглушки, не фирменный арт Leseraupe. Шрифт и цвета слогов — как в Leseraupe (Inter с одноэтажной a и l с хвостиком).</p>
   </aside>
 </div>
 
@@ -248,9 +253,9 @@ function raupe(mood="calm",cls="raupe"){
   const glow=mood==="happy";
   const eyes=mood==="think"?'<circle cx="23.5" cy="18.8" r="1.5" fill="#2A2622"/><circle cx="29" cy="18.8" r="1.5" fill="#2A2622"/>':'<circle cx="23.5" cy="20" r="1.5" fill="#2A2622"/><circle cx="29" cy="20" r="1.5" fill="#2A2622"/>';
   const mouth=mood==="happy"?'<path d="M22.8 23.6 Q26.3 28.6 29.8 23.6" fill="#2A2622"/>':mood==="think"?'<path d="M24.5 25.5 L28.5 25" stroke="#2A2622" stroke-width="1.2" stroke-linecap="round"/>':'<path d="M24 25 Q26.5 27 29 25" stroke="#2A2622" stroke-width="1.2" fill="none" stroke-linecap="round"/>';
-  return `<svg class="${cls}" viewBox="0 0 40 40" aria-hidden="true"><circle cx="9" cy="28" r="6" fill="#7DB544"/><circle cx="17" cy="26" r="7" fill="#8CC255"/><circle cx="26" cy="21" r="8.5" fill="#7DB544"/><path d="M23 13 L20 5 M29 13 L32 5" stroke="#4F7E26" stroke-width="1.6" stroke-linecap="round"/><g ${glow?'style="filter:drop-shadow(0 0 3px #F5C542)"':''}><circle cx="20" cy="5" r="${glow?2.9:2.2}" fill="#F5C542"/><circle cx="32" cy="5" r="${glow?2.9:2.2}" fill="#F5C542"/></g>${eyes}${mouth}</svg>`;
+  return `<svg class="${cls}" viewBox="0 0 40 40" aria-hidden="true"><circle cx="6.5" cy="30" r="5" fill="#8E5BD8"/><circle cx="12" cy="28.5" r="5.6" fill="#2F7FE0"/><circle cx="18" cy="26" r="6.2" fill="#F6C433"/><circle cx="26" cy="21" r="8.5" fill="#7DCB3A"/><path d="M23 13 L20 5 M29 13 L32 5" stroke="#4F7E26" stroke-width="1.6" stroke-linecap="round"/><g ${glow?'style="filter:drop-shadow(0 0 3px #F5C542)"':''}><circle cx="20" cy="5" r="${glow?2.9:2.4}" fill="${glow?'#F5C542':'#E8473A'}"/><circle cx="32" cy="5" r="${glow?2.9:2.4}" fill="${glow?'#F5C542':'#2F7FE0'}"/></g>${eyes}${mouth}</svg>`;
 }
-function illu(after){return `<svg viewBox="0 0 160 90" role="img" aria-label="Platzhalter: Puppentheater im Gruppenraum"><rect width="160" height="90" fill="#EEF1F3"/><rect x="0" y="66" width="160" height="24" fill="#DDE1E4"/><rect x="118" y="10" width="34" height="30" rx="2" fill="#DCE9F3" stroke="#C9CDD1"/><rect x="40" y="16" width="74" height="56" rx="3" fill="#CDBFA6"/><rect x="46" y="34" width="62" height="38" fill="#B9575C"/><path d="M46 34 Q61.5 46 77 34 Q92.5 46 108 34" fill="#A2474D"/><g fill="#fff"><circle cx="88" cy="25" r="5"/><circle cx="94" cy="23" r="6"/><circle cx="100" cy="26" r="4.5"/></g>${after?'<circle cx="73" cy="25" r="6.5" fill="#F2C94C"/>':''}<rect x="124" y="54" width="20" height="12" rx="2" fill="#C9B79A"/><g transform="translate(126 42)"><circle cx="0" cy="10" r="3.6" fill="#7DB544"/><circle cx="6" cy="8" r="4.2" fill="#8CC255"/><circle cx="12" cy="4" r="5" fill="#7DB544"/><circle cx="12.4" cy="3" r=".9" fill="#2A2622"/><circle cx="14.7" cy="3" r=".9" fill="#2A2622"/></g></svg>`;}
+function illu(after){return `<svg viewBox="0 0 160 90" role="img" aria-label="Platzhalter: Puppentheater im Gruppenraum"><rect width="160" height="90" fill="#EEF1F3"/><rect x="0" y="66" width="160" height="24" fill="#DDE1E4"/><rect x="118" y="10" width="34" height="30" rx="2" fill="#DCE9F3" stroke="#C9CDD1"/><rect x="40" y="16" width="74" height="56" rx="3" fill="#CDBFA6"/><rect x="46" y="34" width="62" height="38" fill="#B9575C"/><path d="M46 34 Q61.5 46 77 34 Q92.5 46 108 34" fill="#A2474D"/><g fill="#fff"><circle cx="88" cy="25" r="5"/><circle cx="94" cy="23" r="6"/><circle cx="100" cy="26" r="4.5"/></g>${after?'<circle cx="73" cy="25" r="6.5" fill="#F2C94C"/>':''}<rect x="124" y="54" width="20" height="12" rx="2" fill="#C9B79A"/><g transform="translate(126 42)"><circle cx="0" cy="10" r="3.6" fill="#8E5BD8"/><circle cx="6" cy="8" r="4.2" fill="#F6C433"/><circle cx="12" cy="4" r="5" fill="#7DCB3A"/><circle cx="12.4" cy="3" r=".9" fill="#2A2622"/><circle cx="14.7" cy="3" r=".9" fill="#2A2622"/></g></svg>`;}
 const lupe=`<svg viewBox="0 0 18 18" aria-hidden="true"><circle cx="7.5" cy="7.5" r="5" fill="#CFE6F5" stroke="#2D3138" stroke-width="1.5"/><path d="M11.3 11.3 L16 16" stroke="#2D3138" stroke-width="2" stroke-linecap="round"/></svg>`;
 function moonSVG(k){ // k = solved scenes in chapter (0..6)
   if(!k) return `<svg viewBox="0 0 34 34"><circle cx="17" cy="17" r="12" fill="none" stroke="#fff" stroke-opacity=".75" stroke-width="1.4" stroke-dasharray="3 3"/></svg>`;
