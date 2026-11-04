@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lese-Fall Nachthimmel</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Andika:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+[hidden]{display:none!important}
+/* Layout: clickable phone prototype (real 360px CSS width) + evaluation panel beside it; stacks on narrow screens */
+:root{
+  --bg:#F2EFE8; --fg:#24262B; --muted:#6A6D73; --line:#DEDAD0; --card:#FFFFFF; --focus:#214F97;
+  --f-ui:"Inter",system-ui,sans-serif; --f-read:"Andika","Inter",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#17181C;--fg:#ECEAE4;--muted:#A3A39E;--line:#33353A;--card:#222429;--focus:#8FB0EA;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#17181C;--fg:#ECEAE4;--muted:#A3A39E;--line:#33353A;--card:#222429;--focus:#8FB0EA;color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font:15px/1.5 var(--f-ui);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 48px}
+.page{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:auto minmax(0,1fr);gap:36px;align-items:start}
+@media (max-width:820px){.page{grid-template-columns:minmax(0,1fr)}.phone-wrap{justify-self:center}}
+h1{font:800 30px/1.1 var(--f-ui);margin:0 0 6px;letter-spacing:-.01em;text-wrap:balance}
+h2{font:700 13px var(--f-ui);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+p{margin:0}
+.panel{display:grid;gap:24px;min-width:0}
+.panel .lead{color:var(--muted)}
+.try{margin:0;padding-left:20px;display:grid;gap:5px}
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+.seg button,.jump button{font:600 13px var(--f-ui);border:1.5px solid var(--line);background:var(--card);color:var(--fg);border-radius:999px;padding:7px 13px;cursor:pointer;display:inline-flex;align-items:center;gap:7px}
+.seg button[aria-pressed="true"]{border-color:var(--fg);box-shadow:inset 0 0 0 1px var(--fg)}
+.seg i{width:16px;height:16px;border-radius:50%;border:1px solid rgb(0 0 0 / 15%);display:inline-block}
+button:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.jump{display:flex;flex-wrap:wrap;gap:8px}
+.tokens{display:grid;grid-template-columns:repeat(auto-fill,minmax(108px,1fr));gap:8px}
+.tok{display:grid;gap:4px;font-size:12px;color:var(--muted)}
+.tok b{height:30px;border-radius:8px;border:1px solid rgb(0 0 0 / 10%)}
+.note{font-size:13px;color:var(--muted)}
+.idea{border:1px solid var(--line);background:var(--card);border-radius:14px;padding:14px 16px;display:grid;gap:6px}
+
+/* ===== the phone (fixed light app palette) ===== */
+.phone-wrap{display:grid;gap:10px;justify-items:center}
+.phone{width:376px;max-width:100%;height:776px;border-radius:44px;background:#121318;padding:8px;box-shadow:0 18px 40px rgb(0 0 0 / 18%)}
+@media (max-width:420px){.phone{padding:0;background:none;box-shadow:none;height:min(740px,calc(100svh - 40px));border-radius:0}.app{border-radius:18px}}
+.app{
+  --sky1:#1D2E57; --sky2:#2C4176; --around:linear-gradient(#2C4176 0, #5A6FA0 22%, #AEBDDB 60%, #D9E0EE 100%); --paper:#FFFDF8; --ink:#2A2622; --ui:#2D3138; --muted:#6E6A63;
+  --line:#ECE4D3; --mustard:#F4C243; --mustard-ink:#2A2210; --mustard-line:#D9A21E; --soft:#EEE8DB;
+  --thought:#F3F8EA; --thought-line:#D6E7BE; --fsoft:#FFFFFF; --fink:#2D3138; --dot:#8C9CBE; --doton:#1D2E57; --hl:#FFEDB8; --blue:#214F97; --red:#B72531; --fs:20px;
+  height:100%;border-radius:36px;overflow:hidden;position:relative;display:grid;grid-template-rows:auto minmax(0,1fr) auto 20px;
+  background:var(--around);color:var(--ui);font-family:var(--f-ui)
+}
+.top{position:relative;z-index:3;background:linear-gradient(170deg,var(--sky1),var(--sky2));color:#fff;padding:10px 12px 12px}
+.top::before{content:"";position:absolute;inset:0;pointer-events:none;background:
+ radial-gradient(1.4px 1.4px at 8% 30%,#fffc 99%,transparent),radial-gradient(1px 1px at 22% 70%,#fff9 99%,transparent),
+ radial-gradient(1.2px 1.2px at 47% 22%,#fffb 99%,transparent),radial-gradient(1px 1px at 58% 78%,#fff8 99%,transparent),
+ radial-gradient(1.5px 1.5px at 73% 40%,#fffc 99%,transparent),radial-gradient(1px 1px at 92% 18%,#fffa 99%,transparent),
+ radial-gradient(1px 1px at 35% 48%,#fff7 99%,transparent)}
+.notch{height:20px;display:grid;place-items:center}.notch i{width:84px;height:20px;border-radius:12px;background:#0B0F1C}
+.hdr{position:relative;display:flex;align-items:center;gap:8px;margin-top:6px}
+.ib{width:40px;height:40px;border-radius:50%;border:0;display:grid;place-items:center;background:rgb(255 255 255 / 13%);color:#fff;font:700 15px var(--f-ui);cursor:pointer;flex:none}
+.ttl{flex:1;min-width:0;line-height:1.15}
+.ttl b{display:block;font:700 14px var(--f-ui)}
+.ttl span{font-size:12px;opacity:.75}
+.moon{width:34px;height:34px;flex:none;position:relative}
+.moon svg{width:100%;height:100%;overflow:visible}
+.moon.glow svg{filter:drop-shadow(0 0 6px #F5C542)}
+.pearls{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 11px;border-radius:999px;background:rgb(255 255 255 / 13%);font:700 13px var(--f-ui);flex:none}
+.pp{width:12px;height:12px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff 0 18%,#F2C14B 48%,#C98F12 100%);display:inline-block;flex:none}
+.pearls.bump{animation:bump .5s ease}
+@keyframes bump{40%{transform:scale(1.18)}}
+
+.main{position:relative;min-height:0;display:flex;padding:0 10px;background:linear-gradient(var(--sky2) 0 14px,transparent 14px)}
+.sheet{position:relative;flex:1;min-width:0;background:var(--paper);border:1px solid var(--line);border-radius:20px;box-shadow:0 4px 18px rgb(40 34 22 / 8%);padding:18px 18px;overflow:hidden;touch-action:pan-y}
+.sheet.scroll{overflow-y:auto}
+.content{display:flex;flex-direction:column;gap:12px}
+.content.enter{animation:enter .28s ease}
+.content.enter.back{animation-name:enterback}
+@keyframes enter{from{opacity:0;transform:translateX(24px)}}
+@keyframes enterback{from{opacity:0;transform:translateX(-24px)}}
+.measure{position:absolute;left:18px;right:18px;top:0;visibility:hidden;pointer-events:none;display:flex;flex-direction:column;gap:12px}
+.illu{border-radius:14px;overflow:hidden;aspect-ratio:16/9;flex:none}
+.illu svg{display:block;width:100%;height:100%}
+.title{font:700 calc(var(--fs) * 1.2)/1.25 var(--f-read);color:var(--ink);margin-top:2px}
+.txt{font:400 var(--fs)/1.55 var(--f-read);color:var(--ink)}
+.sent{border-radius:5px;transition:background .2s}
+.ev .sent{cursor:pointer;background:linear-gradient(transparent 88%,rgb(42 38 34 / 14%) 88%)}
+.ev .sent:hover{background-color:#FFF6DA}
+.sent.found{background:var(--hl)!important;box-shadow:0 0 0 3px var(--hl)}
+.sent.nope{animation:nope .4s}
+@keyframes nope{30%{transform:translateX(-3px)}60%{transform:translateX(3px)}}
+.thought{display:grid;grid-template-columns:44px minmax(0,1fr);gap:10px;background:var(--thought);border:1px solid var(--thought-line);border-radius:16px;padding:10px 12px}
+.thought .lbl,.case{font:700 11px var(--f-ui);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.thought .txt{font-size:calc(var(--fs) * .95)}
+.raupe{width:44px;height:44px;flex:none}
+.case{display:flex;align-items:center;gap:7px}
+.case svg{width:18px;height:18px}
+.q{font-weight:700}
+.opts{display:grid;gap:9px}
+.opt{display:grid;grid-template-columns:30px minmax(0,1fr);gap:10px;align-items:start;text-align:left;width:100%;border:2px solid var(--line);border-radius:14px;padding:10px 12px;background:var(--paper);cursor:pointer;font:inherit;color:inherit}
+.opt .k{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font:700 13px var(--f-ui);background:var(--soft);color:var(--ui)}
+.opt .txt{font-size:calc(var(--fs) * .9);line-height:1.45}
+.opt[aria-pressed="true"]{border-color:var(--mustard-line);background:#FFF8E3}
+.opt[aria-pressed="true"] .k{background:var(--mustard);color:var(--mustard-ink)}
+.opt:disabled{cursor:default;opacity:.55}
+.opt[aria-pressed="true"]:disabled{opacity:1}
+.fb{display:grid;grid-template-columns:44px minmax(0,1fr);gap:10px;align-items:start;border-radius:16px;padding:10px 12px;background:var(--thought);border:1px solid var(--thought-line)}
+.fb .txt{font-size:calc(var(--fs) * .9);line-height:1.45}
+.fb.help{background:#FFF8E3;border-color:#F0D98F}
+.foot{display:flex;align-items:center;gap:10px;padding:12px 12px 6px;min-height:70px}
+.nav{width:48px;height:48px;border-radius:50%;border:0;display:grid;place-items:center;background:var(--fsoft);color:var(--fink);font:700 22px var(--f-ui);box-shadow:0 1px 3px rgb(20 30 60 / 8%);cursor:pointer;flex:none}
+.nav.go{background:var(--mustard);color:var(--mustard-ink)}
+.nav:disabled{opacity:.35;cursor:default}
+.dots{flex:1;display:flex;justify-content:center;align-items:center;gap:6px}
+.dots i{width:8px;height:8px;border-radius:50%;background:var(--dot)}
+.dots i.on{background:var(--doton)}
+.app.nightfoot .dots svg{filter:invert(1)}
+.dots svg{width:14px;height:14px}
+.btn{flex:1;height:50px;border-radius:25px;border:0;font:700 15px var(--f-ui);cursor:pointer;background:var(--fsoft);color:var(--fink);box-shadow:0 1px 3px rgb(20 30 60 / 8%);display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:0 12px}
+.btn.cta{background:var(--mustard);color:var(--mustard-ink);flex:1.35}
+.btn:disabled{opacity:.45;cursor:default}
+.banner{flex:1;min-width:0;font:600 13px/1.35 var(--f-ui);color:var(--ui);text-align:center;background:var(--paper);border-radius:16px;padding:6px 10px}
+.banner .txt{font:600 15px/1.35 var(--f-read)}
+.home{display:grid;place-items:center}.home i{width:120px;height:5px;border-radius:5px;background:var(--doton);opacity:.35}
+.win{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px}
+.win .big{width:96px;height:96px}
+.win .h{font:700 calc(var(--fs) * 1.35) var(--f-read);color:var(--ink)}
+.gain{display:inline-flex;align-items:center;gap:8px;font:700 14px var(--f-ui);padding:8px 16px;border-radius:999px;background:#FFF5D6;border:1px solid #F0D98F}
+.gain .pp{width:16px;height:16px}
+.gain.shine{animation:bump .6s ease .2s}
+.end{display:grid;gap:12px;align-content:center;height:100%;text-align:center}
+.end .txt{font-size:calc(var(--fs) * .9)}
+.pop{position:absolute;right:58px;top:46px;z-index:5;background:#fff;color:var(--ui);border-radius:16px;box-shadow:0 10px 30px rgb(0 0 0 / 22%);padding:14px;display:grid;gap:12px;width:230px}
+.pop[hidden]{display:none}
+.btn svg{width:20px;height:20px;flex:none}
+.pop .row{display:flex;align-items:center;justify-content:space-between;gap:10px;font:600 14px var(--f-ui)}
+.pop .sz{display:flex;gap:6px}
+.pop .sz button{width:40px;height:36px;border-radius:10px;border:1.5px solid var(--line);background:#fff;font:700 14px var(--f-read);cursor:pointer;color:var(--ui)}
+.pop .sz button[aria-pressed="true"]{border-color:var(--ui)}
+.sw{width:46px;height:28px;border-radius:14px;border:0;background:#D8D2C4;position:relative;cursor:pointer}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:left .15s}
+.sw[aria-pressed="true"]{background:var(--mustard-line)}
+.sw[aria-pressed="true"]::after{left:21px}
+.s-b{color:var(--blue)}.s-r{color:var(--red)}
+.nosyl .s-b,.nosyl .s-r{color:inherit}
+@media (prefers-reduced-motion:reduce){.content.enter,.pearls.bump,.gain.shine,.sent.nope{animation:none}}
+</style></head><body>
+
+<div class="page">
+  <div class="phone-wrap">
+    <div class="phone"><div class="app" id="app">
+      <div class="top">
+        <div class="notch"><i></i></div>
+        <div class="hdr">
+          <button class="ib" id="back" aria-label="Zurück">←</button>
+          <div class="ttl"><b>Kapitel 1 · Szene 1</b><span>Wo ist der Mond?</span></div>
+          <div class="moon" id="moon" title="Mond-Fortschritt im Kapitel"></div>
+          <div class="pearls" id="pearls" aria-label="Schimmer-Perlen"><span class="pp"></span><span id="pcount">0</span></div>
+          <button class="ib" id="aa" aria-label="Lese-Einstellungen" aria-expanded="false">Aa</button>
+        </div>
+        <div class="pop" id="pop" hidden>
+          <div class="row">Schriftgröße<span class="sz"><button data-fs="18" aria-pressed="false" style="font-size:12px">A</button><button data-fs="20" aria-pressed="true">A</button><button data-fs="23" aria-pressed="false" style="font-size:17px">A</button></span></div>
+          <div class="row">Silbenfarben<button class="sw" id="sylsw" aria-pressed="true" aria-label="Silbenfarben"></button></div>
+        </div>
+      </div>
+      <div class="main"><div class="sheet" id="sheet"><div class="content" id="content"></div><div class="measure" id="measure" aria-hidden="true"></div></div></div>
+      <div class="foot" id="foot"></div>
+      <div class="home"><i></i></div>
+    </div></div>
+    <span class="note">Прототип Сцены 1 · экран 360 px, как на телефоне</span>
+  </div>
+
+  <aside class="panel">
+    <div>
+      <h1>Senf &amp; Nachthimmel</h1>
+      <p class="lead">Утверждённая палитра. Всё кликается: листай, открой задание, ошибись специально, найди доказательство, получи жемчужины. Текст настоящий, из v5.1; реплики гусенички при ошибке и подсказки — мои черновики.</p>
+    </div>
+    <div>
+      <h2>Что попробовать</h2>
+      <ol class="try">
+        <li>Листай кнопками ‹ › или свайпом. Последняя точка с лупой — задание.</li>
+        <li>Нажми <b>Aa</b>: крупный шрифт — листов станет больше, но ты останешься на том же месте текста.</li>
+        <li>Там же выключи <b>Silbenfarben</b>.</li>
+        <li>В задании выбери <b>A</b> или <b>C</b> → «Zeig den Beweis!» → найди нужное предложение в тексте.</li>
+        <li>Ошибись ещё раз: появится «Weitere Hilfe», потом объяснение (1 жемчужина вместо 2).</li>
+        <li>После победы посмотри на луну в небе шапки.</li>
+      </ol>
+    </div>
+    
+    
+    <div>
+      <h2>Перейти сразу к состоянию</h2>
+      <div class="jump" id="jump">
+        <button data-j="read">Чтение</button><button data-j="task">Задание</button><button data-j="wrong">Ошибка</button><button data-j="ev">Поиск доказательства</button><button data-j="win">Победа</button><button data-j="reset">Сначала</button>
+      </div>
+    </div>
+    <div class="idea">
+      <h2 style="margin:0">Идея: луна как прогресс главы</h2>
+      <p>Луна в небе шапки — не декор. Пока ничего не решено, там пунктирное пустое место. С каждой решённой сценой появляется кусочек: 6 сцен главы — полная луна. Так ребёнок видит свой прогресс, а сюжет («луна пропала») не раскрывается раньше времени.</p>
+    </div>
+    <div>
+      <h2>Цвета</h2>
+      <div class="tokens">
+        <span class="tok"><b style="background:#1D2E57"></b>Небо #1D2E57</span>
+        <span class="tok"><b style="background:linear-gradient(#2C4176,#AEBDDB,#D9E0EE)"></b>Подложка: небо → #D9E0EE</span>
+        <span class="tok"><b style="background:#FFFDF8"></b>Лист #FFFDF8</span>
+        <span class="tok"><b style="background:#F4C243"></b>Горчица #F4C243</span>
+        <span class="tok"><b style="background:#F3F8EA"></b>Мысль #F3F8EA</span>
+        <span class="tok"><b style="background:#214F97"></b>Слог #214F97</span>
+        <span class="tok"><b style="background:#B72531"></b>Слог #B72531</span>
+      </div>
+    </div>
+    <p class="note">Гусеничка и картинка — заглушки, не фирменный арт Leseraupe. Шрифт текста — Andika.</p>
+  </aside>
+</div>
+
+<script>
+/* ---------- content (Szene 1, v5.1; syllables marked with |) ---------- */
+const BLOCKS=[
+ {id:"head",t:"head",title:"Ein The|a|ter für al|le"},
+ {id:"p1",t:"p",s:["Heu|te ist Frei|tag.","Im Grup|pen|raum der Schu|le geht es be|son|ders leb|haft zu."]},
+ {id:"p2",t:"p",s:["Mi|la, Ben und Os|kar be|rei|ten ei|ne Ü|ber|ra|schung vor: Am Nach|mit|tag wol|len sie den an|de|ren Kin|dern ein klei|nes The|a|ter|stück zei|gen."]},
+ {id:"p3",t:"p",s:["Ben hat das Pup|pen|the|a|ter schon auf den Tisch ge|stellt.","Und Os|kar sitzt drau|ßen vor dem of|fe|nen Fens|ter auf der Hof|bank und bas|telt noch an ei|ner klei|nen grau|en Pa|pier|maus."]},
+ {id:"p4",t:"p",s:["„Un|ser The|a|ter braucht noch ei|nen Him|mel!“, ruft Mi|la."]},
+ {id:"p5",t:"p",s:["Sie zeigt Ben ei|nen gro|ßen gel|ben Mond aus Pap|pe.","Auf die wei|ße Rück|sei|te hat sie ei|nen win|zi|gen blau|en Stern ge|malt."]},
+ {id:"p6",t:"p",s:["„Da|mit ich mei|nen Mond im|mer wie|der|er|ken|ne“, er|klärt sie stolz."]},
+ {id:"p7",t:"p",s:["Ü|ber dem ro|ten Vor|hang hängt schon ei|ne wei|ße Wol|ke.","Links da|ne|ben soll der Mond sei|nen Platz be|kom|men."]},
+ {id:"p8",t:"p",s:["Vom Blu|men|topf am Fens|ter schaut die klei|ne Le|se|rau|pe neu|gie|rig zu."]},
+ {id:"th",t:"th",s:["„Ein Mond mit|ten am Tag?“, denkt sie.","„Die|se Kin|der ha|ben wirk|lich selt|sa|me I|de|en.“"]}
+];
+const EVIDENCE="p7-1";
+const TASK={intro:"Mi|la möch|te ih|ren Mond an der rich|ti|gen Stel|le auf|hän|gen. Am The|a|ter sind noch drei Plät|ze frei:",
+ q:"Wo ge|hört der Mond laut Mi|las Plan hin?",
+ o:[["A","Rechts ne|ben der wei|ßen Wol|ke ü|ber dem Vor|hang."],["B","Links ne|ben der wei|ßen Wol|ke ü|ber dem Vor|hang."],["C","Un|ten mit|ten vor dem ro|ten Vor|hang."]],right:1};
+const UI={
+ wrong:"Hm, schau|en wir noch ein|mal ge|nau hin.",
+ evAsk:"Wo soll der Mond hän|gen? Tip|pe auf den Satz, der es ver|rät.",
+ evNo:"Die|ser Satz ver|rät es noch nicht. Such wei|ter!",
+ evYes:"Be|weis ge|fun|den!",
+ help:"Klei|ner Tipp: Im Be|weis steht das Wort „Links“. Wo|ne|ben soll der Mond hän|gen?",
+ explain:"Im Text steht: „Links da|ne|ben soll der Mond sei|nen Platz be|kom|men.“ Da|ne|ben heißt hier: ne|ben der wei|ßen Wol|ke. Da|rum ist B rich|tig.",
+ win2a:"Spur ent|deckt!",win2b:"Du hast ge|nau hin|ge|se|hen. Der Mond hängt links ne|ben der Wol|ke.",
+ win1a:"Ge|schafft!",win1b:"Jetzt weißt du, wo der Mond hängt. Beim nächs|ten Mal fin|dest du die Spur be|stimmt selbst.",
+ end:"Hier geht es mit Sze|ne 2 wei|ter: „Ein selt|sa|mes Früh|stück“."
+};
+
+/* ---------- helpers ---------- */
+function syl(text){return text.split(" ").map(tok=>{const m=tok.match(/^([„“"(]*)(.*?)([.,!?:;“"”)]*)$/);return m[1]+m[2].split("|").map((p,i)=>`<span class="${i%2?'s-r':'s-b'}">${p}</span>`).join("")+m[3];}).join(" ");}
+const T=(t,cls="txt")=>`<div class="${cls}">${syl(t)}</div>`;
+function raupe(mood="calm",cls="raupe"){
+  const glow=mood==="happy";
+  const eyes=mood==="think"?'<circle cx="23.5" cy="18.8" r="1.5" fill="#2A2622"/><circle cx="29" cy="18.8" r="1.5" fill="#2A2622"/>':'<circle cx="23.5" cy="20" r="1.5" fill="#2A2622"/><circle cx="29" cy="20" r="1.5" fill="#2A2622"/>';
+  const mouth=mood==="happy"?'<path d="M22.8 23.6 Q26.3 28.6 29.8 23.6" fill="#2A2622"/>':mood==="think"?'<path d="M24.5 25.5 L28.5 25" stroke="#2A2622" stroke-width="1.2" stroke-linecap="round"/>':'<path d="M24 25 Q26.5 27 29 25" stroke="#2A2622" stroke-width="1.2" fill="none" stroke-linecap="round"/>';
+  return `<svg class="${cls}" viewBox="0 0 40 40" aria-hidden="true"><circle cx="9" cy="28" r="6" fill="#7DB544"/><circle cx="17" cy="26" r="7" fill="#8CC255"/><circle cx="26" cy="21" r="8.5" fill="#7DB544"/><path d="M23 13 L20 5 M29 13 L32 5" stroke="#4F7E26" stroke-width="1.6" stroke-linecap="round"/><g ${glow?'style="filter:drop-shadow(0 0 3px #F5C542)"':''}><circle cx="20" cy="5" r="${glow?2.9:2.2}" fill="#F5C542"/><circle cx="32" cy="5" r="${glow?2.9:2.2}" fill="#F5C542"/></g>${eyes}${mouth}</svg>`;
+}
+function illu(after){return `<svg viewBox="0 0 160 90" role="img" aria-label="Platzhalter: Puppentheater im Gruppenraum"><rect width="160" height="90" fill="#EEF1F3"/><rect x="0" y="66" width="160" height="24" fill="#DDE1E4"/><rect x="118" y="10" width="34" height="30" rx="2" fill="#DCE9F3" stroke="#C9CDD1"/><rect x="40" y="16" width="74" height="56" rx="3" fill="#CDBFA6"/><rect x="46" y="34" width="62" height="38" fill="#B9575C"/><path d="M46 34 Q61.5 46 77 34 Q92.5 46 108 34" fill="#A2474D"/><g fill="#fff"><circle cx="88" cy="25" r="5"/><circle cx="94" cy="23" r="6"/><circle cx="100" cy="26" r="4.5"/></g>${after?'<circle cx="73" cy="25" r="6.5" fill="#F2C94C"/>':''}<rect x="124" y="54" width="20" height="12" rx="2" fill="#C9B79A"/><g transform="translate(126 42)"><circle cx="0" cy="10" r="3.6" fill="#7DB544"/><circle cx="6" cy="8" r="4.2" fill="#8CC255"/><circle cx="12" cy="4" r="5" fill="#7DB544"/><circle cx="12.4" cy="3" r=".9" fill="#2A2622"/><circle cx="14.7" cy="3" r=".9" fill="#2A2622"/></g></svg>`;}
+const lupe=`<svg viewBox="0 0 18 18" aria-hidden="true"><circle cx="7.5" cy="7.5" r="5" fill="#CFE6F5" stroke="#2D3138" stroke-width="1.5"/><path d="M11.3 11.3 L16 16" stroke="#2D3138" stroke-width="2" stroke-linecap="round"/></svg>`;
+function moonSVG(k){ // k = solved scenes in chapter (0..6)
+  if(!k) return `<svg viewBox="0 0 34 34"><circle cx="17" cy="17" r="12" fill="none" stroke="#fff" stroke-opacity=".75" stroke-width="1.4" stroke-dasharray="3 3"/></svg>`;
+  const off=24*(k/6)+0.5;
+  return `<svg viewBox="0 0 34 34"><defs><mask id="mk"><rect width="34" height="34" fill="#fff"/><circle cx="${17-off}" cy="17" r="12.2" fill="#000"/></mask></defs><circle cx="17" cy="17" r="12" fill="none" stroke="#fff" stroke-opacity=".45" stroke-width="1.2" stroke-dasharray="3 3"/><circle cx="17" cy="17" r="12" fill="#F5C542" mask="url(#mk)"/></svg>`;
+}
+
+/* ---------- state ---------- */
+const $=id=>document.getElementById(id);
+const app=$("app"),content=$("content"),measure=$("measure"),sheetEl=$("sheet"),foot=$("foot");
+let st;
+function fresh(){return {view:"read",sheet:0,anchor:"head",sel:null,phase:"select",ev:false,evFound:false,pearls:0,solved:0,lastGain:0,dir:1};}
+st=fresh();
+let sheets=[];
+
+function blockHTML(b){
+  if(b.t==="head") return `<div class="blk" data-b="${b.id}"><div class="illu">${illu(false)}</div><div class="title" style="margin-top:12px">${syl(b.title)}</div></div>`;
+  const sents=b.s.map((s,i)=>`<span class="sent" data-s="${b.id}-${i}">${syl(s)}</span>`).join(" ");
+  if(b.t==="th") return `<div class="blk thought" data-b="${b.id}">${raupe("calm")}<div><div class="lbl">Raupen-Gedanke</div><div class="txt">${sents}</div></div></div>`;
+  return `<div class="blk txt" data-b="${b.id}">${sents}</div>`;
+}
+function paginate(){
+  const cs=getComputedStyle(sheetEl);
+  const maxH=sheetEl.clientHeight-parseFloat(cs.paddingTop)-parseFloat(cs.paddingBottom);
+  sheets=[];let cur=[];measure.innerHTML="";
+  for(const b of BLOCKS){
+    measure.insertAdjacentHTML("beforeend",blockHTML(b));
+    if(measure.scrollHeight>maxH+1&&cur.length){
+      // keep title block together with the first paragraph
+      if(cur.length===1&&cur[0].t==="head"){cur.push(b);sheets.push(cur);cur=[];measure.innerHTML="";continue;}
+      sheets.push(cur);cur=[b];measure.innerHTML=blockHTML(b);
+    } else cur.push(b);
+  }
+  if(cur.length)sheets.push(cur);
+  measure.innerHTML="";
+  const idx=sheets.findIndex(s=>s.some(b=>b.id===st.anchor));
+  st.sheet=idx<0?0:idx;
+}
+function sheetOf(blockId){return sheets.findIndex(s=>s.some(b=>b.id===blockId));}
+
+/* ---------- render ---------- */
+function render(anim=true){
+  $("moon").innerHTML=moonSVG(st.solved);
+  $("pcount").textContent=st.pearls;
+  sheetEl.classList.toggle("scroll",st.view!=="read");
+  sheetEl.classList.toggle("ev",st.view==="read"&&st.ev&&!st.evFound);
+  let html="",f="";
+  if(st.view==="read"){
+    const s=sheets[st.sheet]||[];
+    html=s.map(blockHTML).join("");
+    const last=st.sheet===sheets.length-1;
+    if(st.ev){
+      f=`<button class="nav" data-a="prev" ${st.sheet===0?"disabled":""} aria-label="Vorheriges Blatt">‹</button>`+
+        (st.evFound?`<button class="btn cta" data-a="totask">Zurück zum Auftrag</button>`:`<div class="banner" id="banner">${T(UI.evAsk)}</div>`)+
+        `<button class="nav" data-a="next" ${last?"disabled":""} aria-label="Nächstes Blatt">›</button>`;
+    } else {
+      const dots=sheets.map((_,i)=>`<i class="${i<=st.sheet?'on':''}"></i>`).join("")+lupe;
+      f=`<button class="nav" data-a="prev" ${st.sheet===0?"disabled":""} aria-label="Vorheriges Blatt">‹</button><div class="dots" aria-label="Blatt ${st.sheet+1} von ${sheets.length}">${dots}</div><button class="nav ${last?'go':''}" data-a="next" aria-label="${last?'Zum Ermittlerauftrag':'Nächstes Blatt'}">›</button>`;
+    }
+  } else if(st.view==="task"){
+    const locked=["wrong","explain"].includes(st.phase);
+    html=`<div class="case">${lupe}Dein Ermittlerauftrag</div>${T(TASK.intro)}<div class="q">${T(TASK.q)}</div><div class="opts">`+
+      TASK.o.map((o,i)=>`<button class="opt" data-o="${i}" aria-pressed="${st.sel===i}" ${locked?"disabled":""}><span class="k">${o[0]}</span>${T(o[1])}</button>`).join("")+`</div>`;
+    if(st.phase==="wrong") html+=`<div class="fb">${raupe("think")}${T(UI.wrong)}</div>`;
+    if(st.phase==="retry") html+=`<div class="fb">${raupe("calm")}${T("Du hast den Be|weis! Wähl jetzt noch ein|mal.")}</div>`;
+    if(st.phase==="help") html+=`<div class="fb help">${raupe("think")}${T(UI.help)}</div>`;
+    if(st.phase==="explain") html+=`<div class="fb help">${raupe("calm")}${T(UI.explain)}</div>`;
+    const primary=st.phase==="wrong"?`<button class="btn cta" data-a="beweis">${lupe}Zeig den Beweis!</button>`
+      :st.phase==="explain"?`<button class="btn cta" data-a="understood">Verstanden</button>`
+      :`<button class="btn cta" data-a="check" ${st.sel===null?"disabled":""}>Prüfen</button>`;
+    f=`<button class="btn" data-a="story">Zur Geschichte</button>${primary}`;
+  } else if(st.view==="win"){
+    const full=st.lastGain===2;
+    html=`<div class="illu">${illu(true)}</div><div class="win">${raupe("happy","raupe big")}<div class="h">${syl(full?UI.win2a:UI.win1a)}</div>${T(full?UI.win2b:UI.win1b)}<span class="gain shine">${'<span class="pp"></span>'.repeat(st.lastGain)}+${st.lastGain} Schimmer-${st.lastGain>1?'Perlen':'Perle'}</span></div>`;
+    f=`<button class="btn" data-a="reread">Noch einmal lesen</button><button class="btn cta" data-a="end">Weiterlesen ›</button>`;
+  } else {
+    html=`<div class="end">${raupe("calm","raupe big")}${T(UI.end)}<p class="note" style="color:#6E6A63">Прототип заканчивается здесь.</p></div>`;
+    f=`<button class="btn" data-a="reread">Szene 1 lesen</button><button class="btn cta" data-a="reset">Neu starten</button>`;
+  }
+  content.innerHTML=html;foot.innerHTML=f;
+  if(anim){content.classList.remove("enter","back");void content.offsetWidth;content.classList.add("enter");if(st.dir<0)content.classList.add("back");}
+  sheetEl.scrollTop=0;
+}
+function go(n){if(n<0||n>=sheets.length)return;st.dir=n>st.sheet?1:-1;st.sheet=n;st.anchor=sheets[n][0].id;render();}
+function toTask(){st.view="task";st.dir=1;render();}
+
+/* ---------- events ---------- */
+foot.addEventListener("click",e=>{
+  const a=e.target.closest("[data-a]")?.dataset.a;if(!a)return;
+  if(a==="prev")go(st.sheet-1);
+  if(a==="next"){if(st.sheet===sheets.length-1&&!st.ev)toTask();else go(st.sheet+1);}
+  if(a==="story"){st.view="read";st.dir=-1;go(sheets.length-1);render();}
+  if(a==="check"){
+    if(st.sel===TASK.right){const g=(st.phase==="select"||st.phase==="retry")?2:1;win(g);}
+    else if(st.phase==="select"){st.phase="wrong";render(false);}
+    else if(st.phase==="retry"){st.phase="help";st.sel=null;render(false);}
+    else if(st.phase==="help"){st.phase="explain";st.sel=TASK.right;render(false);}
+  }
+  if(a==="beweis"){st.ev=true;st.evFound=false;st.view="read";st.dir=-1;const n=sheetOf("p7");st.sheet=Math.max(0,n-0);st.anchor=sheets[st.sheet][0].id;render();}
+  if(a==="totask"){st.ev=false;st.phase="retry";st.sel=null;toTask();}
+  if(a==="understood")win(1);
+  if(a==="reread"){st.view="read";st.dir=-1;st.sheet=0;st.anchor="head";render();}
+  if(a==="end"){st.view="end";st.dir=1;render();}
+  if(a==="reset"){st=fresh();paginate();render();}
+});
+function win(g){
+  if(!st.won){st.won=true;st.pearls+=g;st.solved=1;st.lastGain=g;}
+  st.view="win";st.dir=1;render();
+  const p=$("pearls");p.classList.remove("bump");void p.offsetWidth;p.classList.add("bump");
+  $("moon").classList.add("glow");setTimeout(()=>$("moon").classList.remove("glow"),1600);
+}
+content.addEventListener("click",e=>{
+  const o=e.target.closest(".opt");
+  if(o&&!o.disabled){st.sel=+o.dataset.o;if(st.phase==="retry"||st.phase==="help"){} render(false);return;}
+  const s=e.target.closest(".sent");
+  if(s&&st.view==="read"&&st.ev&&!st.evFound){
+    if(s.dataset.s===EVIDENCE){st.evFound=true;render(false);const f=content.querySelector(`[data-s="${EVIDENCE}"]`);f&&f.classList.add("found");}
+    else{s.classList.remove("nope");void s.offsetWidth;s.classList.add("nope");const b=$("banner");if(b)b.innerHTML=T(UI.evNo);}
+  }
+});
+// swipe
+let sx=null,sy=null;
+sheetEl.addEventListener("pointerdown",e=>{sx=e.clientX;sy=e.clientY;});
+sheetEl.addEventListener("pointerup",e=>{if(sx===null||st.view!=="read")return;const dx=e.clientX-sx,dy=e.clientY-sy;sx=null;
+  if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5){if(dx<0){if(st.sheet===sheets.length-1&&!st.ev)toTask();else go(st.sheet+1);}else go(st.sheet-1);}});
+// settings
+$("aa").addEventListener("click",()=>{const p=$("pop");p.hidden=!p.hidden;$("aa").setAttribute("aria-expanded",!p.hidden);});
+$("pop").addEventListener("click",e=>{
+  const b=e.target.closest("[data-fs]");
+  if(b){app.style.setProperty("--fs",b.dataset.fs+"px");$("pop").querySelectorAll("[data-fs]").forEach(x=>x.setAttribute("aria-pressed",x===b));paginate();render(false);}
+  if(e.target.id==="sylsw"){const on=e.target.getAttribute("aria-pressed")!=="true";e.target.setAttribute("aria-pressed",on);app.classList.toggle("nosyl",!on);}
+});
+$("back").addEventListener("click",()=>{if(st.view==="task"){st.view="read";st.dir=-1;render();}else if(st.view==="read")go(st.sheet-1);});
+// panel
+$("jump").addEventListener("click",e=>{const j=e.target.closest("[data-j]")?.dataset.j;if(!j)return;
+  if(j==="reset"){st=fresh();paginate();render();return;}
+  st=Object.assign(fresh(),{pearls:st.pearls,solved:st.solved,won:st.won});
+  if(j==="read"){go(0);render();}
+  if(j==="task"){toTask();}
+  if(j==="wrong"){st.sel=0;st.phase="wrong";toTask();}
+  if(j==="ev"){st.phase="wrong";st.ev=true;st.view="read";st.sheet=sheetOf("p7");render();}
+  if(j==="win"){st.won=false;st.pearls=0;win(2);}
+});
+new ResizeObserver(()=>{if(st.view==="read"){paginate();render(false);}else paginate();}).observe(sheetEl);
+(document.fonts?document.fonts.ready:Promise.resolve()).then(()=>{paginate();render(false);});
+paginate();render(false);
+</script>
+
+</body></html>
