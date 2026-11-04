@@ -51,6 +51,7 @@ button:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
  radial-gradient(1.2px 1.2px at 47% 22%,#fffb 99%,transparent),radial-gradient(1px 1px at 58% 78%,#fff8 99%,transparent),
  radial-gradient(1.5px 1.5px at 73% 40%,#fffc 99%,transparent),radial-gradient(1px 1px at 92% 18%,#fffa 99%,transparent),
  radial-gradient(1px 1px at 35% 48%,#fff7 99%,transparent)}
+@media (max-width:420px){.notch,.home{display:none}.top{padding-top:calc(10px + env(safe-area-inset-top,0px))}}
 .notch{height:20px;display:grid;place-items:center}.notch i{width:84px;height:20px;border-radius:12px;background:#0B0F1C}
 .hdr{position:relative;display:flex;align-items:center;gap:8px;margin-top:6px}
 .ib{width:40px;height:40px;border-radius:50%;border:0;display:grid;place-items:center;background:rgb(255 255 255 / 13%);color:#fff;font:700 15px var(--f-ui);cursor:pointer;flex:none}
@@ -66,7 +67,7 @@ button:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
 @keyframes bump{40%{transform:scale(1.18)}}
 
 .main{position:relative;min-height:0;display:flex;padding:0 10px;background:linear-gradient(var(--sky2) 0 14px,transparent 14px)}
-.sheet{position:relative;flex:1;min-width:0;background:var(--paper);border:1px solid var(--line);border-radius:20px;box-shadow:0 4px 18px rgb(40 34 22 / 8%);padding:18px 18px;overflow:hidden;touch-action:pan-y}
+.sheet{position:relative;flex:1;min-width:0;background:var(--paper);border:1px solid var(--line);border-radius:20px;box-shadow:0 4px 18px rgb(40 34 22 / 8%);padding:18px 18px;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y}
 .sheet.scroll{overflow-y:auto}
 .content{display:flex;flex-direction:column;gap:12px}
 .content.enter{animation:enter .28s ease}
@@ -231,8 +232,9 @@ const UI={
  wrong:"Hm, schau|en wir noch ein|mal ge|nau hin.",
  evAsk:"Wo soll der Mond hän|gen? Tip|pe auf den Satz, der es ver|rät.",
  evNo:"Die|ser Satz ver|rät es noch nicht. Such wei|ter!",
+ evNo2:"Such dort, wo vom ro|ten Vor|hang und der wei|ßen Wol|ke er|zählt wird.",
  evYes:"Be|weis ge|fun|den!",
- help:"Klei|ner Tipp: Im Be|weis steht das Wort „Links“. Wo|ne|ben soll der Mond hän|gen?",
+ help:"Lies dei|nen Be|weis noch ein|mal ge|nau: „Links da|ne|ben soll der Mond sei|nen Platz be|kom|men.“ Auf wel|cher Sei|te ne|ben der wei|ßen Wol|ke soll der Mond hän|gen?",
  explain:"Im Text steht: „Links da|ne|ben soll der Mond sei|nen Platz be|kom|men.“ Da|ne|ben heißt hier: ne|ben der wei|ßen Wol|ke. Da|rum ist B rich|tig.",
  win2a:"Spur ent|deckt!",win2b:"Du hast ge|nau hin|ge|se|hen. Der Mond hängt links ne|ben der Wol|ke.",
  win1a:"Ge|schafft!",win1b:"Jetzt weißt du, wo der Mond hängt. Beim nächs|ten Mal fin|dest du die Spur be|stimmt selbst.",
@@ -302,7 +304,7 @@ function render(anim=true){
     const last=st.sheet===sheets.length-1;
     if(st.ev){
       f=`<button class="nav" data-a="prev" ${st.sheet===0?"disabled":""} aria-label="Vorheriges Blatt">‹</button>`+
-        (st.evFound?`<button class="btn cta" data-a="totask">Zurück zum Auftrag</button>`:`<div class="banner" id="banner">${T(UI.evAsk)}</div>`)+
+        (st.evFound?`<button class="btn cta" data-a="totask">Zurück zum Auftrag</button>`:`<div class="banner" id="banner">${T(st.evMiss>=2?UI.evNo2:UI.evAsk)}</div>`)+
         `<button class="nav" data-a="next" ${last?"disabled":""} aria-label="Nächstes Blatt">›</button>`;
     } else {
       const dots=sheets.map((_,i)=>`<i class="${i<=st.sheet?'on':''}"></i>`).join("")+lupe;
@@ -313,7 +315,7 @@ function render(anim=true){
     html=`<div class="case">${lupe}Dein Ermittlerauftrag</div>${T(TASK.intro)}<div class="q">${T(TASK.q)}</div><div class="opts">`+
       TASK.o.map((o,i)=>`<button class="opt" data-o="${i}" aria-pressed="${st.sel===i}" ${locked?"disabled":""}><span class="k">${o[0]}</span>${T(o[1])}</button>`).join("")+`</div>`;
     if(st.phase==="wrong") html+=`<div class="fb">${raupe("think")}${T(UI.wrong)}</div>`;
-    if(st.phase==="retry") html+=`<div class="fb">${raupe("calm")}${T("Du hast den Be|weis! Wähl jetzt noch ein|mal.")}</div>`;
+    if(st.phase==="retry") html+=`<div class="fb">${raupe("calm")}${T("Dein Be|weis: „Links da|ne|ben soll der Mond sei|nen Platz be|kom|men.“ Wähl jetzt noch ein|mal.")}</div>`;
     if(st.phase==="help") html+=`<div class="fb help">${raupe("think")}${T(UI.help)}</div>`;
     if(st.phase==="explain") html+=`<div class="fb help">${raupe("calm")}${T(UI.explain)}</div>`;
     const primary=st.phase==="wrong"?`<button class="btn cta" data-a="beweis">${lupe}Zeig den Beweis!</button>`
@@ -347,7 +349,7 @@ foot.addEventListener("click",e=>{
     else if(st.phase==="retry"){st.phase="help";st.sel=null;render(false);}
     else if(st.phase==="help"){st.phase="explain";st.sel=TASK.right;render(false);}
   }
-  if(a==="beweis"){st.ev=true;st.evFound=false;st.view="read";st.dir=-1;const n=sheetOf("p7");st.sheet=Math.max(0,n-0);st.anchor=sheets[st.sheet][0].id;render();}
+  if(a==="beweis"){st.ev=true;st.evFound=false;st.evMiss=0;st.view="read";st.dir=-1;st.sheet=0;st.anchor=sheets[0][0].id;render();}
   if(a==="totask"){st.ev=false;st.phase="retry";st.sel=null;toTask();}
   if(a==="understood")win(1);
   if(a==="reread"){st.view="read";st.dir=-1;st.sheet=0;st.anchor="head";render();}
@@ -366,7 +368,7 @@ content.addEventListener("click",e=>{
   const s=e.target.closest(".sent");
   if(s&&st.view==="read"&&st.ev&&!st.evFound){
     if(s.dataset.s===EVIDENCE){st.evFound=true;render(false);const f=content.querySelector(`[data-s="${EVIDENCE}"]`);f&&f.classList.add("found");}
-    else{s.classList.remove("nope");void s.offsetWidth;s.classList.add("nope");const b=$("banner");if(b)b.innerHTML=T(UI.evNo);}
+    else{s.classList.remove("nope");void s.offsetWidth;s.classList.add("nope");st.evMiss=(st.evMiss||0)+1;const b=$("banner");if(b)b.innerHTML=T(st.evMiss>=2?UI.evNo2:UI.evNo);}
   }
 });
 // swipe
@@ -389,7 +391,7 @@ $("jump").addEventListener("click",e=>{const j=e.target.closest("[data-j]")?.dat
   if(j==="read"){go(0);render();}
   if(j==="task"){toTask();}
   if(j==="wrong"){st.sel=0;st.phase="wrong";toTask();}
-  if(j==="ev"){st.phase="wrong";st.ev=true;st.view="read";st.sheet=sheetOf("p7");render();}
+  if(j==="ev"){st.phase="wrong";st.ev=true;st.evMiss=0;st.view="read";st.sheet=0;render();}
   if(j==="win"){st.won=false;st.pearls=0;win(2);}
 });
 new ResizeObserver(()=>{if(st.view==="read"){paginate();render(false);}else paginate();}).observe(sheetEl);
