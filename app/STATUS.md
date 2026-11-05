@@ -8,6 +8,8 @@
 - e2e (`node scripts/e2e.mjs`): телефон и планшет, все проверки зелёные; скриншоты в `03_screens/kapitel1/`.
 - Android-проект `app/android` (targetSdk 36, иконки); сборка APK — `app/ANDROID.md` (в облаке нет Android SDK).
 
+- Веб-версия (Artifact): https://claude.ai/artifact/JJwRcyUdYKSvTaU28qHtFW
+
 ## Дальше
 - Проход владелицей на телефоне, правки по замечаниям.
 - APK на компьютере владелицы, проверка Safe Areas на реальном устройстве.

@@ -513,7 +513,10 @@ $('aa').addEventListener('click', () => {
     if (fs) { stand.fs = +fs.dataset.fs!; }
     else if (sw) { const k = sw.dataset.sw as 'silben' | 'ruhig'; stand[k] = !stand[k]; }
     else if (t.closest('[data-reset]')) {
-      if (confirm('Wirklich den ganzen Fortschritt löschen? Perlen und Spuren sind dann weg.')) { zuruecksetzen(); bg.remove(); applySettings(); game = null; cover(); }
+      const r = t.closest<HTMLElement>('[data-reset]')!;
+      if (r.dataset.sicher) { zuruecksetzen(); bg.remove(); applySettings(); game = null; cover(); return; }
+      r.dataset.sicher = '1';
+      r.textContent = 'Wirklich alles löschen? Perlen und Spuren sind dann weg. Zum Löschen noch einmal tippen.';
       return;
     } else if (t === bg || t.closest('[data-close]')) { bg.remove(); return; }
     else return;
