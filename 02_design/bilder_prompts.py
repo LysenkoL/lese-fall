@@ -69,11 +69,11 @@ The caterpillar's dewdrop magnifier in a grass ring is in the foreground.""", gl
 # ---------------- Kapitel 2 ----------------
 C2 = "Глава 2"
 add(C2, "k2_s7", "IN", """
-At the big table by the window: side by side stand a flat blue plastic tray full of loose colored paper scraps and cardboard pieces, and a green wooden box with finished hand puppets and theater pieces in it.
+At the big table by the window: side by side stand a flat blue plastic tray with only ONE narrow red paper strip on it (nothing else), and a green wooden box with finished hand puppets and theater pieces in it.
 Mila points at the blue tray, explaining. Ben stands next to her and blushes a little, embarrassed.
 On the windowsill the tiny caterpillar nods wisely on her leaf. No moon anywhere.""", glow=True)
 add(C2, "k2_s8", "IN", """
-Mila and Ben at the table next to the empty blue tray. Ben explains with his flat hand held palm down, as if showing how something was lying; Mila listens, surprised.
+Mila and Ben at the table next to the blue tray, on which lies only one narrow red paper strip. Ben explains with his flat hand held palm down, as if showing how something was lying; Mila listens, surprised.
 Above Ben's head a soft thought bubble (no text) shows a round white disc lying on the blue tray – only its white side visible, a white thread on it.
 On the windowsill the tiny caterpillar listens, impressed.""", glow=True)
 add(C2, "k2_s9", "IN", """
