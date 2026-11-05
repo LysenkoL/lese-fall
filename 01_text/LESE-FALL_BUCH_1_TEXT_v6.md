@@ -21,25 +21,25 @@
 
 ## VORGESCHICHTE — Eine Raupe und ein kleines Geheimnis
 
-In einem hellen Gruppenraum der Grundschule steht am Fenster eine große grüne Pflanze. Auf einem ihrer Blätter lebt die kleine **Leseraupe**.
+In einem hellen Gruppenraum der Grundschule steht am Fenster eine große grüne Pflanze. Auf einem ihrer Blätter lebt die kleine **Lese-Raupe**.
 
 Sie liebt Geschichten, knabbert gern an frischen Blättern und hat einen großen Traum: Eines Tages möchte sie ein wunderschöner Schmetterling sein. Dann könnte sie über die Schule fliegen und die ganze Welt entdecken.
 
-Doch die Leseraupe hat schon jetzt ein Geheimnis. Wenn irgendwo etwas Rätselhaftes passiert, beginnen ihre Fühler ganz leise golden zu leuchten. Die Menschen bemerken das nicht. Und ihre Gedanken können sie auch nicht hören.
+Doch die Lese-Raupe hat schon jetzt ein Geheimnis. Wenn irgendwo etwas Rätselhaftes passiert, beginnen ihre Fühler ganz leise golden zu leuchten. Die Menschen bemerken das nicht. Und ihre Gedanken können sie auch nicht hören.
 
-**Du aber kannst sie hören!** Denn die Leucht-Fühler verbinden die Leseraupe mit ihrem geheimen Ermittlerpartner: dir.
+**Du aber kannst sie hören!** Denn die Leucht-Fühler verbinden die Lese-Raupe mit ihrem geheimen Ermittlerpartner: dir.
 
-Unter ihrem Lieblingsblatt bewahrt sie einen besonderen Schatz auf: eine winzige **Tautropfen-Lupe**. Ein Tropfen Morgentau sitzt in einem Ring aus Gras und trocknet niemals aus. Mit dieser Lupe entdeckt die Leseraupe selbst winzige Spuren – aber nur, wenn sie die Spuren von ihrem Platz aus wirklich sehen kann. Durch Wände oder auf verborgene Rückseiten kann auch eine Zauberlupe nicht schauen.
+Unter ihrem Lieblingsblatt bewahrt sie einen besonderen Schatz auf: eine winzige **Tautropfen-Lupe**. Ein Tropfen Morgentau sitzt in einem Ring aus Gras und trocknet niemals aus. Mit dieser Lupe entdeckt die Lese-Raupe selbst winzige Spuren – aber nur, wenn sie die Spuren von ihrem Platz aus wirklich sehen kann. Durch Wände oder auf verborgene Rückseiten kann auch eine Zauberlupe nicht schauen.
 
-Und noch etwas kann die Leseraupe besonders gut: Sie ist langsam. Während andere schon weiterlaufen, bleibt sie stehen, schaut noch einmal hin und bemerkt manchmal genau das, was alle übersehen. Sie nennt das ihren **Zeitlupen-Blick**. Die Zeit bleibt dabei nicht stehen. Nur die Leseraupe lässt sich Zeit.
+Und noch etwas kann die Lese-Raupe besonders gut: Sie ist langsam. Während andere schon weiterlaufen, bleibt sie stehen, schaut noch einmal hin und bemerkt manchmal genau das, was alle übersehen. Sie nennt das ihren **Zeitlupen-Blick**. Die Zeit bleibt dabei nicht stehen. Nur die Lese-Raupe lässt sich Zeit.
 
-Wenn du mit ihr ein Rätsel löst, sammelt ihr kleine glitzernde **Schimmer-Perlen**. Später könnt ihr damit die Leseraupe schmücken. Ihre Schmetterlingsflügel muss sie allerdings noch ganz von selbst bekommen.
+Wenn du mit ihr ein Rätsel löst, sammelt ihr kleine glitzernde **Schimmer-Perlen**. Später könnt ihr damit die Lese-Raupe schmücken. Ihre Schmetterlingsflügel muss sie allerdings noch ganz von selbst bekommen.
 
-„Also gut“, denkt die Leseraupe und rückt ihre Lupe zurecht. „Du liest. Ich schaue genau hin. Und wenn wir uns einmal irren, suchen wir gemeinsam den Beweis.“
+„Also gut“, denkt die Lese-Raupe und rückt ihre Lupe zurecht. „Du liest. Ich schaue genau hin. Und wenn wir uns einmal irren, suchen wir gemeinsam den Beweis.“
 
 **Bist du bereit für unseren ersten Lese-Fall?**
 
-> **Редакторское правило серии:** Во вступлении представляется только Leseraupe. Мила, Бен и Оскар — герои этой конкретной книги; они раскрываются в сюжете через действия. При открытии следующих книг это вступление можно пропустить. Магия помогает замечать и искать доказательства, но не раскрывает ответ и не позволяет получать информацию, которую герой физически не может наблюдать.
+> **Редакторское правило серии:** Во вступлении представляется только Lese-Raupe. Мила, Бен и Оскар — герои этой конкретной книги; они раскрываются в сюжете через действия. При открытии следующих книг это вступление можно пропустить. Магия помогает замечать и искать доказательства, но не раскрывает ответ и не позволяет получать информацию, которую герой физически не может наблюдать.
 
 ---
 
@@ -54,7 +54,7 @@ Ben hat das Puppentheater schon auf den großen Tisch am Fenster gestellt. Oskar
 Sie zeigt Ben einen großen gelben Mond aus Pappe. Oben hängt ein langer weißer Faden daran. Auf die weiße Rückseite hat Mila einen winzigen blauen Stern gemalt.
 „Damit ich meinen Mond immer wiedererkenne“, erklärt sie stolz.
 Über dem roten Vorhang hängt schon eine weiße Wolke. Links daneben soll der Mond seinen Platz bekommen.
-Vom Blumentopf am Fenster schaut die kleine Leseraupe neugierig zu.
+Vom Blumentopf am Fenster schaut die kleine Lese-Raupe neugierig zu.
 „Ein Mond mitten am Tag?“, denkt sie. „Diese Kinder haben wirklich seltsame Ideen.“
 
 ---
@@ -64,7 +64,7 @@ Vom Blumentopf am Fenster schaut die kleine Leseraupe neugierig zu.
 Endlich hängt der gelbe Mond an seinem Faden über dem Vorhang.
 „Wunderbar!“, sagt Mila. „Jetzt fehlen nur noch unsere Puppen.“
 Sie läuft zum großen Schrank auf der anderen Seite des Raumes. Ben bleibt am Theater und schaut sich den Mond genau an.
-Die Leseraupe entdeckt etwas anderes. Direkt neben ihrem Blumentopf liegt ein kleines grünes Blatt. Eben war es noch nicht da.
+Die Lese-Raupe entdeckt etwas anderes. Direkt neben ihrem Blumentopf liegt ein kleines grünes Blatt. Eben war es noch nicht da.
 „Oh“, denkt sie. „Das sieht nach einem köstlichen Frühstück aus!“
 Sie beißt kräftig in die Ecke.
 *KNURPS!*
@@ -89,7 +89,7 @@ Ben steht am Waschbecken in der Ecke, mit dem Rücken zu ihr. Das Wasser rauscht
 Keine Antwort.
 Mila wartet nicht länger. Sie schaut hinter den roten Vorhang des Theaters. Nichts.
 Unter dem großen Tisch liegt ein grüner Bleistift. Doch dort hat Mila noch gar nicht gesucht.
-Die Leseraupe streckt den Kopf zwischen zwei echten Blättern hervor.
+Die Lese-Raupe streckt den Kopf zwischen zwei echten Blättern hervor.
 „So viele Plätze“, denkt sie. „Aber wo sind die Kinder eigentlich gerade? Wer schaut wohin?“
 Dann denkt sie an den gestreiften Ärmel. Rot-weiße Streifen … Die hat sie heute schon einmal gesehen. Aber wo?
 „Ich habe einen Ärmel gesehen“, denkt sie. „Aber keinen Mond. Von einem Ärmel allein weiß man noch nicht, was passiert ist.“
@@ -101,7 +101,7 @@ Dann denkt sie an den gestreiften Ärmel. Rot-weiße Streifen … Die hat sie he
 Mila läuft um den Tisch herum. Da! Unter einem Stapel Zeitungspapier schaut etwas Gelbes hervor.
 Sie zieht einen großen gelben Kreis aus Pappe heraus.
 „Mein Mond?“, flüstert sie hoffnungsvoll.
-Auch die Leseraupe reckt neugierig den Hals.
+Auch die Lese-Raupe reckt neugierig den Hals.
 „Gelb? Rund? Aus Pappe?“, denkt sie. „Der Fall ist ja schneller gelöst als gedacht!“
 Aber dann nimmt sie sich Zeit für ihren Zeitlupen-Blick. Sie schaut noch einmal ganz langsam hin.
 „Moment“, denkt sie. „An Milas Mond hing oben ein weißer Faden. An diesem Kreis hängt kein Faden.“
@@ -110,7 +110,7 @@ Auch Mila zögert.
 Sie dreht den gelben Kreis um.
 Die Rückseite ist schneeweiß und leer. Kein Stern. Nicht einmal ein winziger blauer Punkt.
 „Schade“, seufzt Mila. „Das ist nur ein gewöhnlicher Bastelkreis.“
-Die Leseraupe wackelt mit den Fühlern.
+Die Lese-Raupe wackelt mit den Fühlern.
 „Aha“, denkt sie. „Zwei Dinge können von vorne gleich aussehen und trotzdem nicht dasselbe sein.“
 
 ---
@@ -124,7 +124,7 @@ Ben schaut zum Theater. Erst jetzt sieht er den leeren Platz und Milas erschrock
 „Moment mal. Du weißt es noch gar nicht?“, fragt er. „Ich habe dich doch gerufen. Aber du warst ganz tief im Schrank.“
 „Was weiß ich nicht?“
 „Der Faden an deinem Mond war ganz locker“, erklärt Ben. „Der Mond wäre fast heruntergefallen. Deshalb habe ich ihn abgenommen. Dann habe ich den Faden mit **Kleber** wieder festgemacht. Danach habe ich den Mond zum Trocknen auf das blaue Tablett gelegt. Und erst dann habe ich mir die Hände gewaschen.“
-Die Leseraupe wippt auf ihrem Blatt vor und zurück.
+Die Lese-Raupe wippt auf ihrem Blatt vor und zurück.
 „Ben wollte nur helfen“, denkt sie. „Aber Bens Pulli ist blau. Der gestreifte Ärmel gehört also jemand anderem.“
 
 ---
@@ -132,14 +132,14 @@ Die Leseraupe wippt auf ihrem Blatt vor und zurück.
 ### Seite 6 (Kapitel 1 · Spur 6) — Das leere Tablett
 
 „Komm mit“, sagt Ben. „Der Mond liegt auf dem Tablett.“
-Mila und Ben laufen zur Fensterseite des Tisches. Auch die Leseraupe beugt sich weit über den Rand ihres Blumentopfes. Das blaue Tablett steht direkt unter ihrem Fenster.
+Mila und Ben laufen zur Fensterseite des Tisches. Auch die Lese-Raupe beugt sich weit über den Rand ihres Blumentopfes. Das blaue Tablett steht direkt unter ihrem Fenster.
 Doch als sie hinunterschaut, traut sie ihren Augen kaum:
 Rechts neben dem Tablett liegen eine Schere und eine Rolle Klebeband.
 Auf dem Tablett liegt nur noch ein schmaler roter Papierstreifen.
 Von dem großen Mond fehlt jede Spur!
 „Hier ist er aber nicht!“, ruft Mila verzweifelt.
 Ben starrt erschrocken auf das fast leere Tablett. „Ich bin mir ganz sicher. Genau hier auf dem Tablett lag er vorhin noch!“
-Die Leseraupe nimmt ihre Tautropfen-Lupe. Auch damit sieht sie auf dem Tablett nur den roten Papierstreifen.
+Die Lese-Raupe nimmt ihre Tautropfen-Lupe. Auch damit sieht sie auf dem Tablett nur den roten Papierstreifen.
 Ihr Blick wandert vom Tablett zum offenen Fenster.
 „Der gestreifte Ärmel“, denkt sie. „Er war genau hier unten. Wenn Ben den Mond wirklich auf das Tablett gelegt hat … wer hat ihn dann weggenommen?“
 
@@ -157,7 +157,7 @@ Auf das **blaue Tablett** legt Frau Sommer freies Bastelpapier und Kartonreste. 
 Ben wird ein bisschen rot.
 „Oh je“, murmelt er. „Daran habe ich überhaupt nicht gedacht. Das Tablett war einfach der nächste freie Platz.“
 „Dann müssen wir herausfinden, wer vorhin Bastelsachen vom Tablett geholt hat“, sagt Mila.
-Die Leseraupe nickt weise auf ihrem Blatt.
+Die Lese-Raupe nickt weise auf ihrem Blatt.
 „Aha“, denkt sie. „Wenn jemand etwas auf den Teller für alle legt, darf man sich nicht wundern, wenn ein anderer zugreift. Beim Essen ist das schließlich genauso!“
 
 ---
@@ -171,24 +171,24 @@ Ben überlegt kurz. Dann hebt er den Zeigefinger.
 „Nicht?“, fragt Mila erstaunt.
 „Nein. Ich habe den Faden doch hinten auf die weiße Seite geklebt“, erklärt Ben und zeigt es mit seiner Hand. „Der Kleber war noch feucht. Unten wäre er am Tablett festgeklebt. Also lag die gelbe Seite unten. Und die weiße Rückseite zeigte nach oben.“
 „Ach so“, sagt Mila. „Wer nur kurz hingeschaut hat, hat nur einen weißen Pappkreis gesehen.“
-Die Leseraupe ist schwer beeindruckt.
+Die Lese-Raupe ist schwer beeindruckt.
 „Ein gelber Mond, der sich als weißer Kreis tarnt“, denkt sie. „Dieser Fall wird ja immer spannender! Vielleicht hat der gestreifte Ärmel auch nur etwas Weißes gesehen.“
 
 ---
 
 ### Seite 9 (Kapitel 2 · Spur 3) — Die Maus auf der Bank
 
-Während Mila und Ben noch beraten, sucht die Leseraupe selbst nach einer Spur.
+Während Mila und Ben noch beraten, sucht die Lese-Raupe selbst nach einer Spur.
 Langsam – *eins, zwei, drei Füßchen voran* – krabbelt sie vom Blumentopf zum offenen Fenster.
-Draußen auf dem Schulhof steht unter einem großen Baum die Holzbank. Von hier sieht die Leseraupe die Bank nur von der Seite.
+Draußen auf dem Schulhof steht unter einem großen Baum die Holzbank. Von hier sieht die Lese-Raupe die Bank nur von der Seite.
 Und wer sitzt dort? Oskar! Er trägt einen rot-weiß gestreiften Pulli.
-„Genau wie der Ärmel am Tablett!“, denkt die Leseraupe.
+„Genau wie der Ärmel am Tablett!“, denkt die Lese-Raupe.
 Neben Oskar sitzt seine kleine graue Papiermaus. Sie hat zwei große runde Ohren, einen langen rosa Schwanz und ein winziges rotes Papierherz auf dem Bauch. Vor ihr liegt grünes Gras aus Papier.
-„Aha“, denkt die Leseraupe. „Der Wind hat ein Stück davon zu mir hereingeweht. Daher kommt also mein scheußliches Frühstück.“
-Jetzt stellt Oskar einen weißen Pappteller neben die Maus. Schnell legt er ein weißes Seidenpapier darüber. Was auf dem Teller liegt, kann die Leseraupe von der Seite nicht sehen.
+„Aha“, denkt die Lese-Raupe. „Der Wind hat ein Stück davon zu mir hereingeweht. Daher kommt also mein scheußliches Frühstück.“
+Jetzt stellt Oskar einen weißen Pappteller neben die Maus. Schnell legt er ein weißes Seidenpapier darüber. Was auf dem Teller liegt, kann die Lese-Raupe von der Seite nicht sehen.
 „Heute ist dein Glückstag, kleine Maus“, sagt er. „Gleich bekommst du ein Festessen.“
 Dann nimmt er seine Klebeflasche. „Ich bringe nur schnell den Kleber rein!“
-„Ein geheimes Festessen? Und Kleber?“, denkt die Leseraupe. „Wenn das mal keine heiße Spur ist!“
+„Ein geheimes Festessen? Und Kleber?“, denkt die Lese-Raupe. „Wenn das mal keine heiße Spur ist!“
 
 ---
 
@@ -202,7 +202,7 @@ Oskar zieht die Stirn kraus. „Ein gelber Mond? Nein, den habe ich nicht gesehe
 Dann überlegt er. „Ich habe vorhin nur einen weißen Pappkreis vom Tablett genommen. Mila war am Schrank. Ben war am Waschbecken. Da bin ich kurz hereingekommen. Ich brauchte runde Pappe für meine Maus. Ich dachte, der gehört zu den freien Bastelsachen für alle.“
 Mila und Ben schauen sich an.
 „Einen weißen Kreis“, flüstert Ben. „Vom Tablett …“
-Die Leseraupe richtet sich auf dem Fensterbrett steil auf.
+Die Lese-Raupe richtet sich auf dem Fensterbrett steil auf.
 „Treffer!“, denkt sie. „Der gestreifte Ärmel hat einen weißen Kreis gesehen. Aber unter dem Weiß war es gelb.“
 Nur Oskar versteht noch gar nichts. Er schaut fröhlich zur Tür.
 
@@ -216,8 +216,8 @@ Ben beugt sich zu Mila. „Ist das dein Mond?“, flüstert er.
 „Vielleicht“, flüstert Mila zurück. „Aber vorhin habe ich mich schon einmal geirrt. Wir müssen ihn erst genau ansehen.“
 Dann fragt sie laut: „Zeigst du uns deine Überraschung, Oskar?“
 „Klar, kommt mit!“ Oskar öffnet die Tür zum Schulhof, und die drei Kinder eilen hinaus.
-Die Leseraupe schaut ihnen hinterher.
-„Na toll. Und ich?“, denkt sie ein wenig beleidigt. „Ich bin eine gemütliche Leseraupe und keine schnelle Rennmaus!“
+Die Lese-Raupe schaut ihnen hinterher.
+„Na toll. Und ich?“, denkt sie ein wenig beleidigt. „Ich bin eine gemütliche Lese-Raupe und keine schnelle Rennmaus!“
 Aber zum Glück steht das Fenster offen. Die Bank ist direkt darunter.
 Von ihrem Platz sieht sie den Teller nur von der Seite. Doch vom äußeren Rand des breiten Fensterbretts kann sie genau von oben auf den Teller schauen.
 Schnell – na ja, auf Raupenart schnell – macht sie sich auf den Weg zum Rand.
@@ -227,14 +227,14 @@ Schnell – na ja, auf Raupenart schnell – macht sie sich auf den Weg zum Rand
 ### Seite 12 (Kapitel 2 · Spur 6) — Oskars kleines Rätsel
 
 Draußen scheint die warme Nachmittagssonne durch die Zweige des Baumes.
-Mila, Ben und Oskar stehen vor der Bank. Oben am Fensterrand kommt auch die Leseraupe gerade rechtzeitig an.
+Mila, Ben und Oskar stehen vor der Bank. Oben am Fensterrand kommt auch die Lese-Raupe gerade rechtzeitig an.
 „Oskar, deine Maus ist wirklich niedlich“, sagt Mila.
 Ben schaut auf den zugedeckten Teller. Daneben liegen eine Schere und viele kleine gelbe Papierschnipsel.
 Ben wird blass. „Mila, schau mal“, flüstert er. „Gelbe Schnipsel. Hat er deinen Mond zerschnitten?!“
 Mila schluckt.
 Oskar merkt nichts. Er grinst von einem Ohr zum anderen.
 „Passt auf, ich habe ein Rätsel für euch! Ich habe den weißen Kreis umgedreht. Und was war auf der anderen Seite? Wunderschönes Gelb. Genau die richtige Farbe für das Lieblingsessen meiner Maus. Dann habe ich noch drei kleine braune Kreise aufgeklebt. Wie Löcher. Was ist es?“
-Die Leseraupe reißt die Augen weit auf.
+Die Lese-Raupe reißt die Augen weit auf.
 „Gelb, rund und mit Löchern? Für eine Maus?“, denkt sie aufgeregt. „Ich glaube, ich weiß, was unter dem Papier liegt!“
 
 ---
@@ -248,12 +248,12 @@ Auf dem Pappteller liegt ein großer, runder, leuchtend gelber Käse. Er hat dre
 Mila starrt auf den Teller. Ben klappt der Mund auf.
 „Ein Käse“, sagt Ben.
 „Ein Festtagskäse für meine Maus“, sagt Oskar stolz. „Sogar mit Krümeln!“
-Oben am Fensterrand läuft der Leseraupe das Wasser im Mund zusammen.
+Oben am Fensterrand läuft der Lese-Raupe das Wasser im Mund zusammen.
 „Käse!“, denkt sie. „Nach dem scheußlichen Papierblatt ist ein Stückchen Käse genau das Richtige …“
 Dann muss sie über sich selbst lachen. „Ach ja. Oskar hat es doch gesagt: Das ist Pappe. Mein Bauch hört einfach nie zu.“
 Sie nimmt ihre Tautropfen-Lupe und schaut ganz genau hin.
 Am Rand des Käses schaut etwas Dünnes unter der Pappe hervor. Ein kleines Stück weißer Faden.
-„Ein Faden?“, denkt die Leseraupe. „Seit wann hat Käse einen Faden? Milas Mond hatte einen!“
+„Ein Faden?“, denkt die Lese-Raupe. „Seit wann hat Käse einen Faden? Milas Mond hatte einen!“
 
 ---
 
@@ -263,7 +263,7 @@ Mila beugt sich dicht über den Teller.
 „Oskars Käse ist genauso groß wie mein Mond“, sagt sie leise.
 „Und er hat genau dasselbe Gelb“, sagt Ben. Dann zeigt er auf den Rand. „Moment mal. Da schaut ja ein Faden heraus!“
 Oskar schaut verwirrt von einem zum anderen. „Euer Mond? Wieso Mond? Das ist doch mein Mäusekäse! Und der Faden ist nur ein Bastelrest.“
-Am Fensterrand hebt die Leseraupe ihr Vorderfüßchen.
+Am Fensterrand hebt die Lese-Raupe ihr Vorderfüßchen.
 Sie denkt an den ersten gelben Kreis auf dem Tisch. Der war auch groß, rund und gelb. Und trotzdem war er nicht Milas Mond.
 „Vorsicht, ihr Spürnasen“, denkt sie. „Ein Faden kann wirklich ein Bastelrest sein. Wir brauchen einen sicheren Beweis.“
 Auch Mila hat aus dem falschen Kreis gelernt. Sie nickt Ben ernst zu.
@@ -280,7 +280,7 @@ Doch Oskar schüttelt lachend den Kopf.
 „Quatsch! Die Pappe ist viel zu dick zum Durchschneiden. Ich habe drei kleine Kreise aus braunem Papier ausgeschnitten und oben auf die gelbe Seite geklebt. Und die Krümel? Die sind aus gelbem Papier vom Tablett.“
 Mila atmet hörbar auf. „Dann ist der Kreis darunter noch ganz heil.“
 Ben lacht erleichtert. „Und ich dachte schon, du hast ihn zerschnitten.“
-Die Leseraupe kichert leise am Fensterrand.
+Die Lese-Raupe kichert leise am Fensterrand.
 „Ein Kreis im Käse-Kostüm“, denkt sie vergnügt. „Mit drei aufgeklebten Sommersprossen. Und mit Krümeln, die nur so tun, als ob.“
 
 ---
@@ -290,13 +290,13 @@ Die Leseraupe kichert leise am Fensterrand.
 „Darf ich deinen Käse einmal umdrehen, Oskar?“, fragt Mila.
 „Na klar, schau ruhig nach“, sagt Oskar gespannt.
 Ganz vorsichtig nimmt Mila den gelben Kreis mit beiden Händen vom Teller und dreht ihn um.
-Ben und Oskar stecken die Köpfe zusammen. Oben am Fensterrand macht die Leseraupe einen so langen Hals, dass sie fast das Gleichgewicht verliert.
+Ben und Oskar stecken die Köpfe zusammen. Oben am Fensterrand macht die Lese-Raupe einen so langen Hals, dass sie fast das Gleichgewicht verliert.
 Auf der weißen Rückseite leuchtet unten am Rand ein winziger, handgemalter **blauer Stern**.
 Und oben am Rand klebt fest und trocken der **weiße Faden**, den Ben repariert hat.
 „Er ist es!“, ruft Mila. „Mein Stern!“
 „Und mein Faden“, sagt Ben erleichtert. „Der Kleber ist ganz trocken.“
 Oskar reißt die Augen auf. „Mein Mäusekäse ist euer verschwundener Mond?!“
-Erst jetzt, als Mila den Kreis umgedreht hat, sieht auch die Leseraupe den Stern durch ihre Tautropfen-Lupe.
+Erst jetzt, als Mila den Kreis umgedreht hat, sieht auch die Lese-Raupe den Stern durch ihre Tautropfen-Lupe.
 „Der blaue Stern ist der **Beweis**“, denkt sie glücklich. „Beweis gefunden! Die Rückseite lügt nie.“
 
 ---
@@ -312,7 +312,7 @@ Ben kratzt sich am Hinterkopf.
 „Und ich war so tief im Schrank, dass ich dich nicht gehört habe“, sagt Mila.
 Die drei Freunde schauen sich einen Moment lang an. Dann müssen alle drei gleichzeitig loslachen.
 „Ein Mond, der heimlich als Käse arbeitet!“, kichert Mila.
-Die Leseraupe lehnt sich zufrieden zurück. „Also war es wirklich der gestreifte Ärmel“, denkt sie. „Aber kein Streit und kein böser Dieb. Nur eine Kette aus lauter gut gemeinten Ideen.“
+Die Lese-Raupe lehnt sich zufrieden zurück. „Also war es wirklich der gestreifte Ärmel“, denkt sie. „Aber kein Streit und kein böser Dieb. Nur eine Kette aus lauter gut gemeinten Ideen.“
 
 ---
 
@@ -343,7 +343,7 @@ Dann klettert Ben auf einen Hocker. Er will den Faden des Mondes oben an der Lei
 „Warte“, sagt Mila. „Wir müssen den Mond doch bewegen können. Leg den Faden nur über die Leiste. Das Ende hältst du dann hinter dem Vorhang fest.“
 „Gute Idee!“, sagt Ben. Jetzt hängt der Mond wieder **links neben der weißen Wolke über dem roten Vorhang**.
 Oskar braucht beide Hände für den Teller mit den Krümeln. Schnell steckt er seine Maus in seine Kapuze.
-Die Leseraupe ist wieder auf ihr Lieblingsblatt im Blumentopf gekrabbelt.
+Die Lese-Raupe ist wieder auf ihr Lieblingsblatt im Blumentopf gekrabbelt.
 „Sehr vernünftig“, denkt sie. „Ein bisschen Ordnung spart eine Menge Detektivarbeit.“
 
 ---
@@ -354,9 +354,9 @@ Die Leseraupe ist wieder auf ihr Lieblingsblatt im Blumentopf gekrabbelt.
 „Klar!“, sagt Oskar. Dann wird er blass. „Wo ist denn meine Maus?“
 Er sucht auf dem Tisch. Er schaut auf das Tablett und in die grüne Kiste. Mila sucht unter dem Tisch, Ben hinter dem Theater.
 „Sie war doch eben noch da!“, jammert Oskar.
-Alle laufen hin und her. Nur die Leseraupe bleibt ganz ruhig sitzen. Zeit für ihren Zeitlupen-Blick.
+Alle laufen hin und her. Nur die Lese-Raupe bleibt ganz ruhig sitzen. Zeit für ihren Zeitlupen-Blick.
 Sie schaut noch einmal langsam jedes Kind an. Da! Aus Oskars Kapuze schaut etwas Rosa heraus. Lang und dünn.
-„Ein Mäuseschwanz!“, denkt die Leseraupe und kichert.
+„Ein Mäuseschwanz!“, denkt die Lese-Raupe und kichert.
 Da bleibt auch Ben stehen. „Moment mal, Oskar. Was hängt denn da aus deiner Kapuze?“
 Oskar greift nach hinten und zieht seine Maus heraus. Alle drei lachen.
 Dann verteilen sie schnell die Rollen. Oskar hockt sich mit der Maus unten hinter die Bühnenkante. Ben stellt sich hinter den roten Vorhang und hält das Ende des Mondfadens fest. Mila ist die Erzählerin und macht den Vorhang auf und zu.
@@ -371,7 +371,7 @@ Dann sieht sie den gelben Kreis auf dem Tisch. „Ach, da ist ja meine Sonne fü
 Mila und Ben grinsen sich an. Der falsche Mond hat also auch ein Zuhause.
 „Hereinspaziert!“, ruft Mila.
 Die Tür geht weit auf, und die Kinder der Gruppe kommen herein. Fröhlich plappernd setzen sie sich im Halbkreis auf den Teppich vor dem Theater.
-Ganz hinten am Fenster versteckt sich die Leseraupe ein Stück unter ihrem obersten Blatt. Niemand soll sie entdecken.
+Ganz hinten am Fenster versteckt sich die Lese-Raupe ein Stück unter ihrem obersten Blatt. Niemand soll sie entdecken.
 Trotzdem muss sie ihren Platz nicht wechseln. Das Theater steht ja hoch auf dem Tisch. So sieht sie über die Köpfe der Kinder hinweg genau auf die Bühne.
 „Erste Reihe auf dem Balkon!“, freut sich die kleine Raupe. „Besser könnte nicht einmal ein Schmetterling sitzen.“
 
@@ -384,7 +384,7 @@ Mila zieht den roten Vorhang zur Seite und beginnt mit klarer Stimme:
 „Es war einmal eine kleine graue Maus. Eines Abends kam sie mit knurrendem Magen aus ihrem Mauseloch …“
 Oskar lässt die Papiermaus auf der Bühne erscheinen.
 „Oh weh, mein Bauch ist so leer! Ich habe seit hundert Jahren nichts gegessen“, piepst er mit seiner lustigsten Mäusestimme.
-Am Fenster muss die Leseraupe lautlos kichern. „Genau so fühle ich mich jeden Tag vor dem Mittagessen.“
+Am Fenster muss die Lese-Raupe lautlos kichern. „Genau so fühle ich mich jeden Tag vor dem Mittagessen.“
 Dann legt die Maus den Kopf in den Nacken und schaut hinauf zum Theaterhimmel. Dort leuchtet der gelbe Mond mit seinen drei braunen Flecken.
 „Juhuuu!“, quietscht die Maus. „Am Himmel hängt ein riesiger Lochkäse. Genau richtig für mein Abendbrot.“
 Auf dem Teppich fangen die ersten Zuschauer an zu kichern.
@@ -407,7 +407,7 @@ Mila, Ben und Oskar kommen hinter dem Theater hervor und verbeugen sich.
 „Und alles nur wegen meines Käses“, lacht Oskar.
 „Wegen meiner Reparatur“, sagt Ben grinsend.
 „Ach was – wegen euch beiden“, sagt Mila und nimmt ihre Freunde in den Arm.
-Am Fenster klatscht die Leseraupe ganz leise mit ihren vielen Füßchen. Hören kann das niemand. Aber das macht nichts.
+Am Fenster klatscht die Lese-Raupe ganz leise mit ihren vielen Füßchen. Hören kann das niemand. Aber das macht nichts.
 
 ---
 
@@ -416,7 +416,7 @@ Am Fenster klatscht die Leseraupe ganz leise mit ihren vielen Füßchen. Hören 
 Am späten Nachmittag sind alle Kinder nach Hause gegangen. Im Gruppenraum wird es wieder ruhig.
 Durch das Fenster fällt goldenes Sonnenlicht.
 Über der kleinen Bühne hängt noch immer der gelbe Mond mit seinen drei braunen Käseflecken. Unten auf der Bühnenkante sitzt Oskars kleine Papiermaus mit dem roten Herz und schaut zu ihm hinauf.
-Auf ihrem großen grünen Blatt rollt sich die Leseraupe gemütlich zusammen.
+Auf ihrem großen grünen Blatt rollt sich die Lese-Raupe gemütlich zusammen.
 Sie denkt an den verschwundenen Mond und an den falschen Kreis ohne Stern. Sie denkt an das leere Tablett, an den gestreiften Ärmel und an die große Überraschung auf der Bank.
 „Was für ein erster Fall!“, murmelt sie stolz.
 Draußen fliegt gerade ein bunter Schmetterling am Fenster vorbei.
