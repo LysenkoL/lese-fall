@@ -5,6 +5,7 @@
 import json, pathlib, html
 
 HEAD = ("Use the attached images as the exact reference for characters, places and style. "
+        "Indoors always the same classroom as in the attached classroom image: the NATURAL WOOD puppet theater (light wood, two posts with round knobs, the top board is ONE smooth round arch – not wavy) on the big table with the red tablecloth, the window with the caterpillar's plant on the LEFT. "
         "Children's picture-book illustration in exactly the same style, landscape 3:2. "
         "No text, no letters, no numbers, no stars anywhere. Mila has no backpack. "
         "The hand puppets are a fox, a bear and a king – never a mouse (the only mouse in the book is Oskar's small grey PAPER mouse). "
@@ -105,13 +106,13 @@ At the edge of the disc a tiny end of white thread peeks out from underneath –
 Mila stares, Ben's mouth falls open, Oskar is proud. High above at the window edge, the tiny caterpillar looks down through her dewdrop magnifier.""",
     note="Эта же картинка — поле для игры Tautropfen-Lupe: ребёнок ищет кончик нитки сам.", glow=True)
 add(C3, "k3_s14", "OUT", """
-At the bench: Mila bends close over the yellow "cheese" on the plate. Ben points at its edge, where a small end of white thread peeks out. Oskar looks from one to the other, confused.
+At the bench (Oskar's small grey paper mouse sits on the bench next to the plate): Mila bends close over the yellow "cheese" on the plate. Ben points at its edge, where a small end of white thread peeks out. Oskar looks from one to the other, confused.
 High above at the window edge the tiny caterpillar raises one little front foot, as if saying "careful". The back of the disc is NOT visible.""", glow=True)
 add(C3, "k3_s15", "OUT", """
-At the bench: Ben looks worried at the three brown dots and the yellow crumbs. Oskar laughs and shows a sheet of brown paper with three round holes cut out of it and a sheet of yellow paper with snippets cut out – this is where the dots and crumbs came from. Mila breathes out, relieved.
+At the bench (Oskar's small grey paper mouse sits on the bench next to the plate): Ben looks worried at the three brown dots and the yellow crumbs. Oskar laughs and shows a sheet of brown paper with three round holes cut out of it and a sheet of yellow paper with snippets cut out – this is where the dots and crumbs came from. Mila breathes out, relieved.
 High above at the window edge the tiny caterpillar giggles.""", glow=True)
 add(C3, "k3_s16_vorher", "OUT", """
-At the bench: Mila carefully lifts the yellow "cheese" disc off the plate with both hands, about to turn it over. Ben and Oskar put their heads together. We see only the yellow front with the brown dots.
+At the bench (Oskar's small grey paper mouse sits on the bench next to the plate): Mila carefully lifts the yellow "cheese" disc off the plate with both hands, about to turn it over. Ben and Oskar put their heads together. We see only the yellow front with the brown dots.
 High above at the window edge, the tiny caterpillar stretches her neck so far that she almost loses her balance.""", glow=True)
 add(C3, "k3_s16_nachher", "OUT", """
 Close-up: Mila holds the disc turned over. Its back is white. Near the bottom edge there is a tiny hand-painted BLUE STAR (the only star in the whole book), and at the top edge a white thread is glued on firmly.
@@ -119,24 +120,26 @@ Mila beams with joy, Ben is relieved, Oskar's eyes are wide with surprise. The t
     note="Здесь звезда нужна! Это единственная картинка книги, где она есть.", glow=True,
     head=HEAD.replace("no stars anywhere", "no stars except the one small blue star described below"))
 add(C3, "k3_s17", "OUT", """
-At the bench: Oskar apologizes, a little shocked. Mila puts her hand on his shoulder and smiles. Ben scratches the back of his head, embarrassed. Then all three burst out laughing together.
+At the bench (Oskar's small grey paper mouse sits on the bench next to the plate): Oskar apologizes, a little shocked. Mila puts her hand on his shoulder and smiles. Ben scratches the back of his head, embarrassed. Then all three burst out laughing together.
 Mila holds the yellow disc with the three brown dots. The tiny caterpillar at the window leans back, content.""", glow=False)
 add(C3, "k3_s18", "OUT", """
-At the bench: Mila holds the yellow moon with the three brown dots and looks a bit sad. Ben shakes his head carefully, touching one brown dot. Oskar looks from his little grey paper mouse up to the spotted moon – and his whole face lights up with an idea.
+At the bench (Oskar's small grey paper mouse sits on the bench next to the plate): Mila holds the yellow moon with the three brown dots and looks a bit sad. Ben shakes his head carefully, touching one brown dot. Oskar looks from his little grey paper mouse up to the spotted moon – and his whole face lights up with an idea.
 The tiny caterpillar at the window watches, curious.""", glow=False)
 
 # ---------------- Kapitel 4 ----------------
 C4 = "Глава 4"
+# Глава 4: класс как в k1_s1 — деревянный театр, красная скатерть, окно слева
 add(C4, "k4_s19", "IN", """
 Back in the classroom. Oskar puts leftover paper scraps on the blue tray. Mila puts the hand puppets into the green wooden box. Ben stands on a small stool at the puppet theater and lays the moon's thread over the top bar of the theater – NOT tied.
 The round yellow moon with the three brown dots hangs again to the LEFT of the white cloud above the red curtain.
 The tiny caterpillar is back on her favorite leaf in the flowerpot, looking pleased.""", glow=False)
 add(C4, "k4_s20_vorher", "IN", """
 Everyone searches: Oskar (seen from the FRONT, so his hood is not visible) looks on the table and into the green box, Mila looks under the table, Ben looks behind the puppet theater. Oskar looks upset.
-On the windowsill the tiny caterpillar sits completely still and watches calmly. No mouse visible anywhere.""", glow=True)
+On the windowsill the tiny caterpillar sits completely still and watches calmly. No mouse visible anywhere. On the puppet theater the round yellow moon with three brown paper dots hangs on its thread to the LEFT of the white cloud.""", glow=True)
 add(C4, "k4_s20_spiel", "IN", """
 The same search scene, but Oskar is now seen from BEHIND: from his red-and-white striped hood a thin pink mouse tail hangs out – small, not highlighted, easy to overlook.
-Mila looks under the table, Ben behind the theater. The tiny caterpillar on the windowsill.""",
+Mila looks under the table, Ben behind the theater. The tiny caterpillar on the windowsill. On the puppet theater the round yellow moon with three brown paper dots hangs on its thread to the LEFT of the white cloud.
+Oskar wears his usual beige cargo trousers (not jeans). The tail hangs out of the HOOD on his back, not out of a pocket.""",
     note="Поле для игры: ребёнок ищет хвост лупой. Хвост мелкий, без подсветки.", glow=True)
 add(C4, "k4_s20_nachher", "IN", """
 Oskar pulls his small grey paper mouse out of his hood. All three children laugh. The round yellow moon with three brown dots hangs left of the white cloud.
@@ -144,7 +147,8 @@ The tiny caterpillar giggles on her leaf.""", glow=False)
 add(C4, "k4_s21", "IN", """
 The classroom door is open. Frau Sommer (reddish hair in a bun, green cardigan) looks in, smiling, and picks up a plain yellow round cardboard circle from the table – it has NO thread and NO dots.
 Children of the group come in chatting and sit down in a semicircle on the carpet in front of the table with the puppet theater.
-At the very back by the window, the tiny caterpillar hides a little under her top leaf, but she can see the stage over the children's heads.""", glow=False)
+At the very back by the window, the tiny caterpillar hides a little under her top leaf, but she can see the stage over the children's heads. On the puppet theater the round yellow moon with three brown paper dots hangs on its thread to the LEFT of the white cloud.
+Mila, Ben and Oskar are NOT in the audience: they stand behind the puppet theater, only peeking out. The audience are OTHER children of the group (not Mila, Ben or Oskar).""", glow=False)
 add(C4, "k4_s22", "IN", """
 The puppet show. Seen from behind the audience (backs of children's heads in the foreground, some start giggling).
 On the stage: the little grey paper mouse with the red heart jumps as high as it can toward the round yellow moon with three brown dots; the moon dances on its thread with small motion lines. Mila holds the red curtain open at the side.
@@ -218,7 +222,7 @@ Background for a detective clue wall, PORTRAIT 9:16: a warm cork board with a wo
 add(CM, "diplom", "R", """
 Background for a children's certificate "Meister-Detektiv", PORTRAIT 3:4: warm paper with a decorative frame of leaves and tiny moons; at the bottom a round seal showing the caterpillar's head with glowing antennae and the dewdrop magnifier. Large empty space in the middle for text (added later).""", head=HEAD_SHEET.replace("Plain warm white background", "Full-bleed image"))
 add(CM, "auszeichnung", "R", """
-The caterpillar proudly wearing her reward: a small golden magnifier badge pinned to her dark-blue cape, sparkling softly. Full body, front view, happy. Plus the badge alone, larger, next to her.""", head=HEAD_SHEET)
+The caterpillar proudly wearing her reward: a small badge pinned to her dark-blue cape – a GOLDEN version of her own dewdrop magnifier (a ring of woven grass blade made of shiny gold, a clear dewdrop as the lens, a short golden grass-stem handle), sparkling softly. Not an ordinary detective magnifier. Full body, front view, happy. Plus the badge alone, larger, next to her.""", head=HEAD_SHEET)
 add(CM, "play_banner", "IN", """
 Wide banner, 2:1 landscape (will be cropped to 1024x500): on the left third the caterpillar on a leaf looking through her dewdrop magnifier; on the right the puppet theater with red curtain and white cloud and an empty spot left of the cloud; deep twilight-blue to warm evening light. Leave a calm empty area in the middle for the app name (no text).""", glow=True)
 
