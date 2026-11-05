@@ -186,31 +186,35 @@
      {
       "intro": "Wo soll Mi|las Mond hän|gen? Zieh den Mond an sei|nen Platz am The|a|ter.",
       "layout": "theater",
-      "hintergrund": "objekte/theater",
+      "hintergrund": "spiel_theater_leer",
+      "ausschnitt": {
+       "x": 0.4297,
+       "y": 0.0977,
+       "w": 0.3776,
+       "h": 0.4883,
+       "seite": 1.16
+      },
       "zonen": [
        {
         "id": "links",
         "label": "links ne|ben der Wol|ke",
-        "x": 26,
+        "x": 34,
         "y": 17,
-        "w": 22,
-        "h": 25
+        "w": 15
        },
        {
         "id": "rechts",
         "label": "rechts ne|ben der Wol|ke",
-        "x": 74,
+        "x": 72,
         "y": 17,
-        "w": 22,
-        "h": 25
+        "w": 15
        },
        {
         "id": "unten",
         "label": "un|ten vor dem Vor|hang",
         "x": 50,
-        "y": 66,
-        "w": 24,
-        "h": 30
+        "y": 58,
+        "w": 20
        }
       ],
       "dinge": [

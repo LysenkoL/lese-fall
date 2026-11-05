@@ -76,7 +76,7 @@ let paginated = '';
 
 function headHTML(n: number) {
   const t = teil(n);
-  if (n === 0) return `<div class="blk" data-b="head"><div style="text-align:center"><img src="${img('raupe/lob')}" alt="Die Leseraupe" style="height:150px;mix-blend-mode:multiply"></div><div class="kicker">Vorgeschichte</div><div class="title">${T(t.titel)}</div></div>`;
+  if (n === 0) return `<div class="blk" data-b="head"><div class="illu"><img src="${img('vorgeschichte')}" alt="Die Leseraupe auf ihrem Blatt am Fenster"></div><div class="kicker">Vorgeschichte</div><div class="title">${T(t.titel)}</div></div>`;
   return `<div class="blk" data-b="head"><div class="illu"><img src="${img(t.spiel.bildVorher)}" alt=""></div><div class="kicker">Kapitel 1 · Spur ${n}</div><div class="title">${T(t.titel)}</div></div>`;
 }
 function blockHTML(b: Block) {
@@ -405,9 +405,10 @@ function wand(nach = 0) {
   }).join('');
   const naechste = [1, 2, 3, 4, 5, 6].find((n) => stand.geloest[n] === undefined);
   const offenPinsel = [1, 2, 3, 4, 5, 6].find((n) => stand.geloest[n] !== undefined && !stand.buchstaben.includes(n));
-  const bild = nach ? `<div class="illu"><img src="${img(teil(nach).spiel.bildNachher)}" alt="Spur ${nach}: nachher"></div>` : '';
+  const bild = nach ? `<div class="illu"><img src="${img(teil(nach).spiel.bildNachher)}" alt="Spur ${nach}: nachher"></div>`
+    : `<div style="text-align:center"><img src="${img('kapitel_1')}" alt="Kapitel 1: Wo ist der Mond?" style="width:min(220px,60%);mix-blend-mode:multiply"></div>`;
   const html = `<div class="task">${bild}<div class="kicker" style="margin-top:10px">${U.wand ? T(U.wand) : ''}</div>
-    <div class="wand">${funde}</div>${wortHTML()}
+    <div class="wand" style="background-image:url('${img('spurenwand')}')">${funde}</div>${wortHTML()}
     ${geloestAnzahl() ? `<p style="font-size:15px;color:var(--muted);text-align:center">${T(U.wandTipp)}</p>` : ''}
     <div class="menu"><button class="btn" data-a="vg">Vorgeschichte lesen</button></div></div>`;
   let f: string;
@@ -442,7 +443,7 @@ function tresor() {
   header('Kapitel 1 · Mondtresor');
   const gw = DATA.geheimwort;
   const wort: string = gw.wort;
-  const slotsX = [25.8, 35.4, 45.0, 54.6, 64.2, 73.8];
+  const slotsX = [27.1, 36.3, 45.5, 54.6, 63.8, 73.0];
   let eingabe: number[] = [];
   let fehl = 0;
   const tiles = [...wort].map((c, i) => ({ c, i }));
@@ -454,8 +455,8 @@ function tresor() {
     const slots = slotsX.map((x, i) => `<span class="slot" style="left:${x}%">${offen ? wort[i] : eingabe[i] !== undefined ? tiles[eingabe[i]].c : ''}</span>`).join('');
     const html = `<div class="task center"><div class="kicker">${T(U.tresorTitel)}</div>
       <p class="q">${T(gw.frage)}</p>
-      <div class="tresor ${offen ? 'open' : ''}" id="tr"><img src="${tresorUrl}" alt="Der Mondtresor">
-        <div class="door"><div class="inside" style="background-image:url('${img('k2_s7')}')"></div><div class="lid" style="background:url('${tresorUrl}') 50.7% 25.9% / 229.9% auto"></div></div>${slots}</div>
+      <div class="tresor ${offen ? 'open' : ''}" id="tr"><img src="${tresorUrl}" alt="Der Mondtresor"><img class="auf" src="${img('mondtresor_auf')}" alt="">
+        <div class="door"><div class="inside" style="background-image:url('${img('k2_s7')}')"></div></div>${slots}</div>
       ${offen ? `<div class="big">${T(U.geschafft)}</div><p>${T(gw.offen)}</p><p>${T(gw.haken)}</p><span class="gain"><i></i>${perlen()} Schimmer-Perlen</span>`
         : `<div class="tiles">${tiles.map((t, k) => `<button class="tile" data-t="${k}" ${eingabe.includes(k) ? 'disabled' : ''}>${t.c}</button>`).join('')}</div>
            <p style="font-size:15px;color:var(--muted)">${T(U.tresorTipp)}</p><div id="tmsg" role="status">${msg}</div>`}

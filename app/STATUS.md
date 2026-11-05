@@ -10,6 +10,9 @@
 
 - Веб-версия (Artifact): https://claude.ai/artifact/JJwRcyUdYKSvTaU28qHtFW
 
+- Новые иллюстрации из `main` подключены: vorgeschichte, kapitel_1 (Spurenwand), spiel_theater_leer (игра Spur 1, вырезка театра), spurenwand (пробковая доска), mondtresor_zu/auf (новые координаты ячеек), обновлённые cover и k1_s6_vorher.
+- Сжатие картинок для APK не делал: вся веб-часть 5,7 МБ (webp), для APK это нормально.
+
 ## Дальше
 - Проход владелицей на телефоне, правки по замечаниям.
 - APK на компьютере владелицы, проверка Safe Areas на реальном устройстве.

@@ -114,7 +114,10 @@ class Ablage implements Engine {
       return `<div class="korb ziel ${tgt}" data-zone="ziel"><h4>${T(st.ziel)}</h4>${this.inZone('ziel', false)}</div>${tray.replace('class="tray"', 'class="tray"')}`;
     }
     if (st.layout === 'theater') {
-      return `<div class="feld"><img class="bg" src="${img(st.hintergrund)}" alt="Puppentheater mit Vorhang und Wolke" draggable="false">${st.zonen.map((z: any) => `<div class="zone ${tgt}" data-zone="${z.id}" aria-label="${plain(z.label)}" style="left:${z.x}%;top:${z.y}%;width:${z.w}%;height:${(z.w * 528) / 364}%">${this.inZone(z.id)}</div>`).join('')}</div>${tray}`;
+      // Ausschnitt aus dem großen Spielbild: nur das Theater, Zonen in % des Ausschnitts
+      const a = st.ausschnitt;
+      const bg = `<img class="bg" src="${img(st.hintergrund)}" alt="Puppentheater mit Vorhang und Wolke" draggable="false" style="width:${100 / a.w}%;left:${(-a.x / a.w) * 100}%;top:${(-a.y / a.h) * 100}%">`;
+      return `<div class="feld" style="aspect-ratio:${a.seite}">${bg}${st.zonen.map((z: any) => `<div class="zone ${tgt}" data-zone="${z.id}" aria-label="${plain(z.label)}" style="transform:none;left:${z.x - z.w / 2}%;top:${z.y - (z.w * a.seite) / 2}%;width:${z.w}%;height:${z.w * a.seite}%">${this.inZone(z.id)}</div>`).join('')}</div>${tray}`;
     }
     // Tisch am Fenster
     const zone = (id: string) => st.zonen.find((z: any) => z.id === id);

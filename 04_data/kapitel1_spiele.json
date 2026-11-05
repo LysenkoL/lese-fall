@@ -31,11 +31,12 @@
         {
           "intro": "Wo soll Milas Mond hängen? Zieh den Mond an seinen Platz am Theater.",
           "layout": "theater",
-          "hintergrund": "objekte/theater",
+          "hintergrund": "spiel_theater_leer",
+          "ausschnitt": { "x": 0.4297, "y": 0.0977, "w": 0.3776, "h": 0.4883, "seite": 1.16 },
           "zonen": [
-            { "id": "links", "label": "links neben der Wolke", "x": 26, "y": 17, "w": 22, "h": 25 },
-            { "id": "rechts", "label": "rechts neben der Wolke", "x": 74, "y": 17, "w": 22, "h": 25 },
-            { "id": "unten", "label": "unten vor dem Vorhang", "x": 50, "y": 66, "w": 24, "h": 30 }
+            { "id": "links", "label": "links neben der Wolke", "x": 34, "y": 17, "w": 15 },
+            { "id": "rechts", "label": "rechts neben der Wolke", "x": 72, "y": 17, "w": 15 },
+            { "id": "unten", "label": "unten vor dem Vorhang", "x": 50, "y": 58, "w": 20 }
           ],
           "dinge": [{ "id": "mond", "bild": "objekte/mond_vorne", "label": "Milas Mond" }],
           "loesung": { "mond": "links" },
