@@ -179,6 +179,10 @@ async function run(name, viewport, full) {
   await btn('next'); await sleep(300);
   await click('#aa'); await click('[data-sw="silben"]'); await click('[data-fs="26"]');
   await shot('einstellungen');
+  await click('[data-reset]');
+  ok(!!(await p.$('[data-antwort]')) && !(await p.$('[data-loeschen]')), `${name}: Elternschloss vor dem Löschen`);
+  if (full) await shot('elternschloss');
+  await click('[data-abbrechen]');
   await click('[data-close]'); await sleep(300);
   await shot('silben_gross');
   const silben = await p.$$eval('.s-r', (els) => els.length);

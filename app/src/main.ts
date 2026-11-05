@@ -396,7 +396,7 @@ function pinsel(spur: number) {
 function wand(nach = 0) {
   game = null; R.ev = null;
   ort('wand', nach);
-  header('Kapitel 1 · Spurenwand');
+  header('Spurenwand');
   const spuren = DATA.spuren;
   const funde = spuren.map((s: any) => {
     const ok = stand.geloest[s.spur] !== undefined;
@@ -440,7 +440,7 @@ function fundMenu(spur: number) {
 /* ====================== Mondtresor ====================== */
 function tresor() {
   ort('tresor');
-  header('Kapitel 1 · Mondtresor');
+  header('Mondtresor');
   const gw = DATA.geheimwort;
   const wort: string = gw.wort;
   const slotsX = [27.1, 36.3, 45.5, 54.6, 63.8, 73.0];
@@ -494,7 +494,21 @@ actions.wand = () => wand();
 
 /* ====================== Einstellungen (Aa) ====================== */
 const SIZES = [18, 20, 23, 26];
+/* Elternschloss: Rechenaufgabe (z. B. 7 · 14, für Zweitklässler zu schwer), dann Bestätigung */
+type Lock = { a: number; b: number; opts: number[]; ok?: boolean } | null;
+let lock: Lock = null;
+function neueAufgabe(): Lock {
+  const a = 6 + Math.floor(Math.random() * 4), b = 12 + Math.floor(Math.random() * 5), r = a * b;
+  const opts = [r, r + a, r - b, r + 10].sort(() => Math.random() - 0.5);
+  return { a, b, opts };
+}
+function resetHTML() {
+  if (!lock) return `<button class="reset" data-reset>Fortschritt löschen (für Eltern)</button>`;
+  if (!lock.ok) return `<div class="eltern"><p>Für Eltern: Wie viel ist ${lock.a} · ${lock.b}?</p><div class="sizes">${lock.opts.map((o) => `<button data-antwort="${o}">${o}</button>`).join('')}</div><button class="reset" data-abbrechen>Abbrechen</button></div>`;
+  return `<div class="eltern"><p>Wirklich alles löschen? Perlen, Spuren und Buchstaben sind dann weg.</p><div class="menu"><button class="btn" data-loeschen>Ja, alles löschen</button><button class="btn cta" data-abbrechen>Nein, behalten</button></div></div>`;
+}
 $('aa').addEventListener('click', () => {
+  lock = null;
   const bg = document.createElement('div');
   bg.className = 'pop-bg';
   const draw = () => {
@@ -503,7 +517,7 @@ $('aa').addEventListener('click', () => {
       <p class="demo story">${T('Die Le|se-|Rau|pe schaut ge|nau hin.')}</p>
       <label>Silben farbig<button class="switch" role="switch" data-sw="silben" aria-checked="${stand.silben}" aria-label="Silben farbig"></button></label>
       <label>Bewegung reduzieren<button class="switch" role="switch" data-sw="ruhig" aria-checked="${stand.ruhig}" aria-label="Bewegung reduzieren"></button></label>
-      <button class="reset" data-reset>Fortschritt löschen (für Eltern)</button>
+      ${resetHTML()}
       <div style="text-align:right"><button class="btn cta" data-close style="flex:none;min-width:120px">Fertig</button></div></div>`;
   };
   draw();
@@ -513,12 +527,12 @@ $('aa').addEventListener('click', () => {
     const fs = t.closest<HTMLElement>('[data-fs]'), sw = t.closest<HTMLElement>('[data-sw]');
     if (fs) { stand.fs = +fs.dataset.fs!; }
     else if (sw) { const k = sw.dataset.sw as 'silben' | 'ruhig'; stand[k] = !stand[k]; }
-    else if (t.closest('[data-reset]')) {
-      const r = t.closest<HTMLElement>('[data-reset]')!;
-      if (r.dataset.sicher) { zuruecksetzen(); bg.remove(); applySettings(); game = null; cover(); return; }
-      r.dataset.sicher = '1';
-      r.textContent = 'Wirklich alles löschen? Perlen und Spuren sind dann weg. Zum Löschen noch einmal tippen.';
-      return;
+    else if (t.closest('[data-reset]')) { lock = neueAufgabe(); draw(); return; }
+    else if (t.closest('[data-antwort]')) {
+      const a = +t.closest<HTMLElement>('[data-antwort]')!.dataset.antwort!;
+      lock = lock && a === lock.a * lock.b ? { ...lock, ok: true } : null; draw(); return;
+    } else if (t.closest('[data-loeschen]')) { zuruecksetzen(); bg.remove(); applySettings(); game = null; cover(); return; }
+    else if (t.closest('[data-abbrechen]')) { lock = null; draw(); return;
     } else if (t === bg || t.closest('[data-close]')) { bg.remove(); return; }
     else return;
     speichern(); applySettings(); draw(); refresh();

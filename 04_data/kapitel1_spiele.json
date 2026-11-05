@@ -226,10 +226,10 @@
       "bildNachher": "k1_s6_nachher",
       "fund": { "bild": "objekte/papierstreifen_rot", "text": "der rote Papierstreifen" },
       "kind": "mila/besorgt",
-      "sieg": "Schere und Klebeband liegen rechts neben dem Tablett. Auf dem Tablett liegt nur der rote Streifen. Und der Mond? Weg!",
+      "sieg": "Schere und Klebeband liegen rechts neben dem Tablett, der rote Streifen liegt auf dem Tablett. Genau dort hat Ben vorhin auch den Mond hingelegt. Aber jetzt ist er weg!",
       "schritte": [
         {
-          "intro": "So sieht es am Fenster aus. Leg alles an seinen Platz.",
+          "intro": "Was liegt jetzt am Tablett? Und wo hat Ben den Mond vorhin hingelegt? Leg alles an seinen Platz.",
           "layout": "tisch",
           "zonen": [
             { "id": "links", "label": "links neben dem Tablett" },
@@ -240,7 +240,7 @@
             { "id": "schere", "bild": "objekte/schere", "label": "die Schere" },
             { "id": "klebeband", "bild": "objekte/klebeband", "label": "das Klebeband" },
             { "id": "streifen", "bild": "objekte/papierstreifen_rot", "label": "der rote Streifen" },
-            { "id": "mond", "bild": "objekte/mond_hinten", "label": "der Mond – hier lag er, sagt Ben" }
+            { "id": "mond", "bild": "objekte/mond_hinten", "label": "der Mond (vorhin, sagt Ben)" }
           ],
           "loesung": { "schere": "rechts", "klebeband": "rechts", "streifen": "auf", "mond": "auf" },
           "proDing": {

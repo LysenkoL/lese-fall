@@ -1098,10 +1098,10 @@
      "text": "der ro|te Pa|pier|strei|fen"
     },
     "kind": "mila/besorgt",
-    "sieg": "Sche|re und Kle|be|band lie|gen rechts ne|ben dem Tab|lett. Auf dem Tab|lett liegt nur der ro|te Strei|fen. Und der Mond? Weg!",
+    "sieg": "Sche|re und Kle|be|band lie|gen rechts ne|ben dem Tab|lett, der ro|te Strei|fen liegt auf dem Tab|lett. Ge|nau dort hat Ben vor|hin auch den Mond hin|ge|legt. A|ber jetzt ist er weg!",
     "schritte": [
      {
-      "intro": "So sieht es am Fens|ter aus. Leg al|les an sei|nen Platz.",
+      "intro": "Was liegt jetzt am Tab|lett? Und wo hat Ben den Mond vor|hin hin|ge|legt? Leg al|les an sei|nen Platz.",
       "layout": "tisch",
       "zonen": [
        {
@@ -1136,7 +1136,7 @@
        {
         "id": "mond",
         "bild": "objekte/mond_hinten",
-        "label": "der Mond – hier lag er, sagt Ben"
+        "label": "der Mond (vor|hin, sagt Ben)"
        }
       ],
       "loesung": {
