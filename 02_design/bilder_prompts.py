@@ -218,7 +218,7 @@ Background for a detective clue wall, PORTRAIT 9:16: a warm cork board with a wo
 add(CM, "diplom", "R", """
 Background for a children's certificate "Meister-Detektiv", PORTRAIT 3:4: warm paper with a decorative frame of leaves and tiny moons; at the bottom a round seal showing the caterpillar's head with glowing antennae and the dewdrop magnifier. Large empty space in the middle for text (added later).""", head=HEAD_SHEET.replace("Plain warm white background", "Full-bleed image"))
 add(CM, "auszeichnung", "R", """
-The caterpillar proudly wearing her reward: a small golden magnifier badge pinned to her dark-blue cape, sparkling softly. Full body, front view, happy. Plus the badge alone, larger, next to her.""", head=HEAD_SHEET)
+The caterpillar proudly wearing her reward: a small badge pinned to her dark-blue cape – a GOLDEN version of her own dewdrop magnifier (a ring of woven grass blade made of shiny gold, a clear dewdrop as the lens, a short golden grass-stem handle), sparkling softly. Not an ordinary detective magnifier. Full body, front view, happy. Plus the badge alone, larger, next to her.""", head=HEAD_SHEET)
 add(CM, "play_banner", "IN", """
 Wide banner, 2:1 landscape (will be cropped to 1024x500): on the left third the caterpillar on a leaf looking through her dewdrop magnifier; on the right the puppet theater with red curtain and white cloud and an empty spot left of the cloud; deep twilight-blue to warm evening light. Leave a calm empty area in the middle for the app name (no text).""", glow=True)
 

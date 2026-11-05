@@ -514,7 +514,7 @@ Background for a children's certificate "Meister-Detektiv", PORTRAIT 3:4: warm p
 
 ```text
 Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain warm white background, no text, no letters, no numbers, no stars. Every item clearly separated from the others with empty space around it, so it can be cut out.
-The caterpillar proudly wearing her reward: a small golden magnifier badge pinned to her dark-blue cape, sparkling softly. Full body, front view, happy. Plus the badge alone, larger, next to her.
+The caterpillar proudly wearing her reward: a small badge pinned to her dark-blue cape – a GOLDEN version of her own dewdrop magnifier (a ring of woven grass blade made of shiny gold, a clear dewdrop as the lens, a short golden grass-stem handle), sparkling softly. Not an ordinary detective magnifier. Full body, front view, happy. Plus the badge alone, larger, next to her.
 ```
 
 ### 51. `play_banner`
