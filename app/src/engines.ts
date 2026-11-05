@@ -127,6 +127,10 @@ class Ablage implements Engine {
       onDrop: (item, zone) => { this.place[item] = zone && zone !== '__tray' ? zone : null; this.single(item); this.sel = null; rerender(); },
       onTap: (item) => {
         if (this.kind === 'slots') { this.place[item] = this.place[item] ? null : 'ziel'; rerender(); return; }
+        // schon ein Ding gewählt und auf ein liegendes Ding getippt: dorthin legen
+        if (this.sel && this.sel !== item && this.place[item]) {
+          this.place[this.sel] = this.place[item]; this.single(this.sel); this.sel = null; rerender(); return;
+        }
         this.sel = this.sel === item ? null : item; rerender();
       },
       onZoneTap: (zone) => {

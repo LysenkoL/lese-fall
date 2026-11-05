@@ -20,13 +20,13 @@ const ok = (cond, msg) => { if (!cond) { fails++; console.error('✗ ' + msg); }
 
 async function run(name, viewport, full) {
   const b = await chromium.launch();
-  const ctx = await b.newContext({ viewport, deviceScaleFactor: 2, hasTouch: true });
+  const ctx = await b.newContext({ viewport, deviceScaleFactor: 1.5, hasTouch: true });
   const p = await ctx.newPage();
   const errors = [];
   p.on('pageerror', (e) => errors.push(e.message));
   p.on('console', (m) => { if (m.type() === 'error' || m.type() === 'warning') errors.push(m.text()); });
   let n = 0;
-  const shot = async (label) => { n++; await sleep(450); await p.screenshot({ path: `${OUT}/${name}_${String(n).padStart(2, '0')}_${label}.png` }); };
+  const shot = async (label) => { n++; await sleep(450); await p.screenshot({ path: `${OUT}/${name}_${String(n).padStart(2, '0')}_${label}.jpg`, type: 'jpeg', quality: 82 }); };
   const click = async (sel) => { await p.click(sel); await sleep(120); };
   const btn = (a) => click(`[data-a="${a}"]`);
   const data = () => p.evaluate(() => window.__lesefall.DATA);

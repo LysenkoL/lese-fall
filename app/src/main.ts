@@ -128,7 +128,7 @@ function zeigeBlatt(dir: number) {
   let f: string;
   if (R.ev) {
     const E = R.ev;
-    const mid = E.found ? `<button class="btn cta" data-a="evback">Zurück zum Spiel</button>` : `<div class="banner" id="banner">${T(E.miss >= 2 ? E.near : E.ask)}</div>`;
+    const mid = E.found ? `<button class="btn cta" data-a="evback">Zurück zum Spiel</button>` : `<div class="banner" id="banner"><span>${T(E.miss >= 2 ? E.near : E.ask)}</span></div>`;
     f = prev + mid + `<button class="nav" data-a="next" ${last ? 'disabled' : ''} aria-label="Nächstes Blatt">›</button>`;
   } else {
     const dots = `<div class="dots" role="img" aria-label="Blatt ${R.idx + 1} von ${R.sheets.length}">${R.sheets.map((_, i) => `<i class="${i < R.idx ? 'on' : i === R.idx ? 'cur' : ''}"></i>`).join('')}</div>`;
@@ -170,7 +170,7 @@ content.addEventListener('click', (e) => {
   E.miss++;
   s.classList.remove('nope'); void s.offsetWidth; s.classList.add('nope');
   const b = document.getElementById('banner');
-  if (b) b.innerHTML = T(E.miss >= 2 ? E.near : U.beweisNein);
+  if (b) b.innerHTML = `<span>${T(E.miss >= 2 ? E.near : U.beweisNein)}</span>`;
 });
 
 foot.addEventListener('click', (e) => {
@@ -306,7 +306,7 @@ function sieg(spur: number, gained: number, replay: boolean) {
   const extra = spur === 5 ? `<div class="mosaik">${d.schritte[0].loesung.map((id: string) => `<img src="${img(d.schritte[0].karten.find((k: any) => k.id === id).bild)}" alt="">`).join('')}</div>`
     : spur === 4 ? `<p><span class="stamp-big stamp-on">${T(d.schritte[1].stempel.find((s: any) => s.id === 'nicht').label)}</span></p>` : '';
   const html = `<div class="center task">
-    <div class="win-top"><img class="r glow-fuehler" src="${raupe('klatscht', spur)}" alt="Die Leseraupe klatscht"><img class="k" src="${img(d.kind)}" alt=""></div>
+    <div class="win-top"><img class="r" src="${raupe('klatscht', spur)}" alt="Die Leseraupe klatscht"><img class="k" src="${img(d.kind)}" alt=""></div>
     <div class="big">${T(voll ? U.siegVoll : U.siegHalb)}</div>
     <p>${T(d.sieg)}</p>${voll ? '' : `<p>${T(U.siegHalbText)}</p>`}
     ${extra}
@@ -343,7 +343,7 @@ function pinsel(spur: number) {
   const r = box.getBoundingClientRect();
   const dpr = Math.min(2, devicePixelRatio || 1);
   cv.width = r.width * dpr; cv.height = r.height * dpr;
-  const g = cv.getContext('2d')!;
+  const g = cv.getContext('2d', { willReadFrequently: true })!;
   g.scale(dpr, dpr);
   // Staubschicht
   g.fillStyle = '#CDBB98'; g.fillRect(0, 0, r.width, r.height);
@@ -400,7 +400,7 @@ function wand(nach = 0) {
   const spuren = DATA.spuren;
   const funde = spuren.map((s: any) => {
     const ok = stand.geloest[s.spur] !== undefined;
-    return ok ? `<button class="fund ${s.spur === nach ? 'neu' : ''}" data-fund="${s.spur}" aria-label="Spur ${s.spur}: ${plain(s.spiel.fund.text)}"><span class="nr"></span><img src="${img(s.spiel.fund.bild)}" alt="">${T(s.spiel.fund.text)}</button>`
+    return ok ? `<button class="fund ${s.spur === nach ? 'neu' : ''}" data-fund="${s.spur}" aria-label="Spur ${s.spur}: ${plain(s.spiel.fund.text)}"><span class="nr"></span><img src="${img(s.spiel.fund.bild)}" alt=""><span>${T(s.spiel.fund.text)}</span></button>`
       : `<div class="fund zu">Spur ${s.spur}</div>`;
   }).join('');
   const naechste = [1, 2, 3, 4, 5, 6].find((n) => stand.geloest[n] === undefined);
@@ -482,7 +482,6 @@ function tresor() {
 
 /* ====================== Titelbild ====================== */
 function cover() {
-  ort('cover');
   header('Lese-Fall', 'Spur im Text');
   const weiter = stand.ort.view !== 'cover' || stand.vorgeschichte;
   const html = `<div class="cover"><div class="art" style="background-image:url('${img('cover')}')" role="img" aria-label="Titelbild: Die Leseraupe mit Lupe"></div>
