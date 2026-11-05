@@ -5,7 +5,7 @@
 import json, pathlib, html
 
 HEAD = ("Use the attached images as the exact reference for characters, places and style. "
-        "Indoors always the same classroom as in the attached classroom image: the NATURAL WOOD puppet theater (light wood, round knobs) on the big table with the red tablecloth, the window with the caterpillar's plant on the LEFT. "
+        "Indoors always the same classroom as in the attached classroom image: the NATURAL WOOD puppet theater (light wood, two posts with round knobs, the top board is ONE smooth round arch – not wavy) on the big table with the red tablecloth, the window with the caterpillar's plant on the LEFT. "
         "Children's picture-book illustration in exactly the same style, landscape 3:2. "
         "No text, no letters, no numbers, no stars anywhere. Mila has no backpack. "
         "The hand puppets are a fox, a bear and a king – never a mouse (the only mouse in the book is Oskar's small grey PAPER mouse). "
@@ -138,7 +138,8 @@ Everyone searches: Oskar (seen from the FRONT, so his hood is not visible) looks
 On the windowsill the tiny caterpillar sits completely still and watches calmly. No mouse visible anywhere. On the puppet theater the round yellow moon with three brown paper dots hangs on its thread to the LEFT of the white cloud.""", glow=True)
 add(C4, "k4_s20_spiel", "IN", """
 The same search scene, but Oskar is now seen from BEHIND: from his red-and-white striped hood a thin pink mouse tail hangs out – small, not highlighted, easy to overlook.
-Mila looks under the table, Ben behind the theater. The tiny caterpillar on the windowsill. On the puppet theater the round yellow moon with three brown paper dots hangs on its thread to the LEFT of the white cloud.""",
+Mila looks under the table, Ben behind the theater. The tiny caterpillar on the windowsill. On the puppet theater the round yellow moon with three brown paper dots hangs on its thread to the LEFT of the white cloud.
+Oskar wears his usual beige cargo trousers (not jeans). The tail hangs out of the HOOD on his back, not out of a pocket.""",
     note="Поле для игры: ребёнок ищет хвост лупой. Хвост мелкий, без подсветки.", glow=True)
 add(C4, "k4_s20_nachher", "IN", """
 Oskar pulls his small grey paper mouse out of his hood. All three children laugh. The round yellow moon with three brown dots hangs left of the white cloud.
@@ -146,7 +147,8 @@ The tiny caterpillar giggles on her leaf.""", glow=False)
 add(C4, "k4_s21", "IN", """
 The classroom door is open. Frau Sommer (reddish hair in a bun, green cardigan) looks in, smiling, and picks up a plain yellow round cardboard circle from the table – it has NO thread and NO dots.
 Children of the group come in chatting and sit down in a semicircle on the carpet in front of the table with the puppet theater.
-At the very back by the window, the tiny caterpillar hides a little under her top leaf, but she can see the stage over the children's heads. On the puppet theater the round yellow moon with three brown paper dots hangs on its thread to the LEFT of the white cloud.""", glow=False)
+At the very back by the window, the tiny caterpillar hides a little under her top leaf, but she can see the stage over the children's heads. On the puppet theater the round yellow moon with three brown paper dots hangs on its thread to the LEFT of the white cloud.
+Mila, Ben and Oskar are NOT in the audience: they stand behind the puppet theater, only peeking out. The audience are OTHER children of the group (not Mila, Ben or Oskar).""", glow=False)
 add(C4, "k4_s22", "IN", """
 The puppet show. Seen from behind the audience (backs of children's heads in the foreground, some start giggling).
 On the stage: the little grey paper mouse with the red heart jumps as high as it can toward the round yellow moon with three brown dots; the moon dances on its thread with small motion lines. Mila holds the red curtain open at the side.
