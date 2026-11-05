@@ -5,6 +5,7 @@
 import json, pathlib, html
 
 HEAD = ("Use the attached images as the exact reference for characters, places and style. "
+        "Indoors always the same classroom as in the attached classroom image: the NATURAL WOOD puppet theater (light wood, round knobs) on the big table with the red tablecloth, the window with the caterpillar's plant on the LEFT. "
         "Children's picture-book illustration in exactly the same style, landscape 3:2. "
         "No text, no letters, no numbers, no stars anywhere. Mila has no backpack. "
         "The hand puppets are a fox, a bear and a king – never a mouse (the only mouse in the book is Oskar's small grey PAPER mouse). "
@@ -127,16 +128,17 @@ The tiny caterpillar at the window watches, curious.""", glow=False)
 
 # ---------------- Kapitel 4 ----------------
 C4 = "Глава 4"
+# Глава 4: класс как в k1_s1 — деревянный театр, красная скатерть, окно слева
 add(C4, "k4_s19", "IN", """
 Back in the classroom. Oskar puts leftover paper scraps on the blue tray. Mila puts the hand puppets into the green wooden box. Ben stands on a small stool at the puppet theater and lays the moon's thread over the top bar of the theater – NOT tied.
 The round yellow moon with the three brown dots hangs again to the LEFT of the white cloud above the red curtain.
 The tiny caterpillar is back on her favorite leaf in the flowerpot, looking pleased.""", glow=False)
 add(C4, "k4_s20_vorher", "IN", """
 Everyone searches: Oskar (seen from the FRONT, so his hood is not visible) looks on the table and into the green box, Mila looks under the table, Ben looks behind the puppet theater. Oskar looks upset.
-On the windowsill the tiny caterpillar sits completely still and watches calmly. No mouse visible anywhere.""", glow=True)
+On the windowsill the tiny caterpillar sits completely still and watches calmly. No mouse visible anywhere. On the puppet theater the round yellow moon with three brown paper dots hangs on its thread to the LEFT of the white cloud.""", glow=True)
 add(C4, "k4_s20_spiel", "IN", """
 The same search scene, but Oskar is now seen from BEHIND: from his red-and-white striped hood a thin pink mouse tail hangs out – small, not highlighted, easy to overlook.
-Mila looks under the table, Ben behind the theater. The tiny caterpillar on the windowsill.""",
+Mila looks under the table, Ben behind the theater. The tiny caterpillar on the windowsill. On the puppet theater the round yellow moon with three brown paper dots hangs on its thread to the LEFT of the white cloud.""",
     note="Поле для игры: ребёнок ищет хвост лупой. Хвост мелкий, без подсветки.", glow=True)
 add(C4, "k4_s20_nachher", "IN", """
 Oskar pulls his small grey paper mouse out of his hood. All three children laugh. The round yellow moon with three brown dots hangs left of the white cloud.
@@ -144,7 +146,7 @@ The tiny caterpillar giggles on her leaf.""", glow=False)
 add(C4, "k4_s21", "IN", """
 The classroom door is open. Frau Sommer (reddish hair in a bun, green cardigan) looks in, smiling, and picks up a plain yellow round cardboard circle from the table – it has NO thread and NO dots.
 Children of the group come in chatting and sit down in a semicircle on the carpet in front of the table with the puppet theater.
-At the very back by the window, the tiny caterpillar hides a little under her top leaf, but she can see the stage over the children's heads.""", glow=False)
+At the very back by the window, the tiny caterpillar hides a little under her top leaf, but she can see the stage over the children's heads. On the puppet theater the round yellow moon with three brown paper dots hangs on its thread to the LEFT of the white cloud.""", glow=False)
 add(C4, "k4_s22", "IN", """
 The puppet show. Seen from behind the audience (backs of children's heads in the foreground, some start giggling).
 On the stage: the little grey paper mouse with the red heart jumps as high as it can toward the round yellow moon with three brown dots; the moon dances on its thread with small motion lines. Mila holds the red curtain open at the side.
