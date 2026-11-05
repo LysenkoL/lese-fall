@@ -1,13 +1,14 @@
 /** Silben-Text → HTML. Jedes Wort beginnt blau, dann rot, blau … (A-03). Ohne Silbenmodus erben die Spans die Textfarbe. */
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-const WORD = /[A-Za-zÄÖÜäöüß|]+/g;
+/** Wörter mit Bindestrich zählen als ein Wort: Le|se-|Rau|pe (D-13), Farben laufen weiter */
+const WORD = /[A-Za-zÄÖÜäöüß|]+(?:-[A-Za-zÄÖÜäöüß|]+)*/g;
 
 function words(t: string): string {
   let out = '';
   let last = 0;
   for (const m of t.matchAll(WORD)) {
     out += esc(t.slice(last, m.index));
-    out += m[0].split('|').map((p, i) => `<span class="${i % 2 ? 's-r' : 's-b'}">${esc(p)}</span>`).join('');
+    out += m[0].replace(/-/g, '-|').split('|').map((p, i) => `<span class="${i % 2 ? 's-r' : 's-b'}">${esc(p)}</span>`).join('');
     last = m.index! + m[0].length;
   }
   return out + esc(t.slice(last));

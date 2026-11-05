@@ -76,7 +76,7 @@ let paginated = '';
 
 function headHTML(n: number) {
   const t = teil(n);
-  if (n === 0) return `<div class="blk" data-b="head"><div class="illu"><img src="${img('vorgeschichte')}" alt="Die Leseraupe auf ihrem Blatt am Fenster"></div><div class="kicker">Vorgeschichte</div><div class="title">${T(t.titel)}</div></div>`;
+  if (n === 0) return `<div class="blk" data-b="head"><div class="illu"><img src="${img('vorgeschichte')}" alt="Die Lese-Raupe auf ihrem Blatt am Fenster"></div><div class="kicker">Vorgeschichte</div><div class="title">${T(t.titel)}</div></div>`;
   return `<div class="blk" data-b="head"><div class="illu"><img src="${img(t.spiel.bildVorher)}" alt=""></div><div class="kicker">Kapitel 1 · Spur ${n}</div><div class="title">${T(t.titel)}</div></div>`;
 }
 function blockHTML(b: Block) {
@@ -306,7 +306,7 @@ function sieg(spur: number, gained: number, replay: boolean) {
   const extra = spur === 5 ? `<div class="mosaik">${d.schritte[0].loesung.map((id: string) => `<img src="${img(d.schritte[0].karten.find((k: any) => k.id === id).bild)}" alt="">`).join('')}</div>`
     : spur === 4 ? `<p><span class="stamp-big stamp-on">${T(d.schritte[1].stempel.find((s: any) => s.id === 'nicht').label)}</span></p>` : '';
   const html = `<div class="center task">
-    <div class="win-top"><img class="r" src="${raupe('klatscht', spur)}" alt="Die Leseraupe klatscht"><img class="k" src="${img(d.kind)}" alt=""></div>
+    <div class="win-top"><img class="r" src="${raupe('klatscht', spur)}" alt="Die Lese-Raupe klatscht"><img class="k" src="${img(d.kind)}" alt=""></div>
     <div class="big">${T(voll ? U.siegVoll : U.siegHalb)}</div>
     <p>${T(d.sieg)}</p>${voll ? '' : `<p>${T(U.siegHalbText)}</p>`}
     ${extra}
@@ -485,7 +485,7 @@ function tresor() {
 function cover() {
   header('Lese-Fall', 'Spur im Text');
   const weiter = stand.ort.view !== 'cover' || stand.vorgeschichte;
-  const html = `<div class="cover"><div class="art" style="background-image:url('${img('cover')}')" role="img" aria-label="Titelbild: Die Leseraupe mit Lupe"></div>
+  const html = `<div class="cover"><div class="art" style="background-image:url('${img('cover')}')" role="img" aria-label="Titelbild: Die Lese-Raupe mit Lupe"></div>
     <h1>Lese-Fall</h1><div class="sub">Fall ${DATA.fall.nr}: ${T(DATA.fall.titel)}</div></div>`;
   setView(html, `${weiter ? '<button class="btn" data-a="wand">Spurenwand</button>' : ''}<button class="btn cta" data-a="los">${weiter ? 'Weiterlesen' : 'Los geht’s'} ›</button>`);
 }
@@ -500,7 +500,7 @@ $('aa').addEventListener('click', () => {
   const draw = () => {
     bg.innerHTML = `<div class="pop" role="dialog" aria-label="Einstellungen">
       <h3>Schriftgröße</h3><div class="sizes">${SIZES.map((s) => `<button data-fs="${s}" aria-pressed="${stand.fs === s}" style="font-size:${s - 2}px">A</button>`).join('')}</div>
-      <p class="demo story">${T('Die Le|se|rau|pe schaut ge|nau hin.')}</p>
+      <p class="demo story">${T('Die Le|se-|Rau|pe schaut ge|nau hin.')}</p>
       <label>Silben farbig<button class="switch" role="switch" data-sw="silben" aria-checked="${stand.silben}" aria-label="Silben farbig"></button></label>
       <label>Bewegung reduzieren<button class="switch" role="switch" data-sw="ruhig" aria-checked="${stand.ruhig}" aria-label="Bewegung reduzieren"></button></label>
       <button class="reset" data-reset>Fortschritt löschen (für Eltern)</button>

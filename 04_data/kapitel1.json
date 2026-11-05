@@ -16,7 +16,7 @@
     "typ": "p",
     "s": [
      "In ei|nem hel|len Grup|pen|raum der Grund|schu|le steht am Fens|ter ei|ne gro|ße grü|ne Pflan|ze.",
-     "Auf ei|nem ih|rer Blät|ter lebt die klei|ne **Le|se|rau|pe**."
+     "Auf ei|nem ih|rer Blät|ter lebt die klei|ne **Le|se-Rau|pe**."
     ]
    },
    {
@@ -31,7 +31,7 @@
     "id": "v-p3",
     "typ": "p",
     "s": [
-     "Doch die Le|se|rau|pe hat schon jetzt ein Ge|heim|nis.",
+     "Doch die Le|se-Rau|pe hat schon jetzt ein Ge|heim|nis.",
      "Wenn ir|gend|wo et|was Rät|sel|haf|tes pas|siert, be|gin|nen ih|re Füh|ler ganz lei|se gol|den zu leuch|ten.",
      "Die Men|schen be|mer|ken das nicht.",
      "Und ih|re Ge|dan|ken kön|nen sie auch nicht hö|ren."
@@ -42,7 +42,7 @@
     "typ": "p",
     "s": [
      "**Du a|ber kannst sie hö|ren!**",
-     "Denn die Leucht-Füh|ler ver|bin|den die Le|se|rau|pe mit ih|rem ge|hei|men Er|mitt|ler|part|ner: dir."
+     "Denn die Leucht-Füh|ler ver|bin|den die Le|se-Rau|pe mit ih|rem ge|hei|men Er|mitt|ler|part|ner: dir."
     ]
    },
    {
@@ -51,7 +51,7 @@
     "s": [
      "Un|ter ih|rem Lieb|lings|blatt be|wahrt sie ei|nen be|son|de|ren Schatz auf: ei|ne win|zi|ge **Tau|trop|fen-Lu|pe**.",
      "Ein Trop|fen Mor|gen|tau sitzt in ei|nem Ring aus Gras und trock|net nie|mals aus.",
-     "Mit die|ser Lu|pe ent|deckt die Le|se|rau|pe selbst win|zi|ge Spu|ren – a|ber nur, wenn sie die Spu|ren von ih|rem Platz aus wirk|lich se|hen kann.",
+     "Mit die|ser Lu|pe ent|deckt die Le|se-Rau|pe selbst win|zi|ge Spu|ren – a|ber nur, wenn sie die Spu|ren von ih|rem Platz aus wirk|lich se|hen kann.",
      "Durch Wän|de o|der auf ver|bor|ge|ne Rück|sei|ten kann auch ei|ne Zau|ber|lu|pe nicht schau|en."
     ]
    },
@@ -59,11 +59,11 @@
     "id": "v-p6",
     "typ": "p",
     "s": [
-     "Und noch et|was kann die Le|se|rau|pe be|son|ders gut: Sie ist lang|sam.",
+     "Und noch et|was kann die Le|se-Rau|pe be|son|ders gut: Sie ist lang|sam.",
      "Wäh|rend an|de|re schon wei|ter|lau|fen, bleibt sie ste|hen, schaut noch ein|mal hin und be|merkt manch|mal ge|nau das, was al|le ü|ber|se|hen.",
      "Sie nennt das ih|ren **Zeit|lu|pen-Blick**.",
      "Die Zeit bleibt da|bei nicht ste|hen.",
-     "Nur die Le|se|rau|pe lässt sich Zeit."
+     "Nur die Le|se-Rau|pe lässt sich Zeit."
     ]
    },
    {
@@ -71,7 +71,7 @@
     "typ": "p",
     "s": [
      "Wenn du mit ihr ein Rät|sel löst, sam|melt ihr klei|ne glit|zern|de **Schim|mer-Per|len**.",
-     "Spä|ter könnt ihr da|mit die Le|se|rau|pe schmü|cken.",
+     "Spä|ter könnt ihr da|mit die Le|se-Rau|pe schmü|cken.",
      "Ih|re Schmet|ter|lings|flü|gel muss sie al|ler|dings noch ganz von selbst be|kom|men."
     ]
    },
@@ -79,7 +79,7 @@
     "id": "v-p8",
     "typ": "th",
     "s": [
-     "„Al|so gut“, denkt die Le|se|rau|pe und rückt ih|re Lu|pe zu|recht.",
+     "„Al|so gut“, denkt die Le|se-Rau|pe und rückt ih|re Lu|pe zu|recht.",
      "„Du liest.",
      "Ich schau|e ge|nau hin.",
      "Und wenn wir uns ein|mal ir|ren, su|chen wir ge|mein|sam den Be|weis.“"
@@ -158,7 +158,7 @@
      "id": "s1-p8",
      "typ": "p",
      "s": [
-      "Vom Blu|men|topf am Fens|ter schaut die klei|ne Le|se|rau|pe neu|gie|rig zu."
+      "Vom Blu|men|topf am Fens|ter schaut die klei|ne Le|se-Rau|pe neu|gie|rig zu."
      ]
     },
     {
@@ -270,7 +270,7 @@
      "id": "s2-p4",
      "typ": "p",
      "s": [
-      "Die Le|se|rau|pe ent|deckt et|was an|de|res.",
+      "Die Le|se-Rau|pe ent|deckt et|was an|de|res.",
       "Di|rekt ne|ben ih|rem Blu|men|topf liegt ein klei|nes grü|nes Blatt.",
       "E|ben war es noch nicht da."
      ]
@@ -379,10 +379,10 @@
      "text": "das grü|ne Pa|pier"
     },
     "kind": "ben/staunt",
-    "sieg": "Vor|hang und Wol|ke sind noch da. Nur der Mond ist weg – und die Le|se|rau|pe hat nicht ge|se|hen, wer ihn ge|nom|men hat.",
+    "sieg": "Vor|hang und Wol|ke sind noch da. Nur der Mond ist weg – und die Le|se-Rau|pe hat nicht ge|se|hen, wer ihn ge|nom|men hat.",
     "schritte": [
      {
-      "intro": "Die Le|se|rau|pe krab|belt wie|der her|vor. Was hängt jetzt noch am The|a|ter? Leg nur das ans The|a|ter, was wirk|lich noch da ist.",
+      "intro": "Die Le|se-Rau|pe krab|belt wie|der her|vor. Was hängt jetzt noch am The|a|ter? Leg nur das ans The|a|ter, was wirk|lich noch da ist.",
       "ziel": "Am The|a|ter",
       "ablage": "Nicht am The|a|ter",
       "karten": [
@@ -417,7 +417,7 @@
        "s2-p15-0"
       ],
       "ask": "Was hängt noch am The|a|ter? Tip|pe auf ei|nen Satz, der es ver|rät.",
-      "near": "Such dort, wo die Le|se|rau|pe end|lich wie|der her|vor|krab|belt.",
+      "near": "Such dort, wo die Le|se-Rau|pe end|lich wie|der her|vor|krab|belt.",
       "help": "Lies die kur|zen Sät|ze nach „End|lich krab|belt sie her|vor“ ganz ge|nau. Was ist noch da? Was fehlt?",
       "explain": "Im Text steht: „Der ro|te Vor|hang hängt noch da. Die wei|ße Wol|ke auch. A|ber der gel|be Mond ist ver|schwun|den!“ Ei|nen gel|ben Kreis gibt es am The|a|ter nicht.",
       "motor": "slots"
@@ -426,7 +426,7 @@
       "motor": "urteil",
       "art": "einzeln",
       "intro": "Und noch ei|ne Fra|ge:",
-      "frage": "Wa|rum hat die Le|se|rau|pe nicht ge|se|hen, wer den Mond ge|nom|men hat?",
+      "frage": "Wa|rum hat die Le|se-Rau|pe nicht ge|se|hen, wer den Mond ge|nom|men hat?",
       "optionen": [
        {
         "id": "blatt",
@@ -446,9 +446,9 @@
        "s2-p11-1",
        "s2-p11-2"
       ],
-      "ask": "Was hat die Le|se|rau|pe ge|macht, als der Mond ver|schwun|den ist? Tip|pe auf den Satz, der es ver|rät.",
-      "near": "Such dort, wo die Le|se|rau|pe das Pa|pier aus|spuckt.",
-      "help": "Was macht die Le|se|rau|pe gleich nach dem Spu|cken? Und wie lan|ge dau|ert das?",
+      "ask": "Was hat die Le|se-Rau|pe ge|macht, als der Mond ver|schwun|den ist? Tip|pe auf den Satz, der es ver|rät.",
+      "near": "Such dort, wo die Le|se-Rau|pe das Pa|pier aus|spuckt.",
+      "help": "Was macht die Le|se-Rau|pe gleich nach dem Spu|cken? Und wie lan|ge dau|ert das?",
       "explain": "Im Text steht: „Dann kriecht sie un|ter ihr größ|tes Blatt und wischt sich den Mund ab. Das dau|ert ei|ne gan|ze Wei|le.“ In die|ser Zeit konn|te sie das The|a|ter nicht se|hen."
      }
     ]
@@ -518,7 +518,7 @@
      "id": "s3-p8",
      "typ": "p",
      "s": [
-      "Die Le|se|rau|pe streckt den Kopf zwi|schen zwei ech|ten Blät|tern her|vor."
+      "Die Le|se-Rau|pe streckt den Kopf zwi|schen zwei ech|ten Blät|tern her|vor."
      ]
     },
     {
@@ -653,7 +653,7 @@
      "id": "s4-p4",
      "typ": "p",
      "s": [
-      "Auch die Le|se|rau|pe reckt neu|gie|rig den Hals."
+      "Auch die Le|se-Rau|pe reckt neu|gie|rig den Hals."
      ]
     },
     {
@@ -726,7 +726,7 @@
      "id": "s4-p13",
      "typ": "p",
      "s": [
-      "Die Le|se|rau|pe wa|ckelt mit den Füh|lern."
+      "Die Le|se-Rau|pe wa|ckelt mit den Füh|lern."
      ]
     },
     {
@@ -794,8 +794,8 @@
        "s4-p9-1"
       ],
       "ask": "Wie sieht Mi|las Mond aus? Tip|pe auf ei|nen Satz, der es ver|rät.",
-      "near": "Such dort, wo die Le|se|rau|pe noch ein|mal ganz lang|sam hin|schaut.",
-      "help": "Lies, was die Le|se|rau|pe ü|ber Mi|las Mond weiß. Und lies, was Mi|la ü|ber die an|de|re Sei|te sagt.",
+      "near": "Such dort, wo die Le|se-Rau|pe noch ein|mal ganz lang|sam hin|schaut.",
+      "help": "Lies, was die Le|se-Rau|pe ü|ber Mi|las Mond weiß. Und lies, was Mi|la ü|ber die an|de|re Sei|te sagt.",
       "motor": "urteil"
      },
      {
@@ -926,7 +926,7 @@
      "id": "s5-p8",
      "typ": "p",
      "s": [
-      "Die Le|se|rau|pe wippt auf ih|rem Blatt vor und zu|rück."
+      "Die Le|se-Rau|pe wippt auf ih|rem Blatt vor und zu|rück."
      ]
     },
     {
@@ -1014,7 +1014,7 @@
      "typ": "p",
      "s": [
       "Mi|la und Ben lau|fen zur Fens|ter|sei|te des Ti|sches.",
-      "Auch die Le|se|rau|pe beugt sich weit ü|ber den Rand ih|res Blu|men|top|fes.",
+      "Auch die Le|se-Rau|pe beugt sich weit ü|ber den Rand ih|res Blu|men|top|fes.",
       "Das blau|e Tab|lett steht di|rekt un|ter ih|rem Fens|ter."
      ]
     },
@@ -1066,7 +1066,7 @@
      "id": "s6-p9",
      "typ": "p",
      "s": [
-      "Die Le|se|rau|pe nimmt ih|re Tau|trop|fen-Lu|pe.",
+      "Die Le|se-Rau|pe nimmt ih|re Tau|trop|fen-Lu|pe.",
       "Auch da|mit sieht sie auf dem Tab|lett nur den ro|ten Pa|pier|strei|fen."
      ]
     },
@@ -1151,7 +1151,7 @@
          "s6-p4-0"
         ],
         "ask": "Wo liegt die Sche|re? Tip|pe auf den Satz, der es ver|rät.",
-        "near": "Such dort, wo die Le|se|rau|pe vom Blu|men|topf hi|nun|ter|schaut.",
+        "near": "Such dort, wo die Le|se-Rau|pe vom Blu|men|topf hi|nun|ter|schaut.",
         "help": "Auf wel|cher Sei|te vom Tab|lett lie|gen Sche|re und Kle|be|band?"
        },
        "klebeband": {
@@ -1159,7 +1159,7 @@
          "s6-p4-0"
         ],
         "ask": "Wo liegt das Kle|be|band? Tip|pe auf den Satz, der es ver|rät.",
-        "near": "Such dort, wo die Le|se|rau|pe vom Blu|men|topf hi|nun|ter|schaut.",
+        "near": "Such dort, wo die Le|se-Rau|pe vom Blu|men|topf hi|nun|ter|schaut.",
         "help": "Auf wel|cher Sei|te vom Tab|lett lie|gen Sche|re und Kle|be|band?"
        },
        "streifen": {
@@ -1167,7 +1167,7 @@
          "s6-p5-0"
         ],
         "ask": "Wo liegt der ro|te Strei|fen? Tip|pe auf den Satz, der es ver|rät.",
-        "near": "Such dort, wo die Le|se|rau|pe vom Blu|men|topf hi|nun|ter|schaut.",
+        "near": "Such dort, wo die Le|se-Rau|pe vom Blu|men|topf hi|nun|ter|schaut.",
         "help": "Lies ge|nau: Wo liegt der schma|le ro|te Pa|pier|strei|fen?"
        },
        "mond": {
