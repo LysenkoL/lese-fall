@@ -1,0 +1,296 @@
+{
+  "_info": "Quelle der Spiele für Kapitel 1 (ohne Silben). Daraus baut app/scripts/build-data.ts die Datei kapitel1.json. Texte für Kinder: Silben werden automatisch aus silben_kapitel1.txt gesetzt. Hinweise (near, help) nennen nie ein Wort, das nur in der richtigen Antwort steht (A-12).",
+  "geheimwort": {
+    "wort": "KLEBER",
+    "reihenfolge": [
+      { "spur": 1, "pos": 2 },
+      { "spur": 2, "pos": 5 },
+      { "spur": 3, "pos": 4 },
+      { "spur": 4, "pos": 1 },
+      { "spur": 5, "pos": 0 },
+      { "spur": 6, "pos": 3 }
+    ],
+    "frage": "Womit hat Ben den Faden am Mond wieder festgemacht?",
+    "beweis": ["Dann habe ich den Faden mit Kleber wieder festgemacht."],
+    "beweisSpur": 5,
+    "near": "Lies noch einmal, was Ben Mila in Spur 5 erklärt.",
+    "offen": "Der Mondtresor ist offen!",
+    "haken": "Aber wer hat den Mond vom Tablett genommen? Das findest du in Kapitel 2 heraus."
+  },
+  "spuren": [
+    {
+      "spur": 1,
+      "spiel": "Hin damit!",
+      "motor": "zielfeld",
+      "bildVorher": "k1_s1",
+      "bildNachher": "k1_s1",
+      "fund": { "bild": "objekte/mond_vorne", "text": "Milas Mond" },
+      "kind": "mila/froh",
+      "sieg": "Genau! Der Mond hängt links neben der weißen Wolke.",
+      "schritte": [
+        {
+          "intro": "Wo soll Milas Mond hängen? Zieh den Mond an seinen Platz am Theater.",
+          "layout": "theater",
+          "hintergrund": "objekte/theater",
+          "zonen": [
+            { "id": "links", "label": "links neben der Wolke", "x": 26, "y": 17, "w": 22, "h": 25 },
+            { "id": "rechts", "label": "rechts neben der Wolke", "x": 74, "y": 17, "w": 22, "h": 25 },
+            { "id": "unten", "label": "unten vor dem Vorhang", "x": 50, "y": 66, "w": 24, "h": 30 }
+          ],
+          "dinge": [{ "id": "mond", "bild": "objekte/mond_vorne", "label": "Milas Mond" }],
+          "loesung": { "mond": "links" },
+          "beweis": ["Links daneben soll der Mond seinen Platz bekommen."],
+          "ask": "Wo soll der Mond hängen? Tippe auf den Satz, der es verrät.",
+          "near": "Such dort, wo von der weißen Wolke erzählt wird.",
+          "help": "Lies genau: Auf welcher Seite neben der Wolke ist der Platz für den Mond?",
+          "explain": "Im Text steht: „Links daneben soll der Mond seinen Platz bekommen.“ Daneben heißt hier: neben der weißen Wolke."
+        }
+      ]
+    },
+    {
+      "spur": 2,
+      "spiel": "Nachgebaut!",
+      "motor": "slots",
+      "bildVorher": "k1_s2_vorher",
+      "bildNachher": "k1_s2_nachher",
+      "fund": { "bild": "objekte/gras_papier", "text": "das grüne Papier" },
+      "kind": "ben/staunt",
+      "sieg": "Vorhang und Wolke sind noch da. Nur der Mond ist weg – und die Leseraupe hat nicht gesehen, wer ihn genommen hat.",
+      "schritte": [
+        {
+          "intro": "Die Leseraupe krabbelt wieder hervor. Was hängt jetzt noch am Theater? Leg nur das ans Theater, was wirklich noch da ist.",
+          "ziel": "Am Theater",
+          "ablage": "Nicht am Theater",
+          "karten": [
+            { "id": "vorhang", "bild": "vorhang", "label": "der rote Vorhang" },
+            { "id": "wolke", "bild": "objekte/wolke", "label": "die weiße Wolke" },
+            { "id": "mond", "bild": "objekte/mond_vorne", "label": "der gelbe Mond" },
+            { "id": "kreis", "bild": "objekte/falscher_kreis_vorne", "label": "ein gelber Kreis" }
+          ],
+          "loesung": ["vorhang", "wolke"],
+          "beweis": ["Der rote Vorhang hängt noch da.", "Die weiße Wolke auch.", "Aber der gelbe Mond ist verschwunden!"],
+          "ask": "Was hängt noch am Theater? Tippe auf einen Satz, der es verrät.",
+          "near": "Such dort, wo die Leseraupe endlich wieder hervorkrabbelt.",
+          "help": "Lies die kurzen Sätze nach „Endlich krabbelt sie hervor“ ganz genau. Was ist noch da? Was fehlt?",
+          "explain": "Im Text steht: „Der rote Vorhang hängt noch da. Die weiße Wolke auch. Aber der gelbe Mond ist verschwunden!“ Einen gelben Kreis gibt es am Theater nicht."
+        },
+        {
+          "motor": "urteil",
+          "art": "einzeln",
+          "intro": "Und noch eine Frage:",
+          "frage": "Warum hat die Leseraupe nicht gesehen, wer den Mond genommen hat?",
+          "optionen": [
+            { "id": "blatt", "label": "Sie war eine ganze Weile unter ihrem größten Blatt." },
+            { "id": "schrank", "label": "Sie hat die ganze Zeit zum großen Schrank geschaut." },
+            { "id": "ben", "label": "Ben stand vor dem Theater und hat alles verdeckt." }
+          ],
+          "loesung": "blatt",
+          "beweis": ["Dann kriecht sie unter ihr größtes Blatt und wischt sich den Mund ab.", "Das dauert eine ganze Weile."],
+          "ask": "Was hat die Leseraupe gemacht, als der Mond verschwunden ist? Tippe auf den Satz, der es verrät.",
+          "near": "Such dort, wo die Leseraupe das Papier ausspuckt.",
+          "help": "Was macht die Leseraupe gleich nach dem Spucken? Und wie lange dauert das?",
+          "explain": "Im Text steht: „Dann kriecht sie unter ihr größtes Blatt und wischt sich den Mund ab. Das dauert eine ganze Weile.“ In dieser Zeit konnte sie das Theater nicht sehen."
+        }
+      ]
+    },
+    {
+      "spur": 3,
+      "spiel": "Spurenfaden",
+      "motor": "faden",
+      "bildVorher": "k1_s3",
+      "bildNachher": "k1_s3",
+      "fund": { "bild": "objekte/bleistift_gruen", "text": "der grüne Bleistift" },
+      "kind": "mila/denkt",
+      "sieg": "Mila sucht hinter dem Vorhang, Ben steht am Waschbecken. Unter dem Tisch hat noch niemand gesucht.",
+      "schritte": [
+        {
+          "intro": "Wer ist gerade wo? Zieh einen Faden von jedem Kind zu seinem Ort. Ein Ort bleibt frei.",
+          "links": [
+            { "id": "mila", "bild": "mila/denkt", "label": "Mila" },
+            { "id": "ben", "bild": "ben/denkt", "label": "Ben" }
+          ],
+          "rechts": [
+            { "id": "vorhang", "bild": "objekte/theater", "label": "schaut hinter den roten Vorhang" },
+            { "id": "waschbecken", "bild": "objekte/wasserhahn", "label": "steht am Waschbecken" },
+            { "id": "tisch", "bild": "objekte/bleistift_gruen", "label": "sucht unter dem großen Tisch" }
+          ],
+          "loesung": { "mila": "vorhang", "ben": "waschbecken" },
+          "proDing": {
+            "mila": {
+              "beweis": ["Sie schaut hinter den roten Vorhang des Theaters."],
+              "ask": "Wo sucht Mila gerade? Tippe auf den Satz, der es verrät.",
+              "near": "Such dort, wo Mila nicht länger wartet.",
+              "help": "Wer ist hier „sie“? Und wohin schaut sie?"
+            },
+            "ben": {
+              "beweis": ["Ben steht am Waschbecken in der Ecke, mit dem Rücken zu ihr."],
+              "ask": "Wo ist Ben gerade? Tippe auf den Satz, der es verrät.",
+              "near": "Such dort, wo Ben nichts hört.",
+              "help": "Was rauscht laut, während Ben dort steht? Wo gibt es das im Raum?"
+            }
+          },
+          "explain": "Im Text steht: „Ben steht am Waschbecken in der Ecke …“ Und über Mila: „Sie schaut hinter den roten Vorhang des Theaters.“ Unter dem Tisch hat Mila noch gar nicht gesucht."
+        }
+      ]
+    },
+    {
+      "spur": 4,
+      "spiel": "Steckbrief & Stempel",
+      "motor": "urteil",
+      "bildVorher": "k1_s4_vorher",
+      "bildNachher": "k1_s4_nachher",
+      "fund": { "bild": "objekte/falscher_kreis_hinten", "text": "der falsche Mond" },
+      "kind": "mila/traurig",
+      "sieg": "Gelb und rund – aber ohne Faden und ohne Stern. Das ist nicht Milas Mond!",
+      "schritte": [
+        {
+          "art": "mehrere",
+          "intro": "Steckbrief: Wie sieht Milas Mond aus?",
+          "frage": "Wähle die vier Merkmale von Milas Mond.",
+          "anzahl": 4,
+          "bild": "steckbrief",
+          "optionen": [
+            { "id": "gelb", "label": "gelb" },
+            { "id": "rund", "label": "rund" },
+            { "id": "faden", "label": "ein weißer Faden oben" },
+            { "id": "stern", "label": "ein blauer Stern hinten" },
+            { "id": "sternvorne", "label": "ein blauer Stern vorne" },
+            { "id": "streifen", "label": "rot-weiße Streifen" }
+          ],
+          "loesung": ["gelb", "rund", "faden", "stern"],
+          "beweis": ["An Milas Mond hing oben ein weißer Faden.", "Mein Mond hat dort einen kleinen blauen Stern."],
+          "ask": "Wie sieht Milas Mond aus? Tippe auf einen Satz, der es verrät.",
+          "near": "Such dort, wo die Leseraupe noch einmal ganz langsam hinschaut.",
+          "help": "Lies, was die Leseraupe über Milas Mond weiß. Und lies, was Mila über die andere Seite sagt."
+        },
+        {
+          "art": "vergleich",
+          "intro": "Jetzt vergleiche! Tippe auf den Kreis, dann dreht er sich um.",
+          "frage": "Was hat der gefundene Kreis?",
+          "drehen": { "vorne": "objekte/falscher_kreis_vorne", "hinten": "objekte/falscher_kreis_hinten" },
+          "zeilen": [
+            { "id": "gelb", "label": "gelb", "loesung": "ja" },
+            { "id": "rund", "label": "rund", "loesung": "ja" },
+            { "id": "faden", "label": "ein weißer Faden oben", "loesung": "nein" },
+            { "id": "stern", "label": "ein blauer Stern hinten", "loesung": "nein" }
+          ],
+          "ja": "hat er",
+          "nein": "hat er nicht",
+          "stempelFrage": "Welchen Stempel bekommt der Kreis?",
+          "stempel": [
+            { "id": "mila", "label": "Milas Mond" },
+            { "id": "nicht", "label": "NICHT Milas Mond" }
+          ],
+          "loesung": "nicht",
+          "beweis": ["An diesem Kreis hängt kein Faden.", "Die Rückseite ist schneeweiß und leer.", "Kein Stern."],
+          "ask": "Was hat der gefundene Kreis – und was nicht? Tippe auf einen Satz, der es verrät.",
+          "near": "Such dort, wo Mila den Kreis umdreht.",
+          "help": "Was hat Milas Mond, was dem gefundenen Kreis fehlt?",
+          "explain": "Im Text steht: „An diesem Kreis hängt kein Faden.“ Und hinten: „Kein Stern.“ Darum ist der Kreis NICHT Milas Mond."
+        }
+      ]
+    },
+    {
+      "spur": 5,
+      "spiel": "Beweis-Mosaik",
+      "motor": "reihe",
+      "bildVorher": "k1_s5",
+      "bildNachher": "k1_s5",
+      "fund": { "bild": "objekte/kleber", "text": "der Kleber" },
+      "kind": "ben/froh",
+      "sieg": "Abgenommen, festgeklebt, aufs Tablett gelegt – und erst dann Hände gewaschen. Genau so war es!",
+      "schritte": [
+        {
+          "intro": "Was hat Ben gemacht? Leg die vier Bilder in die richtige Reihenfolge.",
+          "karten": [
+            { "id": "ab", "bild": "k1_s5_karten/karte_1", "label": "Ben nimmt den Mond ab." },
+            { "id": "kleben", "bild": "k1_s5_karten/karte_2", "label": "Ben klebt den Faden fest." },
+            { "id": "tablett", "bild": "k1_s5_karten/karte_3", "label": "Ben legt den Mond auf das Tablett." },
+            { "id": "waschen", "bild": "k1_s5_karten/karte_4", "label": "Ben wäscht sich die Hände." }
+          ],
+          "loesung": ["ab", "kleben", "tablett", "waschen"],
+          "beweis": ["Deshalb habe ich ihn abgenommen.", "Dann habe ich den Faden mit Kleber wieder festgemacht.", "Danach habe ich den Mond zum Trocknen auf das blaue Tablett gelegt.", "Und erst dann habe ich mir die Hände gewaschen."],
+          "ask": "Was hat Ben nacheinander gemacht? Tippe auf einen Satz aus Bens Erklärung.",
+          "near": "Such dort, wo Ben Mila alles erklärt.",
+          "help": "Achte auf die Wörter „Deshalb“, „Dann“, „Danach“ und „erst dann“.",
+          "explain": "Ben hat zuerst den Mond abgenommen. Dann hat er den Faden mit Kleber festgemacht. Danach hat er den Mond auf das Tablett gelegt. Und erst dann hat er sich die Hände gewaschen."
+        }
+      ]
+    },
+    {
+      "spur": 6,
+      "spiel": "Hin damit!",
+      "motor": "zielfeld",
+      "bildVorher": "k1_s6_vorher",
+      "bildNachher": "k1_s6_nachher",
+      "fund": { "bild": "objekte/papierstreifen_rot", "text": "der rote Papierstreifen" },
+      "kind": "mila/besorgt",
+      "sieg": "Schere und Klebeband liegen rechts neben dem Tablett. Auf dem Tablett liegt nur der rote Streifen. Und der Mond? Weg!",
+      "schritte": [
+        {
+          "intro": "So sieht es am Fenster aus. Leg alles an seinen Platz.",
+          "layout": "tisch",
+          "zonen": [
+            { "id": "links", "label": "links neben dem Tablett" },
+            { "id": "auf", "label": "auf dem Tablett" },
+            { "id": "rechts", "label": "rechts neben dem Tablett" }
+          ],
+          "dinge": [
+            { "id": "schere", "bild": "objekte/schere", "label": "die Schere" },
+            { "id": "klebeband", "bild": "objekte/klebeband", "label": "das Klebeband" },
+            { "id": "streifen", "bild": "objekte/papierstreifen_rot", "label": "der rote Streifen" },
+            { "id": "mond", "bild": "objekte/mond_hinten", "label": "der Mond – hier lag er, sagt Ben" }
+          ],
+          "loesung": { "schere": "rechts", "klebeband": "rechts", "streifen": "auf", "mond": "auf" },
+          "proDing": {
+            "schere": {
+              "beweis": ["Rechts neben dem Tablett liegen eine Schere und eine Rolle Klebeband."],
+              "ask": "Wo liegt die Schere? Tippe auf den Satz, der es verrät.",
+              "near": "Such dort, wo die Leseraupe vom Blumentopf hinunterschaut.",
+              "help": "Auf welcher Seite vom Tablett liegen Schere und Klebeband?"
+            },
+            "klebeband": {
+              "beweis": ["Rechts neben dem Tablett liegen eine Schere und eine Rolle Klebeband."],
+              "ask": "Wo liegt das Klebeband? Tippe auf den Satz, der es verrät.",
+              "near": "Such dort, wo die Leseraupe vom Blumentopf hinunterschaut.",
+              "help": "Auf welcher Seite vom Tablett liegen Schere und Klebeband?"
+            },
+            "streifen": {
+              "beweis": ["Auf dem Tablett liegt nur noch ein schmaler roter Papierstreifen."],
+              "ask": "Wo liegt der rote Streifen? Tippe auf den Satz, der es verrät.",
+              "near": "Such dort, wo die Leseraupe vom Blumentopf hinunterschaut.",
+              "help": "Lies genau: Wo liegt der schmale rote Papierstreifen?"
+            },
+            "mond": {
+              "beweis": ["Genau hier auf dem Tablett lag er vorhin noch!", "Der Mond liegt auf dem Tablett."],
+              "ask": "Wo hat Ben den Mond hingelegt? Tippe auf den Satz, der es verrät.",
+              "near": "Such dort, wo Ben ganz sicher ist.",
+              "help": "Was sagt Ben: Wo lag der Mond vorhin noch?"
+            }
+          },
+          "explain": "Im Text steht: „Rechts neben dem Tablett liegen eine Schere und eine Rolle Klebeband. Auf dem Tablett liegt nur noch ein schmaler roter Papierstreifen.“ Und Ben sagt: „Genau hier auf dem Tablett lag er vorhin noch!“"
+        }
+      ]
+    }
+  ],
+  "ui": {
+    "falsch": ["Hm, schauen wir noch einmal genau hin.", "Hm. Da stimmt noch etwas nicht.", "Moment! Lass uns im Text nachsehen."],
+    "beweisNein": "Dieser Satz verrät es noch nicht. Such weiter!",
+    "beweisJa": "Gefunden! Das ist dein Beweis.",
+    "nochmal": "Versuch es jetzt noch einmal.",
+    "deinBeweis": "Dein Beweis:",
+    "hilfe": "Weitere Hilfe:",
+    "siegVoll": "Spur entdeckt!",
+    "siegHalb": "Geschafft!",
+    "siegHalbText": "Jetzt kennst du die Spur. Beim nächsten Mal findest du sie bestimmt selbst.",
+    "pinseln": "Wisch den Staub mit dem Pinsel weg!",
+    "buchstabe": "Ein Buchstabe für das Geheimwort!",
+    "wand": "Deine Spurenwand",
+    "wandTipp": "Tippe auf eine Spur, dann kannst du das Spiel noch einmal spielen.",
+    "tresorTitel": "Der Mondtresor",
+    "tresorTipp": "Tippe die Buchstaben in der richtigen Reihenfolge an.",
+    "tresorFalsch": "Hm, der Tresor bleibt zu. Lies die Frage noch einmal.",
+    "geschafft": "Kapitel geschafft!",
+    "bereit": "Bist du bereit?"
+  }
+}
