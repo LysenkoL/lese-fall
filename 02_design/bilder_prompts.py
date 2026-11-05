@@ -7,6 +7,7 @@ import json, pathlib, html
 HEAD = ("Use the attached images as the exact reference for characters, places and style. "
         "Children's picture-book illustration in exactly the same style, landscape 3:2. "
         "No text, no letters, no numbers, no stars anywhere. Mila has no backpack. "
+        "The hand puppets are a fox, a bear and a king – never a mouse (the only mouse in the book is Oskar's small grey PAPER mouse). "
         "The moon is always a FULL ROUND flat cardboard disc (never a crescent): yellow on the front, white on the back.")
 HEAD_SHEET = ("Use the attached images as the exact reference for characters and style. "
               "Same children's picture-book style. Plain warm white background, no text, no letters, no numbers, no stars. "
