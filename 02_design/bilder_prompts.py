@@ -105,13 +105,13 @@ At the edge of the disc a tiny end of white thread peeks out from underneath –
 Mila stares, Ben's mouth falls open, Oskar is proud. High above at the window edge, the tiny caterpillar looks down through her dewdrop magnifier.""",
     note="Эта же картинка — поле для игры Tautropfen-Lupe: ребёнок ищет кончик нитки сам.", glow=True)
 add(C3, "k3_s14", "OUT", """
-At the bench: Mila bends close over the yellow "cheese" on the plate. Ben points at its edge, where a small end of white thread peeks out. Oskar looks from one to the other, confused.
+At the bench (Oskar's small grey paper mouse sits on the bench next to the plate): Mila bends close over the yellow "cheese" on the plate. Ben points at its edge, where a small end of white thread peeks out. Oskar looks from one to the other, confused.
 High above at the window edge the tiny caterpillar raises one little front foot, as if saying "careful". The back of the disc is NOT visible.""", glow=True)
 add(C3, "k3_s15", "OUT", """
-At the bench: Ben looks worried at the three brown dots and the yellow crumbs. Oskar laughs and shows a sheet of brown paper with three round holes cut out of it and a sheet of yellow paper with snippets cut out – this is where the dots and crumbs came from. Mila breathes out, relieved.
+At the bench (Oskar's small grey paper mouse sits on the bench next to the plate): Ben looks worried at the three brown dots and the yellow crumbs. Oskar laughs and shows a sheet of brown paper with three round holes cut out of it and a sheet of yellow paper with snippets cut out – this is where the dots and crumbs came from. Mila breathes out, relieved.
 High above at the window edge the tiny caterpillar giggles.""", glow=True)
 add(C3, "k3_s16_vorher", "OUT", """
-At the bench: Mila carefully lifts the yellow "cheese" disc off the plate with both hands, about to turn it over. Ben and Oskar put their heads together. We see only the yellow front with the brown dots.
+At the bench (Oskar's small grey paper mouse sits on the bench next to the plate): Mila carefully lifts the yellow "cheese" disc off the plate with both hands, about to turn it over. Ben and Oskar put their heads together. We see only the yellow front with the brown dots.
 High above at the window edge, the tiny caterpillar stretches her neck so far that she almost loses her balance.""", glow=True)
 add(C3, "k3_s16_nachher", "OUT", """
 Close-up: Mila holds the disc turned over. Its back is white. Near the bottom edge there is a tiny hand-painted BLUE STAR (the only star in the whole book), and at the top edge a white thread is glued on firmly.
@@ -119,10 +119,10 @@ Mila beams with joy, Ben is relieved, Oskar's eyes are wide with surprise. The t
     note="Здесь звезда нужна! Это единственная картинка книги, где она есть.", glow=True,
     head=HEAD.replace("no stars anywhere", "no stars except the one small blue star described below"))
 add(C3, "k3_s17", "OUT", """
-At the bench: Oskar apologizes, a little shocked. Mila puts her hand on his shoulder and smiles. Ben scratches the back of his head, embarrassed. Then all three burst out laughing together.
+At the bench (Oskar's small grey paper mouse sits on the bench next to the plate): Oskar apologizes, a little shocked. Mila puts her hand on his shoulder and smiles. Ben scratches the back of his head, embarrassed. Then all three burst out laughing together.
 Mila holds the yellow disc with the three brown dots. The tiny caterpillar at the window leans back, content.""", glow=False)
 add(C3, "k3_s18", "OUT", """
-At the bench: Mila holds the yellow moon with the three brown dots and looks a bit sad. Ben shakes his head carefully, touching one brown dot. Oskar looks from his little grey paper mouse up to the spotted moon – and his whole face lights up with an idea.
+At the bench (Oskar's small grey paper mouse sits on the bench next to the plate): Mila holds the yellow moon with the three brown dots and looks a bit sad. Ben shakes his head carefully, touching one brown dot. Oskar looks from his little grey paper mouse up to the spotted moon – and his whole face lights up with an idea.
 The tiny caterpillar at the window watches, curious.""", glow=False)
 
 # ---------------- Kapitel 4 ----------------
