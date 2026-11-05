@@ -19,7 +19,7 @@
 - Эталоны: `assets/reference/raupe_figurenblatt.webp`, `assets/reference/raupe_szene_test.webp`.
 
 **Предметы, которые обязаны быть одинаковыми во всей книге:**
-- **Луна:** спереди жёлтая, сзади белая, на обороте маленькая синяя звезда у края, сверху длинная белая нитка. С главы 3 на жёлтой стороне три коричневых бумажных пятна.
+- **Луна:** **круглый плоский диск** (не полумесяц!) размером примерно с голову ребёнка; спереди жёлтая, сзади белая, на обороте маленькая синяя звезда у края, сверху длинная белая нитка. С главы 3 на жёлтой стороне три коричневых бумажных пятна.
 - **Синий поднос:** плоский пластиковый, стоит на столе со стороны окна, прямо под горшком с гусеничкой.
 - **Зелёная деревянная коробка:** для готовых фигур.
 - **Мышь Оскара:** серая бумажная, большие круглые уши, длинный розовый хвост, красное бумажное сердечко на животе.
@@ -60,7 +60,7 @@
 ```text
 Use the attached images as the exact reference for characters and style. Children's picture-book illustration, landscape 3:2, no text.
 A German primary school classroom on a Friday afternoon. A big table stands right against an open window; on it a small wooden puppet theater faces the room: red curtain, a white paper cloud above the curtain, a clearly empty spot to the left of the cloud.
-Mila (8, brown hair in two braids, lilac cardigan, small yellow crescent hair clip) proudly shows Ben (8, short dark curly hair, blue sweater) a big yellow cardboard moon; a long white thread hangs from its top. We see only the yellow front of the moon.
+Mila (8, brown hair in two braids, lilac cardigan, small yellow crescent hair clip) proudly shows Ben (8, short dark curly hair, blue sweater) a big yellow cardboard moon – a FULL ROUND flat disc, NOT a crescent; a long white thread hangs from its top. We see only the yellow front of the moon.
 Outside the window on a bench sits Oskar (8, messy blond hair, red-and-white striped hoodie), making a small grey paper mouse.
 On a leaf of a potted plant on the windowsill sits the tiny caterpillar (finger-sized next to the children), watching curiously.
 No stars anywhere, no moon hanging on the theater yet.
@@ -76,7 +76,7 @@ No stars anywhere, no moon hanging on the theater yet.
 - **Игра:** Nachgebaut! — что осталось на театре.
 
 ```text
-Same references and style. Close-up of the windowsill: the tiny caterpillar is about to bite a small green leaf lying next to her flowerpot; the leaf is clearly a cut piece of green paper (straight scissor edges). Behind her, slightly out of focus: the puppet theater with the yellow moon hanging to the left of the white cloud; Ben stands at the theater looking at the moon; Mila walks away toward a big cupboard. No text, no stars.
+Same references and style. Close-up of the windowsill: the tiny caterpillar is about to bite a small green leaf lying next to her flowerpot; the leaf is clearly a cut piece of green paper (straight scissor edges). Behind her, slightly out of focus: the puppet theater with the round yellow moon disc hanging to the left of the white cloud; Ben stands at the theater looking at the moon; Mila walks away toward a big cupboard. No text, no stars.
 ```
 
 ```text
@@ -128,7 +128,7 @@ Same references and style. Ben (blue sweater) comes back from the sink, a little
 ```
 
 ```text
-Four small square cards in the same style, plain warm white background, no text: 1) Ben lifts the yellow moon off the puppet theater; 2) Ben glues the white thread onto the WHITE back of the moon with a glue bottle; 3) Ben lays the moon white side up on a flat blue plastic tray; 4) Ben washes his hands at a sink.
+Four small square cards in the same style, plain warm white background, no text: 1) Ben lifts the round yellow moon disc off the puppet theater; 2) Ben glues the white thread onto the WHITE back of the moon with a glue bottle; 3) Ben lays the moon white side up on a flat blue plastic tray; 4) Ben washes his hands at a sink.
 ```
 
 ### Сцена 6 — Das leere Tablett
