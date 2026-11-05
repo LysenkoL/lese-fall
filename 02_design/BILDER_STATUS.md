@@ -6,7 +6,7 @@
 
 **k4_s20_spiel** — ✅ готово.
 
-**Мышь** — ✅ исправлена во всех 10 картинках (плоская бумажная, эталон `assets/reference/maus_referenz.png`).
+**Мышь** — ✅ исправлена во всех картинках (11, включая k2_s12) (плоская бумажная, эталон `assets/reference/maus_referenz.png`).
 
 **Крыша театра** — низкая ровная дуга между шариками, как в k1_s1 (эталон `assets/reference/theater_dach_referenz.png`). Исправить: k1_s2_nachher, k4_s20_vorher, k4_s20_nachher (мышь уже исправлена — править только крышу), k4_s24, cover, k4_s22, k4_s23, finale_bild.
 
