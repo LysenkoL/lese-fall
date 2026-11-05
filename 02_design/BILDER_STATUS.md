@@ -6,9 +6,9 @@
 
 **k4_s20_spiel** — ✅ готово.
 
-**Мышь** — должна быть плоской бумажной фигуркой, сердце наклеено на живот, ничего не держит (эталон `assets/reference/maus_referenz.png`). Исправить: k2_s9, k3_s13, k3_s14, k3_s15, k3_s16_vorher, k3_s16_nachher, k3_s17, k3_s18, kapitel_3, k4_s20_nachher.
+**Мышь** — ✅ исправлена во всех 10 картинках (плоская бумажная, эталон `assets/reference/maus_referenz.png`).
 
-**Крыша театра** — низкая ровная дуга между шариками, как в k1_s1 (эталон `assets/reference/theater_dach_referenz.png`). Исправить: k1_s2_nachher, k4_s20_vorher, k4_s20_nachher, k4_s24, cover, k4_s22, k4_s23, finale_bild.
+**Крыша театра** — низкая ровная дуга между шариками, как в k1_s1 (эталон `assets/reference/theater_dach_referenz.png`). Исправить: k1_s2_nachher, k4_s20_vorher, k4_s20_nachher (мышь уже исправлена — править только крышу), k4_s24, cover, k4_s22, k4_s23, finale_bild.
 
 Оставлено сознательно: в k2_s9 скамейка со спинкой, дальше — столик со скамьями.
 
