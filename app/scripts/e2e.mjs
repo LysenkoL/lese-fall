@@ -4,7 +4,7 @@
  * Aufruf: node scripts/e2e.mjs [url]   → Screenshots in 03_screens/kapitel1/
  */
 import { createRequire } from 'node:module';
-import { mkdirSync } from 'node:fs';
+import { mkdirSync, readdirSync, unlinkSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -13,6 +13,8 @@ const { chromium } = require('playwright');
 const URL = process.argv[2] ?? 'http://localhost:4173/';
 const OUT = resolve(dirname(fileURLToPath(import.meta.url)), '../../03_screens/kapitel1');
 mkdirSync(OUT, { recursive: true });
+// alte Screenshots weg, damit nur der aktuelle Durchlauf im Ordner liegt
+for (const f of readdirSync(OUT)) if (/^(telefon|tablet)_.*\.jpg$/.test(f)) unlinkSync(`${OUT}/${f}`);
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 let fails = 0;
@@ -56,22 +58,24 @@ async function run(name, viewport, full) {
     }
   };
   const brush = async () => {
-    const box = await (await p.$('#dust')).boundingBox();
-    await p.mouse.move(box.x + 5, box.y + 5); await p.mouse.down();
-    for (let y = 8; y < box.height; y += 18) {
-      await p.mouse.move(box.x + box.width - 5, box.y + y, { steps: 6 });
-      await p.mouse.move(box.x + 5, box.y + y + 9, { steps: 6 });
+    const box = await (await p.$('canvas.staub')).boundingBox();
+    // in der Karte beginnen (die Nachbarkarte überlappt die Ränder ein wenig)
+    await p.mouse.move(box.x + box.width / 2, box.y + box.height / 2); await p.mouse.down();
+    for (let y = 4; y < box.height; y += 10) {
+      await p.mouse.move(box.x + box.width - 6, box.y + y, { steps: 6 });
+      await p.mouse.move(box.x + 6, box.y + y + 9, { steps: 6 });
     }
     await p.mouse.up(); await sleep(300);
   };
+  /** neuer Ablauf (A1): Sieg im Spiel → „Spur sichern“ → Karte an der Spurenwand abpinseln → weiter */
   const afterWin = async (spur, shots) => {
+    ok(!(await p.$('[data-a="pinsel"]')) && !!(await p.$('[data-a="sichern"]')), `${name}: Spur ${spur} Sieg direkt im Spiel`);
     if (shots) await shot(`spur${spur}_sieg`);
-    await btn('pinsel'); await sleep(300);
-    if (shots && spur === 1) await shot('spur1_pinsel');
+    await btn('sichern'); await sleep(500);
+    ok(await p.$eval('[data-a="go"]', (e) => e.disabled), `${name}: Spur ${spur} weiter erst nach dem Pinseln`);
+    if (shots && spur === 1) await shot('spur1_staub');
     await brush();
-    ok(await p.$eval('[data-a="pinselWeiter"]', (e) => !e.disabled), `${name}: Spur ${spur} Buchstabe abgepinselt`);
-    if (shots && spur === 1) await shot('spur1_buchstabe');
-    await btn('pinselWeiter'); await sleep(300);
+    ok(await p.$eval('[data-a="go"]', (e) => !e.disabled), `${name}: Spur ${spur} Buchstabe abgepinselt`);
     if (shots) await shot(`spur${spur}_spurenwand`);
     await btn('go'); await sleep(400);
   };
@@ -98,10 +102,10 @@ async function run(name, viewport, full) {
       ok(!!(await p.$('[data-a="beweis"]')), `${name}: nach Fehler erscheint „Zeig den Beweis!“`);
       if (full) await shot('spur1_falsch');
       await btn('beweis'); await sleep(350);
-      ok(await p.$eval('.dots', () => false).catch(() => true), `${name}: Beweis-Modus ohne Blattpunkte`);
+      ok(await p.$eval('.zweig', () => false).catch(() => true), `${name}: Beweis-Modus ohne Zweig`);
       if (full) await shot('spur1_beweis_suchen');
       await findEvidence(st[0].beweis);
-      ok(!!(await p.$('.sent.found')), `${name}: Beweis gefunden`);
+      ok((await p.$$('.sent.found')).length === 2, `${name}: beide Beweissätze (Wolke + links daneben) markiert`);
       if (full) await shot('spur1_beweis_gefunden');
       await btn('evback'); await sleep(300);
       if (full) await shot('spur1_zweiter_versuch');
@@ -111,7 +115,7 @@ async function run(name, viewport, full) {
       ok(await p.$eval('.gain', (e) => e.textContent.includes('+2')), `${name}: Fund mit Beweis = 2 Perlen`);
     }
     if (spur === 2) {
-      await click('[data-drag="vorhang"]'); await click('[data-drag="wolke"]');
+      await click('[data-drag="vorhang"]'); await click('[data-zone="ziel"]'); await click('[data-drag="wolke"]'); await click('[data-zone="ziel"]');
       if (full) await shot('spur2_gelegt');
       await btn('pruefen'); await sleep(250);
       if (full) await shot('spur2_schritt_fertig');
@@ -134,11 +138,8 @@ async function run(name, viewport, full) {
       await btn('pruefen'); await sleep(300);
     }
     if (spur === 4) {
-      for (const m of ['gelb', 'rund', 'faden', 'stern']) await click(`[data-m="${m}"]`);
-      if (full) await shot('spur4_steckbrief');
-      await btn('pruefen'); await btn('weiter'); await sleep(250);
       await click('[data-flip]'); await sleep(700);
-      for (const z of st[1].zeilen) await click(`[data-r="${z.id}"][data-v="${z.loesung}"]`);
+      for (const z of st[0].zeilen) if (z.fehlt) await click(`[data-m="${z.id}"]`);
       await click('[data-s="nicht"]');
       if (full) await shot('spur4_vergleich');
       await btn('pruefen'); await sleep(300);
@@ -165,18 +166,21 @@ async function run(name, viewport, full) {
   await sleep(1800);
   ok(!!(await p.$('.tresor.open')), `${name}: Mondtresor offen`);
   await shot('mondtresor_offen');
+  ok(!!(await p.$('[data-a="kap2"]')) && !!(await p.$('[data-a="fertig"]')), `${name}: Ende: Kapitel 2 oder Für heute fertig`);
+  await btn('kap2'); await sleep(400);
+  await shot('kapitel2_bald');
   const st = await p.evaluate(() => window.__lesefall.stand);
   ok(Object.keys(st.geloest).length === 6 && st.buchstaben.length === 6, `${name}: alle 6 Spuren und Buchstaben gespeichert`);
   ok(Object.values(st.geloest).reduce((a, b) => a + b, 0) === 11, `${name}: Perlen 2+1+2+2+2+2 = 11`);
   // Wand + Wiederholung ohne neue Perlen
-  await btn('wand'); await sleep(400);
+  await click('#home'); await sleep(400);
   await shot('spurenwand_voll');
   await click('[data-fund="3"]'); await click('[data-m="spiel"]'); await sleep(300);
   await click('[data-kid="mila"]'); await click('[data-place="vorhang"]'); await click('[data-kid="ben"]'); await click('[data-place="waschbecken"]');
   await btn('pruefen'); await sleep(300);
   ok(!(await p.$('.gain')), `${name}: Wiederholung gibt keine Perlen`);
   // Silben + große Schrift, Lesestelle bleibt
-  await btn('wand'); await sleep(200);
+  await click('#home'); await sleep(200);
   await click('[data-fund="2"]'); await click('[data-m="lesen"]'); await sleep(300);
   await btn('next'); await sleep(300);
   const silbenAn = () => p.evaluate(() => document.documentElement.classList.contains('silben'));
@@ -189,7 +193,12 @@ async function run(name, viewport, full) {
   await click('[data-fs="26"]');
   await shot('einstellungen');
   await click('[data-reset]');
-  ok(!!(await p.$('[data-antwort]')) && !(await p.$('[data-loeschen]')), `${name}: Elternschloss vor dem Löschen`);
+  ok(!!(await p.$('#elternzahl')) && !(await p.$('[data-loeschen]')), `${name}: Elternschloss vor dem Löschen`);
+  await p.fill('#elternzahl', '1'); await click('[data-antwort]');
+  ok(!(await p.$('[data-loeschen]')), `${name}: falsche Zahl öffnet das Schloss nicht`);
+  const [ea, eb] = await p.$eval('label[for="elternzahl"]', (e) => e.textContent.match(/(\d+) · (\d+)/).slice(1).map(Number));
+  await p.fill('#elternzahl', String(ea * eb)); await click('[data-antwort]');
+  ok(!!(await p.$('[data-loeschen]')), `${name}: richtige Zahl → Bestätigung`);
   if (full) await shot('elternschloss');
   await click('[data-abbrechen]');
   await click('[data-close]'); await sleep(300);
