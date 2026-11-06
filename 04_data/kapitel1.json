@@ -446,42 +446,42 @@
       "motor": "zielfeld",
       "layout": "theater",
       "intro": "Wo war die Le|se-Rau|pe, als der Mond ver|schwun|den ist? Leg sie an die rich|ti|ge Stel|le.",
-      "hintergrund": "spiel_theater_leer",
+      "hintergrund": "spiel_fensterbank_leer",
       "ausschnitt": {
        "x": 0,
        "y": 0,
-       "w": 0.7292,
-       "h": 0.7422,
-       "seite": 1.47
+       "w": 1,
+       "h": 1,
+       "seite": 1.5
       },
       "zonen": [
        {
         "id": "blatt",
         "label": "un|ter ih|rem größ|ten Blatt",
-        "x": 17,
-        "y": 30,
+        "x": 45,
+        "y": 60,
         "w": 15
        },
        {
         "id": "topf",
         "label": "auf dem Blu|men|topf",
-        "x": 9,
-        "y": 80,
-        "w": 15
+        "x": 10,
+        "y": 64,
+        "w": 14
        },
        {
         "id": "fenster",
         "label": "am Fens|ter",
-        "x": 36,
-        "y": 24,
-        "w": 15
+        "x": 90,
+        "y": 32,
+        "w": 14
        },
        {
         "id": "tisch",
         "label": "auf dem Tisch",
-        "x": 76,
-        "y": 78,
-        "w": 15
+        "x": 90,
+        "y": 86,
+        "w": 13
        }
       ],
       "dinge": [

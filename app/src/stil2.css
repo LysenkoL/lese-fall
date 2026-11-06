@@ -7,14 +7,10 @@
 .raupe-ecke, .notiz:empty { display: none; }
 .flug { display: none; }
 
-/* ---------- Kopf: Nachthimmel mit Sternenstaub, Mond leuchtet leise ---------- */
+/* ---------- Kopf: Nachthimmel als Verlauf, Mond leuchtet leise ---------- */
 .stil2 .app-header {
-  background:
-    radial-gradient(1.2px 1.2px at 18% 30%, rgba(255,255,255,.8) 50%, transparent 51%),
-    radial-gradient(1px 1px at 42% 70%, rgba(255,255,255,.6) 50%, transparent 51%),
-    radial-gradient(1.4px 1.4px at 63% 22%, rgba(255,255,255,.7) 50%, transparent 51%),
-    radial-gradient(1px 1px at 86% 64%, rgba(255,255,255,.5) 50%, transparent 51%),
-    radial-gradient(120% 140% at 70% -20%, #3B5598 0%, var(--sky-2) 45%, var(--sky-1) 100%);
+  /* nur Verlauf – keine Sterne im Dekor (der Stern ist ein Beweis im Buch, ILLUSTRATIONEN.md) */
+  background: radial-gradient(120% 140% at 70% -20%, #3B5598 0%, var(--sky-2) 45%, var(--sky-1) 100%);
   box-shadow: 0 6px 18px rgba(10, 18, 40, .25);
   position: relative; z-index: 3;
 }
@@ -124,7 +120,7 @@
   box-shadow: 0 0 0 3px #fff, 0 4px 8px rgba(60,30,0,.3); transform: rotate(-3deg);
 }
 .stil2 .case .name .s-b, .stil2 .case .name .s-r { color: inherit !important; }
-.stil2 .case .si { width: 16px; height: 16px; }
+.stil2 .case .si { display: inline-block; width: 16px; height: 16px; }
 .stil2 .steps i { background: rgba(255,255,255,.5); }
 /* Auftrag als Zettel mit Klebestreifen */
 .stil2 .notiz {
@@ -180,9 +176,9 @@
 @keyframes fallen { to { transform: translate(var(--dx), 540px) rotate(var(--r)); opacity: 0; } }
 
 /* ---------- Spurenwand: Karten sind angepinnt, neue fliegt an die Wand ---------- */
-.stil2 .wand { box-shadow: 0 0 0 5px #fff, 0 10px 18px rgba(60,30,0,.35); }
+.stil2 .wand { filter: drop-shadow(0 10px 14px rgba(60,30,0,.35)); }
 .stil2 .fund { box-shadow: 0 6px 10px rgba(60,30,0,.35); }
-.stil2 .fund .nr { width: 16px; height: 16px; background: radial-gradient(circle at 35% 35%, #FF8A7A, #C42E22 70%); box-shadow: 0 2px 2px rgba(0,0,0,.4); }
+.stil2 .fund .nr { width: 16px; height: 16px; box-shadow: inset -3px -3px 4px rgba(0,0,0,.25), inset 2px 2px 3px rgba(255,255,255,.5), 0 2px 2px rgba(0,0,0,.4); }
 .stil2 .fund.neu { animation: anpinnen .6s cubic-bezier(.3,1.5,.5,1); }
 @keyframes anpinnen { 0% { transform: translateY(-40px) scale(1.2) rotate(-8deg); opacity: 0; } 70% { transform: translateY(2px) rotate(-1deg); } }
 .stil2 .wort span { box-shadow: 0 4px 0 #C08A12; }

@@ -362,6 +362,25 @@ function wortHTML(neu = -1) {
   return `<div class="wort" aria-label="Geheimwort">${[...gw.wort].map((c: string, i: number) => `<span class="${offen.has(i) ? '' : 'leer'} ${i === neu ? 'neu' : ''}">${offen.has(i) ? c : ''}</span>`).join('')}</div>`;
 }
 
+/** roter Faden von Nadel zu Nadel in der Reihenfolge der Spuren, leicht durchhängend; der neueste spannt sich */
+function faeden(neu = 0) {
+  const wand = content.querySelector<HTMLElement>('.wand');
+  const svg = wand?.querySelector('svg.faden-svg');
+  if (!wand || !svg) return;
+  const w = wand.getBoundingClientRect();
+  const pins = [...wand.querySelectorAll<HTMLElement>('.fund:not(.staubig) .nr')].map((n) => {
+    const r = n.getBoundingClientRect();
+    return { spur: +n.closest<HTMLElement>('[data-fund]')!.dataset.fund!, x: r.left + r.width / 2 - w.left - 14, y: r.top + r.height / 2 - w.top - 14 };
+  }).sort((a, b) => a.spur - b.spur);
+  svg.innerHTML = pins.slice(1).map((b, i) => {
+    const a = pins[i];
+    const len = Math.hypot(b.x - a.x, b.y - a.y);
+    const d = `M${a.x} ${a.y} Q${(a.x + b.x) / 2} ${(a.y + b.y) / 2 + 10 + len * 0.08} ${b.x} ${b.y}`;
+    return `<path d="${d}" class="${b.spur === neu ? 'neu' : ''}" style="--l:${Math.ceil(len * 1.2)}"/>`;
+  }).join('');
+}
+window.addEventListener('resize', () => requestAnimationFrame(() => faeden()));
+
 /** Staub auf einer Karte: mit dem Pinsel wegwischen (≥ 55 % frei), dann `fertig` */
 function staub(box: HTMLElement, fertig: () => void) {
   const cv = document.createElement('canvas');
@@ -421,7 +440,7 @@ function wand(nach = 0) {
     : `<div style="text-align:center"><img src="${img('kapitel_1')}" alt="Kapitel 1: Wo ist der Mond?" style="width:min(220px,60%);mix-blend-mode:multiply"></div>`;
   const html = `<div class="task">${bild}<div class="kicker" style="margin-top:10px">${U.wand ? T(U.wand) : ''}</div>
     ${staubig ? `<p class="pinsel-tipp" id="pmsg">${T(U.pinseln)}</p>` : ''}
-    <div class="wand" style="background-image:url('${img('spurenwand')}')">${funde}</div>${wortHTML()}
+    <div class="wand brett" style="border-image-source:url('${img('spurenwand_board')}')">${funde}<svg class="faden-svg" aria-hidden="true"></svg></div>${wortHTML()}
     ${geloestAnzahl() && !staubig ? `<p style="font-size:15px;color:var(--muted);text-align:center">${T(U.wandTipp)}</p>` : ''}</div>`;
   let f: string;
   if (offenPinsel) { actions.go = () => wand(offenPinsel); f = `<button class="btn cta" data-a="go">Spur ${offenPinsel} abpinseln ›</button>`; }
@@ -429,6 +448,7 @@ function wand(nach = 0) {
   else if (nach || !stand.ort.anker) { actions.go = () => lesen(naechste, { dir: 1 }); f = `<button class="btn cta" data-a="go" ${staubig ? 'disabled' : ''}>${naechste === 1 && !nach ? 'Los geht’s' : `Weiter zu Spur ${naechste}`} ›</button>`; }
   else { actions.go = () => lesen(naechste, { dir: 1 }); f = `<button class="btn cta" data-a="go">Weiterlesen: Spur ${naechste} ›</button>`; }
   setView(html, f, { scroll: true, dir: 1 });
+  requestAnimationFrame(() => faeden(nach && !staubig ? nach : 0));
   content.querySelectorAll<HTMLElement>('[data-fund]').forEach((b) => {
     // Menü nur, wenn der Finger auf der Karte (nicht im Staub) angefangen hat
     let vonStaub = false;
@@ -441,6 +461,7 @@ function wand(nach = 0) {
     requestAnimationFrame(() => staub(card, () => {
       if (!stand.buchstaben.includes(nach)) { stand.buchstaben.push(nach); speichern(); }
       card.classList.remove('staubig'); card.classList.add('neu');
+      setTimeout(() => faeden(nach), 250);
       const pos = DATA.geheimwort.reihenfolge.find((r: any) => r.spur === nach).pos;
       content.querySelector('.wort')!.outerHTML = wortHTML(pos);
       if (stand.stil2 && !ruhig()) {
