@@ -305,3 +305,40 @@ img { -webkit-user-drag: none; user-select: none; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* Spur 4: Vergleich in einem Bild (Muster links, Fund rechts) */
+.vgl { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 8px 0; }
+.vgl .muster, .vgl .dreh-box { position: relative; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 6px; border-radius: 14px; background: #fff; border: 2px solid var(--paper-line); text-align: center; font-size: 15px; line-height: 1.25; color: var(--text); min-width: 0; }
+.vgl .muster img { width: 74px; height: 96px; object-fit: contain; }
+.vgl .muster ul { margin: 2px 0 0; padding: 0; list-style: none; font-size: 13px; color: var(--muted); }
+.vgl .dreh-box .dreh { display: block; width: 96px; height: 100px; }
+.vgl .dreh-box small { font-size: 12px; color: var(--muted); }
+.stamp-over { position: absolute; top: 34%; left: 50%; transform: translate(-50%, -50%) rotate(-8deg); font-size: 15px; white-space: nowrap; }
+.fehlt { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.fehlt .opt { min-height: 48px; padding: 8px 10px; font-size: calc(var(--fs) * .8); }
+
+/* Blatt-Fortschritt: die Lese-Raupe kriecht über einen Zweig (A9) */
+.zweig { position: relative; flex: 1; height: 44px; margin: 0 14px; }
+.zweig .ast { position: absolute; left: -6px; right: -6px; top: 30px; height: 4px; border-radius: 2px; background: #8A6A3E; }
+.zweig i { position: absolute; top: 25px; width: 12px; height: 9px; margin-left: -6px; border-radius: 0 100% 0 100%; background: rgba(255,255,255,.7); transform: rotate(-25deg); }
+.zweig i.on { background: #7DCB3A; }
+.zweig .kriech { position: absolute; top: 0; width: 26px; height: 32px; margin-left: -13px; object-fit: contain; transition: left .45s ease-out; filter: drop-shadow(0 1px 1px rgba(0,0,0,.25)); }
+
+/* Sieg direkt im Spiel (A1) */
+.sieg-box { text-align: center; background: var(--mustard-soft); border-radius: 18px; padding: 8px 10px 12px; margin: 8px 0; }
+.sieg-box .win-top img.r { width: 84px; }
+.sieg-box .win-top img.k { width: 70px; }
+.sieg-box p { margin: 4px 0; }
+.btn.klein { min-height: 44px; padding: 0 12px; font-size: 15px; font-weight: 600; }
+
+/* Staub auf der neuen Karte an der Spurenwand */
+.fund canvas.staub { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 10px; touch-action: none; cursor: crosshair; transition: opacity .6s; z-index: 2; }
+.fund canvas.staub.weg { opacity: 0; pointer-events: none; }
+.fund.staubig { touch-action: none; box-shadow: 0 0 0 3px var(--mustard), 0 3px 6px rgba(90,60,20,.22); }
+.pinsel-tipp { margin: 6px 0; text-align: center; font-weight: 700; color: var(--text); }
+
+/* Elternschloss mit Zifferneingabe (A6) */
+.eltern .zahl { display: flex; gap: 8px; }
+.eltern input { flex: 1; min-width: 0; height: 48px; border-radius: 12px; border: 2px solid var(--paper-line); font-size: 22px; padding: 0 12px; font-family: inherit; }
+.eltern .btn.cta { flex: none; min-width: 72px; }
+.eltern .falsch { color: var(--muted); margin: 6px 0 0; }

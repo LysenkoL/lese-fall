@@ -75,7 +75,7 @@ const raupe = (mood: string, spur: number) => {
 };
 
 /* ====================== Lesen (Blättern, D-06 / A-02 / A-13) ====================== */
-interface Ev { ids: string[]; ask: string; near: string; miss: number; found: string | null; done: (s: string) => void }
+interface Ev { ids: string[]; ask: string; near: string; miss: number; found: string[] | null; done: (s: string) => void }
 const R = { teil: 0, sheets: [] as string[][], idx: 0, ev: null as Ev | null };
 let paginated = '';
 
@@ -86,7 +86,7 @@ function headHTML(n: number) {
 }
 function blockHTML(b: Block) {
   const found = R.ev?.found;
-  const sents = b.s.map((s, i) => `<span class="sent${found === `${b.id}-${i}` ? ' found' : ''}" data-s="${b.id}-${i}">${T(s)}</span>`).join(' ');
+  const sents = b.s.map((s, i) => `<span class="sent${found?.includes(`${b.id}-${i}`) ? ' found' : ''}" data-s="${b.id}-${i}">${T(s)}</span>`).join(' ');
   if (b.typ === 'th') return `<div class="thought" data-b="${b.id}"><img src="${img('raupe/lob')}" alt=""><div class="tx"><div class="lbl">Raupen-Gedanke</div>${sents}</div></div>`;
   return `<p data-b="${b.id}">${sents}</p>`;
 }
@@ -136,7 +136,8 @@ function zeigeBlatt(dir: number) {
     const mid = E.found ? `<button class="btn cta" data-a="evback">Zurück zum Spiel</button>` : `<div class="banner" id="banner"><span>${T(E.miss >= 2 ? E.near : E.ask)}</span></div>`;
     f = prev + mid + `<button class="nav" data-a="next" ${last ? 'disabled' : ''} aria-label="Nächstes Blatt">›</button>`;
   } else {
-    const dots = `<div class="dots" role="img" aria-label="Blatt ${R.idx + 1} von ${R.sheets.length}">${R.sheets.map((_, i) => `<i class="${i < R.idx ? 'on' : i === R.idx ? 'cur' : ''}"></i>`).join('')}</div>`;
+    const pos = R.sheets.length > 1 ? (R.idx / (R.sheets.length - 1)) * 100 : 0;
+    const dots = `<div class="zweig" role="img" aria-label="Blatt ${R.idx + 1} von ${R.sheets.length}"><span class="ast"></span>${R.sheets.map((_, i) => `<i class="${i <= R.idx ? 'on' : ''}" style="left:${R.sheets.length > 1 ? (i / (R.sheets.length - 1)) * 100 : 0}%"></i>`).join('')}<img class="kriech" src="${img('raupe/lob')}" alt="" style="left:${pos}%"></div>`;
     let next = `<button class="nav" data-a="next" aria-label="Nächstes Blatt">›</button>`;
     if (last) {
       const label = n === 0 ? 'Los geht’s' : game && game.spur === n ? 'Zurück zum Spiel' : stand.geloest[n] ? 'Zur Spurenwand' : 'Zum Spiel';
@@ -171,7 +172,12 @@ content.addEventListener('click', (e) => {
   const s = (e.target as HTMLElement).closest<HTMLElement>('.sent');
   if (!s || !R.ev || R.ev.found || content.querySelector('.sent.found')) return;
   const E = R.ev;
-  if (E.ids.includes(s.dataset.s!)) { E.found = s.dataset.s!; zeigeBlatt(0); return; }
+  if (E.ids.includes(s.dataset.s!)) {
+    // alle Beweissätze aus demselben Absatz gehören zusammen (z. B. Wolke + „Links daneben …“)
+    const blk = s.dataset.s!.replace(/-\d+$/, '');
+    E.found = E.ids.filter((id) => id.replace(/-\d+$/, '') === blk);
+    zeigeBlatt(0); return;
+  }
   E.miss++;
   s.classList.remove('nope'); void s.offsetWidth; s.classList.add('nope');
   const b = document.getElementById('banner');
@@ -186,8 +192,7 @@ foot.addEventListener('click', (e) => {
   else if (a === 'end') endeLesen();
   else if (a === 'evback') {
     const E = R.ev!; R.ev = null;
-    const [, bid, k] = E.found!.match(/^(.*)-(\d+)$/)!;
-    E.done(teil(R.teil).blocks.find((b) => b.id === bid)!.s[+k]);
+    E.done(E.found!.map((id) => { const [, bid, k] = id.match(/^(.*)-(\d+)$/)!; return teil(R.teil).blocks.find((b) => b.id === bid)!.s[+k]; }).join(' '));
   } else actions[a]?.();
 });
 
@@ -202,7 +207,7 @@ sheetEl.addEventListener('pointerup', (e) => {
 const isReading = () => !!content.querySelector('[data-b]');
 
 /* ====================== Spiel (Zyklus einer Spur) ====================== */
-type Phase = 'select' | 'wrong' | 'retry' | 'help' | 'explain' | 'stepdone';
+type Phase = 'select' | 'wrong' | 'retry' | 'help' | 'explain' | 'stepdone' | 'won';
 let game: Spiel | null = null;
 const actions: Record<string, () => void> = {};
 
@@ -215,6 +220,8 @@ class Spiel {
   quote = '';
   stepPearls: number[] = [];
   falsch = 0;
+  gained = 0;
+  neu = false;
   constructor(public spur: number, public replay: boolean) {
     this.data = teil(spur).spiel;
     this.startStep();
@@ -222,7 +229,7 @@ class Spiel {
   get st() { return this.data.schritte[this.step]; }
   startStep() { this.engine = makeEngine(this.st); this.phase = 'select'; this.target = null; this.quote = ''; }
   show(dir = 0) {
-    ort('game', this.spur);
+    if (this.phase !== 'won') ort('game', this.spur);
     header(`Kapitel 1 · Spur ${this.spur}`);
     const st = this.st, d = this.data, n = d.schritte.length;
     const steps = n > 1 ? `<span class="steps">${d.schritte.map((_: any, i: number) => `<i class="${i <= this.step ? 'on' : ''}"></i>`).join('')}</span>` : '';
@@ -230,14 +237,16 @@ class Spiel {
       <div class="case">${LUPE}<span>Dein Ermittlerauftrag ·</span><span class="name">${T(d.spiel)}</span>${steps}</div>
       ${this.fb()}
       ${this.phase === 'select' || this.phase === 'retry' || this.phase === 'help' ? `<p class="intro">${T(st.intro)}</p>` : ''}
-      ${st.frage ? `<p class="q">${T(st.frage)}</p>` : ''}
+      ${st.frage && this.phase !== 'won' ? `<p class="q">${T(st.frage)}</p>` : ''}
       <div class="engine"></div></div>`;
     let primary: string;
     if (this.phase === 'wrong') primary = `<button class="btn cta" data-a="beweis">${LUPE}Zeig den Beweis!</button>`;
     else if (this.phase === 'explain') primary = `<button class="btn cta" data-a="verstanden">Verstanden</button>`;
     else if (this.phase === 'stepdone') primary = `<button class="btn cta" data-a="weiter">Weiter ›</button>`;
+    else if (this.phase === 'won') primary = this.replay ? `<button class="btn cta" data-a="wand">Zur Spurenwand ›</button>` : `<button class="btn cta" data-a="sichern">Spur sichern ›</button>`;
     else primary = `<button class="btn cta" data-a="pruefen" ${this.engine.complete() ? '' : 'disabled'}>Prüfen</button>`;
-    setView(html, `<button class="btn" data-a="geschichte">Zur Geschichte</button>${primary}`, { scroll: true, dir });
+    const second = this.phase === 'won' ? `<button class="btn klein" data-a="nochmalLesen">Noch einmal lesen</button>` : `<button class="btn" data-a="geschichte">Zur Geschichte</button>`;
+    setView(html, second + primary, { scroll: true, dir });
     this.mountEngine();
   }
   mountEngine() {
@@ -259,9 +268,15 @@ class Spiel {
     switch (this.phase) {
       case 'wrong': return bubble('denkt', `<span>${T(U.falsch[this.falsch % U.falsch.length])}</span>`);
       case 'retry': return bubble('tipp', `<span>${T(U.deinBeweis)} <span class="quote">${T(this.quote)}</span> ${T(U.nochmal)}</span>`);
-      case 'help': return bubble('tipp', `<span>${this.quote ? `${T(U.deinBeweis)} <span class="quote">${T(this.quote)}</span><br>` : ''}<b>${T(U.hilfe)}</b> ${T(t?.help ?? this.st.help)}</span>`, 'help');
+      case 'help': return bubble('tipp', `<span><b>${T(U.hilfe)}</b> ${T(t?.help ?? this.st.help)}</span>`, 'help');
       case 'explain': return bubble('lob', `<span>${T(this.st.explain ?? '')}</span>`, 'help');
       case 'stepdone': return bubble('klatscht', `<span><b>${T(U.siegVoll)}</b></span>`);
+      case 'won': {
+        const d = this.data, voll = this.gained === 2;
+        return `<div class="sieg-box" role="status"><div class="win-top"><img class="r" src="${raupe('klatscht', s)}" alt="Die Lese-Raupe klatscht"><img class="k" src="${img(d.kind)}" alt=""></div>
+          <div class="big">${T(voll ? U.siegVoll : U.siegHalb)}</div><p>${T(d.sieg)}</p>
+          ${this.neu ? `<span class="gain">${'<i></i>'.repeat(this.gained)}+${this.gained} Schimmer-${this.gained > 1 ? 'Perlen' : 'Perle'}</span>` : ''}</div>`;
+      }
       default: return '';
     }
   }
@@ -284,10 +299,17 @@ class Spiel {
     this.stepPearls[this.step] = p;
     this.engine.locked = true; this.engine.won = true;
     if (this.step < this.data.schritte.length - 1) { this.phase = 'stepdone'; this.show(); return; }
-    sieg(this.spur, Math.min(...this.stepPearls), this.replay);
+    this.gained = Math.min(...this.stepPearls);
+    this.neu = !this.replay && !stand.geloest[this.spur];
+    if (this.neu) { stand.geloest[this.spur] = this.gained; speichern(); glowMoon(); }
+    this.phase = 'won';
+    this.show();
+    ort(this.replay || stand.buchstaben.includes(this.spur) ? 'wand' : 'pinsel', this.spur);
   }
 }
 actions.pruefen = () => game?.pruefen();
+actions.sichern = () => { const n = game!.spur; game = null; wand(n); };
+actions.nochmalLesen = () => { const n = game!.spur; game = null; lesen(n, { dir: -1 }); };
 actions.weiter = () => { if (!game) return; game.step++; game.startStep(); game.show(1); };
 actions.verstanden = () => game?.stepFertig(1);
 actions.geschichte = () => { if (game) lesen(game.spur, { letzte: true, dir: -1 }); };
@@ -299,102 +321,52 @@ actions.beweis = () => {
   });
 };
 
-/* ====================== Sieg → Spuren abpinseln → Spurenwand ====================== */
-function sieg(spur: number, gained: number, replay: boolean) {
-  const d = teil(spur).spiel;
-  const neu = !replay && !stand.geloest[spur];
-  if (neu) { stand.geloest[spur] = gained; speichern(); }
-  game = null;
-  header(`Kapitel 1 · Spur ${spur}`);
-  if (neu) glowMoon();
-  const voll = gained === 2;
-  const extra = spur === 5 ? `<div class="mosaik">${d.schritte[0].loesung.map((id: string) => `<img src="${img(d.schritte[0].karten.find((k: any) => k.id === id).bild)}" alt="">`).join('')}</div>`
-    : spur === 4 ? `<p><span class="stamp-big stamp-on">${T(d.schritte[1].stempel.find((s: any) => s.id === 'nicht').label)}</span></p>` : '';
-  const html = `<div class="center task">
-    <div class="win-top"><img class="r" src="${raupe('klatscht', spur)}" alt="Die Lese-Raupe klatscht"><img class="k" src="${img(d.kind)}" alt=""></div>
-    <div class="big">${T(voll ? U.siegVoll : U.siegHalb)}</div>
-    <p>${T(d.sieg)}</p>${voll ? '' : `<p>${T(U.siegHalbText)}</p>`}
-    ${extra}
-    ${neu ? `<span class="gain">${'<i></i>'.repeat(gained)}+${gained} Schimmer-${gained > 1 ? 'Perlen' : 'Perle'}</span>` : ''}
-  </div>`;
-  const next = replay ? `<button class="btn cta" data-a="wand">Zur Spurenwand ›</button>`
-    : stand.buchstaben.includes(spur) ? `<button class="btn cta" data-a="wandNach">Zur Spurenwand ›</button>`
-    : `<button class="btn cta" data-a="pinsel">Spur abpinseln ›</button>`;
-  actions.pinsel = () => pinsel(spur);
-  actions.wandNach = () => wand(spur);
-  setView(html, `<button class="btn" data-a="nochmalLesen">Noch einmal lesen</button>${next}`, { scroll: true, dir: 1 });
-  actions.nochmalLesen = () => lesen(spur, { dir: -1 });
-  ort(replay ? 'wand' : stand.buchstaben.includes(spur) ? 'wand' : 'pinsel', spur);
-}
-
+/* ====================== Spurenwand mit Spuren abpinseln ====================== */
 function wortHTML(neu = -1) {
   const gw = DATA.geheimwort;
   const offen = new Set(gw.reihenfolge.filter((r: any) => stand.buchstaben.includes(r.spur)).map((r: any) => r.pos));
   return `<div class="wort" aria-label="Geheimwort">${[...gw.wort].map((c: string, i: number) => `<span class="${offen.has(i) ? '' : 'leer'} ${i === neu ? 'neu' : ''}">${offen.has(i) ? c : ''}</span>`).join('')}</div>`;
 }
 
-function pinsel(spur: number) {
-  ort('pinsel', spur);
-  header(`Kapitel 1 · Spur ${spur}`);
-  const gw = DATA.geheimwort;
-  const pos = gw.reihenfolge.find((r: any) => r.spur === spur).pos;
-  const ch = gw.wort[pos];
-  const html = `<div class="center task"><div class="kicker">Spuren abpinseln</div>
-    <p class="intro">${T(U.pinseln)}</p>
-    <div class="pinsel" id="pbox"><span class="letter">${ch}</span><canvas id="dust" aria-label="Staub"></canvas></div>
-    <p id="pmsg" style="min-height:1.5em"></p>${wortHTML()}</div>`;
-  setView(html, `<button class="btn cta" data-a="pinselWeiter" disabled>Zur Spurenwand ›</button>`, { scroll: true, dir: 1 });
-  const box = $('pbox'), cv = $('dust') as HTMLCanvasElement;
+/** Staub auf einer Karte: mit dem Pinsel wegwischen (≥ 55 % frei), dann `fertig` */
+function staub(box: HTMLElement, fertig: () => void) {
+  const cv = document.createElement('canvas');
+  cv.className = 'staub';
+  cv.setAttribute('aria-label', 'Staub – mit dem Finger wegwischen');
+  box.appendChild(cv);
   const r = box.getBoundingClientRect();
   const dpr = Math.min(2, devicePixelRatio || 1);
   cv.width = r.width * dpr; cv.height = r.height * dpr;
   const g = cv.getContext('2d', { willReadFrequently: true })!;
   g.scale(dpr, dpr);
-  // Staubschicht
   g.fillStyle = '#CDBB98'; g.fillRect(0, 0, r.width, r.height);
-  for (let i = 0; i < 900; i++) {
+  for (let i = 0; i < 500; i++) {
     g.fillStyle = ['#BFAA82', '#D9CAA8', '#B39C74', '#E2D5B8'][i % 4];
-    g.globalAlpha = 0.5; g.beginPath(); g.arc(Math.random() * r.width, Math.random() * r.height, 1 + Math.random() * 4, 0, 7); g.fill();
+    g.globalAlpha = 0.5; g.beginPath(); g.arc(Math.random() * r.width, Math.random() * r.height, 1 + Math.random() * 3.5, 0, 7); g.fill();
   }
   g.globalAlpha = 1; g.globalCompositeOperation = 'destination-out';
   let strokes = 0, done = false, last: number[] | null = null;
   const brush = document.createElement('div');
   brush.className = 'brush';
   brush.innerHTML = `<svg viewBox="0 0 44 44"><path d="M30 4l10 10-14 14-10-10z" fill="#8A5A44"/><path d="M16 18l10 10-6 6c-4 4-12 6-16 6 0-4 2-12 6-16z" fill="#F4C243" stroke="#D9A21E"/></svg>`;
-  const wipe = (x: number, y: number) => {
-    g.lineWidth = 46; g.lineCap = 'round';
-    g.beginPath(); g.moveTo(last ? last[0] : x, last ? last[1] : y); g.lineTo(x, y); g.stroke();
-    last = [x, y];
-    if (++strokes % 6 === 0) check();
-  };
   const check = () => {
     if (done) return;
     const d = g.getImageData(0, 0, cv.width, cv.height).data;
     let clear = 0, n = 0;
-    for (let i = 3; i < d.length; i += 4 * 37) { n++; if (d[i] < 40) clear++; }
-    if (clear / n > 0.55) aufgedeckt();
+    for (let i = 3; i < d.length; i += 4 * 29) { n++; if (d[i] < 40) clear++; }
+    if (clear / n > 0.55) { done = true; cv.classList.add('weg'); brush.remove(); fertig(); }
   };
-  const aufgedeckt = () => {
-    done = true; cv.classList.add('weg'); brush.remove();
-    if (!stand.buchstaben.includes(spur)) { stand.buchstaben.push(spur); speichern(); }
-    ort('wand', spur);
-    $('pmsg').innerHTML = T(U.buchstabe);
-    content.querySelector('.wort')!.outerHTML = wortHTML(pos);
-    (foot.querySelector('[data-a="pinselWeiter"]') as HTMLButtonElement).disabled = false;
+  const wipe = (x: number, y: number) => {
+    g.lineWidth = 34; g.lineCap = 'round';
+    g.beginPath(); g.moveTo(last ? last[0] : x, last ? last[1] : y); g.lineTo(x, y); g.stroke();
+    last = [x, y];
+    if (++strokes % 5 === 0) check();
   };
-  cv.addEventListener('pointerdown', (e) => {
-    if (done) return;
-    cv.setPointerCapture(e.pointerId); document.body.appendChild(brush);
-    const b = cv.getBoundingClientRect(); last = null; wipe(e.clientX - b.left, e.clientY - b.top);
-    brush.style.left = e.clientX + 'px'; brush.style.top = e.clientY + 'px';
-  });
-  cv.addEventListener('pointermove', (e) => {
-    if (done || !cv.hasPointerCapture(e.pointerId)) return;
-    const b = cv.getBoundingClientRect(); wipe(e.clientX - b.left, e.clientY - b.top);
-    brush.style.left = e.clientX + 'px'; brush.style.top = e.clientY + 'px';
-  });
-  cv.addEventListener('pointerup', () => { last = null; brush.remove(); check(); });
-  actions.pinselWeiter = () => wand(spur);
+  const at = (e: PointerEvent) => { const b = cv.getBoundingClientRect(); brush.style.left = e.clientX + 'px'; brush.style.top = e.clientY + 'px'; wipe(e.clientX - b.left, e.clientY - b.top); };
+  // Pinseln darf überall auf der Karte beginnen (auch am Rand oder an der Nadel)
+  box.addEventListener('pointerdown', (e) => { if (done) return; e.preventDefault(); box.setPointerCapture(e.pointerId); document.body.appendChild(brush); last = null; at(e); });
+  box.addEventListener('pointermove', (e) => { if (!done && box.hasPointerCapture(e.pointerId)) at(e); });
+  box.addEventListener('pointerup', () => { last = null; brush.remove(); check(); });
 }
 
 /** Spurenwand: Funde, Geheimwort, Weiter. Nach einer Spur oben das Bild „nachher“. */
@@ -403,27 +375,45 @@ function wand(nach = 0) {
   ort('wand', nach);
   header('Spurenwand');
   const spuren = DATA.spuren;
+  const staubig = !!nach && stand.geloest[nach] !== undefined && !stand.buchstaben.includes(nach);
   const funde = spuren.map((s: any) => {
     const ok = stand.geloest[s.spur] !== undefined;
-    return ok ? `<button class="fund ${s.spur === nach ? 'neu' : ''}" data-fund="${s.spur}" aria-label="Spur ${s.spur}: ${plain(s.spiel.fund.text)}"><span class="nr"></span><img src="${img(s.spiel.fund.bild)}" alt=""><span>${T(s.spiel.fund.text)}</span></button>`
+    return ok ? `<button class="fund ${s.spur === nach && !staubig ? 'neu' : ''} ${s.spur === nach && staubig ? 'staubig' : ''}" data-fund="${s.spur}" aria-label="Spur ${s.spur}: ${plain(s.spiel.fund.text)}"><span class="nr"></span><img src="${img(s.spiel.fund.bild)}" alt=""><span>${T(s.spiel.fund.text)}</span></button>`
       : `<div class="fund zu">Spur ${s.spur}</div>`;
   }).join('');
   const naechste = [1, 2, 3, 4, 5, 6].find((n) => stand.geloest[n] === undefined);
-  const offenPinsel = [1, 2, 3, 4, 5, 6].find((n) => stand.geloest[n] !== undefined && !stand.buchstaben.includes(n));
+  const offenPinsel = [1, 2, 3, 4, 5, 6].find((n) => n !== nach && stand.geloest[n] !== undefined && !stand.buchstaben.includes(n));
   const bild = nach ? `<div class="illu"><img src="${img(teil(nach).spiel.bildNachher)}" alt="Spur ${nach}: nachher"></div>`
     : `<div style="text-align:center"><img src="${img('kapitel_1')}" alt="Kapitel 1: Wo ist der Mond?" style="width:min(220px,60%);mix-blend-mode:multiply"></div>`;
   const html = `<div class="task">${bild}<div class="kicker" style="margin-top:10px">${U.wand ? T(U.wand) : ''}</div>
+    ${staubig ? `<p class="pinsel-tipp" id="pmsg">${T(U.pinseln)}</p>` : ''}
     <div class="wand" style="background-image:url('${img('spurenwand')}')">${funde}</div>${wortHTML()}
-    ${geloestAnzahl() ? `<p style="font-size:15px;color:var(--muted);text-align:center">${T(U.wandTipp)}</p>` : ''}
-    <div class="menu"><button class="btn" data-a="vg">Vorgeschichte lesen</button></div></div>`;
+    ${geloestAnzahl() && !staubig ? `<p style="font-size:15px;color:var(--muted);text-align:center">${T(U.wandTipp)}</p>` : ''}</div>`;
   let f: string;
-  if (offenPinsel) { actions.go = () => pinsel(offenPinsel); f = `<button class="btn cta" data-a="go">Spur ${offenPinsel} abpinseln ›</button>`; }
-  else if (!naechste) { actions.go = tresor; f = `<button class="btn cta" data-a="go">${stand.tresorOffen ? 'Zum offenen Mondtresor' : 'Zum Mondtresor'} ›</button>`; }
-  else if (nach || !stand.ort.anker) { actions.go = () => lesen(naechste, { dir: 1 }); f = `<button class="btn cta" data-a="go">${naechste === 1 && !nach ? 'Los geht’s' : `Weiter zu Spur ${naechste}`} ›</button>`; }
+  if (offenPinsel) { actions.go = () => wand(offenPinsel); f = `<button class="btn cta" data-a="go">Spur ${offenPinsel} abpinseln ›</button>`; }
+  else if (!naechste) { actions.go = stand.tresorOffen ? kapitel2 : tresor; f = `<button class="btn cta" data-a="go" ${staubig ? 'disabled' : ''}>${stand.tresorOffen ? 'Weiter zu Kapitel 2' : 'Zum Mondtresor'} ›</button>`; }
+  else if (nach || !stand.ort.anker) { actions.go = () => lesen(naechste, { dir: 1 }); f = `<button class="btn cta" data-a="go" ${staubig ? 'disabled' : ''}>${naechste === 1 && !nach ? 'Los geht’s' : `Weiter zu Spur ${naechste}`} ›</button>`; }
   else { actions.go = () => lesen(naechste, { dir: 1 }); f = `<button class="btn cta" data-a="go">Weiterlesen: Spur ${naechste} ›</button>`; }
-  actions.vg = () => lesen(0, { dir: -1 });
   setView(html, f, { scroll: true, dir: 1 });
-  content.querySelectorAll<HTMLElement>('[data-fund]').forEach((b) => b.addEventListener('click', () => fundMenu(+b.dataset.fund!)));
+  content.querySelectorAll<HTMLElement>('[data-fund]').forEach((b) => {
+    // Menü nur, wenn der Finger auf der Karte (nicht im Staub) angefangen hat
+    let vonStaub = false;
+    b.addEventListener('pointerdown', () => { vonStaub = b.classList.contains('staubig'); });
+    b.addEventListener('click', () => { if (vonStaub || b.classList.contains('staubig')) { vonStaub = false; return; } fundMenu(+b.dataset.fund!); });
+  });
+  if (staubig) {
+    const card = content.querySelector<HTMLElement>(`[data-fund="${nach}"]`)!;
+    card.scrollIntoView({ block: 'center' });
+    requestAnimationFrame(() => staub(card, () => {
+      if (!stand.buchstaben.includes(nach)) { stand.buchstaben.push(nach); speichern(); }
+      card.classList.remove('staubig'); card.classList.add('neu');
+      const pos = DATA.geheimwort.reihenfolge.find((r: any) => r.spur === nach).pos;
+      content.querySelector('.wort')!.outerHTML = wortHTML(pos);
+      const m = document.getElementById('pmsg'); if (m) m.innerHTML = T(U.buchstabe);
+      foot.querySelectorAll<HTMLButtonElement>('[data-a="go"]').forEach((b) => (b.disabled = false));
+      ort('wand', nach);
+    }));
+  }
 }
 function fundMenu(spur: number) {
   const bg = document.createElement('div');
@@ -466,7 +456,7 @@ function tresor() {
         : `<div class="tiles">${tiles.map((t, k) => `<button class="tile" data-t="${k}" ${eingabe.includes(k) ? 'disabled' : ''}>${t.c}</button>`).join('')}</div>
            <p style="font-size:15px;color:var(--muted)">${T(U.tresorTipp)}</p><div id="tmsg" role="status">${msg}</div>`}
     </div>`;
-    const f = offen ? `<button class="btn cta" data-a="wand">Zur Spurenwand ›</button>` : `<button class="btn" data-a="tzurueck" ${eingabe.length ? '' : 'disabled'}>‹ Zurück</button><button class="btn" data-a="wand">Spurenwand</button>`;
+    const f = offen ? `<button class="btn" data-a="fertig">Für heute fertig</button><button class="btn cta" data-a="kap2">Weiter zu Kapitel 2 ›</button>` : `<button class="btn" data-a="tzurueck" ${eingabe.length ? '' : 'disabled'}>‹ Zurück</button><button class="btn" data-a="wand">Spurenwand</button>`;
     setView(html, f, { scroll: true });
     content.querySelectorAll<HTMLElement>('[data-t]').forEach((b) => b.addEventListener('click', () => {
       eingabe.push(+b.dataset.t!);
@@ -486,6 +476,17 @@ function tresor() {
   render();
 }
 
+function kapitel2() {
+  ort('kapitel2');
+  header('Kapitel 2', 'Ein Tablett für alle');
+  const html = `<div class="task center"><div class="illu"><img src="${img('k2_s7')}" alt=""></div>
+    <div class="win-top"><img class="r" src="${img('raupe/staunt')}" alt=""></div>
+    <div class="big">${T(U.bald)}</div><p>${T(DATA.geheimwort.haken)}</p></div>`;
+  setView(html, `<button class="btn cta" data-a="fertig">Für heute fertig</button>`, { scroll: true, dir: 1 });
+}
+actions.kap2 = kapitel2;
+actions.fertig = () => cover();
+
 /* ====================== Titelbild ====================== */
 function cover() {
   header('Lese-Fall', 'Spur im Text');
@@ -500,16 +501,14 @@ actions.wand = () => wand();
 /* ====================== Einstellungen (Aa) ====================== */
 const SIZES = [18, 20, 23, 26];
 /* Elternschloss: Rechenaufgabe (z. B. 7 · 14, für Zweitklässler zu schwer), dann Bestätigung */
-type Lock = { a: number; b: number; opts: number[]; ok?: boolean } | null;
+type Lock = { a: number; b: number; ok?: boolean; falsch?: boolean } | null;
 let lock: Lock = null;
 function neueAufgabe(): Lock {
-  const a = 6 + Math.floor(Math.random() * 4), b = 12 + Math.floor(Math.random() * 5), r = a * b;
-  const opts = [r, r + a, r - b, r + 10].sort(() => Math.random() - 0.5);
-  return { a, b, opts };
+  return { a: 6 + Math.floor(Math.random() * 4), b: 12 + Math.floor(Math.random() * 5) };
 }
 function resetHTML() {
   if (!lock) return `<button class="reset" data-reset>Fortschritt löschen (für Eltern)</button>`;
-  if (!lock.ok) return `<div class="eltern"><p>Für Eltern: Wie viel ist ${lock.a} · ${lock.b}?</p><div class="sizes">${lock.opts.map((o) => `<button data-antwort="${o}">${o}</button>`).join('')}</div><button class="reset" data-abbrechen>Abbrechen</button></div>`;
+  if (!lock.ok) return `<form class="eltern" id="elternform"><label for="elternzahl" style="display:block;min-height:0">Für Eltern: Wie viel ist ${lock.a} · ${lock.b}?</label><div class="zahl"><input id="elternzahl" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" maxlength="3"><button class="btn cta" type="submit" data-antwort>OK</button></div>${lock.falsch ? '<p class="falsch">Das stimmt nicht.</p>' : ''}<button class="reset" type="button" data-abbrechen>Abbrechen</button></form>`;
   return `<div class="eltern"><p>Wirklich alles löschen? Perlen, Spuren und Buchstaben sind dann weg.</p><div class="menu"><button class="btn" data-loeschen>Ja, alles löschen</button><button class="btn cta" data-abbrechen>Nein, behalten</button></div></div>`;
 }
 $('aa').addEventListener('click', () => {
@@ -522,9 +521,17 @@ $('aa').addEventListener('click', () => {
       <p class="demo story">${T('Die Le|se-|Rau|pe schaut ge|nau hin.')}</p>
       <label>Silben farbig<button class="switch" role="switch" data-sw="silben" aria-checked="${stand.silben}" aria-label="Silben farbig"></button></label>
       <label>Bewegung reduzieren<button class="switch" role="switch" data-sw="ruhig" aria-checked="${stand.ruhig}" aria-label="Bewegung reduzieren"></button></label>
+      <button class="btn" data-vg style="width:100%;margin-top:8px">Vorgeschichte noch einmal lesen</button>
       ${resetHTML()}
       <div style="text-align:right"><button class="btn cta" data-close style="flex:none;min-width:120px">Fertig</button></div></div>`;
   };
+  const pruefeEltern = () => {
+    const v = +((bg.querySelector('#elternzahl') as HTMLInputElement | null)?.value ?? '');
+    if (lock) lock = v === lock.a * lock.b ? { ...lock, ok: true } : { ...lock, falsch: true };
+    draw();
+    (bg.querySelector('#elternzahl') as HTMLInputElement | null)?.focus();
+  };
+  bg.addEventListener('submit', (e) => { e.preventDefault(); pruefeEltern(); });
   draw();
   document.body.appendChild(bg);
   bg.addEventListener('click', (e) => {
@@ -532,11 +539,9 @@ $('aa').addEventListener('click', () => {
     const fs = t.closest<HTMLElement>('[data-fs]'), sw = t.closest<HTMLElement>('[data-sw]');
     if (fs) { stand.fs = +fs.dataset.fs!; }
     else if (sw) { const k = sw.dataset.sw as 'silben' | 'ruhig'; stand[k] = !stand[k]; }
+    else if (t.closest('[data-vg]')) { bg.remove(); R.ev = null; game = null; lesen(0, { dir: -1 }); return; }
     else if (t.closest('[data-reset]')) { lock = neueAufgabe(); draw(); return; }
-    else if (t.closest('[data-antwort]')) {
-      const a = +t.closest<HTMLElement>('[data-antwort]')!.dataset.antwort!;
-      lock = lock && a === lock.a * lock.b ? { ...lock, ok: true } : null; draw(); return;
-    } else if (t.closest('[data-loeschen]')) { zuruecksetzen(); bg.remove(); applySettings(); game = null; cover(); return; }
+    else if (t.closest('[data-antwort]')) { e.preventDefault(); pruefeEltern(); return; } else if (t.closest('[data-loeschen]')) { zuruecksetzen(); bg.remove(); applySettings(); game = null; cover(); return; }
     else if (t.closest('[data-abbrechen]')) { lock = null; draw(); return;
     } else if (t === bg || t.closest('[data-close]')) { bg.remove(); return; }
     else return;
@@ -566,7 +571,8 @@ function resume(fromCover = false) {
   const o = stand.ort;
   if (o.view === 'read') return lesen(o.teil, { anker: o.anker });
   if (o.view === 'game' && o.teil) { game = new Spiel(o.teil, !!stand.geloest[o.teil]); return game.show(); }
-  if (o.view === 'pinsel' && o.teil && !stand.buchstaben.includes(o.teil)) return pinsel(o.teil);
+  if (o.view === 'pinsel' && o.teil && !stand.buchstaben.includes(o.teil)) return wand(o.teil);
+  if (o.view === 'kapitel2') return kapitel2();
   if (o.view === 'tresor') return tresor();
   if (o.view === 'wand') return wand();
   if (fromCover) return stand.vorgeschichte ? wand() : lesen(0, { dir: 1 });
