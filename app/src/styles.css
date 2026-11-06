@@ -255,7 +255,7 @@ img { -webkit-user-drag: none; user-select: none; }
 @keyframes neu { 0% { transform: scale(1.6); box-shadow: 0 0 0 8px rgba(244,194,67,.5); } }
 
 .wand { background-size: cover; background-position: center; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 8px 0; padding: 12px; border-radius: 18px; background: #E9DCC2; box-shadow: inset 0 2px 8px rgba(90,60,20,.18); }
-.fund { min-width: 0; position: relative; aspect-ratio: .86; border-radius: 10px; background: #FFFDF8; box-shadow: 0 3px 6px rgba(90,60,20,.22); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 6px 4px; font-size: 13px; line-height: 1.2; text-align: center; color: var(--text); transform: rotate(-1.5deg); }
+.fund { min-width: 0; position: relative; aspect-ratio: auto !important; min-height: 150px; gap: 3px; aspect-ratio: .86; border-radius: 10px; background: #FFFDF8; box-shadow: 0 3px 6px rgba(90,60,20,.22); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 6px 4px; font-size: 13px; line-height: 1.2; text-align: center; color: var(--text); transform: rotate(-1.5deg); }
 .fund:nth-child(2n) { transform: rotate(1.5deg); }
 .fund img { width: 80%; height: 58%; object-fit: contain; mix-blend-mode: multiply; }
 .fund .nr { position: absolute; top: -7px; left: 50%; transform: translateX(-50%); width: 14px; height: 14px; border-radius: 50%; background: var(--syllable-red); box-shadow: 0 1px 2px rgba(0,0,0,.3); }
@@ -342,3 +342,17 @@ img { -webkit-user-drag: none; user-select: none; }
 .eltern input { flex: 1; min-width: 0; height: 48px; border-radius: 12px; border: 2px solid var(--paper-line); font-size: 22px; padding: 0 12px; font-family: inherit; }
 .eltern .btn.cta { flex: none; min-width: 72px; }
 .eltern .falsch { color: var(--muted); margin: 6px 0 0; }
+
+/* Spurenwand: Fazit unter jeder Spur (A10) */
+.fund .ft { font-weight: 700; }
+.fund .fz { font-size: 11.5px; line-height: 1.25; color: var(--muted); }
+.fund img { height: 64px; }
+.pop.fazit { text-align: center; }
+.pop.fazit > img { width: 110px; height: 90px; object-fit: contain; display: block; margin: 6px auto; }
+.pop.fazit .big { font-size: 20px; margin: 4px 0 8px; }
+.pop.fazit .beleg { background: var(--evidence-highlight); border-radius: 12px; padding: 8px 10px; font-size: 16px; line-height: 1.45; text-align: left; }
+/* Spur 5 gelöst: Liste 1–4 (A11) */
+.reihe-fertig { list-style: none; padding: 0; margin: 8px 0; display: flex; flex-direction: column; gap: 8px; }
+.reihe-fertig li { display: grid; grid-template-columns: 28px 110px 1fr; align-items: center; gap: 10px; background: #fff; border: 2px solid var(--paper-line); border-radius: 14px; padding: 6px; font-size: calc(var(--fs) * .85); line-height: 1.3; color: var(--text); }
+.reihe-fertig .n { font-weight: 900; font-size: 20px; text-align: center; color: var(--sky-2); }
+.reihe-fertig img { width: 110px; height: 82px; object-fit: cover; border-radius: 10px; }

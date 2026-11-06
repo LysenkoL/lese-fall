@@ -3,6 +3,7 @@ import { DATA, teil, img, type Block } from './data';
 import { stand, speichern, perlen, geloestAnzahl, zuruecksetzen } from './store';
 import { T, plain } from './text';
 import { makeEngine, type Engine } from './engines';
+import { App } from '@capacitor/app';
 
 /* ====================== Schale ====================== */
 const ICON_WAND = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h3v3H7zM14 9h3M14 13h3M7 16h10"/></svg>`;
@@ -274,7 +275,7 @@ class Spiel {
       case 'won': {
         const d = this.data, voll = this.gained === 2;
         return `<div class="sieg-box" role="status"><div class="win-top"><img class="r" src="${raupe('klatscht', s)}" alt="Die Lese-Raupe klatscht"><img class="k" src="${img(d.kind)}" alt=""></div>
-          <div class="big">${T(voll ? U.siegVoll : U.siegHalb)}</div><p>${T(d.sieg)}</p>
+          <div class="big">${T(voll ? U.siegVoll : U.siegHalb)}</div>${voll ? '' : `<p>${T(U.siegHalbText)}</p>`}<p>${T(d.sieg)}</p>
           ${this.neu ? `<span class="gain">${'<i></i>'.repeat(this.gained)}+${this.gained} Schimmer-${this.gained > 1 ? 'Perlen' : 'Perle'}</span>` : ''}</div>`;
       }
       default: return '';
@@ -378,7 +379,7 @@ function wand(nach = 0) {
   const staubig = !!nach && stand.geloest[nach] !== undefined && !stand.buchstaben.includes(nach);
   const funde = spuren.map((s: any) => {
     const ok = stand.geloest[s.spur] !== undefined;
-    return ok ? `<button class="fund ${s.spur === nach && !staubig ? 'neu' : ''} ${s.spur === nach && staubig ? 'staubig' : ''}" data-fund="${s.spur}" aria-label="Spur ${s.spur}: ${plain(s.spiel.fund.text)}"><span class="nr"></span><img src="${img(s.spiel.fund.bild)}" alt=""><span>${T(s.spiel.fund.text)}</span></button>`
+    return ok ? `<button class="fund ${s.spur === nach && !staubig ? 'neu' : ''} ${s.spur === nach && staubig ? 'staubig' : ''}" data-fund="${s.spur}" aria-label="Spur ${s.spur}: ${plain(s.spiel.fund.text)}"><span class="nr"></span><img src="${img(s.spiel.fund.bild)}" alt=""><span class="ft">${T(s.spiel.fund.text)}</span><span class="fz">${T(s.spiel.fund.fazit)}</span></button>`
       : `<div class="fund zu">Spur ${s.spur}</div>`;
   }).join('');
   const naechste = [1, 2, 3, 4, 5, 6].find((n) => stand.geloest[n] === undefined);
@@ -419,9 +420,14 @@ function fundMenu(spur: number) {
   const bg = document.createElement('div');
   bg.className = 'pop-bg';
   bg.style.alignItems = 'center'; bg.style.justifyContent = 'center';
-  bg.innerHTML = `<div class="pop" role="dialog" aria-label="Spur ${spur}"><h3>Spur ${spur}: ${T(teil(spur).titel)}</h3><div class="menu">
-    <button class="btn cta" data-m="spiel">${T(teil(spur).spiel.spiel)} – noch einmal spielen</button>
-    <button class="btn" data-m="lesen">Noch einmal lesen</button><button class="btn" data-m="zu">Schließen</button></div></div>`;
+  const f = teil(spur).spiel.fund;
+  const zitat = f.beweis.map((id: string) => { const [, bid, k] = id.match(/^(.*)-(\d+)$/)!; return teil(spur).blocks.find((b) => b.id === bid)!.s[+k]; }).join(' ');
+  bg.innerHTML = `<div class="pop fazit" role="dialog" aria-label="Spur ${spur}"><div class="kicker">Spur ${spur} · ${T(f.text)}</div>
+    <img src="${img(f.bild)}" alt=""><p class="big">${T(f.fazit)}</p>
+    <p class="beleg"><span class="kicker">Im Text steht:</span><br>„${T(zitat.replace(/^„|“$/g, ''))}“</p><div class="menu">
+    <button class="btn cta" data-m="zu">Schließen</button>
+    <button class="btn" data-m="lesen">Noch einmal lesen</button>
+    <button class="btn klein" data-m="spiel">Spiel noch einmal spielen</button></div></div>`;
   document.body.appendChild(bg);
   bg.addEventListener('click', (e) => {
     const m = (e.target as HTMLElement).closest<HTMLElement>('[data-m]')?.dataset.m;
@@ -581,5 +587,18 @@ function resume(fromCover = false) {
 applySettings();
 document.fonts.ready.then(() => cover());
 
+/* ====================== Android-Zurück ====================== */
+/** Zurück: Fenster schließen → Beweissuche beenden → vom Spiel zur Geschichte → Blatt zurück → Spurenwand → Titel → App schließen */
+function zurueck() {
+  const pop = document.querySelector('.pop-bg');
+  if (pop) { pop.remove(); return; }
+  if (R.ev && game) { R.ev = null; game.show(-1); return; }
+  if (game && content.querySelector('.engine')) { lesen(game.spur, { letzte: true, dir: -1 }); return; }
+  if (isReading()) { if (R.idx > 0) blaettern(-1); else if (R.teil > 0 && geloestAnzahl()) wand(); else cover(); return; }
+  if (content.querySelector('.cover')) { App.exitApp().catch(() => {}); return; }
+  cover();
+}
+App.addListener('backButton', zurueck).catch(() => {});
+
 // Test-Hilfe für den automatischen Durchlauf (keine Wirkung für Kinder)
-(window as any).__lesefall = { stand, DATA };
+(window as any).__lesefall = { stand, DATA, zurueck };

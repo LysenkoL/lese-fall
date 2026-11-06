@@ -231,7 +231,8 @@ class Reihe implements Engine {
   wrongItem() { return null; }
   card(id: string) { return this.st.karten.find((k: any) => k.id === id); }
   html() {
-    if (this.won) return `<div class="mosaik">${this.st.loesung.map((id: string) => `<img src="${img(this.card(id).bild)}" alt="">`).join('')}</div>`;
+    // gelöst: groß und mit Beschriftung untereinander 1–4 (A11)
+    if (this.won) return `<ol class="reihe-fertig">${this.st.loesung.map((id: string, i: number) => `<li><span class="n">${i + 1}</span><img src="${img(this.card(id).bild)}" alt=""><span>${T(this.card(id).label)}</span></li>`).join('')}</ol>`;
     const slots = this.order.map((id, i) => `<div class="rslot ${id ? 'filled' : ''}" data-zone="${i}" ${id ? `data-drag="${id}"` : ''} role="button" aria-label="Platz ${i + 1}"><span class="n">${i + 1}</span>${id ? `<img src="${img(this.card(id).bild)}" alt="${plain(this.card(id).label)}" draggable="false">` : ''}</div>`).join('');
     const pool = this.shuffled.map((k: any) => `<div class="rcard ${this.order.includes(k.id) ? 'used' : ''} ${this.sel === k.id ? 'sel' : ''}" data-drag="${k.id}" role="button" tabindex="0"><img src="${img(k.bild)}" alt="" draggable="false"><span class="l">${T(k.label)}</span></div>`).join('');
     return `<div class="reihe">${slots}</div><div class="rpool" data-zone="__pool">${pool}</div>`;
