@@ -228,12 +228,13 @@
        "mond": "links"
       },
       "beweis": [
+       "s1-p7-0",
        "s1-p7-1"
       ],
       "ask": "Wo soll der Mond hän|gen? Tip|pe auf den Satz, der es ver|rät.",
       "near": "Such dort, wo von der wei|ßen Wol|ke er|zählt wird.",
       "help": "Lies ge|nau: Auf wel|cher Sei|te ne|ben der Wol|ke ist der Platz für den Mond?",
-      "explain": "Im Text steht: „Links da|ne|ben soll der Mond sei|nen Platz be|kom|men.“ Da|ne|ben heißt hier: ne|ben der wei|ßen Wol|ke.",
+      "explain": "Im Text steht: „Ü|ber dem ro|ten Vor|hang hängt schon ei|ne wei|ße Wol|ke. Links da|ne|ben soll der Mond sei|nen Platz be|kom|men.“ Da|ne|ben heißt hier: ne|ben der wei|ßen Wol|ke.",
       "motor": "zielfeld"
      }
     ]
@@ -748,88 +749,50 @@
      "bild": "objekte/falscher_kreis_hinten",
      "text": "der fal|sche Mond"
     },
-    "kind": "mila/traurig",
+    "kind": "mila/staunt",
     "sieg": "Gelb und rund – a|ber oh|ne Fa|den und oh|ne Stern. Das ist nicht Mi|las Mond!",
     "schritte": [
      {
-      "art": "mehrere",
-      "intro": "Steck|brief: Wie sieht Mi|las Mond aus?",
-      "frage": "Wäh|le die vier Merk|ma|le von Mi|las Mond.",
-      "anzahl": 4,
-      "bild": "steckbrief",
-      "optionen": [
-       {
-        "id": "gelb",
-        "label": "gelb"
-       },
-       {
-        "id": "rund",
-        "label": "rund"
-       },
-       {
-        "id": "faden",
-        "label": "ein wei|ßer Fa|den o|ben"
-       },
-       {
-        "id": "stern",
-        "label": "ein blau|er Stern hin|ten"
-       },
-       {
-        "id": "sternvorne",
-        "label": "ein blau|er Stern vor|ne"
-       },
-       {
-        "id": "streifen",
-        "label": "rot-wei|ße Strei|fen"
-       }
-      ],
-      "loesung": [
-       "gelb",
-       "rund",
-       "faden",
-       "stern"
-      ],
-      "beweis": [
-       "s4-p7-1",
-       "s4-p9-1"
-      ],
-      "ask": "Wie sieht Mi|las Mond aus? Tip|pe auf ei|nen Satz, der es ver|rät.",
-      "near": "Such dort, wo die Le|se-Rau|pe noch ein|mal ganz lang|sam hin|schaut.",
-      "help": "Lies, was die Le|se-Rau|pe ü|ber Mi|las Mond weiß. Und lies, was Mi|la ü|ber die an|de|re Sei|te sagt.",
-      "motor": "urteil"
-     },
-     {
       "art": "vergleich",
-      "intro": "Jetzt ver|glei|che! Tip|pe auf den Kreis, dann dreht er sich um.",
-      "frage": "Was hat der ge|fun|de|ne Kreis?",
+      "intro": "Ver|glei|che! Links ist Mi|las Mond. Tip|pe auf den ge|fun|de|nen Kreis, dann dreht er sich um.",
+      "frage": "Was fehlt dem ge|fun|de|nen Kreis? Tip|pe al|les an, was fehlt.",
+      "muster": {
+       "bild": "objekte/mond_vorne",
+       "label": "Mi|las Mond",
+       "merkmale": [
+        "gelb",
+        "rund",
+        "ein weißer Faden oben",
+        "ein blauer Stern hinten"
+       ]
+      },
       "drehen": {
        "vorne": "objekte/falscher_kreis_vorne",
-       "hinten": "objekte/falscher_kreis_hinten"
+       "hinten": "objekte/falscher_kreis_hinten",
+       "label": "der ge|fun|de|ne Kreis"
       },
       "zeilen": [
        {
         "id": "gelb",
         "label": "gelb",
-        "loesung": "ja"
+        "fehlt": false
        },
        {
         "id": "rund",
         "label": "rund",
-        "loesung": "ja"
+        "fehlt": false
        },
        {
         "id": "faden",
         "label": "ein wei|ßer Fa|den o|ben",
-        "loesung": "nein"
+        "fehlt": true
        },
        {
         "id": "stern",
         "label": "ein blau|er Stern hin|ten",
-        "loesung": "nein"
+        "fehlt": true
        }
       ],
-      "ja": "hat er",
-      "nein": "hat er nicht",
       "stempelFrage": "Wel|chen Stem|pel be|kommt der Kreis?",
       "stempel": [
        {
@@ -847,9 +810,9 @@
        "s4-p11-0",
        "s4-p11-1"
       ],
-      "ask": "Was hat der ge|fun|de|ne Kreis – und was nicht? Tip|pe auf ei|nen Satz, der es ver|rät.",
+      "ask": "Was fehlt dem ge|fun|de|nen Kreis? Tip|pe auf ei|nen Satz, der es ver|rät.",
       "near": "Such dort, wo Mi|la den Kreis um|dreht.",
-      "help": "Was hat Mi|las Mond, was dem ge|fun|de|nen Kreis fehlt?",
+      "help": "Was hat Mi|las Mond o|ben und hin|ten?",
       "explain": "Im Text steht: „An die|sem Kreis hängt kein Fa|den.“ Und hin|ten: „Kein Stern.“ Da|rum ist der Kreis NICHT Mi|las Mond.",
       "motor": "urteil"
      }
@@ -946,8 +909,8 @@
     "bildVorher": "k1_s5",
     "bildNachher": "k1_s5",
     "fund": {
-     "bild": "objekte/kleber",
-     "text": "der Kle|ber"
+     "bild": "objekte/wasserhahn",
+     "text": "Glän|zen|de Fin|ger"
     },
     "kind": "ben/froh",
     "sieg": "Ab|ge|nom|men, fest|ge|klebt, aufs Tab|lett ge|legt – und erst dann Hän|de ge|wa|schen. Ge|nau so war es!",
@@ -1237,7 +1200,7 @@
   "beweisJa": "Ge|fun|den! Das ist dein Be|weis.",
   "nochmal": "Ver|such es jetzt noch ein|mal.",
   "deinBeweis": "Dein Be|weis:",
-  "hilfe": "Wei|te|re Hil|fe:",
+  "hilfe": "Tipp:",
   "siegVoll": "Spur ent|deckt!",
   "siegHalb": "Ge|schafft!",
   "siegHalbText": "Jetzt kennst du die Spur. Beim nächs|ten Mal fin|dest du sie be|stimmt selbst.",
@@ -1249,6 +1212,7 @@
   "tresorTipp": "Tip|pe die Buch|sta|ben in der rich|ti|gen Rei|hen|fol|ge an.",
   "tresorFalsch": "Hm, der Tre|sor bleibt zu. Lies die Fra|ge noch ein|mal.",
   "geschafft": "Ka|pi|tel ge|schafft!",
-  "bereit": "Bist du be|reit?"
+  "bereit": "Bist du be|reit?",
+  "bald": "Ka|pi|tel 2 kommt bald!"
  }
 }
