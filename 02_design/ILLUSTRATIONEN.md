@@ -96,7 +96,7 @@ Same references and style. Close-up of the windowsill: the tiny caterpillar is a
 Same references and style. Wide view of the classroom: Mila, holding two hand puppets, peeks behind the red curtain of the puppet theater (empty spot left of the cloud). Ben stands at a sink in the corner with his back to the room, water running, scrubbing his fingers. A green pencil lies on the floor under the big table. The tiny caterpillar peeks out between two leaves on the windowsill. No moon visible anywhere. No text.
 ```
 
-### Сцена 4 — Der falsche Mond
+### Сцена 4 — Ist das Milas Mond?
 - **«До»:** Мила вытаскивает из-под стопки газет на столе жёлтый круг. Видна только жёлтая сторона, нитки нет. Гусеничка смотрит в лупу.
 - **«После»:** Мила держит перевёрнутый круг: обратная сторона белая и пустая. Лицо у неё разочарованное.
 - **Нельзя:** на картинке «до» показывать оборот круга.
