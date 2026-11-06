@@ -20,7 +20,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 let fails = 0;
 const ok = (cond, msg) => { if (!cond) { fails++; console.error('✗ ' + msg); } else console.log('✓ ' + msg); };
 
-async function run(name, viewport, full) {
+async function run(name, viewport, full, fs = 0) {
   const b = await chromium.launch();
   const ctx = await b.newContext({ viewport, deviceScaleFactor: 1.5, hasTouch: true });
   const p = await ctx.newPage();
@@ -35,7 +35,7 @@ async function run(name, viewport, full) {
   /** keine senkrechte Rolle beim Lesen (A-02), Knöpfe nicht unter den Systemleisten */
   const checkSheet = async (where) => {
     const s = await p.evaluate(() => { const sh = document.getElementById('sheet'); return { scroll: sh.classList.contains('scroll'), over: sh.scrollHeight > sh.clientHeight + 2, footBottom: document.querySelector('.app-foot').getBoundingClientRect().bottom, h: innerHeight }; });
-    ok(!s.scroll && !s.over, `${name}: ${where} ohne Rollen`);
+    if (!fs) ok(!s.scroll && !s.over, `${name}: ${where} ohne Rollen`);
     const hdr = await p.evaluate(() => { const h = document.querySelector('.app-header'); return h.scrollWidth <= h.clientWidth + 1 && [...h.querySelectorAll('.hb')].every((b) => b.getBoundingClientRect().width >= 44); });
     ok(hdr, `${name}: ${where} Kopfzeile passt, Knöpfe ≥ 44 px`);
     ok(s.footBottom <= s.h + 0.5, `${name}: ${where} Fußleiste im Bild`);
@@ -80,7 +80,8 @@ async function run(name, viewport, full) {
     await btn('go'); await sleep(400);
   };
 
-  await p.goto(URL); await sleep(900);
+  await p.goto(URL); await sleep(600);
+  if (fs) { await p.evaluate((f) => localStorage.setItem('lesefall.v1', JSON.stringify({ fs: f })), fs); await p.reload(); await sleep(800); }
   await shot('cover');
   await btn('los'); await sleep(300);
   await shot('vorgeschichte');
@@ -94,6 +95,14 @@ async function run(name, viewport, full) {
     await readToEnd(`Spur ${spur}`);
     await btn('end'); await sleep(300);
     if (full || spur === 1) await shot(`spur${spur}_spiel`);
+    const g = await p.evaluate(() => ({ w: document.documentElement.scrollWidth <= innerWidth + 1, eng: [...document.querySelectorAll('.engine *')].filter((e) => !e.matches('.feld > img.bg')).every((e) => e.getBoundingClientRect().right <= innerWidth + 2), foot: document.querySelector('.app-foot').getBoundingClientRect().bottom <= innerHeight + 0.5 }));
+    ok(g.w && g.eng && g.foot, `${name}: Spiel ${spur} passt in die Breite, Knöpfe im Bild`);
+    if (spur === 1 && full) {
+      // Android-Zurück im Spiel → Geschichte, dann wieder zum Spiel
+      await p.evaluate(() => window.__lesefall.zurueck()); await sleep(300);
+      ok(!!(await p.$('[data-b]')), `${name}: Zurück im Spiel führt zur Geschichte`);
+      await btn('end'); await sleep(300);
+    }
     const st = sp.schritte;
     if (spur === 1) {
       // absichtlich falsch → Zeig den Beweis! → richtiger Satz → zweiter Versuch
@@ -104,6 +113,11 @@ async function run(name, viewport, full) {
       await btn('beweis'); await sleep(350);
       ok(await p.$eval('.zweig', () => false).catch(() => true), `${name}: Beweis-Modus ohne Zweig`);
       if (full) await shot('spur1_beweis_suchen');
+      if (full) {
+        await p.evaluate(() => window.__lesefall.zurueck()); await sleep(300);
+        ok(!!(await p.$('[data-a="pruefen"],[data-a="beweis"]')) && !(await p.$('[data-b]')), `${name}: Zurück in der Beweissuche führt zum Spiel`);
+        await btn('beweis'); await sleep(350);
+      }
       await findEvidence(st[0].beweis);
       ok((await p.$$('.sent.found')).length === 2, `${name}: beide Beweissätze (Wolke + links daneben) markiert`);
       if (full) await shot('spur1_beweis_gefunden');
@@ -175,10 +189,15 @@ async function run(name, viewport, full) {
   // Wand + Wiederholung ohne neue Perlen
   await click('#home'); await sleep(400);
   await shot('spurenwand_voll');
-  await click('[data-fund="3"]'); await click('[data-m="spiel"]'); await sleep(300);
+  await click('[data-fund="3"]'); await sleep(200);
+  ok(!!(await p.$('.pop.fazit .beleg')), `${name}: Spur antippen zeigt Fazit und Beweissatz`);
+  if (full) await shot('fazit');
+  await click('[data-m="spiel"]'); await sleep(300);
   await click('[data-kid="mila"]'); await click('[data-place="vorhang"]'); await click('[data-kid="ben"]'); await click('[data-place="waschbecken"]');
   await btn('pruefen'); await sleep(300);
   ok(!(await p.$('.gain')), `${name}: Wiederholung gibt keine Perlen`);
+  const nach = await p.evaluate(() => JSON.stringify({ g: window.__lesefall.stand.geloest, b: window.__lesefall.stand.buchstaben, t: window.__lesefall.stand.tresorOffen }));
+  ok(nach === JSON.stringify({ g: st.geloest, b: st.buchstaben, t: true }), `${name}: Wiederholung ändert den Fortschritt nicht`);
   // Silben + große Schrift, Lesestelle bleibt
   await click('#home'); await sleep(200);
   await click('[data-fund="2"]'); await click('[data-m="lesen"]'); await sleep(300);
@@ -202,10 +221,15 @@ async function run(name, viewport, full) {
   if (full) await shot('elternschloss');
   await click('[data-abbrechen]');
   await click('[data-close]'); await sleep(300);
+  await click('#aa'); await p.evaluate(() => window.__lesefall.zurueck()); await sleep(200);
+  ok(!(await p.$('.pop-bg')), `${name}: Zurück schließt die Einstellungen`);
   await shot('silben_gross');
   ok(await silbenAn(), `${name}: Silben farbig sichtbar`);
-  // Neu laden: Fortschritt bleibt
+  // Neu laden mitten in der Spur: gleiche Lesestelle, Fortschritt bleibt
+  const anker = await p.$eval('#content [data-b]', (e) => e.dataset.b);
   await p.reload(); await sleep(900);
+  await btn('los'); await sleep(400);
+  ok(!!(await p.$(`#content [data-b="${anker}"]`)), `${name}: nach Neustart wieder auf demselben Blatt (${anker})`);
   ok(await p.$eval('#pc', (e) => e.textContent) === '11', `${name}: nach Neustart 11 Perlen`);
   ok(errors.length === 0, `${name}: keine Fehler in der Konsole ${errors.join(' | ')}`);
   await b.close();
@@ -213,5 +237,6 @@ async function run(name, viewport, full) {
 
 await run('telefon', { width: 390, height: 844 }, true);
 await run('tablet', { width: 820, height: 1180 }, false);
+await run('telefon_gross', { width: 390, height: 844 }, false, 26);
 console.log(fails ? `\n✗ ${fails} Prüfungen fehlgeschlagen` : '\n✓ Alles gut');
 process.exit(fails ? 1 : 0);
