@@ -102,7 +102,7 @@ szenen.forEach((sz, i) => {
 for (const [w, parts] of dict) for (const p of parts) if (!/[aeiouyäöü]/i.test(p) && parts.length > 1) { console.error(`✗ Silbe ohne Vokal: ${parts.join('|')}`); fehler++; }
 
 /* ---------- Spiele: Kindertexte mit Silben, Beweise auf Satz-IDs ---------- */
-const TEXT_KEYS = new Set(['intro', 'frage', 'label', 'ask', 'near', 'help', 'explain', 'sieg', 'text', 'ziel', 'ablage', 'ja', 'nein', 'stempelFrage', 'offen', 'haken', 'spiel', 'fazit']);
+const TEXT_KEYS = new Set(['intro', 'frage', 'label', 'ask', 'near', 'help', 'explain', 'sieg', 'text', 'ziel', 'ablage', 'ja', 'nein', 'stempelFrage', 'offen', 'haken', 'spiel', 'fazit', 'zwischen', 'falsch']);
 function markTree(v: any, key = ''): any {
   if (typeof v === 'string') return TEXT_KEYS.has(key) ? mark(v) : v;
   if (Array.isArray(v)) return v.map((x) => (typeof x === 'string' && (key === 'falsch') ? mark(x) : markTree(x, key)));

@@ -356,3 +356,22 @@ img { -webkit-user-drag: none; user-select: none; }
 .reihe-fertig li { display: grid; grid-template-columns: 28px 110px 1fr; align-items: center; gap: 10px; background: #fff; border: 2px solid var(--paper-line); border-radius: 14px; padding: 6px; font-size: calc(var(--fs) * .85); line-height: 1.3; color: var(--text); }
 .reihe-fertig .n { font-weight: 900; font-size: 20px; text-align: center; color: var(--sky-2); }
 .reihe-fertig img { width: 110px; height: 82px; object-fit: cover; border-radius: 10px; }
+
+/* Paket B: mehrere Körbe (Spur 2), „Nicht mehr da“ (Spur 6), Textkarten */
+.koerbe { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.korb.weg { background: repeating-linear-gradient(-45deg, #F4EFE4 0 10px, #EEE7D8 10px 20px); border-color: #CBBF9F; }
+.tisch + .korb.weg { margin-top: 8px; min-height: 90px; }
+.koerbe .korb .chip { width: 84px; }
+.rcard .txtbild { display: grid; place-items: center; width: 100%; aspect-ratio: 1.35; background: #F4EFE4; color: #B9AE95; font-size: 40px; font-weight: 900; }
+.rslot .txtkarte { padding: 4px; font-size: 11px; line-height: 1.2; text-align: center; color: var(--text); }
+.fk.place { min-height: 56px; }
+
+/* Mondtresor: Buchstaben fliegen ein, Tür öffnet sich selbst, Frage innen (Paket B4) */
+.tresor .slot.fliegt { animation: fliegt .5s cubic-bezier(.2,1.4,.4,1) both; }
+@keyframes fliegt { from { transform: translate(-50%, 260%) scale(1.6); opacity: 0; } }
+.tresor.oeffnet .door .inside { transition-delay: 2.3s; }
+.tresor.oeffnet > img.auf { transition-delay: 2.1s; }
+.innen.spaeter { animation: spaeter .4s 2.6s both; }
+@keyframes spaeter { from { opacity: 0; transform: translateY(10px); } }
+.innen .opts { text-align: left; }
+.fazit-liste { text-align: left; background: var(--evidence-highlight); border-radius: 12px; padding: 8px 10px 8px 28px; margin: 8px 0; font-size: 15px; line-height: 1.4; }

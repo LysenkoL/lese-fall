@@ -134,7 +134,7 @@ function zeigeBlatt(dir: number) {
   let f: string;
   if (R.ev) {
     const E = R.ev;
-    const mid = E.found ? `<button class="btn cta" data-a="evback">Zurück zum Spiel</button>` : `<div class="banner" id="banner"><span>${T(E.miss >= 2 ? E.near : E.ask)}</span></div>`;
+    const mid = E.found ? `<button class="btn cta" data-a="evback">Zurück zum Spiel</button>` : `<div class="banner" id="banner"><span>${E.miss >= 2 ? `<b>${T(U.hilfe)}</b> ${T(E.near)}` : T(E.ask)}</span></div>`;
     f = prev + mid + `<button class="nav" data-a="next" ${last ? 'disabled' : ''} aria-label="Nächstes Blatt">›</button>`;
   } else {
     const pos = R.sheets.length > 1 ? (R.idx / (R.sheets.length - 1)) * 100 : 0;
@@ -180,9 +180,14 @@ content.addEventListener('click', (e) => {
     zeigeBlatt(0); return;
   }
   E.miss++;
+  if (E.miss === 2) {
+    const blk = E.ids[0].replace(/-\d+$/, '');
+    const ziel = R.sheets.findIndex((sh) => sh.includes(blk));
+    if (ziel >= 0 && ziel !== R.idx) { const d = ziel > R.idx ? 1 : -1; R.idx = ziel; zeigeBlatt(d); return; }
+  }
   s.classList.remove('nope'); void s.offsetWidth; s.classList.add('nope');
   const b = document.getElementById('banner');
-  if (b) b.innerHTML = `<span>${T(E.miss >= 2 ? E.near : U.beweisNein)}</span>`;
+  if (b) b.innerHTML = `<span>${E.miss >= 2 ? `<b>${T(U.hilfe)}</b> ${T(E.near)}` : T(U.beweisNein)}</span>`;
 });
 
 foot.addEventListener('click', (e) => {
@@ -222,6 +227,7 @@ class Spiel {
   stepPearls: number[] = [];
   falsch = 0;
   gained = 0;
+  mitHilfe = false;
   neu = false;
   constructor(public spur: number, public replay: boolean) {
     this.data = teil(spur).spiel;
@@ -241,7 +247,7 @@ class Spiel {
       ${st.frage && this.phase !== 'won' ? `<p class="q">${T(st.frage)}</p>` : ''}
       <div class="engine"></div></div>`;
     let primary: string;
-    if (this.phase === 'wrong') primary = `<button class="btn cta" data-a="beweis">${LUPE}Zeig den Beweis!</button>`;
+    if (this.phase === 'wrong') primary = `<button class="btn cta" data-a="beweis">${LUPE}Im Text nachsehen</button>`;
     else if (this.phase === 'explain') primary = `<button class="btn cta" data-a="verstanden">Verstanden</button>`;
     else if (this.phase === 'stepdone') primary = `<button class="btn cta" data-a="weiter">Weiter ›</button>`;
     else if (this.phase === 'won') primary = this.replay ? `<button class="btn cta" data-a="wand">Zur Spurenwand ›</button>` : `<button class="btn cta" data-a="sichern">Spur sichern ›</button>`;
@@ -271,9 +277,9 @@ class Spiel {
       case 'retry': return bubble('tipp', `<span>${T(U.deinBeweis)} <span class="quote">${T(this.quote)}</span> ${T(U.nochmal)}</span>`);
       case 'help': return bubble('tipp', `<span><b>${T(U.hilfe)}</b> ${T(t?.help ?? this.st.help)}</span>`, 'help');
       case 'explain': return bubble('lob', `<span>${T(this.st.explain ?? '')}</span>`, 'help');
-      case 'stepdone': return bubble('klatscht', `<span><b>${T(U.siegVoll)}</b></span>`);
+      case 'stepdone': return bubble('lob', `<span><b>${T(this.st.zwischen ?? U.siegVoll)}</b></span>`);
       case 'won': {
-        const d = this.data, voll = this.gained === 2;
+        const d = this.data, voll = !this.mitHilfe;
         return `<div class="sieg-box" role="status"><div class="win-top"><img class="r" src="${raupe('klatscht', s)}" alt="Die Lese-Raupe klatscht"><img class="k" src="${img(d.kind)}" alt=""></div>
           <div class="big">${T(voll ? U.siegVoll : U.siegHalb)}</div>${voll ? '' : `<p>${T(U.siegHalbText)}</p>`}<p>${T(d.sieg)}</p>
           ${this.neu ? `<span class="gain">${'<i></i>'.repeat(this.gained)}+${this.gained} Schimmer-${this.gained > 1 ? 'Perlen' : 'Perle'}</span>` : ''}</div>`;
@@ -300,7 +306,8 @@ class Spiel {
     this.stepPearls[this.step] = p;
     this.engine.locked = true; this.engine.won = true;
     if (this.step < this.data.schritte.length - 1) { this.phase = 'stepdone'; this.show(); return; }
-    this.gained = Math.min(...this.stepPearls);
+    this.gained = 2; // A-05: immer +2 pro Spur, mit oder ohne Hilfe
+    this.mitHilfe = Math.min(...this.stepPearls) < 2;
     this.neu = !this.replay && !stand.geloest[this.spur];
     if (this.neu) { stand.geloest[this.spur] = this.gained; speichern(); glowMoon(); }
     this.phase = 'won';
@@ -442,44 +449,37 @@ function fundMenu(spur: number) {
 function tresor() {
   ort('tresor');
   header('Mondtresor');
-  const gw = DATA.geheimwort;
+  const gw = DATA.geheimwort, innen = gw.innen;
   const wort: string = gw.wort;
   const slotsX = [27.1, 36.3, 45.5, 54.6, 63.8, 73.0];
-  let eingabe: number[] = [];
-  let fehl = 0;
-  const tiles = [...wort].map((c, i) => ({ c, i }));
-  for (let i = tiles.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [tiles[i], tiles[j]] = [tiles[j], tiles[i]]; }
-  if (tiles.map((t) => t.c).join('') === wort) tiles.reverse();
-  const tresorUrl = img('mondtresor_zu');
-  const render = (msg = '') => {
-    const offen = stand.tresorOffen;
-    const slots = slotsX.map((x, i) => `<span class="slot" style="left:${x}%">${offen ? wort[i] : eingabe[i] !== undefined ? tiles[eingabe[i]].c : ''}</span>`).join('');
+  const opts = [...innen.optionen].sort(() => Math.random() - 0.5);
+  let gewaehlt: string | null = null, falsch = false;
+  const fertig = () => stand.tresorOffen;
+  const render = (sofort: boolean) => {
+    const slots = slotsX.map((x, i) => `<span class="slot ${sofort ? '' : 'fliegt'}" style="left:${x}%;animation-delay:${i * 0.28}s">${wort[i]}</span>`).join('');
+    const frage = fertig() ? `<div class="big">${T(U.geschafft)}</div><p>${T(gw.haken)}</p><span class="gain"><i></i>${perlen()} Schimmer-Perlen</span>`
+      : `<div class="innen ${sofort ? '' : 'spaeter'}"><p class="q">${T(innen.frage)}</p><div class="opts">${opts.map((o: any) => `<button class="opt" data-io="${o.id}" aria-pressed="${gewaehlt === o.id}">${T(o.label)}</button>`).join('')}</div>
+         ${falsch ? `<div class="fb help"><img src="${raupe('tipp', 6)}" alt=""><span>${T(innen.falsch)}</span></div><ul class="fazit-liste">${DATA.spuren.map((sp: any) => `<li>${T(sp.spiel.fund.fazit)}</li>`).join('')}</ul>` : ''}</div>`;
     const html = `<div class="task center"><div class="kicker">${T(U.tresorTitel)}</div>
       <p class="q">${T(gw.frage)}</p>
-      <div class="tresor ${offen ? 'open' : ''}" id="tr"><img src="${tresorUrl}" alt="Der Mondtresor"><img class="auf" src="${img('mondtresor_auf')}" alt="">
-        <div class="door"><div class="inside" style="background-image:url('${img('k2_s7')}')"></div></div>${slots}</div>
-      ${offen ? `<div class="big">${T(U.geschafft)}</div><p>${T(gw.offen)}</p><p>${T(gw.haken)}</p><span class="gain"><i></i>${perlen()} Schimmer-Perlen</span>`
-        : `<div class="tiles">${tiles.map((t, k) => `<button class="tile" data-t="${k}" ${eingabe.includes(k) ? 'disabled' : ''}>${t.c}</button>`).join('')}</div>
-           <p style="font-size:15px;color:var(--muted)">${T(U.tresorTipp)}</p><div id="tmsg" role="status">${msg}</div>`}
-    </div>`;
-    const f = offen ? `<button class="btn" data-a="fertig">Für heute fertig</button><button class="btn cta" data-a="kap2">Weiter zu Kapitel 2 ›</button>` : `<button class="btn" data-a="tzurueck" ${eingabe.length ? '' : 'disabled'}>‹ Zurück</button><button class="btn" data-a="wand">Spurenwand</button>`;
+      <div class="tresor ${sofort ? 'open' : 'oeffnet'}" id="tr"><img src="${img('mondtresor_zu')}" alt="Der Mondtresor"><img class="auf" src="${img('mondtresor_auf')}" alt="">
+        <div class="door"><div class="inside" style="background-image:url('${img('k2_s7')}')"></div></div>${slots}</div>${frage}</div>`;
+    const f = fertig() ? `<button class="btn" data-a="fertig">Für heute fertig</button><button class="btn cta" data-a="kap2">Weiter zu Kapitel 2 ›</button>`
+      : `<button class="btn" data-a="wand">Spurenwand</button>`;
     setView(html, f, { scroll: true });
-    content.querySelectorAll<HTMLElement>('[data-t]').forEach((b) => b.addEventListener('click', () => {
-      eingabe.push(+b.dataset.t!);
-      if (eingabe.length < wort.length) { render(); return; }
-      if (eingabe.map((k) => tiles[k].c).join('') === wort) {
-        stand.tresorOffen = true; speichern();
-        render();
-        if (!ruhig()) { const tr = $('tr'); tr.classList.remove('open'); void tr.offsetWidth; requestAnimationFrame(() => tr.classList.add('open')); }
-      } else {
-        fehl++; eingabe = [];
-        const hilfe = fehl >= 2 ? `<div class="fb help"><img src="${raupe('tipp', 6)}" alt=""><span>${T(gw.near)}<br><span class="quote">${T(gw.zitat[0])}</span></span></div>` : `<div class="fb"><img src="${raupe('denkt', 6)}" alt=""><span>${T(U.tresorFalsch)}</span></div>`;
-        render(hilfe);
-      }
+    if (!sofort) {
+      // Buchstaben fliegen in die Felder, dann geht die Tür von selbst auf (Ritual)
+      const tr = $('tr');
+      setTimeout(() => tr.classList.add('open'), ruhig() ? 0 : 6 * 280 + 400);
+    }
+    content.querySelectorAll<HTMLElement>('[data-io]').forEach((b) => b.addEventListener('click', () => {
+      gewaehlt = b.dataset.io!;
+      if (gewaehlt === innen.loesung) { stand.tresorOffen = true; speichern(); glowMoon(); }
+      else falsch = true;
+      render(true);
     }));
   };
-  actions.tzurueck = () => { eingabe.pop(); render(); };
-  render();
+  render(fertig());
 }
 
 function kapitel2() {

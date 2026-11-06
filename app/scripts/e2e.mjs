@@ -129,25 +129,32 @@ async function run(name, viewport, full, fs = 0) {
       ok(await p.$eval('.gain', (e) => e.textContent.includes('+2')), `${name}: Fund mit Beweis = 2 Perlen`);
     }
     if (spur === 2) {
-      await click('[data-drag="vorhang"]'); await click('[data-zone="ziel"]'); await click('[data-drag="wolke"]'); await click('[data-zone="ziel"]');
+      // Schritt 1: Vorhang + Wolke ans Theater, Mond → „Nicht mehr da“, Puppen bleiben liegen
+      for (const [it, z] of [['vorhang', 'ziel'], ['wolke', 'ziel'], ['mond', 'weg']]) { await click(`[data-drag="${it}"]`); await click(`[data-zone="${z}"]`); }
       if (full) await shot('spur2_gelegt');
       await btn('pruefen'); await sleep(250);
+      ok((await p.$eval('.fb', (e) => e.textContent)).includes('Vorhang und Wolke sind noch da'), `${name}: Zwischenstand nach Schritt 1 ohne „Spur entdeckt“`);
       if (full) await shot('spur2_schritt_fertig');
       await btn('weiter'); await sleep(250);
-      // zweiter Teil: absichtlich zweimal falsch → Weitere Hilfe, dann richtig = 1 Perle
-      await click('[data-o="ben"]'); await btn('pruefen');
+      if (full) await shot('spur2_schritt2');
+      // Schritt 2: zweimal falsch → Im Text nachsehen → nach 2 Fehltipps richtiges Blatt ohne Markierung → Tipp
+      await click('[data-drag="raupe"]'); await click('[data-zone="tisch"]'); await btn('pruefen'); await sleep(200);
+      ok((await p.$eval('[data-a="beweis"]', (e) => e.textContent)).includes('Im Text nachsehen'), `${name}: Knopf „Im Text nachsehen“`);
       await btn('beweis'); await sleep(300);
-      await findEvidence(st[1].beweis);
+      const z = st[1].beweis;
+      for (let k = 0; k < 2; k++) { const w = await p.$(`.sent:not(${z.map((i) => `[data-s="${i}"]`).join(',')})`); await w.click(); await sleep(250); }
+      ok(!!(await p.$(`[data-s="${z[0]}"]`)) && !(await p.$('.sent.found')), `${name}: nach 2 Fehltipps das richtige Blatt, nichts markiert`);
+      if (full) await shot('spur2_richtiges_blatt');
+      await findEvidence(z);
       await btn('evback'); await sleep(250);
-      await click('[data-o="schrank"]'); await btn('pruefen'); await sleep(250);
-      ok(!!(await p.$('.fb.help')), `${name}: nach 2. Fehler „Weitere Hilfe“`);
-      if (full) await shot('spur2_weitere_hilfe');
-      await click('[data-o="blatt"]'); await btn('pruefen'); await sleep(300);
-      ok(await p.$eval('.gain', (e) => e.textContent.includes('+1')), `${name}: mit Hilfe = 1 Perle`);
+      await click('[data-drag="raupe"]'); await click('[data-zone="topf"]'); await btn('pruefen'); await sleep(250);
+      ok(!!(await p.$('.fb.help')), `${name}: nach 2. Fehler Tipp-Zeile`);
+      if (full) await shot('spur2_tipp');
+      await click('[data-drag="raupe"]'); await click('[data-zone="blatt"]'); await btn('pruefen'); await sleep(300);
+      ok(await p.$eval('.gain', (e) => e.textContent.includes('+2')), `${name}: auch mit Hilfe +2 Perlen (A-05)`);
     }
     if (spur === 3) {
-      await click('[data-kid="mila"]'); await click('[data-place="vorhang"]');
-      await click('[data-kid="ben"]'); await click('[data-place="waschbecken"]');
+      for (const [k, pl] of Object.entries(st[0].loesung)) { await click(`[data-kid="${k}"]`); await click(`[data-place="${pl}"]`); }
       if (full) await shot('spur3_faeden');
       await btn('pruefen'); await sleep(300);
     }
@@ -171,21 +178,21 @@ async function run(name, viewport, full, fs = 0) {
     ok(!!(await p.$('.win-top')), `${name}: Spur ${spur} gelöst`);
     await afterWin(spur, full || spur === 1);
   }
-  // Mondtresor
+  // Mondtresor: Wort öffnet die Tür selbst, innen eine Frage
+  await sleep(2400);
+  ok(!!(await p.$('.tresor.open')) && !(await p.$('.tile')), `${name}: Mondtresor öffnet sich von selbst`);
   await shot('mondtresor');
-  for (const c of 'KLEBER') {
-    const tiles = await p.$$('.tile:not([disabled])');
-    for (const t of tiles) if ((await t.textContent()) === c) { await t.click(); await sleep(120); break; }
-  }
-  await sleep(1800);
-  ok(!!(await p.$('.tresor.open')), `${name}: Mondtresor offen`);
+  await click('[data-io="versteckt"]'); await sleep(200);
+  ok(!!(await p.$('.fazit-liste')) && !(await p.$('[data-a="kap2"]')), `${name}: falsche Aussage: Hinweis auf die Spurenwand, kein Ende`);
+  if (full) await shot('mondtresor_falsch');
+  await click('[data-io="ja"]'); await sleep(300);
   await shot('mondtresor_offen');
   ok(!!(await p.$('[data-a="kap2"]')) && !!(await p.$('[data-a="fertig"]')), `${name}: Ende: Kapitel 2 oder Für heute fertig`);
   await btn('kap2'); await sleep(400);
   await shot('kapitel2_bald');
   const st = await p.evaluate(() => window.__lesefall.stand);
   ok(Object.keys(st.geloest).length === 6 && st.buchstaben.length === 6, `${name}: alle 6 Spuren und Buchstaben gespeichert`);
-  ok(Object.values(st.geloest).reduce((a, b) => a + b, 0) === 11, `${name}: Perlen 2+1+2+2+2+2 = 11`);
+  ok(Object.values(st.geloest).reduce((a, b) => a + b, 0) === 12, `${name}: Perlen 6 × 2 = 12`);
   // Wand + Wiederholung ohne neue Perlen
   await click('#home'); await sleep(400);
   await shot('spurenwand_voll');
@@ -193,7 +200,7 @@ async function run(name, viewport, full, fs = 0) {
   ok(!!(await p.$('.pop.fazit .beleg')), `${name}: Spur antippen zeigt Fazit und Beweissatz`);
   if (full) await shot('fazit');
   await click('[data-m="spiel"]'); await sleep(300);
-  await click('[data-kid="mila"]'); await click('[data-place="vorhang"]'); await click('[data-kid="ben"]'); await click('[data-place="waschbecken"]');
+  for (const [k, pl] of Object.entries(D.spuren[2].spiel.schritte[0].loesung)) { await click(`[data-kid="${k}"]`); await click(`[data-place="${pl}"]`); }
   await btn('pruefen'); await sleep(300);
   ok(!(await p.$('.gain')), `${name}: Wiederholung gibt keine Perlen`);
   const nach = await p.evaluate(() => JSON.stringify({ g: window.__lesefall.stand.geloest, b: window.__lesefall.stand.buchstaben, t: window.__lesefall.stand.tresorOffen }));
@@ -230,7 +237,7 @@ async function run(name, viewport, full, fs = 0) {
   await p.reload(); await sleep(900);
   await btn('los'); await sleep(400);
   ok(!!(await p.$(`#content [data-b="${anker}"]`)), `${name}: nach Neustart wieder auf demselben Blatt (${anker})`);
-  ok(await p.$eval('#pc', (e) => e.textContent) === '11', `${name}: nach Neustart 11 Perlen`);
+  ok(await p.$eval('#pc', (e) => e.textContent) === '12', `${name}: nach Neustart 12 Perlen`);
   ok(errors.length === 0, `${name}: keine Fehler in der Konsole ${errors.join(' | ')}`);
   await b.close();
 }

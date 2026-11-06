@@ -15,6 +15,7 @@ const IMGS = {
   ...import.meta.glob('../../assets/illustrationen/{k1_s1,k1_s2_vorher,k1_s2_nachher,k1_s3,k1_s4_vorher,k1_s4_nachher,k1_s5,k1_s5_karten,k1_s6_vorher,k1_s6_nachher,k2_s7,cover,mondtresor_zu,mondtresor_auf,vorgeschichte,kapitel_1,spiel_theater_leer,spurenwand}.webp', { eager: true, query: '?url', import: 'default' }),
   ...import.meta.glob('../../assets/illustrationen/{raupe,mila,ben,oskar,k1_s5_karten}/*.webp', { eager: true, query: '?url', import: 'default' }),
   // Gegenstände: freigestellte Kopien (scripts/freistellen.py), Originale bleiben in assets/
+  ...Object.fromEntries(Object.entries(import.meta.glob('./gen/frei/*.webp', { eager: true, query: '?url', import: 'default' })).map(([k, v]) => [k.replace('./gen/', '../../assets/illustrationen/'), v])),
   ...Object.fromEntries(Object.entries(import.meta.glob('./gen/objekte/*.webp', { eager: true, query: '?url', import: 'default' })).map(([k, v]) => [k.replace('./gen/', '../../assets/illustrationen/'), v])),
 } as Record<string, string>;
 

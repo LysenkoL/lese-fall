@@ -35,7 +35,26 @@
     "beweisSpur": 5,
     "near": "Lies noch einmal, was Ben Mila in Spur 5 erklärt.",
     "offen": "Der Mondtresor ist offen!",
-    "haken": "Aber wer hat den Mond vom Tablett genommen? Das findest du in Kapitel 2 heraus."
+    "haken": "Aber wer hat den Mond vom Tablett genommen? Das findest du in Kapitel 2 heraus.",
+    "innen": {
+      "frage": "Was wissen wir jetzt sicher?",
+      "optionen": [
+        {
+          "id": "ja",
+          "label": "Ben hat den Mond repariert und aufs Tablett gelegt. Jetzt ist er weg."
+        },
+        {
+          "id": "versteckt",
+          "label": "Ben hat den Mond versteckt."
+        },
+        {
+          "id": "kreis",
+          "label": "Der gelbe Kreis unter der Zeitung ist Milas Mond."
+        }
+      ],
+      "loesung": "ja",
+      "falsch": "Lies die Spurenwand noch einmal."
+    }
   },
   "spuren": [
     {
@@ -125,12 +144,10 @@
         ]
       },
       "kind": "ben/staunt",
-      "sieg": "Du hast genau hingesehen: Vorhang und Wolke sind noch da, nur der Mond fehlt.",
+      "sieg": "Du hast genau hingesehen: Vorhang und Wolke sind noch da, nur der Mond fehlt. Und die Lese-Raupe war unter ihrem größten Blatt.",
       "schritte": [
         {
-          "intro": "Die Lese-Raupe krabbelt wieder hervor. Was hängt jetzt noch am Theater? Leg nur das ans Theater, was wirklich noch da ist.",
-          "ziel": "Am Theater",
-          "ablage": "Nicht am Theater",
+          "intro": "Die Lese-Raupe krabbelt wieder hervor. Was hängt jetzt noch am Theater? Was ist nicht mehr da?",
           "karten": [
             {
               "id": "vorhang",
@@ -148,15 +165,17 @@
               "label": "der gelbe Mond"
             },
             {
-              "id": "kreis",
-              "bild": "objekte/falscher_kreis_vorne",
-              "label": "ein gelber Kreis"
+              "id": "puppen",
+              "bild": "objekte/kiste_gruen",
+              "label": "die Puppen"
             }
           ],
-          "loesung": [
-            "vorhang",
-            "wolke"
-          ],
+          "loesung": {
+            "vorhang": "ziel",
+            "wolke": "ziel",
+            "mond": "weg",
+            "puppen": null
+          },
           "beweis": [
             "Der rote Vorhang hängt noch da.",
             "Die weiße Wolke auch.",
@@ -165,36 +184,79 @@
           "ask": "Was hängt noch am Theater? Tippe auf einen Satz, der es verrät.",
           "near": "Such dort, wo die Lese-Raupe endlich wieder hervorkrabbelt.",
           "help": "Lies die kurzen Sätze nach „Endlich krabbelt sie hervor“ ganz genau. Was ist noch da? Was fehlt?",
-          "explain": "Im Text steht: „Der rote Vorhang hängt noch da. Die weiße Wolke auch. Aber der gelbe Mond ist verschwunden!“ Einen gelben Kreis gibt es am Theater nicht."
-        },
-        {
-          "motor": "urteil",
-          "art": "einzeln",
-          "intro": "Und noch eine Frage:",
-          "frage": "Warum hat die Lese-Raupe nicht gesehen, wer den Mond genommen hat?",
-          "optionen": [
+          "explain": "Im Text steht: „Der rote Vorhang hängt noch da. Die weiße Wolke auch. Aber der gelbe Mond ist verschwunden!“ Die Puppen holt Mila gerade aus dem Schrank.",
+          "koerbe": [
             {
-              "id": "blatt",
-              "label": "Sie war eine ganze Weile unter ihrem größten Blatt."
+              "id": "ziel",
+              "label": "Am Theater"
             },
             {
-              "id": "schrank",
-              "label": "Sie hat die ganze Zeit zum großen Schrank geschaut."
-            },
-            {
-              "id": "ben",
-              "label": "Ben stand vor dem Theater und hat alles verdeckt."
+              "id": "weg",
+              "label": "Nicht mehr da"
             }
           ],
-          "loesung": "blatt",
+          "zwischen": "Vorhang und Wolke sind noch da."
+        },
+        {
+          "motor": "zielfeld",
+          "layout": "theater",
+          "intro": "Wo war die Lese-Raupe, als der Mond verschwunden ist? Leg sie an die richtige Stelle.",
+          "hintergrund": "spiel_theater_leer",
+          "ausschnitt": {
+            "x": 0,
+            "y": 0,
+            "w": 0.7292,
+            "h": 0.7422,
+            "seite": 1.47
+          },
+          "zonen": [
+            {
+              "id": "blatt",
+              "label": "unter ihrem größten Blatt",
+              "x": 17,
+              "y": 30,
+              "w": 15
+            },
+            {
+              "id": "topf",
+              "label": "auf dem Blumentopf",
+              "x": 9,
+              "y": 80,
+              "w": 15
+            },
+            {
+              "id": "fenster",
+              "label": "am Fenster",
+              "x": 36,
+              "y": 24,
+              "w": 15
+            },
+            {
+              "id": "tisch",
+              "label": "auf dem Tisch",
+              "x": 76,
+              "y": 78,
+              "w": 15
+            }
+          ],
+          "dinge": [
+            {
+              "id": "raupe",
+              "bild": "frei/raupe_staunt",
+              "label": "die Lese-Raupe"
+            }
+          ],
+          "loesung": {
+            "raupe": "blatt"
+          },
           "beweis": [
             "Dann kriecht sie unter ihr größtes Blatt und wischt sich den Mund ab.",
             "Das dauert eine ganze Weile."
           ],
-          "ask": "Was hat die Lese-Raupe gemacht, als der Mond verschwunden ist? Tippe auf den Satz, der es verrät.",
+          "ask": "Wo war die Lese-Raupe, als der Mond verschwunden ist? Tippe auf den Satz, der es verrät.",
           "near": "Such dort, wo die Lese-Raupe das Papier ausspuckt.",
-          "help": "Was macht die Lese-Raupe gleich nach dem Spucken? Und wie lange dauert das?",
-          "explain": "Im Text steht: „Dann kriecht sie unter ihr größtes Blatt und wischt sich den Mund ab. Das dauert eine ganze Weile.“ In dieser Zeit konnte sie das Theater nicht sehen."
+          "help": "Was macht die Lese-Raupe gleich nach dem Spucken?",
+          "explain": "Im Text steht: „Dann kriecht sie unter ihr größtes Blatt und wischt sich den Mund ab. Das dauert eine ganze Weile.“ Von dort konnte sie das Theater nicht sehen."
         }
       ]
     },
@@ -213,62 +275,82 @@
         ]
       },
       "kind": "mila/denkt",
-      "sieg": "Du hast jedes Kind mit seinem Ort verbunden: Mila sucht hinter dem Vorhang, Ben steht am Waschbecken.",
+      "sieg": "Du hast jede Figur mit dem verbunden, was sie im Text macht. Unter dem Tisch hat noch niemand gesucht.",
       "schritte": [
         {
-          "intro": "Wer ist gerade wo? Zieh einen Faden von jedem Kind zu seinem Ort. Ein Ort bleibt frei.",
+          "intro": "Wer macht was? Verbinde jede Figur mit dem, was sie im Text macht. Eine Karte bleibt übrig.",
           "links": [
+            {
+              "id": "ben",
+              "bild": "ben/denkt",
+              "label": "Ben"
+            },
             {
               "id": "mila",
               "bild": "mila/denkt",
               "label": "Mila"
             },
             {
-              "id": "ben",
-              "bild": "ben/denkt",
-              "label": "Ben"
+              "id": "raupe",
+              "bild": "raupe/denkt",
+              "label": "die Lese-Raupe"
             }
           ],
           "rechts": [
             {
-              "id": "vorhang",
-              "bild": "objekte/theater",
-              "label": "schaut hinter den roten Vorhang"
+              "id": "wasser",
+              "label": "hört nichts, weil das Wasser rauscht"
             },
             {
-              "id": "waschbecken",
-              "bild": "objekte/wasserhahn",
-              "label": "steht am Waschbecken"
+              "id": "vorhang",
+              "label": "wartet nicht länger und schaut hinter den Vorhang"
+            },
+            {
+              "id": "aermel",
+              "label": "denkt an den gestreiften Ärmel"
             },
             {
               "id": "tisch",
-              "bild": "objekte/bleistift_gruen",
-              "label": "sucht unter dem großen Tisch"
+              "label": "hat unter dem Tisch gesucht"
             }
           ],
           "loesung": {
+            "ben": "wasser",
             "mila": "vorhang",
-            "ben": "waschbecken"
+            "raupe": "aermel"
           },
           "proDing": {
-            "mila": {
-              "beweis": [
-                "Sie schaut hinter den roten Vorhang des Theaters."
-              ],
-              "ask": "Wo sucht Mila gerade? Tippe auf den Satz, der es verrät.",
-              "near": "Such dort, wo Mila nicht länger wartet.",
-              "help": "Wer ist hier „sie“? Und wohin schaut sie?"
-            },
             "ben": {
               "beweis": [
-                "Ben steht am Waschbecken in der Ecke, mit dem Rücken zu ihr."
+                "Das Wasser rauscht laut.",
+                "Ben hört nichts."
               ],
-              "ask": "Wo ist Ben gerade? Tippe auf den Satz, der es verrät.",
-              "near": "Such dort, wo Ben nichts hört.",
-              "help": "Was rauscht laut, während Ben dort steht? Wo gibt es das im Raum?"
+              "ask": "Was macht Ben? Tippe auf den Satz, der es verrät.",
+              "near": "Such dort, wo Ben am Waschbecken steht.",
+              "help": "Warum antwortet Ben nicht, als Mila ruft?"
+            },
+            "mila": {
+              "beweis": [
+                "Mila wartet nicht länger.",
+                "Sie schaut hinter den roten Vorhang des Theaters."
+              ],
+              "ask": "Was macht Mila? Tippe auf den Satz, der es verrät.",
+              "near": "Such dort, wo Mila keine Antwort bekommt.",
+              "help": "Was macht Mila, als Ben nicht antwortet?"
+            },
+            "raupe": {
+              "beweis": [
+                "Dann denkt sie an den gestreiften Ärmel."
+              ],
+              "ask": "Woran denkt die Lese-Raupe? Tippe auf den Satz, der es verrät.",
+              "near": "Such dort, wo die Lese-Raupe zwischen zwei Blättern hervorschaut.",
+              "help": "Was hat die Lese-Raupe heute schon einmal gesehen?"
             }
           },
-          "explain": "Im Text steht: „Ben steht am Waschbecken in der Ecke …“ Und über Mila: „Sie schaut hinter den roten Vorhang des Theaters.“ Unter dem Tisch hat Mila noch gar nicht gesucht."
+          "beweis": [
+            "Doch dort hat Mila noch gar nicht gesucht."
+          ],
+          "explain": "Ben hört nichts, weil das Wasser laut rauscht. Mila wartet nicht länger und schaut hinter den Vorhang. Die Lese-Raupe denkt an den gestreiften Ärmel. Unter dem Tisch hat noch niemand gesucht."
         }
       ]
     },
@@ -372,7 +454,7 @@
       "sieg": "Du hast Bens vier Schritte in die richtige Reihenfolge gebracht.",
       "schritte": [
         {
-          "intro": "Was hat Ben gemacht? Leg die vier Bilder in die richtige Reihenfolge.",
+          "intro": "Was hat Ben gemacht? Leg die Bilder in die richtige Reihenfolge. Ein Bild passt nicht zum Text.",
           "karten": [
             {
               "id": "ab",
@@ -393,6 +475,11 @@
               "id": "waschen",
               "bild": "k1_s5_karten/karte_4",
               "label": "Ben wäscht sich die Hände."
+            },
+            {
+              "id": "falsch",
+              "bild": null,
+              "label": "Ben hängt den Mond wieder ans Theater."
             }
           ],
           "loesung": [
@@ -429,10 +516,10 @@
         ]
       },
       "kind": "mila/besorgt",
-      "sieg": "Du hast alles so hingelegt, wie es im Text steht. Der Mond lag auf dem Tablett – jetzt ist er weg.",
+      "sieg": "Du hast nur hingelegt, was jetzt wirklich da ist. Genau hier hat Ben den Mond hingelegt. Jetzt ist er weg!",
       "schritte": [
         {
-          "intro": "Was liegt jetzt am Tablett? Und wo hat Ben den Mond vorhin hingelegt? Leg alles an seinen Platz.",
+          "intro": "Was liegt jetzt am Fenster? Leg alles an seinen Platz. Was nicht mehr da ist, kommt zu „Nicht mehr da“.",
           "layout": "tisch",
           "zonen": [
             {
@@ -446,6 +533,10 @@
             {
               "id": "rechts",
               "label": "rechts neben dem Tablett"
+            },
+            {
+              "id": "weg",
+              "label": "Nicht mehr da"
             }
           ],
           "dinge": [
@@ -467,14 +558,14 @@
             {
               "id": "mond",
               "bild": "objekte/mond_hinten",
-              "label": "der Mond (vorhin, sagt Ben)"
+              "label": "der Mond"
             }
           ],
           "loesung": {
             "schere": "rechts",
             "klebeband": "rechts",
             "streifen": "auf",
-            "mond": "auf"
+            "mond": "weg"
           },
           "proDing": {
             "schere": {
@@ -503,24 +594,24 @@
             },
             "mond": {
               "beweis": [
-                "Genau hier auf dem Tablett lag er vorhin noch!",
-                "Der Mond liegt auf dem Tablett."
+                "Auf dem Tablett liegt nur noch ein schmaler roter Papierstreifen.",
+                "Von dem großen Mond fehlt jede Spur!"
               ],
-              "ask": "Wo hat Ben den Mond hingelegt? Tippe auf den Satz, der es verrät.",
-              "near": "Such dort, wo Ben ganz sicher ist.",
-              "help": "Was sagt Ben: Wo lag der Mond vorhin noch?"
+              "ask": "Liegt der Mond jetzt am Fenster? Tippe auf den Satz, der es verrät.",
+              "near": "Such dort, wo die Lese-Raupe vom Blumentopf hinunterschaut.",
+              "help": "Was liegt jetzt noch auf dem Tablett – und was nicht?"
             }
           },
-          "explain": "Im Text steht: „Rechts neben dem Tablett liegen eine Schere und eine Rolle Klebeband. Auf dem Tablett liegt nur noch ein schmaler roter Papierstreifen.“ Und Ben sagt: „Genau hier auf dem Tablett lag er vorhin noch!“"
+          "explain": "Im Text steht: „Rechts neben dem Tablett liegen eine Schere und eine Rolle Klebeband. Auf dem Tablett liegt nur noch ein schmaler roter Papierstreifen. Von dem großen Mond fehlt jede Spur!“"
         }
       ]
     }
   ],
   "ui": {
     "falsch": [
-      "Hm, schauen wir noch einmal genau hin.",
-      "Hm. Da stimmt noch etwas nicht.",
-      "Moment! Lass uns im Text nachsehen."
+      "Hm. Zeig den Beweis!",
+      "Moment! Zeig den Beweis!",
+      "Hm, schauen wir noch einmal hin. Zeig den Beweis!"
     ],
     "beweisNein": "Dieser Satz verrät es noch nicht. Such weiter!",
     "beweisJa": "Gefunden! Das ist dein Beweis.",

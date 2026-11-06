@@ -9,7 +9,12 @@ ROOT = os.path.join(os.path.dirname(__file__), '..', '..')
 SRC = os.path.join(ROOT, 'assets/illustrationen/objekte')
 DST = os.path.join(ROOT, 'app/src/gen/objekte')
 os.makedirs(DST, exist_ok=True)
-for f in sorted(glob.glob(os.path.join(SRC, '*.webp'))):
+JOBS = [(f, os.path.join(DST, os.path.basename(f))) for f in sorted(glob.glob(os.path.join(SRC, '*.webp')))]
+# Figuren, die im Spiel als Ding gelegt werden (z. B. Spur 2: die Lese-Raupe unter das Blatt)
+FREI = os.path.join(ROOT, 'app/src/gen/frei')
+os.makedirs(FREI, exist_ok=True)
+JOBS += [(os.path.join(ROOT, 'assets/illustrationen/raupe/staunt.webp'), os.path.join(FREI, 'raupe_staunt.webp'))]
+for f, ziel in JOBS:
     im = Image.open(f).convert('RGB')
     w, h = im.size
     work = im.copy()
@@ -26,5 +31,5 @@ for f in sorted(glob.glob(os.path.join(SRC, '*.webp'))):
     mask = mask.filter(ImageFilter.GaussianBlur(0.8))
     out = im.convert('RGBA')
     out.putalpha(mask)
-    out.save(os.path.join(DST, os.path.basename(f)), 'WEBP', quality=88, method=6)
+    out.save(ziel, 'WEBP', quality=88, method=6)
     print('✓', os.path.basename(f))

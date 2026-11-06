@@ -87,16 +87,15 @@ class Ablage implements Engine {
   get items(): any[] { return this.kind === 'slots' ? this.st.karten : this.st.dinge; }
   reset() { this.place = Object.fromEntries(this.items.map((d: any) => [d.id, null])); this.sel = null; this.locked = false; }
   solve() {
-    if (this.kind === 'slots') for (const d of this.items) this.place[d.id] = this.st.loesung.includes(d.id) ? 'ziel' : null;
-    else this.place = { ...this.st.loesung };
+    this.place = Object.fromEntries(this.items.map((d: any) => [d.id, this.st.loesung[d.id] ?? null]));
     this.locked = true;
   }
   complete() {
-    return this.kind === 'slots' ? Object.values(this.place).some((z) => z === 'ziel') : Object.values(this.place).every((z) => z !== null);
+    // Slots: sobald etwas liegt; Zielfeld: alle Dinge, die einen Platz haben müssen (Fallen wie die Puppen dürfen liegen bleiben)
+    return this.kind === 'slots' ? Object.values(this.place).some((z) => z !== null) : Object.values(this.place).every((z) => z !== null);
   }
   correct() {
-    if (this.kind === 'slots') return this.items.every((d: any) => (this.place[d.id] === 'ziel') === this.st.loesung.includes(d.id));
-    return this.items.every((d: any) => this.place[d.id] === this.st.loesung[d.id]);
+    return this.items.every((d: any) => this.place[d.id] === (this.st.loesung[d.id] ?? null));
   }
   wrongItem() {
     if (this.kind === 'slots' || !this.st.proDing) return null;
@@ -111,7 +110,7 @@ class Ablage implements Engine {
     const tray = `<div class="tray" data-zone="__tray" aria-label="Ablage">${this.items.filter((d: any) => this.place[d.id] === null).map((d: any) => this.chip(d, false)).join('')}</div>`;
     const tgt = this.sel ? 'sel-target' : '';
     if (this.kind === 'slots') {
-      return `<div class="korb ziel ${tgt}" data-zone="ziel"><h4>${T(st.ziel)}</h4>${this.inZone('ziel', false)}</div>${tray.replace('class="tray"', 'class="tray"')}`;
+      return `<div class="koerbe">${st.koerbe.map((k: any, i: number) => `<div class="korb ${i === 0 ? 'ziel' : 'weg'} ${tgt}" data-zone="${k.id}"><h4>${T(k.label)}</h4>${this.inZone(k.id, false)}</div>`).join('')}</div>${tray}`;
     }
     if (st.layout === 'theater') {
       // Ausschnitt aus dem großen Spielbild: nur das Theater, Zonen in % des Ausschnitts
@@ -122,7 +121,8 @@ class Ablage implements Engine {
     // Tisch am Fenster
     const zone = (id: string) => st.zonen.find((z: any) => z.id === id);
     const tz = (id: string, extra = '') => `<div class="tz ${id === 'auf' ? 'auf' : ''} ${tgt}" data-zone="${id}" aria-label="${plain(zone(id).label)}">${extra}${this.inZone(id)}</div>`;
-    return `<div class="fenster">▲ Fenster</div><div class="tisch">${tz('links')}${tz('auf', `<img class="tab" src="${img('objekte/tablett_leer')}" alt="" draggable="false">`)}${tz('rechts')}</div>${tray}`;
+    const weg = zone('weg') ? `<div class="korb weg ${tgt}" data-zone="weg"><h4>${T(zone('weg').label)}</h4>${this.inZone('weg')}</div>` : '';
+    return `<div class="fenster">▲ Fenster</div><div class="tisch">${tz('links')}${tz('auf', `<img class="tab" src="${img('objekte/tablett_leer')}" alt="" draggable="false">`)}${tz('rechts')}</div>${weg}${tray}`;
   }
   bind(root: HTMLElement, rerender: () => void) {
     dragTap(root, {
@@ -167,7 +167,7 @@ class Faden implements Engine {
     const places = this.st.rechts.map((p: any) => {
       const who = Object.keys(this.link).find((k) => this.link[k] === p.id);
       const face = this.won && who ? `<img class="face" src="${img(this.st.links.find((k: any) => k.id === who).bild.replace(/\/.*$/, '/lacht'))}" alt="">` : '';
-      return `<div class="fk place ${who ? 'linked' : ''}" data-place="${p.id}" role="button" tabindex="0"><span class="knob"></span><img src="${img(p.bild)}" alt="" draggable="false"><span>${T(p.label)}</span>${face}</div>`;
+      return `<div class="fk place ${who ? 'linked' : ''}" data-place="${p.id}" role="button" tabindex="0"><span class="knob"></span>${p.bild ? `<img src="${img(p.bild)}" alt="" draggable="false">` : ''}<span>${T(p.label)}</span>${face}</div>`;
     }).join('');
     return `<div class="faden"><svg class="lines" aria-hidden="true"></svg><div class="col">${kids}</div><div class="col">${places}</div></div>`;
   }
@@ -233,8 +233,8 @@ class Reihe implements Engine {
   html() {
     // gelöst: groß und mit Beschriftung untereinander 1–4 (A11)
     if (this.won) return `<ol class="reihe-fertig">${this.st.loesung.map((id: string, i: number) => `<li><span class="n">${i + 1}</span><img src="${img(this.card(id).bild)}" alt=""><span>${T(this.card(id).label)}</span></li>`).join('')}</ol>`;
-    const slots = this.order.map((id, i) => `<div class="rslot ${id ? 'filled' : ''}" data-zone="${i}" ${id ? `data-drag="${id}"` : ''} role="button" aria-label="Platz ${i + 1}"><span class="n">${i + 1}</span>${id ? `<img src="${img(this.card(id).bild)}" alt="${plain(this.card(id).label)}" draggable="false">` : ''}</div>`).join('');
-    const pool = this.shuffled.map((k: any) => `<div class="rcard ${this.order.includes(k.id) ? 'used' : ''} ${this.sel === k.id ? 'sel' : ''}" data-drag="${k.id}" role="button" tabindex="0"><img src="${img(k.bild)}" alt="" draggable="false"><span class="l">${T(k.label)}</span></div>`).join('');
+    const slots = this.order.map((id, i) => `<div class="rslot ${id ? 'filled' : ''}" data-zone="${i}" ${id ? `data-drag="${id}"` : ''} role="button" aria-label="Platz ${i + 1}"><span class="n">${i + 1}</span>${id ? (this.card(id).bild ? `<img src="${img(this.card(id).bild)}" alt="${plain(this.card(id).label)}" draggable="false">` : `<span class="txtkarte">${T(this.card(id).label)}</span>`) : ''}</div>`).join('');
+    const pool = this.shuffled.map((k: any) => `<div class="rcard ${this.order.includes(k.id) ? 'used' : ''} ${this.sel === k.id ? 'sel' : ''}" data-drag="${k.id}" role="button" tabindex="0">${k.bild ? `<img src="${img(k.bild)}" alt="" draggable="false">` : `<span class="txtbild" aria-hidden="true">?</span>`}<span class="l">${T(k.label)}</span></div>`).join('');
     return `<div class="reihe">${slots}</div><div class="rpool" data-zone="__pool">${pool}</div>`;
   }
   bind(root: HTMLElement, rerender: () => void) {
