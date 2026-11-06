@@ -243,7 +243,7 @@ async function run(name, viewport, full, fs = 0, stil2 = false) {
     await click('[data-k="ja"]'); await sleep(250);
     ok(await p.$eval('#pc', (e) => e.textContent) === '6', `${name}: nach dem Kauf 6 Perlen übrig`);
     ok(await p.$eval('[data-g="hut"]', (e) => e.getAttribute('aria-pressed')) === 'true', `${name}: Hut wird getragen`);
-    ok(await p.$eval('[data-g="tasche"]', (e) => e.disabled && e.textContent.includes('Noch 1')), `${name}: zu teuer: „Noch 1 Perlen“, nicht kaufbar`);
+    ok(await p.$eval('[data-g="tasche"]', (e) => e.disabled && /Noch 1 Perle(?!n)/.test(e.textContent)), `${name}: zu teuer: „Noch 1 Perle“, nicht kaufbar`);
     await click('[data-g="ohne"]'); await sleep(150);
     ok(await p.$eval('[data-g="hut"]', (e) => e.getAttribute('aria-pressed')) === 'false', `${name}: ausziehen`);
     await click('[data-g="hut"]'); await sleep(150);

@@ -577,7 +577,7 @@ function garderobe() {
   const g = stand.garderobe, frei = verfuegbar(PREISE);
   const karten = G.dinge.map((d: any) => {
     const hat = g.gekauft.includes(d.id), traegt = g.traegt === d.id, fehlt = d.preis - frei;
-    const status = traegt ? T(G.traegt) : hat ? T(G.gekauft) : fehlt > 0 ? T(G.noch.replace('{n}', String(fehlt))) : `<span class="preis"><i></i>${d.preis}</span>`;
+    const status = traegt ? T(G.traegt) : hat ? T(G.gekauft) : fehlt > 0 ? T((fehlt === 1 ? G.noch1 : G.noch).replace('{n}', String(fehlt))) : `<span class="preis"><i></i>${d.preis}</span>`;
     return `<button class="gard ${hat ? 'hat' : ''} ${traegt ? 'traegt' : ''}" data-g="${d.id}" ${!hat && fehlt > 0 ? 'disabled' : ''} aria-pressed="${traegt}">
       <img src="${img('garderobe/' + d.id)}" alt=""><b>${T(d.label)}</b><span class="st">${status}</span></button>`;
   }).join('');
@@ -599,7 +599,7 @@ function kaufFrage(id: string) {
   const bg = document.createElement('div');
   bg.className = 'pop-bg';
   bg.style.alignItems = 'center'; bg.style.justifyContent = 'center';
-  bg.innerHTML = `<div class="pop kauf" role="dialog" aria-label="Kaufen"><img src="${img('garderobe/' + id)}" alt=""><p class="big">${T(G.kaufen.replace('{n}', String(d.preis)))}</p>
+  bg.innerHTML = `<div class="pop kauf" role="dialog" aria-label="Kaufen"><img src="${img('garderobe/' + id)}" alt=""><p class="big">${T((d.preis === 1 ? G.kaufen1 : G.kaufen).replace('{n}', String(d.preis)))}</p>
     <div class="menu"><button class="btn cta" data-k="ja">Ja</button><button class="btn" data-k="nein">Nein</button></div></div>`;
   document.body.appendChild(bg);
   bg.addEventListener('click', (e) => {

@@ -681,6 +681,8 @@
         "label": "die Blatt-Tasche",
         "preis": 7
       }
-    ]
+    ],
+    "noch1": "Noch {n} Perle",
+    "kaufen1": "Für {n} Perle kaufen?"
   }
 }
