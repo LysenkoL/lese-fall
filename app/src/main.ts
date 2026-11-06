@@ -69,7 +69,7 @@ function glowMoon() {
 function setView(html: string, f: string, opts: { scroll?: boolean; dir?: number; ev?: boolean; story?: boolean } = {}) {
   content.className = opts.story ? 'story' : '';
   // Art des Blatts für den neuen Stil: Lesen (Papier) oder Ermittlertisch (Holz)
-  sheetEl.dataset.art = opts.story ? 'lesen' : html.includes('class="engine"') ? 'spiel' : html.includes('class="wand"') ? 'wand' : 'sonst';
+  sheetEl.dataset.art = opts.story ? 'lesen' : html.includes('class="engine"') ? 'spiel' : html.includes('class="wand') ? 'wand' : 'sonst';
   content.innerHTML = html;
   foot.innerHTML = f;
   sheetEl.classList.toggle('scroll', !!opts.scroll);
@@ -274,7 +274,7 @@ class Spiel {
   mountEngine() {
     const old = content.querySelector('.engine')!;
     const el = document.createElement('div');
-    el.className = 'engine';
+    el.className = 'engine' + (this.engine.won ? ' gewonnen' : '');
     el.innerHTML = this.engine.html();
     old.replaceWith(el);
     this.engine.bind(el, () => {
@@ -332,7 +332,20 @@ class Spiel {
   }
 }
 actions.pruefen = () => game?.pruefen();
-actions.sichern = () => { const n = game!.spur; game = null; wand(n); };
+actions.sichern = () => {
+  const n = game!.spur; game = null;
+  const start = sheetEl.getBoundingClientRect();
+  wand(n);
+  if (!stand.stil2 || ruhig()) return;
+  const card = content.querySelector<HTMLElement>(`[data-fund="${n}"]`);
+  if (!card) return;
+  requestAnimationFrame(() => {
+    const r = card.getBoundingClientRect();
+    const dx = start.left + start.width / 2 - (r.left + r.width / 2), dy = start.top + start.height * 0.35 - (r.top + r.height / 2);
+    const end = getComputedStyle(card).transform;
+    card.animate([{ transform: `translate(${dx}px, ${dy}px) scale(1.8) rotate(-8deg)`, opacity: 0.4 }, { transform: end === 'none' ? 'none' : end, opacity: 1 }], { duration: 750, easing: 'cubic-bezier(.3,1.2,.4,1)' });
+  });
+};
 actions.nochmalLesen = () => { const n = game!.spur; game = null; lesen(n, { dir: -1 }); };
 actions.weiter = () => { if (!game) return; game.step++; game.startStep(); game.show(1); };
 actions.verstanden = () => game?.stepFertig(1);
@@ -425,6 +438,7 @@ function staub(box: HTMLElement, fertig: () => void) {
 /** Spurenwand: Funde, Geheimwort, Weiter. Nach einer Spur oben das Bild „nachher“. */
 function wand(nach = 0) {
   game = null; R.ev = null;
+  sheetEl.style.setProperty('--brett', `url('${img('spurenwand_board')}')`);
   ort('wand', nach);
   header('Spurenwand');
   const spuren = DATA.spuren;
