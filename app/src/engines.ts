@@ -129,7 +129,6 @@ class Ablage implements Engine {
       isLocked: () => this.locked,
       onDrop: (item, zone) => { this.place[item] = zone && zone !== '__tray' ? zone : null; this.single(item); this.sel = null; rerender(); },
       onTap: (item) => {
-        if (this.kind === 'slots') { this.place[item] = this.place[item] ? null : 'ziel'; rerender(); return; }
         // schon ein Ding gewählt und auf ein liegendes Ding getippt: dorthin legen
         if (this.sel && this.sel !== item && this.place[item]) {
           this.place[this.sel] = this.place[item]; this.single(this.sel); this.sel = null; rerender(); return;
@@ -283,20 +282,20 @@ class Urteil implements Engine {
     const st = this.st;
     if (st.art === 'einzeln') this.sel = st.loesung;
     if (st.art === 'mehrere') this.multi = new Set(st.loesung);
-    if (st.art === 'vergleich') { for (const z of st.zeilen) this.rows[z.id] = z.loesung; this.stamp = st.loesung; this.flipped = true; }
+    if (st.art === 'vergleich') { this.multi = new Set(st.zeilen.filter((z: any) => z.fehlt).map((z: any) => z.id)); this.stamp = st.loesung; this.flipped = true; }
     this.locked = true;
   }
   complete() {
     const st = this.st;
     if (st.art === 'einzeln') return this.sel !== null;
     if (st.art === 'mehrere') return this.multi.size === st.anzahl;
-    return Object.values(this.rows).every(Boolean) && this.stamp !== null;
+    return this.stamp !== null;
   }
   correct() {
     const st = this.st;
     if (st.art === 'einzeln') return this.sel === st.loesung;
     if (st.art === 'mehrere') return st.loesung.length === this.multi.size && st.loesung.every((x: string) => this.multi.has(x));
-    return st.zeilen.every((z: any) => this.rows[z.id] === z.loesung) && this.stamp === st.loesung;
+    return st.zeilen.every((z: any) => this.multi.has(z.id) === z.fehlt) && this.stamp === st.loesung;
   }
   wrongItem() { return null; }
   html() {
@@ -308,20 +307,25 @@ class Urteil implements Engine {
     if (st.art === 'mehrere') {
       return `<div class="opts grid">${this.opts.map((o) => `<button class="opt" data-m="${o.id}" aria-pressed="${this.multi.has(o.id)}" ${dis}>${T(o.label)}</button>`).join('')}</div><p class="kicker" style="text-align:center;margin-top:8px">${this.multi.size} / ${st.anzahl}</p>`;
     }
-    const rows = st.zeilen.map((z: any) => `<div class="row"><span>${T(z.label)}</span><div class="seg"><button data-r="${z.id}" data-v="ja" aria-pressed="${this.rows[z.id] === 'ja'}" ${dis}>${T(st.ja)}</button><button data-r="${z.id}" data-v="nein" aria-pressed="${this.rows[z.id] === 'nein'}" ${dis}>${T(st.nein)}</button></div></div>`).join('');
-    const stampOn = this.won ? `<div style="position:absolute;inset:0;display:grid;place-items:center"><span class="stamp-big stamp-on">${T(st.stempel.find((s: any) => s.id === st.loesung).label)}</span></div>` : '';
-    return `<div class="steck"><button class="dreh" data-flip aria-label="Kreis umdrehen"><div class="card ${this.flipped ? 'flip' : ''}"><img src="${img(st.drehen.vorne)}" alt="Vorderseite"><img class="back" src="${img(st.drehen.hinten)}" alt="Rückseite"></div>${stampOn}</button><div class="rows">${rows}</div></div>
-      <p class="q">${T(st.stempelFrage)}</p><div class="stempel">${st.stempel.map((s: any) => `<button class="stamp" data-s="${s.id}" aria-pressed="${this.stamp === s.id}" ${dis}>${T(s.label)}</button>`).join('')}</div>`;
+    // Vergleich: links Milas Mond (Muster), rechts der gefundene Kreis zum Umdrehen; antippen, was fehlt; Stempel
+    const m = st.muster;
+    const stampOn = this.won ? `<span class="stamp-big stamp-on stamp-over">${T(st.stempel.find((x: any) => x.id === st.loesung).label)}</span>` : '';
+    return `<div class="vgl">
+      <div class="muster"><img src="${img(m.bild)}" alt=""><b>${T(m.label)}</b><ul>${m.merkmale.map((x: string) => `<li>${T(x)}</li>`).join('')}</ul></div>
+      <button class="dreh-box" data-flip aria-label="Kreis umdrehen"><span class="dreh"><span class="card ${this.flipped ? 'flip' : ''}"><img src="${img(st.drehen.vorne)}" alt="Vorderseite"><img class="back" src="${img(st.drehen.hinten)}" alt="Rückseite"></span></span><b>${T(st.drehen.label)}</b><small>${this.flipped ? 'hinten' : 'vorne'} · tippen zum Umdrehen</small>${stampOn}</button>
+    </div>
+    <div class="fehlt">${st.zeilen.map((z: any) => `<button class="opt" data-m="${z.id}" aria-pressed="${this.multi.has(z.id)}" ${dis}>${T(z.label)}</button>`).join('')}</div>
+    <p class="q">${T(st.stempelFrage)}</p><div class="stempel">${st.stempel.map((x: any) => `<button class="stamp" data-s="${x.id}" aria-pressed="${this.stamp === x.id}" ${dis}>${T(x.label)}</button>`).join('')}</div>`;
   }
   bind(root: HTMLElement, rerender: () => void) {
     root.addEventListener('click', (e) => {
       const t = e.target as HTMLElement;
       const b = t.closest<HTMLElement>('[data-o],[data-m],[data-r],[data-s],[data-flip]');
       if (!b) return;
-      if (b.hasAttribute('data-flip')) { this.flipped = !this.flipped; b.querySelector('.card')!.classList.toggle('flip', this.flipped); return; }
+      if (b.hasAttribute('data-flip')) { this.flipped = !this.flipped; b.querySelector('.card')!.classList.toggle('flip', this.flipped); const sm = b.querySelector('small'); if (sm) sm.textContent = `${this.flipped ? 'hinten' : 'vorne'} · tippen zum Umdrehen`; return; }
       if (this.locked) return;
       if (b.dataset.o) this.sel = b.dataset.o;
-      if (b.dataset.m) { const m = b.dataset.m; if (this.multi.has(m)) this.multi.delete(m); else if (this.multi.size < this.st.anzahl) this.multi.add(m); }
+      if (b.dataset.m) { const m = b.dataset.m; if (this.multi.has(m)) this.multi.delete(m); else if (!this.st.anzahl || this.multi.size < this.st.anzahl) this.multi.add(m); }
       if (b.dataset.r) this.rows[b.dataset.r] = b.dataset.v!;
       if (b.dataset.s) this.stamp = b.dataset.s;
       rerender();
