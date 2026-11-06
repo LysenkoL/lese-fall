@@ -256,3 +256,14 @@
 .stil2 .wort span { width: 48px; height: 58px; font-size: 32px; border-radius: 12px; border-width: 0; background: #FFFCF4; box-shadow: 0 5px 0 #C08A12, 0 8px 14px rgba(60,30,0,.3); }
 .stil2 .wort span.leer { background: rgba(255,252,244,.45); box-shadow: inset 0 3px 6px rgba(60,30,0,.3); }
 .stil2 .sheet[data-art="wand"] p { color: #3A2408; }
+
+/* gelöst: gelegte Dinge gut sichtbar an ihrem Platz (nicht vom Platzkreis abgeschnitten) */
+.stil2 .engine.gewonnen .zone { overflow: visible; }
+.stil2 .engine.gewonnen .zone .chip.small img { width: 72px; height: 86px; filter: drop-shadow(0 4px 4px rgba(0,0,0,.3)); }
+.stil2 .engine.gewonnen .tz .chip.small img { width: 58px; height: 50px; }
+.stil2 .engine.gewonnen .korb .chip { box-shadow: 0 0 0 4px #fff, 0 6px 12px rgba(60,30,0,.28); }
+/* Spurenwand: Bild der Szene nur als kleines Polaroid „neue Spur“, das Brett ist die Hauptsache */
+.stil2 .sheet[data-art="wand"] .illu {
+  width: 46%; max-width: 220px; aspect-ratio: 3 / 2; margin: 4px auto 6px; border-radius: 4px;
+  border: 7px solid #fff; border-bottom-width: 24px; transform: rotate(-3deg); box-shadow: 0 8px 14px rgba(60,30,0,.4);
+}
