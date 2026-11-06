@@ -1,4 +1,5 @@
 import './styles.css';
+import './stil2.css';
 import { DATA, teil, img, type Block } from './data';
 import { stand, speichern, perlen, geloestAnzahl, zuruecksetzen } from './store';
 import { T, plain } from './text';
@@ -7,6 +8,14 @@ import { App } from '@capacitor/app';
 
 /* ====================== Schale ====================== */
 const ICON_WAND = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h3v3H7zM14 9h3M14 13h3M7 16h10"/></svg>`;
+/** kleine Symbole der fünf Spielarten (Sticker im neuen Stil) */
+const SPIEL_ICON: Record<string, string> = {
+  zielfeld: '<svg class="si" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="10" cy="10" r="2.6" fill="currentColor"/></svg>',
+  slots: '<svg class="si" viewBox="0 0 20 20" aria-hidden="true"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="currentColor"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="currentColor"/></svg>',
+  faden: '<svg class="si" viewBox="0 0 20 20" aria-hidden="true"><circle cx="4" cy="5" r="2.5" fill="currentColor"/><circle cx="16" cy="15" r="2.5" fill="currentColor"/><path d="M5 6c6 0 4 8 10 8" fill="none" stroke="currentColor" stroke-width="2"/></svg>',
+  reihe: '<svg class="si" viewBox="0 0 20 20" aria-hidden="true"><rect x="2" y="12" width="4" height="6" fill="currentColor"/><rect x="8" y="8" width="4" height="10" fill="currentColor"/><rect x="14" y="3" width="4" height="15" fill="currentColor"/></svg>',
+  urteil: '<svg class="si" viewBox="0 0 20 20" aria-hidden="true"><rect x="7" y="2" width="6" height="8" rx="2" fill="currentColor"/><rect x="3" y="10" width="14" height="4" rx="1" fill="currentColor"/><rect x="3" y="16" width="14" height="2" fill="currentColor"/></svg>',
+};
 const LUPE = `<svg viewBox="0 0 18 18" aria-hidden="true"><circle cx="7.5" cy="7.5" r="5" fill="#CFE6F5" stroke="#2D3138" stroke-width="1.5"/><path d="M11.3 11.3 L16 16" stroke="#2D3138" stroke-width="2" stroke-linecap="round"/></svg>`;
 
 const app = document.getElementById('app')!;
@@ -31,6 +40,7 @@ function applySettings() {
   document.documentElement.style.setProperty('--fs', stand.fs + 'px');
   document.documentElement.classList.toggle('silben', stand.silben);
   document.documentElement.classList.toggle('reduce', stand.ruhig);
+  document.documentElement.classList.toggle('stil2', stand.stil2);
 }
 const ruhig = () => stand.ruhig || matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -58,6 +68,8 @@ function glowMoon() {
 }
 function setView(html: string, f: string, opts: { scroll?: boolean; dir?: number; ev?: boolean; story?: boolean } = {}) {
   content.className = opts.story ? 'story' : '';
+  // Art des Blatts für den neuen Stil: Lesen (Papier) oder Ermittlertisch (Holz)
+  sheetEl.dataset.art = opts.story ? 'lesen' : html.includes('class="engine"') ? 'spiel' : html.includes('class="wand"') ? 'wand' : 'sonst';
   content.innerHTML = html;
   foot.innerHTML = f;
   sheetEl.classList.toggle('scroll', !!opts.scroll);
@@ -97,6 +109,7 @@ function itemHTML(n: number, id: string) {
 }
 /** Blöcke auf Blätter verteilen; ein Absatz wird nie geteilt */
 function paginate(n: number) {
+  sheetEl.dataset.art = 'lesen'; // gleiche Ränder beim Messen wie beim Anzeigen (neuer Stil)
   const cs = getComputedStyle(sheetEl);
   const maxH = sheetEl.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
   measure.style.width = content.clientWidth + 'px';
@@ -138,7 +151,7 @@ function zeigeBlatt(dir: number) {
     f = prev + mid + `<button class="nav" data-a="next" ${last ? 'disabled' : ''} aria-label="Nächstes Blatt">›</button>`;
   } else {
     const pos = R.sheets.length > 1 ? (R.idx / (R.sheets.length - 1)) * 100 : 0;
-    const dots = `<div class="zweig" role="img" aria-label="Blatt ${R.idx + 1} von ${R.sheets.length}"><span class="ast"></span>${R.sheets.map((_, i) => `<i class="${i <= R.idx ? 'on' : ''}" style="left:${R.sheets.length > 1 ? (i / (R.sheets.length - 1)) * 100 : 0}%"></i>`).join('')}<img class="kriech" src="${img('raupe/lob')}" alt="" style="left:${pos}%"></div>`;
+    const dots = `<div class="zweig" role="img" aria-label="Blatt ${R.idx + 1} von ${R.sheets.length}"><span class="ast"></span>${R.sheets.map((_, i) => `<i class="${i <= R.idx ? 'on' : ''}" style="left:${R.sheets.length > 1 ? (i / (R.sheets.length - 1)) * 100 : 0}%"></i>`).join('')}<img class="kriech" src="${img('frei/raupe_lob')}" alt="" style="left:${pos}%"></div>`;
     let next = `<button class="nav" data-a="next" aria-label="Nächstes Blatt">›</button>`;
     if (last) {
       const label = n === 0 ? 'Los geht’s' : game && game.spur === n ? 'Zurück zum Spiel' : stand.geloest[n] ? 'Zur Spurenwand' : 'Zum Spiel';
@@ -146,7 +159,8 @@ function zeigeBlatt(dir: number) {
     }
     f = prev + (last ? '' : dots) + next;
   }
-  setView(html, f, { dir, ev: !!R.ev, story: true });
+  const ecke = R.ev ? '' : `<div class="raupe-ecke ${last ? 'winkt' : ''}" aria-hidden="true"><img src="${img(last ? 'frei/raupe_lob' : 'frei/raupe_staunt')}" alt="">${last && n > 0 ? '<span class="sprech">Los, ermitteln!</span>' : ''}</div>`;
+  setView(html + ecke, f, { dir, ev: !!R.ev, story: true });
   // A-13: passt ein einzelner Block bei großer Schrift nicht, darf das Blatt ausnahmsweise rollen
   sheetEl.classList.toggle('scroll', content.scrollHeight > sheetEl.clientHeight);
 }
@@ -240,11 +254,12 @@ class Spiel {
     header(`Kapitel 1 · Spur ${this.spur}`);
     const st = this.st, d = this.data, n = d.schritte.length;
     const steps = n > 1 ? `<span class="steps">${d.schritte.map((_: any, i: number) => `<i class="${i <= this.step ? 'on' : ''}"></i>`).join('')}</span>` : '';
+    const notiz = (this.phase === 'select' || this.phase === 'retry' || this.phase === 'help' ? `<p class="intro">${T(st.intro)}</p>` : '')
+      + (st.frage && this.phase !== 'won' ? `<p class="q">${T(st.frage)}</p>` : '');
     const html = `<div class="task">
-      <div class="case">${LUPE}<span>Dein Ermittlerauftrag ·</span><span class="name">${T(d.spiel)}</span>${steps}</div>
+      <div class="case">${LUPE}<span class="dea">Dein Ermittlerauftrag ·</span><span class="name">${SPIEL_ICON[st.motor] ?? ''}${T(d.spiel)}</span>${steps}</div>
       ${this.fb()}
-      ${this.phase === 'select' || this.phase === 'retry' || this.phase === 'help' ? `<p class="intro">${T(st.intro)}</p>` : ''}
-      ${st.frage && this.phase !== 'won' ? `<p class="q">${T(st.frage)}</p>` : ''}
+      ${notiz ? `<div class="notiz">${notiz}</div>` : ''}
       <div class="engine"></div></div>`;
     let primary: string;
     if (this.phase === 'wrong') primary = `<button class="btn cta" data-a="beweis">${LUPE}Im Text nachsehen</button>`;
@@ -312,6 +327,7 @@ class Spiel {
     if (this.neu) { stand.geloest[this.spur] = this.gained; speichern(); glowMoon(); }
     this.phase = 'won';
     this.show();
+    if (stand.stil2 && !ruhig()) konfetti();
     ort(this.replay || stand.buchstaben.includes(this.spur) ? 'wand' : 'pinsel', this.spur);
   }
 }
@@ -328,6 +344,16 @@ actions.beweis = () => {
     done: (sentence) => { g.quote = sentence; g.phase = 'retry'; g.engine.reset(); g.show(1); },
   });
 };
+
+/** Papierschnipsel-Konfetti in der Palette (nur transform/opacity) */
+function konfetti() {
+  const box = document.createElement('div');
+  box.className = 'konfetti';
+  const farben = ['#F4C243', '#1D3F9E', '#E8473A', '#7DCB3A', '#FFFDF8', '#2C4176'];
+  box.innerHTML = Array.from({ length: 28 }, (_, i) => `<i style="left:${Math.random() * 100}%;background:${farben[i % farben.length]};animation-delay:${Math.random() * 0.35}s;--dx:${(Math.random() - 0.5) * 120}px;--r:${(Math.random() - 0.5) * 720}deg"></i>`).join('');
+  sheetEl.appendChild(box);
+  setTimeout(() => box.remove(), 2200);
+}
 
 /* ====================== Spurenwand mit Spuren abpinseln ====================== */
 function wortHTML(neu = -1) {
@@ -417,6 +443,16 @@ function wand(nach = 0) {
       card.classList.remove('staubig'); card.classList.add('neu');
       const pos = DATA.geheimwort.reihenfolge.find((r: any) => r.spur === nach).pos;
       content.querySelector('.wort')!.outerHTML = wortHTML(pos);
+      if (stand.stil2 && !ruhig()) {
+        const slot = content.querySelectorAll<HTMLElement>('.wort span')[pos];
+        const a = card.getBoundingClientRect(), b = slot.getBoundingClientRect();
+        const fl = document.createElement('div');
+        fl.className = 'flug'; fl.textContent = DATA.geheimwort.wort[pos];
+        fl.style.left = b.left + 'px'; fl.style.top = b.top + 'px';
+        fl.style.setProperty('--fx', `${a.left + a.width / 2 - b.left - 20}px`); fl.style.setProperty('--fy', `${a.top + a.height / 2 - b.top - 24}px`);
+        document.body.appendChild(fl); slot.style.opacity = '0';
+        setTimeout(() => { fl.remove(); slot.style.opacity = ''; }, 900);
+      }
       const m = document.getElementById('pmsg'); if (m) m.innerHTML = T(U.buchstabe);
       foot.querySelectorAll<HTMLButtonElement>('[data-a="go"]').forEach((b) => (b.disabled = false));
       ort('wand', nach);
@@ -527,6 +563,7 @@ $('aa').addEventListener('click', () => {
       <p class="demo story">${T('Die Le|se-|Rau|pe schaut ge|nau hin.')}</p>
       <label>Silben farbig<button class="switch" role="switch" data-sw="silben" aria-checked="${stand.silben}" aria-label="Silben farbig"></button></label>
       <label>Bewegung reduzieren<button class="switch" role="switch" data-sw="ruhig" aria-checked="${stand.ruhig}" aria-label="Bewegung reduzieren"></button></label>
+      <label>Neuer Stil (Test)<button class="switch" role="switch" data-sw="stil2" aria-checked="${stand.stil2}" aria-label="Neuer Stil (Test)"></button></label>
       <button class="btn" data-vg style="width:100%;margin-top:8px">Vorgeschichte noch einmal lesen</button>
       ${resetHTML()}
       <div style="text-align:right"><button class="btn cta" data-close style="flex:none;min-width:120px">Fertig</button></div></div>`;
@@ -544,7 +581,7 @@ $('aa').addEventListener('click', () => {
     const t = e.target as HTMLElement;
     const fs = t.closest<HTMLElement>('[data-fs]'), sw = t.closest<HTMLElement>('[data-sw]');
     if (fs) { stand.fs = +fs.dataset.fs!; }
-    else if (sw) { const k = sw.dataset.sw as 'silben' | 'ruhig'; stand[k] = !stand[k]; }
+    else if (sw) { const k = sw.dataset.sw as 'silben' | 'ruhig' | 'stil2'; stand[k] = !stand[k]; }
     else if (t.closest('[data-vg]')) { bg.remove(); R.ev = null; game = null; lesen(0, { dir: -1 }); return; }
     else if (t.closest('[data-reset]')) { lock = neueAufgabe(); draw(); return; }
     else if (t.closest('[data-antwort]')) { e.preventDefault(); pruefeEltern(); return; } else if (t.closest('[data-loeschen]')) { zuruecksetzen(); bg.remove(); applySettings(); game = null; cover(); return; }

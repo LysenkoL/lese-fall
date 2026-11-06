@@ -8,9 +8,10 @@ export interface Stand {
   fs: number;
   silben: boolean;
   ruhig: boolean; // Bewegung reduzieren
+  stil2: boolean; // „Neuer Stil (Test)“ zum Vergleichen
 }
 const KEY = 'lesefall.v1';
-const START: Stand = { geloest: {}, buchstaben: [], tresorOffen: false, vorgeschichte: false, ort: { view: 'cover', teil: 0, anker: '' }, fs: 20, silben: true, ruhig: false };
+const START: Stand = { geloest: {}, buchstaben: [], tresorOffen: false, vorgeschichte: false, ort: { view: 'cover', teil: 0, anker: '' }, fs: 20, silben: true, ruhig: false, stil2: false };
 
 function laden(): Stand {
   try {
@@ -24,7 +25,7 @@ export function speichern() {
   try { localStorage.setItem(KEY, JSON.stringify(stand)); } catch { /* egal */ }
 }
 export function zuruecksetzen() {
-  const keep = { fs: stand.fs, silben: stand.silben, ruhig: stand.ruhig };
+  const keep = { fs: stand.fs, silben: stand.silben, ruhig: stand.ruhig, stil2: stand.stil2 };
   Object.assign(stand, structuredClone(START), keep);
   speichern();
 }

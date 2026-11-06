@@ -20,7 +20,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 let fails = 0;
 const ok = (cond, msg) => { if (!cond) { fails++; console.error('✗ ' + msg); } else console.log('✓ ' + msg); };
 
-async function run(name, viewport, full, fs = 0) {
+async function run(name, viewport, full, fs = 0, stil2 = false) {
   const b = await chromium.launch();
   const ctx = await b.newContext({ viewport, deviceScaleFactor: 1.5, hasTouch: true });
   const p = await ctx.newPage();
@@ -81,7 +81,7 @@ async function run(name, viewport, full, fs = 0) {
   };
 
   await p.goto(URL); await sleep(600);
-  if (fs) { await p.evaluate((f) => localStorage.setItem('lesefall.v1', JSON.stringify({ fs: f })), fs); await p.reload(); await sleep(800); }
+  if (fs || stil2) { await p.evaluate(([f, s]) => localStorage.setItem('lesefall.v1', JSON.stringify({ ...(f ? { fs: f } : {}), stil2: s })), [fs, stil2]); await p.reload(); await sleep(800); }
   await shot('cover');
   await btn('los'); await sleep(300);
   await shot('vorgeschichte');
@@ -245,5 +245,6 @@ async function run(name, viewport, full, fs = 0) {
 await run('telefon', { width: 390, height: 844 }, true);
 await run('tablet', { width: 820, height: 1180 }, false);
 await run('telefon_gross', { width: 390, height: 844 }, false, 26);
+await run('telefon_stil2', { width: 390, height: 844 }, false, 0, true);
 console.log(fails ? `\n✗ ${fails} Prüfungen fehlgeschlagen` : '\n✓ Alles gut');
 process.exit(fails ? 1 : 0);

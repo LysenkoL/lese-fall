@@ -13,7 +13,7 @@ JOBS = [(f, os.path.join(DST, os.path.basename(f))) for f in sorted(glob.glob(os
 # Figuren, die im Spiel als Ding gelegt werden (z. B. Spur 2: die Lese-Raupe unter das Blatt)
 FREI = os.path.join(ROOT, 'app/src/gen/frei')
 os.makedirs(FREI, exist_ok=True)
-JOBS += [(os.path.join(ROOT, 'assets/illustrationen/raupe/staunt.webp'), os.path.join(FREI, 'raupe_staunt.webp'))]
+JOBS += [(os.path.join(ROOT, f'assets/illustrationen/raupe/{n}.webp'), os.path.join(FREI, f'raupe_{n}.webp')) for n in ('staunt', 'lob')]
 for f, ziel in JOBS:
     im = Image.open(f).convert('RGB')
     w, h = im.size
