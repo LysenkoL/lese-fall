@@ -46,10 +46,14 @@
       "bildNachher": "k1_s1",
       "fund": {
         "bild": "objekte/mond_vorne",
-        "text": "Milas Mond"
+        "text": "Milas Mond",
+        "fazit": "Der Mond hing links neben der Wolke.",
+        "beweis": [
+          "Links daneben soll der Mond seinen Platz bekommen."
+        ]
       },
       "kind": "mila/froh",
-      "sieg": "Genau! Der Mond hängt links neben der weißen Wolke.",
+      "sieg": "Du hast den Mond an die richtige Stelle gehängt: links neben die weiße Wolke.",
       "schritte": [
         {
           "intro": "Wo soll Milas Mond hängen? Zieh den Mond an seinen Platz am Theater.",
@@ -114,10 +118,14 @@
       "bildNachher": "k1_s2_nachher",
       "fund": {
         "bild": "objekte/gras_papier",
-        "text": "das grüne Papier"
+        "text": "das grüne Papier",
+        "fazit": "Die Lese-Raupe war versteckt. Sie hat nichts gesehen.",
+        "beweis": [
+          "Dann kriecht sie unter ihr größtes Blatt und wischt sich den Mund ab."
+        ]
       },
       "kind": "ben/staunt",
-      "sieg": "Vorhang und Wolke sind noch da. Nur der Mond ist weg – und die Lese-Raupe hat nicht gesehen, wer ihn genommen hat.",
+      "sieg": "Du hast genau hingesehen: Vorhang und Wolke sind noch da, nur der Mond fehlt.",
       "schritte": [
         {
           "intro": "Die Lese-Raupe krabbelt wieder hervor. Was hängt jetzt noch am Theater? Leg nur das ans Theater, was wirklich noch da ist.",
@@ -198,10 +206,14 @@
       "bildNachher": "k1_s3",
       "fund": {
         "bild": "objekte/bleistift_gruen",
-        "text": "der grüne Bleistift"
+        "text": "der grüne Bleistift",
+        "fazit": "Unter dem Tisch hat noch niemand gesucht.",
+        "beweis": [
+          "Doch dort hat Mila noch gar nicht gesucht."
+        ]
       },
       "kind": "mila/denkt",
-      "sieg": "Mila sucht hinter dem Vorhang, Ben steht am Waschbecken. Unter dem Tisch hat noch niemand gesucht.",
+      "sieg": "Du hast jedes Kind mit seinem Ort verbunden: Mila sucht hinter dem Vorhang, Ben steht am Waschbecken.",
       "schritte": [
         {
           "intro": "Wer ist gerade wo? Zieh einen Faden von jedem Kind zu seinem Ort. Ein Ort bleibt frei.",
@@ -268,10 +280,14 @@
       "bildNachher": "k1_s4_nachher",
       "fund": {
         "bild": "objekte/falscher_kreis_hinten",
-        "text": "der falsche Mond"
+        "text": "der falsche Mond",
+        "fazit": "Kein Faden, kein Stern: nicht Milas Mond.",
+        "beweis": [
+          "An diesem Kreis hängt kein Faden."
+        ]
       },
       "kind": "mila/staunt",
-      "sieg": "Gelb und rund – aber ohne Faden und ohne Stern. Das ist nicht Milas Mond!",
+      "sieg": "Du hast genau verglichen. Dieser Kreis ist nicht Milas Mond.",
       "schritte": [
         {
           "art": "vergleich",
@@ -346,10 +362,14 @@
       "bildNachher": "k1_s5",
       "fund": {
         "bild": "objekte/wasserhahn",
-        "text": "Glänzende Finger"
+        "text": "Glänzende Finger",
+        "fazit": "Ben hat den Mond repariert und aufs Tablett gelegt.",
+        "beweis": [
+          "Danach habe ich den Mond zum Trocknen auf das blaue Tablett gelegt."
+        ]
       },
       "kind": "ben/froh",
-      "sieg": "Abgenommen, festgeklebt, aufs Tablett gelegt – und erst dann Hände gewaschen. Genau so war es!",
+      "sieg": "Du hast Bens vier Schritte in die richtige Reihenfolge gebracht.",
       "schritte": [
         {
           "intro": "Was hat Ben gemacht? Leg die vier Bilder in die richtige Reihenfolge.",
@@ -402,10 +422,14 @@
       "bildNachher": "k1_s6_nachher",
       "fund": {
         "bild": "objekte/papierstreifen_rot",
-        "text": "der rote Papierstreifen"
+        "text": "der rote Papierstreifen",
+        "fazit": "Jetzt ist der Mond nicht mehr auf dem Tablett.",
+        "beweis": [
+          "Auf dem Tablett liegt nur noch ein schmaler roter Papierstreifen."
+        ]
       },
       "kind": "mila/besorgt",
-      "sieg": "Schere und Klebeband liegen rechts neben dem Tablett, der rote Streifen liegt auf dem Tablett. Genau dort hat Ben vorhin auch den Mond hingelegt. Aber jetzt ist er weg!",
+      "sieg": "Du hast alles so hingelegt, wie es im Text steht. Der Mond lag auf dem Tablett – jetzt ist er weg.",
       "schritte": [
         {
           "intro": "Was liegt jetzt am Tablett? Und wo hat Ben den Mond vorhin hingelegt? Leg alles an seinen Platz.",
@@ -505,7 +529,7 @@
     "hilfe": "Tipp:",
     "siegVoll": "Spur entdeckt!",
     "siegHalb": "Geschafft!",
-    "siegHalbText": "Jetzt kennst du die Spur. Beim nächsten Mal findest du sie bestimmt selbst.",
+    "siegHalbText": "Du hast im Text nachgesehen und den Grund gefunden.",
     "pinseln": "Wisch den Staub mit dem Pinsel weg!",
     "buchstabe": "Ein Buchstabe für das Geheimwort!",
     "wand": "Deine Spurenwand",

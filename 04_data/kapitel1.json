@@ -178,10 +178,14 @@
     "bildNachher": "k1_s1",
     "fund": {
      "bild": "objekte/mond_vorne",
-     "text": "Mi|las Mond"
+     "text": "Mi|las Mond",
+     "fazit": "Der Mond hing links ne|ben der Wol|ke.",
+     "beweis": [
+      "s1-p7-1"
+     ]
     },
     "kind": "mila/froh",
-    "sieg": "Ge|nau! Der Mond hängt links ne|ben der wei|ßen Wol|ke.",
+    "sieg": "Du hast den Mond an die rich|ti|ge Stel|le ge|hängt: links ne|ben die wei|ße Wol|ke.",
     "schritte": [
      {
       "intro": "Wo soll Mi|las Mond hän|gen? Zieh den Mond an sei|nen Platz am The|a|ter.",
@@ -377,10 +381,14 @@
     "bildNachher": "k1_s2_nachher",
     "fund": {
      "bild": "objekte/gras_papier",
-     "text": "das grü|ne Pa|pier"
+     "text": "das grü|ne Pa|pier",
+     "fazit": "Die Le|se-Rau|pe war ver|steckt. Sie hat nichts ge|se|hen.",
+     "beweis": [
+      "s2-p11-1"
+     ]
     },
     "kind": "ben/staunt",
-    "sieg": "Vor|hang und Wol|ke sind noch da. Nur der Mond ist weg – und die Le|se-Rau|pe hat nicht ge|se|hen, wer ihn ge|nom|men hat.",
+    "sieg": "Du hast ge|nau hin|ge|se|hen: Vor|hang und Wol|ke sind noch da, nur der Mond fehlt.",
     "schritte": [
      {
       "intro": "Die Le|se-Rau|pe krab|belt wie|der her|vor. Was hängt jetzt noch am The|a|ter? Leg nur das ans The|a|ter, was wirk|lich noch da ist.",
@@ -559,10 +567,14 @@
     "bildNachher": "k1_s3",
     "fund": {
      "bild": "objekte/bleistift_gruen",
-     "text": "der grü|ne Blei|stift"
+     "text": "der grü|ne Blei|stift",
+     "fazit": "Un|ter dem Tisch hat noch nie|mand ge|sucht.",
+     "beweis": [
+      "s3-p7-1"
+     ]
     },
     "kind": "mila/denkt",
-    "sieg": "Mi|la sucht hin|ter dem Vor|hang, Ben steht am Wasch|be|cken. Un|ter dem Tisch hat noch nie|mand ge|sucht.",
+    "sieg": "Du hast je|des Kind mit sei|nem Ort ver|bun|den: Mi|la sucht hin|ter dem Vor|hang, Ben steht am Wasch|be|cken.",
     "schritte": [
      {
       "intro": "Wer ist ge|ra|de wo? Zieh ei|nen Fa|den von je|dem Kind zu sei|nem Ort. Ein Ort bleibt frei.",
@@ -747,10 +759,14 @@
     "bildNachher": "k1_s4_nachher",
     "fund": {
      "bild": "objekte/falscher_kreis_hinten",
-     "text": "der fal|sche Mond"
+     "text": "der fal|sche Mond",
+     "fazit": "Kein Fa|den, kein Stern: nicht Mi|las Mond.",
+     "beweis": [
+      "s4-p7-2"
+     ]
     },
     "kind": "mila/staunt",
-    "sieg": "Gelb und rund – a|ber oh|ne Fa|den und oh|ne Stern. Das ist nicht Mi|las Mond!",
+    "sieg": "Du hast ge|nau ver|gli|chen. Die|ser Kreis ist nicht Mi|las Mond.",
     "schritte": [
      {
       "art": "vergleich",
@@ -910,10 +926,14 @@
     "bildNachher": "k1_s5",
     "fund": {
      "bild": "objekte/wasserhahn",
-     "text": "Glän|zen|de Fin|ger"
+     "text": "Glän|zen|de Fin|ger",
+     "fazit": "Ben hat den Mond re|pa|riert und aufs Tab|lett ge|legt.",
+     "beweis": [
+      "s5-p7-4"
+     ]
     },
     "kind": "ben/froh",
-    "sieg": "Ab|ge|nom|men, fest|ge|klebt, aufs Tab|lett ge|legt – und erst dann Hän|de ge|wa|schen. Ge|nau so war es!",
+    "sieg": "Du hast Bens vier Schrit|te in die rich|ti|ge Rei|hen|fol|ge ge|bracht.",
     "schritte": [
      {
       "intro": "Was hat Ben ge|macht? Leg die vier Bil|der in die rich|ti|ge Rei|hen|fol|ge.",
@@ -1058,10 +1078,14 @@
     "bildNachher": "k1_s6_nachher",
     "fund": {
      "bild": "objekte/papierstreifen_rot",
-     "text": "der ro|te Pa|pier|strei|fen"
+     "text": "der ro|te Pa|pier|strei|fen",
+     "fazit": "Jetzt ist der Mond nicht mehr auf dem Tab|lett.",
+     "beweis": [
+      "s6-p5-0"
+     ]
     },
     "kind": "mila/besorgt",
-    "sieg": "Sche|re und Kle|be|band lie|gen rechts ne|ben dem Tab|lett, der ro|te Strei|fen liegt auf dem Tab|lett. Ge|nau dort hat Ben vor|hin auch den Mond hin|ge|legt. A|ber jetzt ist er weg!",
+    "sieg": "Du hast al|les so hin|ge|legt, wie es im Text steht. Der Mond lag auf dem Tab|lett – jetzt ist er weg.",
     "schritte": [
      {
       "intro": "Was liegt jetzt am Tab|lett? Und wo hat Ben den Mond vor|hin hin|ge|legt? Leg al|les an sei|nen Platz.",
@@ -1203,7 +1227,7 @@
   "hilfe": "Tipp:",
   "siegVoll": "Spur ent|deckt!",
   "siegHalb": "Ge|schafft!",
-  "siegHalbText": "Jetzt kennst du die Spur. Beim nächs|ten Mal fin|dest du sie be|stimmt selbst.",
+  "siegHalbText": "Du hast im Text nach|ge|se|hen und den Grund ge|fun|den.",
   "pinseln": "Wisch den Staub mit dem Pin|sel weg!",
   "buchstabe": "Ein Buch|sta|be für das Ge|heim|wort!",
   "wand": "Dei|ne Spu|ren|wand",

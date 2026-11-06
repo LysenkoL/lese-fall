@@ -5,7 +5,7 @@
 
 Как исправить: найти слово в `silben_kapitel1.txt`, поменять `|`, запустить `npm run data`.
 
-## 1. Где я исправил алгоритм Leseraupe (16 слов)
+## 1. Где я исправил алгоритм Leseraupe (17 слов)
 
 | Leseraupe | Стало | Почему |
 |---|---|---|
@@ -15,6 +15,7 @@
 | ges\|treif\|te / ges\|treif\|ten | **ge\|streif\|te / ge\|streif\|ten** | приставка ge- |
 | bes\|timmt | **be\|stimmt** | приставка be- |
 | auss\|puckt | **aus\|spuckt** | приставка aus- |
+| vers\|teckt | **ver\|steckt** | приставка ver- |
 | wie\|de\|rer\|ken\|ne | **wie\|der\|er\|ken\|ne** | wieder + er- + kennen |
 | na\|chei\|nan\|der | **nach\|ein\|an\|der** | стыки nach-ein-ander |
 | The\|a\|ters\|tück | **The\|a\|ter\|stück** | стык Theater + Stück |

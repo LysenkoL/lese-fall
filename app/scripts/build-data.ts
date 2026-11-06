@@ -102,7 +102,7 @@ szenen.forEach((sz, i) => {
 for (const [w, parts] of dict) for (const p of parts) if (!/[aeiouyäöü]/i.test(p) && parts.length > 1) { console.error(`✗ Silbe ohne Vokal: ${parts.join('|')}`); fehler++; }
 
 /* ---------- Spiele: Kindertexte mit Silben, Beweise auf Satz-IDs ---------- */
-const TEXT_KEYS = new Set(['intro', 'frage', 'label', 'ask', 'near', 'help', 'explain', 'sieg', 'text', 'ziel', 'ablage', 'ja', 'nein', 'stempelFrage', 'offen', 'haken', 'spiel']);
+const TEXT_KEYS = new Set(['intro', 'frage', 'label', 'ask', 'near', 'help', 'explain', 'sieg', 'text', 'ziel', 'ablage', 'ja', 'nein', 'stempelFrage', 'offen', 'haken', 'spiel', 'fazit']);
 function markTree(v: any, key = ''): any {
   if (typeof v === 'string') return TEXT_KEYS.has(key) ? mark(v) : v;
   if (Array.isArray(v)) return v.map((x) => (typeof x === 'string' && (key === 'falsch') ? mark(x) : markTree(x, key)));
@@ -136,7 +136,9 @@ const spielDaten = spiele.spuren.map((sp: any) => {
     if (st.proDing) for (const [id, pd] of Object.entries<any>(st.proDing)) out.proDing[id].beweis = beweisIds(sp.spur, pd.beweis, id);
     return out;
   });
-  return { ...markTree(sp), schritte };
+  const fund = markTree(sp.fund);
+  fund.beweis = beweisIds(sp.spur, sp.fund.beweis, 'Fund');
+  return { ...markTree(sp), schritte, fund };
 });
 const gw = spiele.geheimwort;
 const geheimwort = { ...markTree(gw), wort: gw.wort, beweis: beweisIds(gw.beweisSpur, gw.beweis, 'Mondtresor') };
