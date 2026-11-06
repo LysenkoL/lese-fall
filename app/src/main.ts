@@ -1,7 +1,7 @@
 import './styles.css';
 import './stil2.css';
 import { DATA, teil, img, type Block } from './data';
-import { stand, speichern, perlen, geloestAnzahl, zuruecksetzen } from './store';
+import { stand, speichern, perlen, verfuegbar, geloestAnzahl, zuruecksetzen } from './store';
 import { T, plain } from './text';
 import { makeEngine, type Engine } from './engines';
 import { App } from '@capacitor/app';
@@ -24,7 +24,7 @@ app.innerHTML = `
   <button class="hb" id="home" aria-label="Spurenwand">${ICON_WAND}</button>
   <div class="ttl"><b id="t1"></b><span id="t2"></span></div>
   <div class="moon" id="moon" role="img"></div>
-  <div class="pearls" id="pearls" aria-label="Schimmer-Perlen"><i></i><span id="pc">0</span></div>
+  <button class="pearls" id="pearls" aria-label="Schimmer-Perlen – Garderobe öffnen"><i></i><span id="pc">0</span></button>
   <button class="hb sil" id="sil" role="switch" aria-label="Silben farbig"><span class="s-b">Le</span><span class="s-r">se</span></button>
   <button class="hb" id="aa" aria-label="Schrift und Silben" style="font-weight:800;font-size:19px">Aa</button>
 </header>
@@ -59,7 +59,7 @@ function header(t1: string, t2 = DATA.kapitel ? plain(DATA.kapitel.titel) : '') 
   const n = geloestAnzahl();
   $('moon').innerHTML = moonSVG(n);
   $('moon').setAttribute('aria-label', `Mond: ${n} von 6 Spuren`);
-  $('pc').textContent = String(perlen());
+  $('pc').textContent = String(verfuegbar(PREISE));
 }
 function glowMoon() {
   const m = $('moon'), p = $('pearls');
@@ -81,6 +81,10 @@ function setView(html: string, f: string, opts: { scroll?: boolean; dir?: number
   }
 }
 function ort(view: string, t = 0, anker = '') { stand.ort = { view, teil: t, anker }; speichern(); }
+const G = DATA.garderobe;
+const PREISE: Record<string, number> = Object.fromEntries(G.dinge.map((d: any) => [d.id, d.preis]));
+/** die Lese-Raupe in ganzer Größe – mit der Sache, die sie gerade trägt (D-08); sonst die Gefühls-Figur */
+const figur = (mood: string, spur: number) => (stand.garderobe.traegt ? img('garderobe/raupe_' + stand.garderobe.traegt) : mood === 'lob' ? img('frei/raupe_lob') : raupe(mood, spur));
 const raupe = (mood: string, spur: number) => {
   // Fühler leuchten nur, wenn ein Rätsel in der Nähe ist (ILLUSTRATIONEN.md): ab dem Verschwinden des Mondes (Ende Spur 2)
   if (spur < 2 && (mood === 'denkt' || mood === 'tipp')) mood = mood === 'denkt' ? 'staunt' : 'lob';
@@ -295,7 +299,7 @@ class Spiel {
       case 'stepdone': return bubble('lob', `<span><b>${T(this.st.zwischen ?? U.siegVoll)}</b></span>`);
       case 'won': {
         const d = this.data, voll = !this.mitHilfe;
-        return `<div class="sieg-box" role="status"><div class="win-top"><img class="r" src="${raupe('klatscht', s)}" alt="Die Lese-Raupe klatscht"><img class="k" src="${img(d.kind)}" alt=""></div>
+        return `<div class="sieg-box" role="status"><div class="win-top"><img class="r" src="${figur('klatscht', s)}" alt="Die Lese-Raupe freut sich"><img class="k" src="${img(d.kind)}" alt=""></div>
           <div class="big">${T(voll ? U.siegVoll : U.siegHalb)}</div>${voll ? '' : `<p>${T(U.siegHalbText)}</p>`}<p>${T(d.sieg)}</p>
           ${this.neu ? `<span class="gain">${'<i></i>'.repeat(this.gained)}+${this.gained} Schimmer-${this.gained > 1 ? 'Perlen' : 'Perle'}</span>` : ''}</div>`;
       }
@@ -454,7 +458,7 @@ function wand(nach = 0) {
     : `<div style="text-align:center"><img src="${img('kapitel_1')}" alt="Kapitel 1: Wo ist der Mond?" style="width:min(220px,60%);mix-blend-mode:multiply"></div>`;
   const html = `<div class="task">${bild}<div class="kicker" style="margin-top:10px">${U.wand ? T(U.wand) : ''}</div>
     ${staubig ? `<p class="pinsel-tipp" id="pmsg">${T(U.pinseln)}</p>` : ''}
-    <div class="wand brett" style="border-image-source:url('${img('spurenwand_board')}')">${funde}<svg class="faden-svg" aria-hidden="true"></svg></div>${wortHTML()}
+    <div class="wand brett" style="border-image-source:url('${img('spurenwand_board')}')">${funde}<svg class="faden-svg" aria-hidden="true"></svg></div><div class="wort-zeile">${wortHTML()}<img class="wand-figur" src="${figur('lob', 3)}" alt=""></div>
     ${geloestAnzahl() && !staubig ? `<p style="font-size:15px;color:var(--muted);text-align:center">${T(U.wandTipp)}</p>` : ''}</div>`;
   let f: string;
   if (offenPinsel) { actions.go = () => wand(offenPinsel); f = `<button class="btn cta" data-a="go">Spur ${offenPinsel} abpinseln ›</button>`; }
@@ -528,7 +532,7 @@ function tresor() {
   const fertig = () => stand.tresorOffen;
   const render = (sofort: boolean) => {
     const slots = slotsX.map((x, i) => `<span class="slot ${sofort ? '' : 'fliegt'}" style="left:${x}%;animation-delay:${i * 0.28}s">${wort[i]}</span>`).join('');
-    const frage = fertig() ? `<div class="big">${T(U.geschafft)}</div><p>${T(gw.haken)}</p><span class="gain"><i></i>${perlen()} Schimmer-Perlen</span>`
+    const frage = fertig() ? `<img class="end-figur" src="${figur('lacht', 6)}" alt=""><div class="big">${T(U.geschafft)}</div><p>${T(gw.haken)}</p><span class="gain"><i></i>${perlen()} Schimmer-Perlen</span>`
       : `<div class="innen ${sofort ? '' : 'spaeter'}"><p class="q">${T(innen.frage)}</p><div class="opts">${opts.map((o: any) => `<button class="opt" data-io="${o.id}" aria-pressed="${gewaehlt === o.id}">${T(o.label)}</button>`).join('')}</div>
          ${falsch ? `<div class="fb help"><img src="${raupe('tipp', 6)}" alt=""><span>${T(innen.falsch)}</span></div><ul class="fazit-liste">${DATA.spuren.map((sp: any) => `<li>${T(sp.spiel.fund.fazit)}</li>`).join('')}</ul>` : ''}</div>`;
     const html = `<div class="task center"><div class="kicker">${T(U.tresorTitel)}</div>
@@ -557,12 +561,59 @@ function kapitel2() {
   ort('kapitel2');
   header('Kapitel 2', 'Ein Tablett für alle');
   const html = `<div class="task center"><div class="illu"><img src="${img('k2_s7')}" alt=""></div>
-    <div class="win-top"><img class="r" src="${img('raupe/staunt')}" alt=""></div>
+    <div class="win-top"><img class="r" src="${figur('staunt', 6)}" alt=""></div>
     <div class="big">${T(U.bald)}</div><p>${T(DATA.geheimwort.haken)}</p></div>`;
   setView(html, `<button class="btn cta" data-a="fertig">Für heute fertig</button>`, { scroll: true, dir: 1 });
 }
 actions.kap2 = kapitel2;
 actions.fertig = () => cover();
+
+/* ====================== Garderobe (D-08) ====================== */
+let vorGarderobe: typeof stand.ort | null = null;
+function garderobe() {
+  if (!vorGarderobe) vorGarderobe = { ...stand.ort };
+  R.ev = null;
+  header('Garderobe', 'Lese-Fall');
+  const g = stand.garderobe, frei = verfuegbar(PREISE);
+  const karten = G.dinge.map((d: any) => {
+    const hat = g.gekauft.includes(d.id), traegt = g.traegt === d.id, fehlt = d.preis - frei;
+    const status = traegt ? T(G.traegt) : hat ? T(G.gekauft) : fehlt > 0 ? T(G.noch.replace('{n}', String(fehlt))) : `<span class="preis"><i></i>${d.preis}</span>`;
+    return `<button class="gard ${hat ? 'hat' : ''} ${traegt ? 'traegt' : ''}" data-g="${d.id}" ${!hat && fehlt > 0 ? 'disabled' : ''} aria-pressed="${traegt}">
+      <img src="${img('garderobe/' + d.id)}" alt=""><b>${T(d.label)}</b><span class="st">${status}</span></button>`;
+  }).join('');
+  const html = `<div class="task garderobe"><h2 class="big">${T(G.titel)}</h2>
+    <div class="spiegel"><img src="${figur('lob', 3)}" alt="Die Lese-Raupe ${g.traegt ? 'mit ' + plain(G.dinge.find((d: any) => d.id === g.traegt).label) : ''}"></div>
+    <p class="gard-tipp">${T(G.tipp)}</p>
+    <div class="gard-grid">${karten}</div>
+    <button class="btn ohne" data-g="ohne" ${g.traegt ? '' : 'disabled'}>${T(G.ohne)}</button></div>`;
+  setView(html, `<button class="btn cta" data-a="gardZu">Fertig ›</button>`, { scroll: true });
+  content.querySelectorAll<HTMLButtonElement>('[data-g]').forEach((b) => b.addEventListener('click', () => {
+    const id = b.dataset.g!;
+    if (id === 'ohne') { g.traegt = null; speichern(); garderobe(); return; }
+    if (g.gekauft.includes(id)) { g.traegt = g.traegt === id ? null : id; speichern(); garderobe(); return; }
+    kaufFrage(id);
+  }));
+}
+function kaufFrage(id: string) {
+  const d = G.dinge.find((x: any) => x.id === id);
+  const bg = document.createElement('div');
+  bg.className = 'pop-bg';
+  bg.style.alignItems = 'center'; bg.style.justifyContent = 'center';
+  bg.innerHTML = `<div class="pop kauf" role="dialog" aria-label="Kaufen"><img src="${img('garderobe/' + id)}" alt=""><p class="big">${T(G.kaufen.replace('{n}', String(d.preis)))}</p>
+    <div class="menu"><button class="btn cta" data-k="ja">Ja</button><button class="btn" data-k="nein">Nein</button></div></div>`;
+  document.body.appendChild(bg);
+  bg.addEventListener('click', (e) => {
+    const k = (e.target as HTMLElement).closest<HTMLElement>('[data-k]')?.dataset.k;
+    if (e.target !== bg && !k) return;
+    bg.remove();
+    if (k === 'ja' && verfuegbar(PREISE) >= d.preis && !stand.garderobe.gekauft.includes(id)) {
+      stand.garderobe.gekauft.push(id); stand.garderobe.traegt = id; speichern(); glowMoon();
+    }
+    garderobe();
+  });
+}
+actions.gardZu = () => { const v = vorGarderobe; vorGarderobe = null; if (v) { stand.ort = v; speichern(); } game = null; resume(true); };
+$('pearls').addEventListener('click', () => { if (!vorGarderobe) garderobe(); });
 
 /* ====================== Titelbild ====================== */
 function cover() {
@@ -664,6 +715,7 @@ document.fonts.ready.then(() => cover());
 function zurueck() {
   const pop = document.querySelector('.pop-bg');
   if (pop) { pop.remove(); return; }
+  if (vorGarderobe) { actions.gardZu(); return; }
   if (R.ev && game) { R.ev = null; game.show(-1); return; }
   if (game && content.querySelector('.engine')) { lesen(game.spur, { letzte: true, dir: -1 }); return; }
   if (isReading()) { if (R.idx > 0) blaettern(-1); else if (R.teil > 0 && geloestAnzahl()) wand(); else cover(); return; }

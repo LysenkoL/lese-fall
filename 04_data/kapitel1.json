@@ -1329,5 +1329,56 @@
   "geschafft": "Ka|pi|tel ge|schafft!",
   "bereit": "Bist du be|reit?",
   "bald": "Ka|pi|tel 2 kommt bald!"
+ },
+ "garderobe": {
+  "titel": "Gar|de|ro|be der Le|se-Rau|pe",
+  "ohne": "oh|ne Sa|chen",
+  "gekauft": "ge|kauft",
+  "traegt": "trägt sie",
+  "kaufen": "Für {n} Per|len kau|fen?",
+  "noch": "Noch {n} Per|len",
+  "tipp": "Tip|pe auf ei|ne Sa|che. Ge|kauf|te Sa|chen kann sie an- und aus|zie|hen.",
+  "dinge": [
+   {
+    "id": "fliege",
+    "label": "die Flie|ge",
+    "preis": 3
+   },
+   {
+    "id": "schal",
+    "label": "der Schal",
+    "preis": 4
+   },
+   {
+    "id": "brille",
+    "label": "die Bril|le",
+    "preis": 4
+   },
+   {
+    "id": "notizbuch",
+    "label": "das No|tiz|buch",
+    "preis": 5
+   },
+   {
+    "id": "taschenlampe",
+    "label": "die Ta|schen|lam|pe",
+    "preis": 5
+   },
+   {
+    "id": "hut",
+    "label": "der Hut",
+    "preis": 6
+   },
+   {
+    "id": "mondbrosche",
+    "label": "die Mond|bro|sche",
+    "preis": 6
+   },
+   {
+    "id": "tasche",
+    "label": "die Blatt-Ta|sche",
+    "preis": 7
+   }
+  ]
  }
 }

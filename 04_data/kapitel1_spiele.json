@@ -631,5 +631,56 @@
     "geschafft": "Kapitel geschafft!",
     "bereit": "Bist du bereit?",
     "bald": "Kapitel 2 kommt bald!"
+  },
+  "garderobe": {
+    "titel": "Garderobe der Lese-Raupe",
+    "ohne": "ohne Sachen",
+    "gekauft": "gekauft",
+    "traegt": "trägt sie",
+    "kaufen": "Für {n} Perlen kaufen?",
+    "noch": "Noch {n} Perlen",
+    "tipp": "Tippe auf eine Sache. Gekaufte Sachen kann sie an- und ausziehen.",
+    "dinge": [
+      {
+        "id": "fliege",
+        "label": "die Fliege",
+        "preis": 3
+      },
+      {
+        "id": "schal",
+        "label": "der Schal",
+        "preis": 4
+      },
+      {
+        "id": "brille",
+        "label": "die Brille",
+        "preis": 4
+      },
+      {
+        "id": "notizbuch",
+        "label": "das Notizbuch",
+        "preis": 5
+      },
+      {
+        "id": "taschenlampe",
+        "label": "die Taschenlampe",
+        "preis": 5
+      },
+      {
+        "id": "hut",
+        "label": "der Hut",
+        "preis": 6
+      },
+      {
+        "id": "mondbrosche",
+        "label": "die Mondbrosche",
+        "preis": 6
+      },
+      {
+        "id": "tasche",
+        "label": "die Blatt-Tasche",
+        "preis": 7
+      }
+    ]
   }
 }

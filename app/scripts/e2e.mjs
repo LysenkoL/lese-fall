@@ -232,12 +232,34 @@ async function run(name, viewport, full, fs = 0, stil2 = false) {
   ok(!(await p.$('.pop-bg')), `${name}: Zurück schließt die Einstellungen`);
   await shot('silben_gross');
   ok(await silbenAn(), `${name}: Silben farbig sichtbar`);
+  // Garderobe (D-08): 12 Perlen; kaufen, anziehen, ausziehen, zu teuer, nach Neustart gespeichert
+  if (full || fs) {
+    await click('#pearls'); await sleep(300);
+    ok(!!(await p.$('.garderobe')), `${name}: Perlen antippen öffnet die Garderobe`);
+    if (full) await shot('garderobe');
+    await click('[data-g="hut"]'); await sleep(200);
+    ok((await p.$eval('.pop.kauf', (e) => e.textContent)).includes('6'), `${name}: Kaufen fragt „Für 6 Perlen kaufen?“`);
+    if (full) await shot('garderobe_kaufen');
+    await click('[data-k="ja"]'); await sleep(250);
+    ok(await p.$eval('#pc', (e) => e.textContent) === '6', `${name}: nach dem Kauf 6 Perlen übrig`);
+    ok(await p.$eval('[data-g="hut"]', (e) => e.getAttribute('aria-pressed')) === 'true', `${name}: Hut wird getragen`);
+    ok(await p.$eval('[data-g="tasche"]', (e) => e.disabled && e.textContent.includes('Noch 1')), `${name}: zu teuer: „Noch 1 Perlen“, nicht kaufbar`);
+    await click('[data-g="ohne"]'); await sleep(150);
+    ok(await p.$eval('[data-g="hut"]', (e) => e.getAttribute('aria-pressed')) === 'false', `${name}: ausziehen`);
+    await click('[data-g="hut"]'); await sleep(150);
+    ok(await p.$eval('[data-g="hut"]', (e) => e.getAttribute('aria-pressed')) === 'true' && !(await p.$('.pop.kauf')), `${name}: Gekauftes wieder anziehen ohne zu bezahlen`);
+    if (full) await shot('garderobe_hut');
+    await btn('gardZu'); await sleep(300);
+    ok(!!(await p.$('#content [data-b]')), `${name}: Fertig führt zurück zum Lesen`);
+  }
   // Neu laden mitten in der Spur: gleiche Lesestelle, Fortschritt bleibt
   const anker = await p.$eval('#content [data-b]', (e) => e.dataset.b);
   await p.reload(); await sleep(900);
   await btn('los'); await sleep(400);
   ok(!!(await p.$(`#content [data-b="${anker}"]`)), `${name}: nach Neustart wieder auf demselben Blatt (${anker})`);
-  ok(await p.$eval('#pc', (e) => e.textContent) === '12', `${name}: nach Neustart 12 Perlen`);
+  const pc = await p.$eval('#pc', (e) => e.textContent);
+  ok(pc === (full || fs ? '6' : '12'), `${name}: nach Neustart ${full || fs ? '6 übrige' : '12'} Perlen`);
+  if (full || fs) ok(await p.evaluate(() => JSON.stringify(window.__lesefall.stand.garderobe)) === JSON.stringify({ gekauft: ['hut'], traegt: 'hut' }), `${name}: Garderobe nach Neustart gespeichert`);
   ok(errors.length === 0, `${name}: keine Fehler in der Konsole ${errors.join(' | ')}`);
   await b.close();
 }

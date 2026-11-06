@@ -9,14 +9,15 @@ export interface Stand {
   silben: boolean;
   ruhig: boolean; // Bewegung reduzieren
   stil2: boolean; // „Neuer Stil (Test)“ zum Vergleichen
+  garderobe: { gekauft: string[]; traegt: string | null }; // D-08: Sachen für die Lese-Raupe
 }
 const KEY = 'lesefall.v1';
-const START: Stand = { geloest: {}, buchstaben: [], tresorOffen: false, vorgeschichte: false, ort: { view: 'cover', teil: 0, anker: '' }, fs: 20, silben: true, ruhig: false, stil2: false };
+const START: Stand = { geloest: {}, buchstaben: [], tresorOffen: false, vorgeschichte: false, ort: { view: 'cover', teil: 0, anker: '' }, fs: 20, silben: true, ruhig: false, stil2: false, garderobe: { gekauft: [], traegt: null } };
 
 function laden(): Stand {
   try {
     const raw = localStorage.getItem(KEY);
-    if (raw) return { ...START, ...JSON.parse(raw) };
+    if (raw) { const d = JSON.parse(raw); return { ...structuredClone(START), ...d, garderobe: { gekauft: [], traegt: null, ...(d.garderobe ?? {}) } }; }
   } catch { /* privat / blockiert: ohne Speichern weiter */ }
   return structuredClone(START);
 }
@@ -29,5 +30,8 @@ export function zuruecksetzen() {
   Object.assign(stand, structuredClone(START), keep);
   speichern();
 }
+/** alle gesammelten Perlen (je Spur einmal, A-05) */
 export const perlen = () => Object.values(stand.geloest).reduce((a, b) => a + b, 0);
+/** Perlen, die noch ausgegeben werden können (Garderobe, D-08) */
+export const verfuegbar = (preise: Record<string, number>) => perlen() - stand.garderobe.gekauft.reduce((a, id) => a + (preise[id] ?? 0), 0);
 export const geloestAnzahl = () => Object.keys(stand.geloest).length;

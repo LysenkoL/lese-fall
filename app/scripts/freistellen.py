@@ -14,8 +14,18 @@ JOBS = [(f, os.path.join(DST, os.path.basename(f))) for f in sorted(glob.glob(os
 FREI = os.path.join(ROOT, 'app/src/gen/frei')
 os.makedirs(FREI, exist_ok=True)
 JOBS += [(os.path.join(ROOT, f'assets/illustrationen/raupe/{n}.webp'), os.path.join(FREI, f'raupe_{n}.webp')) for n in ('staunt', 'lob')]
+# Garderobe (D-08): Symbole freistellen, Raupen-Figuren verkleinert freistellen
+GAR = os.path.join(ROOT, 'assets/illustrationen/garderobe')
+GDST = os.path.join(ROOT, 'app/src/gen/garderobe')
+os.makedirs(GDST, exist_ok=True)
+for n in ('fliege', 'schal', 'brille', 'notizbuch', 'taschenlampe', 'hut', 'mondbrosche', 'tasche'):
+    JOBS += [(os.path.join(GAR, f'{n}.webp'), os.path.join(GDST, f'{n}.webp')), (os.path.join(GAR, f'raupe_{n}.webp'), os.path.join(GDST, f'raupe_{n}.webp'))]
 for f, ziel in JOBS:
-    im = Image.open(f).convert('RGB')
+    src = Image.open(f)
+    if src.mode == 'RGBA':  # hat schon Transparenz (z. B. Tasche, Mondbrosche): nur übernehmen
+        src.save(ziel, 'WEBP', quality=88, method=6); print('✓', os.path.basename(f)); continue
+    im = src.convert('RGB')
+    if max(im.size) > 700: im.thumbnail((640, 640))  # große Figuren für die App verkleinern
     w, h = im.size
     work = im.copy()
     seeds = [(0, 0), (w - 1, 0), (0, h - 1), (w - 1, h - 1), (w // 2, 0), (w // 2, h - 1), (0, h // 2), (w - 1, h // 2)]

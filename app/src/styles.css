@@ -396,3 +396,30 @@ img { -webkit-user-drag: none; user-select: none; }
 @keyframes spaeter { from { opacity: 0; transform: translateY(10px); } }
 .innen .opts { text-align: left; }
 .fazit-liste { text-align: left; background: var(--evidence-highlight); border-radius: 12px; padding: 8px 10px 8px 28px; margin: 8px 0; font-size: 15px; line-height: 1.4; }
+
+/* ---------- Garderobe (D-08) ---------- */
+button.pearls { color: #fff; border-radius: 12px; min-height: 44px; padding: 0 8px; }
+button.pearls:active { background: rgba(255,255,255,.12); }
+.garderobe { text-align: center; }
+.garderobe .big { margin: 2px 0 6px; }
+.spiegel { width: 190px; height: 190px; margin: 0 auto; border-radius: 50%; background: radial-gradient(circle at 50% 40%, #FFF8E3, #F3E7C6 70%); display: grid; place-items: center; box-shadow: inset 0 -6px 12px rgba(120,80,0,.12); }
+.spiegel img { width: 170px; height: 170px; object-fit: contain; }
+.gard-tipp { font-size: 15px; color: var(--muted); margin: 8px 0; }
+.gard-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+@media (min-width: 560px) { .gard-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.gard { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 8px 6px; border-radius: 16px; background: #fff; border: 2px solid var(--paper-line); color: var(--text); font-size: 15px; line-height: 1.25; min-height: 132px; }
+.gard img { width: 72px; height: 60px; object-fit: contain; }
+.gard .st { font-size: 13px; color: var(--muted); }
+.gard .preis { display: inline-flex; align-items: center; gap: 4px; font-weight: 800; color: #7A5A12; font-size: 15px; }
+.gard .preis i, .pop.kauf i { width: 14px; height: 14px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff 0 18%, var(--pearl) 45%, #C99A2A 100%); display: inline-block; }
+.gard.hat { border-color: #D8C7A4; }
+.gard.traegt { border-color: var(--mustard); background: var(--mustard-soft); box-shadow: 0 0 0 2px var(--mustard); }
+.gard:disabled { opacity: .6; }
+.btn.ohne { margin: 12px auto 0; }
+.pop.kauf { text-align: center; }
+.pop.kauf > img { width: 110px; height: 90px; object-fit: contain; }
+.wort-zeile { display: flex; align-items: center; justify-content: center; gap: 8px; }
+.wand-figur { width: 64px; height: 64px; object-fit: contain; }
+.end-figur { width: 120px; height: 120px; object-fit: contain; display: block; margin: 8px auto 0; }
+.stil2 .gard { border: 0; box-shadow: 0 0 0 4px #fff, 0 6px 12px rgba(60,30,0,.2); }
+.stil2 .gard.traegt { box-shadow: 0 0 0 4px var(--mustard), 0 8px 14px rgba(60,30,0,.28); }
