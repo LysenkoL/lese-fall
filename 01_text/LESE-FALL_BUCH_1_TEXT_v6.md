@@ -96,7 +96,7 @@ Dann denkt sie an den gestreiften Ärmel. Rot-weiße Streifen … Die hat sie he
 
 ---
 
-### Seite 4 (Kapitel 1 · Spur 4) — Der falsche Mond
+### Seite 4 (Kapitel 1 · Spur 4) — Ist das Milas Mond?
 
 Mila läuft um den Tisch herum. Da! Unter einem Stapel Zeitungspapier schaut etwas Gelbes hervor.
 Sie zieht einen großen gelben Kreis aus Pappe heraus.
