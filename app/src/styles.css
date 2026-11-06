@@ -50,8 +50,15 @@ img { -webkit-user-drag: none; user-select: none; }
 .app-header .hb:active { background: rgba(255,255,255,.12); }
 .app-header .hb svg { width: 24px; height: 24px; }
 .app-header .ttl { flex: 1; min-width: 0; line-height: 1.2; }
-.app-header .ttl b { display: block; font-size: 17px; font-weight: 800; letter-spacing: .01em; }
+.app-header .ttl b { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 17px; font-weight: 800; letter-spacing: .01em; }
 .app-header .ttl span { display: block; font-size: 13px; opacity: .8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.app-header .hb.sil { white-space: nowrap; display: flex; align-items: center; justify-content: center; width: 52px; font-weight: 800; font-size: 17px; border-radius: 12px; background: rgba(255,255,255,.1); box-shadow: inset 0 0 0 2px rgba(255,255,255,.25); }
+.app-header .hb.sil .s-b, .app-header .hb.sil .s-r { color: #A9B3CC; }
+.app-header .hb.sil[aria-checked="true"] { background: #FFFDF8; box-shadow: none; }
+.app-header .hb.sil[aria-checked="true"] .s-b { color: var(--syllable-blue); }
+.app-header .hb.sil[aria-checked="true"] .s-r { color: var(--syllable-red); }
+.app-header .ttl b .kap { display: inline; font-size: inherit; opacity: 1; }
+@media (max-width: 419px) { .app-header .ttl b .kap { display: none; } .app-header { gap: 6px; } }
 .moon { width: 38px; height: 38px; flex: none; }
 .moon svg { width: 100%; height: 100%; overflow: visible; }
 .moon.glow svg { animation: moonglow 1.8s ease-out; }

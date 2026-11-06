@@ -15,6 +15,7 @@ app.innerHTML = `
   <div class="ttl"><b id="t1"></b><span id="t2"></span></div>
   <div class="moon" id="moon" role="img"></div>
   <div class="pearls" id="pearls" aria-label="Schimmer-Perlen"><i></i><span id="pc">0</span></div>
+  <button class="hb sil" id="sil" role="switch" aria-label="Silben farbig"><span class="s-b">Le</span><span class="s-r">se</span></button>
   <button class="hb" id="aa" aria-label="Schrift und Silben" style="font-weight:800;font-size:19px">Aa</button>
 </header>
 <main class="reader-viewport"><div class="sheet" id="sheet"><div id="content"></div><div class="measure story" id="measure" aria-hidden="true"></div></div></main>
@@ -24,6 +25,8 @@ const sheetEl = $('sheet'), content = $('content'), measure = $('measure'), foot
 const U = DATA.ui;
 
 function applySettings() {
+  const sw = document.getElementById('sil');
+  if (sw) sw.setAttribute('aria-checked', String(stand.silben));
   document.documentElement.style.setProperty('--fs', stand.fs + 'px');
   document.documentElement.classList.toggle('silben', stand.silben);
   document.documentElement.classList.toggle('reduce', stand.ruhig);
@@ -38,7 +41,9 @@ function moonSVG(k: number) {
   return `<svg viewBox="0 0 34 34"><defs><mask id="mk"><rect width="34" height="34" fill="#fff"/><circle cx="${17 - off}" cy="17" r="12.2" fill="#000"/></mask></defs>${dash}<circle cx="17" cy="17" r="12" fill="#F5C542" mask="url(#mk)"/></svg>`;
 }
 function header(t1: string, t2 = DATA.kapitel ? plain(DATA.kapitel.titel) : '') {
-  $('t1').textContent = t1;
+  // „Kapitel 1 · Spur 3“: auf schmalen Telefonen nur „Spur 3“ (Kapitel steht darunter)
+  const m = t1.match(/^(Kapitel \d+ · )(.+)$/);
+  $('t1').innerHTML = m ? `<span class="kap">${m[1]}</span>${m[2]}` : t1;
   $('t2').textContent = t2;
   const n = geloestAnzahl();
   $('moon').innerHTML = moonSVG(n);
@@ -552,6 +557,8 @@ function refresh() {
 }
 let rt = 0;
 window.addEventListener('resize', () => { clearTimeout(rt); rt = window.setTimeout(() => { if (isReading() && paginated !== `${R.teil}|${stand.fs}|${sheetEl.clientWidth}x${sheetEl.clientHeight}`) refresh(); }, 150); });
+// Silben-Schalter in der Kopfzeile: immer sichtbar, ein Tipp an/aus (mit „Aa“ abgeglichen)
+$('sil').addEventListener('click', () => { stand.silben = !stand.silben; speichern(); applySettings(); refresh(); });
 $('home').addEventListener('click', () => { R.ev = null; wand(); });
 
 /* ====================== Start ====================== */

@@ -34,6 +34,8 @@ async function run(name, viewport, full) {
   const checkSheet = async (where) => {
     const s = await p.evaluate(() => { const sh = document.getElementById('sheet'); return { scroll: sh.classList.contains('scroll'), over: sh.scrollHeight > sh.clientHeight + 2, footBottom: document.querySelector('.app-foot').getBoundingClientRect().bottom, h: innerHeight }; });
     ok(!s.scroll && !s.over, `${name}: ${where} ohne Rollen`);
+    const hdr = await p.evaluate(() => { const h = document.querySelector('.app-header'); return h.scrollWidth <= h.clientWidth + 1 && [...h.querySelectorAll('.hb')].every((b) => b.getBoundingClientRect().width >= 44); });
+    ok(hdr, `${name}: ${where} Kopfzeile passt, Knöpfe ≥ 44 px`);
     ok(s.footBottom <= s.h + 0.5, `${name}: ${where} Fußleiste im Bild`);
   };
   /** bis zum letzten Blatt blättern; prüft dabei jedes Blatt */
@@ -177,7 +179,14 @@ async function run(name, viewport, full) {
   await btn('wand'); await sleep(200);
   await click('[data-fund="2"]'); await click('[data-m="lesen"]'); await sleep(300);
   await btn('next'); await sleep(300);
-  await click('#aa'); await click('[data-sw="silben"]'); await click('[data-fs="26"]');
+  const silbenAn = () => p.evaluate(() => document.documentElement.classList.contains('silben'));
+  ok(await silbenAn(), `${name}: Silben farbig ist voreingestellt`);
+  await click('#sil'); ok(!(await silbenAn()), `${name}: Silben-Schalter in der Kopfzeile schaltet aus`);
+  await shot('silben_aus');
+  await click('#sil'); ok(await silbenAn(), `${name}: und wieder an`);
+  await click('#aa');
+  ok(await p.$eval('[data-sw="silben"]', (e) => e.getAttribute('aria-checked')) === 'true', `${name}: Schalter in „Aa“ synchron`);
+  await click('[data-fs="26"]');
   await shot('einstellungen');
   await click('[data-reset]');
   ok(!!(await p.$('[data-antwort]')) && !(await p.$('[data-loeschen]')), `${name}: Elternschloss vor dem Löschen`);
@@ -185,8 +194,7 @@ async function run(name, viewport, full) {
   await click('[data-abbrechen]');
   await click('[data-close]'); await sleep(300);
   await shot('silben_gross');
-  const silben = await p.$$eval('.s-r', (els) => els.length);
-  ok(silben > 10, `${name}: Silben farbig sichtbar`);
+  ok(await silbenAn(), `${name}: Silben farbig sichtbar`);
   // Neu laden: Fortschritt bleibt
   await p.reload(); await sleep(900);
   ok(await p.$eval('#pc', (e) => e.textContent) === '11', `${name}: nach Neustart 11 Perlen`);

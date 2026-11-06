@@ -10,7 +10,7 @@ export interface Stand {
   ruhig: boolean; // Bewegung reduzieren
 }
 const KEY = 'lesefall.v1';
-const START: Stand = { geloest: {}, buchstaben: [], tresorOffen: false, vorgeschichte: false, ort: { view: 'cover', teil: 0, anker: '' }, fs: 20, silben: false, ruhig: false };
+const START: Stand = { geloest: {}, buchstaben: [], tresorOffen: false, vorgeschichte: false, ort: { view: 'cover', teil: 0, anker: '' }, fs: 20, silben: true, ruhig: false };
 
 function laden(): Stand {
   try {
