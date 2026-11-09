@@ -281,3 +281,6 @@
 .stil2 .wort { gap: min(8px, 1.6vw); }
 .stil2 .wort span { width: min(48px, 11vw); height: min(58px, 13.3vw); font-size: min(32px, 7.5vw); }
 .stil2 .wand-figur { width: min(56px, 12vw); height: auto; }
+/* L11: Pinsel-Hinweis bricht um (display: table wuchs bei großer Schrift über den Rand); Stempel auf dem Fund bleibt im Bild */
+.stil2 .sheet[data-art="wand"] .pinsel-tipp { display: block; width: fit-content; max-width: 100%; }
+.stil2 .stamp-over { font-size: 13px; max-width: 96%; white-space: normal; text-align: center; }
