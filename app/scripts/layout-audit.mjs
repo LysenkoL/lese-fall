@@ -31,7 +31,7 @@ const MESSEN = () => {
   let bottom = 0;
   for (const el of content.children) { const p = getComputedStyle(el).position; if (p === 'absolute' || p === 'fixed') continue; bottom = Math.max(bottom, el.getBoundingClientRect().bottom); }
   const used = bottom - (sr.top + parseFloat(cs.paddingTop));
-  const zuBreit = [...document.querySelectorAll('#app *')].filter((e) => { const r = e.getBoundingClientRect(); return r.width > 0 && (r.right > W + 1 || r.left < -1) && !e.closest('.feld') && !e.matches('.feld > img.bg'); }).length;
+  const zuBreit = [...document.querySelectorAll('#app *')].filter((e) => { const r = e.getBoundingClientRect(); return r.width > 0 && (r.right > W + 1 || r.left < -1) && !e.closest('.feld') && !e.closest('.konfetti') && !e.matches('.feld > img.bg'); }).length;
   const knoepfe = [...document.querySelectorAll('.app-foot button, .app-header button')].filter((b) => { const r = b.getBoundingClientRect(); return r.bottom > H + 1 || r.top < -1 || r.right > W + 1; }).length;
   const roller = [...document.querySelectorAll('#app *')].filter((e) => { const s = getComputedStyle(e); return /(auto|scroll)/.test(s.overflowY) && e.scrollHeight > e.clientHeight + 2; }).length;
   const abgeschnitten = [...document.querySelectorAll('#content p, #content b, #content span.l, #content .opt, #content .fk span')].filter((e) => e.scrollWidth > e.clientWidth + 2 && getComputedStyle(e).overflow === 'hidden').length;

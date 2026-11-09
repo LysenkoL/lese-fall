@@ -276,3 +276,8 @@
 /* L9: Schublade nicht mehr „klebend“ – sie lag auf 360 px über der Zone „Nicht mehr da“ (Spur 6) und war nicht antippbar.
    Sie sitzt jetzt durch das Spiel-Layout ohnehin unten am Blatt. */
 .stil2 .tray { position: static; margin: 14px -12px 0; }
+/* L10: Wort-Plättchen + Raupe passen auf 360 px (waren 6 × 48 px + Figur = breiter als der Bildschirm) */
+.stil2 .wort-zeile { gap: 4px; }
+.stil2 .wort { gap: min(8px, 1.6vw); }
+.stil2 .wort span { width: min(48px, 11vw); height: min(58px, 13.3vw); font-size: min(32px, 7.5vw); }
+.stil2 .wand-figur { width: min(56px, 12vw); height: auto; }
