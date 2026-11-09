@@ -2124,5 +2124,587 @@
    "roller": 0,
    "abgeschnitten": 0
   }
+ ],
+ "alt_412x915": [
+  {
+   "name": "00_titel",
+   "art": "sonst",
+   "fuellung": null,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "vg_blatt1",
+   "art": "lesen",
+   "fuellung": 68,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "vg_blatt2",
+   "art": "lesen",
+   "fuellung": 68,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "vg_blatt3",
+   "art": "lesen",
+   "fuellung": 72,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "vg_blatt4",
+   "art": "lesen",
+   "fuellung": 77,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "vg_blatt5",
+   "art": "lesen",
+   "fuellung": 48,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s1_blatt1",
+   "art": "lesen",
+   "fuellung": 74,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s1_blatt2",
+   "art": "lesen",
+   "fuellung": 65,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s1_blatt3",
+   "art": "lesen",
+   "fuellung": 64,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s1_spiel",
+   "art": "spiel",
+   "fuellung": null,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s1_falsch",
+   "art": "spiel",
+   "fuellung": null,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s1_beweis",
+   "art": "lesen",
+   "fuellung": 78,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s1_beweis_gefunden",
+   "art": "lesen",
+   "fuellung": 64,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s1_nochmal",
+   "art": "spiel",
+   "fuellung": null,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s1_sieg",
+   "art": "spiel",
+   "fuellung": null,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s1_wand_staub",
+   "art": "wand",
+   "fuellung": null,
+   "rollt": true,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 1,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s2_blatt1",
+   "art": "lesen",
+   "fuellung": 81,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s2_blatt2",
+   "art": "lesen",
+   "fuellung": 89,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s2_blatt3",
+   "art": "lesen",
+   "fuellung": 98,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s2_spiel",
+   "art": "spiel",
+   "fuellung": null,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s2_zwischen",
+   "art": "spiel",
+   "fuellung": null,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s2_spiel2",
+   "art": "spiel",
+   "fuellung": null,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s2_sieg",
+   "art": "spiel",
+   "fuellung": null,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s2_wand_staub",
+   "art": "wand",
+   "fuellung": null,
+   "rollt": true,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 1,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s3_blatt1",
+   "art": "lesen",
+   "fuellung": 66,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s3_blatt2",
+   "art": "lesen",
+   "fuellung": 79,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s3_blatt3",
+   "art": "lesen",
+   "fuellung": 73,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s3_spiel",
+   "art": "spiel",
+   "fuellung": null,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s3_sieg",
+   "art": "spiel",
+   "fuellung": null,
+   "rollt": true,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 1,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s3_wand_staub",
+   "art": "wand",
+   "fuellung": null,
+   "rollt": true,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 1,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s4_blatt1",
+   "art": "lesen",
+   "fuellung": 76,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s4_blatt2",
+   "art": "lesen",
+   "fuellung": 81,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s4_blatt3",
+   "art": "lesen",
+   "fuellung": 90,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s4_spiel",
+   "art": "spiel",
+   "fuellung": null,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s4_sieg",
+   "art": "spiel",
+   "fuellung": null,
+   "rollt": true,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 1,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s4_wand_staub",
+   "art": "wand",
+   "fuellung": null,
+   "rollt": true,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 1,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s5_blatt1",
+   "art": "lesen",
+   "fuellung": 66,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s5_blatt2",
+   "art": "lesen",
+   "fuellung": 58,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s5_blatt3",
+   "art": "lesen",
+   "fuellung": 84,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s5_spiel",
+   "art": "spiel",
+   "fuellung": null,
+   "rollt": true,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 1,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s5_sieg",
+   "art": "spiel",
+   "fuellung": null,
+   "rollt": true,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 1,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s5_wand_staub",
+   "art": "wand",
+   "fuellung": null,
+   "rollt": true,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 1,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s6_blatt1",
+   "art": "lesen",
+   "fuellung": 74,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s6_blatt2",
+   "art": "lesen",
+   "fuellung": 75,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s6_blatt3",
+   "art": "lesen",
+   "fuellung": 62,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s6_spiel",
+   "art": "spiel",
+   "fuellung": null,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s6_sieg",
+   "art": "spiel",
+   "fuellung": null,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "s6_wand_staub",
+   "art": "wand",
+   "fuellung": null,
+   "rollt": true,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 1,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "wand_voll",
+   "art": "wand",
+   "fuellung": null,
+   "rollt": true,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 1,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "wand_fazit",
+   "art": "wand",
+   "fuellung": null,
+   "rollt": true,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 1,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "tresor",
+   "art": "sonst",
+   "fuellung": null,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "tresor_falsch",
+   "art": "sonst",
+   "fuellung": null,
+   "rollt": true,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 1,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "tresor_offen",
+   "art": "sonst",
+   "fuellung": null,
+   "rollt": true,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 1,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "kapitel2",
+   "art": "sonst",
+   "fuellung": null,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "garderobe",
+   "art": "sonst",
+   "fuellung": null,
+   "rollt": true,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 1,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "garderobe_kaufen",
+   "art": "sonst",
+   "fuellung": null,
+   "rollt": true,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 1,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "garderobe_hut",
+   "art": "sonst",
+   "fuellung": null,
+   "rollt": true,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 1,
+   "abgeschnitten": 0
+  },
+  {
+   "name": "einstellungen",
+   "art": "sonst",
+   "fuellung": null,
+   "rollt": false,
+   "zuBreit": 0,
+   "knoepfe": 0,
+   "roller": 0,
+   "abgeschnitten": 0
+  }
  ]
 }
