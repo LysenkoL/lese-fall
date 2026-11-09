@@ -37,6 +37,7 @@ img { -webkit-user-drag: none; user-select: none; }
 .app-shell {
   height: 100dvh; width: 100%;
   display: grid; grid-template-rows: auto minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr); /* nie breiter als der Bildschirm (sonst 402 px bei 360 px Telefonen) */
   background: var(--underlay);
   overflow: hidden;
 }
@@ -423,3 +424,21 @@ button.pearls:active { background: rgba(255,255,255,.12); }
 .end-figur { width: 120px; height: 120px; object-fit: contain; display: block; margin: 8px auto 0; }
 .stil2 .gard { border: 0; box-shadow: 0 0 0 4px #fff, 0 6px 12px rgba(60,30,0,.2); }
 .stil2 .gard.traegt { box-shadow: 0 0 0 4px var(--mustard), 0 8px 14px rgba(60,30,0,.28); }
+
+/* ---------- Layout-Prüfung 9.11. (LAYOUT_AUDIT.md) ---------- */
+/* L4: Spiel füllt das Blatt; die Ablage sitzt unten am Daumen statt mitten im Leeren */
+.sheet[data-art="spiel"] #content { height: auto; min-height: 100%; display: flex; flex-direction: column; }
+.sheet[data-art="spiel"] .task { flex: 1; display: flex; flex-direction: column; }
+.sheet[data-art="spiel"] .engine { flex: 1; display: flex; flex-direction: column; }
+.sheet[data-art="spiel"] .engine > .tray { margin-top: auto; }
+.sheet[data-art="spiel"] .engine > :first-child { margin-top: 8px; }
+/* L5: leere Ablage nicht als leerer Kasten zeigen */
+.tray:empty { display: none; }
+/* L6: Gesicht im gelösten Spurenfaden verdeckt keinen Text */
+.fk.place:has(.face) { padding-right: 40px; }
+.fk .face { top: auto; bottom: -6px; right: -8px; width: 34px; height: 40px; }
+/* L7: Garderoben-Titel bricht nicht mitten in „Lese-Raupe“ */
+.garderobe h2.big { font-size: calc(var(--fs) * 1.1); }
+.garderobe h2.big .s-b, .garderobe h2.big .s-r { white-space: nowrap; }
+/* L8: Blatt-Inhalt nie breiter als das Blatt (lange Wörter bei großer Schrift) */
+#content { min-width: 0; overflow-wrap: break-word; }

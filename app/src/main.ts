@@ -112,6 +112,42 @@ function itemHTML(n: number, id: string) {
   return blockHTML(teil(n).blocks.find((b) => b.id === id)!);
 }
 /** Blöcke auf Blätter verteilen; ein Absatz wird nie geteilt */
+/**
+ * Gleich volle Blätter: gleiche Anzahl Blätter wie beim einfachen Auffüllen, aber die Absätze werden so verteilt,
+ * dass kein Blatt halb leer bleibt (Summe der quadrierten Leerräume minimal). Absätze werden nie geteilt (D-06).
+ */
+function ausgleichen(n: number, ids: string[], anzahl: number, maxH: number): string[][] | null {
+  if (anzahl < 2) return null;
+  const cache = new Map<string, number>();
+  const hoehe = (i: number, j: number) => { // Höhe der Blöcke i..j (einschließlich) zusammen
+    const k = i + ':' + j;
+    if (!cache.has(k)) { measure.innerHTML = ids.slice(i, j + 1).map((id) => itemHTML(n, id)).join(''); cache.set(k, measure.scrollHeight); }
+    return cache.get(k)!;
+  };
+  const N = ids.length, INF = 1e12;
+  // best[s][j]: kleinste Kosten, die ersten j Blöcke auf s Blätter zu verteilen
+  const best = Array.from({ length: anzahl + 1 }, () => new Array(N + 1).fill(INF));
+  const von = Array.from({ length: anzahl + 1 }, () => new Array(N + 1).fill(-1));
+  best[0][0] = 0;
+  for (let sh = 1; sh <= anzahl; sh++) {
+    for (let j = 1; j <= N; j++) {
+      for (let i = j - 1; i >= 0; i--) {
+        if (best[sh - 1][i] >= INF) continue;
+        if (i === 0 && j === 1 && N > 1) continue; // Titel nie allein auf einem Blatt
+        const h = hoehe(i, j - 1);
+        const einzeln = j - i === 1;
+        if (h > maxH + 1 && !einzeln) break; // passt nicht (ein einzelner zu großer Absatz darf rollen, A-13)
+        const leer = Math.max(0, maxH - h);
+        const c = best[sh - 1][i] + leer * leer;
+        if (c < best[sh][j]) { best[sh][j] = c; von[sh][j] = i; }
+      }
+    }
+  }
+  if (best[anzahl][N] >= INF) return null;
+  const out: string[][] = [];
+  for (let sh = anzahl, j = N; sh > 0; sh--) { const i = von[sh][j]; out.unshift(ids.slice(i, j)); j = i; }
+  return out;
+}
 function paginate(n: number) {
   sheetEl.dataset.art = 'lesen'; // gleiche Ränder beim Messen wie beim Anzeigen (neuer Stil)
   const cs = getComputedStyle(sheetEl);
@@ -128,8 +164,8 @@ function paginate(n: number) {
     } else cur.push(id);
   }
   if (cur.length) sheets.push(cur);
+  R.sheets = ausgleichen(n, ids, sheets.length, maxH) ?? sheets;
   measure.innerHTML = '';
-  R.sheets = sheets;
   paginated = `${n}|${stand.fs}|${sheetEl.clientWidth}x${sheetEl.clientHeight}`;
 }
 function lesen(n: number, opts: { anker?: string; letzte?: boolean; dir?: number } = {}) {
@@ -261,7 +297,7 @@ class Spiel {
     const notiz = (this.phase === 'select' || this.phase === 'retry' || this.phase === 'help' ? `<p class="intro">${T(st.intro)}</p>` : '')
       + (st.frage && this.phase !== 'won' ? `<p class="q">${T(st.frage)}</p>` : '');
     const html = `<div class="task">
-      <div class="case">${LUPE}<span class="dea">Dein Ermittlerauftrag ·</span><span class="name">${SPIEL_ICON[st.motor] ?? ''}${T(d.spiel)}</span>${steps}</div>
+      <div class="case">${LUPE}<span class="dea">Dein Ermittlerauftrag ·</span><span class="name">${SPIEL_ICON[st.motor] ?? ''}<span>${T(d.spiel)}</span></span>${steps}</div>
       ${this.fb()}
       ${notiz ? `<div class="notiz">${notiz}</div>` : ''}
       <div class="engine"></div></div>`;

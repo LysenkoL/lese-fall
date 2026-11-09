@@ -267,3 +267,9 @@
   width: 46%; max-width: 220px; aspect-ratio: 3 / 2; margin: 4px auto 6px; border-radius: 4px;
   border: 7px solid #fff; border-bottom-width: 24px; transform: rotate(-3deg); box-shadow: 0 8px 14px rgba(60,30,0,.4);
 }
+
+/* N1: Hinweis auf dem Korkbrett gut lesbar (Zettel statt Schrift direkt auf Kork) */
+.stil2 .sheet[data-art="wand"] .pinsel-tipp { display: table; margin: 6px auto 4px; padding: 6px 14px; background: #FFFCF4; border-radius: 10px; box-shadow: 0 4px 10px rgba(60,30,0,.3); text-shadow: none; }
+/* N3: Abstand nach den „fehlt“-Karten, damit die Stempel-Frage frei steht */
+.stil2 .fehlt { margin-bottom: 14px; }
+.stil2 .fehlt .opt { transform: none !important; }
