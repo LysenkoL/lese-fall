@@ -5,7 +5,7 @@
  *   → 03_screens/audit_layout/<stil>_<breite>x<höhe>[_gross].jpg (Kontaktbögen) und befunde.json (Messwerte)
  */
 import { createRequire } from 'node:module';
-import { mkdirSync, writeFileSync, readdirSync, unlinkSync } from 'node:fs';
+import { mkdirSync, writeFileSync, readdirSync, unlinkSync, existsSync, readFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -14,7 +14,8 @@ const { chromium } = require('playwright');
 const URL = 'http://localhost:4173/';
 const OUT = resolve(dirname(fileURLToPath(import.meta.url)), '../../03_screens/audit_layout');
 mkdirSync(OUT, { recursive: true });
-for (const f of readdirSync(OUT)) if (/\.(jpg|png|json)$/.test(f)) unlinkSync(`${OUT}/${f}`);
+// alte Bilder des gewählten Stils löschen; Messwerte werden ergänzt (beide Stile laufen getrennt)
+for (const f of readdirSync(OUT)) if (/\.(jpg|png)$/.test(f) && (!process.argv[2] || f.startsWith(process.argv[2]))) unlinkSync(`${OUT}/${f}`);
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const GROESSEN = [[360, 740], [390, 844], [412, 915]];
 const NUR = process.argv[2];
@@ -110,7 +111,8 @@ async function loesen(p, st) {
   }
 }
 
-const alleBefunde = {};
+const BF = `${OUT}/befunde.json`;
+const alleBefunde = existsSync(BF) && process.argv[2] ? JSON.parse(readFileSync(BF, 'utf8')) : {};
 const k = await chromium.launch();
 const kp = await k.newPage({ viewport: { width: 1600, height: 1000 } });
 for (const stil2 of [false, true]) {
@@ -124,6 +126,7 @@ for (const stil2 of [false, true]) {
     const html = `<body style="margin:0;padding:12px;background:#E9E4D8;font:600 13px system-ui"><h2 style="margin:0 0 8px">${name}</h2><div style="display:flex;flex-wrap:wrap;gap:10px">${bilder.map((x, i) => `<figure style="margin:0;width:${Math.round(g[0] * 0.45)}px"><figcaption>${String(i + 1).padStart(2, '0')} ${x.name}</figcaption><img style="width:100%;border:1px solid #999" src="data:image/jpeg;base64,${x.buf.toString('base64')}"></figure>`).join('')}</div></body>`;
     await kp.setContent(html); await sleep(300);
     await kp.screenshot({ path: `${OUT}/${name}.jpg`, type: 'jpeg', quality: 75, fullPage: true });
+    writeFileSync(BF, JSON.stringify(alleBefunde, null, 1));
     console.log('✓', name, bilder.length, 'Bildschirme');
   }
 }
