@@ -27,13 +27,13 @@ const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replac
 
 /* ---------- Speicherstand (nur auf dem Gerät) ---------- */
 interface Stand {
-  view: 'titel' | 'intro' | 'kapitel' | 'spur' | 'tresor';
+  view: 'titel' | 'intro' | 'kapitel' | 'spur' | 'tresor' | 'finale';
   spur: number; i: number; blatt: number; // spur = Nummer der Szene im Buch (1–24)
   fertig: number[]; marks: string[]; verdacht: Record<string, string>;
-  tresor: number[]; tipp: boolean; intro: boolean; zuege: number; fs: number; silben: boolean;
+  tresor: number[]; tipp: boolean; intro: boolean; zuege: number; name: string; ziel: boolean; fs: number; silben: boolean;
 }
 const KEY = 'lesefall.v7b';
-const START: Stand = { view: 'titel', spur: 1, i: 0, blatt: 0, fertig: [], marks: [], verdacht: {}, tresor: [], tipp: false, intro: false, zuege: 0, fs: 20, silben: true };
+const START: Stand = { view: 'titel', spur: 1, i: 0, blatt: 0, fertig: [], marks: [], verdacht: {}, tresor: [], tipp: false, intro: false, zuege: 0, name: '', ziel: false, fs: 20, silben: true };
 const stand: Stand = (() => { try { const r = localStorage.getItem(KEY); if (r) return { ...structuredClone(START), ...JSON.parse(r) }; } catch { /* ohne Speichern weiter */ } return structuredClone(START); })();
 const speichern = () => { try { localStorage.setItem(KEY, JSON.stringify(stand)); } catch { /* egal */ } };
 
@@ -98,6 +98,7 @@ function zeige() {
   if (stand.view === 'intro') return intro();
   if (stand.view === 'kapitel') return kapitelKarte();
   if (stand.view === 'tresor') return tresor();
+  if (stand.view === 'finale') return finale();
   const st = steps(stand.spur)[stand.i];
   if (st.t === 'lesen') return lesen(st.teil);
   if (st.t === 'zug') { zs = { fehl: 0 }; return zug(st); }
@@ -121,7 +122,7 @@ function titel() {
   fuss.innerHTML = `<div class="fz">${knopf('start', angefangen ? UI.weiterFall : UI.start)}${angefangen ? knopf('neu', UI.neuStart, 'still') : ''}</div>`;
   fuss.onclick = (e) => {
     const a = (e.target as HTMLElement).closest<HTMLElement>('[data-a]')?.dataset.a;
-    if (a === 'start') { stand.view = stand.intro ? (angefangen ? 'spur' : 'kapitel') : 'intro'; stand.blatt = angefangen ? stand.blatt : 0; if (stand.tresor.includes(SP(stand.spur).kap) && SP(stand.spur).spur === 6) stand.view = 'tresor'; zeige(); }
+    if (a === 'start') { stand.view = stand.intro ? (angefangen ? 'spur' : 'kapitel') : 'intro'; stand.blatt = angefangen ? stand.blatt : 0; if (stand.tresor.includes(SP(stand.spur).kap) && SP(stand.spur).spur === 6) stand.view = 'tresor'; if (stand.ziel) stand.view = 'finale'; zeige(); }
     else if (a === 'neu') neuStart();
   };
 }
@@ -377,7 +378,9 @@ function zWahl(st: any) {
 /* Markieren: Sätze im Text antippen */
 function zMark(st: any) {
   const z = st.z;
+  const eigene = () => stand.marks.filter((id) => SAETZE.get(id)!.spur === z.spur);
   const pruefe = () => {
+    if (z.frei) return eigene().length ? fertig() : offen(z.tipp);
     const fehlt = z.muss.filter((id: string) => !hatMark(id));
     if (!fehlt.length) return fertig();
     zs.fehl++;
@@ -386,7 +389,7 @@ function zMark(st: any) {
   };
   const offen = (hinweis = '') => textOffen({ spur: z.spur, banner: z.text, hinweis, fertig: true, zu: pruefe });
   const fertig = (vor = '') => {
-    const treffer = [...z.muss, ...z.darf].filter((id: string) => hatMark(id));
+    const treffer = z.frei ? eigene().slice(-2) : [...z.muss, ...z.darf].filter((id: string) => hatMark(id));
     const karte = z.steckbrief ? steckbriefKarte() : `<div class="liste">${treffer.map((id: string) => `<div class="nz">${zitat(id)}</div>`).join('')}</div>`;
     zugRahmen(st, karte, '');
     geschafft(st, vor);
@@ -551,18 +554,29 @@ function haken() {
 /* ---------- Mondtresor: Ende eines Kapitels ---------- */
 function tresor() {
   modus('zug');
-  const k = KAP(stand.spur), gw = k.geheimwort, auf = stand.tresor.includes(k.nr), mehr = stand.spur < D.spuren.length;
+  const k = KAP(stand.spur), gw = k.geheimwort, auf = stand.tresor.includes(k.nr), mehr = stand.spur < D.spuren.length, ganz = D.kapitel.length >= 4;
   const von = (k.nr - 1) * 6, meine = Object.keys(stand.verdacht).filter((x) => +x.slice(1) > von && +x.slice(1) <= von + 6).sort((a, b) => +a.slice(1) - +b.slice(1));
   const rueck = meine.map((x) => `<div class="zettel mein"><small>${UI.nach} Spur ${SP(+x.slice(1)).spur}</small>${stand.verdacht[x]}</div>`).join('');
   const zahl = (n: number, t: string) => `<div class="zahl"><b>${n}</b><span>${t}</span></div>`;
   buehne.innerHTML = `<section class="zug tresor${auf ? ' auf' : ''}"><div class="lampe"></div><div class="zk"><span class="tab hell">${UI.kapitel} ${k.nr}</span><h2>Mondtresor</h2></div><div class="safew"><img class="safe" src="${img(auf ? 'mondtresor_auf' : 'mondtresor_zu')}" alt=""></div>${auf ? `<p class="zt1 gross">${UI.tresorAuf}</p>` : `<p class="zt1">${gw.frage}</p>`}<div class="wort gross">${gw.wort.split('').map((c: string, i: number) => `<i class="da" style="animation-delay:${i * 90}ms">${c}</i>`).join('')}</div>${auf ? `<p class="zt1">${k.schluss}</p><div class="zahlen">${zahl(stand.marks.length, UI.deineSpuren)}${zahl(stand.zuege, UI.deineZuege)}${zahl(perlen(), UI.perlen)}</div>${rueck ? `<h3 class="rb">${UI.rueckblick}</h3><div class="fragen">${rueck}</div>` : ''}` : ''}</section>`;
-  fuss.innerHTML = `<div class="fz">${!auf ? knopf('auf', UI.tresorKnopf) : mehr ? knopf('kap', `${UI.naechstesKapitel} ${k.nr + 1} ›`) : `<p class="forts">${UI.fortsetzung}</p>${knopf('neu', UI.neuStart, 'still')}`}</div>`;
+  fuss.innerHTML = `<div class="fz">${!auf ? knopf('auf', UI.tresorKnopf) : mehr ? knopf('kap', `${UI.naechstesKapitel} ${k.nr + 1} ›`) : ganz ? knopf('diplom', `${UI.diplom} ›`) : `<p class="forts">${UI.fortsetzung}</p>${knopf('neu', UI.neuStart, 'still')}`}</div>`;
   fuss.onclick = (e) => {
     const a = (e.target as HTMLElement).closest<HTMLElement>('[data-a]')?.dataset.a;
     if (a === 'auf') { stand.tresor.push(k.nr); summ([30, 50, 80]); zeige(); }
     else if (a === 'kap') { stand.spur++; stand.i = 0; stand.blatt = 0; stand.view = 'kapitel'; zeige(); }
+    else if (a === 'diplom') { stand.ziel = true; stand.view = 'finale'; zeige(); }
     else if (a === 'neu') neuStart();
   };
+}
+
+/* ---------- Ende des Buches: Diplom ---------- */
+function finale() {
+  modus('titel');
+  const zahl = (n: number, t: string) => `<div class="zahl"><b>${n}</b><span>${t}</span></div>`;
+  buehne.innerHTML = `<section class="finale"><div class="lampe"></div><b class="stempel gross">FALL GELÖST</b><figure class="foto"><img src="${img('finale_bild')}" alt=""></figure><div class="dipl"><img class="orden" src="${img('objekte/raupe_mit_orden')}" alt=""><p class="dt">${UI.meister}</p><input id="dname" type="text" maxlength="18" placeholder="${plain(D.ui.nameFrage)}" value="${esc(stand.name)}" autocomplete="off" autocapitalize="words"><p>${UI.hatGeloest}</p><p class="df">${T(D.fall.titel)}</p><p class="dl">${UI.lob}</p></div><div class="zahlen">${zahl(stand.marks.length, UI.deineSpuren)}${zahl(stand.zuege, UI.deineZuege)}${zahl(perlen(), UI.perlen)}</div></section>`;
+  fuss.innerHTML = `<div class="fz">${knopf('neu', UI.neuStart, 'still')}</div>`;
+  $<HTMLInputElement>('#dname').oninput = (e) => { stand.name = (e.target as HTMLInputElement).value; speichern(); };
+  fuss.onclick = (e) => { if ((e.target as HTMLElement).closest('[data-a="neu"]')) neuStart(); };
 }
 function neuStart() {
   Object.assign(stand, structuredClone(START), { fs: stand.fs, silben: stand.silben });

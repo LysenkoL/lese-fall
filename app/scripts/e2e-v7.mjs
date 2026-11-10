@@ -57,6 +57,7 @@ async function zug(spur, st, k) {
     await klick('[data-a="los"]'); await shot(name + '_text');
     if (spur === 1) { await klick('[data-a="fertig"]'); await shot(name + '_fehlt'); } // ohne Markierung: Tipp
     for (const id of z.muss) await satz(id);
+    if (z.frei) await klick('.blatt .satz');
     await shot(name + '_markiert');
     await klick('[data-a="fertig"]');
   } else if (z.art === 'wahl') {
@@ -117,10 +118,10 @@ for (let spur = START; spur <= N; spur++) {
   if (spur % 6 === 0) {
     await shot(`k${spur / 6}_tresor`); await klick('[data-a="auf"]'); await sleep(900); await shot(`k${spur / 6}_tresor_offen`); await messen(`k${spur / 6}_tresor_offen`);
     if (spur < N) { await klick('[data-a="kap"]'); await karten(`k${spur / 6 + 1}_karte`); }
+    else if (await p.$('[data-a="diplom"]')) { await klick('[data-a="diplom"]'); await sleep(600); await p.fill('#dname', 'Mia Mondauge'); await shot('finale'); await messen('finale'); }
   }
 }
-await klick('#bNotiz'); await shot('notizbuch'); await klick('.heft [data-a="zu"]');
-await klick('#bAkte'); await shot('akte_gesamt');
+if (await p.$('#bNotiz:not([hidden])') && await p.isVisible('#bNotiz')) { await klick('#bNotiz'); await shot('notizbuch'); await klick('.heft [data-a="zu"]'); await klick('#bAkte'); await shot('akte_gesamt'); }
 await b.close();
 if (fehler.length) { console.error('✗', fehler.length, 'Befunde:\n' + [...new Set(fehler)].join('\n')); process.exit(1); }
 console.log(`✓ v7 ${NAME} ${W}×${H}: ${N} Szenen durchgespielt, ${nr} Bilder`);

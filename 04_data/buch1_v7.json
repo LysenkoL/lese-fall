@@ -60,6 +60,25 @@
     },
     "frage": "Was ist der blau|e Stern auf der Rück|sei|te?"
    }
+  },
+  {
+   "nr": 4,
+   "titel": "Ein Mond für die Maus",
+   "bild": "kapitel_4",
+   "vorspann": "Der Mond fliegt da|von. Und in fünf Mi|nu|ten be|ginnt das The|a|ter|stück.",
+   "schluss": "Du hast den gan|zen Fall ge|löst: den Mond, die Son|ne, die Maus und den Schlüs|sel!",
+   "geheimwort": {
+    "wort": "ZUGABE",
+    "pos": {
+     "1": 3,
+     "2": 5,
+     "3": 0,
+     "4": 2,
+     "5": 1,
+     "6": 4
+    },
+    "frage": "Was ru|fen die Kin|der am En|de?"
+   }
   }
  ],
  "intro": [
@@ -136,7 +155,13 @@
   "tresorKnopf": "Tre|sor öff|nen",
   "akteLeer": "Noch leer. Nach der ers|ten Spur kommt hier et|was da|zu.",
   "geklaert": "ge|klärt",
-  "nach": "nach"
+  "nach": "nach",
+  "diplom": "Zum Di|plom",
+  "meister": "Meis|ter-De|tek|tiv",
+  "nameFrage": "Dein De|tek|tiv-Na|me",
+  "hatGeloest": "hat den Fall ge|löst:",
+  "fallGeloest": "Fall ge|löst!",
+  "lob": "Du hast ge|nau ge|le|sen, Spu|ren ge|sam|melt und selbst ge|dacht. Die Le|se-Rau|pe ist stolz auf dich."
  },
  "spuren": [
   {
@@ -4063,6 +4088,1216 @@
       "id": "offen",
       "text": "?"
      }
+    ]
+   }
+  },
+  {
+   "nr": 19,
+   "kap": 4,
+   "spur": 1,
+   "titel": "Un|ter den Blät|tern",
+   "bild": "k2_s11_spiel",
+   "bildB": null,
+   "haken": "Nur das wei|ße Band bau|melt wei|ter zwi|schen den Blät|tern.",
+   "teile": [
+    {
+     "blocks": [
+      {
+       "id": "s19-p1",
+       "typ": "p",
+       "s": [
+        "„Mein Mond!“, schreit Mi|la."
+       ]
+      },
+      {
+       "id": "s19-p2",
+       "typ": "p",
+       "s": [
+        "Der Vo|gel fliegt nicht weit.",
+        "Er lan|det in der Ast|ga|bel un|ter dem Fens|ter.",
+        "Der gel|be Mond bau|melt an sei|nem Fa|den hin|ter|her."
+       ]
+      },
+      {
+       "id": "s19-p3",
+       "typ": "p",
+       "s": [
+        "Der Fa|den rutscht zwi|schen zwei Zwei|ge.",
+        "Dort klemmt er fest.",
+        "Der Vo|gel zieht.",
+        "Ruck.",
+        "Ruck.",
+        "Nichts be|wegt sich.",
+        "Da lässt er los und fliegt da|von."
+       ]
+      },
+      {
+       "id": "s19-p4",
+       "typ": "p",
+       "s": [
+        "Un|ten ren|nen die Kin|der zum Baum.",
+        "Os|kar steckt sei|ne Maus in die Ka|pu|ze.",
+        "So hat er bei|de Hän|de frei."
+       ],
+       "umbruch": true
+      },
+      {
+       "id": "s19-p5",
+       "typ": "p",
+       "s": [
+        "„Wo ist er hin?“, ruft Ben.",
+        "Al|le drei schau|en hoch in die Baum|kro|ne.",
+        "Dort sind nur Blät|ter."
+       ]
+      },
+      {
+       "id": "s19-p6",
+       "typ": "p",
+       "s": [
+        "Die Le|se-Rau|pe schaut nicht nach o|ben.",
+        "Sie schaut nach un|ten."
+       ]
+      },
+      {
+       "id": "s19-p7",
+       "typ": "p",
+       "s": [
+        "Un|ter den Blät|tern hängt ein wei|ßer Kreis.",
+        "O|ben hat er ei|nen Fa|den.",
+        "Un|ten leuch|tet ein win|zi|ger blau|er Stern.",
+        "Da|ne|ben bau|melt ein wei|ßes Band."
+       ]
+      }
+     ]
+    },
+    {
+     "blocks": [
+      {
+       "id": "s19-p8",
+       "typ": "th",
+       "s": [
+        "„Da ist er ja“, denkt die Rau|pe.",
+        "„Mit der wei|ßen Sei|te zu mir.",
+        "Der Kle|ber hat ge|hal|ten!“"
+       ]
+      },
+      {
+       "id": "s19-p9",
+       "typ": "p",
+       "s": [
+        "A|ber die Kin|der schau|en im|mer noch nach o|ben."
+       ]
+      },
+      {
+       "id": "s19-p10",
+       "typ": "p",
+       "s": [
+        "Mi|la geht drei Schrit|te zu|rück.",
+        "Jetzt sieht sie es auch.",
+        "„Da!",
+        "Un|ter dem Fens|ter!",
+        "Frau Som|mer!“"
+       ]
+      },
+      {
+       "id": "s19-p11",
+       "typ": "p",
+       "s": [
+        "Frau Som|mer beugt sich aus dem Fens|ter.",
+        "Vor|sich|tig zieht sie den Fa|den aus der Ast|ga|bel."
+       ]
+      },
+      {
+       "id": "s19-p12",
+       "typ": "p",
+       "s": [
+        "Noch fünf Mi|nu|ten.",
+        "Al|le ren|nen ins Haus.",
+        "Nur das wei|ße Band bau|melt wei|ter zwi|schen den Blät|tern."
+       ]
+      }
+     ]
+    }
+   ],
+   "mitte": [
+    {
+     "art": "wahl",
+     "titel": "Fal|sche Rich|tung",
+     "text": "Die Kin|der su|chen o|ben in der Baum|kro|ne. Wo hängt der Mond wirk|lich?",
+     "optionen": [
+      {
+       "id": "a",
+       "text": "hoch o|ben in der Baum|kro|ne"
+      },
+      {
+       "id": "b",
+       "text": "auf dem Dach"
+      },
+      {
+       "id": "c",
+       "text": "in der Ast|ga|bel un|ter dem Fens|ter"
+      }
+     ],
+     "richtig": [
+      "c"
+     ],
+     "beweis": [
+      "s19-p2-1"
+     ],
+     "tipp": "Wo ist der Vo|gel ge|lan|det?",
+     "erfolg": "Ge|nau. Die Kin|der schau|en in die fal|sche Rich|tung."
+    },
+    {
+     "art": "blick",
+     "titel": "Tat|ort-Blick",
+     "text": "So sieht die Le|se-Rau|pe vom Fens|ter|brett nach un|ten. Wo ver|steckt sich der Mond? Tip|pe auf die Stel|le.",
+     "bild": "k2_s11_spiel",
+     "zone": {
+      "x": 88,
+      "y": 90,
+      "r": 11
+     },
+     "tipp": "Der Mond hängt un|ter Blät|tern. Wo siehst du un|ter dem Fens|ter Blät|ter?",
+     "erfolg": "Dort, zwi|schen den Blät|tern, hängt er."
+    },
+    {
+     "art": "steckbrief",
+     "titel": "Steck|brief prü|fen",
+     "text": "Ein wei|ßer Kreis un|ter den Blät|tern. Ist das Mi|las Mond? Ver|glei|che ihn mit dei|nem Steck|brief.",
+     "bild": "objekte/mond_hinten",
+     "zeilen": [
+      {
+       "text": "vor|ne gelb",
+       "wert": "unklar"
+      },
+      {
+       "text": "o|ben ein wei|ßer Fa|den",
+       "wert": "passt"
+      },
+      {
+       "text": "hin|ten ein blau|er Stern",
+       "wert": "passt"
+      }
+     ],
+     "werte": {
+      "passt": "passt",
+      "fehlt": "fehlt",
+      "unklar": "sieht man noch nicht"
+     },
+     "beweis": [
+      "s19-p7-2"
+     ],
+     "tipp": "Wel|che Sei|te zeigt zur Le|se-Rau|pe? Die an|de|re Sei|te sieht sie nicht.",
+     "erfolg": "Fa|den und Stern: Das ist Mi|las Mond. Dies|mal siehst du die Rück|sei|te zu|erst."
+    }
+   ],
+   "ende": [
+    {
+     "art": "zwei",
+     "titel": "Al|te Spur, neu|e Spur",
+     "text": "Ein wei|ßes Band bau|melt zwi|schen den Blät|tern. Wo|her kennst du ein wei|ßes Band? Such die Spur.",
+     "gegeben": "s19-p7-3",
+     "suche": {
+      "id": "s1-p9-1",
+      "spur": 1,
+      "tipp": "Wer hat ganz am An|fang et|was ge|sucht? Das steht in Ka|pi|tel 1, Spur 1."
+     },
+     "schluss": "Frau Som|mers Schlüs|sel hängt an ei|nem wei|ßen Band. Viel|leicht hängt er hier im Baum!",
+     "erfolg": "Das weiß jetzt nur ei|ner: du."
+    },
+    {
+     "art": "wahl",
+     "offen": true,
+     "merken": "s19",
+     "titel": "Dein Ver|dacht",
+     "text": "Pa|pier, Fa|den, Band: Wa|rum sam|melt der Vo|gel lan|ge wei|ße Din|ge?",
+     "optionen": [
+      {
+       "id": "a",
+       "text": "Er baut ein Nest."
+      },
+      {
+       "id": "b",
+       "text": "Er fin|det sie schön."
+      },
+      {
+       "id": "c",
+       "text": "Er will sie fres|sen."
+      }
+     ],
+     "erfolg": "Dein Ver|dacht steht jetzt in der Fall|ak|te."
+    }
+   ],
+   "akte": {
+    "fragenWeg": [
+     "wohin"
+    ],
+    "wegNeu": [
+     {
+      "id": "ast",
+      "text": "in der Ast|ga|bel"
+     }
+    ]
+   }
+  },
+  {
+   "nr": 20,
+   "kap": 4,
+   "spur": 2,
+   "titel": "Wo ist die Maus?",
+   "bild": "k4_s19",
+   "bildB": "k4_s20_nachher",
+   "haken": "Da klopft es drei|mal an der Tür.",
+   "teile": [
+    {
+     "blocks": [
+      {
+       "id": "s20-p1",
+       "typ": "p",
+       "s": [
+        "Dies|mal kommt je|des Ding an sei|nen Platz."
+       ]
+      },
+      {
+       "id": "s20-p2",
+       "typ": "p",
+       "s": [
+        "Os|kar legt die Pa|pier|res|te auf das blau|e Tab|lett.",
+        "Mi|la legt die Pup|pen in die grü|ne Kis|te.",
+        "Ben steigt auf den Ho|cker und legt den Fa|den ü|ber die Leis|te.",
+        "Der Mond mit den drei Fle|cken hängt wie|der links ne|ben der Wol|ke."
+       ]
+      },
+      {
+       "id": "s20-p3",
+       "typ": "p",
+       "s": [
+        "„Du spielst die Maus, Os|kar“, sagt Mi|la."
+       ]
+      },
+      {
+       "id": "s20-p4",
+       "typ": "p",
+       "s": [
+        "„Klar!“, sagt Os|kar.",
+        "Dann wird er blass.",
+        "„Wo ist denn mei|ne Maus?“"
+       ]
+      },
+      {
+       "id": "s20-p5",
+       "typ": "p",
+       "s": [
+        "Er sucht auf dem Tisch.",
+        "Er schaut in die grü|ne Kis|te.",
+        "Mi|la sucht un|ter dem Tisch.",
+        "Ben sucht hin|ter dem The|a|ter."
+       ],
+       "umbruch": true
+      },
+      {
+       "id": "s20-p6",
+       "typ": "p",
+       "s": [
+        "„Sie war doch e|ben noch da!“, jam|mert Os|kar.",
+        "„Oh|ne Maus kann ich nicht spie|len!“"
+       ]
+      },
+      {
+       "id": "s20-p7",
+       "typ": "p",
+       "s": [
+        "Noch zwei Mi|nu|ten."
+       ]
+      },
+      {
+       "id": "s20-p8",
+       "typ": "p",
+       "s": [
+        "Al|le lau|fen hin und her.",
+        "Nur die Le|se-Rau|pe bleibt ru|hig sit|zen.",
+        "Zeit für ih|ren Zeit|lu|pen-Blick."
+       ]
+      }
+     ]
+    },
+    {
+     "blocks": [
+      {
+       "id": "s20-p9",
+       "typ": "p",
+       "s": [
+        "Lang|sam schaut sie je|des Kind an.",
+        "Da!",
+        "Aus Os|kars Ka|pu|ze hängt et|was Ro|sa|far|be|nes.",
+        "Lang und dünn."
+       ]
+      },
+      {
+       "id": "s20-p10",
+       "typ": "th",
+       "s": [
+        "„Ein Mäu|se|schwanz!“, denkt die Rau|pe und ki|chert."
+       ]
+      },
+      {
+       "id": "s20-p11",
+       "typ": "p",
+       "s": [
+        "Da bleibt auch Ben ste|hen.",
+        "„Os|kar!",
+        "Was hängt denn da aus dei|ner Ka|pu|ze?“"
+       ]
+      },
+      {
+       "id": "s20-p12",
+       "typ": "p",
+       "s": [
+        "Os|kar greift nach hin|ten.",
+        "Er zieht sei|ne Maus he|raus.",
+        "Al|le drei la|chen."
+       ]
+      },
+      {
+       "id": "s20-p13",
+       "typ": "p",
+       "s": [
+        "Da klopft es drei|mal an der Tür."
+       ]
+      }
+     ]
+    }
+   ],
+   "mitte": [
+    {
+     "art": "wahl",
+     "titel": "Wo ist die Maus?",
+     "text": "Al|le su|chen. A|ber du kannst es wis|sen. Wo steckt die Maus?",
+     "optionen": [
+      {
+       "id": "a",
+       "text": "in der grü|nen Kis|te",
+       "bild": "objekte/kiste_gruen"
+      },
+      {
+       "id": "b",
+       "text": "in Os|kars Ka|pu|ze",
+       "bild": "oskar/staunt"
+      },
+      {
+       "id": "c",
+       "text": "auf dem blau|en Tab|lett",
+       "bild": "objekte/tablett_leer"
+      }
+     ],
+     "richtig": [
+      "b"
+     ],
+     "beweis": [
+      "s19-p4-1"
+     ],
+     "tipp": "Was hat Os|kar drau|ßen am Baum mit sei|ner Maus ge|macht? Das steht in Spur 1.",
+     "erfolg": "Rich|tig! Os|kar hat es nur ver|ges|sen."
+    },
+    {
+     "art": "blick",
+     "titel": "Zeit|lu|pen-Blick",
+     "text": "Schau Os|kar ganz ge|nau an. Was ver|rät die Maus? Tip|pe da|rauf.",
+     "bild": "k4_s20_spiel",
+     "ausschnitt": {
+      "x": 45,
+      "y": 12,
+      "w": 55,
+      "h": 62
+     },
+     "zone": {
+      "x": 72,
+      "y": 43,
+      "r": 5
+     },
+     "tipp": "Schau auf Os|kars Rü|cken.",
+     "erfolg": "Ein ro|sa Mäu|se|schwanz!"
+    }
+   ],
+   "ende": [
+    {
+     "art": "wahl",
+     "offen": true,
+     "merken": "s20",
+     "titel": "Dein Ge|fühl",
+     "text": "Es klopft drei|mal an der Tür. Wer ist das?",
+     "optionen": [
+      {
+       "id": "a",
+       "text": "Frau Som|mer"
+      },
+      {
+       "id": "b",
+       "text": "die an|de|ren Kin|der"
+      },
+      {
+       "id": "c",
+       "text": "der Vo|gel"
+      }
+     ],
+     "erfolg": "Lies wei|ter. Gleich geht die Tür auf."
+    }
+   ],
+   "akte": {
+    "wegNeu": [
+     {
+      "id": "theater2",
+      "text": "wie|der am The|a|ter"
+     }
+    ]
+   }
+  },
+  {
+   "nr": 21,
+   "kap": 4,
+   "spur": 3,
+   "titel": "Die Zu|schau|er kom|men",
+   "bild": "k4_s21",
+   "bildB": null,
+   "haken": "Im Raum wird es ganz still.",
+   "teile": [
+    {
+     "blocks": [
+      {
+       "id": "s21-p1",
+       "typ": "p",
+       "s": [
+        "Frau Som|mer steckt den Kopf he|rein.",
+        "„Seid ihr so weit?",
+        "Die an|de|ren Kin|der war|ten schon.“"
+       ]
+      },
+      {
+       "id": "s21-p2",
+       "typ": "p",
+       "s": [
+        "Dann sieht sie den gel|ben Kreis oh|ne Fa|den auf dem Tisch."
+       ]
+      },
+      {
+       "id": "s21-p3",
+       "typ": "p",
+       "s": [
+        "„Ach, da ist ja mei|ne Son|ne für die Pinn|wand!“, sagt sie.",
+        "„Die su|che ich seit heu|te Mor|gen.",
+        "Ge|nau wie mei|nen Schlüs|sel.“"
+       ]
+      },
+      {
+       "id": "s21-p4",
+       "typ": "p",
+       "s": [
+        "Mi|la und Ben grin|sen sich an."
+       ]
+      }
+     ]
+    },
+    {
+     "blocks": [
+      {
+       "id": "s21-p5",
+       "typ": "p",
+       "s": [
+        "Die Tür geht weit auf.",
+        "Die Kin|der der Grup|pe kom|men he|rein.",
+        "Sie set|zen sich auf den Tep|pich vor dem The|a|ter."
+       ]
+      },
+      {
+       "id": "s21-p6",
+       "typ": "p",
+       "s": [
+        "Hin|ter dem The|a|ter hockt Os|kar.",
+        "Er hält sei|ne Maus ganz fest.",
+        "Sei|ne Hän|de zit|tern ein bis|schen."
+       ],
+       "umbruch": true
+      },
+      {
+       "id": "s21-p7",
+       "typ": "p",
+       "s": [
+        "„Ich ha|be noch nie vor so vie|len Kin|dern ge|spielt“, flüs|tert er."
+       ]
+      },
+      {
+       "id": "s21-p8",
+       "typ": "p",
+       "s": [
+        "„Du hast heu|te ei|nen Kä|se er|fun|den“, flüs|tert Mi|la.",
+        "„Und ein gan|zes The|a|ter|stück.",
+        "Das schaffst du.“"
+       ]
+      },
+      {
+       "id": "s21-p9",
+       "typ": "p",
+       "s": [
+        "Ben hält hin|ter dem Vor|hang das En|de vom Fa|den.",
+        "Er nickt Os|kar zu."
+       ]
+      },
+      {
+       "id": "s21-p10",
+       "typ": "p",
+       "s": [
+        "Am Fens|ter ver|steckt sich die Le|se-Rau|pe halb un|ter ih|rem Blatt.",
+        "Von hier sieht sie ge|nau auf die Büh|ne."
+       ]
+      },
+      {
+       "id": "s21-p11",
+       "typ": "p",
+       "s": [
+        "Im Raum wird es ganz still."
+       ]
+      }
+     ]
+    }
+   ],
+   "mitte": [
+    {
+     "art": "wahl",
+     "titel": "Ei|ne Fra|ge we|ni|ger",
+     "text": "Schau in dei|ne Fall|ak|te. Wel|che of|fe|ne Fra|ge ist jetzt ge|klärt?",
+     "optionen": [
+      {
+       "id": "a",
+       "text": "Wo ist Frau Som|mers Schlüs|sel?"
+      },
+      {
+       "id": "b",
+       "text": "Wem ge|hört der gel|be Kreis?"
+      },
+      {
+       "id": "c",
+       "text": "Was will der Vo|gel mit dem Pa|pier?"
+      }
+     ],
+     "richtig": [
+      "b"
+     ],
+     "beweis": [
+      "s21-p3-0"
+     ],
+     "tipp": "Was hat Frau Som|mer auf dem Tisch ent|deckt?",
+     "erfolg": "Der fal|sche Mond war ei|ne Son|ne!"
+    }
+   ],
+   "ende": [
+    {
+     "art": "wahl",
+     "titel": "Wie geht es Os|kar?",
+     "text": "Gleich be|ginnt das Stück. Wie fühlt sich Os|kar?",
+     "optionen": [
+      {
+       "id": "a",
+       "text": "Er ist mü|de.",
+       "bild": "oskar/traurig"
+      },
+      {
+       "id": "b",
+       "text": "Er ist auf|ge|regt.",
+       "bild": "oskar/besorgt"
+      },
+      {
+       "id": "c",
+       "text": "Er ist fröh|lich.",
+       "bild": "oskar/lacht"
+      }
+     ],
+     "richtig": [
+      "b"
+     ],
+     "beweis": [
+      "s21-p6-2"
+     ],
+     "tipp": "Schau auf Os|kars Hän|de.",
+     "erfolg": "Ja. A|ber sei|ne Freun|de ma|chen ihm Mut."
+    },
+    {
+     "art": "wahl",
+     "offen": true,
+     "merken": "s21",
+     "titel": "Dein Ge|fühl",
+     "text": "Os|kar spielt zum ers|ten Mal vor so vie|len Kin|dern. Schafft er das?",
+     "optionen": [
+      {
+       "id": "a",
+       "text": "Ja, be|stimmt!"
+      },
+      {
+       "id": "b",
+       "text": "Er ver|gisst sei|nen Text."
+      },
+      {
+       "id": "c",
+       "text": "Ich drü|cke ihm die Dau|men."
+      }
+     ],
+     "erfolg": "Vor|hang auf!"
+    }
+   ],
+   "akte": {
+    "fragenWeg": [
+     "kreis"
+    ]
+   }
+  },
+  {
+   "nr": 22,
+   "kap": 4,
+   "spur": 4,
+   "titel": "Der größ|te Kä|se der Welt",
+   "bild": "k4_s22",
+   "bildB": null,
+   "haken": "Jetzt la|chen al|le Kin|der. Und am lau|tes|ten lacht Frau Som|mer.",
+   "teile": [
+    {
+     "blocks": [
+      {
+       "id": "s22-p1",
+       "typ": "p",
+       "s": [
+        "Mi|la zieht den ro|ten Vor|hang auf."
+       ]
+      },
+      {
+       "id": "s22-p2",
+       "typ": "p",
+       "s": [
+        "„Es war ein|mal ei|ne klei|ne grau|e Maus“, be|ginnt sie.",
+        "„Ei|nes A|bends kam sie mit knur|ren|dem Ma|gen aus ih|rem Mau|se|loch.“"
+       ]
+      },
+      {
+       "id": "s22-p3",
+       "typ": "p",
+       "s": [
+        "Os|kar holt tief Luft.",
+        "Dann lässt er die Maus auf die Büh|ne hüp|fen."
+       ]
+      },
+      {
+       "id": "s22-p4",
+       "typ": "p",
+       "s": [
+        "„Oh weh, mein Bauch ist so leer!“, piepst er.",
+        "„Ich ha|be seit hun|dert Jah|ren nichts ge|ges|sen!“"
+       ]
+      },
+      {
+       "id": "s22-p5",
+       "typ": "p",
+       "s": [
+        "Die ers|ten Kin|der ki|chern.",
+        "Os|kars Hän|de zit|tern nicht mehr."
+       ]
+      },
+      {
+       "id": "s22-p6",
+       "typ": "p",
+       "s": [
+        "Die Maus schaut nach o|ben.",
+        "Dort hängt der gel|be Mond mit sei|nen drei brau|nen Fle|cken."
+       ],
+       "umbruch": true
+      },
+      {
+       "id": "s22-p7",
+       "typ": "p",
+       "s": [
+        "„Ju|hu!",
+        "Am Him|mel hängt ein rie|si|ger Kä|se!“"
+       ]
+      },
+      {
+       "id": "s22-p8",
+       "typ": "p",
+       "s": [
+        "Die Maus nimmt An|lauf.",
+        "Sie springt, so hoch sie kann.",
+        "A|ber im|mer, wenn sie springt, steigt der Kä|se ein Stück hö|her."
+       ]
+      }
+     ]
+    },
+    {
+     "blocks": [
+      {
+       "id": "s22-p9",
+       "typ": "p",
+       "s": [
+        "Hin|ter dem Vor|hang zieht Ben lei|se am Fa|den.",
+        "Der Mond tanzt ü|ber der Maus hin und her."
+       ]
+      },
+      {
+       "id": "s22-p10",
+       "typ": "th",
+       "s": [
+        "„Bleib ste|hen, du fre|cher Kä|se!“, schimpft die Maus."
+       ]
+      },
+      {
+       "id": "s22-p11",
+       "typ": "p",
+       "s": [
+        "Jetzt la|chen al|le Kin|der.",
+        "Und am lau|tes|ten lacht Frau Som|mer."
+       ]
+      }
+     ]
+    }
+   ],
+   "mitte": [
+    {
+     "art": "zwei",
+     "titel": "Hin|ter dem Vor|hang",
+     "text": "Der Kä|se steigt im|mer hö|her. Wie geht das? Such die Spur, die es ver|rät.",
+     "gegeben": "s22-p8-2",
+     "suche": {
+      "id": "s18-p4-1",
+      "spur": 18,
+      "tipp": "Was hat Ben auf der Bank ver|spro|chen? Das steht in Ka|pi|tel 3, Spur 6."
+     },
+     "schluss": "Ben zieht hin|ter dem Vor|hang am Fa|den. Da|rum kommt die Maus nie an den Kä|se.",
+     "erfolg": "Du kennst den Trick. Die Zu|schau|er nicht."
+    }
+   ],
+   "ende": [
+    {
+     "art": "wahl",
+     "titel": "Ge|nau ge|le|sen",
+     "text": "Am An|fang war Os|kar auf|ge|regt. Was hat sich ver|än|dert?",
+     "optionen": [
+      {
+       "id": "a",
+       "text": "Er hat sei|ne Maus ver|lo|ren."
+      },
+      {
+       "id": "b",
+       "text": "Er will auf|hö|ren."
+      },
+      {
+       "id": "c",
+       "text": "Sei|ne Hän|de zit|tern nicht mehr."
+      }
+     ],
+     "richtig": [
+      "c"
+     ],
+     "beweis": [
+      "s22-p5-1"
+     ],
+     "tipp": "Was pas|siert, als die ers|ten Kin|der ki|chern?",
+     "erfolg": "Er hat sei|ne Angst ver|ges|sen – mit|ten im Stück."
+    },
+    {
+     "art": "markieren",
+     "frei": true,
+     "titel": "Dein Lieb|lings|satz",
+     "text": "Wel|cher Satz aus dem The|a|ter|stück ge|fällt dir am bes|ten? Tip|pe ihn an.",
+     "spur": 22,
+     "muss": [],
+     "darf": [],
+     "tipp": "Tip|pe auf ei|nen Satz, der dir ge|fällt.",
+     "erfolg": "Ein schö|ner Satz für dein No|tiz|buch."
+    }
+   ],
+   "akte": {}
+  },
+  {
+   "nr": 23,
+   "kap": 4,
+   "spur": 5,
+   "titel": "Zu|ga|be!",
+   "bild": "k4_s23",
+   "bildB": null,
+   "haken": "Frau Som|mers Schlüs|sel!",
+   "teile": [
+    {
+     "blocks": [
+      {
+       "id": "s23-p1",
+       "typ": "p",
+       "s": [
+        "Schließ|lich gibt die klei|ne Maus auf."
+       ]
+      },
+      {
+       "id": "s23-p2",
+       "typ": "p",
+       "s": [
+        "„Na gut, du Him|mels|kä|se“, piepst sie.",
+        "„Dann bleib e|ben dort o|ben und leuch|te für mich.",
+        "Ich su|che mir un|ten ein ech|tes Stück Kä|se.“"
+       ]
+      },
+      {
+       "id": "s23-p3",
+       "typ": "p",
+       "s": [
+        "Mi|la schließt lang|sam den Vor|hang."
+       ]
+      },
+      {
+       "id": "s23-p4",
+       "typ": "p",
+       "s": [
+        "Ei|nen Mo|ment lang ist es still.",
+        "Dann klat|schen al|le."
+       ]
+      },
+      {
+       "id": "s23-p5",
+       "typ": "p",
+       "s": [
+        "„**Zu|ga|be!**",
+        "Zu|ga|be!“, ru|fen die Kin|der."
+       ]
+      },
+      {
+       "id": "s23-p6",
+       "typ": "p",
+       "s": [
+        "Mi|la, Ben und Os|kar kom|men hin|ter dem The|a|ter her|vor.",
+        "Sie ver|beu|gen sich."
+       ],
+       "umbruch": true
+      },
+      {
+       "id": "s23-p7",
+       "typ": "p",
+       "s": [
+        "„Ich ha|be mich ge|traut“, flüs|tert Os|kar.",
+        "Sein Ge|sicht glüht."
+       ]
+      },
+      {
+       "id": "s23-p8",
+       "typ": "p",
+       "s": [
+        "„Und al|les nur we|gen dei|nes Kä|ses“, lacht Mi|la."
+       ]
+      },
+      {
+       "id": "s23-p9",
+       "typ": "p",
+       "s": [
+        "„Und we|gen mei|nes Kle|bers“, sagt Ben."
+       ]
+      },
+      {
+       "id": "s23-p10",
+       "typ": "p",
+       "s": [
+        "Am Fens|ter klatscht die Le|se-Rau|pe mit al|len Füß|chen.",
+        "Hö|ren kann das nie|mand.",
+        "A|ber das macht nichts."
+       ]
+      },
+      {
+       "id": "s23-p11",
+       "typ": "p",
+       "s": [
+        "Dann fällt ihr et|was ein.",
+        "Der Mond ist wie|der da.",
+        "Die Son|ne ist wie|der da.",
+        "Die Maus auch."
+       ]
+      },
+      {
+       "id": "s23-p12",
+       "typ": "th",
+       "s": [
+        "„A|ber ei|ne Sa|che fehlt im|mer noch“, denkt sie."
+       ]
+      }
+     ]
+    },
+    {
+     "blocks": [
+      {
+       "id": "s23-p13",
+       "typ": "p",
+       "s": [
+        "Frau Som|mers Schlüs|sel!"
+       ]
+      }
+     ]
+    }
+   ],
+   "mitte": [
+    {
+     "art": "wahl",
+     "titel": "Was fehlt noch?",
+     "text": "Der Mond ist da. Die Son|ne ist da. Die Maus ist da. Was fehlt im|mer noch?",
+     "optionen": [
+      {
+       "id": "a",
+       "text": "der ro|te Vor|hang"
+      },
+      {
+       "id": "b",
+       "text": "Frau Som|mers Schlüs|sel"
+      },
+      {
+       "id": "c",
+       "text": "Bens Kle|ber"
+      }
+     ],
+     "richtig": [
+      "b"
+     ],
+     "beweis": [
+      "s21-p3-2"
+     ],
+     "tipp": "Was sucht Frau Som|mer seit heu|te Mor|gen? Das steht in Spur 3.",
+     "erfolg": "Ge|nau. Und du weißt so|gar schon, wo er ist."
+    }
+   ],
+   "ende": [
+    {
+     "art": "wahl",
+     "titel": "Ich lö|se den Fall",
+     "text": "Wo ist Frau Som|mers Schlüs|sel?",
+     "optionen": [
+      {
+       "id": "a",
+       "text": "in der grü|nen Kis|te"
+      },
+      {
+       "id": "b",
+       "text": "in Os|kars Ka|pu|ze"
+      },
+      {
+       "id": "c",
+       "text": "in der Ast|ga|bel un|ter dem Fens|ter"
+      }
+     ],
+     "richtig": [
+      "c"
+     ],
+     "beweis": [
+      "s19-p7-3"
+     ],
+     "tipp": "Wo hast du zu|letzt ein wei|ßes Band ge|se|hen? Das steht in Spur 1.",
+     "erfolg": "Das ist dei|ne Lö|sung. Jetzt dei|ne Be|wei|se!"
+    },
+    {
+     "art": "wahl",
+     "mehrere": true,
+     "titel": "Mei|ne Be|wei|se",
+     "text": "Wel|che zwei Spu|ren spre|chen da|für?",
+     "optionen": [
+      {
+       "id": "a",
+       "text": "Der Schlüs|sel hängt an ei|nem wei|ßen Band."
+      },
+      {
+       "id": "b",
+       "text": "Frau Som|mer sucht auch ih|re Son|ne."
+      },
+      {
+       "id": "c",
+       "text": "In der Ast|ga|bel bau|melt ein wei|ßes Band."
+      }
+     ],
+     "richtig": [
+      "a",
+      "c"
+     ],
+     "beweis": [
+      "s1-p9-1"
+     ],
+     "tipp": "Die Son|ne lag auf dem Tisch. Sie hat mit dem Schlüs|sel nichts zu tun.",
+     "erfolg": "Zwei Spu|ren, ein Schluss. Ob Frau Som|mer es auch merkt?"
+    }
+   ],
+   "akte": {}
+  },
+  {
+   "nr": 24,
+   "kap": 4,
+   "spur": 6,
+   "titel": "Ein stil|ler Nach|mit|tag",
+   "bild": "k4_s24",
+   "bildB": null,
+   "haken": "„Und mor|gen gibt es be|stimmt kein Pa|pier zum Früh|stück.“",
+   "teile": [
+    {
+     "blocks": [
+      {
+       "id": "s24-p1",
+       "typ": "p",
+       "s": [
+        "Am spä|ten Nach|mit|tag sind al|le Kin|der nach Hau|se ge|gan|gen."
+       ]
+      },
+      {
+       "id": "s24-p2",
+       "typ": "p",
+       "s": [
+        "Frau Som|mer geht zum Fens|ter.",
+        "Sie will es schlie|ßen.",
+        "Da hört sie et|was."
+       ]
+      },
+      {
+       "id": "s24-p3",
+       "typ": "p",
+       "s": [
+        "*Kling.*"
+       ]
+      },
+      {
+       "id": "s24-p4",
+       "typ": "p",
+       "s": [
+        "Sie schaut nach un|ten.",
+        "In der Ast|ga|bel be|wegt sich ein wei|ßes Band im Wind.",
+        "Da|ran hängt et|was Klei|nes aus Me|tall."
+       ]
+      },
+      {
+       "id": "s24-p5",
+       "typ": "p",
+       "s": [
+        "„Mein Schlüs|sel!“, ruft Frau Som|mer."
+       ]
+      },
+      {
+       "id": "s24-p6",
+       "typ": "p",
+       "s": [
+        "Ne|ben dem Band liegt ein klei|nes Nest aus wei|ßen Pa|pier|strei|fen.",
+        "Der Vo|gel ist nicht da."
+       ],
+       "umbruch": true
+      },
+      {
+       "id": "s24-p7",
+       "typ": "p",
+       "s": [
+        "Frau Som|mer zieht vor|sich|tig nur das Band he|raus.",
+        "Das Nest lässt sie in Ru|he.",
+        "Dann legt sie ei|nen fri|schen wei|ßen Pa|pier|strei|fen da|ne|ben."
+       ]
+      },
+      {
+       "id": "s24-p8",
+       "typ": "p",
+       "s": [
+        "„Für dein Nest“, sagt sie lei|se.",
+        "„A|ber mei|nen Schlüs|sel brau|che ich selbst.“"
+       ]
+      }
+     ]
+    },
+    {
+     "blocks": [
+      {
+       "id": "s24-p9",
+       "typ": "p",
+       "s": [
+        "Jetzt ist es ganz ru|hig im Grup|pen|raum.",
+        "Ü|ber der klei|nen Büh|ne hängt der Mond mit sei|nen drei Fle|cken.",
+        "Da|run|ter sitzt Os|kars Maus und schaut zu ihm hi|nauf."
+       ]
+      },
+      {
+       "id": "s24-p10",
+       "typ": "p",
+       "s": [
+        "Die Le|se-Rau|pe rollt sich auf ih|rem Blatt zu|sam|men.",
+        "Drau|ßen fliegt ein bun|ter Schmet|ter|ling vor|bei."
+       ]
+      },
+      {
+       "id": "s24-p11",
+       "typ": "th",
+       "s": [
+        "„Was für ein ers|ter Fall“, denkt sie und gähnt.",
+        "„Und mor|gen gibt es be|stimmt kein Pa|pier zum Früh|stück.“"
+       ]
+      }
+     ]
+    }
+   ],
+   "mitte": [
+    {
+     "art": "zwei",
+     "titel": "Die letz|te Fra|ge",
+     "text": "Was woll|te der Vo|gel mit Pa|pier, Fa|den und Band? Such die Spur, die es ver|rät.",
+     "gegeben": "s14-p10-2",
+     "suche": {
+      "id": "s24-p6-0",
+      "spur": 24,
+      "tipp": "Was liegt ne|ben dem Band in der Ast|ga|bel?"
+     },
+     "schluss": "Der Vo|gel baut ein Nest. Da|für sam|melt er lan|ge wei|ße Din|ge: Pa|pier, Fa|den und Band.",
+     "erfolg": "Die letz|te of|fe|ne Fra|ge ist ge|klärt."
+    }
+   ],
+   "ende": [
+    {
+     "art": "sortieren",
+     "titel": "Si|cher o|der nur ein Ver|dacht?",
+     "text": "Ein letz|tes Mal: Was wis|sen wir? Und was ver|mu|ten wir nur?",
+     "karten": [
+      {
+       "text": "Os|kar hat den Mond aus Ver|se|hen ge|nom|men.",
+       "stapel": "sicher",
+       "warum": "Er sah nur ei|nen wei|ßen Kreis."
+      },
+      {
+       "text": "Der Vo|gel woll|te die Kin|der är|gern.",
+       "stapel": "verdacht",
+       "warum": "Er hat nur et|was für sein Nest ge|sucht."
+      },
+      {
+       "text": "Der Vo|gel hat den Fa|den für sein Nest ge|holt.",
+       "stapel": "sicher",
+       "warum": "Sein Nest be|steht aus lan|gen wei|ßen Strei|fen."
+      }
+     ],
+     "erfolg": "Al|les sor|tiert. Jetzt fehlt nur noch dein Stem|pel."
+    },
+    {
+     "art": "wahl",
+     "titel": "Dein Ur|teil",
+     "text": "Mond, Son|ne, Maus und Schlüs|sel sind wie|der da. Wie lau|tet dein Ur|teil?",
+     "optionen": [
+      {
+       "id": "a",
+       "text": "Der Fall ist ge|löst."
+      },
+      {
+       "id": "b",
+       "text": "Der Fall ist noch of|fen."
+      }
+     ],
+     "richtig": [
+      "a"
+     ],
+     "stempel": "FALL GELÖST",
+     "beweis": [
+      "s24-p5-0"
+     ],
+     "tipp": "Fehlt noch et|was?",
+     "erfolg": "Ge|stem|pelt! Das war dein ers|ter Le|se-Fall."
+    }
+   ],
+   "akte": {
+    "fragenWeg": [
+     "schluessel",
+     "vogel"
     ]
    }
   }

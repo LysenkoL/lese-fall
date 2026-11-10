@@ -89,7 +89,13 @@
     "tresorKnopf": "Tresor öffnen",
     "akteLeer": "Noch leer. Nach der ersten Spur kommt hier etwas dazu.",
     "geklaert": "geklärt",
-    "nach": "nach"
+    "nach": "nach",
+    "diplom": "Zum Diplom",
+    "meister": "Meister-Detektiv",
+    "nameFrage": "Dein Detektiv-Name",
+    "hatGeloest": "hat den Fall gelöst:",
+    "fallGeloest": "Fall gelöst!",
+    "lob": "Du hast genau gelesen, Spuren gesammelt und selbst gedacht. Die Lese-Raupe ist stolz auf dich."
   },
   "spuren": [
     {

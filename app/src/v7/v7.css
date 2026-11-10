@@ -292,6 +292,23 @@ em.neu .s-b, em.neu .s-r { color: inherit; }
 .kapk h1 { font-size: 34px; line-height: 1.12; font-weight: 800; animation: hoch .5s both; }
 .vig { width: 78%; max-width: 320px; border-radius: 50%; aspect-ratio: 1; object-fit: cover; box-shadow: 0 0 0 6px rgba(255, 255, 255, .12), 0 18px 40px rgba(0, 0, 0, .4); animation: hoch .6s .1s both; }
 
+/* ---------- Diplom ---------- */
+.finale { position: absolute; inset: 0; overflow-y: auto; display: flex; flex-direction: column; align-items: center; gap: 14px; padding: calc(var(--oben) + 22px) 20px 14px; text-align: center; }
+.finale > :not(.lampe) { position: relative; flex-shrink: 0; }
+.stempel.gross { font-size: 30px; border-width: 5px; padding: 8px 18px; background: var(--senf); color: var(--senf-tinte); border-color: var(--senf-tinte); }
+.finale .foto { width: 86%; max-width: 380px; margin: 4px auto; }
+.dipl { width: 100%; max-width: 420px; background: var(--papier); color: var(--tinte); border-radius: 8px; padding: 46px 18px 18px; position: relative; margin-top: 44px; box-shadow: 0 0 0 6px rgba(244, 194, 67, .55), 0 18px 40px rgba(0, 0, 0, .4); display: flex; flex-direction: column; gap: 6px; align-items: center; }
+.dipl .orden { position: absolute; top: -58px; left: 50%; width: 92px; height: 100px; margin-left: -46px; object-fit: contain; filter: drop-shadow(0 6px 10px rgba(0, 0, 0, .3)); }
+.dipl p { font-size: 16px; font-weight: 600; line-height: 1.4; }
+.dipl .dt { font-size: 13px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--senf-dunkel); }
+.dipl .dt .s-b, .dipl .dt .s-r, .dipl .df .s-b, .dipl .df .s-r { color: inherit; }
+.dipl .df { font-size: 22px; font-weight: 800; color: var(--nacht-2); }
+.dipl .dl { font-size: 15px; color: var(--leise); margin-top: 6px; }
+.dipl input { width: 100%; max-width: 300px; font: 800 24px/1.2 'Inter Schule', system-ui, sans-serif; text-align: center; color: var(--nacht-2); background: none; border: 0; border-bottom: 3px dashed var(--senf-dunkel); padding: 6px 4px; border-radius: 0; }
+.dipl input::placeholder { color: #B8AE95; font-weight: 600; font-size: 18px; }
+.dipl input:focus { outline: none; border-bottom-style: solid; }
+.finale .zahlen { width: 100%; max-width: 420px; }
+
 /* ---------- Bewegung ---------- */
 .blatt:not(.probe) { animation: blatt .28s both; }
 .zug, .akte:not(.ueberl) { animation: ein .3s both; }
