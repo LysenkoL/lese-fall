@@ -5,7 +5,8 @@
 Пометки в тексте (ребёнку не показываются):
 
 - `<!-- Blatt -->` — здесь лист переворачивается. Фраза перед пометкой — крючок.
-- `<!-- Ermittlung -->` — здесь ребёнок делает свой ход сыщика. Текст после пометки подтверждает его вывод.
+- `<!-- Ermittlung -->` — здесь ребёнок делает ходы сыщика (1–2 задания). Текст после пометки подтверждает его вывод.
+- В конце каждой сцены идут ещё 1–2 задания «для дела» (факт или подозрение, догадка), потом доска и крючок. Все задания — `04_data/kapitel1_v7_zuege.json`.
 
 Повествование в Präsens, в прямой речи Perfekt. Часы до спектакля: 60 → 50 → 40 → 35 минут.
 
@@ -25,7 +26,7 @@ Sie hält einen großen gelben Mond aus Pappe hoch. Oben hängt ein langer weiß
 
 „Daran erkenne ich meinen Mond immer wieder“, sagt sie.
 
-<!-- Blatt -->
+<!-- Ermittlung -->
 
 Über dem roten Vorhang hängt schon eine weiße Wolke. Links daneben ist noch Platz. Dort soll der Mond hängen.
 
@@ -40,8 +41,6 @@ Niemand hat ihn gesehen.
 Auf ihrem Blatt am Fenster hebt die Lese-Raupe den Kopf.
 
 „Ein Schlüssel ist weg“, denkt sie. „Was verschwindet wohl als Nächstes?“
-
-<!-- Ermittlung -->
 
 ---
 
@@ -67,6 +66,8 @@ Die Raupe spuckt und spuckt. Sie kriecht unter ihr größtes Blatt und wischt si
 
 Durch einen Spalt zwischen den Blättern sieht sie etwas: einen Ärmel mit roten und weißen Streifen. Unten am Tisch greift er nach etwas. Dann ist er weg.
 
+<!-- Ermittlung -->
+
 Endlich krabbelt die Raupe hervor. Sie schaut zum Theater.
 
 Der rote Vorhang hängt noch da. Die weiße Wolke auch.
@@ -77,11 +78,9 @@ Der Mond ist weg!
 
 Die Fühler der Lese-Raupe leuchten golden.
 
-<!-- Ermittlung -->
-
 ---
 
-### Spur 3 — Ben hört nichts
+### Spur 3 — Am Waschbecken
 
 Noch fünfzig Minuten.
 
@@ -217,7 +216,7 @@ Noch fünfunddreißig Minuten.
 
 Da hört die Raupe etwas. Draußen, unter dem Fenster.
 
-*Schnipp. Schnapp.*
+*Schnipp.* *Schnapp.*
 
 Jemand schneidet Pappe.
 

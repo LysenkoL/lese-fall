@@ -1,0 +1,385 @@
+{
+  "_info": "Züge (Aufgaben) zu Kapitel 1, Text v7. Ohne Silben; app/scripts/build-v7.ts setzt Silben und löst Sätze in IDs auf. Sätze werden als {spur, satz} angegeben: satz = genauer Wortlaut oder eindeutiger Teil.",
+  "geheimwort": {
+    "wort": "KLEBER",
+    "pos": { "1": 2, "2": 5, "3": 4, "4": 1, "5": 0, "6": 3 },
+    "frage": "Womit hat Ben den Faden wieder festgemacht?"
+  },
+  "verdaechtige": {
+    "oskar": { "name": "Oskar", "bild": "oskar/denkt" },
+    "ben": { "name": "Ben", "bild": "ben/denkt" }
+  },
+  "ui": {
+    "zug": "Dein Zug",
+    "pruefen": "Prüfen",
+    "weiter": "Weiter",
+    "weiterlesen": "Weiterlesen",
+    "fertig": "Fertig",
+    "notizbuch": "Notizbuch",
+    "notizLeer": "Noch keine Spuren. Tippe beim Lesen auf einen Satz, der wichtig sein könnte.",
+    "notizWahl": "Welche Spur hilft dir hier? Tippe sie an.",
+    "notizFalsch": "Diese Spur hilft hier nicht.",
+    "imText": "Im Text nachsehen",
+    "zeigBeweis": "Hm, das passt noch nicht. Zeig den Beweis!",
+    "beweisText": "Tippe auf den Satz, der es verrät.",
+    "beweisDa": "Im Text steht:",
+    "nichtHier": "Hier nicht.",
+    "fehltNoch": "Die passende Spur fehlt noch in deinem Notizbuch. Schau im Text nach.",
+    "passtNicht": "Diese zwei Spuren passen nicht zusammen.",
+    "gemerkt": "Gemerkt!",
+    "hilfe": "Die Lese-Raupe hilft:",
+    "neu": "neu",
+    "akte": "Deine Fallakte",
+    "verdaechtige": "Verdächtige",
+    "weg": "Der Weg des Mondes",
+    "fragen": "Offene Fragen",
+    "wort": "Das Geheimwort",
+    "deinVerdacht": "Dein Verdacht",
+    "perlen": "Schimmer-Perlen",
+    "markTipp": "Tippe auf einen Satz, um ihn als Spur zu markieren. Er kommt in dein Notizbuch.",
+    "sicher": "Das wissen wir",
+    "verdacht": "Nur ein Verdacht",
+    "stimmt": "Stimmt.",
+    "fast": "Überleg noch einmal.",
+    "start": "Fall öffnen",
+    "weiterFall": "Weiter ermitteln",
+    "neuStart": "Von vorn beginnen",
+    "tresor": "Zum Mondtresor",
+    "tresorAuf": "Der Mondtresor ist offen!",
+    "kapitelEnde": "Kapitel 1 ist geschafft. In Kapitel 2 erfährst du, wer da schneidet.",
+    "rueckblick": "So hast du ermittelt",
+    "silben": "Silben",
+    "schrift": "Schrift"
+  },
+  "spuren": [
+    {
+      "spur": 1,
+      "bild": "k1_s1",
+      "haken": "„Ein Schlüssel ist weg. Was verschwindet wohl als Nächstes?“",
+      "mitte": [
+        {
+          "art": "markieren",
+          "titel": "Steckbrief anlegen",
+          "text": "Jeder Detektiv merkt sich wichtige Dinge. Tippe im Text auf die Sätze, die verraten: Woran erkennt man Milas Mond?",
+          "spur": 1,
+          "muss": ["Oben hängt ein langer weißer Faden.", "Dort hat sie einen winzigen blauen Stern gemalt."],
+          "darf": ["Sie hält einen großen gelben Mond aus Pappe hoch.", "Die Rückseite ist weiß."],
+          "tipp": "Da fehlt noch etwas. Was hängt oben am Mond? Und was ist auf der Rückseite?",
+          "erfolg": "Sehr gut! Diese Sätze stehen jetzt in deinem Notizbuch. Daraus wird dein Steckbrief.",
+          "steckbrief": true
+        }
+      ],
+      "ende": [
+        {
+          "art": "wahl",
+          "offen": true,
+          "merken": "s1",
+          "titel": "Dein Gefühl",
+          "text": "Ein Schlüssel ist weg. Die Lese-Raupe hat ein komisches Gefühl. Was glaubst du: Was passiert als Nächstes?",
+          "optionen": [
+            { "id": "a", "text": "Noch etwas verschwindet." },
+            { "id": "b", "text": "Frau Sommer findet ihren Schlüssel." },
+            { "id": "c", "text": "Das Theaterstück fängt an." }
+          ],
+          "erfolg": "Lies weiter. Dann siehst du, ob dein Gefühl stimmt."
+        }
+      ],
+      "akte": {
+        "steckbrief": true,
+        "fragenNeu": [{ "id": "schluessel", "text": "Wo ist Frau Sommers Schlüssel?" }]
+      }
+    },
+    {
+      "spur": 2,
+      "bild": "k1_s2_vorher",
+      "haken": "Der Mond ist weg!",
+      "mitte": [
+        {
+          "art": "blick",
+          "titel": "Zeitlupen-Blick",
+          "text": "Die Lese-Raupe sieht etwas durch den Spalt. Findest du es auch im Bild? Tippe darauf.",
+          "bild": "k1_s2_nachher",
+          "ausschnitt": { "x": 0, "y": 46, "w": 100, "h": 54 },
+          "zone": { "x": 46, "y": 89, "r": 16 },
+          "tipp": "Schau ganz unten im Bild.",
+          "erfolg": "Da ist er: ein Ärmel mit roten und weißen Streifen."
+        },
+        {
+          "art": "zwei",
+          "titel": "Zwei Spuren, ein Schluss",
+          "text": "Wem gehört der Ärmel? Eine Spur hast du schon. Such die zweite Spur, die dazu passt.",
+          "gegeben": { "spur": 2, "satz": "einen Ärmel mit roten und weißen Streifen" },
+          "suche": { "spur": 1, "satz": "Er trägt seinen Pulli mit den roten und weißen Streifen.", "tipp": "Wer trägt heute Streifen? Das steht in Spur 1." },
+          "schluss": "Oskar trägt rote und weiße Streifen. Also war Oskars Ärmel am Tisch.",
+          "erfolg": "Aber Vorsicht: Wir wissen noch nicht, wonach er gegriffen hat."
+        }
+      ],
+      "ende": [
+        {
+          "art": "sortieren",
+          "titel": "Sicher oder nur ein Verdacht?",
+          "text": "Ein Detektiv trennt genau: Was wissen wir? Und was vermuten wir nur?",
+          "karten": [
+            { "text": "Der Mond hängt nicht mehr am Theater.", "stapel": "sicher", "warum": "Die Lese-Raupe hat es selbst gesehen." },
+            { "text": "Oskar hat den Mond genommen.", "stapel": "verdacht", "warum": "Niemand hat gesehen, wonach der Ärmel gegriffen hat." },
+            { "text": "Oskars Ärmel hat unten am Tisch nach etwas gegriffen.", "stapel": "sicher", "warum": "Das hat die Lese-Raupe durch den Spalt gesehen." },
+            { "text": "Ben hat den Mond versteckt.", "stapel": "verdacht", "warum": "Ben stand am Theater. Mehr wissen wir nicht." }
+          ]
+        },
+        {
+          "art": "wahl",
+          "offen": true,
+          "merken": "s2",
+          "titel": "Dein Verdacht",
+          "text": "Wo ist der Mond? Was vermutest du?",
+          "optionen": [
+            { "id": "a", "text": "Oskar hat ihn.", "bild": "oskar/denkt" },
+            { "id": "b", "text": "Ben hat ihn.", "bild": "ben/denkt" },
+            { "id": "c", "text": "Er ist heruntergefallen.", "bild": "objekte/mond_vorne" },
+            { "id": "d", "text": "Ich weiß es noch nicht.", "bild": "raupe/denkt" }
+          ],
+          "erfolg": "Dein Verdacht steht jetzt in der Fallakte."
+        }
+      ],
+      "akte": {
+        "fragenNeu": [
+          { "id": "mond", "text": "Wo ist der Mond?" },
+          { "id": "griff", "text": "Wonach hat der Ärmel gegriffen?" }
+        ],
+        "hinweise": [{ "wer": "oskar", "text": "Sein Ärmel war am Tisch." }]
+      }
+    },
+    {
+      "spur": 3,
+      "bild": "k1_s3",
+      "haken": "Was wäscht Ben da nur so lange von seinen Fingern?",
+      "mitte": [
+        {
+          "art": "markieren",
+          "titel": "Auffällig!",
+          "text": "Ben benimmt sich seltsam. Tippe im Text auf das, was dir an Ben auffällt.",
+          "spur": 3,
+          "muss": ["Er schrubbt und schrubbt an seinen Fingern."],
+          "darf": ["Ben steht am Waschbecken in der Ecke, mit dem Rücken zu ihr.", "Das Wasser rauscht laut.", "Die Ärmel von seinem blauen Pulli sind schon ganz nass.", "Keine Antwort.", "Er schrubbt immer noch."],
+          "tipp": "Schau genau hin: Was macht Ben am Waschbecken?",
+          "erfolg": "Gemerkt. Ben kommt auf deine Liste."
+        },
+        {
+          "art": "wahl",
+          "titel": "Warum?",
+          "text": "Mila ruft. Aber Ben antwortet nicht. Was verrät der Text: Warum nicht?",
+          "optionen": [
+            { "id": "a", "text": "Ben ist böse auf Mila." },
+            { "id": "b", "text": "Das Wasser rauscht so laut." },
+            { "id": "c", "text": "Ben ist nicht mehr im Raum." }
+          ],
+          "richtig": ["b"],
+          "beweis": [{ "spur": 3, "satz": "Das Wasser rauscht laut." }],
+          "tipp": "Was hört man in der Ecke?",
+          "erfolg": "Genau. Bei so viel Rauschen hört Ben nichts."
+        }
+      ],
+      "ende": [
+        {
+          "art": "wahl",
+          "offen": true,
+          "merken": "s3",
+          "titel": "Dein Verdacht",
+          "text": "Jetzt gibt es zwei Verdächtige. Wen verdächtigst du?",
+          "optionen": [
+            { "id": "a", "text": "Oskar", "bild": "oskar/denkt" },
+            { "id": "b", "text": "Ben", "bild": "ben/denkt" },
+            { "id": "c", "text": "Beide", "bild": "raupe/staunt" },
+            { "id": "d", "text": "Noch niemanden", "bild": "raupe/denkt" }
+          ],
+          "erfolg": "Dein Verdacht steht jetzt in der Fallakte."
+        }
+      ],
+      "akte": {
+        "hinweise": [{ "wer": "ben", "text": "Er wäscht lange seine Finger." }]
+      }
+    },
+    {
+      "spur": 4,
+      "bild": "k1_s4_vorher",
+      "haken": "In der Ecke wird es plötzlich still. Ben hat das Wasser zugedreht.",
+      "mitte": [
+        {
+          "art": "steckbrief",
+          "titel": "Steckbrief prüfen",
+          "text": "Ist das Milas Mond? Vergleiche den Kreis mit deinem Steckbrief.",
+          "bild": "objekte/falscher_kreis_vorne",
+          "zeilen": [
+            { "text": "gelb und rund", "wert": "passt" },
+            { "text": "oben ein weißer Faden", "wert": "fehlt" },
+            { "text": "hinten ein blauer Stern", "wert": "unklar" }
+          ],
+          "werte": { "passt": "passt", "fehlt": "fehlt", "unklar": "sieht man noch nicht" },
+          "beweis": [{ "spur": 4, "satz": "Oben am Rand ist der Kreis glatt." }],
+          "tipp": "Was sieht die Lese-Raupe oben am Rand? Und welche Seite zeigt der Kreis gerade?",
+          "erfolg": "Kein Faden! Und die Rückseite hat noch niemand gesehen."
+        },
+        {
+          "art": "wahl",
+          "titel": "Nächster Schritt",
+          "text": "Was muss Mila jetzt tun, um ganz sicher zu sein?",
+          "optionen": [
+            { "id": "a", "text": "Den Kreis ans Theater hängen." },
+            { "id": "b", "text": "Ben fragen." },
+            { "id": "c", "text": "Den Kreis umdrehen." }
+          ],
+          "richtig": ["c"],
+          "beweis": [{ "spur": 1, "satz": "Dort hat sie einen winzigen blauen Stern gemalt." }],
+          "tipp": "Wo ist das Geheimzeichen von Milas Mond?",
+          "erfolg": "Richtig. Das Geheimzeichen ist auf der Rückseite."
+        }
+      ],
+      "ende": [
+        {
+          "art": "wahl",
+          "titel": "Dein Urteil",
+          "text": "Kein Faden. Kein Stern. Wie lautet dein Urteil?",
+          "bild": "objekte/falscher_kreis_hinten",
+          "optionen": [
+            { "id": "a", "text": "Das ist Milas Mond." },
+            { "id": "b", "text": "Das ist nicht Milas Mond." }
+          ],
+          "richtig": ["b"],
+          "stempel": "NICHT MILAS MOND",
+          "beweis": [{ "spur": 4, "satz": "Kein Stern." }],
+          "tipp": "Was hat Mila auf der Rückseite gefunden?",
+          "erfolg": "Gestempelt! Aber wem gehört der gelbe Kreis dann?"
+        }
+      ],
+      "akte": {
+        "fragenNeu": [{ "id": "kreis", "text": "Wem gehört der gelbe Kreis?" }]
+      }
+    },
+    {
+      "spur": 5,
+      "bild": "k1_s5",
+      "haken": "Noch vierzig Minuten. Die beiden laufen los.",
+      "mitte": [
+        {
+          "art": "zwei",
+          "titel": "Zwei Spuren, ein Schluss",
+          "text": "War es Bens Ärmel? Such die Spur, die es verrät.",
+          "gegeben": { "spur": 2, "satz": "einen Ärmel mit roten und weißen Streifen" },
+          "suche": { "spur": 3, "satz": "Die Ärmel von seinem blauen Pulli sind schon ganz nass.", "tipp": "Welche Farbe hat Bens Pulli? Das steht in Spur 3." },
+          "schluss": "Bens Pulli ist blau. Der gestreifte Ärmel gehört nicht Ben.",
+          "stempel": "WAR ES NICHT",
+          "stempelBild": "ben/froh",
+          "erfolg": "Ben ist kein Verdächtiger mehr."
+        },
+        {
+          "art": "weg",
+          "titel": "Der Weg des Mondes",
+          "text": "Wo war der Mond zuerst? Und danach? Tippe die Orte in der richtigen Reihenfolge an.",
+          "stationen": [
+            { "id": "tablett", "text": "auf dem blauen Tablett", "bild": "objekte/mond_auf_tablett" },
+            { "id": "theater", "text": "am Theater", "bild": "objekte/theater" },
+            { "id": "ben", "text": "in Bens Händen", "bild": "objekte/kleber" }
+          ],
+          "reihenfolge": ["theater", "ben", "tablett"],
+          "beweis": [{ "spur": 5, "satz": "Dann habe ich den Mond zum Trocknen auf das blaue Tablett gelegt." }],
+          "tipp": "Lies noch einmal, was Ben der Reihe nach erzählt.",
+          "erfolg": "So ist der Mond gewandert: vom Theater in Bens Hände und dann auf das Tablett."
+        }
+      ],
+      "ende": [
+        {
+          "art": "wahl",
+          "mehrere": true,
+          "titel": "Stimmt Bens Geschichte?",
+          "text": "Ben erzählt, was passiert ist. Welche zwei Spuren passen zu seiner Geschichte?",
+          "optionen": [
+            { "id": "a", "text": "An Bens Fingern glänzt Kleber." },
+            { "id": "b", "text": "Die Lese-Raupe hat Ben beim Kleben gesehen." },
+            { "id": "c", "text": "Mila war ganz tief im Schrank." }
+          ],
+          "richtig": ["a", "c"],
+          "beweis": [{ "spur": 5, "satz": "An seinen Fingern glänzt noch etwas." }, { "spur": 5, "satz": "Aber du warst ganz tief im Schrank." }],
+          "tipp": "Wo war die Lese-Raupe, als der Mond verschwand?",
+          "erfolg": "Zwei Spuren passen. Aber gesehen hat es niemand."
+        },
+        {
+          "art": "wahl",
+          "offen": true,
+          "merken": "s5",
+          "titel": "Dein Gefühl",
+          "text": "Ben sagt: Der Mond liegt auf dem Tablett. Was glaubst du?",
+          "optionen": [
+            { "id": "a", "text": "Ja, dort liegt er." },
+            { "id": "b", "text": "Nein, er ist weg." },
+            { "id": "c", "text": "Ich bin nicht sicher." }
+          ],
+          "erfolg": "Lies weiter. Gleich weißt du es."
+        }
+      ],
+      "akte": {
+        "entlastet": ["ben"],
+        "wegNeu": [
+          { "id": "theater", "text": "am Theater" },
+          { "id": "ben", "text": "in Bens Händen" },
+          { "id": "tablett", "text": "auf dem Tablett" }
+        ]
+      }
+    },
+    {
+      "spur": 6,
+      "bild": "k1_s6_nachher",
+      "haken": "Schnipp. Schnapp. Jemand schneidet Pappe.",
+      "mitte": [
+        {
+          "art": "zwei",
+          "titel": "Beweis gesucht",
+          "text": "Sagt Ben die Wahrheit? Such die Spur, die es beweist.",
+          "gegeben": { "spur": 5, "satz": "Dann habe ich den Mond zum Trocknen auf das blaue Tablett gelegt." },
+          "suche": { "spur": 6, "satz": "Neben dem roten Streifen glänzt ein kleiner Fleck.", "tipp": "Was sieht die Lese-Raupe durch ihre Lupe?" },
+          "schluss": "Auf dem Tablett klebt ein Fleck. Der Mond hat wirklich hier gelegen.",
+          "erfolg": "Ben sagt die Wahrheit."
+        },
+        {
+          "art": "zwei",
+          "titel": "Zwei Spuren, ein Schluss",
+          "text": "Wer war nach Ben am Tablett? Such die Spur, die dazu passt.",
+          "gegeben": { "spur": 6, "satz": "direkt unter dem offenen Fenster" },
+          "suche": { "spur": 2, "satz": "Unten am Tisch greift er nach etwas.", "tipp": "Wer hat heute schon einmal unten am Tisch zugegriffen? Das steht in Spur 2." },
+          "schluss": "Das Tablett steht unten am Tisch. Der gestreifte Ärmel hat etwas vom Tablett genommen.",
+          "erfolg": "Jetzt passt alles zusammen."
+        }
+      ],
+      "ende": [
+        {
+          "art": "sortieren",
+          "titel": "Sicher oder nur ein Verdacht?",
+          "text": "Was wissen wir jetzt? Und was vermuten wir nur?",
+          "karten": [
+            { "text": "Ben hat den Mond auf das Tablett gelegt.", "stapel": "sicher", "warum": "Der Fleck aus Kleber beweist es." },
+            { "text": "Draußen wird gerade der Mond zerschnitten.", "stapel": "verdacht", "warum": "Wir hören nur eine Schere. Mehr nicht." },
+            { "text": "Der gestreifte Ärmel hat etwas vom Tablett genommen.", "stapel": "sicher", "warum": "Der Ärmel hat genau dort zugegriffen, wo das Tablett steht." },
+            { "text": "Oskar hat den Mond.", "stapel": "verdacht", "warum": "Wir wissen noch nicht, was der Ärmel genommen hat." }
+          ]
+        },
+        {
+          "art": "wahl",
+          "offen": true,
+          "merken": "s6",
+          "titel": "Dein Verdacht",
+          "text": "Schnipp, schnapp! Was passiert draußen vor dem Fenster?",
+          "optionen": [
+            { "id": "a", "text": "Jemand zerschneidet den Mond.", "bild": "objekte/schere" },
+            { "id": "b", "text": "Jemand bastelt etwas ganz anderes.", "bild": "objekte/papierreste" },
+            { "id": "c", "text": "Ich muss es sofort wissen!", "bild": "raupe/staunt" }
+          ],
+          "erfolg": "Dein Verdacht steht jetzt in der Fallakte."
+        }
+      ],
+      "akte": {
+        "fragenWeg": ["griff"],
+        "fragenNeu": [{ "id": "schere", "text": "Wer schneidet draußen Pappe?" }],
+        "wegNeu": [{ "id": "offen", "text": "?" }]
+      }
+    }
+  ]
+}

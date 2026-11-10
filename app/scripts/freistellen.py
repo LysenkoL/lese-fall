@@ -14,6 +14,9 @@ JOBS = [(f, os.path.join(DST, os.path.basename(f))) for f in sorted(glob.glob(os
 FREI = os.path.join(ROOT, 'app/src/gen/frei')
 os.makedirs(FREI, exist_ok=True)
 JOBS += [(os.path.join(ROOT, f'assets/illustrationen/raupe/{n}.webp'), os.path.join(FREI, f'raupe_{n}.webp')) for n in ('staunt', 'lob')]
+# Vorschau v7: alle Stimmungen der Lese-Raupe und der Kinder freigestellt (stehen auf dunklem Grund und auf Kork)
+JOBS += [(os.path.join(ROOT, f'assets/illustrationen/raupe/{n}.webp'), os.path.join(FREI, f'raupe_{n}.webp')) for n in ('denkt', 'tipp', 'lacht', 'klatscht', 'traurig', 'muede')]
+JOBS += [(os.path.join(ROOT, f'assets/illustrationen/{k}/{n}.webp'), os.path.join(FREI, f'{k}_{n}.webp')) for k in ('mila', 'ben', 'oskar') for n in ('denkt', 'froh', 'staunt', 'besorgt', 'lacht', 'traurig')]
 # Garderobe (D-08): Symbole freistellen, Raupen-Figuren verkleinert freistellen
 GAR = os.path.join(ROOT, 'assets/illustrationen/garderobe')
 GDST = os.path.join(ROOT, 'app/src/gen/garderobe')
