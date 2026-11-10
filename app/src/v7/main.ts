@@ -516,18 +516,19 @@ function akteHtml(bis: number, neuIn: number) {
   const geklaert = sps.flatMap((s: any) => (s.akte.fragenWeg ?? []).map((id: string) => ({ id, n: s.nr })));
   const fragen = sps.flatMap((s: any) => (s.akte.fragenNeu ?? []).map((f: any) => ({ ...f, n: s.nr }))).map((f: any) => ({ ...f, weg: geklaert.find((g: any) => g.id === f.id)?.n })).filter((f: any) => !f.weg || f.weg === neuIn);
   const hinw = sps.flatMap((s: any) => (s.akte.hinweise ?? []).map((h: any) => ({ ...h, n: s.nr })));
-  const entl = sps.flatMap((s: any) => (s.akte.entlastet ?? []).map((w: string) => ({ w, n: s.nr })));
+  const entl = sps.flatMap((s: any) => (s.akte.entlastet ?? []).map((w: any) => (typeof w === 'string' ? { w, n: s.nr, text: 'WAR ES NICHT' } : { ...w, n: s.nr })));
   let weg = sps.flatMap((s: any) => (s.akte.wegNeu ?? []).map((w: any) => ({ ...w, n: s.nr })));
   weg = weg.filter((w: any, i: number) => w.id !== 'offen' || i === weg.length - 1);
   const steck = sps.some((s: any) => s.akte.steckbrief);
   const wer = [...new Set(hinw.map((h: any) => h.wer))] as string[];
   const verd = Object.keys(stand.verdacht).filter((k) => +k.slice(1) <= bis).sort((a, b) => +a.slice(1) - +b.slice(1)).pop();
   return `<div class="wortz"><b>${UI.wort}</b><div class="wort">${wort}</div></div>
-  ${steck ? (bis === 1 || !neuIn ? `<div class="zettel steckz">${steckbriefKarte()}</div>` : `<div class="zettel klein"><img src="${img('objekte/mond_vorne')}" alt=""><img src="${img('objekte/mond_hinten')}" alt=""><span><b>Steckbrief: Milas Mond</b>${T('gelb und rund · wei|ßer Fa|den · blau|er Stern hin|ten')}</span></div>`) : ''}
-  ${wer.length ? `<h3>${UI.verdaechtige}</h3><div class="verd">${wer.map((w) => { const e = entl.find((x: any) => x.w === w); return `<div class="pola${e ? ' frei' : ''}"><img src="${fig(D.verdaechtige[w].bild)}" alt=""><b>${D.verdaechtige[w].name}</b>${hinw.filter((h: any) => h.wer === w).map((h: any) => `<span>${h.text}${neu(h.n)}</span>`).join('')}${e ? `<b class="stempel klein${e.n === neuIn ? ' frisch' : ''}">WAR ES NICHT</b>` : ''}</div>`; }).join('')}</div>` : ''}
+  ${steck && bis === 1 ? `<div class="zettel steckz">${steckbriefKarte()}</div>` : ''}
+  ${wer.length ? `<h3>${UI.verdaechtige}</h3><div class="verd">${wer.map((w) => { const e = entl.find((x: any) => x.w === w); return `<div class="pola${e ? ' frei' : ''}"><img src="${fig(D.verdaechtige[w].bild)}" alt=""><b>${D.verdaechtige[w].name}</b>${hinw.filter((h: any) => h.wer === w).slice(neuIn ? -2 : 0).map((h: any) => `<span>${h.text}${neu(h.n)}</span>`).join('')}${e ? `<b class="stempel klein${e.n === neuIn ? ' frisch' : ''}">${e.text}</b>` : ''}</div>`; }).join('')}</div>` : ''}
   ${weg.length ? `<h3>${UI.weg}</h3><div class="wegk">${weg.map((w: any) => `<span class="${w.id === 'offen' ? 'frage' : ''}${w.n === neuIn ? ' frisch' : ''}">${w.text}</span>`).join('<i></i>')}</div>` : ''}
   ${fragen.length ? `<h3>${UI.fragen}</h3><div class="fragen">${fragen.map((f: any) => `<div class="zettel fr${f.weg ? ' weg' : ''}">${f.text}${f.weg ? ` <em class="neu ok">${UI.geklaert}</em>` : neu(f.n)}</div>`).join('')}</div>` : ''}
-  ${verd ? `<h3>${UI.deinVerdacht}</h3><div class="zettel mein">${stand.verdacht[verd]}</div>` : ''}`;
+  ${verd ? `<h3>${UI.deinVerdacht}</h3><div class="zettel mein">${stand.verdacht[verd]}</div>` : ''}
+  ${steck && bis > 1 ? (neuIn ? `<div class="zettel klein"><img src="${img('objekte/mond_vorne')}" alt=""><img src="${img('objekte/mond_hinten')}" alt=""><span><b>Steckbrief: Milas Mond</b>${T('gelb und rund · wei|ßer Fa|den · blau|er Stern hin|ten')}</span></div>` : `<div class="zettel steckz">${steckbriefKarte()}</div>`) : ''}`;
 }
 function akteBlatt() {
   modus('akte');

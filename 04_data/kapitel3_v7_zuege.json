@@ -5,7 +5,14 @@
   "schluss": "Kapitel 3 ist geschafft! Aber der Mond fliegt davon. Wie es weitergeht, erfährst du in Kapitel 4.",
   "geheimwort": {
     "wort": "BEWEIS",
-    "pos": { "1": 2, "2": 4, "3": 1, "4": 0, "5": 5, "6": 3 },
+    "pos": {
+      "1": 2,
+      "2": 4,
+      "3": 1,
+      "4": 0,
+      "5": 5,
+      "6": 3
+    },
     "frage": "Was ist der blaue Stern auf der Rückseite?"
   },
   "spuren": [
@@ -19,8 +26,17 @@
           "titel": "Tautropfen-Lupe",
           "text": "Nimm die Lupe und schau am Rand entlang. Was passt nicht zu einem Käse? Tippe darauf.",
           "bild": "k3_s13",
-          "ausschnitt": { "x": 28, "y": 60, "w": 60, "h": 40 },
-          "zone": { "x": 56, "y": 92, "r": 6 },
+          "ausschnitt": {
+            "x": 28,
+            "y": 60,
+            "w": 60,
+            "h": 40
+          },
+          "zone": {
+            "x": 56,
+            "y": 92,
+            "r": 6
+          },
           "tipp": "Schau ganz unten am Rand vom gelben Kreis. Dort hängt etwas Dünnes.",
           "erfolg": "Gefunden! Ein kleines Stück weißer Faden."
         },
@@ -29,12 +45,31 @@
           "titel": "Das kennst du doch!",
           "text": "Ein weißer Faden an einem gelben Kreis. Woran erinnert dich das?",
           "optionen": [
-            { "id": "a", "text": "an Oskars Maus", "bild": "objekte/maus_vorne" },
-            { "id": "b", "text": "an Milas Mond", "bild": "objekte/mond_vorne" },
-            { "id": "c", "text": "an das Seidenpapier", "bild": "objekte/seidenpapier" }
+            {
+              "id": "a",
+              "text": "an Oskars Maus",
+              "bild": "objekte/maus_vorne"
+            },
+            {
+              "id": "b",
+              "text": "an Milas Mond",
+              "bild": "objekte/mond_vorne"
+            },
+            {
+              "id": "c",
+              "text": "an das Seidenpapier",
+              "bild": "objekte/seidenpapier"
+            }
           ],
-          "richtig": ["b"],
-          "beweis": [{ "spur": 1, "satz": "Oben hängt ein langer weißer Faden." }],
+          "richtig": [
+            "b"
+          ],
+          "beweis": [
+            {
+              "spur": 1,
+              "satz": "Oben hängt ein langer weißer Faden."
+            }
+          ],
           "tipp": "Schau in deinen Steckbrief. Was hängt oben an Milas Mond?",
           "erfolg": "Genau. Dein Steckbrief hilft dir schon wieder."
         }
@@ -45,9 +80,21 @@
           "titel": "Sicher oder nur ein Verdacht?",
           "text": "Was wissen wir jetzt? Und was vermuten wir nur?",
           "karten": [
-            { "text": "Am Käse hängt ein Stück weißer Faden.", "stapel": "sicher", "warum": "Die Lese-Raupe sieht ihn durch ihre Lupe." },
-            { "text": "Der Käse ist Milas Mond.", "stapel": "verdacht", "warum": "Ein Faden allein ist noch kein Beweis." },
-            { "text": "Der Käse ist aus Pappe.", "stapel": "sicher", "warum": "Oskar hat ihn selbst gebastelt." }
+            {
+              "text": "Am Käse hängt ein Stück weißer Faden.",
+              "stapel": "sicher",
+              "warum": "Die Lese-Raupe sieht ihn durch ihre Lupe."
+            },
+            {
+              "text": "Der Käse ist Milas Mond.",
+              "stapel": "verdacht",
+              "warum": "Ein Faden allein ist noch kein Beweis."
+            },
+            {
+              "text": "Der Käse ist aus Pappe.",
+              "stapel": "sicher",
+              "warum": "Oskar hat ihn selbst gebastelt."
+            }
           ],
           "erfolg": "Gut getrennt! Ein Verdacht ist noch kein Beweis."
         },
@@ -58,16 +105,32 @@
           "titel": "Dein Verdacht",
           "text": "Ein Schatten mit zwei Flügeln huscht über den Teller. Was war das?",
           "optionen": [
-            { "id": "a", "text": "ein Vogel" },
-            { "id": "b", "text": "ein Schmetterling" },
-            { "id": "c", "text": "nur ein Blatt im Wind" }
+            {
+              "id": "a",
+              "text": "ein Vogel"
+            },
+            {
+              "id": "b",
+              "text": "ein Schmetterling"
+            },
+            {
+              "id": "c",
+              "text": "nur ein Blatt im Wind"
+            }
           ],
           "erfolg": "Dein Verdacht steht jetzt in der Fallakte."
         }
       ],
       "akte": {
-        "fragenWeg": ["teller"],
-        "fragenNeu": [{ "id": "schatten", "text": "Was war der Schatten mit den Flügeln?" }]
+        "fragenWeg": [
+          "teller"
+        ],
+        "fragenNeu": [
+          {
+            "id": "schatten",
+            "text": "Was war der Schatten mit den Flügeln?"
+          }
+        ]
       }
     },
     {
@@ -81,12 +144,30 @@
           "text": "Ist der Käse Milas Mond? Vergleiche ihn mit deinem Steckbrief.",
           "bild": "objekte/mond_mit_flecken",
           "zeilen": [
-            { "text": "gelb und rund", "wert": "passt" },
-            { "text": "ein weißer Faden", "wert": "passt" },
-            { "text": "hinten ein blauer Stern", "wert": "unklar" }
+            {
+              "text": "gelb und rund",
+              "wert": "passt"
+            },
+            {
+              "text": "ein weißer Faden",
+              "wert": "passt"
+            },
+            {
+              "text": "hinten ein blauer Stern",
+              "wert": "unklar"
+            }
           ],
-          "werte": { "passt": "passt", "fehlt": "fehlt", "unklar": "sieht man noch nicht" },
-          "beweis": [{ "spur": 14, "satz": "Und da schaut ein Faden heraus!" }],
+          "werte": {
+            "passt": "passt",
+            "fehlt": "fehlt",
+            "unklar": "sieht man noch nicht"
+          },
+          "beweis": [
+            {
+              "spur": 14,
+              "satz": "Und da schaut ein Faden heraus!"
+            }
+          ],
           "tipp": "Was hat Ben am Rand entdeckt? Und welche Seite vom Kreis liegt oben?",
           "erfolg": "Zwei Zeichen passen. Das dritte hat noch niemand gesehen."
         },
@@ -95,12 +176,28 @@
           "titel": "Das sichere Zeichen",
           "text": "Gelb sind viele Kreise. Ein Faden kann ein Bastelrest sein. Welches Zeichen hat nur Milas Mond?",
           "optionen": [
-            { "id": "a", "text": "die gelbe Farbe" },
-            { "id": "b", "text": "den weißen Faden" },
-            { "id": "c", "text": "den blauen Stern auf der Rückseite" }
+            {
+              "id": "a",
+              "text": "die gelbe Farbe"
+            },
+            {
+              "id": "b",
+              "text": "den weißen Faden"
+            },
+            {
+              "id": "c",
+              "text": "den blauen Stern auf der Rückseite"
+            }
           ],
-          "richtig": ["c"],
-          "beweis": [{ "spur": 1, "satz": "Daran erkenne ich meinen Mond immer wieder" }],
+          "richtig": [
+            "c"
+          ],
+          "beweis": [
+            {
+              "spur": 1,
+              "satz": "Daran erkenne ich meinen Mond immer wieder"
+            }
+          ],
           "tipp": "Was hat Mila selbst auf ihren Mond gemalt? Das steht in Kapitel 1, Spur 1.",
           "erfolg": "Richtig. Den Stern hat nur Mila gemalt."
         }
@@ -111,8 +208,14 @@
           "titel": "Neu im Fall",
           "text": "Ein Vogel! Das ist neu. Tippe im Text auf das, was der Vogel tut.",
           "spur": 14,
-          "muss": ["Er zieht an einem langen weißen Papierstreifen."],
-          "darf": ["In einer Astgabel sitzt ein schwarz-weißer Vogel.", "Der Streifen verschwindet zwischen zwei Zweigen.", "Unter dem Fenster wächst ein dicker Ast."],
+          "muss": [
+            "Er zieht an einem langen weißen Papierstreifen."
+          ],
+          "darf": [
+            "In einer Astgabel sitzt ein schwarz-weißer Vogel.",
+            "Der Streifen verschwindet zwischen zwei Zweigen.",
+            "Unter dem Fenster wächst ein dicker Ast."
+          ],
           "tipp": "Woran zieht der Vogel?",
           "erfolg": "Gemerkt. Wer weiß, wozu diese Spur noch gut ist."
         },
@@ -123,16 +226,32 @@
           "titel": "Dein Verdacht",
           "text": "Was will ein Vogel mit einem langen weißen Papierstreifen?",
           "optionen": [
-            { "id": "a", "text": "Er baut ein Nest." },
-            { "id": "b", "text": "Er will ihn fressen." },
-            { "id": "c", "text": "Er spielt damit." }
+            {
+              "id": "a",
+              "text": "Er baut ein Nest."
+            },
+            {
+              "id": "b",
+              "text": "Er will ihn fressen."
+            },
+            {
+              "id": "c",
+              "text": "Er spielt damit."
+            }
           ],
           "erfolg": "Dein Verdacht steht jetzt in der Fallakte."
         }
       ],
       "akte": {
-        "fragenWeg": ["schatten"],
-        "fragenNeu": [{ "id": "vogel", "text": "Was will der Vogel mit dem Papier?" }]
+        "fragenWeg": [
+          "schatten"
+        ],
+        "fragenNeu": [
+          {
+            "id": "vogel",
+            "text": "Was will der Vogel mit dem Papier?"
+          }
+        ]
       }
     },
     {
@@ -144,8 +263,15 @@
           "art": "zwei",
           "titel": "Zwei Spuren, ein Schluss",
           "text": "Woher kommen die braunen Löcher? Such die Spur, die dazu passt.",
-          "gegeben": { "spur": 15, "satz": "Ein braunes Blatt mit drei runden Löchern." },
-          "suche": { "spur": 12, "satz": "Dann habe ich drei kleine braune Kreise aufgeklebt.", "tipp": "Was hat Oskar in seinem Rätsel gesagt? Das steht in Kapitel 2, Spur 6." },
+          "gegeben": {
+            "spur": 15,
+            "satz": "Ein braunes Blatt mit drei runden Löchern."
+          },
+          "suche": {
+            "spur": 12,
+            "satz": "Dann habe ich drei kleine braune Kreise aufgeklebt.",
+            "tipp": "Was hat Oskar in seinem Rätsel gesagt? Das steht in Kapitel 2, Spur 6."
+          },
           "schluss": "Die Löcher sind im braunen Blatt. Die braunen Kreise kleben nur oben auf dem Käse.",
           "erfolg": "Der Käse hat gar keine echten Löcher."
         },
@@ -154,12 +280,28 @@
           "titel": "Die gelben Schnipsel",
           "text": "Und die gelben Schnipsel neben dem Teller? Woher kommen sie?",
           "optionen": [
-            { "id": "a", "text": "von Milas Mond" },
-            { "id": "b", "text": "vom dünnen gelben Blatt" },
-            { "id": "c", "text": "vom Seidenpapier" }
+            {
+              "id": "a",
+              "text": "von Milas Mond"
+            },
+            {
+              "id": "b",
+              "text": "vom dünnen gelben Blatt"
+            },
+            {
+              "id": "c",
+              "text": "vom Seidenpapier"
+            }
           ],
-          "richtig": ["b"],
-          "beweis": [{ "spur": 15, "satz": "Und ein dünnes gelbes Blatt mit vielen Zacken." }],
+          "richtig": [
+            "b"
+          ],
+          "beweis": [
+            {
+              "spur": 15,
+              "satz": "Und ein dünnes gelbes Blatt mit vielen Zacken."
+            }
+          ],
           "tipp": "Was hält Oskar noch in der Hand? Was fehlt an diesem Blatt?",
           "erfolg": "Genau. Die Zacken zeigen, wo die Schnipsel fehlen."
         }
@@ -172,15 +314,27 @@
           "titel": "Dein Gefühl",
           "text": "Gleich dreht Mila den Kreis um. Was ist auf der Rückseite?",
           "optionen": [
-            { "id": "a", "text": "ein blauer Stern" },
-            { "id": "b", "text": "nichts" },
-            { "id": "c", "text": "nur ein Fleck aus Kleber" }
+            {
+              "id": "a",
+              "text": "ein blauer Stern"
+            },
+            {
+              "id": "b",
+              "text": "nichts"
+            },
+            {
+              "id": "c",
+              "text": "nur ein Fleck aus Kleber"
+            }
           ],
           "erfolg": "Lies weiter. Gleich weißt du es."
         }
       ],
       "akte": {
-        "fragenWeg": ["ganz", "stuecke"]
+        "fragenWeg": [
+          "ganz",
+          "stuecke"
+        ]
       }
     },
     {
@@ -194,12 +348,28 @@
           "titel": "Ich löse den Fall",
           "text": "Mila hat den Kreis noch nicht umgedreht. Aber du kannst es schon wissen. Was ist Oskars Käse?",
           "optionen": [
-            { "id": "a", "text": "ein Bastelkreis von Frau Sommer" },
-            { "id": "b", "text": "Milas Mond" },
-            { "id": "c", "text": "ein ganz neuer Kreis" }
+            {
+              "id": "a",
+              "text": "ein Bastelkreis von Frau Sommer"
+            },
+            {
+              "id": "b",
+              "text": "Milas Mond"
+            },
+            {
+              "id": "c",
+              "text": "ein ganz neuer Kreis"
+            }
           ],
-          "richtig": ["b"],
-          "beweis": [{ "spur": 10, "satz": "Ich habe vorhin nur einen weißen Kreis vom Tablett genommen." }],
+          "richtig": [
+            "b"
+          ],
+          "beweis": [
+            {
+              "spur": 10,
+              "satz": "Ich habe vorhin nur einen weißen Kreis vom Tablett genommen."
+            }
+          ],
           "tipp": "Woher hat Oskar seinen Kreis? Das hat er in Kapitel 2, Spur 4 erzählt.",
           "erfolg": "Das ist deine Lösung. Jetzt brauchst du Beweise."
         },
@@ -209,12 +379,29 @@
           "titel": "Meine Beweise",
           "text": "Welche zwei Spuren sprechen dafür, dass der Käse Milas Mond ist?",
           "optionen": [
-            { "id": "a", "text": "Oskar nahm einen weißen Kreis vom Tablett." },
-            { "id": "b", "text": "Der Käse hat drei braune Flecken." },
-            { "id": "c", "text": "Milas Mond lag weiß nach oben auf dem Tablett." }
+            {
+              "id": "a",
+              "text": "Oskar nahm einen weißen Kreis vom Tablett."
+            },
+            {
+              "id": "b",
+              "text": "Der Käse hat drei braune Flecken."
+            },
+            {
+              "id": "c",
+              "text": "Milas Mond lag weiß nach oben auf dem Tablett."
+            }
           ],
-          "richtig": ["a", "c"],
-          "beweis": [{ "spur": 8, "satz": "Die weiße Seite lag oben" }],
+          "richtig": [
+            "a",
+            "c"
+          ],
+          "beweis": [
+            {
+              "spur": 8,
+              "satz": "Die weiße Seite lag oben"
+            }
+          ],
           "tipp": "Die Flecken hat Oskar selbst aufgeklebt. Sie beweisen nichts.",
           "erfolg": "Zwei starke Spuren. Jetzt fehlt nur noch der Blick auf die Rückseite."
         }
@@ -226,20 +413,45 @@
           "text": "Ein blauer Stern. Ein weißer Faden. Wie lautet dein Urteil?",
           "bild": "objekte/mond_hinten",
           "optionen": [
-            { "id": "a", "text": "Das ist Milas Mond." },
-            { "id": "b", "text": "Das ist nicht Milas Mond." }
+            {
+              "id": "a",
+              "text": "Das ist Milas Mond."
+            },
+            {
+              "id": "b",
+              "text": "Das ist nicht Milas Mond."
+            }
           ],
-          "richtig": ["a"],
+          "richtig": [
+            "a"
+          ],
           "stempel": "MILAS MOND",
-          "beweis": [{ "spur": 16, "satz": "Unten am Rand leuchtet ein winziger blauer Stern." }],
+          "beweis": [
+            {
+              "spur": 16,
+              "satz": "Unten am Rand leuchtet ein winziger blauer Stern."
+            }
+          ],
           "tipp": "Was sieht man auf der Rückseite?",
           "erfolg": "Gestempelt! Du hast es vor allen anderen gewusst."
         }
       ],
       "akte": {
-        "fragenWeg": ["mond"],
-        "hinweise": [{ "wer": "oskar", "text": "Sein Käse ist Milas Mond. Er wusste es nicht." }],
-        "wegNeu": [{ "id": "mila", "text": "wieder bei Mila" }]
+        "fragenWeg": [
+          "mond"
+        ],
+        "hinweise": [
+          {
+            "wer": "oskar",
+            "text": "Sein Käse ist Milas Mond. Er wusste es nicht."
+          }
+        ],
+        "wegNeu": [
+          {
+            "id": "mila",
+            "text": "wieder bei Mila"
+          }
+        ]
       }
     },
     {
@@ -252,14 +464,45 @@
           "titel": "Der Weg des Mondes",
           "text": "Jetzt kennst du den ganzen Weg. Tippe die Orte in der richtigen Reihenfolge an.",
           "stationen": [
-            { "id": "bank", "text": "als Käse auf der Bank", "bild": "objekte/kaese_auf_teller" },
-            { "id": "theater", "text": "am Theater", "bild": "objekte/theater" },
-            { "id": "mila", "text": "wieder in Milas Händen", "bild": "objekte/mond_mit_flecken" },
-            { "id": "tablett", "text": "auf dem blauen Tablett", "bild": "objekte/mond_auf_tablett" },
-            { "id": "ben", "text": "in Bens Händen", "bild": "objekte/kleber" }
+            {
+              "id": "bank",
+              "text": "als Käse auf der Bank",
+              "bild": "objekte/kaese_auf_teller"
+            },
+            {
+              "id": "theater",
+              "text": "am Theater",
+              "bild": "objekte/theater"
+            },
+            {
+              "id": "mila",
+              "text": "wieder in Milas Händen",
+              "bild": "objekte/mond_mit_flecken"
+            },
+            {
+              "id": "tablett",
+              "text": "auf dem blauen Tablett",
+              "bild": "objekte/mond_auf_tablett"
+            },
+            {
+              "id": "ben",
+              "text": "in Bens Händen",
+              "bild": "objekte/kleber"
+            }
           ],
-          "reihenfolge": ["theater", "ben", "tablett", "bank", "mila"],
-          "beweis": [{ "spur": 17, "satz": "Ich habe den Mond auf das Tablett für alle gelegt." }],
+          "reihenfolge": [
+            "theater",
+            "ben",
+            "tablett",
+            "bank",
+            "mila"
+          ],
+          "beweis": [
+            {
+              "spur": 17,
+              "satz": "Ich habe den Mond auf das Tablett für alle gelegt."
+            }
+          ],
           "tipp": "Erst Ben, dann Oskar, dann Mila. Wer hatte den Mond wann?",
           "erfolg": "Der ganze Weg – und du hast jede Station bewiesen."
         },
@@ -268,12 +511,28 @@
           "titel": "Wer ist schuld?",
           "text": "Ben, Oskar, Mila: Alle drei haben etwas gemacht. Wer ist schuld?",
           "optionen": [
-            { "id": "a", "text": "Ben. Er hat den Mond falsch hingelegt." },
-            { "id": "b", "text": "Oskar. Er hat den Mond genommen." },
-            { "id": "c", "text": "Niemand. Jeder wollte etwas Gutes tun." }
+            {
+              "id": "a",
+              "text": "Ben. Er hat den Mond falsch hingelegt."
+            },
+            {
+              "id": "b",
+              "text": "Oskar. Er hat den Mond genommen."
+            },
+            {
+              "id": "c",
+              "text": "Niemand. Jeder wollte etwas Gutes tun."
+            }
           ],
-          "richtig": ["c"],
-          "beweis": [{ "spur": 17, "satz": "Ich wollte deinen Mond nicht wegnehmen." }],
+          "richtig": [
+            "c"
+          ],
+          "beweis": [
+            {
+              "spur": 17,
+              "satz": "Ich wollte deinen Mond nicht wegnehmen."
+            }
+          ],
           "tipp": "Ben wollte den Faden retten. Oskar wollte seiner Maus eine Freude machen. Wollte jemand etwas Böses?",
           "erfolg": "So ist es. Das war kein Diebstahl. Das war ein Missverständnis."
         }
@@ -286,15 +545,35 @@
           "titel": "Deine Idee",
           "text": "Der Mond hat drei braune Flecken. In zehn Minuten beginnt das Stück. Was würdest du tun?",
           "optionen": [
-            { "id": "a", "text": "Die Flecken trotzdem abziehen." },
-            { "id": "b", "text": "Schnell einen neuen Mond basteln." },
-            { "id": "c", "text": "Den Mond mit Flecken benutzen." }
+            {
+              "id": "a",
+              "text": "Die Flecken trotzdem abziehen."
+            },
+            {
+              "id": "b",
+              "text": "Schnell einen neuen Mond basteln."
+            },
+            {
+              "id": "c",
+              "text": "Den Mond mit Flecken benutzen."
+            }
           ],
           "erfolg": "Mal sehen, was den dreien einfällt."
         }
       ],
       "akte": {
-        "fragenNeu": [{ "id": "flecken", "text": "Was wird aus dem Mond mit den Flecken?" }]
+        "fragenNeu": [
+          {
+            "id": "flecken",
+            "text": "Was wird aus dem Mond mit den Flecken?"
+          }
+        ],
+        "entlastet": [
+          {
+            "w": "oskar",
+            "text": "KEIN DIEB"
+          }
+        ]
       }
     },
     {
@@ -306,8 +585,15 @@
           "art": "zwei",
           "titel": "Alte Spur, neue Spur",
           "text": "Ein langer weißer Faden hängt über den Rand. Wer mag lange weiße Dinge? Such die Spur.",
-          "gegeben": { "spur": 18, "satz": "Ein langes Stück vom weißen Faden hängt über den Rand der Bank." },
-          "suche": { "spur": 14, "satz": "Er zieht an einem langen weißen Papierstreifen.", "tipp": "Wer hat im Baum an etwas Weißem gezogen? Das steht in Spur 2." },
+          "gegeben": {
+            "spur": 18,
+            "satz": "Ein langes Stück vom weißen Faden hängt über den Rand der Bank."
+          },
+          "suche": {
+            "spur": 14,
+            "satz": "Er zieht an einem langen weißen Papierstreifen.",
+            "tipp": "Wer hat im Baum an etwas Weißem gezogen? Das steht in Spur 2."
+          },
           "schluss": "Der Vogel im Baum sammelt lange weiße Streifen. Und hier hängt ein langer weißer Faden.",
           "erfolg": "Oh, oh. Du ahnst es schon, oder?"
         },
@@ -318,9 +604,18 @@
           "titel": "Dein Verdacht",
           "text": "Was passiert gleich?",
           "optionen": [
-            { "id": "a", "text": "Der Vogel holt sich den Faden." },
-            { "id": "b", "text": "Der Wind weht den Mond weg." },
-            { "id": "c", "text": "Nichts. Alles geht gut." }
+            {
+              "id": "a",
+              "text": "Der Vogel holt sich den Faden."
+            },
+            {
+              "id": "b",
+              "text": "Der Wind weht den Mond weg."
+            },
+            {
+              "id": "c",
+              "text": "Nichts. Alles geht gut."
+            }
           ],
           "erfolg": "Lies schnell weiter!"
         }
@@ -331,17 +626,41 @@
           "titel": "Sicher oder nur ein Verdacht?",
           "text": "Der Mond ist schon wieder weg! Was wissen wir? Und was vermuten wir nur?",
           "karten": [
-            { "text": "Der Vogel hat den Faden gepackt.", "stapel": "sicher", "warum": "Die Lese-Raupe hat es selbst gesehen." },
-            { "text": "Der Vogel will den Mond fressen.", "stapel": "verdacht", "warum": "Er hat nach dem Faden gegriffen, nicht nach dem Mond." },
-            { "text": "Diesmal war es keiner von den drei Freunden.", "stapel": "sicher", "warum": "Alle drei standen an der Bank." }
+            {
+              "text": "Der Vogel hat den Faden gepackt.",
+              "stapel": "sicher",
+              "warum": "Die Lese-Raupe hat es selbst gesehen."
+            },
+            {
+              "text": "Der Vogel will den Mond fressen.",
+              "stapel": "verdacht",
+              "warum": "Er hat nach dem Faden gegriffen, nicht nach dem Mond."
+            },
+            {
+              "text": "Diesmal war es keiner von den drei Freunden.",
+              "stapel": "sicher",
+              "warum": "Alle drei standen an der Bank."
+            }
           ],
           "erfolg": "Diesmal gibt es einen Zeugen: die Lese-Raupe. Und dich."
         }
       ],
       "akte": {
-        "fragenWeg": ["flecken"],
-        "fragenNeu": [{ "id": "wohin", "text": "Wohin fliegt der Vogel mit dem Mond?" }],
-        "wegNeu": [{ "id": "offen", "text": "?" }]
+        "fragenWeg": [
+          "flecken"
+        ],
+        "fragenNeu": [
+          {
+            "id": "wohin",
+            "text": "Wohin fliegt der Vogel mit dem Mond?"
+          }
+        ],
+        "wegNeu": [
+          {
+            "id": "offen",
+            "text": "?"
+          }
+        ]
       }
     }
   ]
