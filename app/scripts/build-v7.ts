@@ -1,11 +1,12 @@
 /**
- * Baut 04_data/kapitel1_v7.json (Vorschau „v7“) aus
- *   01_text/LESE-FALL_BUCH_1_TEXT_v7_KAPITEL1.md   (Text mit <!-- Blatt --> und <!-- Ermittlung -->)
- *   04_data/kapitel1_v7_zuege.json                 (Züge, Fallakte, Texte der Oberfläche)
+ * Baut 04_data/buch1_v7.json (Vorschau „v7“) aus – für jedes Kapitel k, das es gibt:
+ *   01_text/LESE-FALL_BUCH_1_TEXT_v7_KAPITEL{k}.md   (Text mit <!-- Blatt --> und <!-- Ermittlung -->)
+ *   04_data/kapitel{k}_v7_zuege.json                 (Züge, Fallakte; Kapitel 1 auch Texte der Oberfläche)
+ * Szenen sind durchnummeriert (nr 1–24); in den Zügen meint "spur" immer diese Nummer.
  *   04_data/silben_kapitel1.txt                    (Silben)
  * Aufruf: node scripts/build-v7.ts [--neue-woerter]
  */
-import { readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseAusnahmen, silbiereBuch } from '../src/core/silben.ts';
@@ -13,8 +14,6 @@ import { parseAusnahmen, silbiereBuch } from '../src/core/silben.ts';
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const P = (p: string) => resolve(ROOT, p);
 const WRITE_NEW = process.argv.includes('--neue-woerter');
-const md = readFileSync(P('01_text/LESE-FALL_BUCH_1_TEXT_v7_KAPITEL1.md'), 'utf8').replace(/\r\n?/g, '\n');
-const zuege = JSON.parse(readFileSync(P('04_data/kapitel1_v7_zuege.json'), 'utf8'));
 const dictPath = P('04_data/silben_kapitel1.txt');
 const dictText = readFileSync(dictPath, 'utf8');
 const dict = parseAusnahmen(dictText);
@@ -41,35 +40,52 @@ const isThought = (line: string) => /„[^“]*“,? (denkt|schimpft)|(denkt|sch
 
 /* ---------- Text ---------- */
 interface Block { id: string; typ: 'p' | 'th'; s: string[]; umbruch?: boolean }
-const all = md.split('\n');
-const kTitel = all.find((l) => /^## Kapitel 1 — /.test(l))!.replace(/^## Kapitel 1 — /, '');
-const ende = all.findIndex((l) => /^## Что посеяно/.test(l));
-const spurenText: { spur: number; titel: string; teile: { blocks: Block[] }[] }[] = [];
-for (let i = 0; i < ende; i++) {
-  const m = all[i].match(/^### Spur (\d+) — (.+)$/);
-  if (!m) continue;
-  const teile: { blocks: Block[] }[] = [{ blocks: [] }];
-  let n = 0, umbruch = false;
-  for (let j = i + 1; j < ende && !/^---$/.test(all[j]) && !/^###/.test(all[j]); j++) {
-    const l = all[j].trim();
-    if (!l) continue;
-    if (l === '<!-- Ermittlung -->') { teile.push({ blocks: [] }); umbruch = false; continue; }
-    if (l === '<!-- Blatt -->') { umbruch = true; continue; }
-    const b: Block = { id: `s${m[1]}-p${++n}`, typ: isThought(l) ? 'th' : 'p', s: saetze(l).map(mark) };
-    if (umbruch && teile[teile.length - 1].blocks.length) b.umbruch = true;
-    umbruch = false;
-    teile[teile.length - 1].blocks.push(b);
+interface SpurText { nr: number; kap: number; spur: number; titel: string; teile: { blocks: Block[] }[] }
+const spurenText: SpurText[] = [];
+const kapitel: any[] = [];
+const zuegeAlle: any[] = [];
+let ui: any = {}, verdaechtige: any = {}, intro: any[] = [];
+for (let k = 1; existsSync(P(`01_text/LESE-FALL_BUCH_1_TEXT_v7_KAPITEL${k}.md`)); k++) {
+  const md = readFileSync(P(`01_text/LESE-FALL_BUCH_1_TEXT_v7_KAPITEL${k}.md`), 'utf8').replace(/\r\n?/g, '\n');
+  const zg = JSON.parse(readFileSync(P(`04_data/kapitel${k}_v7_zuege.json`), 'utf8'));
+  const all = md.split('\n');
+  const kopfZeile = all.find((l) => new RegExp(`^## Kapitel ${k} — `).test(l));
+  if (!kopfZeile) throw new Error(`Kapitel ${k}: Überschrift „## Kapitel ${k} — …“ fehlt`);
+  let ende = all.findIndex((l) => /^## Что /.test(l));
+  if (ende < 0) ende = all.length;
+  let n6 = 0;
+  for (let i = 0; i < ende; i++) {
+    const m = all[i].match(/^### Spur (\d+) — (.+)$/);
+    if (!m) continue;
+    const nr = (k - 1) * 6 + +m[1];
+    const teile: { blocks: Block[] }[] = [{ blocks: [] }];
+    let n = 0, umbruch = false;
+    for (let j = i + 1; j < ende && !/^---$/.test(all[j]) && !/^###/.test(all[j]); j++) {
+      const l = all[j].trim();
+      if (!l) continue;
+      if (l === '<!-- Ermittlung -->') { teile.push({ blocks: [] }); umbruch = false; continue; }
+      if (l === '<!-- Blatt -->') { umbruch = true; continue; }
+      const b: Block = { id: `s${nr}-p${++n}`, typ: isThought(l) ? 'th' : 'p', s: saetze(l).map(mark) };
+      if (umbruch && teile[teile.length - 1].blocks.length) b.umbruch = true;
+      umbruch = false;
+      teile[teile.length - 1].blocks.push(b);
+    }
+    spurenText.push({ nr, kap: k, spur: +m[1], titel: m[2], teile: teile.filter((x) => x.blocks.length) });
+    n6++;
   }
-  spurenText.push({ spur: +m[1], titel: m[2], teile: teile.filter((t) => t.blocks.length) });
+  if (n6 !== 6) throw new Error(`Kapitel ${k}: 6 Spuren erwartet, gefunden: ${n6}`);
+  kapitel.push({ nr: k, titel: mark(kopfZeile.replace(/^## Kapitel \d+ — /, '')), bild: zg.bild ?? `kapitel_${k}`, vorspann: mark(zg.vorspann ?? ''), schluss: mark(zg.schluss ?? ''), geheimwort: { ...zg.geheimwort, frage: mark(zg.geheimwort.frage) } });
+  zuegeAlle.push(...zg.spuren.map((s: any) => ({ ...s, nr: (k - 1) * 6 + s.spur })));
+  ui = { ...ui, ...(zg.ui ?? {}) }; verdaechtige = { ...verdaechtige, ...(zg.verdaechtige ?? {}) };
+  if (zg.intro) intro = zg.intro;
 }
-if (spurenText.length !== 6) throw new Error('6 Spuren erwartet, gefunden: ' + spurenText.length);
 
 /** {spur, satz} → Satz-ID; genau ein Treffer */
 function ref(r: { spur: number; satz: string }, wo: string): string {
-  const sp = spurenText.find((s) => s.spur === r.spur);
+  const sp = spurenText.find((s) => s.nr === r.spur);
   const hits: string[] = [];
   sp?.teile.forEach((t) => t.blocks.forEach((b) => b.s.forEach((s, i) => { if (plain(s).includes(r.satz)) hits.push(`${b.id}-${i}`); })));
-  if (hits.length !== 1) { console.error(`✗ ${wo}: „${r.satz}“ in Spur ${r.spur} ${hits.length}-mal gefunden`); fehler++; }
+  if (hits.length !== 1) { console.error(`✗ ${wo}: „${r.satz}“ in Szene ${r.spur} ${hits.length}-mal gefunden`); fehler++; }
   return hits[0] ?? '';
 }
 
@@ -90,13 +106,13 @@ function zug(z: any, wo: string): any {
   return o;
 }
 const spuren = spurenText.map((st) => {
-  const z = zuege.spuren.find((s: any) => s.spur === st.spur);
-  if (!z) throw new Error('Züge fehlen für Spur ' + st.spur);
-  if (z.mitte.length && st.teile.length < 2) { console.error(`✗ Spur ${st.spur}: Züge für die Mitte, aber kein <!-- Ermittlung --> im Text`); fehler++; }
+  const z = zuegeAlle.find((s: any) => s.nr === st.nr);
+  if (!z) throw new Error('Züge fehlen für Szene ' + st.nr);
+  if (z.mitte.length && st.teile.length < 2) { console.error(`✗ Szene ${st.nr}: Züge für die Mitte, aber kein <!-- Ermittlung --> im Text`); fehler++; }
   return {
-    spur: st.spur, titel: mark(st.titel), bild: z.bild, haken: mark(z.haken), teile: st.teile,
-    mitte: z.mitte.map((x: any, i: number) => zug(x, `Spur ${st.spur} Mitte ${i + 1}`)),
-    ende: z.ende.map((x: any, i: number) => zug(x, `Spur ${st.spur} Ende ${i + 1}`)),
+    nr: st.nr, kap: st.kap, spur: st.spur, titel: mark(st.titel), bild: z.bild ?? null, bildB: z.bildB ?? null, haken: mark(z.haken), teile: st.teile,
+    mitte: z.mitte.map((x: any, i: number) => zug(x, `Szene ${st.nr} Mitte ${i + 1}`)),
+    ende: z.ende.map((x: any, i: number) => zug(x, `Szene ${st.nr} Ende ${i + 1}`)),
     akte: tree(z.akte),
   };
 });
@@ -104,10 +120,10 @@ const spuren = spurenText.map((st) => {
 const out = {
   _info: 'Generiert von app/scripts/build-v7.ts – nicht von Hand ändern.',
   fall: { titel: mark('Der verschwundene Mond') },
-  kapitel: { nr: 1, titel: mark(kTitel) },
-  geheimwort: { ...zuege.geheimwort, frage: mark(zuege.geheimwort.frage) },
-  verdaechtige: tree(zuege.verdaechtige),
-  ui: Object.fromEntries(Object.entries(zuege.ui).map(([k, v]) => [k, mark(v as string)])),
+  kapitel,
+  intro: tree(intro),
+  verdaechtige: tree(verdaechtige),
+  ui: Object.fromEntries(Object.entries(ui).map(([k, v]) => [k, mark(v as string)])),
   spuren,
 };
 
@@ -116,7 +132,7 @@ if (neu.size) {
   if (WRITE_NEW) { writeFileSync(dictPath, dictText.trimEnd() + '\n# neu für v7 (ungeprüft)\n' + [...neu.values()].join('\n') + '\n'); console.warn('  → angehängt'); }
   else fehler++;
 }
-if (fehler) { console.error(`✗ ${fehler} Fehler – kapitel1_v7.json nicht geschrieben`); process.exit(1); }
-writeFileSync(P('04_data/kapitel1_v7.json'), JSON.stringify(out, null, 1) + '\n');
+if (fehler) { console.error(`✗ ${fehler} Fehler – buch1_v7.json nicht geschrieben`); process.exit(1); }
+writeFileSync(P('04_data/buch1_v7.json'), JSON.stringify(out, null, 1) + '\n');
 const w = spuren.map((s) => s.teile.flatMap((t) => t.blocks.flatMap((b) => plain(b.s.join(' ')).match(WORD) ?? [])).length);
-console.log(`✓ kapitel1_v7.json: ${spuren.length} Spuren, Wörter ${w.join(' / ')}, Züge ${spuren.reduce((a, s) => a + s.mitte.length + s.ende.length, 0)}`);
+console.log(`✓ buch1_v7.json: ${kapitel.length} Kapitel, ${spuren.length} Spuren, Wörter ${w.join(' / ')}, Züge ${spuren.reduce((a, s) => a + s.mitte.length + s.ende.length, 0)}`);

@@ -3,7 +3,7 @@
  * Eigener Einstieg (v7.html), eigener Speicherstand. Die bisherige App (index.html) bleibt unverändert.
  */
 import './v7.css';
-import DATA_ from '../../../04_data/kapitel1_v7.json';
+import DATA_ from '../../../04_data/buch1_v7.json';
 import { T, plain } from '../text';
 import { img } from '../data';
 
@@ -17,7 +17,8 @@ function html(v: any, key = ''): any {
   return v;
 }
 for (const sp of D.spuren) { sp.titelH = T(sp.titel); sp.haken = T(sp.haken); html(sp.mitte); html(sp.ende); html(sp.akte); }
-html(D.verdaechtige); D.geheimwort.frage = T(D.geheimwort.frage);
+html(D.verdaechtige); html(D.intro);
+for (const k of D.kapitel) { k.titelH = T(k.titel); k.vorspann = T(k.vorspann); k.schluss = T(k.schluss); k.geheimwort.frage = T(k.geheimwort.frage); }
 const UI: Record<string, string> = Object.fromEntries(Object.entries(D.ui).map(([k, v]) => [k, T(v as string)]));
 /** freigestellte Figur: "raupe/denkt" → gen/frei/raupe_denkt */
 const fig = (n: string) => (/^(raupe|mila|ben|oskar)\//.test(n) ? img('frei/' + n.replace('/', '_')) : img(n));
@@ -26,21 +27,25 @@ const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replac
 
 /* ---------- Speicherstand (nur auf dem Gerät) ---------- */
 interface Stand {
-  view: 'titel' | 'spur' | 'tresor';
-  spur: number; i: number; blatt: number;
+  view: 'titel' | 'intro' | 'kapitel' | 'spur' | 'tresor';
+  spur: number; i: number; blatt: number; // spur = Nummer der Szene im Buch (1–24)
   fertig: number[]; marks: string[]; verdacht: Record<string, string>;
-  tresor: boolean; tipp: boolean; fs: number; silben: boolean;
+  tresor: number[]; tipp: boolean; intro: boolean; zuege: number; fs: number; silben: boolean;
 }
-const KEY = 'lesefall.v7';
-const START: Stand = { view: 'titel', spur: 1, i: 0, blatt: 0, fertig: [], marks: [], verdacht: {}, tresor: false, tipp: false, fs: 20, silben: true };
+const KEY = 'lesefall.v7b';
+const START: Stand = { view: 'titel', spur: 1, i: 0, blatt: 0, fertig: [], marks: [], verdacht: {}, tresor: [], tipp: false, intro: false, zuege: 0, fs: 20, silben: true };
 const stand: Stand = (() => { try { const r = localStorage.getItem(KEY); if (r) return { ...structuredClone(START), ...JSON.parse(r) }; } catch { /* ohne Speichern weiter */ } return structuredClone(START); })();
 const speichern = () => { try { localStorage.setItem(KEY, JSON.stringify(stand)); } catch { /* egal */ } };
 
 /* ---------- Daten-Helfer ---------- */
 type Satz = { id: string; spur: number; teil: number; text: string };
 const SAETZE = new Map<string, Satz>();
-for (const sp of D.spuren) sp.teile.forEach((t: any, ti: number) => t.blocks.forEach((b: any) => b.s.forEach((s: string, k: number) => SAETZE.set(`${b.id}-${k}`, { id: `${b.id}-${k}`, spur: sp.spur, teil: ti, text: s }))));
+for (const sp of D.spuren) sp.teile.forEach((t: any, ti: number) => t.blocks.forEach((b: any) => b.s.forEach((s: string, k: number) => SAETZE.set(`${b.id}-${k}`, { id: `${b.id}-${k}`, spur: sp.nr, teil: ti, text: s }))));
 const SP = (n: number) => D.spuren[n - 1];
+const KAP = (n: number) => D.kapitel[SP(n).kap - 1];
+/** „Spur 2“ oder, sobald es mehrere Kapitel gibt, „Kapitel 1 · Spur 2“ */
+const nenn = (n: number) => (D.kapitel.length > 1 ? `Kapitel ${SP(n).kap} · Spur ${SP(n).spur}` : `Spur ${SP(n).spur}`);
+const summ = (ms: number | number[]) => { try { navigator.vibrate?.(ms); } catch { /* egal */ } };
 type Step = { t: 'lesen'; teil: number } | { t: 'zug'; z: any; nr: number; von: number } | { t: 'akte' } | { t: 'haken' };
 function steps(n: number): Step[] {
   const sp = SP(n), out: Step[] = [{ t: 'lesen', teil: 0 }], von = sp.mitte.length + sp.ende.length;
@@ -53,7 +58,8 @@ function steps(n: number): Step[] {
 }
 const perlen = () => stand.fertig.length * 2;
 const hatMark = (id: string) => stand.marks.includes(id);
-function merke(id: string) { if (!hatMark(id)) { stand.marks.push(id); speichern(); kopf(); } }
+function merke(id: string) { if (!hatMark(id)) { stand.marks.push(id); speichern(); kopf(); huepf(); } }
+const huepf = () => { const b = document.getElementById('bNotiz'); if (b) { b.classList.remove('huepf'); void b.offsetWidth; b.classList.add('huepf'); } };
 
 /* ---------- Icons ---------- */
 const IC = {
@@ -71,10 +77,10 @@ app.innerHTML = `<header class="kopf"><button class="kb" id="bAkte" aria-label="
 const buehne = $('#buehne'), fuss = $('#fuss'), ueber = $('#ueber');
 const modus = (m: string) => { app.dataset.m = m; };
 function kopf() {
-  const im = stand.view !== 'titel';
+  const im = stand.view === 'spur' || stand.view === 'tresor';
   $('.kopf').hidden = !im;
-  $('#kT1').innerHTML = stand.view === 'tresor' ? 'Mondtresor' : `Spur ${stand.spur}`;
-  $('#kT2').innerHTML = T(D.kapitel.titel);
+  $('#kT1').innerHTML = stand.view === 'tresor' ? 'Mondtresor' : `Spur ${SP(stand.spur).spur}`;
+  $('#kT2').innerHTML = `Kapitel ${SP(stand.spur).kap} · ${KAP(stand.spur).titelH}`;
   $('#kPerl').textContent = String(perlen());
   $('#kZahl').textContent = stand.marks.length ? String(stand.marks.length) : '';
   document.documentElement.style.setProperty('--fs', stand.fs + 'px');
@@ -89,6 +95,8 @@ let zs: any = {}; // flüchtiger Zustand des aktuellen Zugs
 function zeige() {
   ueber.innerHTML = ''; kopf(); speichern();
   if (stand.view === 'titel') return titel();
+  if (stand.view === 'intro') return intro();
+  if (stand.view === 'kapitel') return kapitelKarte();
   if (stand.view === 'tresor') return tresor();
   const st = steps(stand.spur)[stand.i];
   if (st.t === 'lesen') return lesen(st.teil);
@@ -100,17 +108,44 @@ function weiter() {
   const n = steps(stand.spur).length;
   stand.blatt = 0;
   if (stand.i + 1 < n) stand.i++;
-  else if (stand.spur < D.spuren.length) { stand.spur++; stand.i = 0; }
-  else stand.view = 'tresor';
+  else if (SP(stand.spur).spur === 6) stand.view = 'tresor';
+  else { stand.spur++; stand.i = 0; }
   zeige();
 }
 
-/* ---------- Titel ---------- */
+/* ---------- Titel, Vorgeschichte, Kapitelkarte ---------- */
 function titel() {
   modus('titel');
   const angefangen = stand.fertig.length > 0 || stand.i > 0 || stand.marks.length > 0;
-  buehne.innerHTML = `<section class="titel"><div class="lampe"></div><p class="tl">LESE-FALL · FALL 1</p><h1>${T(D.fall.titel)}</h1><figure class="foto gross"><img src="${img('cover')}" alt=""></figure><p class="tu">Kapitel 1 · ${T(D.kapitel.titel)}</p></section>`;
+  buehne.innerHTML = `<section class="titel"><div class="lampe"></div><p class="tl">LESE-FALL · FALL 1</p><h1>${T(D.fall.titel)}</h1><figure class="foto gross"><img src="${img('cover')}" alt=""></figure><p class="tu">Ein Krimi zum Selberlesen</p></section>`;
   fuss.innerHTML = `<div class="fz">${knopf('start', angefangen ? UI.weiterFall : UI.start)}${angefangen ? knopf('neu', UI.neuStart, 'still') : ''}</div>`;
+  fuss.onclick = (e) => {
+    const a = (e.target as HTMLElement).closest<HTMLElement>('[data-a]')?.dataset.a;
+    if (a === 'start') { stand.view = stand.intro ? (angefangen ? 'spur' : 'kapitel') : 'intro'; stand.blatt = angefangen ? stand.blatt : 0; if (stand.tresor.includes(SP(stand.spur).kap) && SP(stand.spur).spur === 6) stand.view = 'tresor'; zeige(); }
+    else if (a === 'neu') neuStart();
+  };
+}
+function intro() {
+  modus('titel');
+  let k = 0;
+  const mal = () => {
+    const s = D.intro[k], letzt = k === D.intro.length - 1;
+    buehne.innerHTML = `<section class="intro"><div class="lampe"></div><div class="ib ${s.bild.includes('/') ? 'frei' : 'foto'}"><img src="${fig(s.bild)}" alt=""></div><p>${s.text}</p>${letzt ? `<p class="frage">${UI.bereit}</p>` : ''}<div class="pkt hell">${D.intro.map((_: any, i: number) => `<i class="${i === k ? 'an' : ''}"></i>`).join('')}</div></section>`;
+    fuss.innerHTML = `<div class="fz">${knopf('w', letzt ? UI.los : UI.weiter)}</div>`;
+  };
+  mal();
+  fuss.onclick = (e) => {
+    if (!(e.target as HTMLElement).closest('[data-a="w"]')) return;
+    if (++k < D.intro.length) return mal();
+    stand.intro = true; stand.view = 'kapitel'; zeige();
+  };
+}
+function kapitelKarte() {
+  modus('titel');
+  const k = KAP(stand.spur);
+  buehne.innerHTML = `<section class="kapk"><div class="lampe"></div><span class="tab hell">${UI.kapitel} ${k.nr}</span><h1>${k.titelH}</h1><img class="vig" src="${img(k.bild)}" alt=""><p>${k.vorspann}</p></section>`;
+  fuss.innerHTML = `<div class="fz">${knopf('w', UI.los)}</div>`;
+  fuss.onclick = (e) => { if ((e.target as HTMLElement).closest('[data-a="w"]')) { stand.view = 'spur'; zeige(); } };
 }
 
 /* ---------- Lesen ---------- */
@@ -164,7 +199,8 @@ function fussLesen(n: number, letzt: string, zurueckFrei = true) {
 function lesen(teil: number) {
   modus('lesen');
   const sp = SP(stand.spur);
-  const kopfH = teil === 0 ? `<div class="skopf"><span class="tab">SPUR ${sp.spur}</span><h2>${sp.titelH}</h2></div><figure class="foto"><img src="${img(sp.bild)}" alt=""></figure>` : '';
+  const foto = (b: string | null) => (b ? `<figure class="foto"><img src="${img(b)}" alt=""></figure>` : '');
+  const kopfH = teil === 0 ? `<div class="skopf"><span class="tab">SPUR ${sp.spur}</span><h2>${sp.titelH}</h2></div>${foto(sp.bild)}` : foto(sp.bildB);
   buehne.innerHTML = '';
   const seiten = blaetter(sp.teile[teil].blocks, kopfH);
   stand.blatt = Math.min(stand.blatt, seiten.length - 1);
@@ -181,7 +217,7 @@ function lesen(teil: number) {
     const s = (e.target as HTMLElement).closest<HTMLElement>('.satz');
     if (!s) return;
     const id = s.dataset.s!;
-    if (hatMark(id)) stand.marks = stand.marks.filter((x) => x !== id); else stand.marks.push(id);
+    if (hatMark(id)) stand.marks = stand.marks.filter((x) => x !== id); else { stand.marks.push(id); huepf(); summ(12); }
     s.classList.toggle('mk');
     speichern(); kopf();
   };
@@ -212,7 +248,7 @@ function textOffen(o: { spur: number; banner: string; ziel?: string[]; tipp?: st
   const blocks = gelesen(o.spur);
   buehne.innerHTML = '';
   let b = 0, fehl = 0, hinweis = o.hinweis ?? '';
-  const kopfH = () => `<div class="auftrag"><span class="tab">SPUR ${o.spur}</span><p>${o.banner}</p>${hinweis ? `<div class="hin"><img src="${fig('raupe/tipp')}" alt=""><p>${hinweis}</p></div>` : ''}</div>`;
+  const kopfH = () => `<div class="auftrag"><span class="tab">${nenn(o.spur).toUpperCase()}</span><p>${o.banner}</p>${hinweis ? `<div class="hin"><img src="${fig('raupe/tipp')}" alt=""><p>${hinweis}</p></div>` : ''}</div>`;
   let seiten = blaetter(blocks, kopfH(), true);
   const seiteVon = (id: string) => seiten.findIndex((h) => h.html.includes(`data-s="${id}"`));
   const zeig = () => {
@@ -246,7 +282,7 @@ function notizHtml(wahl: boolean, ohne: string[] = []) {
   if (!ids.length) return `<p class="leer">${UI.notizLeer}</p>`;
   const nach: Record<number, string[]> = {};
   ids.forEach((id) => (nach[SAETZE.get(id)!.spur] ??= []).push(id));
-  return Object.keys(nach).map(Number).sort((a, b) => b - a).map((n) => `<h4>Spur ${n}</h4>${nach[n].map((id) => `<div class="nz${wahl ? ' wahl' : ''}" data-n="${id}"><span>${T(SAETZE.get(id)!.text)}</span>${wahl ? '' : `<button data-x="${id}" aria-label="Entfernen">${IC.zu}</button>`}</div>`).join('')}`).join('');
+  return Object.keys(nach).map(Number).sort((a, b) => b - a).map((n) => `<h4>${nenn(n)}</h4>${nach[n].map((id) => `<div class="nz${wahl ? ' wahl' : ''}" data-n="${id}"><span>${T(SAETZE.get(id)!.text)}</span>${wahl ? '' : `<button data-x="${id}" aria-label="Entfernen">${IC.zu}</button>`}</div>`).join('')}`).join('');
 }
 function notizbuch() {
   ueber.innerHTML = `<div class="schl"><section class="heft"><header><b>${UI.notizbuch}</b><button class="kb" data-a="zu" aria-label="Schließen">${IC.zu}</button></header><div class="hs">${notizHtml(false)}</div></section></div>`;
@@ -267,6 +303,7 @@ function zugRahmen(st: any, innen: string, unten: string, sprech = '') {
 }
 const sag = (b: string, t: string, kl = '') => { const r = $('.zr'); if (r) { r.innerHTML = raupe(b, t, kl); const zg = $('.zug'); if (zg) zg.scrollTop = zg.scrollHeight; } };
 function geschafft(st: any, extra = '') {
+  if (!zs.ok) { stand.zuege++; summ(st.z.stempel ? [20, 40, 60] : 25); }
   zs.ok = true;
   sag('lob', (extra ? extra + ' ' : '') + (st.z.erfolg ?? ''), 'gut');
   fuss.innerHTML = `<div class="fz">${knopf('weiter', UI.weiter)}</div>`;
@@ -469,22 +506,24 @@ function zWeg(st: any) {
 
 /* ---------- Fallakte ---------- */
 function akteHtml(bis: number, neuIn: number) {
-  const gw = D.geheimwort, offen = stand.fertig.filter((n) => n <= bis);
-  const wort = gw.wort.split('').map((ch: string, p: number) => { const sp = Object.keys(gw.pos).find((k) => gw.pos[k] === p)!; const da = offen.includes(+sp); return `<i class="${da ? 'da' : ''}${+sp === neuIn ? ' neu' : ''}">${da ? ch : ''}</i>`; }).join('');
-  const sps = D.spuren.filter((s: any) => s.spur <= bis);
+  const kap = SP(bis).kap, gw = KAP(bis).geheimwort;
+  const wort = gw.wort.split('').map((ch: string, p: number) => { const s6 = +Object.keys(gw.pos).find((k) => gw.pos[k] === p)!, nr = (kap - 1) * 6 + s6; const da = stand.fertig.includes(nr) && nr <= bis; return `<i class="${da ? 'da' : ''}${nr === neuIn ? ' neu' : ''}">${da ? ch : ''}</i>`; }).join('');
+  const sps = D.spuren.filter((s: any) => s.nr <= bis);
   const neu = (n: number) => (n === neuIn ? ` <em class="neu">${UI.neu}</em>` : '');
-  const fragen = sps.flatMap((s: any) => (s.akte.fragenNeu ?? []).map((f: any) => ({ ...f, n: s.spur })));
-  const hinw = sps.flatMap((s: any) => (s.akte.hinweise ?? []).map((h: any) => ({ ...h, n: s.spur })));
-  const entl = sps.flatMap((s: any) => (s.akte.entlastet ?? []).map((w: string) => ({ w, n: s.spur })));
-  const weg = sps.flatMap((s: any) => (s.akte.wegNeu ?? []).map((w: any) => ({ ...w, n: s.spur })));
+  const geklaert = sps.flatMap((s: any) => (s.akte.fragenWeg ?? []).map((id: string) => ({ id, n: s.nr })));
+  const fragen = sps.flatMap((s: any) => (s.akte.fragenNeu ?? []).map((f: any) => ({ ...f, n: s.nr }))).map((f: any) => ({ ...f, weg: geklaert.find((g: any) => g.id === f.id)?.n })).filter((f: any) => !f.weg || f.weg === neuIn);
+  const hinw = sps.flatMap((s: any) => (s.akte.hinweise ?? []).map((h: any) => ({ ...h, n: s.nr })));
+  const entl = sps.flatMap((s: any) => (s.akte.entlastet ?? []).map((w: string) => ({ w, n: s.nr })));
+  let weg = sps.flatMap((s: any) => (s.akte.wegNeu ?? []).map((w: any) => ({ ...w, n: s.nr })));
+  weg = weg.filter((w: any, i: number) => w.id !== 'offen' || i === weg.length - 1);
   const steck = sps.some((s: any) => s.akte.steckbrief);
   const wer = [...new Set(hinw.map((h: any) => h.wer))] as string[];
-  const verd = Object.keys(stand.verdacht).filter((k) => +k.slice(1) <= bis).sort().pop();
+  const verd = Object.keys(stand.verdacht).filter((k) => +k.slice(1) <= bis).sort((a, b) => +a.slice(1) - +b.slice(1)).pop();
   return `<div class="wortz"><b>${UI.wort}</b><div class="wort">${wort}</div></div>
   ${steck ? (bis === 1 || !neuIn ? `<div class="zettel steckz">${steckbriefKarte()}</div>` : `<div class="zettel klein"><img src="${img('objekte/mond_vorne')}" alt=""><img src="${img('objekte/mond_hinten')}" alt=""><span><b>Steckbrief: Milas Mond</b>${T('gelb und rund · wei|ßer Fa|den · blau|er Stern hin|ten')}</span></div>`) : ''}
-  ${wer.length ? `<h3>${UI.verdaechtige}</h3><div class="verd">${wer.map((w) => { const e = entl.find((x: any) => x.w === w); return `<div class="pola${e ? ' frei' : ''}"><img src="${fig(D.verdaechtige[w].bild)}" alt=""><b>${D.verdaechtige[w].name}</b>${hinw.filter((h: any) => h.wer === w).map((h: any) => `<span>${h.text}${neu(h.n)}</span>`).join('')}${e ? `<b class="stempel klein">WAR ES NICHT</b>` : ''}</div>`; }).join('')}</div>` : ''}
-  ${weg.length ? `<h3>${UI.weg}</h3><div class="wegk">${weg.map((w: any) => `<span class="${w.id === 'offen' ? 'frage' : ''}">${w.text}</span>`).join('<i></i>')}</div>` : ''}
-  ${fragen.length ? `<h3>${UI.fragen}</h3><div class="fragen">${fragen.map((f: any) => `<div class="zettel fr">${f.text}${neu(f.n)}</div>`).join('')}</div>` : ''}
+  ${wer.length ? `<h3>${UI.verdaechtige}</h3><div class="verd">${wer.map((w) => { const e = entl.find((x: any) => x.w === w); return `<div class="pola${e ? ' frei' : ''}"><img src="${fig(D.verdaechtige[w].bild)}" alt=""><b>${D.verdaechtige[w].name}</b>${hinw.filter((h: any) => h.wer === w).map((h: any) => `<span>${h.text}${neu(h.n)}</span>`).join('')}${e ? `<b class="stempel klein${e.n === neuIn ? ' frisch' : ''}">WAR ES NICHT</b>` : ''}</div>`; }).join('')}</div>` : ''}
+  ${weg.length ? `<h3>${UI.weg}</h3><div class="wegk">${weg.map((w: any) => `<span class="${w.id === 'offen' ? 'frage' : ''}${w.n === neuIn ? ' frisch' : ''}">${w.text}</span>`).join('<i></i>')}</div>` : ''}
+  ${fragen.length ? `<h3>${UI.fragen}</h3><div class="fragen">${fragen.map((f: any) => `<div class="zettel fr${f.weg ? ' weg' : ''}">${f.text}${f.weg ? ` <em class="neu ok">${UI.geklaert}</em>` : neu(f.n)}</div>`).join('')}</div>` : ''}
   ${verd ? `<h3>${UI.deinVerdacht}</h3><div class="zettel mein">${stand.verdacht[verd]}</div>` : ''}`;
 }
 function akteBlatt() {
@@ -496,29 +535,33 @@ function akteBlatt() {
 }
 function akteOffen() {
   const bis = Math.max(0, ...stand.fertig);
-  ueber.innerHTML = `<div class="schl"><section class="akte ueberl"><div class="ak"><span class="tab hell">${UI.akte}</span><button class="kb" data-a="zu" aria-label="Schließen">${IC.zu}</button></div>${bis ? akteHtml(bis, 0) : `<p class="leer hell">Noch leer. Nach der ersten Spur kommt hier etwas dazu.</p>`}</section></div>`;
+  ueber.innerHTML = `<div class="schl"><section class="akte ueberl"><div class="ak"><span class="tab hell">${UI.akte}</span><button class="kb" data-a="zu" aria-label="Schließen">${IC.zu}</button></div>${bis ? akteHtml(bis, 0) : `<p class="leer hell">${UI.akteLeer}</p>`}</section></div>`;
   ueber.onclick = (e) => { const t = e.target as HTMLElement; if (t.closest('[data-a="zu"]') || t.classList.contains('schl')) ueber.innerHTML = ''; };
 }
 
 /* ---------- Haken ---------- */
 function haken() {
   modus('haken');
-  const sp = SP(stand.spur), letzte = stand.spur === D.spuren.length;
+  const sp = SP(stand.spur), letzte = sp.spur === 6;
   buehne.innerHTML = `<section class="haken"><div class="lampe"></div><img class="hr" src="${fig('raupe/staunt')}" alt=""><p>${sp.haken}</p></section>`;
   fuss.innerHTML = `<div class="fz">${knopf('weiter', letzte ? UI.tresor : `${UI.weiterlesen} ›`)}</div>`;
   fuss.onclick = (e) => { if ((e.target as HTMLElement).closest('[data-a="weiter"]')) weiter(); };
 }
 
-/* ---------- Mondtresor ---------- */
+/* ---------- Mondtresor: Ende eines Kapitels ---------- */
 function tresor() {
   modus('zug');
-  const gw = D.geheimwort;
-  const rueck = Object.keys(stand.verdacht).sort().map((k) => `<div class="zettel mein"><small>nach Spur ${k.slice(1)}</small>${stand.verdacht[k]}</div>`).join('');
-  buehne.innerHTML = `<section class="zug tresor"><div class="lampe"></div><div class="zk"><span class="tab hell">Kapitel 1</span><h2>Mondtresor</h2></div><img class="safe" src="${img(stand.tresor ? 'mondtresor_auf' : 'mondtresor_zu')}" alt=""><p class="zt1">${stand.tresor ? UI.tresorAuf : gw.frage}</p><div class="wort gross">${gw.wort.split('').map((c: string) => `<i class="da">${c}</i>`).join('')}</div>${stand.tresor ? `<p class="zt1">${UI.kapitelEnde}</p><h3 class="rb">${UI.rueckblick}</h3><div class="fragen">${rueck}</div>` : ''}</section>`;
-  fuss.innerHTML = `<div class="fz">${stand.tresor ? knopf('neu', UI.neuStart, 'still') : knopf('auf', 'Tresor öffnen')}</div>`;
+  const k = KAP(stand.spur), gw = k.geheimwort, auf = stand.tresor.includes(k.nr), mehr = stand.spur < D.spuren.length;
+  const von = (k.nr - 1) * 6, meine = Object.keys(stand.verdacht).filter((x) => +x.slice(1) > von && +x.slice(1) <= von + 6).sort((a, b) => +a.slice(1) - +b.slice(1));
+  const rueck = meine.map((x) => `<div class="zettel mein"><small>${UI.nach} Spur ${SP(+x.slice(1)).spur}</small>${stand.verdacht[x]}</div>`).join('');
+  const zahl = (n: number, t: string) => `<div class="zahl"><b>${n}</b><span>${t}</span></div>`;
+  buehne.innerHTML = `<section class="zug tresor${auf ? ' auf' : ''}"><div class="lampe"></div><div class="zk"><span class="tab hell">${UI.kapitel} ${k.nr}</span><h2>Mondtresor</h2></div><div class="safew"><img class="safe" src="${img(auf ? 'mondtresor_auf' : 'mondtresor_zu')}" alt=""></div>${auf ? `<p class="zt1 gross">${UI.tresorAuf}</p>` : `<p class="zt1">${gw.frage}</p>`}<div class="wort gross">${gw.wort.split('').map((c: string, i: number) => `<i class="da" style="animation-delay:${i * 90}ms">${c}</i>`).join('')}</div>${auf ? `<p class="zt1">${k.schluss}</p><div class="zahlen">${zahl(stand.marks.length, UI.deineSpuren)}${zahl(stand.zuege, UI.deineZuege)}${zahl(perlen(), UI.perlen)}</div>${rueck ? `<h3 class="rb">${UI.rueckblick}</h3><div class="fragen">${rueck}</div>` : ''}` : ''}</section>`;
+  fuss.innerHTML = `<div class="fz">${!auf ? knopf('auf', UI.tresorKnopf) : mehr ? knopf('kap', `${UI.naechstesKapitel} ${k.nr + 1} ›`) : `<p class="forts">${UI.fortsetzung}</p>${knopf('neu', UI.neuStart, 'still')}`}</div>`;
   fuss.onclick = (e) => {
     const a = (e.target as HTMLElement).closest<HTMLElement>('[data-a]')?.dataset.a;
-    if (a === 'auf') { stand.tresor = true; zeige(); } else if (a === 'neu') neuStart();
+    if (a === 'auf') { stand.tresor.push(k.nr); summ([30, 50, 80]); zeige(); }
+    else if (a === 'kap') { stand.spur++; stand.i = 0; stand.blatt = 0; stand.view = 'kapitel'; zeige(); }
+    else if (a === 'neu') neuStart();
   };
 }
 function neuStart() {
@@ -539,12 +582,8 @@ $('#bAa').onclick = () => {
     if (t.closest('[data-a="zu"]') || t.classList.contains('schl')) ueber.innerHTML = '';
   };
 };
-document.addEventListener('click', (e) => {
-  if (stand.view !== 'titel') return;
-  const a = (e.target as HTMLElement).closest<HTMLElement>('[data-a]')?.dataset.a;
-  if (a === 'start') { stand.view = 'spur'; zeige(); } else if (a === 'neu') { neuStart(); }
-});
 let rz = 0;
 addEventListener('resize', () => { clearTimeout(rz); rz = window.setTimeout(() => { if (stand.view === 'spur' && steps(stand.spur)[stand.i].t === 'lesen' && !ueber.innerHTML && app.dataset.m === 'lesen') zeige(); }, 200); });
 (window as any).__v7 = { stand, D, zeige, steps, plain };
+if (stand.view !== 'titel') stand.view = 'titel'; // beim Öffnen immer der Titel, dann „Weiter ermitteln“
 document.fonts.ready.then(zeige);

@@ -1,7 +1,7 @@
 /**
  * Durchlauf der Vorschau v7 (Kapitel 1): löst jeden Zug nach den Daten, prüft den Fehlerweg (Notizbuch → Text)
  * und legt Bilder in 03_screens/v7/ ab.  Vorher: npm run build && npx vite preview --port 4173
- * Aufruf: node scripts/e2e-v7.mjs [breite höhe name]
+ * Aufruf: node scripts/e2e-v7.mjs [breite höhe name [ab-szene [schriftgröße]]]
  */
 import { createRequire } from 'node:module';
 import { mkdirSync } from 'node:fs';
@@ -9,7 +9,7 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 const require = createRequire(import.meta.url);
 const { chromium } = require('playwright');
-const [W, H, NAME] = [+(process.argv[2] ?? 390), +(process.argv[3] ?? 844), process.argv[4] ?? 'telefon'];
+const [W, H, NAME, START, FS] = [+(process.argv[2] ?? 390), +(process.argv[3] ?? 844), process.argv[4] ?? 'telefon', +(process.argv[5] ?? 1), +(process.argv[6] ?? 20)];
 const OUT = resolve(dirname(fileURLToPath(import.meta.url)), '../../03_screens/v7', NAME);
 mkdirSync(OUT, { recursive: true });
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -22,6 +22,7 @@ let nr = 0;
 const shot = async (name) => { await sleep(450); await p.screenshot({ path: `${OUT}/${String(++nr).padStart(2, '0')}_${name}.png` }); };
 const klick = async (s) => { await p.click(s); await sleep(120); };
 const messen = async (wo) => {
+  await sleep(380); // Einblenden abwarten
   const m = await p.evaluate(() => {
     const W = innerWidth;
     const breit = [...document.querySelectorAll('#app *')].filter((e) => { const r = e.getBoundingClientRect(); return r.width > 0 && (r.right > W + 1 || r.left < -1) && !e.closest('.tatort') && !e.classList.contains('lampe'); }).length;
@@ -42,7 +43,7 @@ async function satz(id) {
 async function lesen(spur, teil) {
   for (let k = 0; k < 12; k++) {
     await messen(`Spur ${spur} Teil ${teil} Blatt ${k + 1}`);
-    if (k === 0 || spur <= 2) await shot(`s${spur}_lesen${teil ? 'B' : ''}_${k + 1}`);
+    if (k === 0 || spur <= 2 || teil) await shot(`s${spur}_lesen${teil ? 'B' : ''}_${k + 1}`);
     if (await p.$('#fuss [data-a="weiter"]')) break;
     await klick('#fuss [data-a="next"]');
   }
@@ -95,21 +96,31 @@ async function zug(spur, st, k) {
 }
 
 await p.goto('http://localhost:4173/v7.html'); await sleep(900);
+if (START > 1 || FS !== 20) { // Stand vorgeben: ab Szene START, Schriftgröße FS
+  await p.evaluate(([s, fs]) => localStorage.setItem('lesefall.v7b', JSON.stringify({ view: 'spur', spur: s, i: 0, blatt: 0, intro: s > 1, tipp: s > 1, fs, fertig: [...Array(s - 1)].map((_, i) => i + 1), tresor: [...Array(Math.floor((s - 1) / 6))].map((_, i) => i + 1) })), [START, FS]);
+  await p.reload(); await sleep(900);
+}
 await shot('titel');
 await klick('[data-a="start"]');
-for (let spur = 1; spur <= 6; spur++) {
+const karten = async (name) => { for (let k = 1; await p.$('#fuss [data-a="w"]'); k++) { await shot(`${name}_${k}`); await messen(`${name}_${k}`); await klick('#fuss [data-a="w"]'); } };
+await karten('intro');
+const N = await p.evaluate(() => window.__v7.D.spuren.length);
+for (let spur = START; spur <= N; spur++) {
   const steps = await p.evaluate((n) => window.__v7.steps(n), spur);
   for (const [k, st] of steps.entries()) {
     const ist = await p.evaluate(() => ({ spur: window.__v7.stand.spur, i: window.__v7.stand.i }));
-    if (ist.spur !== spur || ist.i !== k) throw new Error(`Ablauf verrutscht: erwartet Spur ${spur} Schritt ${k}, ist ${JSON.stringify(ist)}`);
+    if (ist.spur !== spur || ist.i !== k) throw new Error(`Ablauf verrutscht: erwartet Szene ${spur} Schritt ${k}, ist ${JSON.stringify(ist)}`);
     if (st.t === 'lesen') await lesen(spur, st.teil);
     else if (st.t === 'zug') await zug(spur, st, k);
     else { await shot(`s${spur}_${st.t}`); await messen(`s${spur}_${st.t}`); await klick('#fuss [data-a="weiter"]'); }
   }
+  if (spur % 6 === 0) {
+    await shot(`k${spur / 6}_tresor`); await klick('[data-a="auf"]'); await sleep(900); await shot(`k${spur / 6}_tresor_offen`); await messen(`k${spur / 6}_tresor_offen`);
+    if (spur < N) { await klick('[data-a="kap"]'); await karten(`k${spur / 6 + 1}_karte`); }
+  }
 }
-await shot('tresor'); await klick('[data-a="auf"]'); await shot('tresor_offen');
 await klick('#bNotiz'); await shot('notizbuch'); await klick('.heft [data-a="zu"]');
 await klick('#bAkte'); await shot('akte_gesamt');
 await b.close();
 if (fehler.length) { console.error('✗', fehler.length, 'Befunde:\n' + [...new Set(fehler)].join('\n')); process.exit(1); }
-console.log(`✓ v7 ${NAME} ${W}×${H}: Kapitel 1 durchgespielt, ${nr} Bilder`);
+console.log(`✓ v7 ${NAME} ${W}×${H}: ${N} Szenen durchgespielt, ${nr} Bilder`);

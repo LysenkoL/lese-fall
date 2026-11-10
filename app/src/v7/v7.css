@@ -113,7 +113,7 @@ svg { width: 24px; height: 24px; flex: none; }
 #app[data-m="zug"] .kopf, #app[data-m="haken"] .kopf { background: var(--nacht-1); }
 .lampe { position: absolute; left: 50%; top: -30px; width: 150%; height: 420px; transform: translateX(-50%); background: radial-gradient(ellipse at 50% 0, rgba(244, 194, 67, .34), rgba(244, 194, 67, .1) 38%, transparent 66%); pointer-events: none; }
 .zug { position: absolute; inset: 0; overflow-y: auto; padding: 16px 16px 12px; display: flex; flex-direction: column; gap: 12px; }
-.zug > :not(.lampe) { position: relative; }
+.zug > :not(.lampe) { position: relative; flex-shrink: 0; }
 .zk h2 { font-weight: 800; font-size: 25px; line-height: 1.15; margin-top: 8px; }
 .zk h2 .s-b, .zk h2 .s-r, .zt1 .s-b, .zt1 .s-r { color: inherit; }
 .zt1 { font-size: 18px; line-height: 1.45; font-weight: 600; color: #EEF1FA; }
@@ -154,6 +154,7 @@ svg { width: 24px; height: 24px; flex: none; }
 .faden.offen { background: repeating-linear-gradient(var(--faden) 0 6px, transparent 6px 11px); }
 .schluss { background: var(--senf); color: var(--senf-tinte); border-radius: 16px; padding: 14px 16px; font-size: 18px; line-height: 1.4; font-weight: 800; box-shadow: 0 10px 20px rgba(0, 0, 0, .3); animation: hoch .4s both; }
 .schluss .s-b, .schluss .s-r { color: inherit; }
+.nh .s-b, .nh .s-r, .rb .s-b, .rb .s-r, .forts .s-b, .forts .s-r { color: inherit; }
 .nh { display: flex; align-items: center; gap: 8px; color: #fff; font-size: 15px; font-weight: 800; letter-spacing: .04em; margin-top: 2px; }
 .hs { display: flex; flex-direction: column; gap: 8px; }
 .hs h4 { font-size: 12.5px; letter-spacing: .09em; text-transform: uppercase; color: var(--leise); margin-top: 6px; }
@@ -216,7 +217,7 @@ svg { width: 24px; height: 24px; flex: none; }
 .wort i.da { background: var(--senf); border: 0; box-shadow: 0 3px 0 var(--senf-dunkel); }
 .wort i.neu { animation: stempel .5s .5s cubic-bezier(.2, 1.6, .4, 1) both; }
 .wort.gross { justify-content: center; } .wort.gross i { max-width: 46px; }
-.zettel { background: var(--papier); border-radius: 3px; padding: 12px 14px; font-size: 16.5px; line-height: 1.4; font-weight: 600; box-shadow: 0 6px 12px rgba(60, 30, 0, .28); position: relative; }
+.zettel { color: var(--tinte); background: var(--papier); border-radius: 3px; padding: 12px 14px; font-size: 16.5px; line-height: 1.4; font-weight: 600; box-shadow: 0 6px 12px rgba(60, 30, 0, .28); position: relative; }
 .zettel::before { content: ''; position: absolute; top: -6px; left: 50%; width: 14px; height: 14px; margin-left: -7px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #FF9A8C, var(--faden) 60%); box-shadow: 0 2px 3px rgba(0, 0, 0, .3); }
 .zettel.steckz { padding: 0; background: none; box-shadow: none; }
 .zettel.klein { display: flex; align-items: center; gap: 8px; padding: 8px 12px; font-size: 14px; line-height: 1.35; }
@@ -274,10 +275,48 @@ em.neu .s-b, em.neu .s-r { color: inherit; }
 .hw .s-b, .hw .s-r { color: inherit; }
 .einst { gap: 10px; background-image: none; } .er { display: flex; gap: 10px; }
 .einst .kn.still { color: var(--tinte); border-color: var(--linie); background: #fff; opacity: 1; flex: 1; }
-.tresor .safe { align-self: center; width: 62%; max-height: 220px; object-fit: contain; border-radius: 18px; }
+
 .tresor .zt1 { text-align: center; } .rb { text-align: center; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--senf); margin-top: 6px; }
 .tresor .wort i { color: var(--senf-tinte); }
 
+/* ---------- Vorgeschichte, Kapitelkarte ---------- */
+.intro, .kapk { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; padding: calc(var(--oben) + 24px) 26px 12px; text-align: center; }
+.intro > :not(.lampe), .kapk > :not(.lampe) { position: relative; }
+.intro p, .kapk p { font-size: 21px; line-height: 1.45; font-weight: 600; color: #EEF1FA; animation: hoch .5s .15s both; }
+.intro p .s-b, .intro p .s-r, .kapk .s-b, .kapk .s-r { color: inherit; }
+.intro p.frage { font-weight: 800; color: var(--senf); font-size: 23px; }
+.ib { animation: hoch .5s both; }
+.ib.foto { width: 88%; max-width: 360px; margin: 0; transform: rotate(-1.5deg); }
+.ib.frei img { height: 190px; width: auto; filter: drop-shadow(0 0 26px rgba(244, 194, 67, .55)); }
+.pkt.hell { flex: none; } .pkt.hell i { background: rgba(255, 255, 255, .25); } .pkt.hell i.an { background: var(--senf); }
+.kapk h1 { font-size: 34px; line-height: 1.12; font-weight: 800; animation: hoch .5s both; }
+.vig { width: 78%; max-width: 320px; border-radius: 50%; aspect-ratio: 1; object-fit: cover; box-shadow: 0 0 0 6px rgba(255, 255, 255, .12), 0 18px 40px rgba(0, 0, 0, .4); animation: hoch .6s .1s both; }
+
+/* ---------- Bewegung ---------- */
+.blatt:not(.probe) { animation: blatt .28s both; }
+.zug, .akte:not(.ueberl) { animation: ein .3s both; }
+.lampe { animation: lampe 1.1s both; }
+.kb.huepf i { animation: huepf .45s; }
+.wegk > span.frisch, .zettel.fr:has(em.neu), .pola:has(em.neu) { animation: hoch .5s .3s both; }
+.stempel.klein.frisch { animation: stempelk .45s .6s cubic-bezier(.2, 1.6, .4, 1) both; }
+.zettel.fr.weg { opacity: .7; text-decoration: line-through; text-decoration-thickness: 2px; }
+em.neu.ok { background: var(--nacht-2); text-decoration: none; display: inline-block; }
+.tresor .safew { align-self: center; width: 62%; max-width: 250px; border-radius: 22px; overflow: hidden; box-shadow: 0 0 0 5px rgba(255, 255, 255, .1), 0 18px 40px rgba(0, 0, 0, .45); }
+.tresor .safew img { display: block; width: 100%; max-height: none; border-radius: 0; }
+.tresor.auf .safew { animation: auf .7s cubic-bezier(.2, 1.4, .4, 1) both; box-shadow: 0 0 0 5px rgba(244, 194, 67, .5), 0 0 60px rgba(244, 194, 67, .55); }
+.tresor .wort.gross i { animation: stempel .4s cubic-bezier(.2, 1.6, .4, 1) both; }
+.zt1.gross { font-size: 24px; font-weight: 800; color: var(--senf); }
+.zahlen { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.zahl { background: rgba(255, 255, 255, .1); border-radius: 16px; padding: 10px 6px; text-align: center; color: #fff; }
+.zahl b { display: block; font-size: 28px; font-weight: 800; color: var(--senf); line-height: 1.1; }
+.zahl > span { font-size: 12.5px; font-weight: 700; line-height: 1.25; display: block; }
+.zahl .s-b, .zahl .s-r { color: inherit; }
+.forts { text-align: center; font-weight: 800; font-size: 18px; color: var(--senf); margin: 0 0 4px; }
+@keyframes blatt { from { opacity: 0; transform: translateX(14px); } }
+@keyframes lampe { from { opacity: 0; } }
+@keyframes huepf { 40% { transform: scale(1.5); } }
+@keyframes stempelk { from { opacity: 0; transform: translate(-50%, 0) scale(2.4) rotate(-20deg); } }
+@keyframes auf { from { transform: scale(.86) rotate(-3deg); } }
 @keyframes wackel { 20% { transform: translateX(-6px); } 50% { transform: translateX(5px); } 80% { transform: translateX(-3px); } }
 @keyframes hoch { from { opacity: 0; transform: translateY(14px); } }
 @keyframes ein { from { opacity: 0; } }
