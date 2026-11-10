@@ -182,7 +182,7 @@ function blaetter(blocks: any[], kopfHtml: string, wahl = false): { html: string
   for (let k = 1; k <= K; k++) for (let j = 1; j <= n; j++) for (let i = j - 1; i >= 0 && passt(i, j); i--) {
     if (kost[k - 1][i] >= INF) continue;
     const leer = Math.max(0, H - hoehe(i, j)) / H;
-    const c = kost[k - 1][i] + leer * leer - (i > 0 && blocks[i].umbruch ? 0.05 : 0);
+    const c = kost[k - 1][i] + leer * leer * (k === 1 ? 2.5 : 1) - (i > 0 && blocks[i].umbruch ? 0.05 : 0); // das erste Blatt soll gut gefüllt sein
     if (c < kost[k][j]) { kost[k][j] = c; von[k][j] = i; }
   }
   const out: { html: string; voll: number }[] = [];

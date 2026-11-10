@@ -230,7 +230,7 @@ svg { width: 24px; height: 24px; flex: none; }
 .zettel.mein .s-b, .zettel.mein .s-r, .zettel.fr .s-b, .zettel.fr .s-r { color: inherit; }
 em.neu { font-style: normal; font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; background: var(--faden); color: #fff; border-radius: 6px; padding: 2px 6px; white-space: nowrap; }
 em.neu .s-b, em.neu .s-r { color: inherit; }
-.verd { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding-top: 4px; }
+.verd { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding-top: 4px; align-items: start; }
 .pola { background: #fff; padding: 8px 8px 10px; border-radius: 3px; box-shadow: 0 6px 12px rgba(60, 30, 0, .28); display: flex; flex-direction: column; gap: 4px; align-items: center; text-align: center; position: relative; transform: rotate(-1.5deg); }
 .pola:nth-child(even) { transform: rotate(1.5deg); }
 .pola img { width: 100%; aspect-ratio: 1; object-fit: contain; background: var(--papier-2); border-radius: 2px; }
