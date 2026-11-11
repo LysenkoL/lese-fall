@@ -66,6 +66,7 @@
     "stimmt": "Stimmt!",
     "wortPasst": "Die Buchstaben reichen genau für das Wort.",
     "gehtNicht": "Die Buchstaben passen nicht",
+    "passtFrage": "Hm, so wird es nicht das Wort zum Bild. Passen die Buchstaben überhaupt? Wenn nicht, tippe auf den Knopf unten.",
     "dochGeht": "Doch, die Buchstaben passen! Probier es noch einmal.",
     "tresorInfo": "Der Tresor öffnet sich mit einem Code-Wort aus vier Buchstaben. Für jedes gelöste Kapitel bekommst du einen Buchstaben. Im Tresor wartet eine Überraschung auf dich.",
     "tresor": "Der Tresor der Lese-Raupe"

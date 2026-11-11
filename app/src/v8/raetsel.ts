@@ -55,17 +55,19 @@ export function buchstaben(r: HTMLElement, d: Daten, fertig: () => void) {
   let felder: (number | null)[] = [];
   const DREH = [-7, 5, -3, 8, -6, 4, -9];
   const punkte = () => `<div class="pkt hell">${d.runden.map((_: any, i: number) => `<i class="${i === k ? 'an' : ''}"></i>`).join('')}</div>`;
-  let ok = false, hell: { leer: number[]; uebrig: number[] } = { leer: [], uebrig: [] };
+  let ok = false, puls = false, hell: { leer: number[]; uebrig: number[] } = { leer: [], uebrig: [] };
+  /** Die Raupe zeigt auf den Knopf „Die Buchstaben passen nicht“ */
+  const zeigKnopf = () => { puls = true; zi.querySelector('.bsk')?.classList.add('puls'); sag(r, 'tipp', K.UI.passtFrage); };
   const tile = (rd: any, i: number, drin: boolean) => `<span class="bk${ok ? ' ok' : ''}${hell.uebrig.includes(i) ? ' uebrig' : ''}" style="--r:${drin ? 0 : DREH[i % 7]}deg" data-i="${i}">${rd.buchstaben[i]}</span>`;
   const mal = () => {
     const rd = d.runden[k];
     const lose = [...rd.buchstaben].map((_: string, i: number) => i).filter((i) => !felder.includes(i));
-    zi.innerHTML = `${punkte()}<img class="bs-bild" src="${K.img(rd.bild)}" alt=""><div class="bs-felder">${felder.map((t, fi) => `<i class="feld${hell.leer.includes(fi) ? ' leer' : ''}" data-f="${fi}">${t === null ? '' : tile(rd, t, true)}</i>`).join('')}</div><div class="bs-lose">${lose.map((i) => tile(rd, i, false)).join('')}</div><div class="bs-knoepfe"><button class="bsk" data-a="gehtnicht" ${fertigRunde ? 'disabled' : ''}><img src="${K.fig('raupe/traurig')}" alt=""><span>${K.UI.gehtNicht}</span></button></div>`;
+    zi.innerHTML = `${punkte()}<img class="bs-bild" src="${K.img(rd.bild)}" alt=""><div class="bs-felder">${felder.map((t, fi) => `<i class="feld${hell.leer.includes(fi) ? ' leer' : ''}" data-f="${fi}">${t === null ? '' : tile(rd, t, true)}</i>`).join('')}</div><div class="bs-lose">${lose.map((i) => tile(rd, i, false)).join('')}</div><div class="bs-knoepfe"><button class="bsk${puls && !fertigRunde ? ' puls' : ''}" data-a="gehtnicht" ${fertigRunde ? 'disabled' : ''}><img src="${K.fig('raupe/traurig')}" alt=""><span>${K.UI.gehtNicht}</span></button></div>`;
   };
   const runde = () => {
     const rd = d.runden[k];
     felder = [...rd.wort].map(() => null);
-    fertigRunde = false; versuche = 0; doch = 0; ok = false; hell = { leer: [], uebrig: [] };
+    fertigRunde = false; versuche = 0; doch = 0; ok = false; puls = false; hell = { leer: [], uebrig: [] };
     mal(); sag(r, 'tipp', ''); unten('');
     hook.loese = () => { if (!fertigRunde) rd.passt ? lege(false) : gehtNichtRichtig(); };
   };
@@ -97,7 +99,7 @@ export function buchstaben(r: HTMLElement, d: Daten, fertig: () => void) {
     if (felder.map((t) => rd.buchstaben[t!]).join('') === rd.wort) { ok = true; return abschluss([K.UI.stimmt, K.UI.wortPasst].join(' ')); }
     wackelFelder();
     const k0 = k;
-    if (++versuche < 2) return sag(r, 'tipp', K.UI.nochmal);
+    if (++versuche < 2) return rd.passt ? sag(r, 'tipp', K.UI.nochmal) : zeigKnopf();
     if (rd.passt) return setTimeout(() => k0 === k && zi.isConnected && lege(true), 600);
     sag(r, 'tipp', [K.UI.hilfe, rd.warum ?? ''].join(' '));
     setTimeout(() => k0 === k && zi.isConnected && gehtNichtRichtig2(), 600);
@@ -110,6 +112,8 @@ export function buchstaben(r: HTMLElement, d: Daten, fertig: () => void) {
     felder[f] = i;
     if (von >= 0) felder[von] = alt;
     mal(); clearTimeout(pt); pt = window.setTimeout(pruefe, 250);
+    // Alle Kärtchen liegen, aber ein Feld bleibt leer: Dann fehlt ein Buchstabe.
+    if (felder.some((t) => t === null) && felder.filter((t) => t !== null).length === d.runden[k].buchstaben.length) zeigKnopf();
   };
   // Ziehen (Zeiger) oder Antippen
   let drag: { el: HTMLElement; i: number; x: number; y: number; bewegt: boolean } | null = null;

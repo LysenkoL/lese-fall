@@ -73,7 +73,8 @@ async function raetsel(spur, z) {
       else if (i === 1) {
         for (const c of rd.buchstaben) await tipp(c);
         await sleep(300); await shot(`${n}_runde2_wackeln`); await sleep(600);
-        await klick('.bsk[data-a="gehtnicht"]');
+        await shot(`${n}_runde2_knopf`);
+        await p.click('.bsk[data-a="gehtnicht"]', { force: true }); await sleep(250); // der Knopf pulsiert, deshalb ohne Warten auf Stillstand
       } else {
         if (i === 2) { // einmal echt ziehen
           const a = await (await p.$('.bs-lose .bk')).boundingBox(), t = await (await p.$('.feld[data-f="2"]')).boundingBox();
