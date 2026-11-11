@@ -77,7 +77,9 @@
   "naechstesKapitel": "Wei|ter zu Ka|pi|tel",
   "fortsetzung": "Fort|set|zung folgt …",
   "silben": "Sil|ben",
-  "schrift": "Schrift"
+  "schrift": "Schrift",
+  "stimmt": "Stimmt!",
+  "wortPasst": "Die Buch|sta|ben rei|chen ge|nau für das Wort."
  },
  "spuren": [
   {
@@ -572,7 +574,7 @@
    "raetsel": {
     "art": "versteckt",
     "titel": "Im Was|ser ver|steckt",
-    "text": "Das Was|ser rauscht und rauscht. In den Was|ser|li|nien ver|steckt sich ein Buch|sta|be. Wel|cher?",
+    "text": "Das Was|ser rauscht und rauscht. In den Was|ser|li|ni|en ver|steckt sich ein Buch|sta|be. Wel|cher?",
     "buchstabe": "W",
     "optionen": [
      "M",

@@ -88,7 +88,7 @@ export function buchstaben(r: HTMLElement, d: Daten, fertig: () => void) {
     if (!richtig) wackel(btn);
     zi.querySelectorAll('.bsk').forEach((b) => b.classList.toggle('wahl', b === btn));
     await fliegen(rd);
-    const text = [!richtig ? K.UI.hilfe : '', rd.passt ? '' : rd.warum ?? ''].filter(Boolean).join(' ');
+    const text = [richtig ? K.UI.stimmt : K.UI.hilfe, rd.passt ? K.UI.wortPasst : rd.warum ?? ''].filter(Boolean).join(' ');
     if (letzte) return ende(r, d, fertig, text);
     sag(r, 'tipp', text);
     unten(knopf('weiter', K.UI.weiter), () => { k++; runde(); });

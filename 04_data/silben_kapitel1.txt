@@ -1303,7 +1303,7 @@ schar|fe
 an|ders
 fin|de
 wich|tigs|te
-was|ser|li|nien
+was|ser|li|ni|en
 w
 prü|fe
 bring
@@ -1324,3 +1324,5 @@ co|de
 stem|peln
 hat|test
 recht
+# neu für v8 (ungeprüft)
+rei|chen

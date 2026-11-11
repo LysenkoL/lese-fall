@@ -32,7 +32,17 @@
 9. [ ] Полный прогон телефона и `python3 app/scripts/galerie-v7.py` → `03_screens/v7/galerie`, `03_screens/v7/vergleich`.
 7. [ ] Вычитка немецкого (самопроверка), обновить `MASTERPLAN.md`, `app/STATUS.md`, итоговый отчёт на русском.
 
+## v8 (после отзыва владелицы на v7)
+
+- Концепция: `02_design/KONZEPT_v8.md`. План сборки Главы 1: `02_design/BAUPLAN_v8_KAPITEL1.md`.
+- Код: `app/src/v8/`, вход `app/v8.html`, данные `04_data/kapitel1_v8_raetsel.json` → `node scripts/build-v8.ts` → `04_data/buch1_v8.json`.
+- Проверка: `node scripts/e2e-v8.mjs 390 844 telefon`, `node scripts/e2e-v8.mjs 1280 800 rechner`.
+- Публикация: `npm run build && node scripts/artifact-v8.mjs`, затем Artifact с `app/dist/artifact_v8.html`.
+- Собрана Глава 1 (6 головоломок, доска, карточка дела). Главы 2–4 — после оценки владелицы.
+
 ## Ссылки
+
+- Артефакт v8, Глава 1: https://claude.ai/artifact/NejzAvfd2FxeZJJYRJUpc9
 
 - Артефакт превью v7: https://claude.ai/artifact/6q5UsxszhqaLAGEQ3qw2rC
   Обновление: `npm run build && node scripts/artifact-v7.mjs`, затем Artifact с `file_path` = `app/dist/artifact_v7.html`, `root` = `app/dist`, `files` = новые `assets/v7-*.js`, `assets/v7-*.css`, `assets/text-*.js` и новые картинки.

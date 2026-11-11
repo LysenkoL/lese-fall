@@ -235,3 +235,219 @@ em.neu.ok { background: var(--nacht-2); text-decoration: none; display: inline-b
 @keyframes stempel { from { opacity: 0; transform: scale(2.2) rotate(-14deg); } }
 @keyframes ring { from { opacity: 0; transform: scale(1.8); } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+
+/* ======================= v8: Kopf, Staub, Rätsel, Brett, Fallkarte ======================= */
+.kb.brettb { width: auto; padding: 0 12px 0 10px; gap: 6px; display: flex; align-items: center; font-weight: 800; font-size: 14px; }
+.kb.brettb svg { width: 22px; height: 22px; }
+.satz { cursor: default; }
+canvas.staub { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: inherit; touch-action: none; cursor: crosshair; transition: opacity .6s; z-index: 2; }
+canvas.staub.weg { opacity: 0; pointer-events: none; }
+.staubig { touch-action: none; position: relative; }
+.brush { position: fixed; width: 44px; height: 44px; pointer-events: none; z-index: 50; transform: translate(-30%, -80%); }
+.zug { overflow-x: hidden; }
+.zug.tipp .hr.klein { width: 54px; height: 86px; object-fit: contain; align-self: center; }
+.zt1.gross { font-size: 23px; font-weight: 800; color: #fff; text-align: center; }
+.zug.tipp .opt { color: var(--tinte); }
+.zr .rp p { color: var(--tinte); }
+.zug .pkt.hell { flex: none; justify-content: center; }
+
+/* Buchstaben-Salat */
+.bs-bild { align-self: center; height: 96px; max-width: 60%; object-fit: contain; filter: drop-shadow(0 8px 14px rgba(0, 0, 0, .35)); }
+.bs-lose { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; min-height: 48px; }
+.bk { width: 44px; height: 48px; border-radius: 8px; background: var(--papier); color: var(--tinte); font-weight: 800; font-size: 26px; display: grid; place-items: center; transform: rotate(var(--r)); box-shadow: 0 3px 0 #D8CDB2, 0 8px 14px rgba(0, 0, 0, .3); transition: transform .65s cubic-bezier(.3, 1.2, .4, 1); position: relative; z-index: 2; }
+.bk.uebrig { animation: wackel .5s .2s 3; background: var(--senf-hell); }
+.bs-felder { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
+.feld { width: 44px; height: 48px; border-radius: 8px; border: 3px dashed rgba(255, 255, 255, .45); background: rgba(255, 255, 255, .08); }
+.feld.leer { border-color: var(--senf); animation: puls 1s 3; }
+.bs-knoepfe { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.bsk { display: flex; flex-direction: column; align-items: center; gap: 4px; background: var(--papier); border-radius: 18px; padding: 8px 8px 10px; font-weight: 800; font-size: 16px; line-height: 1.2; text-align: center; box-shadow: 0 3px 0 #D8CDB2, 0 10px 18px rgba(0, 0, 0, .25); border: 3px solid transparent; color: var(--tinte); }
+.bsk img { width: 46px; height: 56px; object-fit: contain; }
+.bsk.wahl { border-color: var(--senf); }
+.bsk.nein { animation: wackel .4s; }
+.bsk .s-b, .bsk .s-r { color: inherit; }
+
+/* Was ist anders? */
+.ub-zaehl { text-align: center; font-size: 17px; font-weight: 700; color: #fff; }
+.ub-zaehl b { color: var(--senf); font-size: 22px; }
+.ub-zaehl .s-b, .ub-zaehl .s-r { color: inherit; }
+.ub-paar { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; justify-items: center; }
+.ub { margin: 0; width: min(100%, calc(32dvh * 1.5)); display: flex; flex-direction: column; gap: 4px; }
+.ub .tab { align-self: flex-start; }
+.ub .tab .s-b, .ub .tab .s-r { color: inherit; }
+.ub-bild { position: relative; aspect-ratio: 3 / 2; background-size: cover; border-radius: 12px; border: 4px solid #fff; box-shadow: 0 10px 22px rgba(0, 0, 0, .35); overflow: hidden; cursor: crosshair; }
+.ub-bild .ding { position: absolute; transform: translate(-50%, -50%); max-width: none; height: auto; pointer-events: none; }
+.ub-bild .ring { width: 44px; height: 44px; margin: -22px 0 0 -22px; border-width: 4px; }
+.ring.miss { border-color: rgba(200, 200, 200, .8); width: 28px; height: 28px; margin: -14px 0 0 -14px; border-width: 3px; box-shadow: none; animation: miss .8s both; }
+.ring.blink { animation: ring .5s both, puls .6s .5s 4; }
+/* immer untereinander: nebeneinander wären die Bilder in der schmalen Spalte zu klein */
+
+/* Im Wasser versteckt */
+.vb { position: relative; align-self: center; width: min(100%, 300px, 36dvh); aspect-ratio: 1; border-radius: 18px; box-shadow: 0 12px 26px rgba(0, 0, 0, .35); overflow: hidden; }
+.vb-svg, .vb-svg svg { width: 100%; height: 100%; display: block; }
+.vb-cv { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; cursor: crosshair; }
+.vb-opts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.vb-o { height: 64px; border-radius: 16px; background: var(--papier); color: var(--tinte); font-weight: 800; font-size: 32px; box-shadow: 0 3px 0 #D8CDB2, 0 8px 16px rgba(0, 0, 0, .25); border: 3px solid transparent; }
+.vb-o.an { background: var(--senf); border-color: var(--senf-dunkel); }
+.vb-o.nein { animation: wackel .4s; }
+
+/* Merkmale */
+.mm-box { position: relative; flex: 1; min-width: 0; aspect-ratio: 4 / 3; background: var(--papier); border-radius: 16px; border: 4px solid #fff; box-shadow: 0 12px 26px rgba(0, 0, 0, .35); display: grid; place-items: center; overflow: hidden; touch-action: pan-y; transition: transform .2s; }
+.mm-box.gross { flex: none; width: 100%; }
+.mm-box.dreh1 { transform: perspective(500px) rotateY(90deg); }
+.mm-box.dreh2 { animation: dreh2 .2s both; }
+.mm-ding { width: 78%; height: 78%; object-fit: contain; pointer-events: none; }
+.mm-kopf { display: flex; gap: 10px; align-items: stretch; }
+.mm-dreh { flex: 0 0 112px; flex-direction: column; padding: 8px 6px; }
+.mm-dreh svg { width: 30px; height: 30px; }
+.mm-dreh.puls { animation: puls .6s 4; border-color: var(--senf-dunkel); background: var(--senf-hell); }
+.mm-m { background: var(--papier); border-radius: 16px; padding: 12px; box-shadow: 0 8px 18px rgba(0, 0, 0, .25); display: flex; flex-direction: column; gap: 10px; }
+.mm-m > p { font-size: 19px; font-weight: 800; text-align: center; }
+.mm-wahl { display: grid; grid-template-columns: 1fr 1fr 1.25fr; gap: 6px; }
+.mm-wahl button { min-height: 52px; border-radius: 12px; border: 2px solid var(--linie); background: #fff; font-weight: 700; font-size: 15px; line-height: 1.15; padding: 4px; }
+.mm-wahl button.an { background: var(--senf); border-color: var(--senf-dunkel); color: var(--senf-tinte); }
+.mm-wahl button.nein { animation: wackel .4s; }
+.mm-m .s-b, .mm-m .s-r, .mm-wahl .s-b, .mm-wahl .s-r, .mm-erl .s-b, .mm-erl .s-r { color: inherit; }
+.mm-erl { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.mm-erl li { display: flex; justify-content: space-between; gap: 10px; background: rgba(255, 255, 255, .12); color: #fff; border-radius: 10px; padding: 6px 12px; font-size: 14.5px; font-weight: 600; }
+.mm-erl li b { color: var(--senf); white-space: nowrap; }
+.mm-erl li > span { min-width: 0; }
+
+/* Stempel */
+.stp-tool { align-self: center; display: flex; flex-direction: column; align-items: center; touch-action: none; cursor: grab; position: relative; z-index: 5; transition: transform .25s; user-select: none; }
+.stp-tool.zieht { transition: none; cursor: grabbing; filter: drop-shadow(0 14px 14px rgba(0, 0, 0, .4)); }
+.stp-tool .griff { width: 46px; height: 46px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #FFD79A, #B8741E); box-shadow: 0 3px 0 #7A4B10; margin-bottom: -8px; z-index: 1; }
+.stp-tool .basis { background: var(--senf); color: var(--senf-tinte); border-radius: 12px; padding: 14px 18px 10px; font-weight: 800; font-size: 13px; letter-spacing: .06em; text-align: center; box-shadow: 0 4px 0 var(--senf-dunkel); max-width: 240px; }
+.stempelziel { position: relative; }
+.stempel.abdruck { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-8deg); white-space: normal; text-align: center; max-width: 90%; font-size: 18px; z-index: 3; animation: abdruck .4s cubic-bezier(.2, 1.6, .4, 1) both; }
+@keyframes abdruck { from { opacity: 0; transform: translate(-50%, -50%) scale(2.2) rotate(-20deg); } }
+
+/* Was war zuerst? */
+.rh-plaetze, .rh-pool { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.rh-platz, .rh-zelle { position: relative; border-radius: 12px; min-height: 118px; }
+.rh-platz { border: 3px dashed rgba(255, 255, 255, .4); background: rgba(255, 255, 255, .08); }
+.rh-platz > i { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); width: 24px; height: 24px; border-radius: 50%; background: var(--senf); color: var(--senf-tinte); font: 800 14px/24px 'Inter Schule', sans-serif; font-style: normal; text-align: center; z-index: 2; }
+.rh-platz.voll { border-style: solid; border-color: transparent; }
+.rh-zelle { background: rgba(255, 255, 255, .05); }
+.rh-karte { background: var(--papier); border-radius: 10px; padding: 4px; box-shadow: 0 3px 0 #D8CDB2, 0 8px 14px rgba(0, 0, 0, .3); display: flex; flex-direction: column; gap: 3px; touch-action: none; cursor: grab; user-select: none; height: 100%; border: 3px solid transparent; position: relative; }
+.rh-karte img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 6px; pointer-events: none; }
+.rh-karte span { font-size: 12.5px; line-height: 1.2; font-weight: 700; text-align: center; color: var(--tinte); }
+.rh-karte .s-b, .rh-karte .s-r { color: inherit; }
+.rh-karte.sel { border-color: var(--senf); }
+.rh-karte.zieht { z-index: 20; transition: none; box-shadow: 0 16px 24px rgba(0, 0, 0, .45); }
+.rh-karte.nein { animation: wackel .4s; border-color: var(--senf); }
+
+/* Wessen Ärmel war es? */
+.as-hin { background: var(--senf); color: var(--senf-tinte); border-radius: 14px; padding: 10px 14px; box-shadow: 0 6px 14px rgba(0, 0, 0, .3); }
+.as-z { font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; opacity: .8; }
+.as-hin p { font-size: 18px; font-weight: 800; line-height: 1.3; margin-top: 2px; }
+.as-hin .s-b, .as-hin .s-r { color: inherit; }
+.as-raus { color: #fff; font-size: 15.5px; font-weight: 700; text-align: center; }
+.as-raus .s-b, .as-raus .s-r, .as-bleibt .s-b, .as-bleibt .s-r { color: inherit; }
+.as-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.as-k { position: relative; background: var(--papier); border-radius: 14px; padding: 6px 4px 6px; display: flex; flex-direction: column; align-items: center; gap: 2px; border: 4px solid transparent; box-shadow: 0 3px 0 #D8CDB2, 0 8px 14px rgba(0, 0, 0, .3); color: var(--tinte); transition: opacity .5s, transform .5s; }
+.as-k svg { width: 100%; height: auto; max-height: 84px; }
+.as-n { font-weight: 800; font-size: 15px; }
+.as-n .s-b, .as-n .s-r { color: inherit; }
+.as-k.an { border-color: var(--senf); background: #FFF6D6; }
+.as-k.nein { animation: wackel .4s; }
+.as-k .kreuz { position: absolute; inset: 10% 12%; width: 76%; height: 76%; max-height: none; }
+.as-k.weg { opacity: .38; transform: scale(.82); box-shadow: none; }
+.as-k.neu .kreuz path { stroke-dasharray: 110; animation: strich .5s both; }
+.as-eine { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.as-gross { width: min(70%, 240px); position: relative; animation: waechst .6s cubic-bezier(.2, 1.3, .4, 1) both; }
+.as-k.gross { width: 100%; opacity: 1; transform: none; }
+.as-k.gross svg { max-height: none; }
+.as-bleibt { color: #fff; font-size: 20px; font-weight: 700; text-align: center; }
+.as-bleibt b { color: var(--senf); font-size: 24px; }
+
+/* Brett (Kork) */
+#app[data-m="brett"] { background: #B9773A; }
+#app[data-m="brett"] .kopf { background: var(--nacht-1); }
+#app[data-m="brett"] #fuss { background: #B9773A; }
+.brett { position: absolute; inset: 0; overflow: hidden; padding: 10px 12px 8px; display: flex; flex-direction: column; gap: 6px; background: #C2813F; background-image: radial-gradient(rgba(90, 50, 10, .22) 1.2px, transparent 1.6px), radial-gradient(rgba(255, 230, 180, .22) 1.2px, transparent 1.6px), radial-gradient(circle at 30% 10%, rgba(255, 220, 160, .4), transparent 60%); background-size: 13px 13px, 17px 17px, 100% 100%; background-position: 0 0, 6px 9px, 0 0; }
+.brett.ueberl { position: relative; inset: auto; width: 100%; max-height: 90dvh; border-radius: 22px 22px 0 0; padding-bottom: calc(var(--unten) + 14px); }
+.brett h3 { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #FFF3DC; font-weight: 800; text-shadow: 0 1px 0 rgba(0, 0, 0, .25); margin-top: 2px; }
+.brett h3 .s-b, .brett h3 .s-r, .brett .tab .s-b, .brett .tab .s-r { color: inherit; }
+.wischz { text-align: center; font-weight: 800; font-size: 15px; color: #fff; text-shadow: 0 1px 2px rgba(0, 0, 0, .4); min-height: 20px; }
+.wischz .s-b, .wischz .s-r { color: inherit; }
+.bgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.bkarte { position: relative; background: var(--papier); border-radius: 4px; padding: 5px 5px 6px; box-shadow: 0 5px 10px rgba(60, 30, 0, .3); display: flex; flex-direction: column; gap: 4px; color: var(--tinte); cursor: pointer; transform: rotate(-1deg); }
+.bkarte:nth-child(even) { transform: rotate(1deg); }
+.bkarte::before { content: ''; position: absolute; top: -5px; left: 50%; width: 11px; height: 11px; margin-left: -5px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #FF9A8C, var(--faden) 60%); box-shadow: 0 2px 3px rgba(0, 0, 0, .3); z-index: 3; }
+.bkarte.leer { background: transparent; border: 2px dashed rgba(255, 243, 220, .6); box-shadow: none; min-height: 100px; cursor: default; transform: none; }
+.bkarte.leer::before { display: none; }
+.bkarte.neu { overflow: hidden; }
+.bk-bild { aspect-ratio: 3 / 2; background: var(--papier-2); border-radius: 2px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.bk-bild > img { width: 100%; height: 100%; object-fit: contain; }
+.ausschn { position: relative; width: 100%; overflow: hidden; }
+.ausschn img { position: absolute; max-width: none; }
+.bkarte p { font-size: 10.5px; line-height: 1.25; font-weight: 600; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.bkarte p .s-b, .bkarte p .s-r { color: inherit; }
+.fragen { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding-top: 3px; }
+.zettel.fr { padding: 7px 9px; font-size: 12px; line-height: 1.25; display: flex; flex-direction: column; gap: 3px; align-items: flex-start; min-height: 44px; cursor: default; }
+.zettel.fr span .s-b, .zettel.fr span .s-r { color: inherit; }
+.zettel.fr.versteckt { visibility: hidden; }
+.zettel.fr.frisch { animation: hoch .5s both; }
+.zettel.fr.wackelt { cursor: pointer; animation: leicht 1.2s infinite; outline: 3px solid var(--senf); outline-offset: 1px; }
+.zettel.fr.faellt { animation: faellt .6s both; }
+.stempel.klein2 { position: absolute; left: 50%; top: 50%; font-size: 14px; border-width: 3px; padding: 3px 8px; transform: translate(-50%, -50%) rotate(-8deg); animation: abdruck .35s cubic-bezier(.2, 1.6, .4, 1) both; }
+.stempel.klein2 .s-b, .stempel.klein2 .s-r { color: inherit; }
+.codez { display: flex; align-items: center; gap: 10px; background: var(--nacht-2); color: #fff; border-radius: 12px; padding: 6px 10px; }
+.codez > span { font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; flex: 1; line-height: 1.2; }
+.codez > span .s-b, .codez > span .s-r { color: inherit; }
+.codez .wort { margin: 0; gap: 5px; flex: none; }
+.codez .wort i { width: 34px; height: 34px; flex: none; max-width: none; font-size: 20px; }
+.codez.hell { flex-direction: column; background: rgba(255, 255, 255, .1); padding: 12px; }
+.codez.hell > span { font-size: 14px; text-align: center; flex: none; }
+.codez.hell .wort i { width: 52px; height: 52px; font-size: 30px; color: var(--senf-tinte); background: var(--senf); border: 0; box-shadow: 0 3px 0 var(--senf-dunkel); position: relative; }
+.codez.hell .wort i:empty { background: rgba(255, 255, 255, .12); border: 2px dashed rgba(255, 255, 255, .35); box-shadow: none; }
+.codez .wort i.fall { animation: fallen .8s cubic-bezier(.4, 0, .6, 1) both; }
+.schl.mitte { align-items: center; justify-content: center; z-index: 6; }
+.kgross { width: 82%; background: var(--papier); border-radius: 6px; padding: 12px; box-shadow: 0 20px 50px rgba(0, 0, 0, .5); display: flex; flex-direction: column; gap: 10px; animation: hoch .25s both; }
+.kgross p { font-size: 17px; line-height: 1.4; font-weight: 600; color: var(--tinte); }
+.kgross p .s-b, .kgross p .s-r { color: inherit; }
+.kgross .bk-bild { aspect-ratio: auto; min-height: 150px; max-height: 40dvh; }
+.kgross .ausschn { margin: auto 0; }
+
+/* Haken, Auflösung, Fallkarte */
+.haken h2 { font-size: 30px; font-weight: 800; animation: hoch .5s .2s both; }
+.haken h2 .s-b, .haken h2 .s-r { color: inherit; }
+.haken .forts { font-size: 20px; color: var(--senf); }
+.fk { background: var(--papier); color: var(--tinte); border-radius: 12px; padding: 16px 16px 18px; box-shadow: 0 14px 34px rgba(0, 0, 0, .4); display: flex; flex-direction: column; gap: 10px; position: relative; }
+.fk > .tab { align-self: flex-start; }
+.fk h2 { font-size: 24px; font-weight: 800; color: var(--nacht-2); line-height: 1.2; }
+.fk h2 .s-b, .fk h2 .s-r { color: inherit; }
+.fk .foto { margin: 6px auto 4px; width: 92%; }
+.fk ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.fk li { font-size: 18px; line-height: 1.45; font-weight: 600; padding-left: 20px; position: relative; }
+.fk li::before { content: ''; position: absolute; left: 4px; top: 11px; width: 8px; height: 8px; border-radius: 50%; background: var(--senf-dunkel); }
+.fk li .s-b, .fk li .s-r, .fk-frage .s-b, .fk-frage .s-r { color: inherit; }
+.fk-frage { font-size: 19px; font-weight: 800; line-height: 1.35; background: var(--senf-hell); border-left: 6px solid var(--senf); border-radius: 4px 12px 12px 4px; padding: 10px 12px; }
+.fk .stempel.abdruck { top: 62%; font-size: 22px; background: rgba(255, 252, 244, .9); }
+.zug.fall { padding-bottom: 20px; }
+
+@keyframes puls { 50% { transform: scale(1.07); box-shadow: 0 0 0 6px rgba(244, 194, 67, .5); } }
+@keyframes miss { from { opacity: 1; transform: scale(1.4); } to { opacity: 0; } }
+@keyframes dreh2 { from { transform: perspective(500px) rotateY(-90deg); } }
+@keyframes strich { from { stroke-dashoffset: 110; } }
+@keyframes waechst { from { transform: scale(.6); } }
+@keyframes leicht { 0%, 100% { transform: rotate(-1.5deg); } 50% { transform: rotate(1.8deg); } }
+@keyframes faellt { to { opacity: 0; transform: translateY(80px) rotate(12deg); } }
+@keyframes fallen { from { transform: translateY(-120px); opacity: 0; } 60% { opacity: 1; } }
+.lampe { left: 0; width: 100%; transform: none; }
+.tab .s-b, .tab .s-r { color: inherit; }
+.fk .stempel.abdruck { top: 30%; }
+.brett { gap: 8px; }
+.brett { gap: 5px; padding: 8px 10px 6px; }
+.brett .ak { gap: 6px; }
+.brett .ak .tab { white-space: nowrap; font-size: 11px; padding: 4px 8px; }
+.plus { white-space: nowrap; font-size: 12.5px; padding: 5px 10px; }
+.bgrid { gap: 7px; }
+.bk-bild { aspect-ratio: 16 / 10; }
+.bkarte { padding: 4px 4px 5px; gap: 3px; }
+.bkarte p { font-size: 10px; }
+.wischz { min-height: 0; font-size: 14px; line-height: 1.2; }
+.zettel.fr { padding: 6px 8px; font-size: 11.5px; min-height: 38px; }
+.codez { padding: 4px 10px; }
+.codez .wort i { width: 30px; height: 30px; }
+@media (min-height: 760px) { .brett { gap: 8px; } .bkarte p { font-size: 10.5px; } }
