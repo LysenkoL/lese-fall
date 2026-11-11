@@ -9,6 +9,7 @@
     "build": "npm run data && tsc --noEmit && vite build",
     "preview": "vite preview",
     "test:e2e": "node scripts/e2e.mjs",
+    "test:v8": "node scripts/e2e-v8.mjs 390 844 telefon && node scripts/e2e-v8.mjs 1280 800 rechner",
     "android": "npm run build && cap sync android"
   },
   "devDependencies": {

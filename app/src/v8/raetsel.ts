@@ -96,10 +96,11 @@ export function buchstaben(r: HTMLElement, d: Daten, fertig: () => void) {
     if (fertigRunde || felder.some((t) => t === null)) return;
     if (felder.map((t) => rd.buchstaben[t!]).join('') === rd.wort) { ok = true; return abschluss([K.UI.stimmt, K.UI.wortPasst].join(' ')); }
     wackelFelder();
+    const k0 = k;
     if (++versuche < 2) return sag(r, 'tipp', K.UI.nochmal);
-    if (rd.passt) return setTimeout(() => lege(true), 600);
+    if (rd.passt) return setTimeout(() => k0 === k && zi.isConnected && lege(true), 600);
     sag(r, 'tipp', [K.UI.hilfe, rd.warum ?? ''].join(' '));
-    setTimeout(gehtNichtRichtig2, 600);
+    setTimeout(() => k0 === k && zi.isConnected && gehtNichtRichtig2(), 600);
   };
   const gehtNichtRichtig2 = () => { const rd = d.runden[k], z = zuordnung(rd); felder = z.f; hell = { leer: z.f.map((t, i) => (t === null ? i : -1)).filter((i) => i >= 0), uebrig: z.uebrig }; abschluss([K.UI.hilfe, rd.warum ?? ''].join(' ')); };
   let pt = 0;
@@ -464,8 +465,9 @@ export function ausschluss(r: HTMLElement, d: Daten, fertig: () => void) {
     const raus: string[] = hin[hi].raus;
     if (sel.size === raus.length && raus.every((x) => sel.has(x))) return streichen(raus, false);
     fehl++;
-    zi.querySelectorAll('.as-k.an').forEach((e) => wackel(e));
-    if (fehl === 1) { sag(r, 'tipp', K.UI.nochmal); gesperrt = true; setTimeout(() => { sel.clear(); gesperrt = false; mal(); }, 600); return; }
+    const daneben = [...sel].filter((x) => !raus.includes(x));
+    zi.querySelectorAll<HTMLElement>('.as-k.an').forEach((e) => { if (daneben.includes(e.dataset.id!)) wackel(e); });
+    if (fehl === 1) { sag(r, 'tipp', daneben.length ? K.UI.nochmal : K.UI.nochEiner); gesperrt = true; setTimeout(() => { daneben.forEach((x) => sel.delete(x)); gesperrt = false; mal(); }, 600); return; }
     sag(r, 'tipp', K.UI.hilfe);
     setTimeout(() => streichen(raus, true), 500);
   };

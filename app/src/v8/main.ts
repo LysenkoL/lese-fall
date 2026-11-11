@@ -67,7 +67,7 @@ const IC = {
 const app = $('#app');
 app.innerHTML = `<header class="kopf"><button class="kb brettb" id="bBrett" aria-label="Brett">${IC.akte}<span>Brett</span></button><div class="kt"><b id="kT1"></b><span id="kT2"></span></div><span class="perl" id="kPerl"></span><button class="kb aa" id="bAa" aria-label="Schrift">Aa</button></header><main id="buehne"></main><footer id="fuss"></footer><div id="ueber"></div>`;
 const buehne = $('#buehne'), fuss = $('#fuss'), ueber = $('#ueber');
-const modus = (m: string) => { app.dataset.m = m; };
+const modus = (m: string) => { app.dataset.m = m; buehne.ontouchstart = buehne.ontouchend = null; /* Blättern per Wisch gilt nur beim Lesen */ };
 function kopf() {
   $('.kopf').hidden = stand.view !== 'spur';
   $('#kT1').textContent = `Spur ${SP(stand.spur).spur}`;
@@ -151,6 +151,7 @@ function kapitelKarte() {
 
 /* ---------- Lesen (ohne Markieren) ---------- */
 const blockHtml = (b: any) => {
+  if (b.roh) return b.roh;
   const s = b.s.map((x: string) => `<span class="satz">${T(x)}</span>`).join(' ');
   return b.typ === 'th' ? `<div class="ged"><img src="${fig('raupe/denkt')}" alt=""><p>${s}</p></div>` : `<p>${s}</p>`;
 };
@@ -166,6 +167,20 @@ function blaetter(blocks: any[], kopfHtml: string): { html: string; voll: number
   probe.appendChild(innen);
   const cs = getComputedStyle(probe);
   const H = probe.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
+  const messe = (h: string) => { innen.innerHTML = h; return innen.offsetHeight; };
+  const teile: any[] = [];
+  // Passt nicht einmal der erste Satz unter Titel und Bild (kleine Fläche, große Schrift), bekommt der Kopf ein eigenes Blatt.
+  const b0 = blocks[0];
+  if (b0 && messe(kopfHtml + blockHtml({ ...b0, s: b0.s.slice(0, 1) })) > H) { teile.push({ roh: kopfHtml, s: [] }); kopfHtml = ''; }
+  blocks.forEach((b, bi) => {
+    let kopf = bi === 0 ? kopfHtml : '';
+    if (b.s.length < 2 || messe(kopf + blockHtml(b)) <= H) { teile.push(b); return; }
+    let akt: string[] = [], erster = true;
+    const ab = () => { teile.push({ ...b, s: akt, umbruch: erster && b.umbruch }); akt = []; erster = false; kopf = ''; };
+    for (const x of b.s) { if (akt.length && messe(kopf + blockHtml({ ...b, s: [...akt, x] })) > H) ab(); akt.push(x); }
+    ab();
+  });
+  blocks = teile;
   const hs = blocks.map((b) => blockHtml(b)), n = hs.length;
   const memo = new Map<string, number>();
   const hoehe = (i: number, j: number) => {
@@ -368,9 +383,14 @@ function ausblick() {
   buehne.innerHTML = `<section class="haken"><div class="lampe"></div><img class="hr" src="${fig('raupe/staunt')}" alt=""><p>${KAP.ausblick}</p><p class="forts">${UI.fortsetzung}</p></section>`;
   nurKnopf('neu', knopf('neu', UI.neuStart, 'still'), neuStart);
 }
+/** Fragt erst nach: ein versehentlicher Tipp darf den Fall nicht löschen. */
 function neuStart() {
-  Object.assign(stand, structuredClone(START), { fs: stand.fs, silben: stand.silben });
-  zeige();
+  ueber.innerHTML = `<div class="schl"><section class="einst frage"><header><b>${UI.neuTitel}</b></header><p class="nf">${UI.neuFrage}</p><div class="er">${knopf('nein', UI.neuNein)}</div><div class="er">${knopf('ja', UI.neuJa, 'still')}</div></section></div>`;
+  ueber.onclick = (e) => {
+    const t = e.target as HTMLElement;
+    if (t.closest('[data-a="ja"]')) { ueber.innerHTML = ''; Object.assign(stand, structuredClone(START), { fs: stand.fs, silben: stand.silben }); zeige(); }
+    else if (t.closest('[data-a="nein"]') || t.classList.contains('schl')) ueber.innerHTML = '';
+  };
 }
 
 /* ---------- Kopf-Knöpfe, Einstellungen ---------- */

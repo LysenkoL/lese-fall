@@ -188,7 +188,7 @@ Die Lese-Raupe nimmt ihre Tautropfen-Lupe. Sie schaut auf das Tablett hinunter.
 
 Neben dem roten Streifen glänzt ein kleiner Fleck. Kleber! Hier hat der Mond wirklich gelegen.
 
-„Ben sagt die Wahrheit“, denkt die Raupe. „Aber wer war nach ihm hier?“
+„Das passt zu Bens Geschichte“, denkt die Raupe. „Aber wer war nach ihm hier?“
 
 Ihr Blick wandert vom Tablett zum Fenster. Es steht weit offen.
 

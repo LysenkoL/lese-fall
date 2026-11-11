@@ -70,7 +70,7 @@ svg { width: 24px; height: 24px; flex: none; }
 
 /* ---------- Lesen ---------- */
 #app[data-m="lesen"], #app[data-m="text"] { background: var(--papier) radial-gradient(circle at 20% 0, #FFFFFF 0, transparent 55%); }
-.blatt { position: absolute; inset: 0; padding: 14px 20px 4px; overflow: hidden; font-size: var(--fs); line-height: 1.58; font-weight: 500; }
+.blatt { position: absolute; inset: 0; padding: 14px 20px 4px; overflow: hidden auto; font-size: var(--fs); line-height: 1.58; font-weight: 500; }
 .blatt.probe { visibility: hidden; pointer-events: none; }
 .blatt.kurz { display: flex; flex-direction: column; justify-content: center; padding-bottom: 12%; }
 .blatt.kurz::before { content: ''; width: 54px; height: 5px; border-radius: 3px; background: var(--senf); margin-bottom: 16px; }
@@ -486,3 +486,9 @@ em.neu .s-b, em.neu .s-r { color: inherit; }
 .tresorinfo .wort i:not(:empty) { background: var(--senf); border: 0; }
 .tresorinfo .kn { align-self: stretch; }
 @media (prefers-reduced-motion: reduce) { .bkarte.fall { animation: none; } }
+
+/* Nachfrage vor dem Neustart */
+.einst.frage .nf { margin: 4px 0 14px; font-size: 17px; line-height: 1.45; font-weight: 600; }
+/* „Die Buchstaben passen nicht“ ist die Nebenhandlung: klein und zurückhaltend */
+.bs-knoepfe .bsk { background: transparent; color: var(--papier); box-shadow: none; border: 2px dashed rgba(255, 255, 255, .45); font-size: 15px; width: max-content; max-width: 100%; margin: 6px auto 0; padding: 4px 14px; }
+.bs-knoepfe .bsk img { width: 30px; height: 36px; }

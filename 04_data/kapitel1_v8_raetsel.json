@@ -23,6 +23,11 @@
     "start": "Fall öffnen",
     "weiterFall": "Weiter ermitteln",
     "neuStart": "Von vorn beginnen",
+    "neuTitel": "Wirklich von vorn beginnen?",
+    "neuFrage": "Dann beginnt der Fall wieder bei Spur 1. Deine Perlen und alle Karten auf dem Brett sind weg.",
+    "neuJa": "Ja, alles löschen",
+    "neuNein": "Nein, weiter ermitteln",
+    "nochEiner": "Gut! Aber da fehlt noch jemand.",
     "weiter": "Weiter",
     "weiterlesen": "Weiterlesen",
     "los": "Los geht’s!",
@@ -58,8 +63,8 @@
     "schrift": "Schrift",
     "stimmt": "Stimmt!",
     "wortPasst": "Die Buchstaben reichen genau für das Wort.",
-    "gehtNicht": "Das Wort geht nicht",
-    "dochGeht": "Doch, das Wort geht! Probier es noch einmal.",
+    "gehtNicht": "Die Buchstaben passen nicht",
+    "dochGeht": "Doch, die Buchstaben passen! Probier es noch einmal.",
     "tresorInfo": "Der Mondtresor öffnet sich mit einem Code-Wort aus vier Buchstaben. Für jedes gelöste Kapitel bekommst du einen Buchstaben. Im Tresor wartet eine Überraschung auf dich.",
     "tresor": "Mondtresor"
   },
@@ -119,7 +124,7 @@
       "raetsel": {
         "art": "buchstaben",
         "titel": "Buchstaben-Salat",
-        "text": "Zieh die Buchstaben in die Felder. Geht das Wort zum Bild? Wenn nicht, tippe auf „Das Wort geht nicht“.",
+        "text": "Lege das Wort zum Bild. Tippe auf die Buchstaben oder zieh sie in die Felder. Passen sie nicht? Dann sag es der Lese-Raupe.",
         "runden": [
           {
             "bild": "objekte/mond_vorne",
@@ -179,7 +184,7 @@
       "raetsel": {
         "art": "unterschiede",
         "titel": "Was ist anders?",
-        "text": "Die Lese-Raupe war nur kurz unter ihrem Blatt. Was hat sich im Raum verändert? Finde 4 Dinge.",
+        "text": "Vergleiche die beiden Bilder. Finde vier Unterschiede.",
         "basis": "spiel_theater_leer",
         "dinge": [
           {
@@ -223,7 +228,7 @@
             "tipp": "Schau unter den Tisch."
           }
         ],
-        "erfolg": "Vier Dinge sind anders. Und das wichtigste fehlt: der Mond."
+        "erfolg": "Vier Dinge sind anders. Und das Wichtigste fehlt: der Mond."
       }
     },
     {
@@ -270,7 +275,7 @@
       "raetsel": {
         "art": "merkmale",
         "titel": "Ist das Milas Mond?",
-        "text": "Wisch zuerst den Staub von den Zeitungen weg. Dann prüfe den Kreis.",
+        "text": "Wisch zuerst den Staub vom Kreis. Dann prüfe ihn genau.",
         "vorne": "objekte/falscher_kreis_vorne",
         "hinten": "objekte/falscher_kreis_hinten",
         "staub": true,

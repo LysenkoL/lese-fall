@@ -36,7 +36,7 @@
 
 - Концепция: `02_design/KONZEPT_v8.md`. План сборки Главы 1: `02_design/BAUPLAN_v8_KAPITEL1.md`.
 - Код: `app/src/v8/`, вход `app/v8.html`, данные `04_data/kapitel1_v8_raetsel.json` → `node scripts/build-v8.ts` → `04_data/buch1_v8.json`.
-- Проверка: `node scripts/e2e-v8.mjs 390 844 telefon`, `node scripts/e2e-v8.mjs 1280 800 rechner`.
+- Проверка: `npm run test:v8` (телефон и компьютер, мышью) и `node scripts/e2e-v8-finger.mjs` (настоящие касания: буквы, свайп на доске, сброс с подтверждением, крупный шрифт 320×568).
 - Публикация: `npm run build && node scripts/artifact-v8.mjs`, затем Artifact с `app/dist/artifact_v8.html`.
 - Собрана Глава 1 (6 головоломок, доска, карточка дела). Главы 2–4 — после оценки владелицы.
 

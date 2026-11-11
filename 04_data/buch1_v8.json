@@ -49,6 +49,11 @@
   "start": "Fall öff|nen",
   "weiterFall": "Wei|ter er|mit|teln",
   "neuStart": "Von vorn be|gin|nen",
+  "neuTitel": "Wirk|lich von vorn be|gin|nen?",
+  "neuFrage": "Dann be|ginnt der Fall wie|der bei Spur 1. Dei|ne Per|len und al|le Kar|ten auf dem Brett sind weg.",
+  "neuJa": "Ja, al|les lö|schen",
+  "neuNein": "Nein, wei|ter er|mit|teln",
+  "nochEiner": "Gut! A|ber da fehlt noch je|mand.",
   "weiter": "Wei|ter",
   "weiterlesen": "Wei|ter|le|sen",
   "los": "Los geht’s!",
@@ -84,8 +89,8 @@
   "schrift": "Schrift",
   "stimmt": "Stimmt!",
   "wortPasst": "Die Buch|sta|ben rei|chen ge|nau für das Wort.",
-  "gehtNicht": "Das Wort geht nicht",
-  "dochGeht": "Doch, das Wort geht! Pro|bier es noch ein|mal.",
+  "gehtNicht": "Die Buch|sta|ben pas|sen nicht",
+  "dochGeht": "Doch, die Buch|sta|ben pas|sen! Pro|bier es noch ein|mal.",
   "tresorInfo": "Der Mond|tre|sor öff|net sich mit ei|nem Co|de-Wort aus vier Buch|sta|ben. Für je|des ge|lös|te Ka|pi|tel be|kommst du ei|nen Buch|sta|ben. Im Tre|sor war|tet ei|ne Ü|ber|ra|schung auf dich.",
   "tresor": "Mond|tre|sor"
  },
@@ -230,7 +235,7 @@
    "raetsel": {
     "art": "buchstaben",
     "titel": "Buch|sta|ben-Sa|lat",
-    "text": "Zieh die Buch|sta|ben in die Fel|der. Geht das Wort zum Bild? Wenn nicht, tip|pe auf „Das Wort geht nicht“.",
+    "text": "Le|ge das Wort zum Bild. Tip|pe auf die Buch|sta|ben o|der zieh sie in die Fel|der. Pas|sen sie nicht? Dann sag es der Le|se-Rau|pe.",
     "runden": [
      {
       "bild": "objekte/mond_vorne",
@@ -410,7 +415,7 @@
    "raetsel": {
     "art": "unterschiede",
     "titel": "Was ist an|ders?",
-    "text": "Die Le|se-Rau|pe war nur kurz un|ter ih|rem Blatt. Was hat sich im Raum ver|än|dert? Fin|de 4 Din|ge.",
+    "text": "Ver|glei|che die bei|den Bil|der. Fin|de vier Un|ter|schie|de.",
     "basis": "spiel_theater_leer",
     "dinge": [
      {
@@ -454,7 +459,7 @@
       "tipp": "Schau un|ter den Tisch."
      }
     ],
-    "erfolg": "Vier Din|ge sind an|ders. Und das wich|tigs|te fehlt: der Mond."
+    "erfolg": "Vier Din|ge sind an|ders. Und das Wich|tigs|te fehlt: der Mond."
    }
   },
   {
@@ -744,7 +749,7 @@
    "raetsel": {
     "art": "merkmale",
     "titel": "Ist das Mi|las Mond?",
-    "text": "Wisch zu|erst den Staub von den Zei|tun|gen weg. Dann prü|fe den Kreis.",
+    "text": "Wisch zu|erst den Staub vom Kreis. Dann prü|fe ihn ge|nau.",
     "vorne": "objekte/falscher_kreis_vorne",
     "hinten": "objekte/falscher_kreis_hinten",
     "staub": true,
@@ -1000,7 +1005,7 @@
      "id": "s6-p9",
      "typ": "th",
      "s": [
-      "„Ben sagt die Wahr|heit“, denkt die Rau|pe.",
+      "„Das passt zu Bens Ge|schich|te“, denkt die Rau|pe.",
       "„A|ber wer war nach ihm hier?“"
      ]
     },
