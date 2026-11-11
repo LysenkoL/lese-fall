@@ -451,3 +451,38 @@ canvas.staub.weg { opacity: 0; pointer-events: none; }
 .codez { padding: 4px 10px; }
 .codez .wort i { width: 30px; height: 30px; }
 @media (min-height: 760px) { .brett { gap: 8px; } .bkarte p { font-size: 10.5px; } }
+
+/* ---- Nachbesserung: Buchstaben legen, Brett, Tresor ---- */
+.bs-knoepfe { grid-template-columns: 1fr; }
+.bsk { flex-direction: row; justify-content: center; gap: 10px; padding: 6px 12px; }
+.bsk:disabled { opacity: .5; }
+.bs-lose { min-height: 52px; }
+.feld .bk { transform: none; transition: none; width: 100%; height: 100%; box-shadow: 0 2px 0 #D8CDB2; }
+.feld { padding: 0; display: block; }
+.feld.nein { animation: wackel .4s; }
+.bk { touch-action: none; cursor: grab; user-select: none; }
+.bk.zieht { transition: none; z-index: 20; box-shadow: 0 14px 20px rgba(0, 0, 0, .45); }
+.bk.ok { outline: 4px solid var(--senf); outline-offset: -1px; background: #FFF6D6; }
+.bk.uebrig { outline: 3px dashed var(--senf); outline-offset: 1px; animation: none; }
+.feld.leer { border: 3px dashed var(--senf); animation: puls 1s 3; }
+em.neu { font-style: normal; font-size: 10px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; background: var(--faden); color: #fff; border-radius: 6px; padding: 2px 6px; white-space: nowrap; }
+em.neu .s-b, em.neu .s-r { color: inherit; }
+.bkarte.fall { animation: einfall .7s cubic-bezier(.3, 1.3, .5, 1) both; }
+.bkarte.fall::before { animation: nadel .2s .6s both; }
+@keyframes einfall { from { opacity: 0; transform: translateY(-120px) rotate(-12deg); } }
+@keyframes nadel { from { opacity: 0; transform: scale(2); } }
+.ib.tresor { margin: 0; animation: hoch .5s both; }
+.ib.tresor img { width: 200px; height: 200px; border-radius: 36px; object-fit: cover; box-shadow: 0 0 0 5px rgba(244, 194, 67, .55), 0 0 60px rgba(244, 194, 67, .55); }
+.codez[data-a="code"] { cursor: pointer; }
+.tresor-mini { width: 36px; height: 36px; border-radius: 8px; object-fit: cover; flex: none; box-shadow: 0 0 0 2px rgba(244, 194, 67, .6); }
+.codez.hell .tresor-mini { display: none; }
+.tresorinfo { align-items: center; text-align: center; background: var(--nacht-2); color: #fff; box-shadow: 0 0 0 4px rgba(244, 194, 67, .5), 0 20px 50px rgba(0, 0, 0, .5); width: 88%; max-width: 420px; }
+.tresorinfo > img { width: 130px; height: 130px; border-radius: 26px; object-fit: cover; }
+.tresorinfo h3 { font-size: 22px; font-weight: 800; color: var(--senf); text-transform: none; letter-spacing: 0; }
+.tresorinfo p { color: #EEF1FA; font-size: 16px; }
+.tresorinfo p .s-b, .tresorinfo p .s-r, .tresorinfo h3 .s-b, .tresorinfo h3 .s-r { color: inherit; }
+.tresorinfo .wort { justify-content: center; margin: 0; }
+.tresorinfo .wort i { width: 44px; height: 44px; max-width: none; flex: none; border-radius: 10px; background: rgba(255, 255, 255, .12); border: 2px dashed rgba(255, 255, 255, .35); display: grid; place-items: center; font-style: normal; font-weight: 800; font-size: 24px; color: var(--senf-tinte); }
+.tresorinfo .wort i:not(:empty) { background: var(--senf); border: 0; }
+.tresorinfo .kn { align-self: stretch; }
+@media (prefers-reduced-motion: reduce) { .bkarte.fall { animation: none; } }

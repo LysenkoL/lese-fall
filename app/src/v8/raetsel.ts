@@ -102,12 +102,13 @@ export function buchstaben(r: HTMLElement, d: Daten, fertig: () => void) {
     setTimeout(gehtNichtRichtig2, 600);
   };
   const gehtNichtRichtig2 = () => { const rd = d.runden[k], z = zuordnung(rd); felder = z.f; hell = { leer: z.f.map((t, i) => (t === null ? i : -1)).filter((i) => i >= 0), uebrig: z.uebrig }; abschluss([K.UI.hilfe, rd.warum ?? ''].join(' ')); };
+  let pt = 0;
   const wackelFelder = () => zi.querySelectorAll('.feld').forEach((e) => wackel(e));
   const setze = (i: number, f: number) => {
     const von = felder.indexOf(i), alt = felder[f];
     felder[f] = i;
     if (von >= 0) felder[von] = alt;
-    mal(); setTimeout(pruefe, 200);
+    mal(); clearTimeout(pt); pt = window.setTimeout(pruefe, 250);
   };
   // Ziehen (Zeiger) oder Antippen
   let drag: { el: HTMLElement; i: number; x: number; y: number; bewegt: boolean } | null = null;

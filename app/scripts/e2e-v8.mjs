@@ -67,10 +67,26 @@ async function raetsel(spur, z) {
   const n = `s${spur}_${z.art}`;
   await S(n + '_start');
   if (z.art === 'buchstaben') {
+    const tipp = (c) => klick(`.bs-lose .bk:text-is("${c}")`);
     for (const [i, rd] of z.runden.entries()) {
-      const richtigKnopf = rd.passt ? 'ja' : 'nein', falschKnopf = rd.passt ? 'nein' : 'ja';
-      await klick(`.bsk[data-w="${i === 0 ? falschKnopf : richtigKnopf}"]`); // Runde 1 absichtlich falsch
-      await sleep(1800); await S(`${n}_runde${i + 1}`);
+      if (i === 0) { for (const c of rd.wort) { await tipp(c); if (c === 'O') await shot(`${n}_runde1_halb`); } }
+      else if (i === 1) {
+        for (const c of rd.buchstaben) await tipp(c);
+        await sleep(300); await shot(`${n}_runde2_wackeln`); await sleep(600);
+        await klick('.bsk[data-a="gehtnicht"]');
+      } else {
+        if (i === 2) { // einmal echt ziehen
+          const a = await (await p.$('.bs-lose .bk')).boundingBox(), t = await (await p.$('.feld[data-f="2"]')).boundingBox();
+          const buchst = await (await p.$('.bs-lose .bk')).innerText();
+          await p.mouse.move(a.x + a.width / 2, a.y + a.height / 2); await p.mouse.down();
+          await p.mouse.move(a.x + a.width / 2 + 10, a.y + a.height / 2 - 20, { steps: 3 });
+          await p.mouse.move(t.x + t.width / 2, t.y + t.height / 2, { steps: 8 }); await shot(`${n}_ziehen`); await p.mouse.up(); await sleep(300);
+          const drin = await p.$eval('.feld[data-f="2"]', (e) => e.textContent.trim());
+          if (drin !== buchst) fehler.push(`Ziehen: Kärtchen ${buchst} liegt nicht im Feld (${drin})`);
+        }
+        await loese();
+      }
+      await sleep(900); await S(`${n}_runde${i + 1}`);
       if (i < z.runden.length - 1) await weiter();
     }
   } else if (z.art === 'unterschiede') {
@@ -140,8 +156,9 @@ for (let spur = 1; spur <= 6; spur++) {
     else if (s === 'raetsel') await raetsel(spur, D.spuren[spur - 1].raetsel);
     else if (s === 'brett') {
       await S(`s${spur}_brett_staub`);
-      await p.mouse.move(W / 2, 300); // echtes Wischen einmal anstoßen, dann sofort lösen
-      await loese(); await sleep(900); await S(`s${spur}_brett`);
+      if (await p.$('canvas.staub')) { await p.mouse.move(W / 2, 300); await loese(); await sleep(900); } // Staub nur bei Spur 2
+      await S(`s${spur}_brett`);
+      if (spur === 1) { await klick('.brett .codez[data-a="code"]'); await S('s1_brett_tresor'); await klick('.tresorinfo [data-a="zu"]'); }
       if (await p.$('.zettel.wackelt')) { await p.click('.zettel.wackelt', { force: true }); await sleep(400); await shot(`s${spur}_brett_geklaert`); await sleep(1300); }
       await weiter();
     } else if (s === 'tippFrage') {
