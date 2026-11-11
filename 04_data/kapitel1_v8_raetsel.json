@@ -59,7 +59,9 @@
     "stimmt": "Stimmt!",
     "wortPasst": "Die Buchstaben reichen genau für das Wort.",
     "gehtNicht": "Das Wort geht nicht",
-    "dochGeht": "Doch, das Wort geht! Probier es noch einmal."
+    "dochGeht": "Doch, das Wort geht! Probier es noch einmal.",
+    "tresorInfo": "Der Mondtresor öffnet sich mit einem Code-Wort aus vier Buchstaben. Für jedes gelöste Kapitel bekommst du einen Buchstaben. Im Tresor wartet eine Überraschung auf dich.",
+    "tresor": "Mondtresor"
   },
   "intro": [
     {
@@ -73,6 +75,10 @@
     {
       "bild": "objekte/goldene_lupe",
       "text": "Die Lese-Raupe ist langsam. Darum sieht sie, was andere übersehen. Du liest und löst die Rätsel. Zusammen klärt ihr den Fall."
+    },
+    {
+      "bild": "mondtresor_zu",
+      "text": "Das ist der Mondtresor der Lese-Raupe. Darin wartet eine Überraschung auf dich. Er öffnet sich nur mit einem Code-Wort aus vier Buchstaben. Für jedes gelöste Kapitel bekommst du einen Buchstaben."
     }
   ],
   "spuren": [
