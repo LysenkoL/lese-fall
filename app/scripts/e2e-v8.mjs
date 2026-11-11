@@ -138,7 +138,12 @@ async function raetsel(spur, z) {
       await klick('#fuss [data-a="fertig"]'); await sleep(1500); await S(`${n}_hinweis${i + 2}`);
     }
     await sleep(500); await S(n + '_uebrig');
-    await klick('#fuss [data-a="stempeln"]'); await sleep(500);
+    await klick('#fuss [data-a="stempeln"]'); await sleep(900);
+    if (z.schluss) {
+      await S(n + '_schluss');
+      await klick(`.as-so[data-o="${z.schluss.optionen.findIndex((o) => !o.sicher)}"]`); await sleep(400); await S(n + '_schluss_verdacht');
+      await klick(`.as-so[data-o="${z.schluss.optionen.findIndex((o) => o.sicher)}"]`); await sleep(500);
+    }
   }
   await S(n + '_geloest');
   await weiter();

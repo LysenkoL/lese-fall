@@ -134,11 +134,13 @@ function intro() {
   const mal = () => {
     const s = D.intro[k], letzt = k === D.intro.length - 1;
     buehne.innerHTML = `<section class="intro"><div class="lampe"></div><div class="ib ${s.bild === 'mondtresor_zu' ? 'tresor' : s.bild.includes('/') ? 'frei' : 'foto'}"><img src="${fig(s.bild)}" alt=""></div><p>${s.text}</p><div class="pkt hell">${D.intro.map((_: any, i: number) => `<i class="${i === k ? 'an' : ''}"></i>`).join('')}</div></section>`;
-    fuss.innerHTML = `<div class="fz">${knopf('w', letzt ? UI.los : UI.weiter)}</div>`;
+    fuss.innerHTML = `<div class="fz">${knopf('w', letzt ? UI.los : UI.weiter)}<button class="leise" data-a="skip" ${letzt ? 'style="visibility:hidden"' : ''}>${UI.ueberspringen}</button></div>`;
   };
   mal();
   fuss.onclick = (e) => {
-    if (!(e.target as HTMLElement).closest('[data-a="w"]')) return;
+    const t = e.target as HTMLElement;
+    if (t.closest('[data-a="skip"]')) k = D.intro.length;
+    else if (!t.closest('[data-a="w"]')) return;
     if (++k < D.intro.length) return mal();
     stand.intro = true; stand.view = 'kapitel'; zeige();
   };

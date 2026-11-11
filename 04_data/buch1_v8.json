@@ -49,6 +49,8 @@
   "start": "Fall öff|nen",
   "weiterFall": "Wei|ter er|mit|teln",
   "neuStart": "Von vorn be|gin|nen",
+  "verdacht": "nur ein Ver|dacht",
+  "ueberspringen": "Ü|ber|sprin|gen",
   "neuTitel": "Wirk|lich von vorn be|gin|nen?",
   "neuFrage": "Dann be|ginnt der Fall wie|der bei Spur 1. Dei|ne Per|len und al|le Kar|ten auf dem Brett sind weg.",
   "neuJa": "Ja, al|les lö|schen",
@@ -1159,7 +1161,21 @@
     ],
     "loesung": "oskar",
     "stempel": "DAS WAR SEIN ÄRMEL",
-    "erfolg": "Der Är|mel ge|hört Os|kar. A|ber was hat er vom Tab|lett ge|nom|men?"
+    "schluss": {
+     "frage": "Was wis|sen wir jetzt si|cher?",
+     "optionen": [
+      {
+       "text": "Der Är|mel ge|hört Os|kar.",
+       "sicher": true
+      },
+      {
+       "text": "Os|kar hat den Mond ge|nom|men.",
+       "sicher": false,
+       "tipp": "Das ist erst ein Ver|dacht. Nie|mand hat ge|se|hen, was der Är|mel ge|nom|men hat."
+      }
+     ]
+    },
+    "erfolg": "Ge|nau. Si|cher ist nur: Der Är|mel ge|hört Os|kar. Was hat er vom Tab|lett ge|nom|men?"
    },
    "schluessel": true
   }

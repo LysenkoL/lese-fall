@@ -450,7 +450,31 @@ export function ausschluss(r: HTMLElement, d: Daten, fertig: () => void) {
     const rest = kand.find((c) => !gestr.has(c.id));
     zi.innerHTML = `<div class="as-eine"><div class="as-gross">${karteHtml(rest).replace('class="as-k', 'class="as-k gross')}</div><p class="as-bleibt">${K.UI.bleibt} <b>${rest.name}</b></p></div>`;
     sag(r, 'tipp', '');
-    hook.loese = stempeln(zi, $('.as-gross', zi), d.stempel, () => ende(r, d, fertig));
+    hook.loese = stempeln(zi, $('.as-gross', zi), d.stempel, schluss);
+  };
+  /** Nach dem Stempel zieht das Kind selbst den Schluss: Was ist sicher, was nur ein Verdacht? */
+  const schluss = () => {
+    const s = d.schluss;
+    if (!s) return ende(r, d, fertig);
+    let zu = false;
+    const reihe = K.mischen(s.optionen.map((_: any, i: number) => String(i)));
+    zi.insertAdjacentHTML('beforeend', `<div class="as-schluss"><p class="as-sf">${s.frage}</p>${reihe.map((i) => `<button class="as-so" data-o="${i}"><span>${s.optionen[+i].text}</span></button>`).join('')}</div>`);
+    requestAnimationFrame(() => $('.as-schluss', zi).scrollIntoView({ block: 'nearest', behavior: 'smooth' }));
+    unten('');
+    const zeig = (b: HTMLElement) => { b.classList.add('offen'); (b as HTMLButtonElement).disabled = true; if (!b.querySelector('em')) b.insertAdjacentHTML('beforeend', `<em>${K.UI.verdacht}</em>`); };
+    const loesen = () => {
+      if (zu) return; zu = true;
+      zi.querySelectorAll<HTMLElement>('.as-so').forEach((b) => { if (s.optionen[+b.dataset.o!].sicher) { b.classList.add('ja'); (b as HTMLButtonElement).disabled = true; } else zeig(b); });
+      ende(r, d, fertig);
+    };
+    hook.loese = loesen;
+    zi.onclick = (e) => {
+      const b = (e.target as HTMLElement).closest<HTMLElement>('.as-so');
+      if (!b || zu || (b as HTMLButtonElement).disabled) return;
+      const o = s.optionen[+b.dataset.o!];
+      if (o.sicher) return loesen();
+      wackel(b); zeig(b); sag(r, 'tipp', o.tipp ?? K.UI.nochmal);
+    };
   };
   const streichen = async (ids: string[], mitRaupe: boolean) => {
     gesperrt = true; sel.clear();
