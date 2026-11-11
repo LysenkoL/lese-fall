@@ -57,7 +57,9 @@
     "silben": "Silben",
     "schrift": "Schrift",
     "stimmt": "Stimmt!",
-    "wortPasst": "Die Buchstaben reichen genau für das Wort."
+    "wortPasst": "Die Buchstaben reichen genau für das Wort.",
+    "gehtNicht": "Das Wort geht nicht",
+    "dochGeht": "Doch, das Wort geht! Probier es noch einmal."
   },
   "intro": [
     {
@@ -80,7 +82,8 @@
       "haken": "„Ein Schlüssel ist weg. Was verschwindet wohl als Nächstes?“",
       "karte": {
         "bild": "objekte/mond_hinten",
-        "text": "Milas Mond: gelb, oben ein weißer Faden, hinten ein blauer Stern."
+        "text": "Milas Mond: gelb, oben ein weißer Faden, hinten ein blauer Stern.",
+        "staub": false
       },
       "fragenNeu": [
         {
@@ -110,7 +113,7 @@
       "raetsel": {
         "art": "buchstaben",
         "titel": "Buchstaben-Salat",
-        "text": "Kannst du aus den Buchstaben das Wort zum Bild legen?",
+        "text": "Zieh die Buchstaben in die Felder. Geht das Wort zum Bild? Wenn nicht, tippe auf „Das Wort geht nicht“.",
         "runden": [
           {
             "bild": "objekte/mond_vorne",
@@ -154,7 +157,8 @@
           "w": 55,
           "h": 22
         },
-        "text": "Der Mond ist weg. Ein Ärmel mit Streifen hat am Tisch nach etwas gegriffen."
+        "text": "Der Mond ist weg. Ein Ärmel mit Streifen hat am Tisch nach etwas gegriffen.",
+        "staub": true
       },
       "fragenNeu": [
         {
@@ -222,7 +226,8 @@
       "haken": "Was wäscht Ben da nur so lange von seinen Fingern?",
       "karte": {
         "bild": "objekte/wasserhahn",
-        "text": "Der Ärmel: rot-weiße Streifen, rund um den Arm, keine Knöpfe."
+        "text": "Der Ärmel: rot-weiße Streifen, rund um den Arm, keine Knöpfe.",
+        "staub": false
       },
       "raetsel": {
         "art": "versteckt",
@@ -235,9 +240,10 @@
           "V",
           "N"
         ],
-        "winkel": 24,
+        "winkel": 10,
         "farbe": "#2F6FB8",
-        "erfolg": "W wie Wasser!"
+        "erfolg": "W wie Wasser!",
+        "stoerer": 4
       }
     },
     {
@@ -246,7 +252,8 @@
       "haken": "In der Ecke wird es plötzlich still. Ben hat das Wasser zugedreht.",
       "karte": {
         "bild": "objekte/falscher_kreis_hinten",
-        "text": "Der gelbe Kreis unter den Zeitungen ist nicht Milas Mond."
+        "text": "Der gelbe Kreis unter den Zeitungen ist nicht Milas Mond.",
+        "staub": false
       },
       "fragenNeu": [
         {
@@ -289,7 +296,8 @@
       "haken": "Noch vierzig Minuten. Die beiden laufen los.",
       "karte": {
         "bild": "objekte/kleber",
-        "text": "Ben hat den Faden festgeklebt und den Mond auf das blaue Tablett gelegt."
+        "text": "Ben hat den Faden festgeklebt und den Mond auf das blaue Tablett gelegt.",
+        "staub": false
       },
       "raetsel": {
         "art": "reihe",
@@ -332,7 +340,8 @@
       "haken": "Sechs Kinder, sechs Pullis. Einer davon war es.",
       "karte": {
         "bild": "oskar/staunt",
-        "text": "Der Ärmel gehört Oskar."
+        "text": "Der Ärmel gehört Oskar.",
+        "staub": false
       },
       "fragenWeg": [
         "aermel"
