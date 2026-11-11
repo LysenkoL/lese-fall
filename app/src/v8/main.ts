@@ -2,6 +2,7 @@
  * Lese-Fall · Vorschau „v8“: Kapitel 1 mit Rätseln nach dem Text, Ermittlungsbrett und Fallkarte.
  * Eigener Einstieg (v8.html), eigener Speicherstand (lesefall.v8). Alte App und v7 bleiben unverändert.
  */
+import { tresorSvg } from './zeichnen.ts';
 import './v8.css';
 import DATA_ from '../../../04_data/buch1_v8.json';
 import { T } from '../text';
@@ -133,7 +134,7 @@ function intro() {
   let k = 0;
   const mal = () => {
     const s = D.intro[k], letzt = k === D.intro.length - 1;
-    buehne.innerHTML = `<section class="intro"><div class="lampe"></div><div class="ib ${s.bild === 'mondtresor_zu' ? 'tresor' : s.bild.includes('/') ? 'frei' : 'foto'}"><img src="${fig(s.bild)}" alt=""></div><p>${s.text}</p><div class="pkt hell">${D.intro.map((_: any, i: number) => `<i class="${i === k ? 'an' : ''}"></i>`).join('')}</div></section>`;
+    buehne.innerHTML = `<section class="intro"><div class="lampe"></div><div class="ib ${s.bild === 'tresor' ? 'tresor' : s.bild.includes('/') ? 'frei' : 'foto'}">${s.bild === 'tresor' ? tresorSvg(KAP.code.wort.length) : `<img src="${fig(s.bild)}" alt="">`}</div><p>${s.text}</p><div class="pkt hell">${D.intro.map((_: any, i: number) => `<i class="${i === k ? 'an' : ''}"></i>`).join('')}</div></section>`;
     fuss.innerHTML = `<div class="fz">${knopf('w', letzt ? UI.los : UI.weiter)}<button class="leise" data-a="skip" ${letzt ? 'style="visibility:hidden"' : ''}>${UI.ueberspringen}</button></div>`;
   };
   mal();
@@ -283,7 +284,7 @@ function codeFelder() {
   return KAP.code.wort.split('').map((c: string, i: number) => `<i>${da && i === KAP.code.pos ? KAP.code.buchstabe : ''}</i>`).join('');
 }
 function tresorInfo(zurueck: () => void) {
-  ueber.innerHTML = `<div class="schl mitte"><div class="kgross tresorinfo"><img src="${img('mondtresor_zu')}" alt=""><h3>${UI.tresor}</h3><p>${UI.tresorInfo}</p><div class="wort">${codeFelder()}</div><button class="kn haupt" data-a="zu"><span>${UI.fertig}</span></button></div></div>`;
+  ueber.innerHTML = `<div class="schl mitte"><div class="kgross tresorinfo">${tresorSvg(KAP.code.wort.length)}<h3>${UI.tresor}</h3><p>${UI.tresorInfo}</p><div class="wort">${codeFelder()}</div><button class="kn haupt" data-a="zu"><span>${UI.fertig}</span></button></div></div>`;
   ueber.onclick = (e) => { const t = e.target as HTMLElement; if (t.closest('[data-a="zu"]') || t.classList.contains('schl')) zurueck(); };
 }
 function brettHtml(bis: number, neu = 0, staubig = false) {
@@ -297,7 +298,7 @@ function brettHtml(bis: number, neu = 0, staubig = false) {
   const weg = new Set<string>(SP(bis).fragenWeg);
   const zettel = fragen.filter((f) => !stand.geklaert.includes(f.id)).map((f) => `<div class="zettel fr${f.n === neu && staubig ? ' versteckt' : ''}${neu && weg.has(f.id) ? ' wackelt' : ''}" data-q="${f.id}"><span>${f.text}</span>${f.n === neu ? `<em class="neu">${UI.neu}</em>` : ''}</div>`).join('');
   const code = codeFelder();
-  return `<div class="bgrid">${slots}</div><h3>${UI.fragen}</h3><div class="fragen">${zettel}</div><div class="codez" data-a="code" role="button" tabindex="0"><img class="tresor-mini" src="${img('mondtresor_zu')}" alt=""><span>${UI.code}</span><div class="wort">${code}</div></div>`;
+  return `<div class="bgrid">${slots}</div><h3>${UI.fragen}</h3><div class="fragen">${zettel}</div><div class="codez" data-a="code" role="button" tabindex="0"><span class="tresor-mini">${tresorSvg(KAP.code.wort.length)}</span><span>${UI.code}</span><div class="wort">${code}</div></div>`;
 }
 function brett() {
   modus('brett');

@@ -43,7 +43,7 @@
     "geklaert": "geklärt",
     "neu": "neu",
     "perlen": "Schimmer-Perlen",
-    "code": "Der Code für den Mondtresor",
+    "code": "Der Code für den Tresor",
     "passt": "Das Wort passt",
     "passtNicht": "Das Wort passt nicht",
     "vorhin": "Vorhin",
@@ -67,8 +67,8 @@
     "wortPasst": "Die Buchstaben reichen genau für das Wort.",
     "gehtNicht": "Die Buchstaben passen nicht",
     "dochGeht": "Doch, die Buchstaben passen! Probier es noch einmal.",
-    "tresorInfo": "Der Mondtresor öffnet sich mit einem Code-Wort aus vier Buchstaben. Für jedes gelöste Kapitel bekommst du einen Buchstaben. Im Tresor wartet eine Überraschung auf dich.",
-    "tresor": "Mondtresor"
+    "tresorInfo": "Der Tresor öffnet sich mit einem Code-Wort aus vier Buchstaben. Für jedes gelöste Kapitel bekommst du einen Buchstaben. Im Tresor wartet eine Überraschung auf dich.",
+    "tresor": "Der Tresor der Lese-Raupe"
   },
   "intro": [
     {
@@ -84,8 +84,8 @@
       "text": "Die Lese-Raupe ist langsam. Darum sieht sie, was andere übersehen. Du liest und löst die Rätsel. Zusammen klärt ihr den Fall."
     },
     {
-      "bild": "mondtresor_zu",
-      "text": "Das ist der Mondtresor der Lese-Raupe. Darin wartet eine Überraschung auf dich. Er öffnet sich nur mit einem Code-Wort aus vier Buchstaben. Für jedes gelöste Kapitel bekommst du einen Buchstaben."
+      "bild": "tresor",
+      "text": "Das ist der Tresor der Lese-Raupe. Darin wartet eine Überraschung auf dich. Er öffnet sich nur mit einem Code-Wort aus vier Buchstaben. Für jedes gelöste Kapitel bekommst du einen Buchstaben."
     }
   ],
   "spuren": [

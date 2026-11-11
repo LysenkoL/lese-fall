@@ -41,8 +41,8 @@
    "text": "Die Le|se-Rau|pe ist lang|sam. Da|rum sieht sie, was an|de|re ü|ber|se|hen. Du liest und löst die Rät|sel. Zu|sam|men klärt ihr den Fall."
   },
   {
-   "bild": "mondtresor_zu",
-   "text": "Das ist der Mond|tre|sor der Le|se-Rau|pe. Da|rin war|tet ei|ne Ü|ber|ra|schung auf dich. Er öff|net sich nur mit ei|nem Co|de-Wort aus vier Buch|sta|ben. Für je|des ge|lös|te Ka|pi|tel be|kommst du ei|nen Buch|sta|ben."
+   "bild": "tresor",
+   "text": "Das ist der Tre|sor der Le|se-Rau|pe. Da|rin war|tet ei|ne Ü|ber|ra|schung auf dich. Er öff|net sich nur mit ei|nem Co|de-Wort aus vier Buch|sta|ben. Für je|des ge|lös|te Ka|pi|tel be|kommst du ei|nen Buch|sta|ben."
   }
  ],
  "ui": {
@@ -69,7 +69,7 @@
   "geklaert": "ge|klärt",
   "neu": "neu",
   "perlen": "Schim|mer-Per|len",
-  "code": "Der Co|de für den Mond|tre|sor",
+  "code": "Der Co|de für den Tre|sor",
   "passt": "Das Wort passt",
   "passtNicht": "Das Wort passt nicht",
   "vorhin": "Vor|hin",
@@ -93,8 +93,8 @@
   "wortPasst": "Die Buch|sta|ben rei|chen ge|nau für das Wort.",
   "gehtNicht": "Die Buch|sta|ben pas|sen nicht",
   "dochGeht": "Doch, die Buch|sta|ben pas|sen! Pro|bier es noch ein|mal.",
-  "tresorInfo": "Der Mond|tre|sor öff|net sich mit ei|nem Co|de-Wort aus vier Buch|sta|ben. Für je|des ge|lös|te Ka|pi|tel be|kommst du ei|nen Buch|sta|ben. Im Tre|sor war|tet ei|ne Ü|ber|ra|schung auf dich.",
-  "tresor": "Mond|tre|sor"
+  "tresorInfo": "Der Tre|sor öff|net sich mit ei|nem Co|de-Wort aus vier Buch|sta|ben. Für je|des ge|lös|te Ka|pi|tel be|kommst du ei|nen Buch|sta|ben. Im Tre|sor war|tet ei|ne Ü|ber|ra|schung auf dich.",
+  "tresor": "Der Tre|sor der Le|se-Rau|pe"
  },
  "spuren": [
   {

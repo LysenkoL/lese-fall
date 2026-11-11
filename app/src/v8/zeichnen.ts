@@ -33,3 +33,21 @@ export function versteckterBuchstabe(buchstabe: string, winkel: number, farbe: s
     <rect width="300" height="300" rx="18" fill="url(#${id}-a)"/>${flecken}
     <text x="150" y="238" text-anchor="middle" font-family="'Inter Schule', system-ui, sans-serif" font-weight="800" font-size="250" fill="${gefunden ? '#F4C243' : `url(#${id}-b)`}">${buchstabe}</text></svg>`;
 }
+
+/** Der Tresor der Lese-Raupe: neutral (kein Mond), mit so vielen Code-Fenstern, wie das Code-Wort Buchstaben hat. */
+export function tresorSvg(felder = 4): string {
+  const w = 22, gap = 6, x0 = 100 - (felder * w + (felder - 1) * gap) / 2;
+  const fenster = [...Array(felder)].map((_, i) => `<rect x="${x0 + i * (w + gap)}" y="134" width="${w}" height="26" rx="5" fill="#0E1733" stroke="#F4C243" stroke-width="2.5"/>`).join('');
+  const speichen = [0, 60, 120].map((a) => `<rect x="97" y="50" width="6" height="68" rx="3" fill="#F4C243" transform="rotate(${a} 100 84)"/>`).join('');
+  const nieten = [[44, 40], [156, 40], [44, 156], [156, 156]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="3.5" fill="#5567A6"/>`).join('');
+  return `<svg class="tresor-svg" viewBox="0 0 200 200" aria-hidden="true">
+    <rect x="36" y="176" width="28" height="14" rx="4" fill="#0B1228"/><rect x="136" y="176" width="28" height="14" rx="4" fill="#0B1228"/>
+    <rect x="16" y="12" width="168" height="170" rx="24" fill="#33447C" stroke="#0B1228" stroke-width="4"/>
+    <rect x="32" y="28" width="136" height="140" rx="14" fill="#1E2B57" stroke="#4C5E9C" stroke-width="3"/>
+    <rect x="23" y="48" width="12" height="24" rx="4" fill="#C99A2E"/><rect x="23" y="124" width="12" height="24" rx="4" fill="#C99A2E"/>
+    ${nieten}
+    <circle cx="100" cy="84" r="33" fill="#16214A" stroke="#F4C243" stroke-width="7"/>${speichen}
+    <circle cx="100" cy="84" r="12" fill="#C99A2E" stroke="#F4C243" stroke-width="3"/>
+    ${fenster}
+  </svg>`;
+}
