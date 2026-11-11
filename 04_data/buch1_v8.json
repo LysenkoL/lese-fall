@@ -39,6 +39,10 @@
   {
    "bild": "objekte/goldene_lupe",
    "text": "Die Le|se-Rau|pe ist lang|sam. Da|rum sieht sie, was an|de|re ü|ber|se|hen. Du liest und löst die Rät|sel. Zu|sam|men klärt ihr den Fall."
+  },
+  {
+   "bild": "mondtresor_zu",
+   "text": "Das ist der Mond|tre|sor der Le|se-Rau|pe. Da|rin war|tet ei|ne Ü|ber|ra|schung auf dich. Er öff|net sich nur mit ei|nem Co|de-Wort aus vier Buch|sta|ben. Für je|des ge|lös|te Ka|pi|tel be|kommst du ei|nen Buch|sta|ben."
   }
  ],
  "ui": {
@@ -79,7 +83,11 @@
   "silben": "Sil|ben",
   "schrift": "Schrift",
   "stimmt": "Stimmt!",
-  "wortPasst": "Die Buch|sta|ben rei|chen ge|nau für das Wort."
+  "wortPasst": "Die Buch|sta|ben rei|chen ge|nau für das Wort.",
+  "gehtNicht": "Das Wort geht nicht",
+  "dochGeht": "Doch, das Wort geht! Pro|bier es noch ein|mal.",
+  "tresorInfo": "Der Mond|tre|sor öff|net sich mit ei|nem Co|de-Wort aus vier Buch|sta|ben. Für je|des ge|lös|te Ka|pi|tel be|kommst du ei|nen Buch|sta|ben. Im Tre|sor war|tet ei|ne Ü|ber|ra|schung auf dich.",
+  "tresor": "Mond|tre|sor"
  },
  "spuren": [
   {
@@ -190,7 +198,8 @@
    ],
    "karte": {
     "bild": "objekte/mond_hinten",
-    "text": "Mi|las Mond: gelb, o|ben ein wei|ßer Fa|den, hin|ten ein blau|er Stern."
+    "text": "Mi|las Mond: gelb, o|ben ein wei|ßer Fa|den, hin|ten ein blau|er Stern.",
+    "staub": false
    },
    "fragenNeu": [
     {
@@ -221,7 +230,7 @@
    "raetsel": {
     "art": "buchstaben",
     "titel": "Buch|sta|ben-Sa|lat",
-    "text": "Kannst du aus den Buch|sta|ben das Wort zum Bild le|gen?",
+    "text": "Zieh die Buch|sta|ben in die Fel|der. Geht das Wort zum Bild? Wenn nicht, tip|pe auf „Das Wort geht nicht“.",
     "runden": [
      {
       "bild": "objekte/mond_vorne",
@@ -383,7 +392,8 @@
      "w": 55,
      "h": 22
     },
-    "text": "Der Mond ist weg. Ein Är|mel mit Strei|fen hat am Tisch nach et|was ge|grif|fen."
+    "text": "Der Mond ist weg. Ein Är|mel mit Strei|fen hat am Tisch nach et|was ge|grif|fen.",
+    "staub": true
    },
    "fragenNeu": [
     {
@@ -566,7 +576,8 @@
    ],
    "karte": {
     "bild": "objekte/wasserhahn",
-    "text": "Der Är|mel: rot-wei|ße Strei|fen, rund um den Arm, kei|ne Knöp|fe."
+    "text": "Der Är|mel: rot-wei|ße Strei|fen, rund um den Arm, kei|ne Knöp|fe.",
+    "staub": false
    },
    "fragenNeu": [],
    "fragenWeg": [],
@@ -582,9 +593,10 @@
      "V",
      "N"
     ],
-    "winkel": 24,
+    "winkel": 10,
     "farbe": "#2F6FB8",
-    "erfolg": "W wie Was|ser!"
+    "erfolg": "W wie Was|ser!",
+    "stoerer": 4
    }
   },
   {
@@ -718,7 +730,8 @@
    ],
    "karte": {
     "bild": "objekte/falscher_kreis_hinten",
-    "text": "Der gel|be Kreis un|ter den Zei|tun|gen ist nicht Mi|las Mond."
+    "text": "Der gel|be Kreis un|ter den Zei|tun|gen ist nicht Mi|las Mond.",
+    "staub": false
    },
    "fragenNeu": [
     {
@@ -871,7 +884,8 @@
    ],
    "karte": {
     "bild": "objekte/kleber",
-    "text": "Ben hat den Fa|den fest|ge|klebt und den Mond auf das blau|e Tab|lett ge|legt."
+    "text": "Ben hat den Fa|den fest|ge|klebt und den Mond auf das blau|e Tab|lett ge|legt.",
+    "staub": false
    },
    "fragenNeu": [],
    "fragenWeg": [],
@@ -1032,7 +1046,8 @@
    ],
    "karte": {
     "bild": "oskar/staunt",
-    "text": "Der Är|mel ge|hört Os|kar."
+    "text": "Der Är|mel ge|hört Os|kar.",
+    "staub": false
    },
    "fragenNeu": [],
    "fragenWeg": [

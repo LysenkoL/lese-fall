@@ -24,10 +24,12 @@ export function pulliSvg(p: Pulli, id: string): string {
     ${knoepfe}</svg>`;
 }
 
-/** Buchstabe, der sich in Linien versteckt: außen laufen die Linien senkrecht, im Buchstaben um `winkel` Grad gedreht. */
-export function versteckterBuchstabe(buchstabe: string, winkel: number, farbe: string, id: string, gefunden = false): string {
+/** Buchstabe, der sich in Linien versteckt: außen laufen die Linien senkrecht, im Buchstaben um `winkel` Grad gedreht; `stoerer` Flecken lenken ab. */
+export function versteckterBuchstabe(buchstabe: string, winkel: number, farbe: string, id: string, gefunden = false, stoerer = 0): string {
   const linien = (pid: string, dreh: number) => `<pattern id="${pid}" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(${dreh})"><rect width="9" height="9" fill="#EAF3FB"/><rect width="3.4" height="9" fill="${farbe}"/></pattern>`;
-  return `<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Linienbild"><defs>${linien(id + '-a', 0)}${linien(id + '-b', winkel)}</defs>
-    <rect width="300" height="300" rx="18" fill="url(#${id}-a)"/>
+  const F = [[52, 62, 36, 24], [240, 86, 30, 42], [66, 238, 42, 26], [232, 236, 36, 24], [150, 36, 28, 16]];
+  const flecken = F.slice(0, stoerer).map(([x, y, rx, ry], i) => `<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" fill="url(#${id}-${i % 2 ? 'c' : 'd'})"/>`).join('');
+  return `<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Linienbild"><defs>${linien(id + '-a', 0)}${linien(id + '-b', winkel)}${linien(id + '-c', -winkel)}${linien(id + '-d', winkel * 1.7)}</defs>
+    <rect width="300" height="300" rx="18" fill="url(#${id}-a)"/>${flecken}
     <text x="150" y="238" text-anchor="middle" font-family="'Inter Schule', system-ui, sans-serif" font-weight="800" font-size="250" fill="${gefunden ? '#F4C243' : `url(#${id}-b)`}">${buchstabe}</text></svg>`;
 }

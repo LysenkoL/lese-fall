@@ -1326,3 +1326,10 @@ hat|test
 recht
 # neu für v8 (ungeprüft)
 rei|chen
+# neu für v8 (ungeprüft)
+fel|der
+da|rin
+öff|net
+ge|lös|te
+be|kommst
+pro|bier

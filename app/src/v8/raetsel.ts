@@ -51,49 +51,104 @@ function ende(r: HTMLElement, d: Daten, fertig: () => void, vor = '') {
 /* ============================ 4.1 Buchstaben-Salat ============================ */
 export function buchstaben(r: HTMLElement, d: Daten, fertig: () => void) {
   const zi = $('.zi', r);
-  let k = 0, gesperrt = false;
+  let k = 0, fertigRunde = false, versuche = 0, doch = 0;
+  let felder: (number | null)[] = [];
   const DREH = [-7, 5, -3, 8, -6, 4, -9];
   const punkte = () => `<div class="pkt hell">${d.runden.map((_: any, i: number) => `<i class="${i === k ? 'an' : ''}"></i>`).join('')}</div>`;
+  let ok = false, hell: { leer: number[]; uebrig: number[] } = { leer: [], uebrig: [] };
+  const tile = (rd: any, i: number, drin: boolean) => `<span class="bk${ok ? ' ok' : ''}${hell.uebrig.includes(i) ? ' uebrig' : ''}" style="--r:${drin ? 0 : DREH[i % 7]}deg" data-i="${i}">${rd.buchstaben[i]}</span>`;
+  const mal = () => {
+    const rd = d.runden[k];
+    const lose = [...rd.buchstaben].map((_: string, i: number) => i).filter((i) => !felder.includes(i));
+    zi.innerHTML = `${punkte()}<img class="bs-bild" src="${K.img(rd.bild)}" alt=""><div class="bs-felder">${felder.map((t, fi) => `<i class="feld${hell.leer.includes(fi) ? ' leer' : ''}" data-f="${fi}">${t === null ? '' : tile(rd, t, true)}</i>`).join('')}</div><div class="bs-lose">${lose.map((i) => tile(rd, i, false)).join('')}</div><div class="bs-knoepfe"><button class="bsk" data-a="gehtnicht" ${fertigRunde ? 'disabled' : ''}><img src="${K.fig('raupe/traurig')}" alt=""><span>${K.UI.gehtNicht}</span></button></div>`;
+  };
   const runde = () => {
     const rd = d.runden[k];
-    gesperrt = false;
-    zi.innerHTML = `${punkte()}<img class="bs-bild" src="${K.img(rd.bild)}" alt=""><div class="bs-lose">${[...rd.buchstaben].map((c: string, i: number) => `<span class="bk" style="--r:${DREH[i % 7]}deg" data-i="${i}">${c}</span>`).join('')}</div><div class="bs-felder">${[...rd.wort].map(() => '<i class="feld"></i>').join('')}</div><div class="bs-knoepfe"><button class="bsk" data-w="ja"><img src="${K.fig('raupe/lacht')}" alt=""><span>${K.UI.passt}</span></button><button class="bsk" data-w="nein"><img src="${K.fig('raupe/traurig')}" alt=""><span>${K.UI.passtNicht}</span></button></div>`;
-    sag(r, 'tipp', '');
-    unten('');
-    hook.loese = () => antwort(rd.passt ? 'ja' : 'nein', null);
+    felder = [...rd.wort].map(() => null);
+    fertigRunde = false; versuche = 0; doch = 0; ok = false; hell = { leer: [], uebrig: [] };
+    mal(); sag(r, 'tipp', ''); unten('');
+    hook.loese = () => { if (!fertigRunde) rd.passt ? lege(false) : gehtNichtRichtig(); };
   };
-  /** Kärtchen fliegen in die Felder; bei „passt nicht“ bleibt ein Feld leer oder ein Kärtchen übrig */
-  const fliegen = async (rd: any) => {
-    const kaertchen = [...zi.querySelectorAll<HTMLElement>('.bk')], felder = [...zi.querySelectorAll<HTMLElement>('.feld')];
-    const frei = new Set(kaertchen.map((_, i) => i));
-    const ziele: (number | null)[] = [...rd.wort].map((c: string) => { const i = [...frei].find((j) => rd.buchstaben[j] === c); if (i === undefined) return null; frei.delete(i); return i; });
-    const rk = kaertchen.map((e) => e.getBoundingClientRect()), rf = felder.map((e) => e.getBoundingClientRect());
-    ziele.forEach((ti, fi) => {
-      if (ti === null) return;
-      const dx = rf[fi].left + rf[fi].width / 2 - (rk[ti].left + rk[ti].width / 2), dy = rf[fi].top + rf[fi].height / 2 - (rk[ti].top + rk[ti].height / 2);
-      const e = kaertchen[ti];
-      e.style.transitionDelay = `${fi * 90}ms`;
-      e.style.transform = `translate(${dx}px, ${dy}px) rotate(0deg)`;
-      e.classList.add('drin');
-    });
-    await warte(ziele.length * 90 + 700);
-    ziele.forEach((ti, fi) => { if (ti === null) felder[fi].classList.add('leer'); });
-    frei.forEach((ti) => kaertchen[ti].classList.add('uebrig'));
-  };
-  const antwort = async (w: string, btn: HTMLElement | null) => {
-    if (gesperrt) return;
-    gesperrt = true;
-    hook.loese = null;
-    const rd = d.runden[k], richtig = (w === 'ja') === rd.passt, letzte = k === d.runden.length - 1;
-    if (!richtig) wackel(btn);
-    zi.querySelectorAll('.bsk').forEach((b) => b.classList.toggle('wahl', b === btn));
-    await fliegen(rd);
-    const text = [richtig ? K.UI.stimmt : K.UI.hilfe, rd.passt ? K.UI.wortPasst : rd.warum ?? ''].filter(Boolean).join(' ');
-    if (letzte) return ende(r, d, fertig, text);
+  const abschluss = (text: string) => {
+    fertigRunde = true; hook.loese = null; mal();
+    if (k === d.runden.length - 1) return ende(r, d, fertig, text);
     sag(r, 'tipp', text);
     unten(knopf('weiter', K.UI.weiter), () => { k++; runde(); });
   };
-  zi.onclick = (e) => { const b = (e.target as HTMLElement).closest<HTMLElement>('.bsk'); if (b) antwort(b.dataset.w!, b); };
+  /** Zuordnung Buchstabe → Feld (der Reihe nach); ohne passendes Kärtchen bleibt das Feld leer */
+  const zuordnung = (rd: any) => {
+    const frei = new Set<number>([...rd.buchstaben].map((_: string, i: number) => i));
+    const f = [...rd.wort].map((c: string) => { const i = [...frei].find((j) => rd.buchstaben[j] === c); if (i === undefined) return null; frei.delete(i); return i; });
+    return { f, uebrig: [...frei] };
+  };
+  const lege = (mitHilfe: boolean) => {
+    const rd = d.runden[k];
+    felder = zuordnung(rd).f; ok = true; mal();
+    abschluss([mitHilfe ? K.UI.hilfe : K.UI.stimmt, K.UI.wortPasst].join(' '));
+  };
+  const gehtNichtRichtig = () => {
+    const rd = d.runden[k], z = zuordnung(rd);
+    felder = z.f; hell = { leer: z.f.map((t, i) => (t === null ? i : -1)).filter((i) => i >= 0), uebrig: z.uebrig };
+    abschluss([K.UI.stimmt, rd.warum ?? ''].join(' '));
+  };
+  const pruefe = () => {
+    const rd = d.runden[k];
+    if (fertigRunde || felder.some((t) => t === null)) return;
+    if (felder.map((t) => rd.buchstaben[t!]).join('') === rd.wort) { ok = true; return abschluss([K.UI.stimmt, K.UI.wortPasst].join(' ')); }
+    wackelFelder();
+    if (++versuche < 2) return sag(r, 'tipp', K.UI.nochmal);
+    if (rd.passt) return setTimeout(() => lege(true), 600);
+    sag(r, 'tipp', [K.UI.hilfe, rd.warum ?? ''].join(' '));
+    setTimeout(gehtNichtRichtig2, 600);
+  };
+  const gehtNichtRichtig2 = () => { const rd = d.runden[k], z = zuordnung(rd); felder = z.f; hell = { leer: z.f.map((t, i) => (t === null ? i : -1)).filter((i) => i >= 0), uebrig: z.uebrig }; abschluss([K.UI.hilfe, rd.warum ?? ''].join(' ')); };
+  const wackelFelder = () => zi.querySelectorAll('.feld').forEach((e) => wackel(e));
+  const setze = (i: number, f: number) => {
+    const von = felder.indexOf(i), alt = felder[f];
+    felder[f] = i;
+    if (von >= 0) felder[von] = alt;
+    mal(); setTimeout(pruefe, 200);
+  };
+  // Ziehen (Zeiger) oder Antippen
+  let drag: { el: HTMLElement; i: number; x: number; y: number; bewegt: boolean } | null = null;
+  zi.addEventListener('pointerdown', (e) => {
+    if (fertigRunde) return;
+    const el = (e.target as HTMLElement).closest<HTMLElement>('.bk');
+    if (!el) return;
+    drag = { el, i: +el.dataset.i!, x: e.clientX, y: e.clientY, bewegt: false };
+    el.setPointerCapture(e.pointerId);
+  });
+  zi.addEventListener('pointermove', (e) => {
+    if (!drag) return;
+    const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+    if (!drag.bewegt && Math.hypot(dx, dy) > 8) { drag.bewegt = true; drag.el.classList.add('zieht'); }
+    if (drag.bewegt) drag.el.style.transform = `translate(${dx}px, ${dy}px) rotate(4deg)`;
+  });
+  const ab = (e: PointerEvent) => {
+    if (!drag) return;
+    const { el, i, bewegt } = drag; drag = null;
+    if (!bewegt) {
+      if (e.type !== 'pointerup') return;
+      const pos = felder.indexOf(i);
+      if (pos >= 0) { felder[pos] = null; mal(); return; }
+      const frei = felder.indexOf(null);
+      if (frei >= 0) setze(i, frei);
+      return;
+    }
+    el.classList.remove('zieht');
+    const f = e.type === 'pointerup' ? (document.elementsFromPoint(e.clientX, e.clientY).find((x) => x.classList.contains('feld')) as HTMLElement | undefined) : undefined;
+    if (f) setze(i, +f.dataset.f!); else { el.style.transform = ''; mal(); }
+  };
+  zi.addEventListener('pointerup', ab); zi.addEventListener('pointercancel', ab);
+  zi.addEventListener('click', (e) => {
+    const b = (e.target as HTMLElement).closest<HTMLElement>('[data-a="gehtnicht"]');
+    if (!b || fertigRunde) return;
+    const rd = d.runden[k];
+    if (!rd.passt) return gehtNichtRichtig();
+    wackel(b);
+    if (++doch === 1) return sag(r, 'tipp', K.UI.dochGeht);
+    lege(true);
+  });
   runde();
 }
 
@@ -139,7 +194,7 @@ export function unterschiede(r: HTMLElement, d: Daten, fertig: () => void) {
 export function versteckt(r: HTMLElement, d: Daten, fertig: () => void) {
   const zi = $('.zi', r);
   const id = 'vb' + Math.floor(Math.random() * 1e6);
-  zi.innerHTML = `<div class="vb"><div class="vb-svg">${versteckterBuchstabe(d.buchstabe, d.winkel, d.farbe, id)}</div><canvas class="vb-cv"></canvas></div><div class="vb-opts">${d.optionen.map((o: string) => `<button class="vb-o" data-o="${o}">${o}</button>`).join('')}</div>`;
+  zi.innerHTML = `<div class="vb"><div class="vb-svg">${versteckterBuchstabe(d.buchstabe, d.winkel, d.farbe, id, false, d.stoerer ?? 0)}</div><canvas class="vb-cv"></canvas></div><div class="vb-opts">${d.optionen.map((o: string) => `<button class="vb-o" data-o="${o}">${o}</button>`).join('')}</div>`;
   unten('');
   // Zusatz für die Hand: mit dem Finger über das Bild fahren zeichnet eine helle Spur (wird nicht geprüft)
   const cv = $<HTMLCanvasElement>('.vb-cv', zi), box = $('.vb', zi);
@@ -162,7 +217,7 @@ export function versteckt(r: HTMLElement, d: Daten, fertig: () => void) {
   const los = () => { aktiv = false; };
   cv.addEventListener('pointerup', los); cv.addEventListener('pointercancel', los);
   let fehl = 0, aus = false;
-  const zeigen = () => { $('.vb-svg', zi).innerHTML = versteckterBuchstabe(d.buchstabe, d.winkel, d.farbe, id, true); cv.style.pointerEvents = 'none'; };
+  const zeigen = () => { $('.vb-svg', zi).innerHTML = versteckterBuchstabe(d.buchstabe, d.winkel, d.farbe, id, true, d.stoerer ?? 0); cv.style.pointerEvents = 'none'; };
   const wahl = (o: string, btn: HTMLElement | null) => {
     if (aus) return;
     if (o === d.buchstabe) { aus = true; btn?.classList.add('an'); zeigen(); return ende(r, d, fertig); }
