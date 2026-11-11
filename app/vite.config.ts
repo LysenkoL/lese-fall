@@ -4,5 +4,5 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   base: './',
   server: { fs: { allow: ['..'] } },
-  build: { outDir: 'dist', assetsInlineLimit: 0, chunkSizeWarningLimit: 900, rollupOptions: { input: { index: 'index.html', v7: 'v7.html' } } },
+  build: { outDir: 'dist', assetsInlineLimit: 0, chunkSizeWarningLimit: 900, rollupOptions: { input: { index: 'index.html', v7: 'v7.html', v8: 'v8.html' } } },
 });

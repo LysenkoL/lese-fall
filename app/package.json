@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "data": "node scripts/build-data.ts && node scripts/build-v7.ts",
+    "data": "node scripts/build-data.ts && node scripts/build-v7.ts && node scripts/build-v8.ts",
     "dev": "npm run data && vite",
     "build": "npm run data && tsc --noEmit && vite build",
     "preview": "vite preview",
