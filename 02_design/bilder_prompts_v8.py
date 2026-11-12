@@ -181,7 +181,9 @@ The same safe, now open: the door swings open, warm golden light streams out; in
 # Fertig und im Repo (assets/illustrationen/...): erscheinen nicht mehr auf der Seite.
 FERTIG = {"kinder/ida", "kinder/nele", "objekte/fuchs_puppe", "objekte/koenig_puppe", "objekte/pappbaum", "objekte/papierstapel",
           "objekte/raetsel_kaese", "objekte/raetsel_keks", "objekte/raetsel_sonne", "objekte/raetsel_ball", "objekte/raetsel_zitrone",
-          "objekte/raetsel_schwamm", "plakat", "baum", "baum_nest", "nest_finale", "tresor_zu", "tresor_auf"}
+          "objekte/raetsel_schwamm", "plakat", "baum", "baum_nest", "nest_finale", "tresor_zu", "tresor_auf",
+          "k1_s1", "kinder/lina", "kinder/tom", "kinder/emil", "objekte/mond_hinten_feucht", "objekte/mond_hinten_faden",
+          "voegel", "gelbe_kreise_vorne", "gelbe_kreise_hinten", "objekte/kinder_hinten", "objekte/raum_leer"}
 # Geliefert, aber nicht passend: Grund steht auf der Karte.
 NOCHMAL = {
     "k1_s1": "Пришла новая сцена вместо правки: Луна уже с коричневыми пятнами (спойлер Главы 3), Оскар в классе, а не во дворе. Нужно РЕДАКТИРОВАТЬ старую k1_s1: приложить её и попросить только дорисовать Иду сзади, всё остальное не трогать.",
@@ -278,7 +280,7 @@ pre {{ white-space:pre-wrap; word-break:break-word; background:var(--pre); borde
 :root[data-theme="dark"] .redo {{ background:#3A1F24; color:#FFC9C0; }}
 </style></head><body><main>
 <h1>Картинки v8: что ещё нужно</h1>
-<p class="lead">Осталось {len(P)}: {sum(1 for p in P if p.get("redo"))} переделать и {sum(1 for p in P if not p.get("redo"))} ещё не было. Готовые 18 уже в приложении и отсюда убраны. Нажмите «Скопировать промт», вставьте в генератор, приложите указанные эталоны из <code>assets/reference/</code> и <code>assets/illustrationen/</code>. Сохраните под именем из заголовка карточки и пришлите — разложу и вставлю в приложение.</p>
+<p class="lead">Осталось {len(P)}: {sum(1 for p in P if p.get("redo"))} переделать и {sum(1 for p in P if not p.get("redo"))} ещё не было. Готовые {29 - len(P)} уже в приложении и отсюда убраны. Нажмите «Скопировать промт», вставьте в генератор, приложите указанные эталоны из <code>assets/reference/</code> и <code>assets/illustrationen/</code>. Сохраните под именем из заголовка карточки и пришлите — разложу и вставлю в приложение.</p>
 <ul class="rules">
 <li>Сначала карточки с красной плашкой «Почему переделать»: там сказано, что было не так.</li>
 <li><b>Стиль:</b> как остальные картинки книги — мягкая акварель и карандаш. Не плоская векторная графика и не глянцевое 3D.</li>\n<li>На предметах и детях фон светлый и ровный — вырезаю сама. У птиц фон ровный голубой: у сороки белое брюхо, на белом фоне его не вырезать.</li>
