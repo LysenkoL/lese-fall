@@ -100,6 +100,15 @@
  },
  {
   "ch": "Глава 2",
+  "name": "objekte/mond_hinten_faden",
+  "att": "objekte_1_mond + objekte_3_basteln (стиль предметов)",
+  "note": "Отличается от предыдущей только тем, что клей сухой (без блеска).",
+  "size": "1:1",
+  "where": "Spur 16 и доска: оборот Луны после ремонта Бена",
+  "text": "Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain warm white background, no text, no letters, no numbers, no stars except where the description asks for one. Every item clearly separated from the others with empty space around it, so it can be cut out.\nThe same flat round cardboard moon lying WHITE SIDE UP, seen from above, small hand-painted BLUE star near the edge. At the top edge the long white thread is neatly COILED into a small flat spiral and glued down, the glue is DRY (no shine). Only a short thread end sticks out over the edge."
+ },
+ {
+  "ch": "Глава 2",
   "name": "objekte/raetsel_kaese",
   "att": "objekte_1_mond + objekte_3_basteln (стиль предметов)",
   "note": "Шесть картинок одного размера и ракурса, как карточки.",

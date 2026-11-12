@@ -75,6 +75,12 @@ At the top edge the long white thread is neatly COILED into a small loop on the 
 (glossy highlight so it clearly looks wet). Only a short thread end sticks out over the edge.""",
     head=SHEET_STARS_OK, size="1:1", where="Spur 8 — как лежала Луна и почему",
     note="Нитка свёрнута колечком — так в главе 3 из-под «сыра» виден только кончик (замечание ревью).")
+add(C2, "objekte/mond_hinten_faden", "OBJ", """
+The same flat round cardboard moon lying WHITE SIDE UP, seen from above, small hand-painted BLUE star near the edge.
+At the top edge the long white thread is neatly COILED into a small flat spiral and glued down, the glue is DRY (no shine).
+Only a short thread end sticks out over the edge.""",
+    head=SHEET_STARS_OK, size="1:1", where="Spur 16 и доска: оборот Луны после ремонта Бена",
+    note="Отличается от предыдущей только тем, что клей сухой (без блеска).")
 for n, d in [
     ("raetsel_kaese", "a round wheel of yellow Swiss cheese with big round holes"),
     ("raetsel_keks", "a big round chocolate-chip cookie, golden-yellow with dark chocolate dots"),
