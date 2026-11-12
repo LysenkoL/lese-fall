@@ -76,6 +76,8 @@ Mila atmet auf. „Dann ist der Kreis darunter noch ganz!“
 
 Ben lacht. „Und ich dachte schon, du hast ihn zerschnitten.“
 
+Mila fährt mit dem Finger über den Rand. Da ist ein winziger Riss. „Der kommt vom vielen Anfassen“, sagt sie. „Das ist nicht schlimm.“
+
 „Ein Kreis im Käse-Kostüm“, denkt die Raupe. „Mit drei aufgeklebten Sommersprossen.“
 
 Noch fünfzehn Minuten.

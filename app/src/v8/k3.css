@@ -113,3 +113,30 @@
 .pk-st.nein { animation: wackel .4s; border-color: var(--rot); }
 .pk-pool { padding: 4px; box-sizing: border-box; display: grid; grid-template-columns: repeat(var(--sp), minmax(0, 1fr)); gap: 8px; width: min(100%, 400px); align-self: center; }
 .pk-zelle { aspect-ratio: 1 / 1; background: rgba(255, 255, 255, .06); border-radius: 8px; transform: rotate(var(--w)); }
+
+/* ---------- Spur 15: Unterschiede sortieren (drei Felder) ---------- */
+.so-ziele.drei { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.so-ziele.drei .so-ziel { min-height: 150px; padding: 6px 3px 8px; gap: 4px; }
+.so-ziele.drei .so-kopf b { font-size: 13.5px; }
+.so-ziele.drei .so-kopf img { height: 46px; }
+.so-ziele.drei .so-drin { gap: 4px; }
+.so-ziele.drei .so-ding.klein { width: 100%; max-width: 92px; }
+
+/* ---------- Spur 16: Erinnern, Vergleichen (immer nur ein Kreis umgedreht), Ausstreichen ---------- */
+.kr-merk { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.kr-mk { position: relative; background: var(--papier); color: var(--tinte); border-radius: 14px; border: 3px solid transparent; box-shadow: 0 3px 0 #D8CDB2, 0 8px 14px rgba(0, 0, 0, .25); padding: 12px 10px; min-height: 68px; font-weight: 800; font-size: 16.5px; line-height: 1.25; text-align: center; display: grid; place-items: center; }
+.kr-mk .s-b, .kr-mk .s-r { color: inherit; }
+.kr-mk.an { border-color: var(--senf); background: #FFF6D6; }
+.kr-mk.nein { animation: wackel .4s; border-color: var(--rot); }
+.kr-liste ul { margin: 4px 0 0; padding: 0 0 0 20px; font-size: 16px; font-weight: 800; line-height: 1.3; }
+.kr-liste li { margin: 1px 0; }
+.kr-liste .s-b, .kr-liste .s-r { color: inherit; }
+.kr-bild img.kr-vorn { position: absolute; inset: 0; }
+.kr-bild .kr-um { position: absolute; transform: translate(-50%, -50%); aspect-ratio: 1; border-radius: 50%; overflow: hidden; border: 3px solid var(--senf); box-shadow: 0 0 0 3px rgba(255, 255, 255, .8), 0 6px 12px rgba(0, 0, 0, .35); pointer-events: none; animation: kr-klapp .22s both; z-index: 1; }
+.kr-bild .kr-um img { position: absolute; height: auto; max-width: none; width: auto; }
+@keyframes kr-klapp { from { transform: translate(-50%, -50%) scaleX(.1); } }
+.kr-bild .kr-k { z-index: 2; }
+.kr-bild .kr-k.um { border-color: transparent; }
+.kr-x { position: absolute; z-index: 3; transform: translate(-50%, -50%); width: 44px; height: 44px; border-radius: 50%; border: 3px solid #fff; background: rgba(38, 34, 28, .78); color: #fff; display: grid; place-items: center; padding: 0; cursor: pointer; box-shadow: 0 3px 6px rgba(0, 0, 0, .35); }
+.kr-x svg { width: 20px; height: 20px; }
+.kr-x.an { background: var(--rot); }

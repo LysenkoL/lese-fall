@@ -16,7 +16,7 @@ Mila, Ben und Oskar wollen es den anderen Kindern zeigen. Das Puppentheater steh
 
 „Unser Theater braucht noch einen Himmel“, sagt Mila.
 
-Sie hält einen großen gelben Mond aus Pappe hoch. Oben hängt ein langer weißer Faden. Mila dreht den Mond um. Die Rückseite ist weiß. Dort hat sie einen winzigen blauen Stern gemalt.
+Sie hält einen großen gelben Mond aus Pappe hoch. Oben hängt ein langer weißer Faden. Er geht durch ein kleines Loch im Rand. Mila dreht den Mond um. Die Rückseite ist weiß. Dort hat sie einen winzigen blauen Stern gemalt.
 
 „Daran erkenne ich meinen Mond immer wieder“, sagt sie.
 

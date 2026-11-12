@@ -188,6 +188,7 @@
      "s": [
       "Sie hält ei|nen gro|ßen gel|ben Mond aus Pap|pe hoch.",
       "O|ben hängt ein lan|ger wei|ßer Fa|den.",
+      "Er geht durch ein klei|nes Loch im Rand.",
       "Mi|la dreht den Mond um.",
       "Die Rück|sei|te ist weiß.",
       "Dort hat sie ei|nen win|zi|gen blau|en Stern ge|malt."
@@ -2546,6 +2547,16 @@
     },
     {
      "id": "s15-p9",
+     "typ": "p",
+     "s": [
+      "Mi|la fährt mit dem Fin|ger ü|ber den Rand.",
+      "Da ist ein win|zi|ger Riss.",
+      "„Der kommt vom vie|len An|fas|sen“, sagt sie.",
+      "„Das ist nicht schlimm.“"
+     ]
+    },
+    {
+     "id": "s15-p10",
      "typ": "th",
      "s": [
       "„Ein Kreis im Kä|se-Kos|tüm“, denkt die Rau|pe.",
@@ -2553,7 +2564,7 @@
      ]
     },
     {
-     "id": "s15-p10",
+     "id": "s15-p11",
      "typ": "p",
      "s": [
       "Noch fünf|zehn Mi|nu|ten."
@@ -2576,7 +2587,7 @@
    "raetsel": {
     "art": "unterschiede",
     "titel": "Was ist an|ders?",
-    "text": "Das er|ste Bild zeigt Mi|las Mond vor|her. Das zwei|te zeigt den Kä|se jetzt. Fin|de vier Un|ter|schie|de.",
+    "text": "Das er|ste Bild zeigt den Tisch vor|hin, mit Mi|las Mond. Das zwei|te zeigt ihn jetzt, mit dem Kä|se. Fin|de sechs Un|ter|schie|de. Ei|ni|ge sind win|zig!",
     "basis": "objekte/tisch_leer",
     "deko": [
      {
@@ -2591,42 +2602,109 @@
       "x": 50,
       "y": 50,
       "w": 29.2,
-      "jetzt": true
+      "jetzt": true,
+      "clip": "inset(25.8% 0 0 0)"
      }
     ],
     "dinge": [
      {
-      "id": "f1",
+      "id": "flecken",
       "x": 50,
-      "y": 46.8,
-      "w": 6,
-      "h": 6,
+      "y": 53.2,
+      "zonen": [
+       {
+        "x": 50,
+        "y": 53.2,
+        "w": 18,
+        "h": 14
+       }
+      ],
       "vorhin": false,
       "jetzt": true,
-      "tipp": "Schau auf den gel|ben Kreis."
+      "tipp": "Schau auf den gel|ben Kreis. Er hat sich ver|än|dert."
      },
      {
-      "id": "f2",
-      "x": 44,
-      "y": 59.6,
-      "w": 6,
-      "h": 6,
+      "id": "faden",
+      "bild": "objekte/u_fadenende",
+      "x": 50.6,
+      "y": 33.8,
+      "w": 4.2,
+      "zonen": [
+       {
+        "x": 55,
+        "y": 29,
+        "w": 17,
+        "h": 13
+       }
+      ],
       "vorhin": false,
       "jetzt": true,
-      "tipp": "Schau auf den gel|ben Kreis."
+      "tipp": "Schau auf den Fa|den am Kreis."
      },
      {
-      "id": "f3",
-      "x": 56,
-      "y": 59.6,
-      "w": 6,
-      "h": 6,
+      "id": "riss",
+      "bild": "objekte/u_riss",
+      "x": 60.6,
+      "y": 50.2,
+      "w": 3.2,
+      "zonen": [
+       {
+        "x": 60.6,
+        "y": 50.2,
+        "w": 9,
+        "h": 8
+       }
+      ],
       "vorhin": false,
       "jetzt": true,
-      "tipp": "Schau auf den gel|ben Kreis."
+      "tipp": "Schau ganz ge|nau auf den Rand vom Kreis."
      },
      {
-      "id": "krumel",
+      "id": "kleber",
+      "bild": "objekte/u_klebefleck",
+      "x": 33,
+      "y": 55,
+      "w": 4.6,
+      "zonen": [
+       {
+        "x": 33,
+        "y": 55,
+        "w": 10,
+        "h": 9
+       }
+      ],
+      "vorhin": false,
+      "jetzt": true,
+      "tipp": "Schau links ne|ben den Kreis. Da glänzt et|was."
+     },
+     {
+      "id": "streifen",
+      "bild": "objekte/papierstreifen_rot",
+      "x": 29,
+      "y": 70,
+      "w": 14,
+      "zonen": [
+       {
+        "x": 29,
+        "y": 69,
+        "w": 22,
+        "h": 12
+       }
+      ],
+      "vorhin": {
+       "x": 26.5,
+       "y": 72,
+       "rot": -6
+      },
+      "jetzt": {
+       "x": 31,
+       "y": 67,
+       "rot": 9
+      },
+      "tipp": "Schau un|ten links. Der ro|te Strei|fen liegt an|ders."
+     },
+     {
+      "id": "kruemel",
       "bild": "objekte/gelbe_schnipsel",
       "x": 79,
       "y": 76,
@@ -2636,7 +2714,75 @@
       "tipp": "Schau ne|ben den Kreis, un|ten rechts."
      }
     ],
-    "erfolg": "Vier Un|ter|schie|de: drei brau|ne Fle|cken und gel|be Krü|mel. Al|les ist nur auf|ge|klebt. Der Kreis da|run|ter ist ganz."
+    "sortieren": {
+     "text": "Wer hat das ge|macht? Zie|he je|den Un|ter|schied zu dem, der ihn ver|ur|sacht hat.",
+     "start": "Gut ge|sucht! Jetzt kommt das Schwie|ri|ge. Ü|ber|le|ge: Wer hat das ge|macht? Den|ke an das, was du ge|le|sen hast.",
+     "ziele": [
+      {
+       "id": "oskar",
+       "name": "Hat Os|kar ge|macht",
+       "unter": "",
+       "bild": "frei/oskar_froh"
+      },
+      {
+       "id": "ben",
+       "name": "Hat Ben ge|macht",
+       "unter": "",
+       "bild": "frei/ben_froh"
+      },
+      {
+       "id": "zufall",
+       "name": "Liegt nur he|rum",
+       "unter": "",
+       "bild": "objekte/u_zufall"
+      }
+     ],
+     "dinge": [
+      {
+       "id": "flecken",
+       "name": "Brau|ne Fle|cken",
+       "bild": "objekte/braune_kreise",
+       "ziel": "oskar",
+       "warum": "Os|kar hat die brau|nen Krei|se aus brau|nem Pa|pier aus|ge|schnit|ten und auf|ge|klebt."
+      },
+      {
+       "id": "kruemel",
+       "name": "Gel|be Krü|mel",
+       "bild": "objekte/gelbe_schnipsel",
+       "ziel": "oskar",
+       "warum": "Die Krü|mel sind aus Os|kars gel|bem Blatt."
+      },
+      {
+       "id": "faden",
+       "name": "Fa|den ein|ge|rollt",
+       "bild": "objekte/u_fadenende",
+       "ziel": "ben",
+       "warum": "Ben hat den Fa|den hin|ten auf|ge|rollt und fest|ge|klebt."
+      },
+      {
+       "id": "kleber",
+       "name": "Kle|be|fleck",
+       "bild": "objekte/u_klebefleck",
+       "ziel": "ben",
+       "warum": "Der Kle|ber ge|hört Ben. Er hat da|mit den Fa|den fest|ge|klebt."
+      },
+      {
+       "id": "streifen",
+       "name": "Ro|ter Strei|fen",
+       "bild": "objekte/papierstreifen_rot",
+       "ziel": "zufall",
+       "warum": "Der ro|te Strei|fen lag schon vor|her auf dem Tab|lett. Er ist nur ein bis|schen ver|rutscht."
+      },
+      {
+       "id": "riss",
+       "name": "Klei|ner Riss",
+       "bild": "objekte/u_riss_icon",
+       "ziel": "zufall",
+       "warum": "Der win|zi|ge Riss kommt vom vie|len An|fas|sen. Nie|mand woll|te ihn ma|chen."
+      }
+     ]
+    },
+    "erfolg": "Al|les passt. Die Fle|cken und Krü|mel sind nur auf|ge|klebt, der Fa|den ist ein|ge|rollt. Der Kreis da|run|ter ist ganz."
    }
   },
   {
@@ -2732,75 +2878,106 @@
    },
    "fragenNeu": [],
    "fragenWeg": [
-    "k3faden"
+    "k3faden",
+    "k3ganz"
    ],
    "tipp": null,
    "raetsel": {
     "art": "kreise",
     "titel": "Wel|cher Kreis ist Mi|las Mond?",
-    "text": "Fünf gel|be Krei|se mit brau|nen Fle|cken. Von vorn se|hen sie gleich aus. Dreh sie um und ver|glei|che die Rück|sei|ten.",
+    "text": "Fünf gel|be Krei|se mit brau|nen Fle|cken. Von vorn se|hen sie gleich aus. Erst er|in|nerst du dich, dann ver|gleichst du.",
+    "erinnern": {
+     "text": "Was weißt du ü|ber Mi|las Mond? Wäh|le die drei Merk|ma|le, die zu ihm ge|hö|ren.",
+     "start": "Denk an das, was Mi|la und Ben er|zählt ha|ben. Nicht al|les auf den Kar|ten stimmt!",
+     "karten": [
+      {
+       "id": "stern",
+       "text": "Blau|er Stern hin|ten",
+       "richtig": true
+      },
+      {
+       "id": "faden",
+       "text": "Fa|den o|ben, auf|ge|rollt und fest|ge|klebt",
+       "richtig": true
+      },
+      {
+       "id": "loch",
+       "text": "Klei|nes Loch o|ben für den Fa|den",
+       "richtig": true
+      },
+      {
+       "id": "herz",
+       "text": "Ro|tes Herz hin|ten",
+       "richtig": false
+      },
+      {
+       "id": "name",
+       "text": "Ein Na|me auf der Rück|sei|te",
+       "richtig": false
+      },
+      {
+       "id": "gelb",
+       "text": "Gel|be Rück|sei|te",
+       "richtig": false
+      }
+     ],
+     "tipp": "Mi|la hat et|was hin|ten auf|ge|malt. Ben hat o|ben et|was fest|ge|klebt. Und der Fa|den geht durch et|was hin|durch.",
+     "erfolg": "Rich|tig! Stern hin|ten, Fa|den auf|ge|rollt, Loch o|ben. Das sind die drei Merk|ma|le.",
+     "warum": "Mi|la hat hin|ten ei|nen blau|en Stern ge|malt. Ben hat den Fa|den o|ben auf|ge|rollt und fest|ge|klebt. Und der Fa|den geht durch ein klei|nes Loch. Herz, Na|me und gel|be Rück|sei|te kom|men in der Ge|schich|te nicht vor."
+    },
     "vorne": "objekte/gelbe_kreise_vorne",
     "hinten": "objekte/gelbe_kreise_hinten",
-    "ratio": 1.5,
+    "ratio": 1.15,
     "kreise": [
      {
       "id": "k1",
       "name": "Kreis 1",
       "x": 18,
-      "y": 29,
-      "r": 13.5
+      "y": 22,
+      "r": 12
      },
      {
       "id": "k2",
       "name": "Kreis 2",
       "x": 50,
-      "y": 29,
-      "r": 13.5
+      "y": 22,
+      "r": 12
      },
      {
       "id": "k3",
       "name": "Kreis 3",
       "x": 82,
-      "y": 29,
-      "r": 13.5
+      "y": 22,
+      "r": 12
      },
      {
       "id": "k4",
       "name": "Kreis 4",
       "x": 34,
-      "y": 72,
-      "r": 13.5
+      "y": 66,
+      "r": 12
      },
      {
       "id": "k5",
       "name": "Kreis 5",
       "x": 66,
-      "y": 72,
-      "r": 13.5
+      "y": 66,
+      "r": 12
      }
     ],
     "loesung": "k4",
-    "hinweise": [
-     {
-      "text": "Mi|las Mond hat hin|ten ei|nen blau|en Stern.",
-      "raus": [
-       "k1",
-       "k3",
-       "k5"
-      ],
-      "unklar": "Von vorn sieht man das nicht. Dreh die Krei|se um!"
-     },
-     {
-      "text": "Hin|ten ist der Fa|den auf|ge|rollt und fest|ge|klebt.",
-      "raus": [
-       "k2"
-      ],
-      "unklar": "Von vorn sieht man das nicht. Dreh die Krei|se um!"
-     }
-    ],
+    "vergleichen": {
+     "text": "Tip|pe ei|nen Kreis an, dann dreht er sich um. Es ist im|mer nur ein Kreis um|ge|dreht. Mer|ke dir, was du siehst. Strei|che Krei|se aus, die nicht pas|sen.",
+     "start": "Von vorn sieht man das nicht. Tip|pe ei|nen Kreis an, dann dreht er sich um.",
+     "liste": "Mi|las Mond hat:",
+     "frage": "Strei|che je|den Kreis aus, dem ein Merk|mal fehlt. Tip|pe da|für auf das Kreuz un|ter dem Kreis. O|der drü|cke lan|ge auf den Kreis.",
+     "zuViel": "Hm, ein Kreis ist zu Un|recht aus|ge|stri|chen. Hat er viel|leicht doch al|le drei Merk|ma|le? Dreh ihn noch ein|mal um.",
+     "nochMehr": "Es sind noch meh|re|re Krei|se ü|brig. Hat wirk|lich je|der von ih|nen al|le drei Merk|ma|le?",
+     "falsch": "Der letz|te Kreis hat nicht al|le drei Merk|ma|le. Dreh die Krei|se noch ein|mal um und ver|glei|che ge|nau.",
+     "warum": "Nur ein Kreis hat hin|ten den Stern, o|ben den auf|ge|roll|ten Fa|den und das Loch."
+    },
     "stempel": "MILAS MOND",
-    "erfolg": "Das ist Mi|las Mond! Nur die|ser Kreis hat hin|ten den blau|en Stern und den auf|ge|roll|ten Fa|den.",
-    "frageRaus": "Wel|che Krei|se pas|sen nicht? Tip|pe sie an."
+    "erfolg": "Das ist Mi|las Mond! Nur die|ser Kreis hat hin|ten den blau|en Stern, o|ben das Loch und den auf|ge|roll|ten Fa|den."
    }
   },
   {

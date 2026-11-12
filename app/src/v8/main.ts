@@ -13,7 +13,7 @@ import * as R from './raetsel';
 
 const D: any = structuredClone(DATA_);
 /** Texte der Daten einmal in HTML mit Silben verwandeln (gleiche Schlüssel wie in build-v8.ts) */
-const TEXT = new Set(['text', 'titel', 'haken', 'frage', 'aufloesung', 'warum', 'tipp', 'erfolg', 'unklarTipp', 'vorspann', 'ausblick', 'name', 'saetze', 'warum2', 'unter', 'sagt', 'klebt', 'frage2', 'suche', 'nass', 'frage1', 'tipp1', 'unklar', 'frageRaus', 'regel', 'plakatFertig', 'start']);
+const TEXT = new Set(['text', 'titel', 'haken', 'frage', 'aufloesung', 'warum', 'tipp', 'erfolg', 'unklarTipp', 'vorspann', 'ausblick', 'name', 'saetze', 'warum2', 'unter', 'sagt', 'klebt', 'frage2', 'suche', 'nass', 'frage1', 'tipp1', 'unklar', 'frageRaus', 'regel', 'plakatFertig', 'start', 'liste', 'zuViel', 'nochMehr', 'falsch']);
 function html(v: any, key = ''): any {
   if (typeof v === 'string') return TEXT.has(key) ? T(v) : v;
   if (Array.isArray(v)) return v.map((x) => html(x, key));

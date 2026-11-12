@@ -94,9 +94,16 @@ async function raetsel(spur, z) {
     const r = await (await p.$('.ub-bild')).boundingBox();
     await p.mouse.click(r.x + r.width * 0.05, r.y + r.height * 0.9); await sleep(200); await shot(n + '_daneben');
     const d = z.dinge[1], bb = (await p.$$('.ub-bild'))[1];
-    const r2 = await bb.boundingBox();
-    await p.mouse.click(r2.x + r2.width * d.x / 100, r2.y + r2.height * d.y / 100); await sleep(300); await S(n + '_ein_treffer');
+    const r2 = await bb.boundingBox(), zz = d.zonen?.[0] ?? d;
+    await p.mouse.click(r2.x + r2.width * zz.x / 100, r2.y + r2.height * zz.y / 100); await sleep(300); await S(n + '_ein_treffer');
     await loese(); await sleep(700);
+    if (z.sortieren) { // Schritt 2: wer hat das gemacht?
+      await S(n + '_sortieren');
+      const x = z.sortieren.dinge[0], falsch = z.sortieren.ziele.find((q) => q.id !== x.ziel).id;
+      await klick(`.so-pool [data-d="${x.id}"]`); await klick(`.so-ziel[data-z="${falsch}"]`); await sleep(300); await S(n + '_sortieren_falsch'); await sleep(500);
+      await klick(`.so-pool [data-d="${x.id}"]`); await klick(`.so-ziel[data-z="${x.ziel}"]`); await sleep(300);
+      await loese(); await sleep(500);
+    }
   } else if (z.art === 'versteckt') {
     const box = await (await p.$('.vb')).boundingBox();
     await p.mouse.move(box.x + box.width * .2, box.y + box.height * .3); await p.mouse.down();
@@ -214,15 +221,24 @@ async function raetsel(spur, z) {
     await klick(`.sc-k[data-i="${falsch}"]`); await sleep(300); await S(n + '_falsch'); await sleep(500);
     await klick(`.sc-k[data-i="${z.richtig}"]`); await sleep(1000);
   } else if (z.art === 'kreise') {
+    await S(n + '_erinnern');
+    const rich = z.erinnern.karten.filter((k) => k.richtig).map((k) => k.id), falsch0 = z.erinnern.karten.find((k) => !k.richtig).id;
+    await klick(`.kr-mk[data-m="${falsch0}"]`); await klick(`.kr-mk[data-m="${rich[0]}"]`); await klick('#fuss [data-a="pruefen"]'); await sleep(300); await S(n + '_erinnern_falsch'); await sleep(1000);
+    for (const id of rich.slice(1)) await klick(`.kr-mk[data-m="${id}"]`);
+    await shot(n + '_erinnern_richtig'); await klick('#fuss [data-a="pruefen"]'); await sleep(2000);
     await S(n + '_vorne');
-    await klick('.kr-k[data-id="k1"]'); await sleep(300); await S(n + '_von_vorn');
-    await klick('[data-a="dreh"]'); await sleep(700); await S(n + '_hinten');
-    // 1. Hinweis: erst falsch (k2 hat einen Stern), dann richtig
-    await klick('.kr-k[data-id="k2"]'); await klick('#fuss [data-a="fertig"]'); await sleep(300); await S(n + '_falsch'); await sleep(1000);
-    for (const id of z.hinweise[0].raus) await klick(`.kr-k[data-id="${id}"]`);
-    await shot(n + '_gewaehlt'); await klick('#fuss [data-a="fertig"]'); await sleep(1500); await S(n + '_hinweis2');
-    for (const id of z.hinweise[1].raus) await klick(`.kr-k[data-id="${id}"]`);
-    await klick('#fuss [data-a="fertig"]'); await sleep(1800); await S(n + '_uebrig');
+    await klick('.kr-k[data-id="k1"]'); await sleep(400); await S(n + '_k1_um');
+    if ((await p.$$('.kr-um')).length !== 1) fehler.push('Kreise: es darf immer nur ein Kreis umgedreht sein');
+    await klick(`.kr-k[data-id="${z.loesung}"]`); await sleep(400); await S(n + '_loesung_um');
+    if ((await p.$$('.kr-um')).length !== 1) fehler.push('Kreise: nach dem zweiten Antippen ist mehr als ein Kreis umgedreht');
+    // das Kind streicht selbst aus: erst zu viel (Lösung durchgestrichen), dann richtig; ein Kreis per langem Drücken
+    await klick(`.kr-x[data-x="${z.loesung}"]`); await klick('#fuss [data-a="fertig"]'); await sleep(300); await S(n + '_zuviel'); await sleep(1000);
+    const ids = z.kreise.map((c) => c.id).filter((i) => i !== z.loesung), lang = ids[ids.length - 1];
+    const bx = await (await p.$(`.kr-k[data-id="${lang}"]`)).boundingBox();
+    await p.mouse.move(bx.x + bx.width / 2, bx.y + bx.height / 2); await p.mouse.down(); await sleep(800); await p.mouse.up(); await sleep(300);
+    for (const id of ids.filter((i) => i !== lang)) await klick(`.kr-x[data-x="${id}"]`);
+    await shot(n + '_ausgestrichen');
+    await klick('#fuss [data-a="fertig"]'); await sleep(900); await S(n + '_uebrig');
     await klick('#fuss [data-a="stempeln"]'); await sleep(900);
   } else if (z.art === 'agentencode') {
     await S(n + '_start');

@@ -39,7 +39,7 @@ const isThought = (line: string) => /„[^“]*“,? (denkt|schimpft)|(denkt|sch
 
 /* ---------- Text und Rätsel je Kapitel ---------- */
 interface Block { id: string; typ: 'p' | 'th'; s: string[]; umbruch?: boolean }
-const TEXT = new Set(['plakatFertig', 'start', 'regel', 'frageRaus', 'unklar', 'suche', 'nass', 'frage1', 'tipp1', 'hinweisText', 'beispiel', 'regel', 'botschaft', 'nachricht', 'text', 'titel', 'haken', 'frage', 'aufloesung', 'warum', 'warum2', 'tipp', 'erfolg', 'unklarTipp', 'vorspann', 'ausblick', 'name', 'saetze', 'unter', 'sagt', 'klebt', 'frage2']);
+const TEXT = new Set(['liste', 'zuViel', 'nochMehr', 'falsch', 'plakatFertig', 'start', 'regel', 'frageRaus', 'unklar', 'suche', 'nass', 'frage1', 'tipp1', 'hinweisText', 'beispiel', 'regel', 'botschaft', 'nachricht', 'text', 'titel', 'haken', 'frage', 'aufloesung', 'warum', 'warum2', 'tipp', 'erfolg', 'unklarTipp', 'vorspann', 'ausblick', 'name', 'saetze', 'unter', 'sagt', 'klebt', 'frage2']);
 function tree(v: any, key = ''): any {
   if (typeof v === 'string') return TEXT.has(key) ? mark(v) : v;
   if (Array.isArray(v)) return v.map((x) => tree(x, key));

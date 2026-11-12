@@ -35,6 +35,12 @@ export const ERSATZ: Record<string, string> = {
   'objekte/gelbe_kreise_hinten': 'ersatz/gelbe_kreise_hinten',
   'objekte/plakat': 'ersatz/plakat',
   'objekte/tisch_leer': 'ersatz/tisch_leer',
+  // Kapitel 3 (Spur 15): kleine Zeichnungen für „Was ist anders?“ und das Sortieren
+  'objekte/u_fadenende': 'ersatz/u_fadenende',
+  'objekte/u_riss': 'ersatz/u_riss',
+  'objekte/u_riss_icon': 'ersatz/u_riss_icon',
+  'objekte/u_klebefleck': 'ersatz/u_klebefleck',
+  'objekte/u_zufall': 'ersatz/u_zufall',
   'kinder/lina': 'kind/lina', 'kinder/tom': 'kind/tom', 'kinder/ida': 'kind/ida', 'kinder/emil': 'kind/emil', 'kinder/nele': 'kind/nele',
 };
 /** Pullis der Kinder (wie in Kapitel 1) für die gezeichneten Platzhalter */

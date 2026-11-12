@@ -1439,3 +1439,30 @@ far|ben
 vor|hat
 steh|len
 er|ste
+# neu für v8 (ungeprüft)
+fährt
+riss
+an|fas|sen
+schlimm
+ei|ni|ge
+ver|ur|sacht
+schwie|ri|ge
+ü|ber|le|ge
+den|ke
+brau|nem
+gel|bem
+ein|ge|rollt
+kle|be|fleck
+ver|rutscht
+# neu für v8 (ungeprüft)
+loch
+er|in|nerst
+ver|gleichst
+auf|ge|malt
+hin|durch
+mer|ke
+merk|mal
+kreuz
+un|recht
+aus|ge|stri|chen
+meh|re|re

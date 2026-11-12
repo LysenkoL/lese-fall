@@ -163,7 +163,10 @@ export function unterschiede(r: HTMLElement, d: Daten, fertig: () => void) {
   const zi = $('.zi', r);
   const dinge: any[] = d.dinge, gef = new Set<string>();
   let fehl = 0, fertigig = false;
-  const pane = (art: 'vorhin' | 'jetzt') => `<figure class="ub" data-p="${art}"><span class="tab hell">${K.UI[art]}</span><div class="ub-bild" style="background-image:url(${K.img(d.basis)})">${(d.deko ?? []).filter((x: any) => x[art]).map((x: any) => `<img class="ding" src="${K.img(x.bild)}" alt="" style="left:${x.x}%;top:${x.y}%;width:${x.w}%">`).join('')}${dinge.filter((x) => x[art] && x.bild).map((x) => `<img class="ding" data-d="${x.id}" src="${K.img(x.bild)}" alt="" style="left:${x.x}%;top:${x.y}%;width:${x.w}%">`).join('')}</div></figure>`;
+  /** Eigenschaften einer Sache je Seite: `vorhin`/`jetzt` darf ein Objekt sein ({x, y, rot, bild}) */
+  const pos = (x: any, art: 'vorhin' | 'jetzt') => (x[art] && typeof x[art] === 'object' ? { ...x, ...x[art] } : x);
+  const ding = (x: any, art: 'vorhin' | 'jetzt') => { const q = pos(x, art); return q.bild ? `<img class="ding" data-d="${x.id}" src="${K.img(q.bild)}" alt="" style="left:${q.x}%;top:${q.y}%;width:${q.w}%${q.rot ? `;transform:translate(-50%,-50%) rotate(${q.rot}deg)` : ''}">` : ''; };
+  const pane = (art: 'vorhin' | 'jetzt') => `<figure class="ub" data-p="${art}"><span class="tab hell">${K.UI[art]}</span><div class="ub-bild" style="background-image:url(${K.img(d.basis)})">${(d.deko ?? []).filter((x: any) => x[art]).map((x: any) => `<img class="ding" src="${K.img(x.bild)}" alt="" style="left:${x.x}%;top:${x.y}%;width:${x.w}%${x.clip ? `;clip-path:${x.clip}` : ''}">`).join('')}${dinge.filter((x) => x[art]).map((x) => ding(x, art)).join('')}</div></figure>`;
   zi.innerHTML = `<p class="ub-zaehl"></p><div class="ub-paar">${pane('vorhin')}${pane('jetzt')}</div>`;
   const zaehl = () => { $('.ub-zaehl', zi).innerHTML = `<b>${gef.size} / ${dinge.length}</b> ${K.UI.gefunden}`; };
   zaehl();
@@ -173,7 +176,14 @@ export function unterschiede(r: HTMLElement, d: Daten, fertig: () => void) {
     zi.querySelectorAll('.ub-bild').forEach((b) => b.insertAdjacentHTML('beforeend', `<i class="ring da${blink ? ' blink' : ''}" style="left:${x.x}%;top:${x.y}%"></i>`));
     zaehl();
     K.summ(20);
-    if (gef.size === dinge.length && !fertigig) { fertigig = true; setTimeout(() => ende(r, d, fertig), 450); }
+    if (gef.size === dinge.length && !fertigig) { fertigig = true; setTimeout(() => (d.sortieren ? zuordnen() : ende(r, d, fertig)), 450); }
+  };
+  /** Zweiter Schritt: die gefundenen Unterschiede nach Verursacher sortieren */
+  const zuordnen = () => {
+    hook.loese = null;
+    $('.zt1', r).innerHTML = d.sortieren.text;
+    sag(r, 'tipp', d.sortieren.start);
+    sortieren(r, { ...d.sortieren, erfolg: d.erfolg }, fertig);
   };
   zi.onclick = (e) => {
     const b = (e.target as HTMLElement).closest<HTMLElement>('.ub-bild');
@@ -181,8 +191,11 @@ export function unterschiede(r: HTMLElement, d: Daten, fertig: () => void) {
     const rc = b.getBoundingClientRect(), tx = (e.clientX - rc.left) / rc.width, ty = (e.clientY - rc.top) / rc.width; // beides in Bildbreiten
     const treffer = dinge.find((x) => {
       if (gef.has(x.id)) return false;
-      const hw = x.w / 200 + 0.04, hh = x.bild ? (x.w / 100) * seite(x) / 2 + 0.04 : (x.h ?? x.w) / 200 + 0.04;
-      return Math.abs(tx - x.x / 100) <= hw && Math.abs(ty - (x.y / 100) * (2 / 3)) <= hh;
+      const flaechen: any[] = x.zonen ?? [x];
+      return flaechen.some((z) => {
+        const hw = z.w / 200 + 0.04, hh = !z.zonen && !x.zonen && x.bild ? (z.w / 100) * seite(x) / 2 + 0.04 : (z.h ?? z.w) / 200 + 0.04;
+        return Math.abs(tx - z.x / 100) <= hw && Math.abs(ty - (z.y / 100) * (2 / 3)) <= hh;
+      });
     });
     if (treffer) { fehl = 0; finde(treffer); sag(r, 'tipp', ''); return; }
     b.insertAdjacentHTML('beforeend', `<i class="ring miss" style="left:${((e.clientX - rc.left) / rc.width) * 100}%;top:${((e.clientY - rc.top) / rc.height) * 100}%"></i>`);
@@ -520,7 +533,7 @@ export function sortieren(r: HTMLElement, d: Daten, fertig: () => void) {
   let sel: string | null = null, sperre = false;
   const kachel = (x: any, klein = false) => `<div class="so-ding${klein ? ' klein' : ''}${sel === x.id ? ' sel' : ''}" data-d="${x.id}"><img src="${K.img(x.bild)}" alt="" draggable="false"><span>${x.name}</span></div>`;
   const mal = () => {
-    zi.innerHTML = `<div class="so-ziele">${ziele.map((z) => `<div class="so-ziel" data-z="${z.id}"><div class="so-kopf"><img src="${K.img(z.bild)}" alt=""><b>${z.name}</b><small>${z.unter}</small></div><div class="so-drin">${dinge.filter((x) => drin.get(x.id) === z.id).map((x) => kachel(x, true)).join('')}</div></div>`).join('')}</div><div class="so-pool">${ordnung.filter((id) => !drin.has(id)).map((id) => kachel(dinge.find((x) => x.id === id))).join('')}</div>`;
+    zi.innerHTML = `<div class="so-ziele${ziele.length === 3 ? ' drei' : ''}">${ziele.map((z) => `<div class="so-ziel" data-z="${z.id}"><div class="so-kopf"><img src="${K.img(z.bild)}" alt=""><b>${z.name}</b><small>${z.unter}</small></div><div class="so-drin">${dinge.filter((x) => drin.get(x.id) === z.id).map((x) => kachel(x, true)).join('')}</div></div>`).join('')}</div><div class="so-pool">${ordnung.filter((id) => !drin.has(id)).map((id) => kachel(dinge.find((x) => x.id === id))).join('')}</div>`;
     unten('');
   };
   const fertigPruefen = () => { if (drin.size === dinge.length) { sperre = true; hook.loese = null; ende(r, d, fertig); } };
@@ -893,83 +906,137 @@ export function schatten(r: HTMLElement, d: Daten, fertig: () => void) {
 }
 
 /* ============================ 6.4 Welcher Kreis ist Milas Mond? (kreise, Schlüsselmoment 2) ============================ */
+/**
+ * Drei Schritte: a) Erinnern: aus sechs Merkmal-Karten die drei richtigen wählen,
+ * b) Vergleichen: fünf Kreise, immer nur EIN Kreis ist umgedreht; das Kind streicht selbst aus (Kreuz-Knopf oder langes Drücken),
+ * c) Stempel auf dem letzten Kreis.
+ */
 export function kreise(r: HTMLElement, d: Daten, fertig: () => void) {
   const zi = $('.zi', r);
-  const kr: any[] = d.kreise, hin: any[] = d.hinweise, N = hin.length;
-  const gestr = new Set<string>(), neu = new Set<string>(), sel = new Set<string>();
-  let seite: 'vorne' | 'hinten' = 'vorne', hi = 0, fehl = 0, gesperrt = false, dreht = false, fertigPhase = false;
+  const kar: any[] = d.erinnern.karten, kr: any[] = d.kreise;
+  const sel = new Set<string>(), gestr = new Set<string>();
+  const richtigK = kar.filter((k) => k.richtig).map((k) => k.id);
+  let fehl = 0, gesperrt = false, offen: string | null = null, phase: 'a' | 'b' | 'c' = 'a', geflippt = false;
   const kreuz = '<svg class="kreuz" viewBox="0 0 100 100" aria-hidden="true"><path d="M14 14L86 86M86 14L14 86" stroke="#26221C" stroke-width="8" stroke-linecap="round" fill="none"/></svg>';
-  const rest = () => kr.find((c) => !gestr.has(c.id))!;
-  const kHtml = (c: any) => `<button class="kr-k${gestr.has(c.id) ? ' weg' : ''}${neu.has(c.id) ? ' neu' : ''}${sel.has(c.id) ? ' an' : ''}${fertigPhase && c.id === rest().id ? ' rest' : ''}" data-id="${c.id}" aria-label="Kreis ${kr.indexOf(c) + 1}" style="left:${c.x}%;top:${c.y}%;width:${c.r * 2}%" ${gestr.has(c.id) ? 'disabled' : ''}>${gestr.has(c.id) ? kreuz : ''}</button>`;
-  const mal = () => {
-    const kopf = fertigPhase ? '' : `<div class="as-hin"><span class="as-z">Hinweis ${hi + 1} von ${N}</span><p>${hin[hi].text}</p></div>`;
-    zi.innerHTML = `${kopf}<div class="kr-bild" style="aspect-ratio:${d.ratio}"><img src="${K.img(d[seite])}" alt="" draggable="false">${kr.map(kHtml).join('')}</div><button class="kn zwei um-dreh kr-dreh" data-a="dreh">${DREHPFEIL}<span>${K.UI.umdrehen}</span></button>${fertigPhase ? '' : `<p class="as-raus">${d.frageRaus}</p>`}`;
-    neu.clear();
-    if (!fertigPhase) unten(knopf('fertig', K.UI.fertig, sel.size === 0 || gesperrt), () => pruefen());
+  const ordnung = K.mischen(kar.map((k) => k.id));
+
+  /* ---- a) Erinnern ---- */
+  const malA = () => {
+    zi.innerHTML = `<div class="kr-merk">${ordnung.map((id) => { const k = kar.find((q) => q.id === id)!; return `<button class="kr-mk${sel.has(id) ? ' an' : ''}" data-m="${id}"><span>${k.text}</span></button>`; }).join('')}</div>`;
+    unten(knopf('pruefen', K.UI.pruefen, sel.size === 0 || gesperrt), () => pruefenA());
   };
-  const drehe = () => {
-    if (dreht) return;
-    dreht = true;
-    $('.kr-bild', zi).classList.add('dreh1');
-    setTimeout(() => {
-      seite = seite === 'vorne' ? 'hinten' : 'vorne';
-      mal();
-      const b2 = $('.kr-bild', zi); b2.classList.add('dreh2');
-      setTimeout(() => { b2.classList.remove('dreh2'); dreht = false; }, 200);
-    }, 200);
+  const weiterB = () => { phase = 'b'; fehl = 0; gesperrt = false; $('.zt1', r).innerHTML = d.vergleichen.text; malB(); sag(r, 'tipp', d.vergleichen.start); requestAnimationFrame(() => zi.scrollIntoView({ block: 'nearest', behavior: 'smooth' })); };
+  const pruefenA = () => {
+    if (gesperrt || !sel.size) return;
+    if (sel.size === richtigK.length && richtigK.every((x) => sel.has(x))) { gesperrt = true; sag(r, 'lob', d.erinnern.erfolg, 'gut'); K.summ(20); malA(); return void setTimeout(() => zi.isConnected && weiterB(), 1500); }
+    fehl++;
+    const falsch = [...sel].filter((x) => !richtigK.includes(x));
+    zi.querySelectorAll<HTMLElement>('.kr-mk.an').forEach((e) => { if (falsch.includes(e.dataset.m!)) wackel(e); });
+    if (fehl === 1) {
+      sag(r, 'tipp', (falsch.length ? K.UI.nochmal : K.UI.nochEiner) + ' ' + d.erinnern.tipp);
+      gesperrt = true;
+      setTimeout(() => { falsch.forEach((x) => sel.delete(x)); gesperrt = false; if (zi.isConnected) malA(); }, 700);
+      return;
+    }
+    gesperrt = true; sel.clear(); richtigK.forEach((x) => sel.add(x));
+    sag(r, 'tipp', K.UI.hilfe + ' ' + d.erinnern.warum);
+    malA();
+    setTimeout(() => zi.isConnected && weiterB(), 2200);
   };
-  const weiter = () => {
-    hi++; fehl = 0; sel.clear(); gesperrt = false;
-    if (hi < N) { sag(r, 'tipp', ''); return mal(); }
-    fertigPhase = true; mal();
+
+  /* ---- b) Vergleichen ---- */
+  const klar = (c: any) => c.r * 2;
+  /** Der umgedrehte Kreis zeigt seine Rückseite: Ausschnitt aus dem Rückseiten-Bild an gleicher Stelle */
+  const rueck = (c: any) => `<div class="kr-um" style="left:${c.x}%;top:${c.y}%;width:${klar(c)}%"><img src="${K.img(d.hinten)}" alt="" draggable="false" style="width:${10000 / klar(c)}%;left:${-((c.x - c.r) / klar(c)) * 100}%;top:${-((c.y / d.ratio - c.r) / klar(c)) * 100}%"></div>`;
+  const kHtml = (c: any) => {
+    const weg = gestr.has(c.id);
+    const bhoehe = c.y + c.r * d.ratio + 8; // Mitte des Kreuz-Knopfs unter dem Kreis (in % der Höhe)
+    return `<button class="kr-k${weg ? ' weg' : ''}${offen === c.id ? ' um' : ''}${fertigRest(c) ? ' rest' : ''}" data-id="${c.id}" aria-label="Kreis ${kr.indexOf(c) + 1}" style="left:${c.x}%;top:${c.y}%;width:${klar(c)}%">${weg ? kreuz : ''}</button>${phase === 'b' ? `<button class="kr-x${weg ? ' an' : ''}" data-x="${c.id}" style="left:${c.x}%;top:${bhoehe}%" aria-label="Kreis ${kr.indexOf(c) + 1} ${weg ? 'zurücknehmen' : 'durchstreichen'}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="3.400" stroke-linecap="round"/></svg></button>` : ''}`;
+  };
+  const fertigRest = (c: any) => phase === 'c' && !gestr.has(c.id);
+  const malB = () => {
+    const merk = kar.filter((k) => k.richtig).map((k) => `<li>${k.text}</li>`).join('');
+    const kopf = phase === 'c' ? '' : `<div class="as-hin kr-liste"><span class="as-z">${d.vergleichen.liste}</span><ul>${merk}</ul></div>`;
+    const bild = (offen ? '' : '') + `<img class="kr-vorn" src="${K.img(d.vorne)}" alt="" draggable="false">`;
+    zi.innerHTML = `${kopf}<div class="kr-bild" style="aspect-ratio:${d.ratio}">${bild}${offen ? rueck(kr.find((c) => c.id === offen)!) : ''}${kr.map(kHtml).join('')}</div>${phase === 'c' ? '' : `<p class="as-raus">${d.vergleichen.frage}</p>`}`;
+    if (phase === 'b') unten(knopf('fertig', K.UI.fertig, gestr.size === 0 || gesperrt), () => pruefenB());
+  };
+  const flip = (id: string) => {
+    if (phase !== 'b' || gesperrt) return;
+    offen = offen === id ? null : id;
+    if (!geflippt) { geflippt = true; sag(r, 'tipp', ''); }
+    K.summ(10);
+    malB();
+    const um = zi.querySelector('.kr-um'); um?.classList.add('klapp');
+  };
+  const streichT = (id: string) => {
+    if (phase !== 'b' || gesperrt) return;
+    if (gestr.has(id)) gestr.delete(id); else gestr.add(id);
+    K.summ(15);
+    malB();
+  };
+  const weiterC = () => {
+    phase = 'c'; offen = null; hook.loese = null; malB();
     sag(r, 'tipp', '');
     const ziel = zi.querySelector<HTMLElement>('.kr-k.rest')!;
     hook.loese = stempeln(zi, ziel, d.stempel, () => { hook.loese = null; ende(r, d, fertig); });
     requestAnimationFrame(() => zi.scrollIntoView({ block: 'end', behavior: 'smooth' }));
   };
-  const streichen = (ids: string[], mitRaupe: boolean) => {
-    gesperrt = true; sel.clear();
-    ids.forEach((id) => { gestr.add(id); neu.add(id); });
-    mal();
-    setTimeout(() => zi.isConnected && weiter(), mitRaupe ? 1100 : 800);
-  };
-  const pruefen = () => {
-    if (gesperrt || !sel.size || fertigPhase) return;
-    const raus: string[] = hin[hi].raus;
-    if (sel.size === raus.length && raus.every((x) => sel.has(x))) return streichen(raus, false);
+  const pruefenB = () => {
+    if (gesperrt || !gestr.size || phase !== 'b') return;
+    const rest = kr.filter((c) => !gestr.has(c.id));
+    if (rest.length === 1 && rest[0].id === d.loesung) { gesperrt = true; return weiterC(); }
     fehl++;
-    const daneben = [...sel].filter((x) => !raus.includes(x));
-    zi.querySelectorAll<HTMLElement>('.kr-k.an').forEach((e) => { if (daneben.includes(e.dataset.id!)) wackel(e); });
     if (fehl === 1) {
-      sag(r, 'tipp', daneben.length ? K.UI.nochmal : K.UI.nochEiner);
-      gesperrt = true;
-      setTimeout(() => { daneben.forEach((x) => sel.delete(x)); gesperrt = false; if (zi.isConnected) mal(); }, 650);
+      const zuViel = gestr.has(d.loesung);
+      sag(r, 'tipp', zuViel ? d.vergleichen.zuViel : rest.length > 1 ? d.vergleichen.nochMehr : d.vergleichen.falsch);
+      if (zuViel) { gesperrt = true; wackel(zi.querySelector(`.kr-k[data-id="${d.loesung}"]`)); setTimeout(() => { gestr.delete(d.loesung); gesperrt = false; if (zi.isConnected) malB(); }, 700); }
       return;
     }
-    sag(r, 'tipp', K.UI.hilfe);
-    setTimeout(() => zi.isConnected && streichen(raus, true), 500);
+    // zweiter Fehler: die Raupe streicht aus und zeigt, warum
+    gesperrt = true;
+    kr.forEach((c) => { if (c.id !== d.loesung) gestr.add(c.id); else gestr.delete(c.id); });
+    malB();
+    sag(r, 'tipp', K.UI.hilfe + ' ' + d.vergleichen.warum);
+    setTimeout(() => zi.isConnected && weiterC(), 2200);
   };
+
+  /* ---- Eingaben ---- */
+  let druck: { id: string; t: number; lang: boolean } | null = null;
+  zi.addEventListener('pointerdown', (e) => {
+    const k = (e.target as HTMLElement).closest<HTMLElement>('.kr-k');
+    if (!k || phase !== 'b' || gesperrt) return;
+    const dr = { id: k.dataset.id!, t: window.setTimeout(() => { if (druck === dr) { dr.lang = true; streichT(dr.id); } }, 650), lang: false } as any;
+    druck = dr;
+  });
+  const loslassen = () => { if (druck) clearTimeout(druck.t as any); };
+  zi.addEventListener('pointerup', loslassen); zi.addEventListener('pointercancel', loslassen);
   zi.onclick = (e) => {
     const t = e.target as HTMLElement;
-    if (t.closest('[data-a="dreh"]')) return drehe();
-    const k = t.closest<HTMLElement>('.kr-k');
-    if (!k || gesperrt || fertigPhase || gestr.has(k.dataset.id!)) return;
-    if (seite === 'vorne') { // von vorn sieht man den Stern nicht
-      sag(r, 'tipp', hin[hi].unklar);
-      const b = $('.kr-dreh', zi); b.classList.remove('puls'); void b.offsetWidth; b.classList.add('puls');
+    if (phase === 'a') {
+      const m = t.closest<HTMLElement>('.kr-mk');
+      if (!m || gesperrt) return;
+      const id = m.dataset.m!;
+      if (sel.has(id)) sel.delete(id); else sel.add(id);
+      m.classList.toggle('an', sel.has(id));
+      unten(knopf('pruefen', K.UI.pruefen, sel.size === 0), () => pruefenA());
       return;
     }
-    const id = k.dataset.id!;
-    if (sel.has(id)) sel.delete(id); else sel.add(id);
-    k.classList.toggle('an', sel.has(id));
-    unten(knopf('fertig', K.UI.fertig, sel.size === 0), () => pruefen());
+    const x = t.closest<HTMLElement>('.kr-x');
+    if (x) return streichT(x.dataset.x!);
+    const k = t.closest<HTMLElement>('.kr-k');
+    if (!k) return;
+    if (druck?.lang) { druck = null; return; } // langes Drücken hat schon durchgestrichen
+    flip(k.dataset.id!);
   };
   hook.loese = () => {
-    if (gesperrt || fertigPhase) return;
-    if (seite === 'vorne') { seite = 'hinten'; mal(); }
-    sel.clear(); hin[hi].raus.forEach((x: string) => sel.add(x)); pruefen();
+    if (gesperrt) return;
+    if (phase === 'a') { sel.clear(); richtigK.forEach((x) => sel.add(x)); return pruefenA(); }
+    if (phase === 'b') { offen = d.loesung; geflippt = true; gestr.clear(); kr.forEach((c) => { if (c.id !== d.loesung) gestr.add(c.id); }); malB(); pruefenB(); }
   };
-  mal();
+  $('.zt1', r).innerHTML = d.erinnern.text;
+  malA();
+  sag(r, 'tipp', d.erinnern.start);
 }
 
 /* ============================ 6.5 Geheimagenten-Code (agentencode) ============================ */
