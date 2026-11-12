@@ -1,0 +1,236 @@
+[
+ {
+  "ch": "Глава 1 · правка",
+  "name": "k1_s1",
+  "att": "сама картинка k1_s1 (редактировать её)",
+  "note": "Это Ида. Нужна, чтобы в финале главы Оскара нельзя было угадать заранее: решают пуговицы и капюшон.",
+  "size": "как оригинал (3:2)",
+  "where": "Spur 1 — первая картинка книги",
+  "text": "Edit the attached picture, keep everything else exactly as it is (same children, same room, same light, same style). Only add ONE more child in the background, a bit behind and to the side of the others: a girl with a light-brown ponytail, wearing a RED-AND-WHITE horizontally striped sweater WITHOUT a hood and WITH three round white buttons at the neck, busy with paper at the table. Her stripes must look like Oskar's stripes, so that only the buttons and the missing hood tell them apart."
+ },
+ {
+  "ch": "Дети (для глав 2–4)",
+  "name": "kinder/lina",
+  "att": "лист детей (kinder_figurenblatt)",
+  "note": "Цвет и узор свитера должны совпасть точно — по ним идёт загадка про рукав.",
+  "size": "портрет 2:3, светлый фон (вырежу сама)",
+  "where": "ложные следы в главах 2–4, ряд подозреваемых",
+  "text": "Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain warm white background, no text, no letters, no numbers, no stars. Every item clearly separated from the others with empty space around it, so it can be cut out.\nOne child, full body, standing, friendly face, front view, about 8 years old, same drawing style and proportions as the attached children: a girl with two dark braids, sweater with BLUE-and-white horizontal stripes and a hood. Dark trousers, sneakers. Nothing in the hands."
+ },
+ {
+  "ch": "Дети (для глав 2–4)",
+  "name": "kinder/tom",
+  "att": "лист детей (kinder_figurenblatt)",
+  "note": "",
+  "size": "портрет 2:3, светлый фон (вырежу сама)",
+  "where": "ложные следы в главах 2–4, ряд подозреваемых",
+  "text": "Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain warm white background, no text, no letters, no numbers, no stars. Every item clearly separated from the others with empty space around it, so it can be cut out.\nOne child, full body, standing, friendly face, front view, about 8 years old, same drawing style and proportions as the attached children: a boy with short blond hair, plain RED sweater with a hood, no stripes. Dark trousers, sneakers. Nothing in the hands."
+ },
+ {
+  "ch": "Дети (для глав 2–4)",
+  "name": "kinder/ida",
+  "att": "лист детей (kinder_figurenblatt)",
+  "note": "Цвет и узор свитера должны совпасть точно — по ним идёт загадка про рукав.",
+  "size": "портрет 2:3, светлый фон (вырежу сама)",
+  "where": "ложные следы в главах 2–4, ряд подозреваемых",
+  "text": "Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain warm white background, no text, no letters, no numbers, no stars. Every item clearly separated from the others with empty space around it, so it can be cut out.\nOne child, full body, standing, friendly face, front view, about 8 years old, same drawing style and proportions as the attached children: a girl with a light-brown ponytail, RED-and-white horizontal stripes, NO hood, three white buttons at the neck. Dark trousers, sneakers. Nothing in the hands."
+ },
+ {
+  "ch": "Дети (для глав 2–4)",
+  "name": "kinder/emil",
+  "att": "лист детей (kinder_figurenblatt)",
+  "note": "Цвет и узор свитера должны совпасть точно — по ним идёт загадка про рукав.",
+  "size": "портрет 2:3, светлый фон (вырежу сама)",
+  "where": "ложные следы в главах 2–4, ряд подозреваемых",
+  "text": "Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain warm white background, no text, no letters, no numbers, no stars. Every item clearly separated from the others with empty space around it, so it can be cut out.\nOne child, full body, standing, friendly face, front view, about 8 years old, same drawing style and proportions as the attached children: a boy with curly black hair and round glasses, RED sweater with white polka dots and a hood. Dark trousers, sneakers. Nothing in the hands."
+ },
+ {
+  "ch": "Дети (для глав 2–4)",
+  "name": "kinder/nele",
+  "att": "лист детей (kinder_figurenblatt)",
+  "note": "Цвет и узор свитера должны совпасть точно — по ним идёт загадка про рукав.",
+  "size": "портрет 2:3, светлый фон (вырежу сама)",
+  "where": "ложные следы в главах 2–4, ряд подозреваемых",
+  "text": "Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain warm white background, no text, no letters, no numbers, no stars. Every item clearly separated from the others with empty space around it, so it can be cut out.\nOne child, full body, standing, friendly face, front view, about 8 years old, same drawing style and proportions as the attached children: a girl with a short red bob, RED-and-white VERTICAL stripes and a hood. Dark trousers, sneakers. Nothing in the hands."
+ },
+ {
+  "ch": "Глава 2",
+  "name": "objekte/fuchs_puppe",
+  "att": "objekte_1_mond + objekte_3_basteln (стиль предметов)",
+  "note": "",
+  "size": "1:1",
+  "where": "Spur 7 — «два ящика»: готовое для театра",
+  "text": "Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain warm white background, no text, no letters, no numbers, no stars. Every item clearly separated from the others with empty space around it, so it can be cut out.\nA finished hand puppet: an orange fox with a white chest, made of felt. Lying flat, seen from above."
+ },
+ {
+  "ch": "Глава 2",
+  "name": "objekte/koenig_puppe",
+  "att": "objekte_1_mond + objekte_3_basteln (стиль предметов)",
+  "note": "",
+  "size": "1:1",
+  "where": "Spur 7 — «два ящика»: готовое для театра",
+  "text": "Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain warm white background, no text, no letters, no numbers, no stars. Every item clearly separated from the others with empty space around it, so it can be cut out.\nA finished hand puppet: a friendly king with a small golden cardboard crown and a red felt coat. Lying flat, seen from above."
+ },
+ {
+  "ch": "Глава 2",
+  "name": "objekte/pappbaum",
+  "att": "objekte_1_mond + objekte_3_basteln (стиль предметов)",
+  "note": "",
+  "size": "1:1",
+  "where": "Spur 7 — «два ящика»: готовое для театра",
+  "text": "Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain warm white background, no text, no letters, no numbers, no stars. Every item clearly separated from the others with empty space around it, so it can be cut out.\nA finished theater prop: a flat cardboard tree, painted green and brown, with a small wooden stand at the bottom."
+ },
+ {
+  "ch": "Глава 2",
+  "name": "objekte/papierstapel",
+  "att": "objekte_1_mond + objekte_3_basteln (стиль предметов)",
+  "note": "",
+  "size": "1:1",
+  "where": "Spur 7 — «два ящика»: бумага для всех",
+  "text": "Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain warm white background, no text, no letters, no numbers, no stars. Every item clearly separated from the others with empty space around it, so it can be cut out.\nA loose stack of colored craft paper sheets (red, blue, yellow, green), slightly fanned out, a few paper strips on top."
+ },
+ {
+  "ch": "Глава 2",
+  "name": "objekte/mond_hinten_feucht",
+  "att": "objekte_1_mond + objekte_3_basteln (стиль предметов)",
+  "note": "Нитка свёрнута колечком — так в главе 3 из-под «сыра» виден только кончик (замечание ревью).",
+  "size": "1:1",
+  "where": "Spur 8 — как лежала Луна и почему",
+  "text": "Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain warm white background, no text, no letters, no numbers, no stars except where the description asks for one. Every item clearly separated from the others with empty space around it, so it can be cut out.\nThe flat round cardboard moon lying WHITE SIDE UP, seen from above. On the white side a small hand-painted BLUE star near the edge. At the top edge the long white thread is neatly COILED into a small loop on the white side and held by a fresh, wet, shiny drop of white craft glue (glossy highlight so it clearly looks wet). Only a short thread end sticks out over the edge."
+ },
+ {
+  "ch": "Глава 2",
+  "name": "objekte/raetsel_kaese",
+  "att": "objekte_1_mond + objekte_3_basteln (стиль предметов)",
+  "note": "Шесть картинок одного размера и ракурса, как карточки.",
+  "size": "1:1",
+  "where": "Spur 12 — загадка Оскара «жёлтое, круглое, с дырками, для мыши»",
+  "text": "Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain warm white background, no text, no letters, no numbers, no stars. Every item clearly separated from the others with empty space around it, so it can be cut out.\nOne object, centered, slightly from above: a round wheel of yellow Swiss cheese with big round holes."
+ },
+ {
+  "ch": "Глава 2",
+  "name": "objekte/raetsel_keks",
+  "att": "objekte_1_mond + objekte_3_basteln (стиль предметов)",
+  "note": "",
+  "size": "1:1",
+  "where": "Spur 12 — загадка Оскара «жёлтое, круглое, с дырками, для мыши»",
+  "text": "Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain warm white background, no text, no letters, no numbers, no stars. Every item clearly separated from the others with empty space around it, so it can be cut out.\nOne object, centered, slightly from above: a big round chocolate-chip cookie, golden-yellow with dark chocolate dots."
+ },
+ {
+  "ch": "Глава 2",
+  "name": "objekte/raetsel_sonne",
+  "att": "objekte_1_mond + objekte_3_basteln (стиль предметов)",
+  "note": "",
+  "size": "1:1",
+  "where": "Spur 12 — загадка Оскара «жёлтое, круглое, с дырками, для мыши»",
+  "text": "Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain warm white background, no text, no letters, no numbers, no stars. Every item clearly separated from the others with empty space around it, so it can be cut out.\nOne object, centered, slightly from above: a yellow paper sun with short rays, cut from cardboard."
+ },
+ {
+  "ch": "Глава 2",
+  "name": "objekte/raetsel_ball",
+  "att": "objekte_1_mond + objekte_3_basteln (стиль предметов)",
+  "note": "",
+  "size": "1:1",
+  "where": "Spur 12 — загадка Оскара «жёлтое, круглое, с дырками, для мыши»",
+  "text": "Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain warm white background, no text, no letters, no numbers, no stars. Every item clearly separated from the others with empty space around it, so it can be cut out.\nOne object, centered, slightly from above: a classic black-and-white football."
+ },
+ {
+  "ch": "Глава 2",
+  "name": "objekte/raetsel_zitrone",
+  "att": "objekte_1_mond + objekte_3_basteln (стиль предметов)",
+  "note": "",
+  "size": "1:1",
+  "where": "Spur 12 — загадка Оскара «жёлтое, круглое, с дырками, для мыши»",
+  "text": "Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain warm white background, no text, no letters, no numbers, no stars. Every item clearly separated from the others with empty space around it, so it can be cut out.\nOne object, centered, slightly from above: a single bright yellow lemon."
+ },
+ {
+  "ch": "Глава 2",
+  "name": "objekte/raetsel_schwamm",
+  "att": "objekte_1_mond + objekte_3_basteln (стиль предметов)",
+  "note": "",
+  "size": "1:1",
+  "where": "Spur 12 — загадка Оскара «жёлтое, круглое, с дырками, для мыши»",
+  "text": "Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain warm white background, no text, no letters, no numbers, no stars. Every item clearly separated from the others with empty space around it, so it can be cut out.\nOne object, centered, slightly from above: a yellow kitchen sponge full of small holes."
+ },
+ {
+  "ch": "Глава 3",
+  "name": "voegel",
+  "att": "лист гусенички (только для стиля)",
+  "note": "Три чёрно-белые птицы специально: ребёнок должен различать по длинному хвосту и белому пятну на крыле.",
+  "size": "5:1 или 3:1, белый фон (разрежу на 5)",
+  "where": "Spur 14 «чья тень» и Spur 23 «какая птица?»",
+  "text": "Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain warm white background, no text, no letters, no numbers, no stars. Every item clearly separated from the others with empty space around it, so it can be cut out.\nFive birds in a row, each sitting on a short twig, side view, the same size, with lots of space between them: 1) a magpie: black and white, white belly, white patch on the wing, very long black tail; 2) a white wagtail: small and slim, black-white-grey, long thin tail that it holds up; 3) a great spotted woodpecker: black and white with a red patch under the tail; 4) a blackbird: all black with a yellow-orange beak; 5) a great tit: yellow belly, black head with white cheeks."
+ },
+ {
+  "ch": "Глава 3",
+  "name": "gelbe_kreise_vorne",
+  "att": "objekte_1_mond + objekte_3_basteln (стиль предметов)",
+  "note": "Порядок кругов в обоих листах одинаковый: 1-й спереди = 1-й сзади.",
+  "size": "5:1, белый фон",
+  "where": "Spur 16 — ключевой момент 2: какой круг Луна Милы",
+  "text": "Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain warm white background, no text, no letters, no numbers, no stars. Every item clearly separated from the others with empty space around it, so it can be cut out.\nFive flat round yellow cardboard circles in a row, seen from the front, all about the same size, lots of space between them. They differ only a little: 1) lemon yellow, 2) golden yellow, 3) yellow with a slightly torn edge, 4) warm yellow, smooth edge, 5) pale yellow. No faces, no drawings, no holes."
+ },
+ {
+  "ch": "Глава 3",
+  "name": "gelbe_kreise_hinten",
+  "att": "objekte_1_mond + objekte_3_basteln (стиль предметов)",
+  "note": "Звезда есть на двух кругах, нитка — только на одном: так загадка не решается с одного взгляда.",
+  "size": "5:1, белый фон",
+  "where": "Spur 16 — оборотная сторона",
+  "text": "Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain warm white background, no text, no letters, no numbers, no stars except where the description asks for one. Every item clearly separated from the others with empty space around it, so it can be cut out.\nThe BACKS of five flat round cardboard circles in a row, all white, same size and order as before: 1) a small blue flower painted near the edge; 2) a small blue star painted near the edge, nothing else; 3) completely plain white; 4) a small blue star near the edge AND a white thread neatly coiled and glued at the top edge; 5) a small blue heart painted near the edge."
+ },
+ {
+  "ch": "Глава 3",
+  "name": "plakat",
+  "att": "2 листа гусенички + лист детей (kinder_figurenblatt) + k1_s1 (комната)",
+  "note": "",
+  "size": "портрет 3:4",
+  "where": "Spur 18 — собрать афишу из кусочков (режу программно)",
+  "text": "Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain warm white background, no text, no letters, no numbers, no stars. Every item clearly separated from the others with empty space around it, so it can be cut out.\nA colorful hand-painted poster for the children's new puppet play, PORTRAIT 3:4, pinned with four push pins: in the middle the puppet stage, on it the little grey paper mouse jumps happily towards a round yellow 'cheese' (the cardboard moon with three brown dots); around it a border of small painted leaves. Absolutely no letters or words."
+ },
+ {
+  "ch": "Глава 4",
+  "name": "baum",
+  "att": "лист детей + k4_s19 (окно и ветка дерева снаружи)",
+  "note": "Правильная развилка — №3 (под окном, тонкие ветки буквой V). Остальные — ловушки.",
+  "size": "3:2",
+  "where": "Spur 19 — ключевой момент 3: где висит Луна (по описанию из текста)",
+  "text": "Use the attached images as the exact reference for characters, places and style. Indoors always the same classroom as in the attached classroom image: the NATURAL WOOD puppet theater (light wood, two posts with round knobs, the top board is ONE smooth round arch – not wavy) on the big table with the red tablecloth, the window with the caterpillar's plant on the LEFT. Children's picture-book illustration in exactly the same style, landscape 3:2. No text, no letters, no numbers, no stars anywhere. Mila has no backpack. The hand puppets are a fox, a bear and a king – never a mouse (the only mouse in the book is Oskar's small grey PAPER mouse). The moon is always a FULL ROUND flat cardboard disc (never a crescent): yellow on the front, white on the back.\nThe thick tree right outside the classroom window, seen from the window, LANDSCAPE 3:2. No bird, no nest, no moon, no paper. The tree has FIVE clearly different forks (places where a branch splits), well separated: 1) low, near the trunk, with a small wooden birdhouse; 2) left, with a swing rope tied around the branch; 3) right under the window sill, close to the glass, the branches here are thin and V-shaped; 4) high up near the top, with a few dry brown leaves; 5) far right, on a branch with a big round knot hole. Leaves are green and fresh, a calm sunny day."
+ },
+ {
+  "ch": "Глава 4",
+  "name": "baum_nest",
+  "att": "лист детей + k4_s19 (окно и ветка дерева снаружи)",
+  "note": "",
+  "size": "3:2",
+  "where": "Spur 24 — раздвинуть листья и найти гнездо (листья рисую программно сверху)",
+  "text": "Use the attached images as the exact reference for characters, places and style. Indoors always the same classroom as in the attached classroom image: the NATURAL WOOD puppet theater (light wood, two posts with round knobs, the top board is ONE smooth round arch – not wavy) on the big table with the red tablecloth, the window with the caterpillar's plant on the LEFT. Children's picture-book illustration in exactly the same style, landscape 3:2. No text, no letters, no numbers, no stars anywhere. Mila has no backpack. The hand puppets are a fox, a bear and a king – never a mouse (the only mouse in the book is Oskar's small grey PAPER mouse). The moon is always a FULL ROUND flat cardboard disc (never a crescent): yellow on the front, white on the back.\nThe same tree and the same view as the previous picture. Now in fork number 3 (right under the window sill, thin V-shaped branches) sits a small nest woven from WHITE PAPER STRIPS. A white ribbon hangs from it and on the ribbon a small brass key glints in the sun. The magpie is NOT there. Everything else unchanged."
+ },
+ {
+  "ch": "Глава 4",
+  "name": "nest_finale",
+  "att": "2 листа гусенички + лист детей (kinder_figurenblatt) + k1_s1 (комната)",
+  "note": "",
+  "size": "3:2",
+  "where": "последняя сцена: всё нашлось, все счастливы",
+  "text": "Use the attached images as the exact reference for characters, places and style. Indoors always the same classroom as in the attached classroom image: the NATURAL WOOD puppet theater (light wood, two posts with round knobs, the top board is ONE smooth round arch – not wavy) on the big table with the red tablecloth, the window with the caterpillar's plant on the LEFT. Children's picture-book illustration in exactly the same style, landscape 3:2. No text, no letters, no numbers, no stars anywhere. Mila has no backpack. The hand puppets are a fox, a bear and a king – never a mouse (the only mouse in the book is Oskar's small grey PAPER mouse). The moon is always a FULL ROUND flat cardboard disc (never a crescent): yellow on the front, white on the back.\nThe caterpillar's antenna tips are plain yellow-green, NOT glowing.\nHappy final scene at the open classroom window: Mila, Ben, Oskar and Frau Sommer lean out and look down into the nest of white paper strips in the fork of the tree. Frau Sommer carefully takes out the white ribbon with her small brass key; next to the nest she lays a fresh white paper strip as a present for the bird. On the windowsill the caterpillar smiles, holding her dewdrop magnifier. Warm afternoon light, everyone relieved and happy."
+ },
+ {
+  "ch": "Сейф (финал)",
+  "name": "tresor_zu",
+  "att": "ничего (или старую mondtresor_zu как образец стиля)",
+  "note": "Сейчас в приложении нарисованный сейф. Если эта картинка понравится больше — заменю.",
+  "size": "1:1",
+  "where": "вступление, доска, финал",
+  "text": "Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain deep twilight-blue background, no text, no letters, no numbers, no stars. Every item clearly separated from the others with empty space around it, so it can be cut out.\nA small magical treasure safe for a children's game, square 1:1: a sturdy dark-blue safe with rounded corners and little golden rivets, a golden wheel handle in the middle, and below it a row of exactly FOUR empty letter windows (empty, no letters). Cozy and magical, not technical. No moon on it."
+ },
+ {
+  "ch": "Сейф (финал)",
+  "name": "tresor_auf",
+  "att": "ничего (или старую mondtresor_zu как образец стиля)",
+  "note": "",
+  "size": "1:1",
+  "where": "финал: сейф открывается кодом NEST",
+  "text": "Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain deep twilight-blue background, no text, no letters, no numbers, no stars. Every item clearly separated from the others with empty space around it, so it can be cut out.\nThe same safe, now open: the door swings open, warm golden light streams out; inside an empty glowing niche (a picture will be placed there later). Square 1:1."
+ }
+]
