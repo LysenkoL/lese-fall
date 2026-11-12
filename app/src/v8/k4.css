@@ -71,7 +71,7 @@
 .fin-k.zieht { z-index: 20; transition: none; box-shadow: 0 16px 24px rgba(0, 0, 0, .45); }
 
 /* Tresor mit aufschwingender Tür */
-.tv { position: relative; width: min(84%, 340px); aspect-ratio: 1; margin: 6px auto; perspective: 1000px; }
+.tv { position: relative; width: min(72%, 300px); aspect-ratio: 1; margin: 6px auto; perspective: 1000px; }
 .tv-licht { position: absolute; inset: -22%; border-radius: 50%; background: radial-gradient(circle, rgba(255, 224, 120, .95) 0, rgba(255, 200, 70, .55) 34%, rgba(255, 190, 60, 0) 68%); opacity: 0; transform: scale(.3); transition: opacity 1.2s .3s, transform 1.6s .2s; pointer-events: none; }
 .tv.auf .tv-licht { opacity: 1; transform: scale(1); animation: tv-puls 2.4s 1.6s ease-in-out infinite; }
 @keyframes tv-puls { 50% { transform: scale(1.08); opacity: .85; } }
@@ -82,7 +82,9 @@
 .tv-innen img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .tv-tuer { position: absolute; inset: 0; transform-origin: 8% 50%; transition: transform 1.5s cubic-bezier(.5, 0, .25, 1), filter 1.5s; z-index: 2; }
 .tv-tuer .tresor-svg { display: block; width: 100%; height: 100%; }
-.tv.auf .tv-tuer { transform: rotateY(-112deg); filter: brightness(.7); }
+.tv { transition: transform 1.5s; }
+.tv.auf { transform: translateX(10%); }
+.tv.auf .tv-tuer { transform: rotateY(-84deg); filter: brightness(.75); }
 .tv-code { position: absolute; inset: 0; transition: opacity .4s; }
 .tv-code i { position: absolute; display: grid; place-items: center; font-style: normal; font-weight: 800; font-size: clamp(14px, 5.2vw, 24px); color: #F4C243; }
 .tv.auf .tv-code { opacity: 0; }
@@ -101,3 +103,4 @@
 .dipl .dp b { font-size: 22px; color: #8A5A10; }
 .dipl .perle { width: 18px; height: 18px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff, #F4C243 55%, #C99A2E); box-shadow: 0 1px 2px rgba(0, 0, 0, .4); display: inline-block; }
 .fin.urk .forts { color: #fff; font-weight: 700; opacity: .85; margin: 0; }
+.zug.fin, .fin.urk { overflow-x: clip; }

@@ -53,7 +53,7 @@ export function zeigeFinale(c: FinCtx): void {
     wort.forEach((_, i) => { if (!ordnung.includes(i)) ordnung.push(i); }); // nie in der richtigen Reihenfolge
     const felder: (number | null)[] = wort.map(() => null); // Feld → Kärtchen-Nr
     let fehl = 0, gesperrt = false;
-    c.buehne.innerHTML = `<section class="zug fin" data-art="tresorcode"><div class="lampe"></div><div class="zk"><span class="tab hell">${c.UI.tresor}</span><h2>${F.code.titel}</h2></div><p class="zt1">${F.code.text}</p><div class="fin-tresor tv">${tresorSvg(wort.length)}</div><div class="fin-felder"></div><div class="fin-karten"></div><div class="zr"></div></section>`;
+    c.buehne.innerHTML = `<section class="zug fin" data-art="tresorcode"><div class="lampe"></div><div class="zk"><span class="tab hell">${c.UI.tresor}</span><h2>${F.code.titel}</h2></div><p class="zt1">${F.code.text}</p><div class="fin-tresor">${tresorSvg(wort.length)}</div><div class="fin-felder"></div><div class="fin-karten"></div><div class="zr"></div></section>`;
     const sec = c.buehne.querySelector<HTMLElement>('.fin')!;
     const sag = (b: string, t: string, kl = '') => { const z = sec.querySelector<HTMLElement>('.zr')!; z.innerHTML = t ? raupe(b, t, kl) : ''; if (t) requestAnimationFrame(() => z.scrollIntoView({ block: 'nearest', behavior: 'smooth' })); };
     const mal = () => {
@@ -141,7 +141,7 @@ export function zeigeFinale(c: FinCtx): void {
   /* ---------- 3: Urkunde „Meister-Detektiv“ ---------- */
   c.modus('haken');
   const p = c.perlen();
-  c.buehne.innerHTML = `<section class="fin urk"><div class="lampe"></div><div class="dipl"><div class="dipl-in"><p class="dt">${c.UI.meister}</p><input id="dname" type="text" maxlength="18" placeholder="${esc(c.UI.nameFrage.replace(/<[^>]*>/g, ''))}" value="${esc(st.name)}" autocomplete="off" autocapitalize="words" aria-label="${esc(c.UI.nameFrage.replace(/<[^>]*>/g, ''))}"><p class="dh">${c.UI.hatGeloest}</p><p class="df">${c.UI.fallName}</p><p class="dl">${c.UI.urkLob}</p><p class="dp"><span class="perle"></span><b>${p}</b> ${c.UI.perlenSumme}</p></div></div><p class="forts">${c.UI.fortsetzung}</p></section>`;
+  c.buehne.innerHTML = `<section class="fin urk"><div class="lampe"></div><div class="dipl"><div class="dipl-in"><p class="dt">${c.UI.meister}</p><input id="dname" type="text" maxlength="18" placeholder="${esc(c.UI.nameFrage.replace(/<[^>]*>/g, ''))}" value="${esc(st.name)}" autocomplete="off" autocapitalize="words" aria-label="${esc(c.UI.nameFrage.replace(/<[^>]*>/g, ''))}"><p class="dh">${c.UI.hatGeloest}</p><p class="df">${c.UI.fallName}</p><p class="dl">${c.UI.urkLob}</p><p class="dp"><span class="perle"></span><b>${p}</b><span class="dpt">${c.UI.perlenSumme}</span></p></div></div><p class="forts">${c.UI.fortsetzung}</p></section>`;
   const inp = c.buehne.querySelector<HTMLInputElement>('#dname')!;
   inp.addEventListener('input', () => { st.name = inp.value; c.speichern(); });
   nurKnopf('neu', c.knopf('neu', c.UI.neuStart, 'still'), c.neuStart);

@@ -5,7 +5,8 @@
  *   3. Wischen auf dem Brett blättert nicht zurück ins Lesen
  *   4. „Von vorn beginnen“ fragt erst nach
  *   5. große Schrift auf kleinem Bildschirm: kein Blatt schneidet Text ab
- *   7. Kapitel 3: Lupe, Schatten, fünf Kreise, Agentencode, Plakat, Schlussfrage (Finger, Fehlerregel)
+ *   7. Kapitel 3: Lupe, Schatten, Unterschiede mit Sortieren, Kreise in drei Schritten, Agentencode, Plakat, Schlussfrage (Finger, Fehlerregel)
+ *   8. Kapitel 4: Wort im Baum, Faden ziehen (Knopf gedrückt halten), Laub wischen, Finale mit Tresor-Code (Ziehen, Tippen) und Urkunde
  *   6. Kapitel 2: Zwei Kisten (Ziehen, Tippen, falscher Platz), Mond umdrehen per Wischen, Suchbild (Tippen am Rand), Geheimschrift
  * Aufruf: npx vite preview --port 4173 &  →  node scripts/e2e-v8-finger.mjs
  */
@@ -33,7 +34,7 @@ async function seite(w, h, vorher) {
     await sleep(500);
   };
   const tipp = async (s) => { await p.tap(s); await sleep(250); };
-  return { p, zieh, tipp };
+  return { p, zieh, tipp, cdp };
 }
 const mitte = async (p, s) => { const r = await (await p.$(s)).boundingBox(); return [r.x + r.width / 2, r.y + r.height / 2]; };
 
@@ -192,21 +193,35 @@ const mitte = async (p, s) => { const r = await (await p.$(s)).boundingBox(); re
   await zustand(14, 1);
   await tipp(`.sc-k[data-i="${z14.richtig}"]`); await sleep(500);
   pruef(!!(await weiterDa()), 'Schatten: richtiger Vogel angetippt');
-  // fünf Kreise: von vorn tippen sagt „umdrehen“, dann Umdrehen, Kreise ohne Stern wegtippen
+  // Spur 15: sechs Unterschiede mit dem Finger, dann sortieren
+  const z15 = D.spuren[14].raetsel;
+  await zustand(15, 1);
+  const ub = await (await p.$$('.ub-bild'))[1].boundingBox();
+  await p.touchscreen.tap(ub.x + ub.width * 0.06, ub.y + ub.height * 0.9); await sleep(300);
+  pruef((await p.$$('.ub .ring.da')).length === 0, 'Unterschiede: Tipp daneben markiert nichts');
+  await p.touchscreen.tap(ub.x + ub.width * z15.dinge[0].zonen[0].x / 100, ub.y + ub.height * z15.dinge[0].zonen[0].y / 100); await sleep(300);
+  pruef((await p.$$('.ub .ring.da')).length === 2, 'Unterschiede: die drei braunen Flecken zählen als EIN Unterschied (Ring in beiden Bildern)');
+  await p.evaluate(() => window.__v8.loese()); await sleep(1000);
+  pruef(!!(await p.$('.so-ziele.drei')), 'Unterschiede: danach drei Felder zum Sortieren');
+  const so = z15.sortieren.dinge[0], soFalsch = z15.sortieren.ziele.find((q) => q.id !== so.ziel).id;
+  await tipp(`.so-pool [data-d="${so.id}"]`); await tipp(`.so-ziel[data-z="${soFalsch}"]`); await sleep(300);
+  pruef(!!(await p.$(`.so-pool [data-d="${so.id}"]`)), 'Sortieren: falsches Feld, der Unterschied bleibt liegen');
+  await p.evaluate(() => window.__v8.loese()); await sleep(700);
+  pruef(!!(await weiterDa()), 'Sortieren: alle zugeordnet, weiter');
+  // Kreise in drei Schritten (Finger): a) Merkmale, zweimal falsch, b) immer nur ein Kreis umgedreht, Kreuz-Knopf
   const z16 = D.spuren[15].raetsel;
   await zustand(16, 1);
-  await tipp('.kr-k[data-id="k1"]');
-  pruef((await p.$$('.kr-k.an')).length === 0, 'Kreise: von vorn antippen wählt nichts (Stern ist nicht zu sehen)');
-  await tipp('[data-a="dreh"]'); await sleep(700);
-  for (const id of z16.hinweise[0].raus) await tipp(`.kr-k[data-id="${id}"]`);
-  await tipp('#fuss [data-a="fertig"]'); await sleep(1500);
-  pruef((await p.$$('.kr-k.weg')).length === 3, 'Kreise: drei Kreise ohne Stern durchgestrichen');
-  // Hinweis 2 zweimal falsch (k4 ist richtig): die Raupe streicht k2
-  await tipp('.kr-k[data-id="k4"]'); await tipp('#fuss [data-a="fertig"]'); await sleep(1000);
-  await tipp('.kr-k[data-id="k4"]'); await tipp('#fuss [data-a="fertig"]'); await sleep(2600);
-  pruef(!!(await p.$('.kr-k.rest[data-id="k4"]')) && !!(await p.$('#fuss [data-a="stempeln"]')), 'Kreise: nach zwei Fehlern streicht die Raupe, Milas Mond bleibt übrig');
+  await tipp('.kr-mk[data-m="herz"]'); await tipp('#fuss [data-a="pruefen"]'); await sleep(1000);
+  await tipp('.kr-mk[data-m="herz"]'); await tipp('#fuss [data-a="pruefen"]'); await sleep(3200);
+  pruef(!!(await p.$('.kr-x')), 'Kreise a: nach zwei Fehlern zeigt die Raupe die drei Merkmale, es geht weiter');
+  await tipp('.kr-k[data-id="k1"]'); await tipp('.kr-k[data-id="k2"]'); await sleep(400);
+  pruef((await p.$$('.kr-um')).length === 1, 'Kreise b: es ist immer nur ein Kreis umgedreht');
+  for (const id of z16.kreise.map((c) => c.id).filter((i) => i !== z16.loesung)) await tipp(`.kr-x[data-x="${id}"]`);
+  pruef((await p.$$('.kr-k.weg')).length === 4, 'Kreise b: Kreuz-Knopf streicht den Kreis durch (nichts geschieht von selbst)');
+  await tipp('#fuss [data-a="fertig"]'); await sleep(900);
+  pruef(!!(await p.$(`.kr-k.rest[data-id="${z16.loesung}"]`)) && !!(await p.$('#fuss [data-a="stempeln"]')), 'Kreise c: Milas Mond bleibt übrig');
   await tipp('#fuss [data-a="stempeln"]'); await sleep(800);
-  pruef(!!(await weiterDa()), 'Kreise: Stempel setzt den Abschluss');
+  pruef(!!(await weiterDa()), 'Kreise c: Stempel setzt den Abschluss');
   // Geheimagenten-Code: alle zweiten Buchstaben antippen
   const z17 = D.spuren[16].raetsel;
   await zustand(17, 1);
@@ -234,6 +249,56 @@ const mitte = async (p, s) => { const r = await (await p.$(s)).boundingBox(); re
   pruef(!(await weiterDa()), 'Schluss: Verdacht angetippt löst nicht');
   await tipp(`.as-so[data-o="${D.spuren[17].raetsel.schluss.optionen.findIndex((o) => o.sicher)}"]`); await sleep(600);
   pruef(!!(await weiterDa()), 'Schluss: das Sichere angetippt löst');
+}
+/* ---- 8: Kapitel 4 und Finale mit dem Finger ---- */
+{
+  const { p, zieh, tipp, cdp } = await seite(390, 844, () => {});
+  const D = await p.evaluate(() => window.__v8.D);
+  const zustand = async (spur, i, extra = {}) => { await p.evaluate(([n, k, e]) => { const v = window.__v8; Object.assign(v.stand, { view: 'spur', spur: n, i: k, blatt: 0, intro: true, fertig: Array.from({ length: n - 1 }, (_, j) => 1 + j), weiter: 'spur', ...e }); v.zeige(); }, [spur, i, extra]); await sleep(700); };
+  const weiterDa = () => p.$('#fuss [data-a="weiter"]');
+  // Spur 19: drei Buchstaben antippen → Wort AST → Astgabel (erst falsch, dann richtig)
+  const z19 = D.spuren[18].raetsel;
+  await zustand(19, 1);
+  for (const q of z19.runden) { await tipp(`.vb-o[data-o="${q.buchstabe}"]`); await sleep(1900); }
+  await sleep(600);
+  pruef((await p.$$('.ab-wort i.da')).length === 3, 'Astgabel: die drei Buchstaben stehen im Wort');
+  await tipp('#fuss [data-a="weiter"]'); await sleep(400);
+  await tipp(`.ab-g[data-g="${z19.gabeln.find((g) => g.id !== z19.richtig).id}"]`); await sleep(400);
+  pruef(!!(await p.$('.ab-erinnerung')), 'Astgabel: nach dem ersten Fehler erinnert ein Kasten an den Text');
+  await tipp(`.ab-g[data-g="${z19.richtig}"]`); await sleep(900);
+  pruef(!!(await p.$('#fuss [data-a="stempeln"]')), 'Astgabel: richtige Gabel, der Stempel kommt');
+  // Spur 22: Knopf gedrückt halten, wenn die Maus springt (Berührung)
+  await zustand(22, 1);
+  const kb = await (await p.$('.fd-knopf')).boundingBox();
+  for (let t = 0; t < 60 && !(await p.$('.fd-maus.achtung')); t++) await sleep(150);
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: kb.x + kb.width / 2, y: kb.y + kb.height / 2 }] });
+  await sleep(2400);
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] }); await sleep(300);
+  pruef((await p.$$('.fd-zaehl i.an')).length >= 1, 'Faden ziehen: Knopf mit dem Finger gehalten, die Maus springt, ein Punkt');
+  // Spur 24: Laub mit dem Finger wegwischen, dann Nest, Band, Schlüssel antippen
+  await zustand(24, 1);
+  const nb = await (await p.$('.nt-bild')).boundingBox();
+  for (let k = 0; k < 5; k++) await zieh(nb.x + 20, nb.y + 30 + k * nb.height / 6, nb.x + nb.width - 20, nb.y + 30 + k * nb.height / 6);
+  await sleep(900);
+  pruef(!(await p.$('canvas.staub.laub')) || !!(await p.$('canvas.staub.laub.weg')), 'Laub: mit dem Finger weggewischt');
+  for (const t of D.spuren[23].raetsel.ziele) { await p.touchscreen.tap(nb.x + nb.width * t.x / 100, nb.y + nb.height * t.y / 100); await sleep(1100); }
+  await sleep(1400);
+  pruef(!!(await weiterDa()), 'Nest: Nest, Band und Schlüssel gefunden, weiter');
+  // Finale: Szene → Code legen (ein Kärtchen ziehen, den Rest antippen) → Tresor → Urkunde
+  await p.evaluate(() => { const v = window.__v8; Object.assign(v.stand, { view: 'finale', fin: 1, weiter: 'finale', fertig: Array.from({ length: 24 }, (_, j) => 1 + j) }); v.zeige(); }); await sleep(700);
+  const wort = D.kapitel[0].code.wort;
+  const kk = async () => p.$$eval('.fin-k:not(.weg)', (es) => es.map((e) => ({ k: +e.dataset.k, c: e.textContent.trim() })));
+  const k0 = (await kk()).find((q) => q.c === wort[0]);
+  const [ax, ay] = await mitte(p, `.fin-k[data-k="${k0.k}"]`), [fx, fy] = await mitte(p, '.fin-f[data-f="0"]');
+  await zieh(ax, ay, fx, fy);
+  pruef((await p.$eval('.fin-f[data-f="0"]', (e) => e.textContent.trim())) === wort[0], 'Finale: Kärtchen mit dem Finger ins erste Feld gezogen');
+  for (let i = 1; i < wort.length; i++) { const k = (await kk()).find((q) => q.c === wort[i]); await tipp(`.fin-k[data-k="${k.k}"]`); }
+  await sleep(2600);
+  pruef(!!(await p.$('.tv')), 'Finale: Code richtig gelegt, der Tresor erscheint');
+  await sleep(3200);
+  pruef(!!(await weiterDa()) && (await p.$eval('.tv', (e) => e.classList.contains('auf'))), 'Finale: Tresor ist aufgegangen');
+  await tipp('#fuss [data-a="weiter"]'); await sleep(500);
+  pruef(!!(await p.$('.dipl .dt')), 'Finale: Urkunde „Meister-Detektiv“ steht da');
 }
 await b.close();
 console.log(fehler.length ? `\n✗ ${fehler.length} Befunde` : '\n✓ Finger-Probe ohne Befunde');

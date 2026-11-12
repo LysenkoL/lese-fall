@@ -105,20 +105,23 @@ Five birds in a row, each sitting on a short twig, side view, the same size, wit
     size="5:1 или 3:1, белый фон (разрежу на 5)", where="Spur 14 «чья тень» и Spur 23 «какая птица?»",
     note="Три чёрно-белые птицы специально: ребёнок должен различать по длинному хвосту и белому пятну на крыле.")
 add(C3, "gelbe_kreise_vorne", "OBJ", """
-Five flat round yellow cardboard circles in a row, seen from the front, all about the same size, lots of space between them.
+Five flat round yellow cardboard circles seen from the front on a plain light-brown wooden table, same size, in two rows:
+THREE circles in the top row and TWO circles in the bottom row, the bottom two sitting centered between the top ones.
+There must be a clear empty gap below every circle (about half a circle high) for a button. Landscape, aspect about 23:20.
 They differ only a little: 1) lemon yellow, 2) golden yellow, 3) yellow with a slightly torn edge, 4) warm yellow, smooth edge, 5) pale yellow.
-No faces, no drawings, no holes.""",
-    size="5:1, белый фон", where="Spur 16 — ключевой момент 2: какой круг Луна Милы",
-    note="Порядок кругов в обоих листах одинаковый: 1-й спереди = 1-й сзади.")
+Each circle has exactly three round brown spots (one on top, two below). No faces, no drawings, no holes.""",
+    size="23:20 (чуть выше, чем 1:1), светлый деревянный фон", where="Spur 16 — ключевой момент 2: какой круг Луна Милы (3 сверху, 2 снизу, под каждым круг свободное место)",
+    note="Порядок и положение кругов в обоих листах одинаковые: 1–3 в верхнем ряду слева направо, 4–5 внизу. Приложение кладёт заднюю сторону на ту же позицию.")
 add(C3, "gelbe_kreise_hinten", "OBJ", """
-The BACKS of five flat round cardboard circles in a row, all white, same size and order as before:
-1) a small blue flower painted near the edge;
-2) a small blue star painted near the edge, nothing else;
-3) completely plain white;
-4) a small blue star near the edge AND a white thread neatly coiled and glued at the top edge;
-5) a small blue heart painted near the edge.""",
-    head=SHEET_STARS_OK, size="5:1, белый фон", where="Spur 16 — оборотная сторона",
-    note="Звезда есть на двух кругах, нитка — только на одном: так загадка не решается с одного взгляда.")
+The BACKS of the same five flat round cardboard circles, same table, same positions and size as the front picture
+(three in the top row, two in the bottom row, gaps below each). Every back is white with a thin golden edge:
+1) a small blue star painted near the lower edge, nothing else (no hole, no thread);
+2) a white thread lying loose and knotted over the top edge, hanging down outside the circle, no star, no hole;
+3) a small round punched hole near the top edge (the table shows through it) AND a small red heart painted near the lower edge;
+4) a small blue star near the lower edge AND a small punched hole near the top edge AND a white thread neatly coiled into a flat spiral and glued down next to the hole (dry glue, no shine);
+5) only a small round punched hole near the top edge, nothing else.""",
+    head=SHEET_STARS_OK, size="23:20, тот же формат, что и «vorne»", where="Spur 16 — оборотная сторона (одновременно виден только один круг)",
+    note="Правильный круг — №4 (внизу слева): звезда + аккуратная спираль нитки + дырочка. Звезда есть на №1 и №4, нитка — на №2 (висит, узел) и №4 (свёрнута), дырочка — на №3, №4 и №5. У каждого круга есть хотя бы один верный признак.")
 add(C3, "plakat", "IN", """
 A colorful hand-painted poster for the children's new puppet play, PORTRAIT 3:4, pinned with four push pins:
 in the middle the puppet stage, on it the little grey paper mouse jumps happily towards a round yellow 'cheese' (the cardboard moon with three brown dots);
@@ -138,6 +141,18 @@ The tree has FIVE clearly different forks (places where a branch splits), well s
 Leaves are green and fresh, a calm sunny day.""",
     head=HEAD, size="3:2", where="Spur 19 — ключевой момент 3: где висит Луна (по описанию из текста)",
     note="Правильная развилка — №3 (под окном, тонкие ветки буквой V). Остальные — ловушки.")
+add(C4, "objekte/kinder_hinten", "CH", """
+Three children seen from BEHIND, standing in a row in front of a classroom wall, full body, friendly cartoon style, LANDSCAPE 3:2, a bit of space between them:
+a girl with two dark braids, each braid tied with a tiny PINK ribbon, lilac cardigan;
+a boy with blond hair, blue sweater, sneakers with thin PINK shoelaces;
+a boy with curly hair in a RED-AND-WHITE striped hooded sweater, and from his hood hangs a very thin, long PINK mouse tail.
+The pink details are small, the tail must be easy to miss without a magnifier.""",
+    head=HEAD, size="3:2", where="Spur 20 — лупа: найти розовый хвост мыши среди розовых отвлекающих деталей",
+    note="Три розовых детали: бантики (Мила), шнурки (Бен) и хвост из капюшона Оскара — только хвост настоящий.")
+add(C4, "objekte/raum_leer", "IN", """
+The empty classroom group room, LANDSCAPE 3:2, seen straight on: a cream wall with a green blackboard on the left, a small window on the right,
+a wooden rail on the wall on the left, a wooden floor with planks. No furniture, no people, no objects.""",
+    head=HEAD, size="3:2", where="Spur 21 — фон для «найди, что изменилось» (предметы кладу поверх программно)")
 add(C4, "baum_nest", "OUT", """
 The same tree and the same view as the previous picture. Now in fork number 3 (right under the window sill, thin V-shaped branches)
 sits a small nest woven from WHITE PAPER STRIPS. A white ribbon hangs from it and on the ribbon a small brass key glints in the sun.

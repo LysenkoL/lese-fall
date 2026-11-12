@@ -174,19 +174,19 @@
   "ch": "Глава 3",
   "name": "gelbe_kreise_vorne",
   "att": "objekte_1_mond + objekte_3_basteln (стиль предметов)",
-  "note": "Порядок кругов в обоих листах одинаковый: 1-й спереди = 1-й сзади.",
-  "size": "5:1, белый фон",
-  "where": "Spur 16 — ключевой момент 2: какой круг Луна Милы",
-  "text": "Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain warm white background, no text, no letters, no numbers, no stars. Every item clearly separated from the others with empty space around it, so it can be cut out.\nFive flat round yellow cardboard circles in a row, seen from the front, all about the same size, lots of space between them. They differ only a little: 1) lemon yellow, 2) golden yellow, 3) yellow with a slightly torn edge, 4) warm yellow, smooth edge, 5) pale yellow. No faces, no drawings, no holes."
+  "note": "Порядок и положение кругов в обоих листах одинаковые: 1–3 в верхнем ряду слева направо, 4–5 внизу. Приложение кладёт заднюю сторону на ту же позицию.",
+  "size": "23:20 (чуть выше, чем 1:1), светлый деревянный фон",
+  "where": "Spur 16 — ключевой момент 2: какой круг Луна Милы (3 сверху, 2 снизу, под каждым круг свободное место)",
+  "text": "Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain warm white background, no text, no letters, no numbers, no stars. Every item clearly separated from the others with empty space around it, so it can be cut out.\nFive flat round yellow cardboard circles seen from the front on a plain light-brown wooden table, same size, in two rows: THREE circles in the top row and TWO circles in the bottom row, the bottom two sitting centered between the top ones. There must be a clear empty gap below every circle (about half a circle high) for a button. Landscape, aspect about 23:20. They differ only a little: 1) lemon yellow, 2) golden yellow, 3) yellow with a slightly torn edge, 4) warm yellow, smooth edge, 5) pale yellow. Each circle has exactly three round brown spots (one on top, two below). No faces, no drawings, no holes."
  },
  {
   "ch": "Глава 3",
   "name": "gelbe_kreise_hinten",
   "att": "objekte_1_mond + objekte_3_basteln (стиль предметов)",
-  "note": "Звезда есть на двух кругах, нитка — только на одном: так загадка не решается с одного взгляда.",
-  "size": "5:1, белый фон",
-  "where": "Spur 16 — оборотная сторона",
-  "text": "Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain warm white background, no text, no letters, no numbers, no stars except where the description asks for one. Every item clearly separated from the others with empty space around it, so it can be cut out.\nThe BACKS of five flat round cardboard circles in a row, all white, same size and order as before: 1) a small blue flower painted near the edge; 2) a small blue star painted near the edge, nothing else; 3) completely plain white; 4) a small blue star near the edge AND a white thread neatly coiled and glued at the top edge; 5) a small blue heart painted near the edge."
+  "note": "Правильный круг — №4 (внизу слева): звезда + аккуратная спираль нитки + дырочка. Звезда есть на №1 и №4, нитка — на №2 (висит, узел) и №4 (свёрнута), дырочка — на №3, №4 и №5. У каждого круга есть хотя бы один верный признак.",
+  "size": "23:20, тот же формат, что и «vorne»",
+  "where": "Spur 16 — оборотная сторона (одновременно виден только один круг)",
+  "text": "Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain warm white background, no text, no letters, no numbers, no stars except where the description asks for one. Every item clearly separated from the others with empty space around it, so it can be cut out.\nThe BACKS of the same five flat round cardboard circles, same table, same positions and size as the front picture (three in the top row, two in the bottom row, gaps below each). Every back is white with a thin golden edge: 1) a small blue star painted near the lower edge, nothing else (no hole, no thread); 2) a white thread lying loose and knotted over the top edge, hanging down outside the circle, no star, no hole; 3) a small round punched hole near the top edge (the table shows through it) AND a small red heart painted near the lower edge; 4) a small blue star near the lower edge AND a small punched hole near the top edge AND a white thread neatly coiled into a flat spiral and glued down next to the hole (dry glue, no shine); 5) only a small round punched hole near the top edge, nothing else."
  },
  {
   "ch": "Глава 3",
@@ -205,6 +205,24 @@
   "size": "3:2",
   "where": "Spur 19 — ключевой момент 3: где висит Луна (по описанию из текста)",
   "text": "Use the attached images as the exact reference for characters, places and style. Indoors always the same classroom as in the attached classroom image: the NATURAL WOOD puppet theater (light wood, two posts with round knobs, the top board is ONE smooth round arch – not wavy) on the big table with the red tablecloth, the window with the caterpillar's plant on the LEFT. Children's picture-book illustration in exactly the same style, landscape 3:2. No text, no letters, no numbers, no stars anywhere. Mila has no backpack. The hand puppets are a fox, a bear and a king – never a mouse (the only mouse in the book is Oskar's small grey PAPER mouse). The moon is always a FULL ROUND flat cardboard disc (never a crescent): yellow on the front, white on the back.\nThe thick tree right outside the classroom window, seen from the window, LANDSCAPE 3:2. No bird, no nest, no moon, no paper. The tree has FIVE clearly different forks (places where a branch splits), well separated: 1) low, near the trunk, with a small wooden birdhouse; 2) left, with a swing rope tied around the branch; 3) right under the window sill, close to the glass, the branches here are thin and V-shaped; 4) high up near the top, with a few dry brown leaves; 5) far right, on a branch with a big round knot hole. Leaves are green and fresh, a calm sunny day."
+ },
+ {
+  "ch": "Глава 4",
+  "name": "objekte/kinder_hinten",
+  "att": "лист детей (kinder_figurenblatt)",
+  "note": "Три розовых детали: бантики (Мила), шнурки (Бен) и хвост из капюшона Оскара — только хвост настоящий.",
+  "size": "3:2",
+  "where": "Spur 20 — лупа: найти розовый хвост мыши среди розовых отвлекающих деталей",
+  "text": "Use the attached images as the exact reference for characters, places and style. Indoors always the same classroom as in the attached classroom image: the NATURAL WOOD puppet theater (light wood, two posts with round knobs, the top board is ONE smooth round arch – not wavy) on the big table with the red tablecloth, the window with the caterpillar's plant on the LEFT. Children's picture-book illustration in exactly the same style, landscape 3:2. No text, no letters, no numbers, no stars anywhere. Mila has no backpack. The hand puppets are a fox, a bear and a king – never a mouse (the only mouse in the book is Oskar's small grey PAPER mouse). The moon is always a FULL ROUND flat cardboard disc (never a crescent): yellow on the front, white on the back.\nThree children seen from BEHIND, standing in a row in front of a classroom wall, full body, friendly cartoon style, LANDSCAPE 3:2, a bit of space between them: a girl with two dark braids, each braid tied with a tiny PINK ribbon, lilac cardigan; a boy with blond hair, blue sweater, sneakers with thin PINK shoelaces; a boy with curly hair in a RED-AND-WHITE striped hooded sweater, and from his hood hangs a very thin, long PINK mouse tail. The pink details are small, the tail must be easy to miss without a magnifier."
+ },
+ {
+  "ch": "Глава 4",
+  "name": "objekte/raum_leer",
+  "att": "2 листа гусенички + лист детей (kinder_figurenblatt) + k1_s1 (комната)",
+  "note": "",
+  "size": "3:2",
+  "where": "Spur 21 — фон для «найди, что изменилось» (предметы кладу поверх программно)",
+  "text": "Use the attached images as the exact reference for characters, places and style. Indoors always the same classroom as in the attached classroom image: the NATURAL WOOD puppet theater (light wood, two posts with round knobs, the top board is ONE smooth round arch – not wavy) on the big table with the red tablecloth, the window with the caterpillar's plant on the LEFT. Children's picture-book illustration in exactly the same style, landscape 3:2. No text, no letters, no numbers, no stars anywhere. Mila has no backpack. The hand puppets are a fox, a bear and a king – never a mouse (the only mouse in the book is Oskar's small grey PAPER mouse). The moon is always a FULL ROUND flat cardboard disc (never a crescent): yellow on the front, white on the back.\nThe empty classroom group room, LANDSCAPE 3:2, seen straight on: a cream wall with a green blackboard on the left, a small window on the right, a wooden rail on the wall on the left, a wooden floor with planks. No furniture, no people, no objects."
  },
  {
   "ch": "Глава 4",
