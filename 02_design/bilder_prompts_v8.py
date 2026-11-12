@@ -142,7 +142,7 @@ The tree has FIVE clearly different forks (places where a branch splits), well s
 5) far right, on a branch with a big round knot hole.
 Leaves are green and fresh, a calm sunny day.""",
     head=HEAD, size="3:2", where="Spur 19 — ключевой момент 3: где висит Луна (по описанию из текста)",
-    note="Правильная развилка — №3 (под окном, тонкие ветки буквой V). Остальные — ловушки.")
+    note="Правильная развилка — №3 (под окном, тонкие ветки буквой V). Остальные — ловушки. В приложении зоны касания невидимые, в процентах ширины картинки (04_data/kapitel4_v8_raetsel.json, Spur 19, gabeln: x, y, r; Spur 24: ziele/zone): Gabel 1 (30, 72), 2 (14.4, 45), 3 (73.9, 40.8), 4 (45, 14.2), 5 (90, 65.8), Radius 11. Ошибочная подсказка в поле nicht (что висит на ветке: домик, качели, сухие листья, дупло). Новая картинка подходит без правки кода, если развилки лежат примерно там; иначе поправить числа.")
 add(C4, "objekte/kinder_hinten", "CH", """
 Three children seen from BEHIND, standing in a row in front of a classroom wall, full body, friendly cartoon style, LANDSCAPE 3:2, a bit of space between them:
 a girl with two dark braids, each braid tied with a tiny PINK ribbon, lilac cardigan;
