@@ -5,6 +5,7 @@
  *   3. Wischen auf dem Brett blättert nicht zurück ins Lesen
  *   4. „Von vorn beginnen“ fragt erst nach
  *   5. große Schrift auf kleinem Bildschirm: kein Blatt schneidet Text ab
+ *   6. Kapitel 2: Zwei Kisten (Ziehen, Tippen, falscher Platz), Mond umdrehen per Wischen, Suchbild (Tippen am Rand), Geheimschrift
  * Aufruf: npx vite preview --port 4173 &  →  node scripts/e2e-v8-finger.mjs
  */
 import { createRequire } from 'node:module';
@@ -96,7 +97,7 @@ const mitte = async (p, s) => { const r = await (await p.$(s)).boundingBox(); re
 {
   const { p } = await seite(320, 568, () => {});
   let abgeschnitten = 0, blaetter = 0;
-  for (let s = 1; s <= 6; s++) {
+  for (let s = 1; s <= 12; s++) {
     await p.evaluate((n) => { const v = window.__v8; Object.assign(v.stand, { view: 'spur', spur: n, i: 0, blatt: 0, fs: 26, intro: true }); document.documentElement.style.setProperty('--fs', '26px'); v.zeige(); }, s);
     await sleep(300);
     for (let k = 0; k < 30; k++) {
@@ -109,7 +110,57 @@ const mitte = async (p, s) => { const r = await (await p.$(s)).boundingBox(); re
       await sleep(120);
     }
   }
-  pruef(blaetter > 20 && abgeschnitten === 0, `große Schrift 320×568: ${blaetter} Blätter, ${abgeschnitten} zu hoch`);
+  pruef(blaetter > 40 && abgeschnitten === 0, `große Schrift 320×568: ${blaetter} Blätter, ${abgeschnitten} zu hoch`);
+}
+
+/* ---- 6: Kapitel 2 mit dem Finger ---- */
+{
+  const { p, zieh, tipp } = await seite(390, 844, () => {});
+  const zustand = async (spur, i) => { await p.evaluate(([n, k]) => { const v = window.__v8; Object.assign(v.stand, { view: 'spur', spur: n, i: k, blatt: 0, intro: true, fertig: [1, 2, 3, 4, 5, 6, ...Array.from({ length: n - 7 }, (_, j) => 7 + j)], weiter: 'spur' }); v.zeige(); }, [spur, i]); await sleep(700); };
+  const D = await p.evaluate(() => window.__v8.D);
+  // Zwei Kisten
+  await zustand(7, 1);
+  const z7 = D.spuren[6].raetsel;
+  const platz = (id) => `.so-ziel[data-z="${id}"]`;
+  const [fx, fy] = await mitte(p, '.so-pool [data-d="fuchs"]'), [kx, ky] = await mitte(p, platz('kiste'));
+  await zieh(fx, fy, kx, ky);
+  pruef(!!(await p.$(`${platz('kiste')} [data-d="fuchs"]`)), 'Zwei Kisten: Puppe mit dem Finger in die Kiste gezogen');
+  await tipp('.so-pool [data-d="papier"]'); await tipp(platz('tablett'));
+  pruef(!!(await p.$(`${platz('tablett')} [data-d="papier"]`)), 'Zwei Kisten: Tippen (Sache, dann Platz) legt den Papierstapel aufs Tablett');
+  await tipp('.so-pool [data-d="mond"]'); await tipp(platz('tablett'));
+  pruef(!!(await p.$('.so-pool [data-d="mond"]')), 'Zwei Kisten: Mond aufs Tablett bleibt liegen (falsch)');
+  const [mx, my] = await mitte(p, '.so-pool [data-d="mond"]'), [tx, ty] = await mitte(p, platz('kiste'));
+  await zieh(mx, my, tx, ty);
+  pruef(!!(await p.$(`${platz('kiste')} [data-d="mond"]`)), 'Zwei Kisten: Mond mit dem Finger in die grüne Kiste');
+  // Mond umdrehen per Wischen
+  await zustand(8, 1);
+  const quelle = () => p.$eval('.um-mond img', (e) => e.getAttribute('src'));
+  const q0 = await quelle();
+  const [ux, uy] = await mitte(p, '.um-mond');
+  await zieh(ux - 70, uy, ux + 70, uy); await sleep(300);
+  pruef((await quelle()) !== q0, 'Mond umdrehen: Wischen über den Mond dreht ihn');
+  await tipp('#fuss [data-a="legen"]'); await sleep(500);
+  const zb = await (await p.$('.um-zone')).boundingBox();
+  pruef(!!zb, 'Mond umdrehen: weiße Seite nach oben gelegt, jetzt kommt die Frage nach dem Kleber');
+  await p.touchscreen.tap(zb.x + zb.width * 0.9, zb.y + zb.height * 0.9); await sleep(600);
+  pruef(!!(await p.$('#fuss [data-a="weiter"]')), 'Mond umdrehen: Antippen am Rand der Kleber-Fläche löst');
+  // Suchbild: am Rand jedes Gegenstands tippen
+  await zustand(9, 1);
+  const z9 = D.spuren[8].raetsel, bb = await (await p.$('.sb-bild')).boundingBox();
+  for (const [i, x] of z9.dinge.entries()) {
+    await p.touchscreen.tap(bb.x + bb.width * (x.x + (i % 2 ? 1 : -1) * x.w * 0.42) / 100, bb.y + bb.height * (x.y + (i < 2 ? -1 : 1) * x.h * 0.42) / 100); await sleep(300);
+  }
+  await sleep(700);
+  pruef(!!(await p.$('#fuss [data-a="weiter"]')), 'Suchbild: alle vier Dinge mit dem Finger am Rand gefunden');
+  // Geheimschrift
+  await zustand(10, 1);
+  await tipp(`.sp-o[data-o="${z9 && D.spuren[9].raetsel.richtig}"]`); await sleep(1100);
+  pruef(!!(await p.$('#fuss [data-a="weiter"]')), 'Geheimschrift: richtige Lesung angetippt');
+  // Fehlerregel: zweimal falsch zeigt die Raupe
+  await zustand(10, 1);
+  const falsch = D.spuren[9].raetsel.lesungen.findIndex((_, i) => i !== D.spuren[9].raetsel.richtig);
+  await tipp(`.sp-o[data-o="${falsch}"]`); await tipp(`.sp-o[data-o="${falsch}"]`); await sleep(2000);
+  pruef(!!(await p.$('#fuss [data-a="weiter"]')), 'Geheimschrift: nach zwei Fehlern zeigt die Raupe, man kommt weiter');
 }
 await b.close();
 console.log(fehler.length ? `\n✗ ${fehler.length} Befunde` : '\n✓ Finger-Probe ohne Befunde');

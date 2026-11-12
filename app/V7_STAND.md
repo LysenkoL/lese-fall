@@ -38,7 +38,10 @@
 - Код: `app/src/v8/`, вход `app/v8.html`, данные `04_data/kapitel1_v8_raetsel.json` → `node scripts/build-v8.ts` → `04_data/buch1_v8.json`.
 - Проверка: `npm run test:v8` (телефон и компьютер, мышью) и `node scripts/e2e-v8-finger.mjs` (настоящие касания: буквы, свайп на доске, сброс с подтверждением, крупный шрифт 320×568).
 - Публикация: `npm run build && node scripts/artifact-v8.mjs`, затем Artifact с `app/dist/artifact_v8.html`.
-- Собрана Глава 1 (6 головоломок, доска, карточка дела). Главы 2–4 — после оценки владелицы.
+- Собрана Глава 1 (6 головоломок, доска, карточка дела). Главы 3–4 — после оценки владелицы.
+- Глава 2 (Spur 7–12, код: буква T на позиции 3 слова NEST): `01_text/LESE-FALL_BUCH_1_TEXT_v8_KAPITEL2.md`, `04_data/kapitel2_v8_raetsel.json`. `build-v8.ts` читает все `kapitelN_v8_raetsel.json` и `..._KAPITELN.md`; новая глава = два новых файла.
+- Новые виды: `sortieren` (два ящика), `umdrehen` (как лежала Луна и почему), `suchbild`, `spiegel` (зеркальная надпись), `versteckt` с `muster: "laub"`, `ausschluss` с картинками предметов.
+- Картинки, которых ещё нет, подменяет `app/src/v8/bilder.ts` (таблица `ERSATZ`, рисованные SVG в `app/src/v8/ersatz/`). Настоящая картинка: положить `assets/illustrationen/objekte/<имя>.webp` (затем `python3 scripts/freistellen.py`) или `assets/illustrationen/kinder/<имя>.webp`; для `mond_hinten_feucht` в данных Спур 8 поставить `kleber.zeichnen: false`.
 
 ## Ссылки
 

@@ -585,12 +585,13 @@ export function umdrehen(r: HTMLElement, d: Daten, fertig: () => void) {
   const kl = d.kleber;
   let seite: 'vorne' | 'hinten' = 'vorne', dreht = false, fehl = 0, phase: 'legen' | 'warum' | 'aus' = 'legen', liegt = false;
   const mal = () => {
-    zi.innerHTML = `${phase === 'warum' ? `<p class="um-frage">${d.frage2}</p>` : ''}<div class="um-tisch${liegt ? ' liegt' : ''}"><img class="um-tablett" src="${K.img(d.tablett)}" alt=""><div class="um-mond" style="aspect-ratio:${d.ratio}"><img src="${K.img(d[seite])}" alt="">${seite === 'hinten' && kl.zeichnen ? `<i class="um-kleber" style="left:${kl.x}%;top:${kl.y}%;width:${kl.w * 0.6}%;height:${kl.h * 0.8}%"></i>` : ''}${phase === 'warum' ? `<b class="um-zone" data-z="1" style="left:${kl.x}%;top:${kl.y}%;width:${kl.w}%;height:${kl.h}%"></b>` : ''}</div>${fleck ? '<i class="um-fleck"></i>' : ''}</div>${phase === 'legen' ? `<button class="kn zwei um-dreh" data-a="dreh"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0 1 14-5.300M20 12a8 8 0 0 1-14 5.300" fill="none" stroke="currentColor" stroke-width="2.400" stroke-linecap="round"/><path d="M18.500 3v4.500H14M5.500 21v-4.500H10" fill="none" stroke="currentColor" stroke-width="2.400" stroke-linecap="round" stroke-linejoin="round"/></svg><span>${K.UI.umdrehen}</span></button>` : ''}`;
+    zi.innerHTML = `${phase === 'warum' ? `<p class="um-frage">${d.frage2}</p>` : ''}<div class="um-tisch${liegt ? ' liegt' : ''}"><img class="um-tablett" src="${K.img(d.tablett)}" alt=""><div class="um-mond" style="aspect-ratio:${d.ratio}"><img src="${K.img(d[seite])}" alt="">${seite === 'hinten' && kl.zeichnen ? `<i class="um-kleber" style="left:${kl.x}%;top:${kl.y}%;width:${kl.w * 0.72}%;height:${kl.h * 0.46}%"></i>` : ''}${phase === 'warum' ? `<b class="um-zone" data-z="1" style="left:${kl.x}%;top:${kl.y}%;width:${kl.w}%;height:${kl.h}%"></b>` : ''}</div>${fleck ? '<i class="um-fleck"></i>' : ''}</div>${phase === 'legen' ? `<button class="kn zwei um-dreh" data-a="dreh"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0 1 14-5.300M20 12a8 8 0 0 1-14 5.300" fill="none" stroke="currentColor" stroke-width="2.400" stroke-linecap="round"/><path d="M18.500 3v4.500H14M5.500 21v-4.500H10" fill="none" stroke="currentColor" stroke-width="2.400" stroke-linecap="round" stroke-linejoin="round"/></svg><span>${K.UI.umdrehen}</span></button>` : ''}`;
   };
   let fleck = false;
   const drehe = (danach?: () => void) => {
     if (dreht) return;
     dreht = true;
+    if (phase === 'legen') sag(r, 'tipp', '');
     const m = $('.um-mond', zi);
     m.classList.add('dreh1');
     setTimeout(() => {

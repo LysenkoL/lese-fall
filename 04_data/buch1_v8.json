@@ -1335,7 +1335,7 @@
    "raetsel": {
     "art": "sortieren",
     "titel": "Zwei Kis|ten",
-    "text": "Al|les liegt dur|chei|nan|der. Fer|ti|ge Fi|gu|ren und The|a|ter|sa|chen kom|men in die grü|ne Kis|te. Pa|pier zum Bas|teln kommt auf das blau|e Tab|lett. Tip|pe ei|ne Sa|che an und dann ih|ren Platz. Du kannst sie auch hin|zie|hen.",
+    "text": "Fer|ti|ge Fi|gu|ren und The|a|ter|sa|chen kom|men in die grü|ne Kis|te. Pa|pier zum Bas|teln kommt auf das blau|e Tab|lett. Tip|pe ei|ne Sa|che und dann ih|ren Platz, o|der zieh sie hin.",
     "ziele": [
      {
       "id": "kiste",
@@ -1486,7 +1486,7 @@
    "raetsel": {
     "art": "umdrehen",
     "titel": "Wie lag der Mond?",
-    "text": "Ben hat den Mond aufs Tab|lett ge|legt. Der Kle|ber war noch nass. Dreh den Mond um und leg ihn so aufs Tab|lett, wie Ben es ge|tan hat.",
+    "text": "Ben hat den Mond aufs Tab|lett ge|legt. Der Kle|ber war noch nass. Dreh den Mond und leg ihn so hin, wie Ben es ge|tan hat.",
     "vorne": "objekte/mond_vorne",
     "hinten": "objekte/mond_hinten_feucht",
     "tablett": "objekte/tablett_leer",

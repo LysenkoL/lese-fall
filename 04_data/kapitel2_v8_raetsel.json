@@ -41,7 +41,7 @@
       "raetsel": {
         "art": "sortieren",
         "titel": "Zwei Kisten",
-        "text": "Alles liegt durcheinander. Fertige Figuren und Theatersachen kommen in die grüne Kiste. Papier zum Basteln kommt auf das blaue Tablett. Tippe eine Sache an und dann ihren Platz. Du kannst sie auch hinziehen.",
+        "text": "Fertige Figuren und Theatersachen kommen in die grüne Kiste. Papier zum Basteln kommt auf das blaue Tablett. Tippe eine Sache und dann ihren Platz, oder zieh sie hin.",
         "ziele": [
           { "id": "kiste", "bild": "objekte/kiste_gruen", "name": "Grüne Kiste", "unter": "fertige Sachen" },
           { "id": "tablett", "bild": "objekte/tablett_leer", "name": "Blaues Tablett", "unter": "Papier für alle" }
@@ -69,7 +69,7 @@
       "raetsel": {
         "art": "umdrehen",
         "titel": "Wie lag der Mond?",
-        "text": "Ben hat den Mond aufs Tablett gelegt. Der Kleber war noch nass. Dreh den Mond um und leg ihn so aufs Tablett, wie Ben es getan hat.",
+        "text": "Ben hat den Mond aufs Tablett gelegt. Der Kleber war noch nass. Dreh den Mond und leg ihn so hin, wie Ben es getan hat.",
         "vorne": "objekte/mond_vorne",
         "hinten": "objekte/mond_hinten_feucht",
         "tablett": "objekte/tablett_leer",

@@ -1,5 +1,5 @@
 /**
- * Durchlauf der Vorschau v8 (Kapitel 1, vom Titel bis „Fortsetzung folgt“) mit Bildern in 03_screens/v8/<name>/.
+ * Durchlauf der Vorschau v8 (Kapitel 1 und 2, vom Titel bis „Fortsetzung folgt“) mit Bildern in 03_screens/v8/<name>/.
  * Vorher: npm run build && npx vite preview --port 4173
  * Aufruf: node scripts/e2e-v8.mjs [breite höhe name]
  */
@@ -133,7 +133,7 @@ async function raetsel(spur, z) {
     await klick('#fuss [data-a="fertig"]'); await sleep(500);
   } else if (z.art === 'ausschluss') {
     for (const [i, h] of z.hinweise.entries()) {
-      if (i === 0) { await klick('.as-k[data-id="oskar"]'); await klick('#fuss [data-a="fertig"]'); await sleep(250); await S(n + '_falsch'); await sleep(700); }
+      if (i === 0) { await klick(`.as-k[data-id="${z.loesung}"]`); await klick('#fuss [data-a="fertig"]'); await sleep(250); await S(n + '_falsch'); await sleep(700); }
       for (const id of h.raus) await klick(`.as-k[data-id="${id}"]`);
       if (i === 0) await shot(n + '_gewaehlt');
       await klick('#fuss [data-a="fertig"]'); await sleep(1500); await S(`${n}_hinweis${i + 2}`);
@@ -145,6 +145,55 @@ async function raetsel(spur, z) {
       await klick(`.as-so[data-o="${z.schluss.optionen.findIndex((o) => !o.sicher)}"]`); await sleep(400); await S(n + '_schluss_verdacht');
       await klick(`.as-so[data-o="${z.schluss.optionen.findIndex((o) => o.sicher)}"]`); await sleep(500);
     }
+  } else if (z.art === 'sortieren') {
+    const platz = (id) => `.so-ziel[data-z="${id}"]`;
+    const mond = z.dinge.find((x) => x.id === 'mond'), falsch = z.ziele.find((q) => q.id !== mond.ziel).id;
+    // 1. Mond fälschlich aufs Tablett: wackelt, Raupe sagt „nochmal“
+    await klick(`.so-pool [data-d="mond"]`); await shot(n + '_gewaehlt'); await klick(platz(falsch)); await sleep(300); await S(n + '_falsch');
+    if ((await p.$$('.so-pool .so-ding')).length !== z.dinge.length) fehler.push('Zwei Kisten: falsch gelegte Sache ist trotzdem verschwunden');
+    // 2. Mond richtig (Tippen)
+    await klick(`.so-pool [data-d="mond"]`); await klick(platz(mond.ziel)); await sleep(300);
+    // 3. Fuchs mit der Maus in die Kiste ziehen
+    const f = z.dinge.find((x) => x.id === 'fuchs');
+    const a = await (await p.$('.so-pool [data-d="fuchs"]')).boundingBox(), t = await (await p.$(platz(f.ziel))).boundingBox();
+    await p.mouse.move(a.x + a.width / 2, a.y + a.height / 2); await p.mouse.down();
+    await p.mouse.move(a.x + a.width / 2 + 10, a.y + a.height / 2 - 20, { steps: 3 });
+    await p.mouse.move(t.x + t.width / 2, t.y + t.height / 2, { steps: 8 }); await shot(n + '_ziehen'); await p.mouse.up(); await sleep(300);
+    if (!(await p.$(`${platz(f.ziel)} [data-d="fuchs"]`))) fehler.push('Zwei Kisten: Ziehen legt die Puppe nicht in die Kiste');
+    // 4. Papierstapel zweimal falsch: die Raupe legt ihn
+    const pa = z.dinge.find((x) => x.id === 'papier'), fz = z.ziele.find((q) => q.id !== pa.ziel).id;
+    for (let k = 0; k < 2; k++) { await klick(`.so-pool [data-d="papier"]`); await klick(platz(fz)); await sleep(250); }
+    await shot(n + '_hilfe'); await sleep(1900);
+    if (!(await p.$(`${platz(pa.ziel)} [data-d="papier"]`))) fehler.push('Zwei Kisten: nach 2 Fehlern legt die Raupe den Papierstapel nicht');
+    await shot(n + '_nach_hilfe');
+    await loese(); await sleep(500);
+  } else if (z.art === 'umdrehen') {
+    await sleep(300);
+    // 1. gelbe Seite oben legen: klebt fest, danach nochmal
+    await klick('#fuss [data-a="legen"]'); await sleep(300); await S(n + '_klebt'); await sleep(1700);
+    // 2. umdrehen, richtig legen
+    await klick('[data-a="dreh"]'); await sleep(700); await S(n + '_umgedreht');
+    await klick('#fuss [data-a="legen"]'); await sleep(500); await S(n + '_warum');
+    // 3. falsche Stelle, dann der Kleber
+    const tb = await (await p.$('.um-tablett')).boundingBox();
+    await p.mouse.click(tb.x + 12, tb.y + tb.height - 8); await sleep(300); await shot(n + '_warum_falsch');
+    const zb = await (await p.$('.um-zone')).boundingBox();
+    await p.mouse.click(zb.x + zb.width / 2, zb.y + zb.height / 2); await sleep(500);
+  } else if (z.art === 'suchbild') {
+    const b = await (await p.$('.sb-bild')).boundingBox();
+    await p.mouse.click(b.x + b.width * 0.1, b.y + b.height * 0.85); await sleep(250); await shot(n + '_daneben');
+    for (const [i, x] of z.dinge.entries()) {
+      // am Rand der Fläche tippen: sie muss den ganzen Gegenstand decken
+      const px = x.x + (i % 2 ? 1 : -1) * x.w * 0.42, py = x.y + (i < 2 ? -1 : 1) * x.h * 0.42;
+      await p.mouse.click(b.x + b.width * px / 100, b.y + b.height * py / 100); await sleep(350);
+      if (i === 1) await S(n + '_zwei');
+    }
+    await sleep(700);
+  } else if (z.art === 'spiegel') {
+    await S(n + '_zettel');
+    const falsch = z.lesungen.findIndex((_, i) => i !== z.richtig);
+    await klick(`.sp-o[data-o="${falsch}"]`); await sleep(300); await shot(n + '_falsch');
+    await klick(`.sp-o[data-o="${z.richtig}"]`); await sleep(1000);
   }
   await S(n + '_geloest');
   await weiter();
@@ -153,32 +202,55 @@ async function raetsel(spur, z) {
 await S('titel');
 await klick('[data-a="start"]');
 for (let k = 1; await p.$('#fuss [data-a="w"]'); k++) { await S(`karte_${k}`); await klick('#fuss [data-a="w"]'); }
-for (let spur = 1; spur <= 6; spur++) {
-  const st = await spurSchritt(spur);
-  for (const [k, s] of st.entries()) {
-    const ist = await ev(() => ({ spur: window.__v8.stand.spur, i: window.__v8.stand.i }));
-    if (ist.spur !== spur || ist.i !== k) throw new Error(`Ablauf verrutscht: erwartet Spur ${spur} Schritt ${k}, ist ${JSON.stringify(ist)}`);
-    if (s === 'lesen') await lesen(spur);
-    else if (s === 'raetsel') await raetsel(spur, D.spuren[spur - 1].raetsel);
-    else if (s === 'brett') {
-      await S(`s${spur}_brett_staub`);
-      if (await p.$('canvas.staub')) { await p.mouse.move(W / 2, 300); await loese(); await sleep(900); } // Staub nur bei Spur 2
-      await S(`s${spur}_brett`);
-      if (spur === 1) { await klick('.brett .codez[data-a="code"]'); await S('s1_brett_tresor'); await klick('.tresorinfo [data-a="zu"]'); }
-      if (await p.$('.zettel.wackelt')) { await p.click('.zettel.wackelt', { force: true }); await sleep(400); await shot(`s${spur}_brett_geklaert`); await sleep(1300); }
-      await weiter();
-    } else if (s === 'tippFrage') {
-      await S(`s${spur}_tippfrage`);
-      await klick('.opt[data-o="a"]'); await shot(`s${spur}_tippfrage_gewaehlt`); await weiter();
-    } else if (s === 'tippAufl') { await S(`s${spur}_tippaufl`); await weiter(); }
-    else { await S(`s${spur}_haken`); await weiter(); }
+const KAPITEL = [...new Set(D.spuren.map((s) => s.kap))];
+for (const kap of KAPITEL) {
+  if (kap > 1) { // Ausblick → nächstes Kapitel → Kapitelkarte
+    await klick('#fuss [data-a="naechstes"]');
+    for (let k = 1; await p.$('#fuss [data-a="w"]'); k++) { await S(`kap${kap}_karte_${k}`); await klick('#fuss [data-a="w"]'); }
   }
+  for (const sp of D.spuren.filter((s) => s.kap === kap)) {
+    const spur = sp.nr;
+    const st = await spurSchritt(spur);
+    for (const [k, s] of st.entries()) {
+      const ist = await ev(() => ({ spur: window.__v8.stand.spur, i: window.__v8.stand.i }));
+      if (ist.spur !== spur || ist.i !== k) throw new Error(`Ablauf verrutscht: erwartet Spur ${spur} Schritt ${k}, ist ${JSON.stringify(ist)}`);
+      if (s === 'lesen') await lesen(spur);
+      else if (s === 'raetsel') await raetsel(spur, sp.raetsel);
+      else if (s === 'brett') {
+        await S(`s${spur}_brett_staub`);
+        if (await p.$('canvas.staub')) { await p.mouse.move(W / 2, 300); await loese(); await sleep(900); } // Staub: eine Karte je Kapitel
+        await S(`s${spur}_brett`);
+        const ersteSpur = sp.nr === D.spuren.find((q) => q.kap === kap).nr;
+        if (ersteSpur) { // Code: alle bisher verdienten Buchstaben stehen schon drin
+          await klick('.brett .codez[data-a="code"]'); await S(`s${spur}_brett_tresor`);
+          const buch = await ev(() => [...document.querySelectorAll('.tresorinfo .wort i')].map((i) => i.textContent.trim()).join(''));
+          const soll = D.kapitel.filter((q) => q.nr < kap).map((q) => q.code.buchstabe).join('');
+          if (buch.replace(/\s/g, '') !== soll) fehler.push(`Spur ${spur}: Code zeigt „${buch}“, erwartet „${soll}“`);
+          await klick('.tresorinfo [data-a="zu"]');
+        }
+        // Brett nur mit Karten dieses Kapitels, höchstens 6 Karten und 4 offene Fragen
+        const br = await ev(() => ({ karten: document.querySelectorAll('.brett .bkarte').length, voll: document.querySelectorAll('.brett .bkarte[data-k]').length, fragen: document.querySelectorAll('.brett .zettel').length, nrs: [...document.querySelectorAll('.brett .bkarte[data-k]')].map((e) => +e.dataset.k) }));
+        if (br.karten > 6 || br.fragen > 4) fehler.push(`Spur ${spur}: Brett hat ${br.karten} Karten, ${br.fragen} Fragen`);
+        const eigene = D.spuren.filter((q) => q.kap === kap).map((q) => q.nr);
+        if (br.nrs.some((x) => !eigene.includes(x))) fehler.push(`Spur ${spur}: Brett zeigt Karten fremder Kapitel: ${br.nrs}`);
+        if (await p.$('.zettel.wackelt')) { await p.click('.zettel.wackelt', { force: true }); await sleep(400); await shot(`s${spur}_brett_geklaert`); await sleep(1300); }
+        await weiter();
+      } else if (s === 'tippFrage') {
+        await S(`s${spur}_tippfrage`);
+        await klick('.opt[data-o="a"]'); await shot(`s${spur}_tippfrage_gewaehlt`); await weiter();
+      } else if (s === 'tippAufl') { await S(`s${spur}_tippaufl`); await weiter(); }
+      else { await S(`s${spur}_haken`); await weiter(); }
+    }
+  }
+  await S(`k${kap}_fallkarte`);
+  await klick('#fuss [data-a="stempeln"]'); await sleep(1200); await S(`k${kap}_fallkarte_gestempelt`);
+  await loese(); await sleep(900); await S(`k${kap}_fallkarte_code`);
+  const code = await ev(() => [...document.querySelectorAll('.codez .wort i')].map((i) => i.textContent.trim()).join(''));
+  const sollK = D.kapitel.filter((q) => q.nr <= kap).map((q) => q.code.buchstabe).join('');
+  if (code.replace(/\s/g, '') !== sollK) fehler.push(`Fallkarte ${kap}: Code zeigt „${code}“, erwartet „${sollK}“`);
+  await weiter();
+  await S(`k${kap}_ausblick`);
 }
-await S('fallkarte');
-await klick('#fuss [data-a="stempeln"]'); await sleep(1200); await S('fallkarte_gestempelt');
-await loese(); await sleep(900); await S('fallkarte_code');
-await weiter();
-await S('ausblick');
 // Kopfzeile, Brett, Schrift (nach Neustart bis Spur 2)
 await ev(() => localStorage.setItem('lesefall.v8', JSON.stringify({ spur: 3, i: 0, fertig: [1, 2], weiter: 'spur', intro: true, geklaert: [] })));
 await p.reload(); await sleep(900);
@@ -187,4 +259,4 @@ await klick('#bBrett'); await S('brett_ueberlagerung'); await klick('.schl [data
 await klick('#bAa'); await S('schrift'); await klick('.schl [data-a="zu"]');
 await b.close();
 if (fehler.length) { console.error('✗', fehler.length, 'Befunde:\n' + [...new Set(fehler)].join('\n')); process.exit(1); }
-console.log(`✓ v8 ${NAME} ${W}×${H}: Kapitel 1 durchgespielt, ${nr} Bilder`);
+console.log(`✓ v8 ${NAME} ${W}×${H}: Kapitel ${KAPITEL.join(' und ')} durchgespielt, ${nr} Bilder`);
