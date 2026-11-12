@@ -596,3 +596,43 @@ em.neu .s-b, em.neu .s-r { color: inherit; }
 .ged::after { width: 8px; height: 8px; left: -20px; bottom: -4px; }
 .ged img { width: 40px; height: 62px; margin-top: 0; filter: drop-shadow(0 2px 3px rgba(0, 0, 0, .12)); }
 .forts .s-b, .forts .s-r { color: inherit; }
+
+
+/* ===================== Auffrischung (13.11.2026) ===================== */
+/* Hintergrund: ruhiger Nachthimmel statt gelblichem Lampenfleck; auf dem Rechner ohne sichtbare Spalte */
+html, body { background: linear-gradient(#22335F, var(--nacht-1) 70%) fixed; }
+#app[data-m="zug"], #app[data-m="haken"], #app[data-m="titel"] { background: linear-gradient(#22335F, var(--nacht-1) 70%); }
+#app[data-m="zug"]::before, #app[data-m="haken"]::before, #app[data-m="titel"]::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .75;
+  background-image: radial-gradient(1.2px 1.2px at 12% 18%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 31% 9%, #fff 50%, transparent 51%),
+    radial-gradient(1.6px 1.6px at 47% 24%, #FFE9A6 50%, transparent 51%), radial-gradient(1px 1px at 63% 12%, #fff 50%, transparent 51%),
+    radial-gradient(1.3px 1.3px at 78% 21%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 91% 7%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 22% 33%, #fff 50%, transparent 51%), radial-gradient(1.4px 1.4px at 86% 36%, #FFE9A6 50%, transparent 51%),
+    radial-gradient(1px 1px at 55% 40%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 6% 44%, #fff 50%, transparent 51%);
+  -webkit-mask-image: linear-gradient(#000 0, transparent 62%); mask-image: linear-gradient(#000 0, transparent 62%);
+}
+.lampe { background: radial-gradient(ellipse at 50% 0, rgba(160, 190, 255, .2), rgba(160, 190, 255, .06) 40%, transparent 66%); }
+
+/* Suchbild: gefundene Dinge bekommen einen kleinen Haken statt großer Rahmen, die sich überlappen */
+.sb-ring { width: 30px !important; height: 30px !important; border-radius: 50%; border: 3px solid #fff; background: var(--senf); box-shadow: 0 3px 8px rgba(0, 0, 0, .35); }
+.sb-ring::after { content: ''; position: absolute; left: 50%; top: 46%; width: 7px; height: 12px; border: solid var(--senf-tinte); border-width: 0 3px 3px 0; transform: translate(-50%, -50%) rotate(45deg); }
+
+/* Ermittlungsbrett: Holzrahmen, gleich große Fotos, größere Schrift, rollt wenn nötig */
+.brett { overflow-y: auto; box-shadow: inset 0 0 0 7px #8A5A2B, inset 0 0 0 9px #6E4520, inset 0 10px 26px rgba(60, 30, 0, .35); padding: 16px 16px 14px; gap: 9px; }
+.brett h3 { font-size: 14px; }
+.brett .ak .tab { font-size: 13px; padding: 5px 10px; }
+.bgrid { gap: 10px; }
+.bkarte { padding: 6px 6px 8px; border-radius: 5px; box-shadow: 0 2px 0 rgba(0, 0, 0, .08), 0 8px 16px rgba(60, 30, 0, .32); transition: transform .15s; }
+.bkarte:not(.leer):hover { transform: rotate(0) scale(1.03); }
+.bkarte.leer { border: 2px dashed rgba(255, 243, 220, .45); background: rgba(90, 50, 10, .08); min-height: 0; aspect-ratio: 1 / 1.05; }
+.bk-bild { aspect-ratio: 4 / 3; border-radius: 3px; background: #F2EADA; }
+.bk-bild > img { padding: 5%; }
+.ausschn.voll { width: 100%; height: 100%; background-repeat: no-repeat; }
+.bkarte p { font-size: 12.5px; line-height: 1.28; }
+.zettel.fr { font-size: 14px; padding: 9px 11px; min-height: 46px; }
+img.tresor-mini { width: 40px; height: 40px; border-radius: 10px; object-fit: cover; box-shadow: 0 0 0 2px rgba(244, 194, 67, .7); }
+.codez > span { font-size: 12.5px; }
+
+/* Geklärte Frage: Schildchen lädt zum Antippen ein */
+.zettel.fr .klaer { font-style: normal; font-size: 12px; font-weight: 800; background: var(--senf); color: var(--senf-tinte); border-radius: 999px; padding: 2px 10px; animation: puls 1s ease-in-out infinite; }
+.zettel.fr .klaer .s-b, .zettel.fr .klaer .s-r { color: inherit; }

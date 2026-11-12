@@ -1567,3 +1567,13 @@ hopp
 fasst
 # neu für v8 (ungeprüft)
 mit|ge|nom|men
+# neu für v8 (ungeprüft)
+zwei|mal
+zwei|ten
+haa|re
+zäh|le
+schaust
+auf|räu|men
+be|cher
+auf|ge|ho|ben
+gäs|ten

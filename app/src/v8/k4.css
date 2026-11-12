@@ -135,3 +135,22 @@
 /* Tresor-Bild auf der Vorgeschichte-Karte und im Brett */
 .ib.tresor img { display: block; width: 210px; height: 210px; border-radius: 22px; box-shadow: 0 0 26px rgba(244, 194, 67, .55); }
 .tresorinfo > img.tresor-bild { width: 130px; height: 130px; border-radius: 16px; box-shadow: 0 0 18px rgba(244, 194, 67, .45); }
+
+
+/* Vögel beim Ausschluss: nicht stauchen */
+.as-k .as-crop { max-height: none; width: min(100%, 120px); margin: 0 auto; }
+/* Sortierkarten mit Tätigkeiten: Wörter nicht mitten im Wort umbrechen */
+.so-ding span, .so-ding.klein span { overflow-wrap: normal; word-break: normal; hyphens: none; }
+.so-ding.klein { width: 92px; }
+.so-ding.klein span { font-size: 11px; }
+
+
+/* Nest: Blick aus der Nähe nach dem Wischen */
+.nt-zoom { position: relative; width: 100%; height: 100%; transition: transform 1s cubic-bezier(.3, 0, .2, 1); }
+.nt-zoom.nah { transform: scale(2.7); }
+.nt-zoom > img { display: block; width: 100%; height: 100%; object-fit: fill; pointer-events: none; }
+.nt-zoom .ring { border-width: 2px; }
+.nt-zoom .ring.miss { width: 5%; height: auto; aspect-ratio: 1; margin: 0; transform: translate(-50%, -50%); border-width: 1.5px; }
+
+/* Offener Tresor (gespiegelt, Tür links): Bild sitzt in der goldenen Öffnung rechts */
+.tv-innen { left: 36.5%; top: 26%; width: 43.5%; height: 49%; }

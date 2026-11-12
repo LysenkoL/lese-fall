@@ -831,7 +831,6 @@ export function lupe(r: HTMLElement, d: Daten, fertig: () => void) {
   const zi = $('.zi', r);
   const url = K.img(d.bild);
   zi.innerHTML = `<div class="lp-box" style="aspect-ratio:${d.ratio}"><img class="lp-bild" src="${url}" alt="" draggable="false"><div class="lp-glas" style="background-image:url(${url})"></div></div>`;
-  unten('');
   const box = $('.lp-box', zi), glas = $('.lp-glas', zi);
   const zoom = d.zoom ?? 2.8;
   let aus = false, fehl = 0, px = 0.3, py = 0.3, x0 = 0, y0 = 0, weit = false, unten0 = false;
@@ -851,7 +850,7 @@ export function lupe(r: HTMLElement, d: Daten, fertig: () => void) {
   const trifft = () => { const rc = box.getBoundingClientRect(); return Math.hypot(((px * 100 - d.ziel.x) / 100) * rc.width, ((py * 100 - d.ziel.y) / 100) * rc.height) <= (d.ziel.r / 100) * rc.width; };
   const finde = (mitHilfe: boolean) => {
     if (aus) return;
-    aus = true; hook.loese = null;
+    aus = true; hook.loese = null; unten('');
     setze(d.ziel.x / 100, d.ziel.y / 100);
     glas.classList.add('treffer');
     K.summ(30);
@@ -867,27 +866,32 @@ export function lupe(r: HTMLElement, d: Daten, fertig: () => void) {
     const hoch = e.pointerType === 'mouse' ? 0 : 62; // am Finger: Lupe über dem Finger, damit man sie sieht
     setze((e.clientX - rc.left) / rc.width, (e.clientY - hoch - rc.top) / rc.height);
   };
-  box.addEventListener('pointerdown', (e) => { if (aus) return; unten0 = true; weit = false; x0 = e.clientX; y0 = e.clientY; box.setPointerCapture(e.pointerId); pos(e); ablenker(); glas.classList.add('an'); });
+  box.addEventListener('pointerdown', (e) => { if (aus) return; unten0 = true; weit = false; x0 = e.clientX; y0 = e.clientY; box.setPointerCapture(e.pointerId); pos(e); glas.classList.add('an'); });
   box.addEventListener('pointermove', (e) => {
     if (aus || (!unten0 && e.pointerType !== 'mouse')) return;
     if (Math.hypot(e.clientX - x0, e.clientY - y0) > 10) weit = true;
     pos(e);
-    ablenker();
-    if (trifft()) finde(false);
   });
   const los = (e: PointerEvent) => {
     if (!unten0) return;
     unten0 = false; glas.classList.remove('an');
-    if (aus || e.type !== 'pointerup' || weit) return;
+  };
+  /** Das Kind entscheidet selbst: Knopf „Hier! Das ist es." prüft die Stelle unter der Lupe. */
+  const pruefe = () => {
+    if (aus) return;
     if (trifft()) return finde(false);
-    // Nur Tippen ohne Wischen zählt als Fehlversuch
+    const n0 = gezeigt.size;
+    ablenker();
+    if (gezeigt.size > n0) return; // Ablenker: die Raupe erklärt, zählt nicht als Fehler
+    wackel(glas);
     if (++fehl === 1) return sag(r, 'tipp', K.UI.nochmal + ' ' + d.tipp);
     sag(r, 'tipp', K.UI.hilfe);
     setTimeout(() => zi.isConnected && finde(true), 500);
   };
   box.addEventListener('pointerup', los); box.addEventListener('pointercancel', los);
   hook.loese = () => finde(false);
-  requestAnimationFrame(() => { setze(0.3, 0.32); sag(r, 'tipp', d.start); });
+  unten(knopf('hier', K.UI.lupeHier), () => pruefe());
+  requestAnimationFrame(() => { setze(0.3, 0.32); sag(r, 'tipp', d.start + ' ' + K.UI.lupeDann); });
 }
 
 /* ============================ 6.3 Wessen Schatten? (schatten) ============================ */
@@ -1108,7 +1112,9 @@ export function plakat(r: HTMLElement, d: Daten, fertig: () => void) {
   const cols: number = d.spalten, rows: number = d.zeilen, N = cols * rows;
   const url = K.img(d.bild);
   const plaetze: (number | null)[] = Array.from({ length: N }, () => null);
-  const ordnung = K.mischen(Array.from({ length: N }, (_, i) => String(i))).map(Number);
+  // gut gemischt: kein Stück liegt im Vorrat an der Stelle, an die es gehört
+  let ordnung: number[] = [];
+  do { ordnung = Array.from({ length: N }, (_, i) => i).map((v) => [Math.random(), v] as [number, number]).sort((a, b) => a[0] - b[0]).map((x) => x[1]); } while (ordnung.some((v, i) => v === i));
   let sel: number | null = null, fehl = 0, sperre = false;
   const stueck = (i: number, kl = '') => `<div class="pk-st${kl}${sel === i ? ' sel' : ''}" data-s="${i}" style="background-image:url(${url});background-size:${cols * 100}% ${rows * 100}%;background-position:${cols > 1 ? ((i % cols) / (cols - 1)) * 100 : 0}% ${rows > 1 ? (Math.floor(i / cols) / (rows - 1)) * 100 : 0}%"></div>`;
   const mal = (fest = false) => {
@@ -1361,7 +1367,7 @@ export function faden(r: HTMLElement, d: Daten, fertig: () => void) {
 /* ============================ 7.3 Was blitzt da? (nest) ============================ */
 export function nest(r: HTMLElement, d: Daten, fertig: () => void) {
   const zi = $('.zi', r);
-  zi.innerHTML = `<p class="nt-frage"></p><div class="nt-bild" style="aspect-ratio:${d.ratio}"><img src="${K.img(d.bild)}" alt="" draggable="false"></div>`;
+  zi.innerHTML = `<p class="nt-frage"></p><div class="nt-bild" style="aspect-ratio:${d.ratio}"><div class="nt-zoom" style="transform-origin:${d.zone.x}% ${d.zone.y}%"><img src="${K.img(d.bild)}" alt="" draggable="false"></div></div>`;
   unten('');
   const box = $('.nt-bild', zi);
   sag(r, 'tipp', d.start);
@@ -1369,7 +1375,8 @@ export function nest(r: HTMLElement, d: Daten, fertig: () => void) {
   let fehl = 0, zu = false;
   const frage = () => { $('.nt-frage', zi).innerHTML = zu ? '' : `${d.frage} <b class="nt-z">${gef.size} / ${Z.length}</b>`; };
   /** Ringe erscheinen erst, wenn etwas angetippt und gefunden wurde */
-  const ring = (z: any, kl: string) => box.insertAdjacentHTML('beforeend', `<i class="ring ${kl}" style="left:${z.x}%;top:${z.y}%;width:${z.r * 1.5}%;height:auto;aspect-ratio:1;margin:0;transform:translate(-50%,-50%)"></i>`);
+  const nah = $('.nt-zoom', zi);
+  const ring = (z: any, kl: string) => nah.insertAdjacentHTML('beforeend', `<i class="ring ${kl}" style="left:${z.x}%;top:${z.y}%;width:${z.r * 1.1}%;height:auto;aspect-ratio:1;margin:0;transform:translate(-50%,-50%)"></i>`);
   const fund = (z: any, hilfe: boolean) => {
     gef.add(z.id); fehl = 0;
     ring(z, hilfe ? 'da blink' : 'da');
@@ -1384,14 +1391,15 @@ export function nest(r: HTMLElement, d: Daten, fertig: () => void) {
   const suche = () => {
     hook.loese = () => { Z.filter((z) => !gef.has(z.id)).forEach((z) => gef.add(z.id)); zu = true; Z.forEach((z) => ring(z, 'da')); frage(); ende(r, d, fertig); };
     frage();
+    nah.classList.add('nah');
     box.onclick = (e) => {
       if (zu) return;
-      const rc = box.getBoundingClientRect();
+      const rc = nah.getBoundingClientRect();
       const px = e.clientX - rc.left, py = e.clientY - rc.top;
       const dist = (q: any) => Math.hypot(px - q.x / 100 * rc.width, py - q.y / 100 * rc.height) / ((q.r / 100) * rc.width * 1.3);
       const z = Z.filter((q) => !gef.has(q.id) && dist(q) <= 1).sort((a, b) => dist(a) - dist(b))[0];
       if (z) return fund(z, false);
-      box.insertAdjacentHTML('beforeend', `<i class="ring miss" style="left:${px / rc.width * 100}%;top:${py / rc.height * 100}%"></i>`);
+      nah.insertAdjacentHTML('beforeend', `<i class="ring miss" style="left:${px / rc.width * 100}%;top:${py / rc.height * 100}%"></i>`);
       setTimeout(() => box.querySelector('.ring.miss')?.remove(), 800);
       fehl++;
       if (fehl === 3) sag(r, 'tipp', d.tipp);

@@ -9,8 +9,8 @@ ROOT = os.path.join(os.path.dirname(__file__), '..', '..')
 SRC = os.path.join(ROOT, 'assets/illustrationen/objekte')
 DST = os.path.join(ROOT, 'app/src/gen/objekte')
 os.makedirs(DST, exist_ok=True)
-OHNE = {'plakat.webp', 'gelbe_kreise_vorne.webp', 'gelbe_kreise_hinten.webp', 'kinder_hinten.webp', 'raum_leer.webp'}  # ganze Bilder mit eigenem Papiergrund: nicht freistellen
-JOBS = [(f, os.path.join(DST, os.path.basename(f))) for f in sorted(glob.glob(os.path.join(SRC, '*.webp'))) if os.path.basename(f) not in OHNE]
+OHNE = {'vogelschatten.webp', 'plakat.webp', 'gelbe_kreise_vorne.webp', 'gelbe_kreise_hinten.webp', 'kinder_hinten.webp', 'raum_leer.webp'}  # ganze Bilder mit eigenem Papiergrund: nicht freistellen
+JOBS = [(f, os.path.join(DST, os.path.basename(f))) for f in sorted(glob.glob(os.path.join(SRC, '*.webp'))) if os.path.basename(f) not in OHNE and not os.path.basename(f).startswith('u15_')]
 # Figuren, die im Spiel als Ding gelegt werden (z. B. Spur 2: die Lese-Raupe unter das Blatt)
 FREI = os.path.join(ROOT, 'app/src/gen/frei')
 os.makedirs(FREI, exist_ok=True)
@@ -62,3 +62,29 @@ for f, ziel in JOBS:
     out.putalpha(mask)
     out.save(ziel, 'WEBP', quality=88, method=6)
     print('✓', os.path.basename(f))
+
+
+# v8: Die fünf Vögel groß und unverzerrt in fünf quadratische Felder packen (für Schatten- und Ausschluss-Rätsel)
+vp = os.path.join(DST, 'voegel.webp')
+if os.path.exists(vp):
+    blatt = Image.open(vp).convert('RGBA')
+    n, F = 5, 300
+    sw = blatt.width // n
+    neu = Image.new('RGBA', (n * F, F), (0, 0, 0, 0))
+    for i in range(n):
+        st = blatt.crop((i * sw, 0, (i + 1) * sw, blatt.height))
+        bb = st.getchannel('A').point(lambda a: 255 if a > 40 else 0).getbbox()
+        st = st.crop(bb)
+        st.thumbnail((F - 24, F - 24))
+        neu.alpha_composite(st, (i * F + (F - st.width) // 2, (F - st.height) // 2))
+    neu.save(vp, 'WEBP', quality=90, method=6)
+    # Schatten der Elster (Feld 1) an der hellen Wand: Bild für die Brettkarte
+    el = neu.crop((0, 0, F, F))
+    el.save(os.path.join(DST, 'elster.webp'), 'WEBP', quality=90, method=6)
+    sch = Image.new('RGBA', (F, F), (20, 18, 16, 255))
+    sch.putalpha(el.getchannel('A').point(lambda a: int(a * .68)))
+    sch = sch.transpose(Image.FLIP_LEFT_RIGHT).filter(ImageFilter.GaussianBlur(2.2))
+    wand = Image.new('RGBA', (400, 300), (243, 228, 190, 255))
+    wand.alpha_composite(sch.resize((270, 270)), (65, 15))
+    wand.convert('RGB').save(os.path.join(ROOT, 'assets/illustrationen/objekte/vogelschatten.webp'), 'WEBP', quality=90)
+    print('✓ Vögel gepackt, Schattenbild')

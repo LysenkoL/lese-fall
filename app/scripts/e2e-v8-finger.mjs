@@ -176,13 +176,15 @@ const mitte = async (p, s) => { const r = await (await p.$(s)).boundingBox(); re
   let bx = await (await p.$('.lp-box')).boundingBox();
   await zieh(bx.x + bx.width * 0.2, bx.y + bx.height * 0.3 + 62, bx.x + bx.width * z13.ziel.x / 100, bx.y + bx.height * z13.ziel.y / 100 + 62);
   await sleep(500);
-  pruef(!!(await weiterDa()), 'Lupe: mit dem Finger über den Faden gefahren (Lupe über dem Finger) löst');
+  pruef(!(await weiterDa()), 'Lupe: nur darüberfahren löst nicht von selbst');
+  await p.tap('#fuss [data-a="hier"]'); await sleep(600);
+  pruef(!!(await weiterDa()), 'Lupe: Faden unter der Lupe + Knopf löst');
   // Lupe: zweimal daneben tippen, dann zeigt die Raupe
   await zustand(13, 1);
   bx = await (await p.$('.lp-box')).boundingBox();
-  await p.touchscreen.tap(bx.x + bx.width * 0.15, bx.y + bx.height * 0.2); await sleep(300);
+  await p.touchscreen.tap(bx.x + bx.width * 0.15, bx.y + bx.height * 0.2 + 62); await sleep(200); await p.tap('#fuss [data-a="hier"]'); await sleep(300);
   pruef(!(await weiterDa()), 'Lupe: ein Fehltipp löst noch nicht');
-  await p.touchscreen.tap(bx.x + bx.width * 0.2, bx.y + bx.height * 0.15); await sleep(1100);
+  await p.tap('#fuss [data-a="hier"]'); await sleep(1100);
   pruef(!!(await weiterDa()), 'Lupe: nach zwei Fehltipps zeigt die Raupe den Faden');
   // Schatten: zweimal falsch, dann richtig
   const z14 = D.spuren[13].raetsel;
@@ -289,7 +291,7 @@ const mitte = async (p, s) => { const r = await (await p.$(s)).boundingBox(); re
   for (let k = 0; k < 5; k++) await zieh(nb.x + 20, nb.y + 30 + k * nb.height / 6, nb.x + nb.width - 20, nb.y + 30 + k * nb.height / 6);
   await sleep(900);
   pruef(!(await p.$('canvas.staub.laub')) || !!(await p.$('canvas.staub.laub.weg')), 'Laub: mit dem Finger weggewischt');
-  for (const t of D.spuren[23].raetsel.ziele) { const n2 = await (await p.$('.nt-bild')).boundingBox(); await p.touchscreen.tap(n2.x + n2.width * t.x / 100, n2.y + n2.height * t.y / 100); await sleep(1100); }
+  for (const t of D.spuren[23].raetsel.ziele) { await sleep(1100); const n2 = await (await p.$('.nt-zoom')).boundingBox(); await p.touchscreen.tap(n2.x + n2.width * t.x / 100, n2.y + n2.height * t.y / 100); await sleep(1100); }
   await sleep(4300);
   pruef(!!(await weiterDa()), 'Nest: Nest, Band und Schlüssel gefunden, weiter');
   // Finale: Szene → Code legen (ein Kärtchen ziehen, den Rest antippen) → Tresor → Urkunde

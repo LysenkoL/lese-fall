@@ -140,3 +140,25 @@
 .kr-x { position: absolute; z-index: 3; transform: translate(-50%, -50%); width: 44px; height: 44px; border-radius: 50%; border: 3px solid #fff; background: rgba(38, 34, 28, .78); color: #fff; display: grid; place-items: center; padding: 0; cursor: pointer; box-shadow: 0 3px 6px rgba(0, 0, 0, .35); }
 .kr-x svg { width: 20px; height: 20px; }
 .kr-x.an { background: var(--rot); }
+
+
+/* Nasser Kleber: milchig-weißer, glänzender Tropfen ohne blaue Kontur */
+.kl-kleber { border: 0 !important; transform: translate(-50%, -50%) rotate(-8deg); border-radius: 55% 45% 50% 50% / 48% 52% 48% 52%;
+  background: radial-gradient(ellipse at 34% 26%, rgba(255, 255, 255, .98) 0 16%, rgba(255, 255, 255, .72) 38%, rgba(232, 240, 250, .62) 100%);
+  box-shadow: inset 0 -4px 7px rgba(110, 140, 185, .38), inset 0 2px 3px rgba(255, 255, 255, .9), 0 2px 4px rgba(50, 70, 110, .32), 0 0 0 1px rgba(170, 190, 220, .55); }
+.kl-kleber s { left: 18%; top: 14%; width: 30%; height: 16%; opacity: .95; }
+.kl-kleber u { border: 0 !important; width: 22%; height: 46%; top: 82%;
+  background: radial-gradient(ellipse at 36% 24%, rgba(255, 255, 255, .98) 0 14%, rgba(255, 255, 255, .7) 40%, rgba(226, 236, 248, .62) 100%);
+  box-shadow: inset 0 -3px 5px rgba(110, 140, 185, .38), 0 2px 3px rgba(50, 70, 110, .3), 0 0 0 1px rgba(170, 190, 220, .5); }
+
+
+/* Plakat: Brett und Vorrat passen zusammen auf den Bildschirm; Vorrat in drei Spalten */
+.pk-brett { width: min(100%, 300px, calc(38dvh * .75)); }
+.pk-pool { grid-template-columns: repeat(3, minmax(0, 1fr)); width: min(100%, 270px, 36dvh); gap: 6px; }
+
+/* Schatten: gespiegelt, schräg und weich wie ein echter Schatten an der Wand, nicht deckungsgleich mit dem Vogel */
+.sc-schatten .sc-v { filter: brightness(0) blur(1.8px); opacity: .62; transform: scaleX(-1) skewX(-12deg) scale(1.12, .92); }
+.sc-schatten.klar .sc-v { filter: none; opacity: 1; transform: none; }
+
+.sc-schatten { width: 78%; }
+.sc-schatten .sc-v { transform: scaleX(-1) skewX(-8deg); }

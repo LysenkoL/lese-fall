@@ -87,9 +87,9 @@ for n, d in [
     ("raetsel_kaese", "a round wheel of yellow Swiss cheese with big round holes"),
     ("raetsel_keks", "a big round chocolate-chip cookie, golden-yellow with dark chocolate dots"),
     ("raetsel_sonne", "a yellow paper sun with short rays, cut from cardboard"),
-    ("raetsel_ball", "a classic black-and-white football"),
+    ("raetsel_ball", "a classic football (soccer ball), drawn simply and cleanly like in a children's picture book: a perfectly round white ball with a REGULAR pattern of black pentagons, soft shading, no distorted or broken patches"),
     ("raetsel_zitrone", "a single bright yellow lemon"),
-    ("raetsel_schwamm", "a yellow kitchen sponge full of small holes"),
+    ("raetsel_schwamm", "a yellow sponge, a rectangular block with rounded corners, soft and porous, with MANY clearly visible dark round HOLES of different sizes all over its surface (holes like in Swiss cheese, not tiny dots or bubbles)"),
 ]:
     add(C2, f"objekte/{n}", "OBJ", f"One object, centered, slightly from above: {d}.",
         size="1:1", where="Spur 12 — загадка Оскара «жёлтое, круглое, с дырками, для мыши»",
@@ -180,12 +180,14 @@ The same safe, now open: the door swings open, warm golden light streams out; in
 # ---------------------------------------------------------------- Stand der Bilder
 # Fertig und im Repo (assets/illustrationen/...): erscheinen nicht mehr auf der Seite.
 FERTIG = {"kinder/ida", "kinder/nele", "objekte/fuchs_puppe", "objekte/koenig_puppe", "objekte/pappbaum", "objekte/papierstapel",
-          "objekte/raetsel_kaese", "objekte/raetsel_keks", "objekte/raetsel_sonne", "objekte/raetsel_ball", "objekte/raetsel_zitrone",
-          "objekte/raetsel_schwamm", "plakat", "baum", "baum_nest", "nest_finale", "tresor_zu", "tresor_auf",
+          "objekte/raetsel_kaese", "objekte/raetsel_keks", "objekte/raetsel_sonne", "objekte/raetsel_zitrone",
+          "plakat", "baum", "baum_nest", "nest_finale", "tresor_zu", "tresor_auf",
           "k1_s1", "kinder/lina", "kinder/tom", "kinder/emil", "objekte/mond_hinten_feucht", "objekte/mond_hinten_faden",
           "voegel", "gelbe_kreise_vorne", "gelbe_kreise_hinten", "objekte/kinder_hinten", "objekte/raum_leer"}
 # Geliefert, aber nicht passend: Grund steht auf der Karte.
 NOCHMAL = {
+    "objekte/raetsel_ball": "Мяч нарисован криво: пятна разной формы, выглядит сломанным. Нужен простой аккуратный мяч с ровным узором.",
+    "objekte/raetsel_schwamm": "На губке не видно дырок (только мелкие пузырьки), а подсказка в загадке — «с дырками». Нужны крупные тёмные круглые дырки.",
     "k1_s1": "Пришла новая сцена вместо правки: Луна уже с коричневыми пятнами (спойлер Главы 3), Оскар в классе, а не во дворе. Нужно РЕДАКТИРОВАТЬ старую k1_s1: приложить её и попросить только дорисовать Иду сзади, всё остальное не трогать.",
     "kinder/lina": "Свитер верный, но каштановые косички — как у Милы. Нужна другая причёска (уже в промте).",
     "kinder/tom": "Свитер верный, но золотые кудри — как у Оскара. Нужны короткие чёрные прямые волосы (уже в промте).",

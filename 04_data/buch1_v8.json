@@ -147,6 +147,9 @@
   "start": "Fall öff|nen",
   "weiterFall": "Wei|ter er|mit|teln",
   "neuStart": "Von vorn be|gin|nen",
+  "klaerMich": "Ge|klärt! Tip|pe mich an.",
+  "lupeHier": "Hier! Das ist es.",
+  "lupeDann": "Hast du es ge|fun|den? Dann tip|pe auf den Knopf.",
   "verdacht": "nur ein Ver|dacht",
   "ueberspringen": "Ü|ber|sprin|gen",
   "neuTitel": "Wirk|lich von vorn be|gin|nen?",
@@ -1583,9 +1586,9 @@
     "ratio": 0.733,
     "kleber": {
      "x": 50,
-     "y": 29.9,
-     "w": 30,
-     "h": 21,
+     "y": 24,
+     "w": 21,
+     "h": 15,
      "zeichnen": true
     },
     "suche": "Schau auf die wei|ße Sei|te. Da glänzt et|was Nas|ses. Tip|pe da|rauf.",
@@ -2633,9 +2636,15 @@
     }
    ],
    "karte": {
-    "bild": "objekte/mond_mit_flecken",
+    "bild": "k3_s15",
     "text": "Die Fle|cken und die Krü|mel sind nur auf|ge|klebt. Der Kreis da|run|ter ist ganz.",
-    "staub": false
+    "staub": false,
+    "ausschnitt": {
+     "x": 27,
+     "y": 71,
+     "w": 32,
+     "h": 27
+    }
    },
    "fragenNeu": [
     {
@@ -2648,202 +2657,137 @@
    "raetsel": {
     "art": "unterschiede",
     "titel": "Was ist an|ders?",
-    "text": "Das er|ste Bild zeigt den Tisch vor|hin, mit Mi|las Mond. Das zwei|te zeigt ihn jetzt, mit dem Kä|se. Fin|de sechs Un|ter|schie|de. Ei|ni|ge sind win|zig!",
-    "basis": "objekte/tisch_leer",
-    "deko": [
-     {
-      "bild": "objekte/mond_vorne",
-      "x": 50,
-      "y": 50,
-      "w": 30,
-      "vorhin": true
-     },
-     {
-      "bild": "objekte/mond_mit_flecken",
-      "x": 50,
-      "y": 50,
-      "w": 29.2,
-      "jetzt": true,
-      "clip": "inset(25.8% 0 0 0)"
-     }
-    ],
+    "text": "Die Le|se-Rau|pe schaut zwei|mal hin. Im zwei|ten Bild sind sie|ben Din|ge an|ders. Fin|de sie! Ei|ni|ge sind win|zig.",
+    "basis": "k3_s15",
     "dinge": [
      {
-      "id": "flecken",
-      "x": 50,
-      "y": 53.2,
+      "id": "spange",
+      "bild": "objekte/u15_spange",
+      "x": 15.14,
+      "y": 40.53,
+      "w": 6.84,
       "zonen": [
        {
-        "x": 50,
-        "y": 53.2,
-        "w": 18,
-        "h": 14
+        "x": 15.1,
+        "y": 40.5,
+        "w": 9.8,
+        "h": 17.8
        }
       ],
       "vorhin": false,
       "jetzt": true,
-      "tipp": "Schau auf den gel|ben Kreis. Er hat sich ver|än|dert."
+      "tipp": "Schau auf Mi|las Haa|re."
      },
      {
-      "id": "faden",
-      "bild": "objekte/u_fadenende",
-      "x": 50.6,
-      "y": 33.8,
-      "w": 4.2,
+      "id": "herz",
+      "bild": "objekte/u15_herz",
+      "x": 63.31,
+      "y": 83.01,
+      "w": 7.49,
       "zonen": [
        {
-        "x": 55,
-        "y": 29,
-        "w": 17,
-        "h": 13
+        "x": 63.3,
+        "y": 83,
+        "w": 10.5,
+        "h": 18.6
        }
       ],
       "vorhin": false,
       "jetzt": true,
-      "tipp": "Schau auf den Fa|den am Kreis."
+      "tipp": "Schau auf die Maus."
      },
      {
-      "id": "riss",
-      "bild": "objekte/u_riss",
-      "x": 60.6,
-      "y": 50.2,
-      "w": 3.2,
+      "id": "schere",
+      "bild": "objekte/u15_schere",
+      "x": 83.01,
+      "y": 88.62,
+      "w": 12.37,
       "zonen": [
        {
-        "x": 60.6,
-        "y": 50.2,
-        "w": 9,
-        "h": 8
+        "x": 83,
+        "y": 88.6,
+        "w": 15.4,
+        "h": 20.8
        }
       ],
       "vorhin": false,
       "jetzt": true,
-      "tipp": "Schau ganz ge|nau auf den Rand vom Kreis."
+      "tipp": "Schau auf die Sche|re."
      },
      {
-      "id": "kleber",
-      "bild": "objekte/u_klebefleck",
-      "x": 33,
-      "y": 55,
-      "w": 4.6,
+      "id": "fleck",
+      "bild": "objekte/u15_fleck",
+      "x": 45.08,
+      "y": 88.77,
+      "w": 6.84,
       "zonen": [
        {
-        "x": 33,
-        "y": 55,
-        "w": 10,
-        "h": 9
+        "x": 45.1,
+        "y": 88.8,
+        "w": 9.8,
+        "h": 16
        }
       ],
       "vorhin": false,
       "jetzt": true,
-      "tipp": "Schau links ne|ben den Kreis. Da glänzt et|was."
+      "tipp": "Zäh|le die brau|nen Fle|cken auf dem Kä|se."
      },
      {
-      "id": "streifen",
-      "bild": "objekte/papierstreifen_rot",
-      "x": 29,
-      "y": 70,
-      "w": 14,
+      "id": "loch",
+      "bild": "objekte/u15_loch",
+      "x": 61.52,
+      "y": 49.17,
+      "w": 6.51,
       "zonen": [
        {
-        "x": 29,
-        "y": 69,
-        "w": 22,
-        "h": 12
+        "x": 61.5,
+        "y": 49.2,
+        "w": 9.5,
+        "h": 16.2
        }
       ],
-      "vorhin": {
-       "x": 26.5,
-       "y": 72,
-       "rot": -6
-      },
-      "jetzt": {
-       "x": 31,
-       "y": 67,
-       "rot": 9
-      },
-      "tipp": "Schau un|ten links. Der ro|te Strei|fen liegt an|ders."
-     },
-     {
-      "id": "kruemel",
-      "bild": "objekte/gelbe_schnipsel",
-      "x": 79,
-      "y": 76,
-      "w": 14,
       "vorhin": false,
       "jetzt": true,
-      "tipp": "Schau ne|ben den Kreis, un|ten rechts."
+      "tipp": "Zäh|le die Lö|cher im brau|nen Pa|pier."
+     },
+     {
+      "id": "umhang",
+      "bild": "objekte/u15_umhang",
+      "x": 80.08,
+      "y": 17.82,
+      "w": 5.86,
+      "zonen": [
+       {
+        "x": 80.1,
+        "y": 17.8,
+        "w": 8.9,
+        "h": 16.5
+       }
+      ],
+      "vorhin": false,
+      "jetzt": true,
+      "tipp": "Schau auf die Le|se-Rau|pe am Fens|ter."
+     },
+     {
+      "id": "gummi",
+      "bild": "objekte/u15_gummi",
+      "x": 9.28,
+      "y": 65.67,
+      "w": 4.88,
+      "zonen": [
+       {
+        "x": 9.3,
+        "y": 65.7,
+        "w": 7.9,
+        "h": 13.5
+       }
+      ],
+      "vorhin": false,
+      "jetzt": true,
+      "tipp": "Schau auf Mi|las Zopf."
      }
     ],
-    "sortieren": {
-     "text": "Wer hat das ge|macht? Zie|he je|den Un|ter|schied zu dem, der ihn ver|ur|sacht hat.",
-     "start": "Gut ge|sucht! Jetzt kommt das Schwie|ri|ge. Ü|ber|le|ge: Wer hat das ge|macht? Den|ke an das, was du ge|le|sen hast.",
-     "ziele": [
-      {
-       "id": "oskar",
-       "name": "Hat Os|kar ge|macht",
-       "unter": "",
-       "bild": "frei/oskar_froh"
-      },
-      {
-       "id": "ben",
-       "name": "Hat Ben ge|macht",
-       "unter": "",
-       "bild": "frei/ben_froh"
-      },
-      {
-       "id": "zufall",
-       "name": "Liegt nur he|rum",
-       "unter": "",
-       "bild": "objekte/u_zufall"
-      }
-     ],
-     "dinge": [
-      {
-       "id": "flecken",
-       "name": "Brau|ne Fle|cken",
-       "bild": "objekte/braune_kreise",
-       "ziel": "oskar",
-       "warum": "Os|kar hat die brau|nen Krei|se aus brau|nem Pa|pier aus|ge|schnit|ten und auf|ge|klebt."
-      },
-      {
-       "id": "kruemel",
-       "name": "Gel|be Krü|mel",
-       "bild": "objekte/gelbe_schnipsel",
-       "ziel": "oskar",
-       "warum": "Die Krü|mel sind aus Os|kars gel|bem Blatt."
-      },
-      {
-       "id": "faden",
-       "name": "Fa|den ein|ge|rollt",
-       "bild": "objekte/u_fadenende",
-       "ziel": "ben",
-       "warum": "Ben hat den Fa|den hin|ten auf|ge|rollt und fest|ge|klebt."
-      },
-      {
-       "id": "kleber",
-       "name": "Kle|be|fleck",
-       "bild": "objekte/u_klebefleck",
-       "ziel": "ben",
-       "warum": "Der Kle|ber ge|hört Ben. Er hat da|mit den Fa|den fest|ge|klebt."
-      },
-      {
-       "id": "streifen",
-       "name": "Ro|ter Strei|fen",
-       "bild": "objekte/papierstreifen_rot",
-       "ziel": "zufall",
-       "warum": "Der ro|te Strei|fen lag schon vor|her auf dem Tab|lett. Er ist nur ein bis|schen ver|rutscht."
-      },
-      {
-       "id": "riss",
-       "name": "Klei|ner Riss",
-       "bild": "objekte/u_riss_icon",
-       "ziel": "zufall",
-       "warum": "Der win|zi|ge Riss kommt vom vie|len An|fas|sen. Nie|mand woll|te ihn ma|chen."
-      }
-     ]
-    },
-    "erfolg": "Al|les passt. Die Fle|cken und Krü|mel sind nur auf|ge|klebt, der Fa|den ist ein|ge|rollt. Der Kreis da|run|ter ist ganz."
+    "erfolg": "Sie|ben Un|ter|schie|de! Du schaust ge|nau hin. Und der Kä|se? Die brau|nen Fle|cken sind nur auf|ge|klebt. Der Kreis da|run|ter ist ganz."
    }
   },
   {
@@ -3152,29 +3096,29 @@
    "raetsel": {
     "art": "agentencode",
     "titel": "Ge|heim|a|gen|ten-Co|de",
-    "text": "Os|kar schreibt wie ein Ge|heim|a|gent. Sein Zet|tel hat zu vie|le Buch|sta|ben. Strei|che die ü|ber|flüs|si|gen durch und lies die Bot|schaft.",
-    "regel": "Je|der Buch|sta|be steht dop|pelt. Strei|che von je|dem Paar ei|nen durch.",
-    "regelart": "doppelt",
+    "text": "Os|kar schreibt wie ein Ge|heim|a|gent. Zwi|schen sei|nen Buch|sta|ben ste|cken fal|sche. Strei|che sie durch und lies die Bot|schaft.",
+    "regel": "Nur der 1., der 3., der 5. Buch|sta|be … ge|hö|ren zur Bot|schaft. Strei|che je|den zwei|ten Buch|sta|ben durch.",
+    "regelart": "ungerade",
     "demo": {
      "wort": "MOND",
-     "code": "MMOONNDD"
+     "code": "MXOLNADE"
     },
-    "start": "Ich zei|ge es dir: MMOONNDD. Je|der Buch|sta|be steht dop|pelt. Ich strei|che ei|nen von je|dem Paar. Dann bleibt MOND.",
+    "start": "Ich zei|ge es dir: Ich zäh|le mit. 1 bleibt, 2 weg, 3 bleibt, 4 weg. Dann bleibt MOND.",
     "woerter": [
      {
       "echt": "TUT",
-      "code": "TTUUTT"
+      "code": "TBUKTS"
      },
      {
       "echt": "MIR",
-      "code": "MMIIRR"
+      "code": "MOILRA"
      },
      {
       "echt": "LEID",
-      "code": "LLEEIIDD"
+      "code": "LPENIGDU"
      }
     ],
-    "tipp": "Schau dir im|mer zwei Buch|sta|ben an. Sie sind gleich. Ei|ner da|von muss weg.",
+    "tipp": "Zäh|le in je|dem Wort mit: 1 bleibt, 2 weg, 3 bleibt, 4 weg.",
     "erfolg": "Tut mir leid! Os|kar hat den Mond nicht mit Ab|sicht ge|nom|men. Es war ein Miss|ver|ständ|nis."
    }
   },
@@ -4052,30 +3996,30 @@
      }
     ],
     "sortieren": {
-     "text": "Wer hat es an sei|nen Platz ge|bracht? Zie|he je|des Ding zu dem, der es ge|tan hat. Zwei Din|ge hat nie|mand weg|ge|räumt.",
-     "start": "Gut ge|sucht! Und jetzt ü|ber|le|ge: Wer hat was an sei|nen Platz ge|bracht? Das steht in der Ge|schich|te.",
+     "text": "Wer hat das ge|tan? Zie|he je|de Kar|te zu dem Kind. Zwei Din|ge hat nie|mand ge|tan.",
+     "start": "Gut ge|sucht! Und jetzt: Wer hat beim Auf|räu|men was ge|tan? Das steht in der Ge|schich|te.",
      "ziele": [
       {
        "id": "oskar",
-       "name": "Hat Os|kar ge|macht",
+       "name": "Das war Os|kar",
        "unter": "",
        "bild": "frei/oskar_froh"
       },
       {
        "id": "mila",
-       "name": "Hat Mi|la ge|macht",
+       "name": "Das war Mi|la",
        "unter": "",
        "bild": "frei/mila_froh"
       },
       {
        "id": "ben",
-       "name": "Hat Ben ge|macht",
+       "name": "Das war Ben",
        "unter": "",
        "bild": "frei/ben_froh"
       },
       {
        "id": "liegt",
-       "name": "Liegt noch he|rum",
+       "name": "Das war nie|mand",
        "unter": "",
        "bild": "objekte/u_zufall"
       }
@@ -4083,49 +4027,49 @@
      "dinge": [
       {
        "id": "papier",
-       "name": "Pa|pier|res|te",
+       "name": "Pa|pier aufs Tab|lett ge|legt",
        "bild": "objekte/papierreste",
        "ziel": "oskar",
        "warum": "Os|kar hat die Pa|pier|res|te auf das blau|e Tab|lett ge|legt."
       },
       {
        "id": "schere",
-       "name": "Sche|re",
+       "name": "Sche|re in den Be|cher ge|steckt",
        "bild": "objekte/schere",
        "ziel": "oskar",
        "warum": "Os|kar hat die Sche|re in den Stif|te|be|cher ge|steckt."
       },
       {
        "id": "puppen",
-       "name": "Pup|pen",
+       "name": "Pup|pen in die Kis|te ge|legt",
        "bild": "objekte/kiste_gruen",
        "ziel": "mila",
        "warum": "Mi|la hat die Pup|pen in die grü|ne Kis|te ge|legt."
       },
       {
        "id": "faden",
-       "name": "Fa|den",
+       "name": "Fa|den ü|ber die Leis|te ge|legt",
        "bild": "objekte/u_fadenende",
        "ziel": "ben",
        "warum": "Ben hat den Fa|den ü|ber die Leis|te ge|legt."
       },
       {
        "id": "mond",
-       "name": "Mond",
+       "name": "Mond an die Büh|ne ge|hängt",
        "bild": "objekte/mond_vorne",
        "ziel": "ben",
        "warum": "Ben hat den Mond ne|ben die Wol|ke ge|hängt."
       },
       {
        "id": "kleber",
-       "name": "Kle|ber",
+       "name": "Kle|ber auf|ge|ho|ben",
        "bild": "objekte/kleber",
        "ziel": "liegt",
        "warum": "Die Kle|ber|fla|sche ist vom Tisch ge|fal|len. Nie|mand hat sie weg|ge|räumt."
       },
       {
        "id": "bleistift",
-       "name": "Blei|stift",
+       "name": "Blei|stift auf|ge|ho|ben",
        "bild": "objekte/bleistift_gruen",
        "ziel": "liegt",
        "warum": "Der Blei|stift ist un|ter den Stuhl ge|rollt. Nie|mand hat ihn weg|ge|räumt."
@@ -4233,21 +4177,44 @@
    "fragenWeg": [],
    "tipp": null,
    "raetsel": {
-    "art": "faden",
-    "titel": "Ben zieht den Kä|se",
-    "text": "Du spielst Ben hin|ter dem Vor|hang. Wenn die Maus sich duckt, ziehst du am Fa|den. Dann steigt der Kä|se. Schaffst du es drei|mal?",
-    "runden": 3,
-    "bild": "objekte/mond_mit_flecken",
-    "maus": "objekte/maus_seite",
-    "start": "Schau erst zu, wie es geht. Dann bist du dran: Wi|sche am ro|ten Griff nach un|ten o|der tip|pe auf „Fa|den zie|hen“.",
-    "frueh": "Noch nicht! War|te, bis sich die Maus duckt und zit|tert.",
-    "knapp": "Fast! Zieh am Fa|den, so|bald die Maus zit|tert. Du hast viel Zeit.",
-    "hilfe": "Ich zie|he dies|mal mit. Du siehst, wie es geht.",
-    "erfolg": "Der Kä|se tanzt! Die Maus kommt nie an ihn he|ran. Al|le Kin|der la|chen.",
-    "demo": "Schau, so geht es! Die Maus duckt sich und zit|tert. Gleich springt sie. Jetzt zie|he ich am Fa|den.",
-    "jetzt": "Hast du es ge|se|hen? Jetzt bist du dran!",
-    "gleich": "Gleich springt sie!",
-    "ok": "Hopp! Der Kä|se ist weg, be|vor die Maus ihn fasst."
+    "art": "reihe",
+    "titel": "Wie kam der Mond auf die Büh|ne?",
+    "text": "Vor dem Stück er|zählt Mi|la den Gäs|ten die gan|ze Ge|schich|te. Bring die fünf Bil|der in die rich|ti|ge Rei|hen|fol|ge.",
+    "karten": [
+     {
+      "id": "3",
+      "bild": "k2_s9",
+      "text": "Os|kar bas|telt heim|lich"
+     },
+     {
+      "id": "1",
+      "bild": "k1_s1",
+      "text": "Mi|la zeigt ih|ren Mond"
+     },
+     {
+      "id": "5",
+      "bild": "k4_s19",
+      "text": "Der Mond hängt im Baum"
+     },
+     {
+      "id": "2",
+      "bild": "k1_s2_nachher",
+      "text": "Der Mond ist weg"
+     },
+     {
+      "id": "4",
+      "bild": "k3_s15",
+      "text": "Aus dem Mond wird ein Kä|se"
+     }
+    ],
+    "reihenfolge": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "erfolg": "Ge|nau so war es. Und jetzt: Vor|hang auf für den größ|ten Kä|se der Welt!"
    }
   },
   {
@@ -4337,13 +4304,7 @@
     }
    ],
    "karte": {
-    "bild": "objekte/voegel",
-    "ausschnitt": {
-     "x": 0,
-     "y": 0,
-     "w": 20,
-     "h": 30
-    },
+    "bild": "objekte/elster",
     "text": "Der Vo|gel war ei|ne Els|ter: schwarz-weiß, mit sehr lan|gem Schwanz, groß wie ei|ne Tau|be.",
     "staub": false
    },

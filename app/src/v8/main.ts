@@ -287,7 +287,10 @@ function raetsel() {
 function bildKarte(k: any) {
   const a = k.ausschnitt;
   if (!a) return `<img src="${fig(k.bild)}" alt="">`;
-  return `<div class="ausschn" style="aspect-ratio:${(a.w * 3) / (a.h * 2)}"><img src="${fig(k.bild)}" alt="" style="width:${10000 / a.w}%;left:${(-a.x / a.w) * 100}%;top:${(-a.y / a.h) * 100}%"></div>`;
+  // Ausschnitt füllt den Rahmen (4:3) ganz: Breite des Ausschnitts = Breite des Rahmens, Mitte auf Mitte
+  const S = 100 / a.w, Sy = (S * (4 / 3)) / 1.5;
+  const lage = (c: number, sk: number) => (sk <= 1.001 ? 50 : Math.min(100, Math.max(0, (((c / 100) * sk - 0.5) / (sk - 1)) * 100)));
+  return `<div class="ausschn voll" style="background-image:url(${fig(k.bild)});background-size:${S * 100}% auto;background-position:${lage(a.x + a.w / 2, S)}% ${lage(a.y + a.h / 2, Sy)}%"></div>`;
 }
 /** Spurenkarten (3×2), offene Fragen (2×2) und Code. `bis` = höchste gezeigte Spur; `neu` = Spur, deren Karte unter Staub liegt */
 /** Code-Felder; Buchstaben erst, wenn die Fallkarte gelöst ist */
@@ -310,9 +313,9 @@ function brettHtml(bis: number, neu = 0, staubig = false) {
   const fragen: { id: string; text: string; n: number }[] = [];
   for (const n of liste) if (n <= bis) SP(n).fragenNeu.forEach((f: any) => fragen.push({ ...f, n }));
   const weg = new Set<string>(SP(bis).fragenWeg);
-  const zettel = fragen.filter((f) => !stand.geklaert.includes(f.id)).map((f) => `<div class="zettel fr${f.n === neu && staubig ? ' versteckt' : ''}${neu && weg.has(f.id) ? ' wackelt' : ''}" data-q="${f.id}"><span>${f.text}</span>${f.n === neu ? `<em class="neu">${UI.neu}</em>` : ''}</div>`).join('');
+  const zettel = fragen.filter((f) => !stand.geklaert.includes(f.id)).map((f) => `<div class="zettel fr${f.n === neu && staubig ? ' versteckt' : ''}${neu && weg.has(f.id) ? ' wackelt' : ''}" data-q="${f.id}"><span>${f.text}</span>${f.n === neu ? `<em class="neu">${UI.neu}</em>` : ''}${neu && weg.has(f.id) ? `<em class="klaer">${UI.klaerMich}</em>` : ''}</div>`).join('');
   const code = codeFelder();
-  return `<div class="bgrid">${slots}</div><h3>${UI.fragen}</h3><div class="fragen">${zettel}</div><div class="codez" data-a="code" role="button" tabindex="0"><span class="tresor-mini">${tresorSvg(D.kapitel[0].code.wort.length)}</span><span>${UI.code}</span><div class="wort">${code}</div></div>`;
+  return `<div class="bgrid">${slots}</div><h3>${UI.fragen}</h3><div class="fragen">${zettel}</div><div class="codez" data-a="code" role="button" tabindex="0"><img class="tresor-mini" src="${img('tresor_zu')}" alt=""><span>${UI.code}</span><div class="wort">${code}</div></div>`;
 }
 function brett() {
   modus('brett');

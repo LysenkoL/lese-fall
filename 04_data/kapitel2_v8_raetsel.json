@@ -127,9 +127,9 @@
         "ratio": 0.733,
         "kleber": {
           "x": 50,
-          "y": 29.9,
-          "w": 30,
-          "h": 21,
+          "y": 24,
+          "w": 21,
+          "h": 15,
           "zeichnen": true
         },
         "suche": "Schau auf die weiße Seite. Da glänzt etwas Nasses. Tippe darauf.",

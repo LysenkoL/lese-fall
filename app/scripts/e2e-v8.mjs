@@ -217,7 +217,9 @@ async function raetsel(spur, z) {
     await p.mouse.move(...px(0.25, 0.25)); await p.mouse.down();
     await p.mouse.move(...px(0.5, 0.7), { steps: 8 }); await p.mouse.move(...px(0.53, 0.78), { steps: 4 }); await shot(n + '_lupe_nah');
     if (z.fehlFunde) { const f = z.fehlFunde[0]; await p.mouse.move(...px(f.x / 100, f.y / 100), { steps: 10 }); await sleep(200); await shot(n + '_ablenker'); }
-    await p.mouse.move(...px(z.ziel.x / 100, z.ziel.y / 100), { steps: 6 }); await p.mouse.up(); await sleep(z.schluss ? 1500 : 500);
+    await p.mouse.move(...px(z.ziel.x / 100, z.ziel.y / 100), { steps: 6 }); await p.mouse.up(); await sleep(300);
+    if (await p.$('#fuss [data-a="weiter"]')) throw new Error('Lupe löst sich von selbst');
+    await klick('#fuss [data-a="hier"]'); await sleep(z.schluss ? 1500 : 500);
     if (z.schluss) {
       await S(n + '_schluss');
       await klick(`.as-so[data-o="${z.schluss.optionen.findIndex((o) => !o.sicher)}"]`); await sleep(400); await S(n + '_schluss_verdacht');
@@ -330,7 +332,7 @@ async function raetsel(spur, z) {
     await p.mouse.up(); await sleep(1100); await S(n + '_frei');
     for (const [i, t] of z.ziele.entries()) {
       if (i === 0) { await p.mouse.click(bx.x + 30, bx.y + 30); await sleep(300); await shot(n + '_daneben'); }
-      const b2 = await (await p.$('.nt-bild')).boundingBox(); // die Sprechblase scrollt die Seite
+      await sleep(1100); const b2 = await (await p.$('.nt-zoom')).boundingBox(); // gezoomtes Bild; die Sprechblase scrollt die Seite
       await p.mouse.click(b2.x + b2.width * t.x / 100, b2.y + b2.height * t.y / 100); await sleep(1100);
     }
     await sleep(4300);
