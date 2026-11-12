@@ -145,9 +145,9 @@ Leaves are green and fresh, a calm sunny day.""",
     note="Правильная развилка — №3 (под окном, тонкие ветки буквой V). Остальные — ловушки. В приложении зоны касания невидимые, в процентах ширины картинки (04_data/kapitel4_v8_raetsel.json, Spur 19, gabeln: x, y, r; Spur 24: ziele/zone): Gabel 1 (30, 72), 2 (14.4, 45), 3 (73.9, 40.8), 4 (45, 14.2), 5 (90, 65.8), Radius 11. Ошибочная подсказка в поле nicht (что висит на ветке: домик, качели, сухие листья, дупло). Новая картинка подходит без правки кода, если развилки лежат примерно там; иначе поправить числа.")
 add(C4, "objekte/kinder_hinten", "CH", """
 Three children seen from BEHIND, standing in a row in front of a classroom wall, full body, friendly cartoon style, LANDSCAPE 3:2, a bit of space between them:
-a girl with two dark braids, each braid tied with a tiny PINK ribbon, lilac cardigan;
-a boy with blond hair, blue sweater, sneakers with thin PINK shoelaces;
-a boy with curly hair in a RED-AND-WHITE striped hooded sweater, and from his hood hangs a very thin, long PINK mouse tail.
+a girl with two brown braids, each braid tied with a tiny PINK ribbon, lilac cardigan (Mila);
+a boy with dark curly hair and a BLUE sweater (Ben), sneakers with thin PINK shoelaces;
+a boy with tousled BLOND hair in a RED-AND-WHITE striped hooded sweater (Oskar), and from his hood hangs a very thin, long PINK mouse tail.
 The pink details are small, the tail must be easy to miss without a magnifier.""",
     head=HEAD, size="3:2", where="Spur 20 — лупа: найти розовый хвост мыши среди розовых отвлекающих деталей",
     note="Три розовых детали: бантики (Мила), шнурки (Бен) и хвост из капюшона Оскара — только хвост настоящий.")
@@ -177,6 +177,31 @@ add(CT, "tresor_auf", "SAFE", """
 The same safe, now open: the door swings open, warm golden light streams out; inside an empty glowing niche (a picture will be placed there later). Square 1:1.""",
     head=BLUE, size="1:1", where="финал: сейф открывается кодом NEST")
 
+# ---------------------------------------------------------------- Stand der Bilder
+# Fertig und im Repo (assets/illustrationen/...): erscheinen nicht mehr auf der Seite.
+FERTIG = {"kinder/ida", "kinder/nele", "objekte/fuchs_puppe", "objekte/koenig_puppe", "objekte/pappbaum", "objekte/papierstapel",
+          "objekte/raetsel_kaese", "objekte/raetsel_keks", "objekte/raetsel_sonne", "objekte/raetsel_ball", "objekte/raetsel_zitrone",
+          "objekte/raetsel_schwamm", "plakat", "baum", "baum_nest", "nest_finale", "tresor_zu", "tresor_auf"}
+# Geliefert, aber nicht passend: Grund steht auf der Karte.
+NOCHMAL = {
+    "k1_s1": "Пришла новая сцена вместо правки: Луна уже с коричневыми пятнами (спойлер Главы 3), Оскар в классе, а не во дворе. Нужно РЕДАКТИРОВАТЬ старую k1_s1: приложить её и попросить только дорисовать Иду сзади, всё остальное не трогать.",
+    "kinder/lina": "Свитер верный, но каштановые косички — как у Милы. Нужна другая причёска (уже в промте).",
+    "kinder/tom": "Свитер верный, но золотые кудри — как у Оскара. Нужны короткие чёрные прямые волосы (уже в промте).",
+    "kinder/emil": "Свитер верный, но тёмные кудри — как у Бена. Нужна прямая светло-русая стрижка (уже в промте).",
+    "objekte/mond_hinten_feucht": "Получился глянцевый шар, а не плоский картон; нитка — точка, спирали и мокрого клея не видно.",
+    "objekte/mond_hinten_faden": "Тот же шар; свёрнутой нитки не видно, а это главная примета.",
+    "voegel": "Рисунок хороший, но фон белый с пятном: белое брюхо сороки не вырезается. Нужен ровный ГОЛУБОЙ фон и акварельный стиль.",
+    "gelbe_kreise_vorne": "На кругах нет коричневых пятен (по сюжету это пять «сыров»), и формат другой: нужно 3 сверху и 2 снизу на деревянном столе.",
+    "gelbe_kreise_hinten": "Сделано по старому описанию. Загадка изменилась: у каждого круга хотя бы одна верная примета (см. новый промт), расположение 3 + 2, как у лицевых.",
+}
+P = [p for p in P if p["name"] not in FERTIG]
+for p in P:
+    if p["name"] in NOCHMAL:
+        p["redo"] = NOCHMAL[p["name"]]
+P.sort(key=lambda p: 0 if p.get("redo") else 1)
+for p in P:
+    p["ch"] = ("Переделать · " if p.get("redo") else "Ещё нет · ") + p["ch"]
+
 # ---------------------------------------------------------------- HTML
 GRUPPEN = []
 for p in P:
@@ -194,6 +219,8 @@ def karte(i, p):
     if p["size"]:
         meta.append(f"<dt>Формат</dt><dd>{e(p['size'])}</dd>")
     note = f'<p class="note">{e(p["note"])}</p>' if p["note"] else ""
+    if p.get("redo"):
+        note = f'<p class="redo"><b>Почему переделать:</b> {e(p["redo"])}</p>' + note
     return f"""<article class="card" id="p{i}">
   <header><span class="nr">{i}</span><code class="fn">{e(p['name'])}.webp</code>
   <label class="done"><input type="checkbox" data-k="{e(p['name'])}"> готово</label></header>
@@ -246,11 +273,14 @@ dt {{ color:var(--muted); }} dd {{ margin:0; }}
 pre {{ white-space:pre-wrap; word-break:break-word; background:var(--pre); border-radius:10px; padding:10px 12px; font:13px/1.5 ui-monospace, Menlo, Consolas, monospace; margin:8px 0; max-height:260px; overflow:auto; }}
 .copy {{ font:inherit; font-weight:700; border:0; border-radius:10px; padding:10px 16px; background:var(--accent); color:#fff; cursor:pointer; min-height:44px; }}
 .copy.ok {{ background:#2E8B57; }}
+.redo {{ margin:8px 0; font-size:14px; background:#FDECEA; color:#7A2318; border-radius:10px; padding:8px 12px; }}
+@media (prefers-color-scheme: dark) {{ :root:not([data-theme="light"]) .redo {{ background:#3A1F24; color:#FFC9C0; }} }}
+:root[data-theme="dark"] .redo {{ background:#3A1F24; color:#FFC9C0; }}
 </style></head><body><main>
-<h1>Новые картинки для v8</h1>
-<p class="lead">{len(P)} картинок. Нажмите «Скопировать промт», вставьте в генератор, приложите указанные эталоны из <code>assets/reference/</code> и <code>assets/illustrationen/</code>. Сохраните под именем из заголовка карточки и пришлите — разложу и вставлю в приложение.</p>
+<h1>Картинки v8: что ещё нужно</h1>
+<p class="lead">Осталось {len(P)}: {sum(1 for p in P if p.get("redo"))} переделать и {sum(1 for p in P if not p.get("redo"))} ещё не было. Готовые 18 уже в приложении и отсюда убраны. Нажмите «Скопировать промт», вставьте в генератор, приложите указанные эталоны из <code>assets/reference/</code> и <code>assets/illustrationen/</code>. Сохраните под именем из заголовка карточки и пришлите — разложу и вставлю в приложение.</p>
 <ul class="rules">
-<li>Главное сейчас: <b>дети</b> (5), <b>Глава 2</b> (предметы) и <b>k1_s1</b> с Идой. Глава 3–4 и сейф — когда будет время.</li>
+<li>Сначала карточки с красной плашкой «Почему переделать»: там сказано, что было не так.</li>
 <li><b>Стиль:</b> как остальные картинки книги — мягкая акварель и карандаш. Не плоская векторная графика и не глянцевое 3D.</li>\n<li>На предметах и детях фон светлый и ровный — вырезаю сама. У птиц фон ровный голубой: у сороки белое брюхо, на белом фоне его не вырезать.</li>
 <li>Нигде нет букв и цифр. Галочка «готово» запоминается только в этом браузере.</li>
 </ul>

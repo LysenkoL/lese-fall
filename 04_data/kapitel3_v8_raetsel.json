@@ -471,10 +471,10 @@
     "titel": "Das Plakat",
     "text": "Das Plakat für das neue Stück ist in sechs Stücke zerschnitten. Setz es wieder zusammen.",
     "bild": "objekte/plakat",
-    "spalten": 3,
-    "zeilen": 2,
-    "ratio": 1.5,
-    "tipp": "Die Überschrift steht oben. Der große gelbe Käse liegt in der Mitte.",
+    "spalten": 2,
+    "zeilen": 3,
+    "ratio": 0.75,
+    "tipp": "Oben ist das Dach vom Theater mit der Wolke. Der Käse und die Maus sind in der Mitte. Unten ist der Boden der Bühne.",
     "erfolg": "Genau. Sicher ist nur, was wir bewiesen haben: Der Käse ist Milas Mond. Alles andere ist erst ein Verdacht.",
     "schluss": {
      "frage": "Was wissen wir jetzt sicher?",
@@ -495,7 +495,7 @@
       }
      ]
     },
-    "plakatFertig": "Das Plakat ist fertig: Der größte Käse der Welt!"
+    "plakatFertig": "Das Plakat ist fertig: Die Maus springt zu ihrem Käse!"
    }
   }
  ]
