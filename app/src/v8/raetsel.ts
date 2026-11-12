@@ -1369,7 +1369,7 @@ export function nest(r: HTMLElement, d: Daten, fertig: () => void) {
   let fehl = 0, zu = false;
   const frage = () => { $('.nt-frage', zi).innerHTML = zu ? '' : `${d.frage} <b class="nt-z">${gef.size} / ${Z.length}</b>`; };
   /** Ringe erscheinen erst, wenn etwas angetippt und gefunden wurde */
-  const ring = (z: any, kl: string) => box.insertAdjacentHTML('beforeend', `<i class="ring ${kl}" style="left:${z.x}%;top:${z.y}%;width:${z.r * 2}%;height:auto;aspect-ratio:1;margin:0;transform:translate(-50%,-50%)"></i>`);
+  const ring = (z: any, kl: string) => box.insertAdjacentHTML('beforeend', `<i class="ring ${kl}" style="left:${z.x}%;top:${z.y}%;width:${z.r * 1.5}%;height:auto;aspect-ratio:1;margin:0;transform:translate(-50%,-50%)"></i>`);
   const fund = (z: any, hilfe: boolean) => {
     gef.add(z.id); fehl = 0;
     ring(z, hilfe ? 'da blink' : 'da');

@@ -288,7 +288,7 @@ const mitte = async (p, s) => { const r = await (await p.$(s)).boundingBox(); re
   for (let k = 0; k < 5; k++) await zieh(nb.x + 20, nb.y + 30 + k * nb.height / 6, nb.x + nb.width - 20, nb.y + 30 + k * nb.height / 6);
   await sleep(900);
   pruef(!(await p.$('canvas.staub.laub')) || !!(await p.$('canvas.staub.laub.weg')), 'Laub: mit dem Finger weggewischt');
-  for (const t of D.spuren[23].raetsel.ziele) { await p.touchscreen.tap(nb.x + nb.width * t.x / 100, nb.y + nb.height * t.y / 100); await sleep(1100); }
+  for (const t of D.spuren[23].raetsel.ziele) { const n2 = await (await p.$('.nt-bild')).boundingBox(); await p.touchscreen.tap(n2.x + n2.width * t.x / 100, n2.y + n2.height * t.y / 100); await sleep(1100); }
   await sleep(4300);
   pruef(!!(await weiterDa()), 'Nest: Nest, Band und Schlüssel gefunden, weiter');
   // Finale: Szene → Code legen (ein Kärtchen ziehen, den Rest antippen) → Tresor → Urkunde

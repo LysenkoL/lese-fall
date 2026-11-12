@@ -327,7 +327,8 @@ async function raetsel(spur, z) {
     await p.mouse.up(); await sleep(1100); await S(n + '_frei');
     for (const [i, t] of z.ziele.entries()) {
       if (i === 0) { await p.mouse.click(bx.x + 30, bx.y + 30); await sleep(300); await shot(n + '_daneben'); }
-      await p.mouse.click(bx.x + bx.width * t.x / 100, bx.y + bx.height * t.y / 100); await sleep(1100);
+      const b2 = await (await p.$('.nt-bild')).boundingBox(); // die Sprechblase scrollt die Seite
+      await p.mouse.click(b2.x + b2.width * t.x / 100, b2.y + b2.height * t.y / 100); await sleep(1100);
     }
     await sleep(4300);
   } else if (z.art === 'spiegel') {
