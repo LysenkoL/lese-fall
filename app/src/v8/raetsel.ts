@@ -163,7 +163,7 @@ export function unterschiede(r: HTMLElement, d: Daten, fertig: () => void) {
   const zi = $('.zi', r);
   const dinge: any[] = d.dinge, gef = new Set<string>();
   let fehl = 0, fertigig = false;
-  const pane = (art: 'vorhin' | 'jetzt') => `<figure class="ub" data-p="${art}"><span class="tab hell">${K.UI[art]}</span><div class="ub-bild" style="background-image:url(${K.img(d.basis)})">${dinge.filter((x) => x[art]).map((x) => `<img class="ding" data-d="${x.id}" src="${K.img(x.bild)}" alt="" style="left:${x.x}%;top:${x.y}%;width:${x.w}%">`).join('')}</div></figure>`;
+  const pane = (art: 'vorhin' | 'jetzt') => `<figure class="ub" data-p="${art}"><span class="tab hell">${K.UI[art]}</span><div class="ub-bild" style="background-image:url(${K.img(d.basis)})">${(d.deko ?? []).filter((x: any) => x[art]).map((x: any) => `<img class="ding" src="${K.img(x.bild)}" alt="" style="left:${x.x}%;top:${x.y}%;width:${x.w}%">`).join('')}${dinge.filter((x) => x[art] && x.bild).map((x) => `<img class="ding" data-d="${x.id}" src="${K.img(x.bild)}" alt="" style="left:${x.x}%;top:${x.y}%;width:${x.w}%">`).join('')}</div></figure>`;
   zi.innerHTML = `<p class="ub-zaehl"></p><div class="ub-paar">${pane('vorhin')}${pane('jetzt')}</div>`;
   const zaehl = () => { $('.ub-zaehl', zi).innerHTML = `<b>${gef.size} / ${dinge.length}</b> ${K.UI.gefunden}`; };
   zaehl();
@@ -181,7 +181,7 @@ export function unterschiede(r: HTMLElement, d: Daten, fertig: () => void) {
     const rc = b.getBoundingClientRect(), tx = (e.clientX - rc.left) / rc.width, ty = (e.clientY - rc.top) / rc.width; // beides in Bildbreiten
     const treffer = dinge.find((x) => {
       if (gef.has(x.id)) return false;
-      const hw = x.w / 200 + 0.04, hh = (x.w / 100) * seite(x) / 2 + 0.04;
+      const hw = x.w / 200 + 0.04, hh = x.bild ? (x.w / 100) * seite(x) / 2 + 0.04 : (x.h ?? x.w) / 200 + 0.04;
       return Math.abs(tx - x.x / 100) <= hw && Math.abs(ty - (x.y / 100) * (2 / 3)) <= hh;
     });
     if (treffer) { fehl = 0; finde(treffer); sag(r, 'tipp', ''); return; }
@@ -786,4 +786,323 @@ export function klebstoff(r: HTMLElement, d: Daten, fertig: () => void) {
   hook.loese = () => { if (phase === 'suchen') { seite = 'hinten'; gefunden(); } loesen(false); };
   mal();
   sag(r, 'tipp', '');
+}
+
+/* ============================ Schluss „Was wissen wir jetzt sicher?“ (geteilt) ============================ */
+function schlussFrage(r: HTMLElement, zi: HTMLElement, d: Daten, fertig: () => void) {
+  const s = d.schluss;
+  let zu = false;
+  const reihe = K.mischen(s.optionen.map((_: any, i: number) => String(i)));
+  zi.insertAdjacentHTML('beforeend', `<div class="as-schluss"><p class="as-sf">${s.frage}</p>${reihe.map((i) => `<button class="as-so" data-o="${i}"><span>${s.optionen[+i].text}</span></button>`).join('')}</div>`);
+  requestAnimationFrame(() => $('.as-schluss', zi).scrollIntoView({ block: 'nearest', behavior: 'smooth' }));
+  unten('');
+  const zeig = (b: HTMLElement) => { b.classList.add('offen'); (b as HTMLButtonElement).disabled = true; if (!b.querySelector('em')) b.insertAdjacentHTML('beforeend', `<em>${K.UI.verdacht}</em>`); };
+  const loesen = () => {
+    if (zu) return; zu = true;
+    zi.querySelectorAll<HTMLElement>('.as-so').forEach((b) => { if (s.optionen[+b.dataset.o!].sicher) { b.classList.add('ja'); (b as HTMLButtonElement).disabled = true; } else zeig(b); });
+    ende(r, d, fertig);
+  };
+  hook.loese = loesen;
+  zi.onclick = (e) => {
+    const b = (e.target as HTMLElement).closest<HTMLElement>('.as-so');
+    if (!b || zu || (b as HTMLButtonElement).disabled) return;
+    const o = s.optionen[+b.dataset.o!];
+    if (o.sicher) return loesen();
+    wackel(b); zeig(b); sag(r, 'tipp', o.tipp ?? K.UI.nochmal);
+  };
+}
+
+/* ============================ 6.2 Der Käse unter der Lupe (lupe) ============================ */
+export function lupe(r: HTMLElement, d: Daten, fertig: () => void) {
+  const zi = $('.zi', r);
+  const url = K.img(d.bild);
+  zi.innerHTML = `<div class="lp-box" style="aspect-ratio:${d.ratio}"><img class="lp-bild" src="${url}" alt="" draggable="false"><div class="lp-glas" style="background-image:url(${url})"></div></div>`;
+  unten('');
+  const box = $('.lp-box', zi), glas = $('.lp-glas', zi);
+  const zoom = d.zoom ?? 2.8;
+  let aus = false, fehl = 0, px = 0.3, py = 0.3, x0 = 0, y0 = 0, weit = false, unten0 = false;
+  const setze = (fx: number, fy: number) => {
+    px = Math.min(1, Math.max(0, fx)); py = Math.min(1, Math.max(0, fy));
+    const rc = box.getBoundingClientRect(), gl = glas.offsetWidth;
+    glas.style.left = px * rc.width + 'px'; glas.style.top = py * rc.height + 'px';
+    glas.style.backgroundSize = `${rc.width * zoom}px ${rc.height * zoom}px`;
+    glas.style.backgroundPosition = `${gl / 2 - px * rc.width * zoom}px ${gl / 2 - py * rc.height * zoom}px`;
+  };
+  const trifft = () => { const rc = box.getBoundingClientRect(); return Math.hypot(((px * 100 - d.ziel.x) / 100) * rc.width, ((py * 100 - d.ziel.y) / 100) * rc.height) <= (d.ziel.r / 100) * rc.width; };
+  const finde = (mitHilfe: boolean) => {
+    if (aus) return;
+    aus = true; hook.loese = null;
+    setze(d.ziel.x / 100, d.ziel.y / 100);
+    glas.classList.add('treffer');
+    K.summ(30);
+    ende(r, d, fertig, mitHilfe ? K.UI.hilfe : '');
+  };
+  const pos = (e: PointerEvent) => {
+    const rc = box.getBoundingClientRect();
+    const hoch = e.pointerType === 'mouse' ? 0 : 62; // am Finger: Lupe über dem Finger, damit man sie sieht
+    setze((e.clientX - rc.left) / rc.width, (e.clientY - hoch - rc.top) / rc.height);
+  };
+  box.addEventListener('pointerdown', (e) => { if (aus) return; unten0 = true; weit = false; x0 = e.clientX; y0 = e.clientY; box.setPointerCapture(e.pointerId); pos(e); glas.classList.add('an'); });
+  box.addEventListener('pointermove', (e) => {
+    if (aus || (!unten0 && e.pointerType !== 'mouse')) return;
+    if (Math.hypot(e.clientX - x0, e.clientY - y0) > 10) weit = true;
+    pos(e);
+    if (trifft()) finde(false);
+  });
+  const los = (e: PointerEvent) => {
+    if (!unten0) return;
+    unten0 = false; glas.classList.remove('an');
+    if (aus || e.type !== 'pointerup' || weit) return;
+    if (trifft()) return finde(false);
+    // Nur Tippen ohne Wischen zählt als Fehlversuch
+    if (++fehl === 1) return sag(r, 'tipp', K.UI.nochmal + ' ' + d.tipp);
+    sag(r, 'tipp', K.UI.hilfe);
+    setTimeout(() => zi.isConnected && finde(true), 500);
+  };
+  box.addEventListener('pointerup', los); box.addEventListener('pointercancel', los);
+  hook.loese = () => finde(false);
+  requestAnimationFrame(() => { setze(0.3, 0.32); sag(r, 'tipp', d.start); });
+}
+
+/* ============================ 6.3 Wessen Schatten? (schatten) ============================ */
+export function schatten(r: HTMLElement, d: Daten, fertig: () => void) {
+  const zi = $('.zi', r);
+  const n: number = d.anzahl;
+  const crop = (i: number) => `<span class="sc-v" style="background-image:url(${K.img(d.bild)});background-size:${n * 100}% 100%;background-position:${(i / (n - 1)) * 100}% 0"></span>`;
+  const reihe = K.mischen(Array.from({ length: n }, (_, i) => String(i)));
+  let fehl = 0, zu = false;
+  zi.innerHTML = `<div class="sc-licht"><div class="sc-schatten">${crop(d.richtig)}</div></div><div class="sc-grid">${reihe.map((i) => `<button class="sc-k" data-i="${i}" aria-label="Vogel ${+i + 1}">${crop(+i)}</button>`).join('')}</div>`;
+  unten('');
+  const loesen = (hilfe: boolean) => {
+    zu = true; hook.loese = null;
+    $('.sc-schatten', zi).classList.add('klar');
+    zi.querySelector(`.sc-k[data-i="${d.richtig}"]`)?.classList.add('ja');
+    ende(r, d, fertig, hilfe ? [K.UI.hilfe, d.warum].join(' ') : '');
+  };
+  zi.onclick = (e) => {
+    const b = (e.target as HTMLElement).closest<HTMLElement>('.sc-k');
+    if (!b || zu) return;
+    if (+b.dataset.i! === d.richtig) return loesen(false);
+    wackel(b); b.classList.add('falsch');
+    if (++fehl === 1) return sag(r, 'tipp', K.UI.nochmal + ' ' + d.tipp);
+    zu = true;
+    sag(r, 'tipp', [K.UI.hilfe, d.warum].join(' '));
+    setTimeout(() => zi.isConnected && loesen(true), 900);
+  };
+  hook.loese = () => loesen(false);
+}
+
+/* ============================ 6.4 Welcher Kreis ist Milas Mond? (kreise, Schlüsselmoment 2) ============================ */
+export function kreise(r: HTMLElement, d: Daten, fertig: () => void) {
+  const zi = $('.zi', r);
+  const kr: any[] = d.kreise, hin: any[] = d.hinweise, N = hin.length;
+  const gestr = new Set<string>(), neu = new Set<string>(), sel = new Set<string>();
+  let seite: 'vorne' | 'hinten' = 'vorne', hi = 0, fehl = 0, gesperrt = false, dreht = false, fertigPhase = false;
+  const kreuz = '<svg class="kreuz" viewBox="0 0 100 100" aria-hidden="true"><path d="M14 14L86 86M86 14L14 86" stroke="#26221C" stroke-width="8" stroke-linecap="round" fill="none"/></svg>';
+  const rest = () => kr.find((c) => !gestr.has(c.id))!;
+  const kHtml = (c: any) => `<button class="kr-k${gestr.has(c.id) ? ' weg' : ''}${neu.has(c.id) ? ' neu' : ''}${sel.has(c.id) ? ' an' : ''}${fertigPhase && c.id === rest().id ? ' rest' : ''}" data-id="${c.id}" aria-label="Kreis ${kr.indexOf(c) + 1}" style="left:${c.x}%;top:${c.y}%;width:${c.r * 2}%" ${gestr.has(c.id) ? 'disabled' : ''}>${gestr.has(c.id) ? kreuz : ''}</button>`;
+  const mal = () => {
+    const kopf = fertigPhase ? '' : `<div class="as-hin"><span class="as-z">Hinweis ${hi + 1} von ${N}</span><p>${hin[hi].text}</p></div>`;
+    zi.innerHTML = `${kopf}<div class="kr-bild" style="aspect-ratio:${d.ratio}"><img src="${K.img(d[seite])}" alt="" draggable="false">${kr.map(kHtml).join('')}</div><button class="kn zwei um-dreh kr-dreh" data-a="dreh">${DREHPFEIL}<span>${K.UI.umdrehen}</span></button>${fertigPhase ? '' : `<p class="as-raus">${d.frageRaus}</p>`}`;
+    neu.clear();
+    if (!fertigPhase) unten(knopf('fertig', K.UI.fertig, sel.size === 0 || gesperrt), () => pruefen());
+  };
+  const drehe = () => {
+    if (dreht) return;
+    dreht = true;
+    $('.kr-bild', zi).classList.add('dreh1');
+    setTimeout(() => {
+      seite = seite === 'vorne' ? 'hinten' : 'vorne';
+      mal();
+      const b2 = $('.kr-bild', zi); b2.classList.add('dreh2');
+      setTimeout(() => { b2.classList.remove('dreh2'); dreht = false; }, 200);
+    }, 200);
+  };
+  const weiter = () => {
+    hi++; fehl = 0; sel.clear(); gesperrt = false;
+    if (hi < N) { sag(r, 'tipp', ''); return mal(); }
+    fertigPhase = true; mal();
+    sag(r, 'tipp', '');
+    const ziel = zi.querySelector<HTMLElement>('.kr-k.rest')!;
+    hook.loese = stempeln(zi, ziel, d.stempel, () => { hook.loese = null; ende(r, d, fertig); });
+    requestAnimationFrame(() => zi.scrollIntoView({ block: 'end', behavior: 'smooth' }));
+  };
+  const streichen = (ids: string[], mitRaupe: boolean) => {
+    gesperrt = true; sel.clear();
+    ids.forEach((id) => { gestr.add(id); neu.add(id); });
+    mal();
+    setTimeout(() => zi.isConnected && weiter(), mitRaupe ? 1100 : 800);
+  };
+  const pruefen = () => {
+    if (gesperrt || !sel.size || fertigPhase) return;
+    const raus: string[] = hin[hi].raus;
+    if (sel.size === raus.length && raus.every((x) => sel.has(x))) return streichen(raus, false);
+    fehl++;
+    const daneben = [...sel].filter((x) => !raus.includes(x));
+    zi.querySelectorAll<HTMLElement>('.kr-k.an').forEach((e) => { if (daneben.includes(e.dataset.id!)) wackel(e); });
+    if (fehl === 1) {
+      sag(r, 'tipp', daneben.length ? K.UI.nochmal : K.UI.nochEiner);
+      gesperrt = true;
+      setTimeout(() => { daneben.forEach((x) => sel.delete(x)); gesperrt = false; if (zi.isConnected) mal(); }, 650);
+      return;
+    }
+    sag(r, 'tipp', K.UI.hilfe);
+    setTimeout(() => zi.isConnected && streichen(raus, true), 500);
+  };
+  zi.onclick = (e) => {
+    const t = e.target as HTMLElement;
+    if (t.closest('[data-a="dreh"]')) return drehe();
+    const k = t.closest<HTMLElement>('.kr-k');
+    if (!k || gesperrt || fertigPhase || gestr.has(k.dataset.id!)) return;
+    if (seite === 'vorne') { // von vorn sieht man den Stern nicht
+      sag(r, 'tipp', hin[hi].unklar);
+      const b = $('.kr-dreh', zi); b.classList.remove('puls'); void b.offsetWidth; b.classList.add('puls');
+      return;
+    }
+    const id = k.dataset.id!;
+    if (sel.has(id)) sel.delete(id); else sel.add(id);
+    k.classList.toggle('an', sel.has(id));
+    unten(knopf('fertig', K.UI.fertig, sel.size === 0), () => pruefen());
+  };
+  hook.loese = () => {
+    if (gesperrt || fertigPhase) return;
+    if (seite === 'vorne') { seite = 'hinten'; mal(); }
+    sel.clear(); hin[hi].raus.forEach((x: string) => sel.add(x)); pruefen();
+  };
+  mal();
+}
+
+/* ============================ 6.5 Geheimagenten-Code (agentencode) ============================ */
+export function agentencode(r: HTMLElement, d: Daten, fertig: () => void) {
+  const zi = $('.zi', r);
+  const W: { echt: string; code: string }[] = d.woerter;
+  const strk = new Set<string>();
+  let fehl = 0, zu = false;
+  const demoHtml = () => `<div class="ag-demo"><div class="ag-dz">${[...d.demo.code].map((c: string, i: number) => `<i class="ag-t${i % 2 ? ' weg' : ''}">${c}</i>`).join('')}</div><span class="ag-pfeil">→</span><div class="ag-dz">${[...d.demo.wort].map((c: string) => `<i class="ag-t ok">${c}</i>`).join('')}</div></div>`;
+  const reste = (wi: number) => [...W[wi].code].filter((_, i) => !strk.has(`${wi}:${i}`)).join('');
+  const mal = (klar = false) => {
+    zi.innerHTML = `<div class="ag-zettel"><p class="ag-regel"><b>Regel:</b> ${d.regel}</p>${demoHtml()}</div><div class="ag-feld${klar ? ' klar' : ''}">${W.map((w, wi) => `<div class="ag-w">${[...w.code].map((c, i) => `<button class="ag-t${strk.has(`${wi}:${i}`) ? ' weg' : ''}" data-w="${wi}" data-i="${i}" ${zu ? 'disabled' : ''}>${c}</button>`).join('')}</div>`).join('')}</div>${klar ? `<p class="ag-botschaft">${W.map((w) => w.echt).join(' ')}</p>` : ''}`;
+    unten(klar ? '' : knopf('pruefen', K.UI.pruefen, strk.size === 0), () => pruefen());
+  };
+  const loesen = (hilfe: boolean) => {
+    zu = true; hook.loese = null;
+    strk.clear();
+    // die Raupe streicht die zweiten Buchstaben
+    const alle: string[] = [];
+    W.forEach((w, wi) => [...w.code].forEach((_, i) => { if (i % 2) alle.push(`${wi}:${i}`); }));
+    const los = (k: number) => {
+      if (!zi.isConnected) return;
+      if (k < alle.length) { strk.add(alle[k]); mal(); return void setTimeout(() => los(k + 1), hilfe ? 90 : 0); }
+      mal(true);
+      ende(r, d, fertig, hilfe ? K.UI.hilfe : '');
+    };
+    los(0);
+  };
+  const pruefen = () => {
+    if (zu || !strk.size) return;
+    const falsch = W.map((w, wi) => (reste(wi) === w.echt ? -1 : wi)).filter((i) => i >= 0);
+    if (!falsch.length) { zu = true; hook.loese = null; mal(true); return ende(r, d, fertig); }
+    fehl++;
+    falsch.forEach((wi) => zi.querySelectorAll(`.ag-t[data-w="${wi}"].weg, .ag-t[data-w="${wi}"]`).forEach((e) => wackel(e)));
+    if (fehl === 1) return sag(r, 'tipp', K.UI.nochmal + ' ' + d.tipp);
+    sag(r, 'tipp', K.UI.hilfe);
+    zu = true;
+    setTimeout(() => zi.isConnected && loesen(true), 800);
+  };
+  zi.onclick = (e) => {
+    const t = (e.target as HTMLElement).closest<HTMLElement>('.ag-feld .ag-t');
+    if (!t || zu) return;
+    const k = `${t.dataset.w}:${t.dataset.i}`;
+    if (strk.has(k)) strk.delete(k); else strk.add(k);
+    t.classList.toggle('weg', strk.has(k));
+    unten(knopf('pruefen', K.UI.pruefen, strk.size === 0), () => pruefen());
+  };
+  hook.loese = () => loesen(false);
+  mal();
+  sag(r, 'tipp', d.start);
+}
+
+/* ============================ 6.6 Das Plakat (plakat) ============================ */
+export function plakat(r: HTMLElement, d: Daten, fertig: () => void) {
+  const zi = $('.zi', r);
+  const cols: number = d.spalten, rows: number = d.zeilen, N = cols * rows;
+  const url = K.img(d.bild);
+  const plaetze: (number | null)[] = Array.from({ length: N }, () => null);
+  const ordnung = K.mischen(Array.from({ length: N }, (_, i) => String(i))).map(Number);
+  let sel: number | null = null, fehl = 0, sperre = false;
+  const stueck = (i: number, kl = '') => `<div class="pk-st${kl}${sel === i ? ' sel' : ''}" data-s="${i}" style="background-image:url(${url});background-size:${cols * 100}% ${rows * 100}%;background-position:${cols > 1 ? ((i % cols) / (cols - 1)) * 100 : 0}% ${rows > 1 ? (Math.floor(i / cols) / (rows - 1)) * 100 : 0}%"></div>`;
+  const mal = (fest = false) => {
+    zi.innerHTML = `<div class="pk-brett${fest ? ' fest' : ''}" style="--sp:${cols};aspect-ratio:${d.ratio}">${plaetze.map((s, p) => `<div class="pk-platz${s !== null ? ' voll' : ''}" data-p="${p}">${s !== null ? stueck(s) : ''}</div>`).join('')}</div>${fest ? '' : `<div class="pk-pool" style="--sp:${cols}">${ordnung.map((s, k) => `<div class="pk-zelle" style="--w:${[-3, 2, -2, 3, -3, 2][k % 6]}deg">${plaetze.includes(s) ? '' : stueck(s)}</div>`).join('')}</div>`}`;
+    if (!fest) unten(knopf('fertig', K.UI.fertig, plaetze.some((p) => p === null) || sperre), () => pruefe());
+  };
+  const setze = (s: number, p: number) => {
+    const von = plaetze.indexOf(s), alt = plaetze[p];
+    plaetze[p] = s;
+    if (von >= 0) plaetze[von] = alt;
+    sel = null; mal();
+  };
+  let drag: { el: HTMLElement; s: number; x: number; y: number; bewegt: boolean } | null = null;
+  zi.addEventListener('pointerdown', (e) => {
+    if (sperre) return;
+    const el = (e.target as HTMLElement).closest<HTMLElement>('.pk-st');
+    if (!el) return;
+    drag = { el, s: +el.dataset.s!, x: e.clientX, y: e.clientY, bewegt: false };
+    el.setPointerCapture(e.pointerId);
+  });
+  zi.addEventListener('pointermove', (e) => {
+    if (!drag) return;
+    const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+    if (!drag.bewegt && Math.hypot(dx, dy) > 8) { drag.bewegt = true; drag.el.classList.add('zieht'); }
+    if (drag.bewegt) drag.el.style.transform = `translate(${dx}px, ${dy}px) rotate(3deg)`;
+  });
+  const ablegen = (e: PointerEvent) => {
+    if (!drag) return;
+    const { el, s, bewegt } = drag; drag = null;
+    if (!bewegt) {
+      if (plaetze.includes(s)) { plaetze[plaetze.indexOf(s)] = null; sel = null; } else sel = sel === s ? null : s;
+      return mal();
+    }
+    el.classList.remove('zieht');
+    const platz = e.type === 'pointerup' ? (document.elementsFromPoint(e.clientX, e.clientY).find((x) => x.classList.contains('pk-platz')) as HTMLElement | undefined) : undefined;
+    if (platz) setze(s, +platz.dataset.p!); else { el.style.transform = ''; mal(); }
+  };
+  zi.addEventListener('pointerup', ablegen); zi.addEventListener('pointercancel', ablegen);
+  zi.addEventListener('click', (e) => {
+    const p = (e.target as HTMLElement).closest<HTMLElement>('.pk-platz');
+    if (p && !(e.target as HTMLElement).closest('.pk-st') && sel !== null && !sperre && plaetze[+p.dataset.p!] === null) setze(sel, +p.dataset.p!);
+  });
+  const geschafft = () => {
+    unten(''); hook.loese = null;
+    mal(true);
+    sag(r, 'lob', d.plakatFertig);
+    K.summ([20, 40, 60]);
+    if (d.schluss) setTimeout(() => zi.isConnected && schlussFrage(r, zi, d, fertig), 700); else ende(r, d, fertig);
+  };
+  const loesen = async (mitRaupe: boolean) => {
+    sperre = true; hook.loese = null; mal();
+    for (let p = 0; p < N; p++) {
+      if (plaetze[p] === p) continue;
+      const alt = plaetze.indexOf(p);
+      if (alt >= 0) plaetze[alt] = null;
+      plaetze[p] = p;
+      mal();
+      if (mitRaupe) await warte(450);
+    }
+    if (zi.isConnected) geschafft();
+  };
+  const pruefe = async () => {
+    if (sperre || plaetze.some((p) => p === null)) return;
+    const falsch = plaetze.map((s, p) => (s === p ? -1 : p)).filter((p) => p >= 0);
+    if (!falsch.length) return loesen(false);
+    fehl++;
+    sperre = true; mal();
+    falsch.forEach((p) => zi.querySelector(`.pk-platz[data-p="${p}"] .pk-st`)?.classList.add('nein'));
+    await warte(650);
+    falsch.forEach((p) => { plaetze[p] = null; });
+    if (fehl === 1) { sperre = false; sag(r, 'tipp', K.UI.nochmal + ' ' + d.tipp); return mal(); }
+    sag(r, 'tipp', K.UI.hilfe);
+    loesen(true);
+  };
+  hook.loese = () => loesen(false);
+  mal();
 }

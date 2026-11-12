@@ -5,6 +5,7 @@
  *   3. Wischen auf dem Brett blättert nicht zurück ins Lesen
  *   4. „Von vorn beginnen“ fragt erst nach
  *   5. große Schrift auf kleinem Bildschirm: kein Blatt schneidet Text ab
+ *   7. Kapitel 3: Lupe, Schatten, fünf Kreise, Agentencode, Plakat, Schlussfrage (Finger, Fehlerregel)
  *   6. Kapitel 2: Zwei Kisten (Ziehen, Tippen, falscher Platz), Mond umdrehen per Wischen, Suchbild (Tippen am Rand), Geheimschrift
  * Aufruf: npx vite preview --port 4173 &  →  node scripts/e2e-v8-finger.mjs
  */
@@ -161,6 +162,78 @@ const mitte = async (p, s) => { const r = await (await p.$(s)).boundingBox(); re
   const falsch = D.spuren[9].raetsel.lesungen.findIndex((_, i) => i !== D.spuren[9].raetsel.richtig);
   await tipp(`.sp-o[data-o="${falsch}"]`); await tipp(`.sp-o[data-o="${falsch}"]`); await sleep(2000);
   pruef(!!(await p.$('#fuss [data-a="weiter"]')), 'Geheimschrift: nach zwei Fehlern zeigt die Raupe, man kommt weiter');
+}
+/* ---- 7: Kapitel 3 mit dem Finger ---- */
+{
+  const { p, zieh, tipp } = await seite(390, 844, () => {});
+  const D = await p.evaluate(() => window.__v8.D);
+  const zustand = async (spur, i) => { await p.evaluate(([n, k]) => { const v = window.__v8; Object.assign(v.stand, { view: 'spur', spur: n, i: k, blatt: 0, intro: true, fertig: Array.from({ length: n - 1 }, (_, j) => 1 + j), weiter: 'spur' }); v.zeige(); }, [spur, i]); await sleep(700); };
+  const weiterDa = () => p.$('#fuss [data-a="weiter"]');
+  // Lupe: mit dem Finger über den Käse fahren (die Lupe liegt über dem Finger)
+  const z13 = D.spuren[12].raetsel;
+  await zustand(13, 1);
+  let bx = await (await p.$('.lp-box')).boundingBox();
+  await zieh(bx.x + bx.width * 0.2, bx.y + bx.height * 0.3 + 62, bx.x + bx.width * z13.ziel.x / 100, bx.y + bx.height * z13.ziel.y / 100 + 62);
+  await sleep(500);
+  pruef(!!(await weiterDa()), 'Lupe: mit dem Finger über den Faden gefahren (Lupe über dem Finger) löst');
+  // Lupe: zweimal daneben tippen, dann zeigt die Raupe
+  await zustand(13, 1);
+  bx = await (await p.$('.lp-box')).boundingBox();
+  await p.touchscreen.tap(bx.x + bx.width * 0.15, bx.y + bx.height * 0.2); await sleep(300);
+  pruef(!(await weiterDa()), 'Lupe: ein Fehltipp löst noch nicht');
+  await p.touchscreen.tap(bx.x + bx.width * 0.2, bx.y + bx.height * 0.15); await sleep(1100);
+  pruef(!!(await weiterDa()), 'Lupe: nach zwei Fehltipps zeigt die Raupe den Faden');
+  // Schatten: zweimal falsch, dann richtig
+  const z14 = D.spuren[13].raetsel;
+  await zustand(14, 1);
+  const f = await p.$$eval('.sc-k', (es, r) => es.filter((e) => +e.dataset.i !== r).map((e) => e.dataset.i), z14.richtig);
+  await tipp(`.sc-k[data-i="${f[0]}"]`); await tipp(`.sc-k[data-i="${f[1]}"]`); await sleep(1700);
+  pruef(!!(await weiterDa()), 'Schatten: nach zwei Fehlern zeigt die Raupe den Vogel');
+  await zustand(14, 1);
+  await tipp(`.sc-k[data-i="${z14.richtig}"]`); await sleep(500);
+  pruef(!!(await weiterDa()), 'Schatten: richtiger Vogel angetippt');
+  // fünf Kreise: von vorn tippen sagt „umdrehen“, dann Umdrehen, Kreise ohne Stern wegtippen
+  const z16 = D.spuren[15].raetsel;
+  await zustand(16, 1);
+  await tipp('.kr-k[data-id="k1"]');
+  pruef((await p.$$('.kr-k.an')).length === 0, 'Kreise: von vorn antippen wählt nichts (Stern ist nicht zu sehen)');
+  await tipp('[data-a="dreh"]'); await sleep(700);
+  for (const id of z16.hinweise[0].raus) await tipp(`.kr-k[data-id="${id}"]`);
+  await tipp('#fuss [data-a="fertig"]'); await sleep(1500);
+  pruef((await p.$$('.kr-k.weg')).length === 3, 'Kreise: drei Kreise ohne Stern durchgestrichen');
+  // Hinweis 2 zweimal falsch (k4 ist richtig): die Raupe streicht k2
+  await tipp('.kr-k[data-id="k4"]'); await tipp('#fuss [data-a="fertig"]'); await sleep(1000);
+  await tipp('.kr-k[data-id="k4"]'); await tipp('#fuss [data-a="fertig"]'); await sleep(2600);
+  pruef(!!(await p.$('.kr-k.rest[data-id="k4"]')) && !!(await p.$('#fuss [data-a="stempeln"]')), 'Kreise: nach zwei Fehlern streicht die Raupe, Milas Mond bleibt übrig');
+  await tipp('#fuss [data-a="stempeln"]'); await sleep(800);
+  pruef(!!(await weiterDa()), 'Kreise: Stempel setzt den Abschluss');
+  // Geheimagenten-Code: alle zweiten Buchstaben antippen
+  const z17 = D.spuren[16].raetsel;
+  await zustand(17, 1);
+  for (const [wi, w] of z17.woerter.entries()) for (let i = 1; i < w.code.length; i += 2) await p.tap(`.ag-feld .ag-t[data-w="${wi}"][data-i="${i}"]`);
+  await tipp('#fuss [data-a="pruefen"]'); await sleep(600);
+  pruef(!!(await weiterDa()), 'Geheimagenten-Code: richtig gestrichen, Botschaft gelesen');
+  // Plakat: ein Stück mit dem Finger ziehen, zweimal falsch, dann Schlussfrage
+  await zustand(18, 1);
+  const N = D.spuren[17].raetsel.spalten * D.spuren[17].raetsel.zeilen;
+  const [qx, qy] = await mitte(p, '.pk-pool .pk-st[data-s="0"]'), [rx, ry] = await mitte(p, '.pk-platz[data-p="0"]');
+  await zieh(qx, qy, rx, ry);
+  pruef(!!(await p.$('.pk-platz[data-p="0"] .pk-st[data-s="0"]')), 'Plakat: Stück mit dem Finger ins Feld gezogen');
+  for (let runde = 0; runde < 2; runde++) {
+    for (let i = 0; i < N; i++) {
+      if (!(await p.$(`.pk-pool .pk-st[data-s="${i}"]`))) continue;
+      const frei = await p.$$eval('.pk-platz:not(.voll)', (es) => es.map((e) => +e.dataset.p));
+      const ziel = frei.find((q) => q !== i) ?? frei[0];
+      await tipp(`.pk-pool .pk-st[data-s="${i}"]`); await tipp(`.pk-platz[data-p="${ziel}"]`);
+    }
+    await tipp('#fuss [data-a="fertig"]'); await sleep(runde ? 6000 : 1300);
+  }
+  pruef(!!(await p.$('.as-schluss')), 'Plakat: nach zwei Fehlversuchen setzt die Raupe, die Schlussfrage erscheint');
+  const verd = D.spuren[17].raetsel.schluss.optionen.findIndex((o) => !o.sicher);
+  await tipp(`.as-so[data-o="${verd}"]`); await sleep(300);
+  pruef(!(await weiterDa()), 'Schluss: Verdacht angetippt löst nicht');
+  await tipp(`.as-so[data-o="${D.spuren[17].raetsel.schluss.optionen.findIndex((o) => o.sicher)}"]`); await sleep(600);
+  pruef(!!(await weiterDa()), 'Schluss: das Sichere angetippt löst');
 }
 await b.close();
 console.log(fehler.length ? `\n✗ ${fehler.length} Befunde` : '\n✓ Finger-Probe ohne Befunde');

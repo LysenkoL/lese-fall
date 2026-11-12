@@ -48,6 +48,30 @@
     "stempel": "KAPITEL 2 GELÖST"
    },
    "ausblick": "Os|kar zieht das Sei|den|pa|pier weg. Auf dem Tel|ler liegt et|was Gel|bes mit drei brau|nen Lö|chern."
+  },
+  {
+   "nr": 3,
+   "titel": "Die Ü|ber|ra|schung auf der Bank",
+   "bild": "kapitel_3",
+   "vorspann": "Ein gel|ber Kreis mit drei brau|nen Fle|cken. Und ein Schat|ten mit Flü|geln.",
+   "code": {
+    "wort": "NEST",
+    "buchstabe": "N",
+    "pos": 0
+   },
+   "fallkarte": {
+    "bild": "k3_s18",
+    "titel": "Das wis|sen wir jetzt",
+    "saetze": [
+     "Der Kä|se mit den drei brau|nen Fle|cken ist Mi|las Mond. Hin|ten hat er den blau|en Stern und den auf|ge|roll|ten Fa|den.",
+     "Os|kar hat ihn nicht zer|schnit|ten. Er hat nur Fle|cken auf|ge|klebt.",
+     "Es war ein Miss|ver|ständ|nis. Nie|mand woll|te den Mond steh|len.",
+     "Ein Vo|gel zieht Pa|pier|strei|fen in ei|ne Ast|ga|bel."
+    ],
+    "frage": "A|ber was will der Vo|gel mit dem Fa|den?",
+    "stempel": "KAPITEL 3 GELÖST"
+   },
+   "ausblick": "Da klap|pen zwei Flü|gel auf. Der Vo|gel packt den wei|ßen Fa|den. Und der Mond hebt ab."
   }
  ],
  "intro": [
@@ -122,7 +146,9 @@
   "legen": "Aufs Tab|lett le|gen",
   "ausDinge": "Was passt nicht? Tip|pe es an.",
   "nochDing": "Gut! A|ber da ist noch et|was.",
-  "pruefen": "Prü|fen"
+  "pruefen": "Prü|fen",
+  "lupeStart": "Schie|be die Lu|pe ü|ber den Kä|se.",
+  "anLupe": "Lu|pe"
  },
  "spuren": [
   {
@@ -2211,6 +2237,840 @@
      ]
     },
     "erfolg": "Ge|nau. Si|cher ist nur, was Os|kar ge|sagt hat. Ob es Mi|las Mond war, weiß noch nie|mand."
+   },
+   "schluessel": true
+  },
+  {
+   "nr": 13,
+   "kap": 3,
+   "spur": 13,
+   "titel": "Ta|daa!",
+   "bild": "k3_s13",
+   "haken": "Ein Fa|den am Kä|se? Mi|las Mond hat auch ei|nen.",
+   "blocks": [
+    {
+     "id": "s13-p1",
+     "typ": "p",
+     "s": [
+      "„Ta|daa!“",
+      "Os|kar zieht das Sei|den|pa|pier weg."
+     ]
+    },
+    {
+     "id": "s13-p2",
+     "typ": "p",
+     "s": [
+      "Auf dem Tel|ler liegt ein gro|ßer run|der Kä|se.",
+      "Er ist leuch|tend gelb.",
+      "Er hat drei brau|ne Lö|cher.",
+      "Rund|he|rum lie|gen klei|ne gel|be Krü|mel."
+     ]
+    },
+    {
+     "id": "s13-p3",
+     "typ": "p",
+     "s": [
+      "Mi|la starrt auf den Tel|ler.",
+      "Ben klappt der Mund auf."
+     ]
+    },
+    {
+     "id": "s13-p4",
+     "typ": "p",
+     "s": [
+      "„Ein Kä|se“, sagt Ben."
+     ]
+    },
+    {
+     "id": "s13-p5",
+     "typ": "p",
+     "s": [
+      "„Ein Fest|tags|kä|se für mei|ne Maus“, sagt Os|kar stolz.",
+      "„So|gar mit Krü|meln!“"
+     ]
+    },
+    {
+     "id": "s13-p6",
+     "typ": "p",
+     "s": [
+      "O|ben am Fens|ter|rand läuft der Le|se-Rau|pe das Was|ser im Mund zu|sam|men."
+     ],
+     "umbruch": true
+    },
+    {
+     "id": "s13-p7",
+     "typ": "th",
+     "s": [
+      "„Kä|se!“, denkt sie.",
+      "Dann muss sie la|chen.",
+      "„Ach nein.",
+      "Das ist ja Pap|pe.",
+      "Mein Bauch hört ein|fach nie zu.“"
+     ]
+    },
+    {
+     "id": "s13-p8",
+     "typ": "p",
+     "s": [
+      "Sie nimmt ih|re Tau|trop|fen-Lu|pe.",
+      "Lang|sam schaut sie am Rand ent|lang."
+     ]
+    },
+    {
+     "id": "s13-p9",
+     "typ": "th",
+     "s": [
+      "„Mo|ment“, denkt sie.",
+      "„An die|sem Kä|se ist et|was, das nicht zu ei|nem Kä|se passt.“"
+     ]
+    }
+   ],
+   "karte": {
+    "bild": "objekte/kaese_auf_teller",
+    "text": "Am Kä|se schaut ein klei|nes Stück wei|ßer Fa|den he|raus.",
+    "staub": false
+   },
+   "fragenNeu": [
+    {
+     "id": "k3faden",
+     "text": "Wa|rum hat ein Kä|se ei|nen Fa|den?"
+    }
+   ],
+   "fragenWeg": [],
+   "tipp": null,
+   "raetsel": {
+    "art": "lupe",
+    "titel": "Der Kä|se un|ter der Lu|pe",
+    "text": "Was passt nicht zu ei|nem Kä|se? Fah|re mit der Lu|pe ü|ber den Tel|ler.",
+    "bild": "objekte/kaese_auf_teller",
+    "ratio": 1.125,
+    "zoom": 3.3,
+    "ziel": {
+     "x": 62.5,
+     "y": 79.5,
+     "r": 6.5
+    },
+    "start": "Mit mei|ner Lu|pe sieht man Klei|nes groß. Schie|be sie ü|ber den Kä|se.",
+    "tipp": "Schau am Rand ent|lang. Es ist et|was Dün|nes, Wei|ßes.",
+    "erfolg": "Ein klei|nes Stück wei|ßer Fa|den! Seit wann hat ein Kä|se ei|nen Fa|den? Mi|las Mond hat ei|nen!"
+   }
+  },
+  {
+   "nr": 14,
+   "kap": 3,
+   "spur": 14,
+   "titel": "Ein Schat|ten mit Flü|geln",
+   "bild": "k3_s14",
+   "haken": "O|ben in der Ast|ga|bel sitzt ein schwarz-wei|ßer Vo|gel. Er zieht an ei|nem lan|gen wei|ßen Pa|pier|strei|fen. Ruck. Ruck. Dann ist der Strei|fen ver|schwun|den.",
+   "blocks": [
+    {
+     "id": "s14-p1",
+     "typ": "p",
+     "s": [
+      "Mi|la beugt sich tief ü|ber den Tel|ler."
+     ]
+    },
+    {
+     "id": "s14-p2",
+     "typ": "p",
+     "s": [
+      "„Dein Kä|se ist ge|nau|so groß wie mein Mond“, sagt sie lei|se."
+     ]
+    },
+    {
+     "id": "s14-p3",
+     "typ": "p",
+     "s": [
+      "„Und er hat ge|nau das|sel|be Gelb“, sagt Ben.",
+      "Er zeigt auf den Rand.",
+      "„Und da schaut ein Fa|den he|raus!“"
+     ]
+    },
+    {
+     "id": "s14-p4",
+     "typ": "p",
+     "s": [
+      "Os|kar schaut von ei|nem zum an|de|ren.",
+      "„Eu|er Mond?",
+      "Wie|so Mond?",
+      "Das ist mein Mäu|se|kä|se!",
+      "Und der Fa|den ist nur ein Bas|tel|rest.“"
+     ]
+    },
+    {
+     "id": "s14-p5",
+     "typ": "p",
+     "s": [
+      "Mi|la will schon den Kopf schüt|teln.",
+      "Dann hält sie in|ne."
+     ],
+     "umbruch": true
+    },
+    {
+     "id": "s14-p6",
+     "typ": "p",
+     "s": [
+      "„Gelb und rund reicht nicht“, sagt sie.",
+      "„Das weiß ich seit heu|te.",
+      "Und ein Fa|den kann wirk|lich ein Bas|tel|rest sein.“"
+     ]
+    },
+    {
+     "id": "s14-p7",
+     "typ": "p",
+     "s": [
+      "Da huscht ein Schat|ten ü|ber den Tel|ler.",
+      "Ein Schat|ten mit zwei Flü|geln."
+     ]
+    },
+    {
+     "id": "s14-p8",
+     "typ": "p",
+     "s": [
+      "Die Rau|pe schaut nach o|ben.",
+      "A|ber ü|ber der Bank be|wegt sich nur ein Blatt."
+     ]
+    },
+    {
+     "id": "s14-p9",
+     "typ": "th",
+     "s": [
+      "„Wer war das?“, denkt sie.",
+      "„Ich ha|be nur den Schat|ten ge|se|hen.",
+      "Spit|zer Schna|bel.",
+      "Lan|ger Schwanz.“"
+     ]
+    }
+   ],
+   "karte": {
+    "bild": "objekte/vogelschatten",
+    "text": "Ein Schat|ten mit zwei Flü|geln, spit|zem Schna|bel und lan|gem Schwanz.",
+    "staub": false
+   },
+   "fragenNeu": [
+    {
+     "id": "k3vogel",
+     "text": "Wer ist der Vo|gel mit dem lan|gen Schwanz?"
+    }
+   ],
+   "fragenWeg": [],
+   "tipp": null,
+   "raetsel": {
+    "art": "schatten",
+    "titel": "Wes|sen Schat|ten?",
+    "text": "Der Schat|ten hat|te zwei Flü|gel, ei|nen spit|zen Schna|bel und ei|nen lan|gen Schwanz. Wel|cher Vo|gel passt da|zu?",
+    "bild": "objekte/voegel",
+    "anzahl": 5,
+    "richtig": 2,
+    "tipp": "Schau auf den Schwanz und auf den Schna|bel.",
+    "warum": "Nur die|ser Vo|gel hat ei|nen so lan|gen Schwanz und ei|nen spit|zen Schna|bel.",
+    "erfolg": "Die|ser Vo|gel passt zum Schat|ten. A|ber war er es wirk|lich? Das ist erst ein Ver|dacht."
+   }
+  },
+  {
+   "nr": 15,
+   "kap": 3,
+   "spur": 15,
+   "titel": "Drei brau|ne Fle|cken",
+   "bild": "k3_s15",
+   "haken": "Noch fünf|zehn Mi|nu|ten. Da kom|men I|da und Ne|le ü|ber den Hof ge|lau|fen.",
+   "blocks": [
+    {
+     "id": "s15-p1",
+     "typ": "p",
+     "s": [
+      "Ben schaut auf die brau|nen Lö|cher.",
+      "Dann auf die Sche|re.",
+      "Dann auf die gel|ben Schnip|sel."
+     ]
+    },
+    {
+     "id": "s15-p2",
+     "typ": "p",
+     "s": [
+      "„Os|kar“, sagt er vor|sich|tig.",
+      "„Die brau|nen Fle|cken sind doch nur auf|ge|klebt?",
+      "Du hast nicht in den Kreis ge|schnit|ten?“"
+     ]
+    },
+    {
+     "id": "s15-p3",
+     "typ": "p",
+     "s": [
+      "Ge|schnit|ten?",
+      "Dann wä|re Mi|las Mond ka|putt!"
+     ]
+    },
+    {
+     "id": "s15-p4",
+     "typ": "p",
+     "s": [
+      "Os|kar lacht.",
+      "„Quatsch!",
+      "Die Pap|pe ist viel zu dick zum Schnei|den.“"
+     ]
+    },
+    {
+     "id": "s15-p5",
+     "typ": "p",
+     "s": [
+      "Er hält zwei Blät|ter hoch.",
+      "Ein brau|nes Blatt mit drei run|den Lö|chern.",
+      "Und ein dün|nes gel|bes Blatt mit vie|len Za|cken."
+     ]
+    },
+    {
+     "id": "s15-p6",
+     "typ": "p",
+     "s": [
+      "„Die brau|nen Krei|se ha|be ich hier aus|ge|schnit|ten“, sagt Os|kar.",
+      "„Und die Krü|mel sind aus dem gel|ben Blatt.“"
+     ],
+     "umbruch": true
+    },
+    {
+     "id": "s15-p7",
+     "typ": "p",
+     "s": [
+      "Mi|la at|met auf.",
+      "„Dann ist der Kreis da|run|ter noch ganz!“"
+     ]
+    },
+    {
+     "id": "s15-p8",
+     "typ": "p",
+     "s": [
+      "Ben lacht.",
+      "„Und ich dach|te schon, du hast ihn zer|schnit|ten.“"
+     ]
+    },
+    {
+     "id": "s15-p9",
+     "typ": "th",
+     "s": [
+      "„Ein Kreis im Kä|se-Kos|tüm“, denkt die Rau|pe.",
+      "„Mit drei auf|ge|kleb|ten Som|mer|spros|sen.“"
+     ]
+    },
+    {
+     "id": "s15-p10",
+     "typ": "p",
+     "s": [
+      "Noch fünf|zehn Mi|nu|ten."
+     ]
+    }
+   ],
+   "karte": {
+    "bild": "objekte/mond_mit_flecken",
+    "text": "Die Fle|cken und die Krü|mel sind nur auf|ge|klebt. Der Kreis da|run|ter ist ganz.",
+    "staub": false
+   },
+   "fragenNeu": [
+    {
+     "id": "k3ganz",
+     "text": "Ist der Mond un|ter den Fle|cken noch ganz?"
+    }
+   ],
+   "fragenWeg": [],
+   "tipp": null,
+   "raetsel": {
+    "art": "unterschiede",
+    "titel": "Was ist an|ders?",
+    "text": "Das er|ste Bild zeigt Mi|las Mond vor|her. Das zwei|te zeigt den Kä|se jetzt. Fin|de vier Un|ter|schie|de.",
+    "basis": "objekte/tisch_leer",
+    "deko": [
+     {
+      "bild": "objekte/mond_vorne",
+      "x": 50,
+      "y": 50,
+      "w": 30,
+      "vorhin": true
+     },
+     {
+      "bild": "objekte/mond_mit_flecken",
+      "x": 50,
+      "y": 50,
+      "w": 29.2,
+      "jetzt": true
+     }
+    ],
+    "dinge": [
+     {
+      "id": "f1",
+      "x": 50,
+      "y": 46.8,
+      "w": 6,
+      "h": 6,
+      "vorhin": false,
+      "jetzt": true,
+      "tipp": "Schau auf den gel|ben Kreis."
+     },
+     {
+      "id": "f2",
+      "x": 44,
+      "y": 59.6,
+      "w": 6,
+      "h": 6,
+      "vorhin": false,
+      "jetzt": true,
+      "tipp": "Schau auf den gel|ben Kreis."
+     },
+     {
+      "id": "f3",
+      "x": 56,
+      "y": 59.6,
+      "w": 6,
+      "h": 6,
+      "vorhin": false,
+      "jetzt": true,
+      "tipp": "Schau auf den gel|ben Kreis."
+     },
+     {
+      "id": "krumel",
+      "bild": "objekte/gelbe_schnipsel",
+      "x": 79,
+      "y": 76,
+      "w": 14,
+      "vorhin": false,
+      "jetzt": true,
+      "tipp": "Schau ne|ben den Kreis, un|ten rechts."
+     }
+    ],
+    "erfolg": "Vier Un|ter|schie|de: drei brau|ne Fle|cken und gel|be Krü|mel. Al|les ist nur auf|ge|klebt. Der Kreis da|run|ter ist ganz."
+   }
+  },
+  {
+   "nr": 16,
+   "kap": 3,
+   "spur": 16,
+   "titel": "Die Rück|sei|te",
+   "bild": "k3_s16_vorher",
+   "haken": "Os|kar ist ganz still ge|wor|den.",
+   "blocks": [
+    {
+     "id": "s16-p1",
+     "typ": "p",
+     "s": [
+      "Da kom|men I|da und Ne|le ü|ber den Hof ge|lau|fen.",
+      "Tom und E|mil ren|nen hin|ter|her."
+     ]
+    },
+    {
+     "id": "s16-p2",
+     "typ": "p",
+     "s": [
+      "„Wir ha|ben auch Kä|se für die Maus ge|bas|telt!“, ruft I|da.",
+      "„Mit brau|nen Fle|cken, ge|nau wie dei|ner, Os|kar!“"
+     ]
+    },
+    {
+     "id": "s16-p3",
+     "typ": "p",
+     "s": [
+      "Je|des Kind legt ei|nen gel|ben Kreis auf die Bank.",
+      "Os|kar legt sei|nen Kä|se da|zu.",
+      "Jetzt lie|gen fünf Krei|se ne|ben|ei|nan|der.",
+      "Al|le sind gelb.",
+      "Al|le ha|ben drei brau|ne Fle|cken."
+     ]
+    },
+    {
+     "id": "s16-p4",
+     "typ": "p",
+     "s": [
+      "„Wel|cher da|von ist mein Mond?“, flüs|tert Mi|la."
+     ]
+    },
+    {
+     "id": "s16-p5",
+     "typ": "p",
+     "s": [
+      "„Mein Kä|se hat hin|ten auch ei|nen blau|en Stern“, sagt I|da.",
+      "„Den ha|be ich von dir ab|ge|guckt, Mi|la.“"
+     ],
+     "umbruch": true
+    },
+    {
+     "id": "s16-p6",
+     "typ": "p",
+     "s": [
+      "Mi|la nickt lang|sam.",
+      "„Dann reicht der Stern al|lein nicht.",
+      "Mein Mond hat hin|ten noch et|was.",
+      "Ben hat den Fa|den auf|ge|rollt und fest|ge|klebt.“"
+     ]
+    },
+    {
+     "id": "s16-p7",
+     "typ": "p",
+     "s": [
+      "„Von vor|ne sieht man das nicht“, sagt Ben.",
+      "„Wir müs|sen die Krei|se um|dre|hen.“"
+     ]
+    },
+    {
+     "id": "s16-p8",
+     "typ": "p",
+     "s": [
+      "O|ben macht die Le|se-Rau|pe ei|nen ganz lan|gen Hals.",
+      "Fast fällt sie vom Fens|ter|brett."
+     ]
+    },
+    {
+     "id": "s16-p9",
+     "typ": "th",
+     "s": [
+      "„Gleich dreht sie um“, denkt sie.",
+      "„Wel|che Rück|sei|te sagt die Wahr|heit?“"
+     ]
+    }
+   ],
+   "karte": {
+    "bild": "objekte/mond_hinten",
+    "text": "Mi|las Mond: hin|ten ein blau|er Stern und der auf|ge|roll|te Fa|den.",
+    "staub": false
+   },
+   "fragenNeu": [],
+   "fragenWeg": [
+    "k3faden"
+   ],
+   "tipp": null,
+   "raetsel": {
+    "art": "kreise",
+    "titel": "Wel|cher Kreis ist Mi|las Mond?",
+    "text": "Fünf gel|be Krei|se mit brau|nen Fle|cken. Von vorn se|hen sie gleich aus. Dreh sie um und ver|glei|che die Rück|sei|ten.",
+    "vorne": "objekte/gelbe_kreise_vorne",
+    "hinten": "objekte/gelbe_kreise_hinten",
+    "ratio": 1.5,
+    "kreise": [
+     {
+      "id": "k1",
+      "name": "Kreis 1",
+      "x": 18,
+      "y": 29,
+      "r": 13.5
+     },
+     {
+      "id": "k2",
+      "name": "Kreis 2",
+      "x": 50,
+      "y": 29,
+      "r": 13.5
+     },
+     {
+      "id": "k3",
+      "name": "Kreis 3",
+      "x": 82,
+      "y": 29,
+      "r": 13.5
+     },
+     {
+      "id": "k4",
+      "name": "Kreis 4",
+      "x": 34,
+      "y": 72,
+      "r": 13.5
+     },
+     {
+      "id": "k5",
+      "name": "Kreis 5",
+      "x": 66,
+      "y": 72,
+      "r": 13.5
+     }
+    ],
+    "loesung": "k4",
+    "hinweise": [
+     {
+      "text": "Mi|las Mond hat hin|ten ei|nen blau|en Stern.",
+      "raus": [
+       "k1",
+       "k3",
+       "k5"
+      ],
+      "unklar": "Von vorn sieht man das nicht. Dreh die Krei|se um!"
+     },
+     {
+      "text": "Hin|ten ist der Fa|den auf|ge|rollt und fest|ge|klebt.",
+      "raus": [
+       "k2"
+      ],
+      "unklar": "Von vorn sieht man das nicht. Dreh die Krei|se um!"
+     }
+    ],
+    "stempel": "MILAS MOND",
+    "erfolg": "Das ist Mi|las Mond! Nur die|ser Kreis hat hin|ten den blau|en Stern und den auf|ge|roll|ten Fa|den.",
+    "frageRaus": "Wel|che Krei|se pas|sen nicht? Tip|pe sie an."
+   }
+  },
+  {
+   "nr": 17,
+   "kap": 3,
+   "spur": 17,
+   "titel": "Ein Miss|ver|ständ|nis",
+   "bild": "k3_s17",
+   "haken": "Noch zehn Mi|nu|ten. Mi|la schaut auf ih|ren ge|fleck|ten Mond.",
+   "blocks": [
+    {
+     "id": "s17-p1",
+     "typ": "p",
+     "s": [
+      "Os|kar schaut Mi|la er|schro|cken an.",
+      "Er ist ganz blass."
+     ]
+    },
+    {
+     "id": "s17-p2",
+     "typ": "p",
+     "s": [
+      "„Es war dein Mond“, flüs|tert er.",
+      "„Und ich ha|be ihn für ein Stück Pa|pier ge|hal|ten.“"
+     ]
+    },
+    {
+     "id": "s17-p3",
+     "typ": "p",
+     "s": [
+      "Er kann nichts mehr sa|gen.",
+      "A|ber er greift in die Ho|sen|ta|sche.",
+      "Dort steckt ein ge|fal|te|ter Zet|tel."
+     ]
+    },
+    {
+     "id": "s17-p4",
+     "typ": "p",
+     "s": [
+      "„Ich schrei|be es lie|ber auf“, mur|melt er.",
+      "„Wie ein Ge|heim|a|gent.",
+      "Ein A|gent sagt so et|was nie laut.“"
+     ]
+    },
+    {
+     "id": "s17-p5",
+     "typ": "p",
+     "s": [
+      "Mi|la legt ihm die Hand auf die Schul|ter.",
+      "„Du konn|test es nicht wis|sen.",
+      "Du warst drau|ßen, als ich den Mond ge|zeigt ha|be.“"
+     ],
+     "umbruch": true
+    },
+    {
+     "id": "s17-p6",
+     "typ": "p",
+     "s": [
+      "Ben kratzt sich am Kopf.",
+      "„Ei|gent|lich war es mein Feh|ler.",
+      "Ich ha|be den Mond auf das Tab|lett für al|le ge|legt.“"
+     ]
+    },
+    {
+     "id": "s17-p7",
+     "typ": "p",
+     "s": [
+      "„Und ich war so tief im Schrank, dass ich dich nicht ge|hört ha|be“, sagt Mi|la."
+     ]
+    },
+    {
+     "id": "s17-p8",
+     "typ": "p",
+     "s": [
+      "Die drei schau|en sich an.",
+      "Dann müs|sen al|le la|chen."
+     ],
+     "umbruch": true
+    },
+    {
+     "id": "s17-p9",
+     "typ": "p",
+     "s": [
+      "„Ein Mond, der heim|lich als Kä|se ar|bei|tet!“, ki|chert Mi|la."
+     ]
+    },
+    {
+     "id": "s17-p10",
+     "typ": "th",
+     "s": [
+      "„Kein Dieb“, denkt die Rau|pe.",
+      "„Nur drei gu|te I|de|en, die sich in die Que|re ka|men.“"
+     ]
+    },
+    {
+     "id": "s17-p11",
+     "typ": "p",
+     "s": [
+      "Noch zehn Mi|nu|ten."
+     ]
+    }
+   ],
+   "karte": {
+    "bild": "objekte/mond_auf_tablett",
+    "text": "Ben hat den Mond aufs Tab|lett für al|le ge|legt. Os|kar hielt ihn für Pa|pier.",
+    "staub": false
+   },
+   "fragenNeu": [],
+   "fragenWeg": [],
+   "tipp": null,
+   "raetsel": {
+    "art": "agentencode",
+    "titel": "Ge|heim|a|gen|ten-Co|de",
+    "text": "Os|kar schreibt wie ein Ge|heim|a|gent. Sein Zet|tel hat zu vie|le Buch|sta|ben. Strei|che die ü|ber|flüs|si|gen durch und lies die Bot|schaft.",
+    "regel": "Je|der Buch|sta|be steht dop|pelt. Strei|che von je|dem Paar ei|nen durch.",
+    "regelart": "doppelt",
+    "demo": {
+     "wort": "MOND",
+     "code": "MMOONNDD"
+    },
+    "start": "Ich zei|ge es dir: MMOONNDD. Je|der Buch|sta|be steht dop|pelt. Ich strei|che ei|nen von je|dem Paar. Dann bleibt MOND.",
+    "woerter": [
+     {
+      "echt": "TUT",
+      "code": "TTUUTT"
+     },
+     {
+      "echt": "MIR",
+      "code": "MMIIRR"
+     },
+     {
+      "echt": "LEID",
+      "code": "LLEEIIDD"
+     }
+    ],
+    "tipp": "Schau dir im|mer zwei Buch|sta|ben an. Sie sind gleich. Ei|ner da|von muss weg.",
+    "erfolg": "Tut mir leid! Os|kar hat den Mond nicht mit Ab|sicht ge|nom|men. Es war ein Miss|ver|ständ|nis."
+   }
+  },
+  {
+   "nr": 18,
+   "kap": 3,
+   "spur": 18,
+   "titel": "Die ret|ten|de I|dee",
+   "bild": "k3_s18",
+   "haken": "O|ben in der Ast|ga|bel legt der schwarz-wei|ße Vo|gel den Kopf schief. Er schaut auf den lan|gen wei|ßen Fa|den.",
+   "blocks": [
+    {
+     "id": "s18-p1",
+     "typ": "p",
+     "s": [
+      "Os|kar zieht vor|sich|tig an ei|nem brau|nen Fleck.",
+      "Der Fleck be|wegt sich nicht."
+     ]
+    },
+    {
+     "id": "s18-p2",
+     "typ": "p",
+     "s": [
+      "„Nicht zie|hen!“, ruft Ben.",
+      "„Dein Kle|ber hält zu gut.",
+      "Sonst reißt die Pap|pe.“"
+     ]
+    },
+    {
+     "id": "s18-p3",
+     "typ": "p",
+     "s": [
+      "Mi|la schaut auf ih|ren ge|fleck|ten Mond.",
+      "„So kann er nicht ans The|a|ter“, sagt sie lei|se.",
+      "„Was ma|chen wir jetzt?“"
+     ]
+    },
+    {
+     "id": "s18-p4",
+     "typ": "p",
+     "s": [
+      "Os|kar schaut auf sei|ne klei|ne Maus.",
+      "Dann schaut er auf den Mond.",
+      "Plötz|lich strahlt sein gan|zes Ge|sicht."
+     ]
+    },
+    {
+     "id": "s18-p5",
+     "typ": "p",
+     "s": [
+      "„Wir spie|len ein neu|es Stück!“, ruft er.",
+      "„Ei|ne hung|ri|ge Maus schaut nachts zum Him|mel.",
+      "Und sie hält den Mond für ei|nen rie|si|gen Kä|se!“"
+     ],
+     "umbruch": true
+    },
+    {
+     "id": "s18-p6",
+     "typ": "p",
+     "s": [
+      "Mi|la reißt die Au|gen auf.",
+      "„Das ist ja viel lus|ti|ger als mein al|tes Stück!“"
+     ]
+    },
+    {
+     "id": "s18-p7",
+     "typ": "p",
+     "s": [
+      "Ben grinst.",
+      "„Und ich zie|he den Kä|se am Fa|den nach o|ben.",
+      "Im|mer wenn die Maus springt!“"
+     ]
+    },
+    {
+     "id": "s18-p8",
+     "typ": "p",
+     "s": [
+      "„Dann brau|chen wir ein Pla|kat“, sagt Mi|la.",
+      "„Für das neu|e Stück.“"
+     ]
+    },
+    {
+     "id": "s18-p9",
+     "typ": "p",
+     "s": [
+      "Ben rollt den Fa|den vor|sich|tig ab.",
+      "Der Kle|ber ist in|zwi|schen tro|cken.",
+      "Ein lan|ges Stück hängt ü|ber den Rand der Bank."
+     ]
+    }
+   ],
+   "karte": {
+    "bild": "objekte/plakat",
+    "text": "Neu|es Stück: Der größ|te Kä|se der Welt.",
+    "staub": false
+   },
+   "fragenNeu": [
+    {
+     "id": "k3plan",
+     "text": "Was will der Vo|gel mit dem Fa|den?"
+    }
+   ],
+   "fragenWeg": [],
+   "tipp": null,
+   "raetsel": {
+    "art": "plakat",
+    "titel": "Das Pla|kat",
+    "text": "Das Pla|kat für das neu|e Stück ist in sechs Stü|cke zer|schnit|ten. Setz es wie|der zu|sam|men.",
+    "bild": "objekte/plakat",
+    "spalten": 3,
+    "zeilen": 2,
+    "ratio": 1.5,
+    "tipp": "Die Ü|ber|schrift steht o|ben. Der gro|ße gel|be Kä|se liegt in der Mit|te.",
+    "erfolg": "Ge|nau. Si|cher ist nur, was wir be|wie|sen ha|ben: Der Kä|se ist Mi|las Mond. Al|les an|de|re ist erst ein Ver|dacht.",
+    "schluss": {
+     "frage": "Was wis|sen wir jetzt si|cher?",
+     "optionen": [
+      {
+       "text": "Der Kä|se ist Mi|las Mond. Hin|ten hat er den blau|en Stern und den auf|ge|roll|ten Fa|den.",
+       "sicher": true
+      },
+      {
+       "text": "Der Vo|gel mit dem lan|gen Schwanz ist der|sel|be, der den Schat|ten ge|wor|fen hat.",
+       "sicher": false,
+       "tipp": "Das ist erst ein Ver|dacht. Vom Schat|ten ken|nen wir nur die Form. Und vom Vo|gel in der Ast|ga|bel nur die Far|ben."
+      },
+      {
+       "text": "Der Vo|gel will den Fa|den für sich ha|ben.",
+       "sicher": false,
+       "tipp": "Das ist erst ein Ver|dacht. Wir ha|ben nur ge|se|hen, dass er Pa|pier|strei|fen zieht. Was er da|mit vor|hat, wis|sen wir nicht."
+      }
+     ]
+    },
+    "plakatFertig": "Das Pla|kat ist fer|tig: Der größ|te Kä|se der Welt!"
    },
    "schluessel": true
   }

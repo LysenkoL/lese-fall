@@ -39,3 +39,77 @@
 .kl-note { animation: hoch .4s both; }
 .kl-note .rp p { font-size: 16px; padding: 8px 12px; }
 .kl-note .rp img { width: 34px; height: 54px; }
+
+/* ---------- Spur 13: Lupe ---------- */
+.lp-box { position: relative; width: min(100%, 420px); align-self: center; border-radius: 16px; border: 4px solid #fff; background: #FBF5E6; box-shadow: 0 12px 26px rgba(0, 0, 0, .35); touch-action: none; cursor: none; user-select: none; }
+.lp-bild { display: block; width: 100%; height: 100%; object-fit: cover; pointer-events: none; border-radius: 12px; }
+.lp-glas { position: absolute; width: 112px; height: 112px; margin: -56px 0 0 -56px; border-radius: 50%; background-repeat: no-repeat; background-color: #FBF5E6; box-shadow: 0 0 0 6px #C9951A, 0 0 0 9px rgba(255, 255, 255, .85), 0 10px 18px rgba(0, 0, 0, .4), inset 0 0 14px rgba(255, 255, 255, .6); pointer-events: none; transition: box-shadow .2s; }
+.lp-glas::before { content: ''; position: absolute; left: 14%; top: 10%; width: 34%; height: 18%; border-radius: 50%; background: rgba(255, 255, 255, .5); transform: rotate(-30deg); }
+.lp-glas::after { content: ''; position: absolute; left: 82%; top: 86%; width: 14px; height: 60px; border-radius: 8px; background: linear-gradient(90deg, #8A5A1E, #C98A4B); transform: rotate(-45deg); transform-origin: top center; box-shadow: 0 3px 4px rgba(0, 0, 0, .3); }
+.lp-glas.treffer { box-shadow: 0 0 0 6px var(--senf), 0 0 0 10px rgba(255, 255, 255, .85), 0 10px 18px rgba(0, 0, 0, .4); }
+.lp-box .ring { z-index: 2; }
+
+/* ---------- Spur 14: Wessen Schatten ---------- */
+.sc-licht { align-self: center; width: min(100%, 300px); aspect-ratio: 1 / .8; border-radius: 16px; border: 4px solid #fff; background: radial-gradient(circle at 30% 20%, #FFF7DC, #F0DFB2 70%); box-shadow: 0 12px 26px rgba(0, 0, 0, .35); display: grid; place-items: center; overflow: hidden; }
+.sc-schatten { width: 62%; aspect-ratio: 1; }
+.sc-v { display: block; width: 100%; height: 100%; background-repeat: no-repeat; pointer-events: none; }
+.sc-schatten .sc-v { filter: brightness(0) blur(.6px); opacity: .78; transform: translate(6px, 8px) scaleY(.96); transition: filter .8s, opacity .8s, transform .8s; }
+.sc-schatten.klar .sc-v { filter: none; opacity: 1; transform: none; }
+.sc-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.sc-k { background: var(--papier); border-radius: 14px; padding: 6px; border: 3px solid transparent; box-shadow: 0 3px 0 #D8CDB2, 0 8px 14px rgba(0, 0, 0, .3); aspect-ratio: 1; display: block; }
+.sc-k:nth-child(n+4) { grid-column: span 1; }
+.sc-k.falsch { border-color: var(--rot); opacity: .7; }
+.sc-k.ja { border-color: #3E9B3E; background: #EAF6E3; }
+.sc-k.nein { animation: wackel .4s; }
+
+/* ---------- Spur 16: fünf Kreise ---------- */
+.kr-bild { position: relative; width: 100%; align-self: center; max-width: 440px; background: #C79A60; border-radius: 14px; border: 4px solid #fff; box-shadow: 0 10px 22px rgba(0, 0, 0, .35); overflow: hidden; transition: transform .2s; }
+.kr-bild img { display: block; width: 100%; height: 100%; object-fit: fill; pointer-events: none; }
+.kr-bild.dreh1 { transform: perspective(600px) rotateY(90deg); }
+.kr-bild.dreh2 { animation: dreh2 .2s both; }
+.kr-k { position: absolute; transform: translate(-50%, -50%); aspect-ratio: 1; border-radius: 50%; border: 4px solid transparent; background: transparent; padding: 0; cursor: pointer; transition: opacity .5s; }
+.kr-k.an { border-color: var(--senf); box-shadow: 0 0 0 3px rgba(244, 194, 67, .5), inset 0 0 0 3px rgba(255, 255, 255, .6); background: rgba(244, 194, 67, .22); }
+.kr-k.nein { animation: kr-wackel .4s; border-color: var(--rot); }
+@keyframes kr-wackel { 20% { margin-left: -6px; } 50% { margin-left: 5px; } 80% { margin-left: -3px; } }
+.kr-k .kreuz { position: absolute; inset: 8%; width: 84%; height: 84%; }
+.kr-k.weg { opacity: .45; }
+.kr-k.weg::before { content: ''; position: absolute; inset: 0; border-radius: 50%; background: rgba(40, 30, 10, .35); }
+.kr-k.neu .kreuz path { stroke-dasharray: 110; animation: strich .5s both; }
+.kr-k.rest { border-color: var(--senf); box-shadow: 0 0 0 4px rgba(244, 194, 67, .5); }
+.kr-k.rest .stempel.abdruck { font-size: 12px; padding: 3px 5px; border-width: 3px; width: 92%; letter-spacing: .02em; }
+.kr-dreh { align-self: center; flex-direction: row; gap: 8px; padding: 8px 18px; min-width: 0; flex: none; }
+.kr-dreh svg { width: 22px; height: 22px; }
+.kr-dreh.puls { animation: puls .6s 3; }
+
+/* ---------- Spur 17: Geheimagenten-Code ---------- */
+.ag-zettel { background: var(--papier-2); color: var(--tinte); border-radius: 8px; padding: 12px 12px 12px; box-shadow: 0 3px 0 #D8CDB2, 0 12px 22px rgba(0, 0, 0, .3); display: flex; flex-direction: column; gap: 8px; }
+.ag-regel { margin: 0; font-size: 16px; font-weight: 600; line-height: 1.35; }
+.ag-regel b { font-weight: 800; color: #B4472F; }
+.ag-demo { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 6px 10px; background: rgba(38, 34, 28, .06); border-radius: 10px; padding: 8px; }
+.ag-dz { display: flex; gap: 2px; }
+.ag-pfeil { font-weight: 800; font-size: 22px; color: var(--senf-dunkel); }
+.ag-t { position: relative; width: 31px; height: 38px; border-radius: 6px; background: #fff; color: var(--tinte); font-weight: 800; font-size: 22px; line-height: 38px; text-align: center; font-style: normal; display: inline-block; padding: 0; border: 2px solid var(--linie); }
+.ag-t.weg { color: #9B9486; background: #EEE8D8; }
+.ag-t.weg::after { content: ''; position: absolute; left: 3px; right: 3px; top: 50%; height: 4px; margin-top: -2px; background: #D8432F; border-radius: 2px; transform: rotate(-12deg); }
+.ag-t.ok { background: var(--senf-hell); border-color: var(--senf); }
+.ag-feld { display: flex; flex-direction: column; align-items: center; gap: 10px; background: var(--papier); border-radius: 12px; padding: 12px 6px; box-shadow: 0 3px 0 #D8CDB2, 0 12px 22px rgba(0, 0, 0, .3); }
+.ag-w { display: flex; gap: 3px; justify-content: center; }
+.ag-feld .ag-t { width: 36px; height: 46px; line-height: 42px; font-size: 25px; cursor: pointer; }
+.ag-feld .ag-t.nein { animation: wackel .4s; border-color: var(--rot); }
+.ag-feld.klar .ag-t:not(.weg) { background: var(--senf-hell); border-color: var(--senf); }
+.ag-feld.klar .ag-t.weg { opacity: .35; }
+.ag-botschaft { margin: 0; text-align: center; color: var(--senf); font-weight: 800; font-size: 28px; letter-spacing: .08em; animation: hoch .5s both; }
+
+/* ---------- Spur 18: Plakat ---------- */
+.pk-brett { display: grid; grid-template-columns: repeat(var(--sp), minmax(0, 1fr)); gap: 4px; width: min(100%, 400px); align-self: center; padding: 6px; background: rgba(255, 255, 255, .1); border-radius: 12px; }
+.pk-brett.fest { gap: 0; padding: 0; background: none; border: 4px solid #fff; box-shadow: 0 12px 26px rgba(0, 0, 0, .35); border-radius: 6px; overflow: hidden; }
+.pk-platz { position: relative; border: 3px dashed rgba(255, 255, 255, .4); border-radius: 6px; aspect-ratio: 1 / 1; min-height: 0; }
+.pk-platz.voll { border-style: solid; border-color: transparent; }
+.pk-brett.fest .pk-platz { border: 0; border-radius: 0; }
+.pk-st { width: 100%; height: 100%; border-radius: 6px; background-repeat: no-repeat; touch-action: none; cursor: grab; user-select: none; border: 3px solid transparent; box-shadow: 0 3px 0 rgba(0, 0, 0, .25), 0 6px 12px rgba(0, 0, 0, .3); background-origin: border-box; }
+.pk-brett.fest .pk-st { box-shadow: none; border-radius: 0; border: 0; }
+.pk-st.sel { border-color: var(--senf); }
+.pk-st.zieht { z-index: 20; transition: none; box-shadow: 0 16px 24px rgba(0, 0, 0, .45); }
+.pk-st.nein { animation: wackel .4s; border-color: var(--rot); }
+.pk-pool { padding: 4px; box-sizing: border-box; display: grid; grid-template-columns: repeat(var(--sp), minmax(0, 1fr)); gap: 8px; width: min(100%, 400px); align-self: center; }
+.pk-zelle { aspect-ratio: 1 / 1; background: rgba(255, 255, 255, .06); border-radius: 8px; transform: rotate(var(--w)); }

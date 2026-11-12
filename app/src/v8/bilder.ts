@@ -28,6 +28,13 @@ export const ERSATZ: Record<string, string> = {
   'objekte/raetsel_ball': 'ersatz/raetsel_ball',
   'objekte/raetsel_zitrone': 'ersatz/raetsel_zitrone',
   'objekte/raetsel_schwamm': 'ersatz/raetsel_schwamm',
+  // Kapitel 3: Fünf Vögel nebeneinander (gleich breite Spalten, Nr. 3 = langer Schwanz), fünf gelbe Kreise vorn/hinten (3:2), Plakat (3:2), Tisch (3:2)
+  'objekte/voegel': 'ersatz/voegel',
+  'objekte/vogelschatten': 'ersatz/vogelschatten',
+  'objekte/gelbe_kreise_vorne': 'ersatz/gelbe_kreise_vorne',
+  'objekte/gelbe_kreise_hinten': 'ersatz/gelbe_kreise_hinten',
+  'objekte/plakat': 'ersatz/plakat',
+  'objekte/tisch_leer': 'ersatz/tisch_leer',
   'kinder/lina': 'kind/lina', 'kinder/tom': 'kind/tom', 'kinder/ida': 'kind/ida', 'kinder/emil': 'kind/emil', 'kinder/nele': 'kind/nele',
 };
 /** Pullis der Kinder (wie in Kapitel 1) für die gezeichneten Platzhalter */

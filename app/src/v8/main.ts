@@ -1,5 +1,5 @@
 /**
- * Lese-Fall · Vorschau „v8“: Kapitel 1–2 mit Rätseln nach dem Text, Ermittlungsbrett und Fallkarte.
+ * Lese-Fall · Vorschau „v8“: Kapitel 1–3 mit Rätseln nach dem Text, Ermittlungsbrett und Fallkarte.
  * Eigener Einstieg (v8.html), eigener Speicherstand (lesefall.v8). Alte App und v7 bleiben unverändert.
  */
 import { tresorSvg } from './zeichnen.ts';
@@ -264,7 +264,7 @@ function tippAufl() {
 }
 
 /* ---------- Rätsel ---------- */
-const RAETSEL: Record<string, (r: HTMLElement, d: any, f: () => void) => void> = { buchstaben: R.buchstaben, unterschiede: R.unterschiede, versteckt: R.versteckt, merkmale: R.merkmale, reihe: R.reihe, ausschluss: R.ausschluss, sortieren: R.sortieren, umdrehen: R.umdrehen, klebstoff: R.klebstoff, suchbild: R.suchbild, spiegel: R.spiegel };
+const RAETSEL: Record<string, (r: HTMLElement, d: any, f: () => void) => void> = { buchstaben: R.buchstaben, unterschiede: R.unterschiede, versteckt: R.versteckt, merkmale: R.merkmale, reihe: R.reihe, ausschluss: R.ausschluss, sortieren: R.sortieren, umdrehen: R.umdrehen, klebstoff: R.klebstoff, lupe: R.lupe, schatten: R.schatten, kreise: R.kreise, agentencode: R.agentencode, plakat: R.plakat, suchbild: R.suchbild, spiegel: R.spiegel };
 function raetsel() {
   modus('zug');
   const z = SP(stand.spur).raetsel;

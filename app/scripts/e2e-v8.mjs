@@ -1,5 +1,5 @@
 /**
- * Durchlauf der Vorschau v8 (Kapitel 1 und 2, vom Titel bis „Fortsetzung folgt“) mit Bildern in 03_screens/v8/<name>/.
+ * Durchlauf der Vorschau v8 (Kapitel 1 bis 3, vom Titel bis „Fortsetzung folgt“) mit Bildern in 03_screens/v8/<name>/.
  * Vorher: npm run build && npx vite preview --port 4173
  * Aufruf: node scripts/e2e-v8.mjs [breite höhe name]
  */
@@ -201,6 +201,57 @@ async function raetsel(spur, z) {
       if (i === 1) await S(n + '_zwei');
     }
     await sleep(700);
+  } else if (z.art === 'lupe') {
+    const bx = await (await p.$('.lp-box')).boundingBox();
+    const px = (fx, fy) => [bx.x + bx.width * fx, bx.y + bx.height * fy];
+    await p.mouse.click(...px(0.2, 0.2)); await sleep(300); await S(n + '_daneben');
+    await p.mouse.move(...px(0.25, 0.25)); await p.mouse.down();
+    await p.mouse.move(...px(0.5, 0.7), { steps: 8 }); await p.mouse.move(...px(0.53, 0.78), { steps: 4 }); await shot(n + '_lupe_nah');
+    await p.mouse.move(...px(z.ziel.x / 100, z.ziel.y / 100), { steps: 6 }); await p.mouse.up(); await sleep(500);
+  } else if (z.art === 'schatten') {
+    await S(n + '_start');
+    const falsch = await p.$eval(`.sc-k:not([data-i="${z.richtig}"])`, (e) => e.dataset.i);
+    await klick(`.sc-k[data-i="${falsch}"]`); await sleep(300); await S(n + '_falsch'); await sleep(500);
+    await klick(`.sc-k[data-i="${z.richtig}"]`); await sleep(1000);
+  } else if (z.art === 'kreise') {
+    await S(n + '_vorne');
+    await klick('.kr-k[data-id="k1"]'); await sleep(300); await S(n + '_von_vorn');
+    await klick('[data-a="dreh"]'); await sleep(700); await S(n + '_hinten');
+    // 1. Hinweis: erst falsch (k2 hat einen Stern), dann richtig
+    await klick('.kr-k[data-id="k2"]'); await klick('#fuss [data-a="fertig"]'); await sleep(300); await S(n + '_falsch'); await sleep(1000);
+    for (const id of z.hinweise[0].raus) await klick(`.kr-k[data-id="${id}"]`);
+    await shot(n + '_gewaehlt'); await klick('#fuss [data-a="fertig"]'); await sleep(1500); await S(n + '_hinweis2');
+    for (const id of z.hinweise[1].raus) await klick(`.kr-k[data-id="${id}"]`);
+    await klick('#fuss [data-a="fertig"]'); await sleep(1800); await S(n + '_uebrig');
+    await klick('#fuss [data-a="stempeln"]'); await sleep(900);
+  } else if (z.art === 'agentencode') {
+    await S(n + '_start');
+    await klick('.ag-feld .ag-t[data-w="0"][data-i="0"]'); await klick('#fuss [data-a="pruefen"]'); await sleep(300); await S(n + '_falsch'); await sleep(500);
+    await klick('.ag-feld .ag-t[data-w="0"][data-i="0"]'); // zurücknehmen
+    for (const [wi, w] of z.woerter.entries()) for (let i = 1; i < w.code.length; i += 2) { await p.click(`.ag-feld .ag-t[data-w="${wi}"][data-i="${i}"]`); await sleep(40); }
+    await shot(n + '_gestrichen');
+    await klick('#fuss [data-a="pruefen"]'); await sleep(600);
+  } else if (z.art === 'plakat') {
+    const N = z.spalten * z.zeilen;
+    await S(n + '_start');
+    for (let i = 0; i < N; i++) { await klick(`.pk-pool .pk-st[data-s="${i}"]`); if (i === 0) await shot(n + '_gewaehlt'); await klick(`.pk-platz[data-p="${(i + 1) % N}"]`); }
+    await S(n + '_voll_falsch');
+    await klick('#fuss [data-a="fertig"]'); await sleep(1200); await shot(n + '_zurueck');
+    for (let i = 0; i < N; i++) {
+      if (i === 0) { // einmal echt ziehen
+        const a = await (await p.$(`.pk-pool .pk-st[data-s="0"]`)).boundingBox(), t = await (await p.$(`.pk-platz[data-p="0"]`)).boundingBox();
+        await p.mouse.move(a.x + a.width / 2, a.y + a.height / 2); await p.mouse.down();
+        await p.mouse.move(a.x + a.width / 2 + 10, a.y + a.height / 2 - 20, { steps: 3 });
+        await p.mouse.move(t.x + t.width / 2, t.y + t.height / 2, { steps: 8 }); await shot(n + '_ziehen'); await p.mouse.up(); await sleep(200);
+      } else { await klick(`.pk-pool .pk-st[data-s="${i}"]`); await klick(`.pk-platz[data-p="${i}"]`); }
+    }
+    await S(n + '_voll');
+    await klick('#fuss [data-a="fertig"]'); await sleep(1500); await S(n + '_fertig');
+    if (z.schluss) {
+      await S(n + '_schluss');
+      await klick(`.as-so[data-o="${z.schluss.optionen.findIndex((o) => !o.sicher)}"]`); await sleep(400); await S(n + '_schluss_verdacht');
+      await klick(`.as-so[data-o="${z.schluss.optionen.findIndex((o) => o.sicher)}"]`); await sleep(500);
+    }
   } else if (z.art === 'spiegel') {
     await S(n + '_zettel');
     const falsch = z.lesungen.findIndex((_, i) => i !== z.richtig);
@@ -236,7 +287,7 @@ for (const kap of KAPITEL) {
         if (ersteSpur) { // Code: alle bisher verdienten Buchstaben stehen schon drin
           await klick('.brett .codez[data-a="code"]'); await S(`s${spur}_brett_tresor`);
           const buch = await ev(() => [...document.querySelectorAll('.tresorinfo .wort i')].map((i) => i.textContent.trim()).join(''));
-          const soll = D.kapitel.filter((q) => q.nr < kap).map((q) => q.code.buchstabe).join('');
+          const soll = D.kapitel.filter((q) => q.nr < kap).sort((a, b) => a.code.pos - b.code.pos).map((q) => q.code.buchstabe).join('');
           if (buch.replace(/\s/g, '') !== soll) fehler.push(`Spur ${spur}: Code zeigt „${buch}“, erwartet „${soll}“`);
           await klick('.tresorinfo [data-a="zu"]');
         }
@@ -258,7 +309,7 @@ for (const kap of KAPITEL) {
   await klick('#fuss [data-a="stempeln"]'); await sleep(1200); await S(`k${kap}_fallkarte_gestempelt`);
   await loese(); await sleep(900); await S(`k${kap}_fallkarte_code`);
   const code = await ev(() => [...document.querySelectorAll('.codez .wort i')].map((i) => i.textContent.trim()).join(''));
-  const sollK = D.kapitel.filter((q) => q.nr <= kap).map((q) => q.code.buchstabe).join('');
+  const sollK = D.kapitel.filter((q) => q.nr <= kap).sort((a, b) => a.code.pos - b.code.pos).map((q) => q.code.buchstabe).join('');
   if (code.replace(/\s/g, '') !== sollK) fehler.push(`Fallkarte ${kap}: Code zeigt „${code}“, erwartet „${sollK}“`);
   await weiter();
   await S(`k${kap}_ausblick`);
