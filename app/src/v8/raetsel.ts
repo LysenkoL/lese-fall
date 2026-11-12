@@ -253,7 +253,7 @@ export function versteckt(r: HTMLElement, d: Daten, fertig: () => void) {
 
 /* ============================ Stempel (Merkmale, Ausschluss, Fallkarte) ============================ */
 /** Stempel zum Ziehen auf `ziel` oder per Knopf „Stempeln“. Gibt eine Funktion zurück, die sofort stempelt. */
-export function stempeln(zi: HTMLElement, ziel: HTMLElement, text: string, fertig: () => void): () => void {
+export function stempeln(zi: HTMLElement, ziel: HTMLElement, text: string, fertig: () => void, pos?: { x: number; y: number }): () => void {
   const tool = document.createElement('div');
   tool.className = 'stp-tool';
   tool.setAttribute('aria-label', K.UI.stempeln.replace(/<[^>]*>/g, ''));
@@ -266,6 +266,7 @@ export function stempeln(zi: HTMLElement, ziel: HTMLElement, text: string, ferti
     tool.remove();
     ziel.classList.add('stempelziel');
     ziel.insertAdjacentHTML('beforeend', `<b class="stempel abdruck">${text}</b>`);
+    if (pos) { const st = ziel.lastElementChild as HTMLElement; st.style.left = `${Math.min(78, Math.max(22, pos.x))}%`; st.style.top = `${Math.min(88, Math.max(12, pos.y))}%`; }
     try { navigator.vibrate?.(40); } catch { /* egal */ }
     fertig();
   };
@@ -1215,32 +1216,73 @@ export function astgabel(r: HTMLElement, d: Daten, fertig: () => void) {
     unten(knopf('weiter', K.UI.weiter), los);
     hook.loese = los;
   };
+  /** Erst erinnern (zwei von vier Karten), dann den Baum: das Kind tippt irgendwo hin, nur die fünf Gabel-Zonen (unsichtbar, in Prozent der Bildbreite) zählen */
   const gabeln = () => {
-    $('.zt1', r).innerHTML = d.frage;
-    sag(r, 'tipp', '');
-    let fehl = 0, zu = false, mitHinweis = false;
-    const mal = () => {
-      const hin = mitHinweis ? `<div class="as-hin ab-erinnerung"><span class="as-z">${d.erinnerung.text}</span><ul>${d.erinnerung.zeilen.map((z: any) => `<li>${z.text}</li>`).join('')}</ul></div>` : '';
-      zi.innerHTML = `${hin}<div class="ab-bild" style="aspect-ratio:${d.ratio}"><img src="${K.img(d.bild)}" alt="" draggable="false">${d.gabeln.map((g: any, i: number) => `<button class="ab-g" data-g="${g.id}" aria-label="Astgabel ${i + 1}" style="left:${g.x}%;top:${g.y}%;width:${g.r * 2}%"><b>${i + 1}</b></button>`).join('')}</div>`;
+    const E = d.erinnern, ok = new Set<number>();
+    let fehlK = 0, zuK = false;
+    $('.zt1', r).innerHTML = E.frage;
+    sag(r, 'tipp', E.start);
+    const malK = () => {
+      zi.innerHTML = `<div class="ab-ek">${E.karten.map((c: any, i: number) => `<button class="ab-e${ok.has(i) ? ' ja' : ''}" data-i="${i}">${c.text}</button>`).join('')}</div>`;
     };
-    mal();
+    malK();
+    unten('');
+    const weiterBaum = () => { zuK = true; hook.loese = null; setTimeout(() => zi.isConnected && baum(), 1500); };
+    const pruefK = () => { if (E.karten.every((c: any, i: number) => !c.ok || ok.has(i))) { sag(r, 'lob', E.ok, 'gut'); K.summ(20); weiterBaum(); } };
+    zi.onclick = (e) => {
+      const b = (e.target as HTMLElement).closest<HTMLElement>('.ab-e');
+      if (!b || zuK) return;
+      const i = +b.dataset.i!, c = E.karten[i];
+      if (c.ok) { ok.add(i); malK(); return pruefK(); }
+      wackel(b); b.classList.add('falsch');
+      if (++fehlK === 1) return sag(r, 'tipp', K.UI.nochmal + ' ' + E.nein);
+      E.karten.forEach((q: any, j: number) => q.ok && ok.add(j)); malK();
+      zuK = true; hook.loese = null; sag(r, 'tipp', K.UI.hilfe + ' ' + E.ok);
+      setTimeout(() => zi.isConnected && baum(), 2200);
+    };
+    hook.loese = () => { if (!zuK) { E.karten.forEach((q: any, j: number) => q.ok && ok.add(j)); malK(); weiterBaum(); } };
+  };
+  const baum = () => {
+    $('.zt1', r).innerHTML = d.frage;
+    sag(r, 'tipp', d.start);
+    zi.innerHTML = `<div class="ab-bild" style="aspect-ratio:${d.ratio}"><img src="${K.img(d.bild)}" alt="" draggable="false"></div>`;
+    const box = $('.ab-bild', zi);
+    let fehl = 0, zu = false, hinOffen = false;
+    const ring = (g: any, kl: string) => box.insertAdjacentHTML('beforeend', `<i class="ring ${kl}" style="left:${g.x}%;top:${g.y}%;width:${g.r * 2}%;height:auto;aspect-ratio:1;margin:0;transform:translate(-50%,-50%)"></i>`);
+    const richtigG = () => d.gabeln.find((g: any) => g.id === d.richtig);
     unten('');
     const loesen = (hilfe: boolean) => {
-      zu = true; hook.loese = null;
-      zi.querySelector(`.ab-g[data-g="${d.richtig}"]`)?.classList.add('ja');
-      if (hilfe) sag(r, 'tipp', K.UI.hilfe + ' ' + d.warum);
-      else sag(r, 'tipp', '');
+      zu = true; hook.loese = null; unten('');
+      zi.querySelector('.ab-hin')?.remove();
+      ring(richtigG(), hilfe ? 'da blink' : 'da');
+      sag(r, hilfe ? 'tipp' : 'lob', hilfe ? K.UI.hilfe + ' ' + d.warum : d.warum, hilfe ? '' : 'gut');
       setTimeout(() => {
         if (!zi.isConnected) return;
-        hook.loese = stempeln(zi, $('.ab-bild', zi), d.stempel, () => { hook.loese = null; ende(r, d, fertig); });
-      }, hilfe ? 1600 : 500);
+        const g = richtigG();
+        hook.loese = stempeln(zi, box, d.stempel, () => { hook.loese = null; ende(r, d, fertig); }, { x: g.x, y: g.y });
+      }, hilfe ? 1800 : 900);
     };
-    zi.onclick = (e) => {
-      const b = (e.target as HTMLElement).closest<HTMLElement>('.ab-g');
-      if (!b || zu) return;
-      if (b.dataset.g === d.richtig) return loesen(false);
-      wackel(b); b.classList.add('falsch');
-      if (++fehl === 1) { mitHinweis = true; const alt = zi.querySelector<HTMLElement>('.ab-g.falsch'); const gid = alt?.dataset.g; mal(); zi.querySelector(`.ab-g[data-g="${gid}"]`)?.classList.add('falsch'); return sag(r, 'tipp', K.UI.nochmal + ' ' + d.tipp); }
+    const nachsehen = () => {
+      if (hinOffen) return;
+      hinOffen = true;
+      zi.insertAdjacentHTML('afterbegin', `<div class="as-hin ab-hin"><span class="as-z">${d.erinnerung.text}</span><p>${d.erinnerung.absatz}</p></div>`);
+      unten('');
+    };
+    box.onclick = (e) => {
+      if (zu) return;
+      const rc = box.getBoundingClientRect(), px = e.clientX - rc.left, py = e.clientY - rc.top;
+      let beste: any = null, bd = 1e9;
+      for (const g of d.gabeln) { const dd = Math.hypot(px - g.x / 100 * rc.width, py - g.y / 100 * rc.height); if (dd <= g.r / 100 * rc.width && dd < bd) { bd = dd; beste = g; } }
+      if (!beste) return; // daneben: zählt nicht
+      if (beste.id === d.richtig) return loesen(false);
+      box.querySelectorAll('.ring.miss').forEach((q) => q.remove());
+      box.insertAdjacentHTML('beforeend', `<i class="ring miss" style="left:${px / rc.width * 100}%;top:${py / rc.height * 100}%"></i>`);
+      setTimeout(() => box.querySelector('.ring.miss')?.remove(), 900);
+      if (++fehl === 1) {
+        sag(r, 'tipp', K.UI.nochmal + ' ' + beste.nicht);
+        unten(knopf('nachsehen', d.nachsehen), (a) => { if (a === 'nachsehen') nachsehen(); });
+        return;
+      }
       loesen(true);
     };
     hook.loese = () => { if (!zu) loesen(false); };
