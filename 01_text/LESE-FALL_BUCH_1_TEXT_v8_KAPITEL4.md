@@ -72,6 +72,8 @@ Diesmal kommt jedes Ding an seinen Platz. Oskar legt die Papierreste auf das bla
 
 Ben steigt auf den Hocker. Er legt den Faden über die Leiste. Dann hängt er den Mond links neben die Wolke.
 
+Zwei Dinge räumt niemand weg. Die Kleberflasche fällt vom Tisch auf den Boden. Der grüne Bleistift rollt unter den Stuhl. Beide bleiben einfach liegen.
+
 <!-- Ermittlung -->
 
 Die Lese-Raupe schaut sich im Raum um. Vorhin lag alles durcheinander. Jetzt sieht der Raum ganz anders aus.

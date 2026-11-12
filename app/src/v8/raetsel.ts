@@ -534,7 +534,7 @@ export function sortieren(r: HTMLElement, d: Daten, fertig: () => void) {
   let sel: string | null = null, sperre = false;
   const kachel = (x: any, klein = false) => `<div class="so-ding${klein ? ' klein' : ''}${sel === x.id ? ' sel' : ''}" data-d="${x.id}"><img src="${K.img(x.bild)}" alt="" draggable="false"><span>${x.name}</span></div>`;
   const mal = () => {
-    zi.innerHTML = `<div class="so-ziele${ziele.length === 3 ? ' drei' : ''}">${ziele.map((z) => `<div class="so-ziel" data-z="${z.id}"><div class="so-kopf"><img src="${K.img(z.bild)}" alt=""><b>${z.name}</b><small>${z.unter}</small></div><div class="so-drin">${dinge.filter((x) => drin.get(x.id) === z.id).map((x) => kachel(x, true)).join('')}</div></div>`).join('')}</div><div class="so-pool">${ordnung.filter((id) => !drin.has(id)).map((id) => kachel(dinge.find((x) => x.id === id))).join('')}</div>`;
+    zi.innerHTML = `<div class="so-ziele${ziele.length === 3 ? ' drei' : ziele.length === 4 ? ' vier' : ''}">${ziele.map((z) => `<div class="so-ziel" data-z="${z.id}"><div class="so-kopf"><img src="${K.img(z.bild)}" alt=""><b>${z.name}</b><small>${z.unter}</small></div><div class="so-drin">${dinge.filter((x) => drin.get(x.id) === z.id).map((x) => kachel(x, true)).join('')}</div></div>`).join('')}</div><div class="so-pool">${ordnung.filter((id) => !drin.has(id)).map((id) => kachel(dinge.find((x) => x.id === id))).join('')}</div>`;
     unten('');
   };
   const fertigPruefen = () => { if (drin.size === dinge.length) { sperre = true; hook.loese = null; ende(r, d, fertig); } };

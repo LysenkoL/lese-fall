@@ -3771,6 +3771,16 @@
      "id": "s21-p7",
      "typ": "p",
      "s": [
+      "Zwei Din|ge räumt nie|mand weg.",
+      "Die Kle|ber|fla|sche fällt vom Tisch auf den Bo|den.",
+      "Der grü|ne Blei|stift rollt un|ter den Stuhl.",
+      "Bei|de blei|ben ein|fach lie|gen."
+     ]
+    },
+    {
+     "id": "s21-p8",
+     "typ": "p",
+     "s": [
       "Die Le|se-Rau|pe schaut sich im Raum um.",
       "Vor|hin lag al|les dur|chei|nan|der.",
       "Jetzt sieht der Raum ganz an|ders aus."
@@ -3790,7 +3800,7 @@
    "raetsel": {
     "art": "unterschiede",
     "titel": "Al|les an sei|nem Platz",
-    "text": "Das er|ste Bild zeigt den Raum vor|hin, das zwei|te jetzt. Fin|de fünf Din|ge, die ih|ren Platz ge|wech|selt ha|ben.",
+    "text": "Das er|ste Bild zeigt den Raum vor|hin, das zwei|te jetzt. Fin|de sie|ben Din|ge, die ih|ren Platz ge|wech|selt ha|ben.",
     "basis": "objekte/raum_leer",
     "deko": [
      {
@@ -3824,30 +3834,30 @@
       "bild": "objekte/mond_vorne",
       "x": 40,
       "y": 30,
-      "w": 6.5,
+      "w": 5,
       "vorhin": {
        "x": 60,
        "y": 88,
-       "w": 8,
+       "w": 5.5,
        "rot": 25
       },
       "jetzt": {
        "x": 33,
        "y": 33,
-       "w": 6.5
+       "w": 5
       },
       "zonen": [
        {
         "x": 60,
         "y": 88,
-        "w": 12,
-        "h": 14
+        "w": 9,
+        "h": 9
        },
        {
         "x": 33,
         "y": 33,
-        "w": 11,
-        "h": 16
+        "w": 9,
+        "h": 9
        }
       ],
       "tipp": "Wo ist der Mond? Vor|hin lag er auf dem Bo|den."
@@ -3857,29 +3867,29 @@
       "bild": "objekte/papierreste",
       "x": 20,
       "y": 76,
-      "w": 11,
+      "w": 7,
       "vorhin": {
        "x": 46,
-       "y": 84,
-       "w": 12
+       "y": 82,
+       "w": 8
       },
       "jetzt": {
        "x": 20,
        "y": 76,
-       "w": 11
+       "w": 7
       },
       "zonen": [
        {
         "x": 46,
-        "y": 84,
-        "w": 14,
-        "h": 12
+        "y": 82,
+        "w": 9,
+        "h": 9
        },
        {
         "x": 20,
         "y": 76,
-        "w": 14,
-        "h": 12
+        "w": 9,
+        "h": 9
        }
       ],
       "tipp": "Schau auf das blau|e Tab|lett links."
@@ -3889,20 +3899,20 @@
       "bild": "objekte/schere",
       "x": 33,
       "y": 91,
-      "w": 9,
+      "w": 6,
       "vorhin": {
        "x": 33,
        "y": 91,
-       "w": 9,
+       "w": 6,
        "rot": -20
       },
       "jetzt": false,
       "zonen": [
        {
         "x": 33,
-        "y": 90,
-        "w": 12,
-        "h": 10
+        "y": 91,
+        "w": 9,
+        "h": 9
        }
       ],
       "tipp": "Vor|hin lag et|was Ro|tes auf dem Bo|den."
@@ -3910,67 +3920,134 @@
      {
       "id": "puppen",
       "bild": "objekte/kiste_gruen",
-      "x": 76,
-      "y": 80,
-      "w": 18,
+      "x": 78,
+      "y": 82,
+      "w": 12,
       "vorhin": {
        "bild": "objekte/fuchs_puppe",
        "x": 72,
-       "y": 84,
-       "w": 9
+       "y": 88,
+       "w": 6.5
       },
       "jetzt": {
-       "x": 76,
-       "y": 80,
-       "w": 18
+       "x": 78,
+       "y": 82,
+       "w": 12
       },
       "zonen": [
        {
-        "x": 73,
-        "y": 83,
-        "w": 20,
-        "h": 16
+        "x": 74,
+        "y": 85,
+        "w": 14,
+        "h": 13
        }
       ],
-      "tipp": "Schau un|ten rechts."
+      "tipp": "Schau un|ten rechts. Dort hat sich et|was ver|än|dert."
      },
      {
       "id": "faden",
       "bild": "objekte/u_fadenende",
       "x": 14,
       "y": 36,
-      "w": 5,
+      "w": 3.4,
       "vorhin": {
        "x": 14,
        "y": 90,
-       "w": 3.6,
+       "w": 3.2,
        "rot": 70
       },
       "jetzt": {
        "x": 12,
        "y": 33,
-       "w": 5
+       "w": 3.4
       },
       "zonen": [
        {
         "x": 14,
         "y": 90,
-        "w": 11,
-        "h": 10
+        "w": 8,
+        "h": 8
        },
        {
         "x": 12,
         "y": 34,
-        "w": 11,
-        "h": 12
+        "w": 8,
+        "h": 8
        }
       ],
       "tipp": "Wo liegt der Fa|den? Vor|hin lag er un|ten links."
+     },
+     {
+      "id": "kleber",
+      "bild": "objekte/kleber",
+      "x": 57,
+      "y": 78,
+      "w": 4.5,
+      "vorhin": {
+       "x": 57,
+       "y": 78,
+       "w": 4.5
+      },
+      "jetzt": {
+       "x": 50,
+       "y": 96,
+       "w": 4.5,
+       "rot": 80
+      },
+      "zonen": [
+       {
+        "x": 57,
+        "y": 78,
+        "w": 9,
+        "h": 9
+       },
+       {
+        "x": 50,
+        "y": 96,
+        "w": 9,
+        "h": 9
+       }
+      ],
+      "tipp": "Wo steht die Kle|ber|fla|sche? Vor|hin stand sie auf|recht."
+     },
+     {
+      "id": "bleistift",
+      "bild": "objekte/bleistift_gruen",
+      "x": 84,
+      "y": 58,
+      "w": 7,
+      "vorhin": {
+       "x": 84,
+       "y": 58,
+       "w": 7,
+       "rot": -20
+      },
+      "jetzt": {
+       "x": 64,
+       "y": 96,
+       "w": 7,
+       "rot": 70
+      },
+      "zonen": [
+       {
+        "x": 84,
+        "y": 58,
+        "w": 9,
+        "h": 9
+       },
+       {
+        "x": 64,
+        "y": 96,
+        "w": 9,
+        "h": 9
+       }
+      ],
+      "tipp": "Wo liegt der grü|ne Blei|stift? Vor|hin lag er rechts."
      }
     ],
     "sortieren": {
-     "text": "Wer hat auf|ge|räumt? Zie|he je|des Ding zu dem, der es weg|ge|räumt hat. Denk an die Ge|schich|te.",
-     "start": "Gut ge|sucht! Und jetzt ü|ber|le|ge: Wer hat was auf|ge|räumt? Das steht in der Ge|schich|te.",
+     "text": "Wer hat es an sei|nen Platz ge|bracht? Zie|he je|des Ding zu dem, der es ge|tan hat. Zwei Din|ge hat nie|mand weg|ge|räumt.",
+     "start": "Gut ge|sucht! Und jetzt ü|ber|le|ge: Wer hat was an sei|nen Platz ge|bracht? Das steht in der Ge|schich|te.",
      "ziele": [
       {
        "id": "oskar",
@@ -3989,6 +4066,12 @@
        "name": "Hat Ben ge|macht",
        "unter": "",
        "bild": "frei/ben_froh"
+      },
+      {
+       "id": "liegt",
+       "name": "Liegt noch he|rum",
+       "unter": "",
+       "bild": "objekte/u_zufall"
       }
      ],
      "dinge": [
@@ -4025,11 +4108,25 @@
        "name": "Mond",
        "bild": "objekte/mond_vorne",
        "ziel": "ben",
-       "warum": "Ben ist auf den Ho|cker ge|stie|gen und hat den Mond auf|ge|hängt."
+       "warum": "Ben hat den Mond ne|ben die Wol|ke ge|hängt."
+      },
+      {
+       "id": "kleber",
+       "name": "Kle|ber",
+       "bild": "objekte/kleber",
+       "ziel": "liegt",
+       "warum": "Die Kle|ber|fla|sche ist vom Tisch ge|fal|len. Nie|mand hat sie weg|ge|räumt."
+      },
+      {
+       "id": "bleistift",
+       "name": "Blei|stift",
+       "bild": "objekte/bleistift_gruen",
+       "ziel": "liegt",
+       "warum": "Der Blei|stift ist un|ter den Stuhl ge|rollt. Nie|mand hat ihn weg|ge|räumt."
       }
      ]
     },
-    "erfolg": "Al|les hat sei|nen Platz, und du weißt, wer es war. Jetzt kön|nen die Zu|schau|er kom|men."
+    "erfolg": "Fast al|les hat sei|nen Platz, und du weißt, wer es war. Jetzt kön|nen die Zu|schau|er kom|men."
    }
   },
   {

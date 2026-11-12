@@ -308,7 +308,7 @@
       "raetsel": {
         "art": "unterschiede",
         "titel": "Alles an seinem Platz",
-        "text": "Das erste Bild zeigt den Raum vorhin, das zweite jetzt. Finde fünf Dinge, die ihren Platz gewechselt haben.",
+        "text": "Das erste Bild zeigt den Raum vorhin, das zweite jetzt. Finde sieben Dinge, die ihren Platz gewechselt haben.",
         "basis": "objekte/raum_leer",
         "deko": [
           {
@@ -342,30 +342,30 @@
             "bild": "objekte/mond_vorne",
             "x": 40,
             "y": 30,
-            "w": 6.5,
+            "w": 5,
             "vorhin": {
               "x": 60,
               "y": 88,
-              "w": 8,
+              "w": 5.5,
               "rot": 25
             },
             "jetzt": {
               "x": 33,
               "y": 33,
-              "w": 6.5
+              "w": 5
             },
             "zonen": [
               {
                 "x": 60,
                 "y": 88,
-                "w": 12,
-                "h": 14
+                "w": 9,
+                "h": 9
               },
               {
                 "x": 33,
                 "y": 33,
-                "w": 11,
-                "h": 16
+                "w": 9,
+                "h": 9
               }
             ],
             "tipp": "Wo ist der Mond? Vorhin lag er auf dem Boden."
@@ -375,29 +375,29 @@
             "bild": "objekte/papierreste",
             "x": 20,
             "y": 76,
-            "w": 11,
+            "w": 7,
             "vorhin": {
               "x": 46,
-              "y": 84,
-              "w": 12
+              "y": 82,
+              "w": 8
             },
             "jetzt": {
               "x": 20,
               "y": 76,
-              "w": 11
+              "w": 7
             },
             "zonen": [
               {
                 "x": 46,
-                "y": 84,
-                "w": 14,
-                "h": 12
+                "y": 82,
+                "w": 9,
+                "h": 9
               },
               {
                 "x": 20,
                 "y": 76,
-                "w": 14,
-                "h": 12
+                "w": 9,
+                "h": 9
               }
             ],
             "tipp": "Schau auf das blaue Tablett links."
@@ -407,20 +407,20 @@
             "bild": "objekte/schere",
             "x": 33,
             "y": 91,
-            "w": 9,
+            "w": 6,
             "vorhin": {
               "x": 33,
               "y": 91,
-              "w": 9,
+              "w": 6,
               "rot": -20
             },
             "jetzt": false,
             "zonen": [
               {
                 "x": 33,
-                "y": 90,
-                "w": 12,
-                "h": 10
+                "y": 91,
+                "w": 9,
+                "h": 9
               }
             ],
             "tipp": "Vorhin lag etwas Rotes auf dem Boden."
@@ -428,67 +428,134 @@
           {
             "id": "puppen",
             "bild": "objekte/kiste_gruen",
-            "x": 76,
-            "y": 80,
-            "w": 18,
+            "x": 78,
+            "y": 82,
+            "w": 12,
             "vorhin": {
               "bild": "objekte/fuchs_puppe",
               "x": 72,
-              "y": 84,
-              "w": 9
+              "y": 88,
+              "w": 6.5
             },
             "jetzt": {
-              "x": 76,
-              "y": 80,
-              "w": 18
+              "x": 78,
+              "y": 82,
+              "w": 12
             },
             "zonen": [
               {
-                "x": 73,
-                "y": 83,
-                "w": 20,
-                "h": 16
+                "x": 74,
+                "y": 85,
+                "w": 14,
+                "h": 13
               }
             ],
-            "tipp": "Schau unten rechts."
+            "tipp": "Schau unten rechts. Dort hat sich etwas verändert."
           },
           {
             "id": "faden",
             "bild": "objekte/u_fadenende",
             "x": 14,
             "y": 36,
-            "w": 5,
+            "w": 3.4,
             "vorhin": {
               "x": 14,
               "y": 90,
-              "w": 3.6,
+              "w": 3.2,
               "rot": 70
             },
             "jetzt": {
               "x": 12,
               "y": 33,
-              "w": 5
+              "w": 3.4
             },
             "zonen": [
               {
                 "x": 14,
                 "y": 90,
-                "w": 11,
-                "h": 10
+                "w": 8,
+                "h": 8
               },
               {
                 "x": 12,
                 "y": 34,
-                "w": 11,
-                "h": 12
+                "w": 8,
+                "h": 8
               }
             ],
             "tipp": "Wo liegt der Faden? Vorhin lag er unten links."
+          },
+          {
+            "id": "kleber",
+            "bild": "objekte/kleber",
+            "x": 57,
+            "y": 78,
+            "w": 4.5,
+            "vorhin": {
+              "x": 57,
+              "y": 78,
+              "w": 4.5
+            },
+            "jetzt": {
+              "x": 50,
+              "y": 96,
+              "w": 4.5,
+              "rot": 80
+            },
+            "zonen": [
+              {
+                "x": 57,
+                "y": 78,
+                "w": 9,
+                "h": 9
+              },
+              {
+                "x": 50,
+                "y": 96,
+                "w": 9,
+                "h": 9
+              }
+            ],
+            "tipp": "Wo steht die Kleberflasche? Vorhin stand sie aufrecht."
+          },
+          {
+            "id": "bleistift",
+            "bild": "objekte/bleistift_gruen",
+            "x": 84,
+            "y": 58,
+            "w": 7,
+            "vorhin": {
+              "x": 84,
+              "y": 58,
+              "w": 7,
+              "rot": -20
+            },
+            "jetzt": {
+              "x": 64,
+              "y": 96,
+              "w": 7,
+              "rot": 70
+            },
+            "zonen": [
+              {
+                "x": 84,
+                "y": 58,
+                "w": 9,
+                "h": 9
+              },
+              {
+                "x": 64,
+                "y": 96,
+                "w": 9,
+                "h": 9
+              }
+            ],
+            "tipp": "Wo liegt der grüne Bleistift? Vorhin lag er rechts."
           }
         ],
         "sortieren": {
-          "text": "Wer hat aufgeräumt? Ziehe jedes Ding zu dem, der es weggeräumt hat. Denk an die Geschichte.",
-          "start": "Gut gesucht! Und jetzt überlege: Wer hat was aufgeräumt? Das steht in der Geschichte.",
+          "text": "Wer hat es an seinen Platz gebracht? Ziehe jedes Ding zu dem, der es getan hat. Zwei Dinge hat niemand weggeräumt.",
+          "start": "Gut gesucht! Und jetzt überlege: Wer hat was an seinen Platz gebracht? Das steht in der Geschichte.",
           "ziele": [
             {
               "id": "oskar",
@@ -507,6 +574,12 @@
               "name": "Hat Ben gemacht",
               "unter": "",
               "bild": "frei/ben_froh"
+            },
+            {
+              "id": "liegt",
+              "name": "Liegt noch herum",
+              "unter": "",
+              "bild": "objekte/u_zufall"
             }
           ],
           "dinge": [
@@ -543,11 +616,25 @@
               "name": "Mond",
               "bild": "objekte/mond_vorne",
               "ziel": "ben",
-              "warum": "Ben ist auf den Hocker gestiegen und hat den Mond aufgehängt."
+              "warum": "Ben hat den Mond neben die Wolke gehängt."
+            },
+            {
+              "id": "kleber",
+              "name": "Kleber",
+              "bild": "objekte/kleber",
+              "ziel": "liegt",
+              "warum": "Die Kleberflasche ist vom Tisch gefallen. Niemand hat sie weggeräumt."
+            },
+            {
+              "id": "bleistift",
+              "name": "Bleistift",
+              "bild": "objekte/bleistift_gruen",
+              "ziel": "liegt",
+              "warum": "Der Bleistift ist unter den Stuhl gerollt. Niemand hat ihn weggeräumt."
             }
           ]
         },
-        "erfolg": "Alles hat seinen Platz, und du weißt, wer es war. Jetzt können die Zuschauer kommen."
+        "erfolg": "Fast alles hat seinen Platz, und du weißt, wer es war. Jetzt können die Zuschauer kommen."
       }
     },
     {

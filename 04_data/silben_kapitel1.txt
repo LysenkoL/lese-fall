@@ -1551,3 +1551,11 @@ gro|ßes
 ast|loch
 äs|te
 da|hin
+# neu für v8 (ungeprüft)
+kle|ber|fla|sche
+stuhl
+blei|ben
+sie|ben
+auf|recht
+ge|fal|len
+ge|rollt

@@ -113,3 +113,12 @@
 .dipl .perle { width: 18px; height: 18px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff, #F4C243 55%, #C99A2E); box-shadow: 0 1px 2px rgba(0, 0, 0, .4); display: inline-block; }
 .fin.urk .forts { color: #fff; font-weight: 700; opacity: .85; margin: 0; }
 .zug.fin, .fin.urk { overflow-x: clip; }
+
+/* ---------- Spur 21: vier Felder beim Sortieren ---------- */
+.so-ziele.vier { gap: 6px; }
+.so-ziele.vier .so-ziel { min-height: 92px; padding: 5px 3px 6px; gap: 3px; }
+.so-ziele.vier .so-kopf { flex-direction: row; gap: 6px; }
+.so-ziele.vier .so-kopf img { height: 34px; }
+.so-ziele.vier .so-kopf b { font-size: 14px; text-align: left; }
+.so-ziele.vier .so-drin { gap: 4px; display: flex; flex-wrap: wrap; justify-content: center; }
+.so-ziele.vier .so-ding.klein { width: 64px; }
