@@ -12,6 +12,7 @@ const ECHT = {
   ...import.meta.glob('../gen/{objekte,kinder}/*.webp', { eager: true, query: '?url', import: 'default' }),
   ...import.meta.glob('../../../assets/illustrationen/kinder/*.webp', { eager: true, query: '?url', import: 'default' }),
   ...import.meta.glob('../../../assets/illustrationen/objekte/*.webp', { eager: true, query: '?url', import: 'default' }),
+  ...import.meta.glob('../../../assets/illustrationen/{baum,baum_nest,nest_finale}.webp', { eager: true, query: '?url', import: 'default' }),
 } as Record<string, string>;
 const SVGS = import.meta.glob('./ersatz/*.svg', { eager: true, query: '?url', import: 'default' }) as Record<string, string>;
 
@@ -41,6 +42,12 @@ export const ERSATZ: Record<string, string> = {
   'objekte/u_riss_icon': 'ersatz/u_riss_icon',
   'objekte/u_klebefleck': 'ersatz/u_klebefleck',
   'objekte/u_zufall': 'ersatz/u_zufall',
+  // Kapitel 4: Baum mit fünf Astgabeln (Gabel 3 unter dem Fenster, dünn wie ein V), Baum mit Nest, Kinder von hinten (Lupe), Raum (Unterschiede), Finale
+  'baum': 'ersatz/baum',
+  'baum_nest': 'ersatz/baum_nest',
+  'nest_finale': 'k4_s24',
+  'objekte/kinder_hinten': 'ersatz/kinder_hinten',
+  'objekte/raum_leer': 'ersatz/raum_leer',
   'kinder/lina': 'kind/lina', 'kinder/tom': 'kind/tom', 'kinder/ida': 'kind/ida', 'kinder/emil': 'kind/emil', 'kinder/nele': 'kind/nele',
 };
 /** Pullis der Kinder (wie in Kapitel 1) für die gezeichneten Platzhalter */

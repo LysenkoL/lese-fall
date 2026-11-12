@@ -6,7 +6,7 @@
  * Regel überall: nach dem 1. Fehler Wackeln + `ui.nochmal`; nach dem 2. Fehler zeigt die Raupe die Lösung (`ui.hilfe`).
  */
 import { pulliSvg, versteckterBuchstabe } from './zeichnen.ts';
-import { staub as _staub } from './staub.ts';
+import { staub as _staub, laub as _laub } from './staub.ts';
 void _staub;
 
 export interface Kontext {
@@ -173,7 +173,7 @@ export function unterschiede(r: HTMLElement, d: Daten, fertig: () => void) {
   const seite = (x: any) => { const e = zi.querySelector<HTMLImageElement>(`img[data-d="${x.id}"]`); return e && e.naturalWidth ? e.naturalHeight / e.naturalWidth : 1; };
   const finde = (x: any, blink = false) => {
     gef.add(x.id);
-    zi.querySelectorAll('.ub-bild').forEach((b) => b.insertAdjacentHTML('beforeend', `<i class="ring da${blink ? ' blink' : ''}" style="left:${x.x}%;top:${x.y}%"></i>`));
+    zi.querySelectorAll<HTMLElement>('.ub-bild').forEach((b) => { const q = pos(x, (b.closest('.ub') as HTMLElement).dataset.p as 'vorhin' | 'jetzt'); b.insertAdjacentHTML('beforeend', `<i class="ring da${blink ? ' blink' : ''}" style="left:${q.x}%;top:${q.y}%"></i>`); });
     zaehl();
     K.summ(20);
     if (gef.size === dinge.length && !fertigig) { fertigig = true; setTimeout(() => (d.sortieren ? zuordnen() : ende(r, d, fertig)), 450); }
@@ -454,7 +454,7 @@ export function ausschluss(r: HTMLElement, d: Daten, fertig: () => void) {
   const gestr = new Set<string>(), neuGestr = new Set<string>(), sel = new Set<string>();
   let hi = 0, fehl = 0, gesperrt = false;
   const kreuz = '<svg class="kreuz" viewBox="0 0 100 100" aria-hidden="true"><path d="M12 12L88 88M88 12L12 88" stroke="#26221C" stroke-width="7" stroke-linecap="round" fill="none"/></svg>';
-  const karteHtml = (c: any) => `<button class="as-k${gestr.has(c.id) ? ' weg' : ''}${neuGestr.has(c.id) ? ' neu' : ''}${sel.has(c.id) ? ' an' : ''}" data-id="${c.id}" ${gestr.has(c.id) ? 'disabled' : ''}>${c.pulli ? pulliSvg(c.pulli, 'pl-' + c.id) : `<img src="${K.img(c.bild)}" alt="" draggable="false">`}<span class="as-n">${c.name}</span>${gestr.has(c.id) ? kreuz : ''}</button>`;
+  const karteHtml = (c: any) => `<button class="as-k${gestr.has(c.id) ? ' weg' : ''}${neuGestr.has(c.id) ? ' neu' : ''}${sel.has(c.id) ? ' an' : ''}" data-id="${c.id}" ${gestr.has(c.id) ? 'disabled' : ''}>${c.pulli ? pulliSvg(c.pulli, 'pl-' + c.id) : c.crop ? `<span class="as-crop"><span class="sc-v" style="background-image:url(${K.img(c.crop.bild)});background-size:${c.crop.n * 100}% 100%;background-position:${(c.crop.i / (c.crop.n - 1)) * 100}% 0"></span></span>` : `<img src="${K.img(c.bild)}" alt="" draggable="false">`}<span class="as-n">${c.name}</span>${gestr.has(c.id) ? kreuz : ''}</button>`;
   const mal = () => {
     zi.innerHTML = `<div class="as-hin"><span class="as-z">Hinweis ${hi + 1} von ${N}</span><p>${hin[hi].text}</p></div><p class="as-raus">${K.UI[d.rausText ?? 'raus']}</p><div class="as-grid">${ordnung.map((id) => karteHtml(kand.find((c) => c.id === id))).join('')}</div>`;
     neuGestr.clear();
@@ -834,6 +834,12 @@ export function lupe(r: HTMLElement, d: Daten, fertig: () => void) {
   const box = $('.lp-box', zi), glas = $('.lp-glas', zi);
   const zoom = d.zoom ?? 2.8;
   let aus = false, fehl = 0, px = 0.3, py = 0.3, x0 = 0, y0 = 0, weit = false, unten0 = false;
+  const gezeigt = new Set<number>();
+  /** Ablenker (rosa Schleife …): die Raupe sagt einmal, dass es nicht der gesuchte Fund ist */
+  const ablenker = () => {
+    const rc = box.getBoundingClientRect();
+    (d.fehlFunde ?? []).forEach((f: any, i: number) => { if (!gezeigt.has(i) && Math.hypot(((px * 100 - f.x) / 100) * rc.width, ((py * 100 - f.y) / 100) * rc.height) <= (f.r / 100) * rc.width) { gezeigt.add(i); sag(r, 'tipp', f.text); } });
+  };
   const setze = (fx: number, fy: number) => {
     px = Math.min(1, Math.max(0, fx)); py = Math.min(1, Math.max(0, fy));
     const rc = box.getBoundingClientRect(), gl = glas.offsetWidth;
@@ -848,6 +854,11 @@ export function lupe(r: HTMLElement, d: Daten, fertig: () => void) {
     setze(d.ziel.x / 100, d.ziel.y / 100);
     glas.classList.add('treffer');
     K.summ(30);
+    if (d.schluss) { // danach: was ist sicher, was nur ein Verdacht?
+      sag(r, 'lob', (mitHilfe ? K.UI.hilfe + ' ' : '') + (d.fund ?? ''), 'gut');
+      setTimeout(() => zi.isConnected && schlussFrage(r, zi, d, fertig), 900);
+      return;
+    }
     ende(r, d, fertig, mitHilfe ? K.UI.hilfe : '');
   };
   const pos = (e: PointerEvent) => {
@@ -855,11 +866,12 @@ export function lupe(r: HTMLElement, d: Daten, fertig: () => void) {
     const hoch = e.pointerType === 'mouse' ? 0 : 62; // am Finger: Lupe über dem Finger, damit man sie sieht
     setze((e.clientX - rc.left) / rc.width, (e.clientY - hoch - rc.top) / rc.height);
   };
-  box.addEventListener('pointerdown', (e) => { if (aus) return; unten0 = true; weit = false; x0 = e.clientX; y0 = e.clientY; box.setPointerCapture(e.pointerId); pos(e); glas.classList.add('an'); });
+  box.addEventListener('pointerdown', (e) => { if (aus) return; unten0 = true; weit = false; x0 = e.clientX; y0 = e.clientY; box.setPointerCapture(e.pointerId); pos(e); ablenker(); glas.classList.add('an'); });
   box.addEventListener('pointermove', (e) => {
     if (aus || (!unten0 && e.pointerType !== 'mouse')) return;
     if (Math.hypot(e.clientX - x0, e.clientY - y0) > 10) weit = true;
     pos(e);
+    ablenker();
     if (trifft()) finde(false);
   });
   const los = (e: PointerEvent) => {
@@ -1172,4 +1184,155 @@ export function plakat(r: HTMLElement, d: Daten, fertig: () => void) {
   };
   hook.loese = () => loesen(false);
   mal();
+}
+
+
+/* ============================ 7.1 Das Wort im Baum (astgabel, Schlüsselmoment 3) ============================ */
+/** Drei versteckte Buchstaben (Laub, Rinde) ergeben AST; dann wählt das Kind unter fünf Astgabeln die, die zum Text passt. */
+export function astgabel(r: HTMLElement, d: Daten, fertig: () => void) {
+  const zi = $('.zi', r);
+  const runden: any[] = d.runden, gef: string[] = [];
+  const reihe = document.createElement('div');
+  reihe.className = 'ab-wort';
+  const felder = () => (d.wort as string).split('').map((c, i) => `<i class="${gef[i] ? 'da' : ''}">${gef[i] ?? ''}</i>`).join('');
+  reihe.innerHTML = felder();
+  r.insertBefore(reihe, zi);
+  let k = 0;
+  const runde = () => {
+    const q = runden[k];
+    versteckt(r, q, () => {
+      gef[k] = q.buchstabe; reihe.innerHTML = felder(); K.summ(20); k++;
+      if (k < runden.length) setTimeout(() => zi.isConnected && runde(), 1500);
+      else setTimeout(() => zi.isConnected && wort(), 1200);
+    });
+  };
+  /** Das Wort steht da: die Raupe liest es vor, dann geht es zum Baum */
+  const wort = () => {
+    reihe.classList.add('fertig');
+    sag(r, 'lob', d.wortText, 'gut');
+    K.summ([20, 40, 60]);
+    const los = () => { hook.loese = null; gabeln(); };
+    unten(knopf('weiter', K.UI.weiter), los);
+    hook.loese = los;
+  };
+  const gabeln = () => {
+    $('.zt1', r).innerHTML = d.frage;
+    sag(r, 'tipp', '');
+    let fehl = 0, zu = false, mitHinweis = false;
+    const mal = () => {
+      const hin = mitHinweis ? `<div class="as-hin ab-erinnerung"><span class="as-z">${d.erinnerung.text}</span><ul>${d.erinnerung.zeilen.map((z: any) => `<li>${z.text}</li>`).join('')}</ul></div>` : '';
+      zi.innerHTML = `${hin}<div class="ab-bild" style="aspect-ratio:${d.ratio}"><img src="${K.img(d.bild)}" alt="" draggable="false">${d.gabeln.map((g: any, i: number) => `<button class="ab-g" data-g="${g.id}" aria-label="Astgabel ${i + 1}" style="left:${g.x}%;top:${g.y}%;width:${g.r * 2}%"><b>${i + 1}</b></button>`).join('')}</div>`;
+    };
+    mal();
+    unten('');
+    const loesen = (hilfe: boolean) => {
+      zu = true; hook.loese = null;
+      zi.querySelector(`.ab-g[data-g="${d.richtig}"]`)?.classList.add('ja');
+      if (hilfe) sag(r, 'tipp', K.UI.hilfe + ' ' + d.warum);
+      else sag(r, 'tipp', '');
+      setTimeout(() => {
+        if (!zi.isConnected) return;
+        hook.loese = stempeln(zi, $('.ab-bild', zi), d.stempel, () => { hook.loese = null; ende(r, d, fertig); });
+      }, hilfe ? 1600 : 500);
+    };
+    zi.onclick = (e) => {
+      const b = (e.target as HTMLElement).closest<HTMLElement>('.ab-g');
+      if (!b || zu) return;
+      if (b.dataset.g === d.richtig) return loesen(false);
+      wackel(b); b.classList.add('falsch');
+      if (++fehl === 1) { mitHinweis = true; const alt = zi.querySelector<HTMLElement>('.ab-g.falsch'); const gid = alt?.dataset.g; mal(); zi.querySelector(`.ab-g[data-g="${gid}"]`)?.classList.add('falsch'); return sag(r, 'tipp', K.UI.nochmal + ' ' + d.tipp); }
+      loesen(true);
+    };
+    hook.loese = () => { if (!zu) loesen(false); };
+  };
+  hook.loese = null;
+  runde();
+}
+
+/* ============================ 7.2 Ben zieht den Käse (faden, Spiel ohne Verlieren) ============================ */
+export function faden(r: HTMLElement, d: Daten, fertig: () => void) {
+  const zi = $('.zi', r);
+  const N: number = d.runden ?? 3;
+  let ok = 0, miss = 0, held = false, assist = false, m = 0.12, zustand: 'warte' | 'achtung' | 'sprung' | 'pause' = 'pause', t0 = 0, geprueft = false, fertigig = false, fruehGesagt = 0;
+  zi.innerHTML = `<div class="fd-zaehl"></div><div class="fd-buehne"><div class="fd-vorhang l"></div><div class="fd-vorhang rr"></div><div class="fd-faden"></div><img class="fd-mond" src="${K.img(d.bild)}" alt="" draggable="false"><img class="fd-maus" src="${K.img(d.maus)}" alt="" draggable="false"><i class="fd-achtung" aria-hidden="true">!</i></div><button class="kn haupt fd-knopf" data-a="ziehen"><span>${K.UI.faden}</span></button>`;
+  unten('');
+  const bu = $('.fd-buehne', zi), mond = $('.fd-mond', zi), maus = $('.fd-maus', zi), fa = $('.fd-faden', zi), kn = $('.fd-knopf', zi);
+  const punkte = () => { $('.fd-zaehl', zi).innerHTML = `<span class="pkt hell">${[...Array(N)].map((_, i) => `<i class="${i < ok ? 'an' : ''}"></i>`).join('')}</span>`; };
+  punkte();
+  const setze = (neu: typeof zustand) => { zustand = neu; t0 = performance.now(); maus.classList.toggle('achtung', neu === 'achtung'); maus.classList.toggle('sprung', neu === 'sprung'); bu.classList.toggle('alarm', neu === 'achtung'); };
+  const hoch = (e: Event, v: boolean) => { e.preventDefault(); held = v; kn.classList.toggle('an', v); };
+  kn.addEventListener('pointerdown', (e) => { (e.target as HTMLElement).setPointerCapture?.(e.pointerId); hoch(e, true); });
+  kn.addEventListener('pointerup', (e) => hoch(e, false)); kn.addEventListener('pointercancel', (e) => hoch(e, false)); kn.addEventListener('contextmenu', (e) => e.preventDefault());
+  kn.addEventListener('keydown', (e) => { if (e.key === ' ' || e.key === 'Enter') hoch(e, true); }); kn.addEventListener('keyup', (e) => { if (e.key === ' ' || e.key === 'Enter') hoch(e, false); });
+  const fertigSpiel = () => {
+    if (fertigig) return;
+    fertigig = true; hook.loese = null; held = false; ok = N; punkte(); setze('pause'); mond.classList.add('tanzt');
+    ende(r, d, fertig);
+  };
+  const runde = (ms = 0) => { /* nächste Runde: warten, dann springt die Maus */ setze('pause'); setTimeout(() => { if (zi.isConnected && !fertigig) setze('warte'); }, ms); };
+  let letzt = performance.now();
+  const takt = (jetzt: number) => {
+    if (!zi.isConnected || fertigig) return;
+    const dt = Math.min(0.05, (jetzt - letzt) / 1000); letzt = jetzt;
+    const zieht = held || (assist && (zustand === 'sprung' || zustand === 'achtung'));
+    m = zieht ? Math.min(1, m + dt * 2.4) : Math.max(0.12, m - dt * 0.9);
+    mond.style.top = `${24 - 34 * m}%`;
+    fa.style.height = `${Math.max(0, 24 - 34 * m) + 6}%`;
+    const t = jetzt - t0;
+    if (zustand === 'warte') {
+      if (m > 0.3) { if (zieht && jetzt - fruehGesagt > 3500) { fruehGesagt = jetzt; sag(r, 'tipp', d.frueh); } t0 = jetzt; } // Käse oben: Die Maus wartet
+      else if (t > 1400) { sag(r, 'tipp', ''); setze('achtung'); }
+    } else if (zustand === 'achtung') {
+      if (t > 700) { geprueft = false; setze('sprung'); }
+    } else if (zustand === 'sprung') {
+      if (!geprueft && t > 1000) { // höchster Punkt: ist der Käse schon hoch genug?
+        geprueft = true;
+        if (m > 0.85) { ok++; miss = 0; assist = false; punkte(); K.summ(25); mond.classList.add('wipp'); setTimeout(() => mond.classList.remove('wipp'), 700); sag(r, 'lob', ok >= N ? '' : 'Hopp! Der Käse ist weg, bevor die Maus ihn fasst.', 'gut'); if (ok >= N) return void fertigSpiel(); }
+        else { miss++; maus.classList.add('schnapp'); setTimeout(() => maus.classList.remove('schnapp'), 500); assist = miss >= 2; sag(r, 'tipp', miss >= 2 ? d.hilfe : d.knapp); }
+      }
+      if (t > 2000) { runde(900); }
+    }
+    requestAnimationFrame(takt);
+  };
+  hook.loese = fertigSpiel;
+  sag(r, 'tipp', d.start);
+  runde(900);
+  requestAnimationFrame(takt);
+}
+
+/* ============================ 7.3 Was blitzt da? (nest) ============================ */
+export function nest(r: HTMLElement, d: Daten, fertig: () => void) {
+  const zi = $('.zi', r);
+  zi.innerHTML = `<p class="nt-frage"></p><div class="nt-bild" style="aspect-ratio:${d.ratio}"><img src="${K.img(d.bild)}" alt="" draggable="false"></div>`;
+  unten('');
+  const box = $('.nt-bild', zi);
+  sag(r, 'tipp', d.start);
+  const Z: any[] = d.ziele;
+  let i = 0, fehl = 0, zu = false;
+  const frage = () => { $('.nt-frage', zi).innerHTML = i < Z.length ? Z[i].frage : ''; };
+  const ring = (z: any, kl: string) => box.insertAdjacentHTML('beforeend', `<i class="ring ${kl}" style="left:${z.x}%;top:${z.y}%;width:${z.r * 2}%;height:auto;aspect-ratio:1;margin:0;transform:translate(-50%,-50%)"></i>`);
+  const weiter = (hilfe: boolean) => {
+    const z = Z[i];
+    ring(z, hilfe ? 'da blink' : 'da');
+    K.summ(25);
+    sag(r, 'lob', (hilfe ? K.UI.hilfe + ' ' : '') + z.ok, 'gut');
+    i++; fehl = 0;
+    if (i >= Z.length) { zu = true; hook.loese = null; $('.nt-frage', zi).innerHTML = ''; return void setTimeout(() => zi.isConnected && ende(r, d, fertig), 1300); }
+    frage();
+  };
+  const suche = () => {
+    hook.loese = () => { while (i < Z.length && !zu) weiter(false); };
+    frage();
+    box.onclick = (e) => {
+      if (zu) return;
+      const rc = box.getBoundingClientRect(), z = Z[i];
+      const dx = ((e.clientX - rc.left) / rc.width * 100 - z.x) / 100 * rc.width, dy = ((e.clientY - rc.top) / rc.height * 100 - z.y) / 100 * rc.height;
+      if (Math.hypot(dx, dy) <= (z.r / 100) * rc.width * 1.25) return weiter(false);
+      box.insertAdjacentHTML('beforeend', `<i class="ring miss" style="left:${((e.clientX - rc.left) / rc.width) * 100}%;top:${((e.clientY - rc.top) / rc.height) * 100}%"></i>`);
+      setTimeout(() => box.querySelector('.ring.miss')?.remove(), 800);
+      if (++fehl === 1) return sag(r, 'tipp', K.UI.nochmal + ' ' + d.tipp);
+      weiter(true);
+    };
+  };
+  hook.loese = _laub(box, () => { sag(r, 'tipp', ''); suche(); }, d.zone);
 }

@@ -1,0 +1,103 @@
+/* Kapitel 4: Das Wort im Baum, Faden ziehen, Nest, Vögel, Finale mit Tresor und Urkunde */
+
+/* ---------- Spur 19: Buchstaben sammeln, Astgabeln ---------- */
+.ab-wort { display: flex; justify-content: center; gap: 10px; margin: 2px 0; }
+.ab-wort i { width: 52px; height: 58px; border-radius: 12px; border: 3px dashed rgba(255, 255, 255, .5); background: rgba(255, 255, 255, .08); display: grid; place-items: center; font-style: normal; font-weight: 800; font-size: 34px; color: var(--senf-tinte, #26221C); transition: transform .3s; }
+.ab-wort i.da { border: 0; background: var(--senf); box-shadow: 0 3px 0 var(--senf-dunkel, #C99A2E); animation: hoch .4s both; }
+.ab-wort.fertig i { transform: translateY(-4px) scale(1.06); }
+.ab-bild { position: relative; width: 100%; max-width: 520px; align-self: center; margin: 0 auto; border-radius: 14px; border: 4px solid #fff; overflow: hidden; box-shadow: 0 10px 22px rgba(0, 0, 0, .35); background: #BFE0F0; }
+.ab-bild > img { display: block; width: 100%; height: 100%; object-fit: fill; pointer-events: none; }
+.ab-g { position: absolute; transform: translate(-50%, -50%); aspect-ratio: 1; border-radius: 50%; border: 3px solid rgba(255, 255, 255, .95); background: rgba(38, 34, 28, .22); padding: 0; cursor: pointer; display: grid; place-items: center; box-shadow: 0 2px 6px rgba(0, 0, 0, .35); }
+.ab-g b { min-width: 24px; height: 24px; border-radius: 50%; background: #fff; color: #26221C; font-size: 15px; line-height: 24px; text-align: center; }
+.ab-g.ja { border-color: var(--senf); background: rgba(244, 194, 67, .35); box-shadow: 0 0 0 4px rgba(244, 194, 67, .6); }
+.ab-g.falsch { border-color: var(--rot); background: rgba(232, 71, 58, .3); }
+.ab-g.nein { animation: wackel .4s; }
+.ab-erinnerung ul { margin: 4px 0 0; padding: 0 0 0 20px; font-size: 16px; font-weight: 800; line-height: 1.3; }
+.ab-erinnerung .s-b, .ab-erinnerung .s-r { color: inherit; }
+.ab-bild .stempel.abdruck { font-size: 17px; width: 78%; }
+
+/* ---------- Spur 22: Faden ziehen ---------- */
+.fd-zaehl { display: flex; justify-content: center; min-height: 20px; }
+.fd-buehne { position: relative; height: min(46dvh, 330px); width: min(100%, 360px); align-self: center; margin: 0 auto; border-radius: 16px; border: 4px solid #fff; overflow: hidden; background: radial-gradient(ellipse at 50% 20%, #7A1F2B, #4B1019 80%); box-shadow: 0 12px 26px rgba(0, 0, 0, .4); touch-action: none; }
+.fd-buehne.alarm { animation: fd-bebt .18s infinite; }
+@keyframes fd-bebt { 50% { transform: translateX(2px); } }
+.fd-vorhang { position: absolute; top: 0; bottom: 0; width: 17%; background: repeating-linear-gradient(90deg, #C12A32 0 10px, #A5202A 10px 20px); box-shadow: 0 0 14px rgba(0, 0, 0, .5); z-index: 3; pointer-events: none; }
+.fd-vorhang.l { left: 0; border-radius: 0 0 40% 0; }
+.fd-vorhang.rr { right: 0; border-radius: 0 0 0 40%; }
+.fd-faden { position: absolute; left: 50%; top: 0; width: 3px; margin-left: -1.5px; background: #fff; box-shadow: 0 0 3px rgba(255, 255, 255, .6); }
+.fd-mond { position: absolute; left: 50%; height: 34%; width: auto; transform: translateX(-50%); transition: none; filter: drop-shadow(0 6px 8px rgba(0, 0, 0, .4)); pointer-events: none; }
+.fd-mond.wipp { animation: fd-wipp .7s; }
+.fd-mond.tanzt { animation: fd-wipp .8s infinite; }
+@keyframes fd-wipp { 25% { transform: translateX(-50%) rotate(14deg); } 75% { transform: translateX(-50%) rotate(-14deg); } }
+.fd-maus { position: absolute; left: 50%; bottom: 2%; height: 34%; width: auto; transform: translateX(-50%); pointer-events: none; transform-origin: 50% 100%; }
+.fd-maus.achtung { animation: fd-bereit .25s infinite; }
+@keyframes fd-bereit { 50% { transform: translateX(-50%) scaleY(.86); } }
+.fd-maus.sprung { animation: fd-sprung 2s both; }
+@keyframes fd-sprung { 0% { transform: translateX(-50%) scaleY(.86); } 14% { transform: translateX(-50%) translateY(0) scaleY(1.1); } 50% { transform: translateX(-50%) translateY(-100%) scaleY(1); } 86% { transform: translateX(-50%) translateY(0); } 100% { transform: translateX(-50%) translateY(0); } }
+.fd-maus.schnapp { filter: brightness(1.2) saturate(1.3); }
+.fd-achtung { position: absolute; left: 62%; bottom: 30%; width: 34px; height: 34px; border-radius: 50%; background: var(--senf); color: #26221C; font-style: normal; font-weight: 800; font-size: 24px; display: none; place-items: center; z-index: 2; }
+.fd-buehne.alarm .fd-achtung { display: grid; }
+.fd-knopf { margin-top: 12px; align-self: center; width: min(100%, 360px); min-height: 64px; touch-action: none; user-select: none; }
+.fd-knopf.an { transform: translateY(3px) scale(.98); filter: brightness(1.1); }
+
+/* ---------- Spur 20/23: Ablenker, Vogelkarten aus dem Bildstreifen ---------- */
+.as-crop { display: block; width: 100%; aspect-ratio: 1; }
+.as-crop .sc-v { width: 100%; height: 100%; }
+.as-k .as-crop { max-height: 96px; }
+
+/* ---------- Spur 24: Laub zur Seite wischen, Nest suchen ---------- */
+.nt-frage { color: #fff; font-weight: 800; font-size: 18px; text-align: center; min-height: 26px; margin: 0; }
+.nt-frage .s-b, .nt-frage .s-r { color: inherit; }
+.nt-bild { position: relative; width: 100%; max-width: 520px; align-self: center; margin: 0 auto; border-radius: 14px; border: 4px solid #fff; overflow: hidden; box-shadow: 0 10px 22px rgba(0, 0, 0, .35); background: #BFE0F0; }
+.nt-bild > img { display: block; width: 100%; height: 100%; object-fit: fill; pointer-events: none; }
+.nt-bild canvas.staub.laub { border-radius: 10px; }
+.nt-bild .ring.da { border-color: var(--senf); }
+
+/* ---------- Finale: Szene, Tresor, Urkunde ---------- */
+.fin-bild { margin: 0; }
+.fin-bild img { width: 100%; display: block; }
+.fin-liste { margin: 4px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.fin-liste li { background: var(--papier); color: var(--tinte); border-radius: 14px; padding: 10px 14px; font-size: 17.5px; font-weight: 700; line-height: 1.45; box-shadow: 0 3px 0 #D8CDB2, 0 8px 14px rgba(0, 0, 0, .25); }
+.fin-tresor { width: min(46%, 170px); margin: 0 auto; }
+.fin-tresor svg { display: block; width: 100%; height: auto; }
+.fin-felder { display: flex; justify-content: center; gap: 10px; }
+.fin-f { width: 62px; height: 70px; border-radius: 14px; border: 3px dashed rgba(255, 255, 255, .55); background: rgba(255, 255, 255, .08); color: var(--senf-tinte, #26221C); font-weight: 800; font-size: 38px; display: grid; place-items: center; padding: 0; cursor: pointer; }
+.fin-f.voll { border: 0; background: var(--senf); box-shadow: 0 3px 0 var(--senf-dunkel, #C99A2E); }
+.fin-f.ok { background: #7ACB62; box-shadow: 0 3px 0 #4C9B3A; }
+.fin-f.nein { animation: wackel .4s; }
+.fin-karten { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.fin-k { width: 64px; height: 72px; border-radius: 14px; border: 3px solid transparent; background: var(--papier); color: var(--tinte); font-weight: 800; font-size: 38px; display: grid; place-items: center; padding: 0; box-shadow: 0 3px 0 #D8CDB2, 0 8px 14px rgba(0, 0, 0, .3); touch-action: none; cursor: grab; user-select: none; position: relative; }
+.fin-k.weg { opacity: .22; box-shadow: none; }
+.fin-k.zieht { z-index: 20; transition: none; box-shadow: 0 16px 24px rgba(0, 0, 0, .45); }
+
+/* Tresor mit aufschwingender Tür */
+.tv { position: relative; width: min(84%, 340px); aspect-ratio: 1; margin: 6px auto; perspective: 1000px; }
+.tv-licht { position: absolute; inset: -22%; border-radius: 50%; background: radial-gradient(circle, rgba(255, 224, 120, .95) 0, rgba(255, 200, 70, .55) 34%, rgba(255, 190, 60, 0) 68%); opacity: 0; transform: scale(.3); transition: opacity 1.2s .3s, transform 1.6s .2s; pointer-events: none; }
+.tv.auf .tv-licht { opacity: 1; transform: scale(1); animation: tv-puls 2.4s 1.6s ease-in-out infinite; }
+@keyframes tv-puls { 50% { transform: scale(1.08); opacity: .85; } }
+.tv-korpus { position: absolute; left: 8%; top: 6%; width: 84%; height: 85%; border-radius: 12%; background: #0E1733; border: 5px solid #33447C; overflow: hidden; box-shadow: inset 0 0 30px rgba(255, 210, 90, .0); transition: box-shadow 1.2s .5s; }
+.tv.auf .tv-korpus { box-shadow: inset 0 0 40px rgba(255, 210, 90, .8); }
+.tv-innen { position: absolute; inset: 0; display: grid; place-items: center; background: radial-gradient(circle, #FFE9A8, #E9B533); opacity: 0; transition: opacity .8s .8s; }
+.tv.auf .tv-innen { opacity: 1; }
+.tv-innen img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.tv-tuer { position: absolute; inset: 0; transform-origin: 8% 50%; transition: transform 1.5s cubic-bezier(.5, 0, .25, 1), filter 1.5s; z-index: 2; }
+.tv-tuer .tresor-svg { display: block; width: 100%; height: 100%; }
+.tv.auf .tv-tuer { transform: rotateY(-112deg); filter: brightness(.7); }
+.tv-code { position: absolute; inset: 0; transition: opacity .4s; }
+.tv-code i { position: absolute; display: grid; place-items: center; font-style: normal; font-weight: 800; font-size: clamp(14px, 5.2vw, 24px); color: #F4C243; }
+.tv.auf .tv-code { opacity: 0; }
+
+/* Urkunde */
+.fin.urk { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 8px 4px 0; }
+.dipl { position: relative; width: min(100%, 340px); aspect-ratio: 1086 / 1448; background: #FFF6E0 url('../../../assets/illustrationen/diplom.webp') center / 100% 100% no-repeat; border-radius: 10px; box-shadow: 0 14px 30px rgba(0, 0, 0, .45); color: #3A2F25; }
+.dipl-in { position: absolute; inset: 11% 13% 27% 13%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; text-align: center; }
+.dipl .dt { font-weight: 800; font-size: clamp(22px, 7.4vw, 30px); line-height: 1.1; color: #8A5A10; }
+.dipl .dt .s-b, .dipl .dt .s-r, .dipl .dh .s-b, .dipl .dh .s-r, .dipl .df .s-b, .dipl .df .s-r, .dipl .dl .s-b, .dipl .dl .s-r, .dipl .dp .s-b, .dipl .dp .s-r { color: inherit; }
+.dipl input { width: 90%; border: 0; border-bottom: 3px solid #C99A2E; background: rgba(255, 255, 255, .55); text-align: center; font: 800 clamp(20px, 6vw, 26px) inherit; font-family: inherit; color: #3A2F25; padding: 4px 6px; border-radius: 8px 8px 0 0; }
+.dipl .dh { font-size: 15.5px; font-weight: 700; }
+.dipl .df { font-size: clamp(18px, 5.6vw, 23px); font-weight: 800; color: #1D3F9E; line-height: 1.2; }
+.dipl .dl { font-size: 14.5px; font-weight: 600; line-height: 1.35; }
+.dipl .dp { font-size: 15px; font-weight: 700; display: flex; align-items: center; gap: 6px; justify-content: center; flex-wrap: wrap; }
+.dipl .dp b { font-size: 22px; color: #8A5A10; }
+.dipl .perle { width: 18px; height: 18px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff, #F4C243 55%, #C99A2E); box-shadow: 0 1px 2px rgba(0, 0, 0, .4); display: inline-block; }
+.fin.urk .forts { color: #fff; font-weight: 700; opacity: .85; margin: 0; }

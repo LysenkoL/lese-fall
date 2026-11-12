@@ -39,7 +39,7 @@ const isThought = (line: string) => /„[^“]*“,? (denkt|schimpft)|(denkt|sch
 
 /* ---------- Text und Rätsel je Kapitel ---------- */
 interface Block { id: string; typ: 'p' | 'th'; s: string[]; umbruch?: boolean }
-const TEXT = new Set(['liste', 'zuViel', 'nochMehr', 'falsch', 'plakatFertig', 'start', 'regel', 'frageRaus', 'unklar', 'suche', 'nass', 'frage1', 'tipp1', 'hinweisText', 'beispiel', 'regel', 'botschaft', 'nachricht', 'text', 'titel', 'haken', 'frage', 'aufloesung', 'warum', 'warum2', 'tipp', 'erfolg', 'unklarTipp', 'vorspann', 'ausblick', 'name', 'saetze', 'unter', 'sagt', 'klebt', 'frage2']);
+const TEXT = new Set(['liste', 'zuViel', 'nochMehr', 'falsch', 'ok', 'fund', 'knapp', 'frueh', 'hilfe', 'wortText', 'plakatFertig', 'start', 'regel', 'frageRaus', 'unklar', 'suche', 'nass', 'frage1', 'tipp1', 'hinweisText', 'beispiel', 'regel', 'botschaft', 'nachricht', 'text', 'titel', 'haken', 'frage', 'aufloesung', 'warum', 'warum2', 'tipp', 'erfolg', 'unklarTipp', 'vorspann', 'ausblick', 'name', 'saetze', 'unter', 'sagt', 'klebt', 'frage2']);
 function tree(v: any, key = ''): any {
   if (typeof v === 'string') return TEXT.has(key) ? mark(v) : v;
   if (Array.isArray(v)) return v.map((x) => tree(x, key));
@@ -84,7 +84,7 @@ for (const kn of nummern) {
     const { spur, bild, haken, karte, fragenNeu, fragenWeg, tipp, raetsel, schluessel } = z;
     spuren.push({ nr: spur, kap: kn, spur, titel: mark(t.titel), bild, haken: mark(haken), blocks: t.blocks, karte: tree(karte), fragenNeu: tree(fragenNeu ?? []), fragenWeg: fragenWeg ?? [], tipp: tree(tipp ?? null), raetsel: tree(raetsel), ...(schluessel ? { schluessel } : {}) });
   }
-  kapitel.push({ nr: kn, titel: mark(kopfZeile.replace(`## Kapitel ${kn} — `, '')), bild: rz.bild, vorspann: mark(rz.vorspann), code: rz.code, fallkarte: tree(rz.fallkarte), ausblick: mark(rz.ausblick) });
+  kapitel.push({ nr: kn, titel: mark(kopfZeile.replace(`## Kapitel ${kn} — `, '')), bild: rz.bild, vorspann: mark(rz.vorspann), code: rz.code, fallkarte: tree(rz.fallkarte), ausblick: mark(rz.ausblick), ...(rz.finale ? { finale: tree(rz.finale) } : {}) });
   Object.assign(ui, rz.ui ?? {});
   if (kn === 1) { intro = tree(rz.intro); fallTitel = 'Der verschwundene Mond'; }
 }

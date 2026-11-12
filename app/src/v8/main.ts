@@ -5,15 +5,17 @@
 import { tresorSvg } from './zeichnen.ts';
 import './v8.css';
 import './k3.css';
+import './k4.css';
 import DATA_ from '../../../04_data/buch1_v8.json';
 import { T } from '../text';
 import { bildUrl as img } from './bilder';
 import { staub } from './staub';
 import * as R from './raetsel';
+import { zeigeFinale } from './finale.ts';
 
 const D: any = structuredClone(DATA_);
 /** Texte der Daten einmal in HTML mit Silben verwandeln (gleiche Schlüssel wie in build-v8.ts) */
-const TEXT = new Set(['text', 'titel', 'haken', 'frage', 'aufloesung', 'warum', 'tipp', 'erfolg', 'unklarTipp', 'vorspann', 'ausblick', 'name', 'saetze', 'warum2', 'unter', 'sagt', 'klebt', 'frage2', 'suche', 'nass', 'frage1', 'tipp1', 'unklar', 'frageRaus', 'regel', 'plakatFertig', 'start', 'liste', 'zuViel', 'nochMehr', 'falsch']);
+const TEXT = new Set(['text', 'titel', 'haken', 'frage', 'aufloesung', 'warum', 'tipp', 'erfolg', 'unklarTipp', 'vorspann', 'ausblick', 'name', 'saetze', 'warum2', 'unter', 'sagt', 'klebt', 'frage2', 'suche', 'nass', 'frage1', 'tipp1', 'unklar', 'frageRaus', 'regel', 'plakatFertig', 'start', 'liste', 'zuViel', 'nochMehr', 'falsch', 'ok', 'fund', 'knapp', 'frueh', 'hilfe', 'wortText']);
 function html(v: any, key = ''): any {
   if (typeof v === 'string') return TEXT.has(key) ? T(v) : v;
   if (Array.isArray(v)) return v.map((x) => html(x, key));
@@ -21,7 +23,7 @@ function html(v: any, key = ''): any {
   return v;
 }
 for (const sp of D.spuren) { sp.titelH = T(sp.titel); sp.haken = T(sp.haken); sp.karte = html(sp.karte); sp.fragenNeu = html(sp.fragenNeu); sp.tipp = html(sp.tipp); sp.raetsel = html(sp.raetsel); }
-for (const k of D.kapitel) { k.titelH = T(k.titel); k.vorspann = T(k.vorspann); k.ausblick = T(k.ausblick); k.fallkarte = html(k.fallkarte); }
+for (const k of D.kapitel) { k.titelH = T(k.titel); k.vorspann = T(k.vorspann); k.ausblick = T(k.ausblick); k.fallkarte = html(k.fallkarte); if (k.finale) k.finale = html(k.finale); }
 html(D.intro);
 const UI: Record<string, string> = Object.fromEntries(Object.entries(D.ui).map(([k, v]) => [k, T(v as string)]));
 /** freigestellte Figur: "raupe/denkt" → gen/frei/raupe_denkt */
@@ -31,14 +33,16 @@ const summ = (ms: number | number[]) => { try { navigator.vibrate?.(ms); } catch
 
 /* ---------- Speicherstand (nur auf dem Gerät) ---------- */
 interface Stand {
-  view: 'titel' | 'intro' | 'kapitel' | 'spur' | 'fallkarte' | 'ausblick';
-  weiter: 'intro' | 'kapitel' | 'spur' | 'fallkarte' | 'ausblick';
+  view: 'titel' | 'intro' | 'kapitel' | 'spur' | 'fallkarte' | 'ausblick' | 'finale';
+  weiter: 'intro' | 'kapitel' | 'spur' | 'fallkarte' | 'ausblick' | 'finale';
   spur: number; i: number; blatt: number;
   fertig: number[]; tipps: Record<number, string>; tippPerle: number; geklaert: string[]; mix: string[];
   intro: boolean; fs: number; silben: boolean;
+  /** Finale: 0 Szene, 1 Code, 2 Tresor offen, 3 Urkunde; Name auf der Urkunde */
+  fin: number; name: string;
 }
 const KEY = 'lesefall.v8';
-const START: Stand = { view: 'titel', weiter: 'intro', spur: 1, i: 0, blatt: 0, fertig: [], tipps: {}, tippPerle: 0, geklaert: [], mix: [], intro: false, fs: 20, silben: true };
+const START: Stand = { view: 'titel', weiter: 'intro', spur: 1, i: 0, blatt: 0, fertig: [], tipps: {}, tippPerle: 0, geklaert: [], mix: [], intro: false, fs: 20, silben: true, fin: 0, name: '' };
 const stand: Stand = (() => { try { const r = localStorage.getItem(KEY); if (r) return { ...structuredClone(START), ...JSON.parse(r) }; } catch { /* ohne Speichern weiter */ } return structuredClone(START); })();
 const speichern = () => { try { localStorage.setItem(KEY, JSON.stringify(stand)); } catch { /* egal */ } };
 
@@ -49,7 +53,7 @@ const kap = () => kapOf(stand.spur);
 const letzteSpur = (n: number) => !D.spuren[n] || D.spuren[n].kap !== SP(n).kap;
 const kapSpuren = (k: number): number[] => D.spuren.filter((s: any) => s.kap === k).map((s: any) => s.nr);
 /** Buchstabe von Kapitel c ist verdient: Fallkarte gelöst (bei uns schon beim Ausblick) oder ein späteres Kapitel läuft */
-const verdient = (c: number) => { const cur = SP(stand.spur).kap; return c < cur || (c === cur && stand.weiter === 'ausblick'); };
+const verdient = (c: number) => { const cur = SP(stand.spur).kap; return c < cur || (c === cur && (stand.weiter === 'ausblick' || stand.weiter === 'finale')); };
 const perlen = () => stand.fertig.length * 2 + stand.tippPerle;
 /** Schritte einer Spur: Lesen → [Tipp-Auflösung] → Rätsel → Brett → [Tipp-Frage] → Haken */
 type Step = 'lesen' | 'tippAufl' | 'raetsel' | 'brett' | 'tippFrage' | 'haken';
@@ -107,6 +111,7 @@ function zeige() {
   if (stand.view === 'kapitel') return kapitelKarte();
   if (stand.view === 'fallkarte') return fallkarte();
   if (stand.view === 'ausblick') return ausblick();
+  if (stand.view === 'finale') return finale();
   const st = steps(stand.spur)[stand.i];
   if (st === 'lesen') return lesen();
   if (st === 'tippAufl') return tippAufl();
@@ -127,12 +132,12 @@ function weiter() {
 /* ---------- Titel, Vorgeschichte, Kapitelkarte ---------- */
 function titel() {
   modus('titel');
-  const angefangen = stand.fertig.length > 0 || stand.i > 0 || stand.spur > 1 || stand.weiter === 'fallkarte' || stand.weiter === 'ausblick';
+  const angefangen = stand.fertig.length > 0 || stand.i > 0 || stand.spur > 1 || stand.weiter === 'fallkarte' || stand.weiter === 'ausblick' || stand.weiter === 'finale';
   buehne.innerHTML = `<section class="titel"><div class="lampe"></div><p class="tl">LESE-FALL · FALL 1</p><h1>${T(D.fall.titel)}</h1><figure class="foto gross"><img src="${img('cover')}" alt=""></figure><p class="tu">Ein Krimi zum Selberlesen</p></section>`;
   fuss.innerHTML = `<div class="fz">${knopf('start', angefangen ? UI.weiterFall : UI.start)}${angefangen ? knopf('neu', UI.neuStart, 'still') : ''}</div>`;
   fuss.onclick = (e) => {
     const a = (e.target as HTMLElement).closest<HTMLElement>('[data-a]')?.dataset.a;
-    if (a === 'start') { stand.view = angefangen ? (['spur', 'kapitel', 'fallkarte', 'ausblick'].includes(stand.weiter) ? stand.weiter : 'spur') : stand.intro ? 'kapitel' : 'intro'; zeige(); }
+    if (a === 'start') { stand.view = angefangen ? (['spur', 'kapitel', 'fallkarte', 'ausblick', 'finale'].includes(stand.weiter) ? stand.weiter : 'spur') : stand.intro ? 'kapitel' : 'intro'; zeige(); }
     else if (a === 'neu') neuStart();
   };
 }
@@ -264,7 +269,7 @@ function tippAufl() {
 }
 
 /* ---------- Rätsel ---------- */
-const RAETSEL: Record<string, (r: HTMLElement, d: any, f: () => void) => void> = { buchstaben: R.buchstaben, unterschiede: R.unterschiede, versteckt: R.versteckt, merkmale: R.merkmale, reihe: R.reihe, ausschluss: R.ausschluss, sortieren: R.sortieren, umdrehen: R.umdrehen, klebstoff: R.klebstoff, lupe: R.lupe, schatten: R.schatten, kreise: R.kreise, agentencode: R.agentencode, plakat: R.plakat, suchbild: R.suchbild, spiegel: R.spiegel };
+const RAETSEL: Record<string, (r: HTMLElement, d: any, f: () => void) => void> = { buchstaben: R.buchstaben, unterschiede: R.unterschiede, versteckt: R.versteckt, merkmale: R.merkmale, reihe: R.reihe, ausschluss: R.ausschluss, sortieren: R.sortieren, umdrehen: R.umdrehen, klebstoff: R.klebstoff, lupe: R.lupe, schatten: R.schatten, kreise: R.kreise, agentencode: R.agentencode, plakat: R.plakat, suchbild: R.suchbild, spiegel: R.spiegel, astgabel: R.astgabel, faden: R.faden, nest: R.nest };
 function raetsel() {
   modus('zug');
   const z = SP(stand.spur).raetsel;
@@ -386,7 +391,7 @@ function fallkarte() {
     fuss.innerHTML = '<div class="fz"><button class="kn haupt" style="visibility:hidden" tabindex="-1"><span>·</span></button></div>';
     setTimeout(() => {
       const feld = $('.wort i.fall', sec);
-      hookStaub = staub(feld, () => { hookStaub = null; nurKnopf('weiter', knopf('weiter', UI.weiter), () => { stand.view = 'ausblick'; zeige(); }); });
+      hookStaub = staub(feld, () => { hookStaub = null; nurKnopf('weiter', knopf('weiter', UI.weiter), () => { stand.view = D.kapitel[kap().nr] ? 'ausblick' : 'finale'; stand.fin = 0; zeige(); }); });
     }, 700);
   };
   nurKnopf('stempeln', knopf('stempeln', UI.stempeln), stempelt);
@@ -400,6 +405,11 @@ function ausblick() {
     Object.assign(stand, { spur: kapSpuren(nxt.nr)[0], i: 0, blatt: 0, mix: [], view: 'kapitel' });
     zeige();
   });
+}
+/** Finale nach dem letzten Kapitel: Szene, Tresor, Urkunde (siehe finale.ts) */
+function finale() {
+  const letzt = D.kapitel[D.kapitel.length - 1];
+  zeigeFinale({ buehne, fuss, UI, img, fig, summ, fin: letzt.finale, wort: D.kapitel[0].code.wort, stand, speichern, perlen, modus, neuStart, hook: R.hook, knopf });
 }
 /** Fragt erst nach: ein versehentlicher Tipp darf den Fall nicht löschen. */
 function neuStart() {

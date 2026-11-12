@@ -79,7 +79,7 @@
     "text": "Der Schatten hatte zwei Flügel, einen spitzen Schnabel und einen langen Schwanz. Welcher Vogel passt dazu?",
     "bild": "objekte/voegel",
     "anzahl": 5,
-    "richtig": 2,
+    "richtig": 0,
     "tipp": "Schau auf den Schwanz und auf den Schnabel.",
     "warum": "Nur dieser Vogel hat einen so langen Schwanz und einen spitzen Schnabel.",
     "erfolg": "Dieser Vogel passt zum Schatten. Aber war er es wirklich? Das ist erst ein Verdacht."

@@ -1,5 +1,5 @@
 /**
- * Durchlauf der Vorschau v8 (Kapitel 1 bis 3, vom Titel bis „Fortsetzung folgt“) mit Bildern in 03_screens/v8/<name>/.
+ * Durchlauf der Vorschau v8 (Kapitel 1 bis 4 und Finale mit Tresor und Urkunde, vom Titel bis zur Urkunde) mit Bildern in 03_screens/v8/<name>/.
  * Vorher: npm run build && npx vite preview --port 4173
  * Aufruf: node scripts/e2e-v8.mjs [breite höhe name]
  */
@@ -214,7 +214,13 @@ async function raetsel(spur, z) {
     await p.mouse.click(...px(0.2, 0.2)); await sleep(300); await S(n + '_daneben');
     await p.mouse.move(...px(0.25, 0.25)); await p.mouse.down();
     await p.mouse.move(...px(0.5, 0.7), { steps: 8 }); await p.mouse.move(...px(0.53, 0.78), { steps: 4 }); await shot(n + '_lupe_nah');
-    await p.mouse.move(...px(z.ziel.x / 100, z.ziel.y / 100), { steps: 6 }); await p.mouse.up(); await sleep(500);
+    if (z.fehlFunde) { const f = z.fehlFunde[0]; await p.mouse.move(...px(f.x / 100, f.y / 100), { steps: 10 }); await sleep(200); await shot(n + '_ablenker'); }
+    await p.mouse.move(...px(z.ziel.x / 100, z.ziel.y / 100), { steps: 6 }); await p.mouse.up(); await sleep(z.schluss ? 1500 : 500);
+    if (z.schluss) {
+      await S(n + '_schluss');
+      await klick(`.as-so[data-o="${z.schluss.optionen.findIndex((o) => !o.sicher)}"]`); await sleep(400); await S(n + '_schluss_verdacht');
+      await klick(`.as-so[data-o="${z.schluss.optionen.findIndex((o) => o.sicher)}"]`); await sleep(500);
+    }
   } else if (z.art === 'schatten') {
     await S(n + '_start');
     const falsch = await p.$eval(`.sc-k:not([data-i="${z.richtig}"])`, (e) => e.dataset.i);
@@ -268,6 +274,44 @@ async function raetsel(spur, z) {
       await klick(`.as-so[data-o="${z.schluss.optionen.findIndex((o) => !o.sicher)}"]`); await sleep(400); await S(n + '_schluss_verdacht');
       await klick(`.as-so[data-o="${z.schluss.optionen.findIndex((o) => o.sicher)}"]`); await sleep(500);
     }
+  } else if (z.art === 'astgabel') {
+    for (const [i, q] of z.runden.entries()) {
+      if (i === 0) {
+        await shot(n + '_runde1');
+        await klick(`.vb-o[data-o="${q.optionen.find((o) => o !== q.buchstabe)}"]`); await shot(n + '_runde1_falsch');
+      }
+      await klick(`.vb-o[data-o="${q.buchstabe}"]`); await sleep(500); await shot(`${n}_runde${i + 1}_gefunden`); await sleep(1800);
+    }
+    await sleep(500); await S(n + '_wort');
+    if ((await p.$$('.ab-wort i.da')).length !== z.wort.length) fehler.push('Astgabel: nicht alle Buchstaben des Wortes stehen da');
+    await klick('#fuss [data-a="weiter"]'); await sleep(400); await S(n + '_gabeln');
+    const falsch = z.gabeln.find((g) => g.id !== z.richtig).id;
+    await klick(`.ab-g[data-g="${falsch}"]`); await sleep(300); await S(n + '_gabel_falsch'); await sleep(400);
+    await klick(`.ab-g[data-g="${z.richtig}"]`); await sleep(900); await S(n + '_gabel_richtig');
+    await klick('#fuss [data-a="stempeln"]'); await sleep(800);
+  } else if (z.art === 'faden') {
+    await S(n + '_start');
+    const k = await (await p.$('.fd-knopf')).boundingBox();
+    await p.mouse.move(k.x + k.width / 2, k.y + k.height / 2); await p.mouse.down(); await sleep(900); await shot(n + '_zu_frueh'); await p.mouse.up();
+    for (let t = 0; t < 60 && !(await p.$('.fd-maus.achtung')); t++) await sleep(150);
+    await shot(n + '_achtung');
+    await p.mouse.down(); await sleep(2300); await shot(n + '_gezogen'); await p.mouse.up(); await sleep(400);
+    const punkte = await ev(() => document.querySelectorAll('.fd-zaehl i.an').length);
+    if (punkte < 1) fehler.push('Faden ziehen: Mit gedrücktem Knopf zur rechten Zeit gibt es keinen Punkt');
+    await loese(); await sleep(800);
+  } else if (z.art === 'nest') {
+    await S(n + '_start');
+    const bx = await (await p.$('.nt-bild')).boundingBox();
+    await p.mouse.move(bx.x + 10, bx.y + 10); await p.mouse.down();
+    for (let i = 0; i < 24; i++) await p.mouse.move(bx.x + 20 + (i % 2 ? bx.width - 40 : 0), bx.y + 20 + i * bx.height / 24, { steps: 4 });
+    await shot(n + '_wischen');
+    for (let i = 0; i < 24; i++) await p.mouse.move(bx.x + 20 + (i % 2 ? bx.width - 40 : 0), bx.y + 30 + i * bx.height / 24, { steps: 4 });
+    await p.mouse.up(); await sleep(1100); await S(n + '_frei');
+    for (const [i, t] of z.ziele.entries()) {
+      if (i === 0) { await p.mouse.click(bx.x + 30, bx.y + 30); await sleep(300); await shot(n + '_daneben'); }
+      await p.mouse.click(bx.x + bx.width * t.x / 100, bx.y + bx.height * t.y / 100); await sleep(1100);
+    }
+    await sleep(1500);
   } else if (z.art === 'spiegel') {
     await S(n + '_zettel');
     const falsch = z.lesungen.findIndex((_, i) => i !== z.richtig);
@@ -276,6 +320,36 @@ async function raetsel(spur, z) {
   }
   await S(n + '_geloest');
   await weiter();
+}
+
+/** Finale: Szene, Tresor-Code selbst legen (erst falsch, dann richtig, einmal ziehen), Tresor öffnet sich, Urkunde */
+async function finale() {
+  const wort = D.kapitel[0].code.wort;
+  await S('finale_szene'); await klick('#fuss [data-a="weiter"]');
+  await S('finale_code_start');
+  const karten = async () => ev(() => [...document.querySelectorAll('.fin-k:not(.weg)')].map((e) => ({ k: +e.dataset.k, c: e.textContent.trim() })));
+  // 1. Versuch: Kärtchen in der angezeigten Reihenfolge antippen (ist nie die richtige)
+  for (const k of await karten()) { await p.click(`.fin-k[data-k="${k.k}"]`); await sleep(80); }
+  await sleep(300); await S('finale_code_falsch'); await sleep(1200);
+  // danach: fehlende Felder von links nach rechts füllen, das erste Kärtchen mit der Maus ziehen
+  let gezogen = false;
+  for (let i = 0; i < wort.length; i++) {
+    const voll = await ev((i) => document.querySelector(`.fin-f[data-f="${i}"]`).classList.contains('voll'), i);
+    if (voll) continue;
+    const k = (await karten()).find((q) => q.c === wort[i]);
+    if (!gezogen) {
+      gezogen = true;
+      const a = await (await p.$(`.fin-k[data-k="${k.k}"]`)).boundingBox(), t = await (await p.$(`.fin-f[data-f="${i}"]`)).boundingBox();
+      await p.mouse.move(a.x + a.width / 2, a.y + a.height / 2); await p.mouse.down();
+      await p.mouse.move(a.x + a.width / 2 + 10, a.y + a.height / 2 - 20, { steps: 3 });
+      await p.mouse.move(t.x + t.width / 2, t.y + t.height / 2, { steps: 8 }); await shot('finale_ziehen'); await p.mouse.up(); await sleep(250);
+    } else { await p.click(`.fin-k[data-k="${k.k}"]`); await sleep(150); }
+  }
+  await sleep(300); await shot('finale_code_richtig');
+  await sleep(2400); await S('finale_tresor_auf_start'); await sleep(2800); await S('finale_tresor_offen');
+  await klick('#fuss [data-a="weiter"]');
+  await p.fill('#dname', 'Mia'); await sleep(200); await S('finale_urkunde');
+  if (!(await p.$('.dipl .dt'))) fehler.push('Finale: Urkunde fehlt');
 }
 
 await S('titel');
@@ -328,7 +402,8 @@ for (const kap of KAPITEL) {
   const sollK = D.kapitel.filter((q) => q.nr <= kap).sort((a, b) => a.code.pos - b.code.pos).map((q) => q.code.buchstabe).join('');
   if (code.replace(/\s/g, '') !== sollK) fehler.push(`Fallkarte ${kap}: Code zeigt „${code}“, erwartet „${sollK}“`);
   await weiter();
-  await S(`k${kap}_ausblick`);
+  if (kap === KAPITEL[KAPITEL.length - 1]) await finale();
+  else await S(`k${kap}_ausblick`);
 }
 // Kopfzeile, Brett, Schrift (nach Neustart bis Spur 2)
 await ev(() => localStorage.setItem('lesefall.v8', JSON.stringify({ spur: 3, i: 0, fertig: [1, 2], weiter: 'spur', intro: true, geklaert: [] })));
