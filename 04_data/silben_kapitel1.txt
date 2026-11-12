@@ -1287,7 +1287,7 @@ di|plom
 meis|ter
 na|me
 ge|sam|melt
-# neu für v8 (ungeprüft)
+# neu für v8 (von Hand geprüft)
 lie|fen
 arm
 knöp|fe
@@ -1324,25 +1324,25 @@ co|de
 stem|peln
 hat|test
 recht
-# neu für v8 (ungeprüft)
+# neu für v8 (von Hand geprüft)
 rei|chen
-# neu für v8 (ungeprüft)
+# neu für v8 (von Hand geprüft)
 fel|der
 da|rin
 öff|net
 ge|lös|te
 be|kommst
 pro|bier
-# neu für v8 (ungeprüft)
+# neu für v8 (von Hand geprüft)
 le|ge
 sag
 un|ter|schie|de
 kar|ten
 brett
 lö|schen
-# neu für v8 (ungeprüft)
+# neu für v8 (von Hand geprüft)
 ü|ber|sprin|gen
-# neu für v8 (ungeprüft)
+# neu für v8 (von Hand geprüft)
 ü|ber|haupt
 knopf
 # neu für Kapitel 2 (von Hand geprüft)
@@ -1386,3 +1386,12 @@ keks
 fuß|ball
 zi|tro|ne
 schwamm
+# neu für v8 (von Hand geprüft)
+un|ter|su|che
+sieh
+sei|ten
+nas|ses
+al|lem
+wür|de
+denk
+be|rührt

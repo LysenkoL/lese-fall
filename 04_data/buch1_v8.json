@@ -121,7 +121,8 @@
   "tresor": "Der Tre|sor der Le|se-Rau|pe",
   "legen": "Aufs Tab|lett le|gen",
   "ausDinge": "Was passt nicht? Tip|pe es an.",
-  "nochDing": "Gut! A|ber da ist noch et|was."
+  "nochDing": "Gut! A|ber da ist noch et|was.",
+  "pruefen": "Prü|fen"
  },
  "spuren": [
   {
@@ -1484,24 +1485,56 @@
    "fragenWeg": [],
    "tipp": null,
    "raetsel": {
-    "art": "umdrehen",
+    "art": "klebstoff",
     "titel": "Wie lag der Mond?",
-    "text": "Ben hat den Mond aufs Tab|lett ge|legt. Der Kle|ber war noch nass. Dreh den Mond und leg ihn so hin, wie Ben es ge|tan hat.",
+    "text": "Un|ter|su|che zu|erst den Mond. Dreh ihn um und sieh dir bei|de Sei|ten ge|nau an.",
     "vorne": "objekte/mond_vorne",
     "hinten": "objekte/mond_hinten_feucht",
+    "flasche": "objekte/kleber",
     "tablett": "objekte/tablett_leer",
     "ratio": 0.733,
     "kleber": {
-     "x": 52,
-     "y": 29,
-     "w": 34,
-     "h": 20,
+     "x": 51,
+     "y": 35,
+     "w": 38,
+     "h": 22,
      "zeichnen": true
     },
-    "klebt": "Ups! Der nas|se Kle|ber klebt am Tab|lett fest. Das ging schief.",
-    "frage2": "Und wa|rum liegt er so? Tip|pe auf den nas|sen Kle|ber.",
-    "warum2": "Hier ist der Kle|ber. Er ist noch nass und darf das Tab|lett nicht be|rüh|ren.",
-    "erfolg": "Die wei|ße Sei|te lag o|ben. Von o|ben sah der Mond weiß aus, nicht gelb."
+    "suche": "Schau auf die wei|ße Sei|te. Da glänzt et|was Nas|ses. Tip|pe da|rauf.",
+    "nass": "Der Kle|ber ist noch nass. Er klebt an al|lem fest.",
+    "frage1": "Wie hat Ben den Mond hin|ge|legt?",
+    "karten": [
+     {
+      "id": "gelb",
+      "text": "Gel|be Sei|te o|ben",
+      "seite": "vorne"
+     },
+     {
+      "id": "weiss",
+      "text": "Wei|ße Sei|te o|ben",
+      "seite": "hinten"
+     }
+    ],
+    "richtigKarte": "weiss",
+    "frage2": "Wa|rum hat er ihn so hin|ge|legt?",
+    "gruende": [
+     {
+      "id": "stern",
+      "text": "Da|mit man den blau|en Stern nicht sieht."
+     },
+     {
+      "id": "kleber",
+      "text": "Der nas|se Kle|ber wür|de am Tab|lett fest|kle|ben.",
+      "richtig": true
+     },
+     {
+      "id": "trocknen",
+      "text": "Weil die gel|be Sei|te trock|nen muss."
+     }
+    ],
+    "tipp1": "Denk an den nas|sen Kle|ber. Was darf er nicht be|rüh|ren?",
+    "warum": "Der Kle|ber war noch nass. Er durf|te das Tab|lett nicht be|rüh|ren.",
+    "erfolg": "Die wei|ße Sei|te lag o|ben. So hat der nas|se Kle|ber das Tab|lett nicht be|rührt. Von o|ben sah der Mond weiß aus, nicht gelb."
    }
   },
   {
@@ -1978,11 +2011,11 @@
      "P",
      "D"
     ],
-    "winkel": 55,
+    "winkel": 45,
     "farbe": "#3E7B2A",
     "muster": "laub",
     "erfolg": "B wie Baum!",
-    "stoerer": 0
+    "stoerer": 4
    }
   },
   {

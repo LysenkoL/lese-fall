@@ -4,6 +4,7 @@
  */
 import { tresorSvg } from './zeichnen.ts';
 import './v8.css';
+import './k3.css';
 import DATA_ from '../../../04_data/buch1_v8.json';
 import { T } from '../text';
 import { bildUrl as img } from './bilder';
@@ -263,7 +264,7 @@ function tippAufl() {
 }
 
 /* ---------- Rätsel ---------- */
-const RAETSEL: Record<string, (r: HTMLElement, d: any, f: () => void) => void> = { buchstaben: R.buchstaben, unterschiede: R.unterschiede, versteckt: R.versteckt, merkmale: R.merkmale, reihe: R.reihe, ausschluss: R.ausschluss, sortieren: R.sortieren, umdrehen: R.umdrehen, suchbild: R.suchbild, spiegel: R.spiegel };
+const RAETSEL: Record<string, (r: HTMLElement, d: any, f: () => void) => void> = { buchstaben: R.buchstaben, unterschiede: R.unterschiede, versteckt: R.versteckt, merkmale: R.merkmale, reihe: R.reihe, ausschluss: R.ausschluss, sortieren: R.sortieren, umdrehen: R.umdrehen, klebstoff: R.klebstoff, suchbild: R.suchbild, spiegel: R.spiegel };
 function raetsel() {
   modus('zug');
   const z = SP(stand.spur).raetsel;

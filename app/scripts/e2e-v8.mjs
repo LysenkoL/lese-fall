@@ -179,6 +179,18 @@ async function raetsel(spur, z) {
     await p.mouse.click(tb.x + 12, tb.y + tb.height - 8); await sleep(300); await shot(n + '_warum_falsch');
     const zb = await (await p.$('.um-zone')).boundingBox();
     await p.mouse.click(zb.x + zb.width / 2, zb.y + zb.height / 2); await sleep(500);
+  } else if (z.art === 'klebstoff') {
+    await klick('[data-a="dreh"]'); await sleep(700); await S(n + '_weiss');
+    const mb = await (await p.$('.kl-mond')).boundingBox();
+    await p.mouse.click(mb.x + mb.width * 0.5, mb.y + mb.height * 0.88); await sleep(300); await shot(n + '_daneben');
+    const zb = await (await p.$('.kl-zone')).boundingBox();
+    await p.mouse.click(zb.x + zb.width / 2, zb.y + zb.height / 2); await sleep(600); await S(n + '_kleber_gefunden');
+    // 1. Versuch falsch (Karte und Grund), 2. richtig
+    await klick('.kl-k[data-k="gelb"]'); await klick('.kl-g[data-g="stern"]'); await shot(n + '_gewaehlt');
+    await klick('#fuss [data-a="pruefen"]'); await sleep(300); await S(n + '_falsch'); await sleep(900);
+    await klick(`.kl-k[data-k="${z.richtigKarte}"]`); await klick(`.kl-g[data-g="${z.gruende.find((g) => g.richtig).id}"]`);
+    await shot(n + '_richtig_gewaehlt');
+    await klick('#fuss [data-a="pruefen"]'); await sleep(600);
   } else if (z.art === 'suchbild') {
     const b = await (await p.$('.sb-bild')).boundingBox();
     await p.mouse.click(b.x + b.width * 0.1, b.y + b.height * 0.85); await sleep(250); await shot(n + '_daneben');

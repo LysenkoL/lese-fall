@@ -132,18 +132,18 @@ const mitte = async (p, s) => { const r = await (await p.$(s)).boundingBox(); re
   const [mx, my] = await mitte(p, '.so-pool [data-d="mond"]'), [tx, ty] = await mitte(p, platz('kiste'));
   await zieh(mx, my, tx, ty);
   pruef(!!(await p.$(`${platz('kiste')} [data-d="mond"]`)), 'Zwei Kisten: Mond mit dem Finger in die grüne Kiste');
-  // Mond umdrehen per Wischen
+  // Mond untersuchen: Wischen dreht, Kleber antippen, Karte und Grund wählen
   await zustand(8, 1);
-  const quelle = () => p.$eval('.um-mond img', (e) => e.getAttribute('src'));
+  const quelle = () => p.$eval('.kl-mond img', (e) => e.getAttribute('src'));
   const q0 = await quelle();
-  const [ux, uy] = await mitte(p, '.um-mond');
+  const [ux, uy] = await mitte(p, '.kl-mond');
   await zieh(ux - 70, uy, ux + 70, uy); await sleep(300);
-  pruef((await quelle()) !== q0, 'Mond umdrehen: Wischen über den Mond dreht ihn');
-  await tipp('#fuss [data-a="legen"]'); await sleep(500);
-  const zb = await (await p.$('.um-zone')).boundingBox();
-  pruef(!!zb, 'Mond umdrehen: weiße Seite nach oben gelegt, jetzt kommt die Frage nach dem Kleber');
+  pruef((await quelle()) !== q0 && !!(await p.$('.kl-kleber')), 'Mond untersuchen: Wischen über den Mond dreht ihn, der nasse Kleber ist zu sehen');
+  const zb = await (await p.$('.kl-zone')).boundingBox();
   await p.touchscreen.tap(zb.x + zb.width * 0.9, zb.y + zb.height * 0.9); await sleep(600);
-  pruef(!!(await p.$('#fuss [data-a="weiter"]')), 'Mond umdrehen: Antippen am Rand der Kleber-Fläche löst');
+  pruef(!!(await p.$('.kl-karten')), 'Mond untersuchen: Antippen am Rand der Kleber-Fläche öffnet die Fragen');
+  await tipp('.kl-k[data-k="weiss"]'); await tipp('.kl-g[data-g="kleber"]'); await tipp('#fuss [data-a="pruefen"]'); await sleep(600);
+  pruef(!!(await p.$('#fuss [data-a="weiter"]')), 'Mond untersuchen: richtiges Paar (Karte + Grund) löst');
   // Suchbild: am Rand jedes Gegenstands tippen
   await zustand(9, 1);
   const z9 = D.spuren[8].raetsel, bb = await (await p.$('.sb-bild')).boundingBox();

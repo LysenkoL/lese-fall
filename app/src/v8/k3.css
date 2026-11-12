@@ -1,0 +1,41 @@
+/* Kapitel 2 (Spur 8 neu) und Kapitel 3 */
+/* ---------- Spur 8: nasser Kleber ---------- */
+.kl-tisch { position: relative; width: 100%; height: min(38dvh, 300px); display: flex; justify-content: center; align-items: center; gap: 4%; transition: height .3s; }
+.kl-tisch.klein { height: min(17dvh, 140px); }
+.kl-tisch.klein + .kl-dreh { flex-direction: row; padding: 5px 14px; min-width: 0; gap: 8px; }
+.kl-tisch.klein + .kl-dreh svg { width: 20px; height: 20px; }
+.kl-mond { position: relative; height: 100%; max-width: 62%; transition: transform .2s; touch-action: pan-y; }
+.kl-mond > img { width: 100%; height: 100%; object-fit: contain; display: block; pointer-events: none; filter: drop-shadow(0 8px 10px rgba(0, 0, 0, .3)); }
+.kl-mond.dreh1 { transform: perspective(500px) rotateY(90deg); }
+.kl-mond.dreh2 { animation: dreh2 .2s both; }
+.kl-flasche { height: 54%; width: auto; max-width: 28%; object-fit: contain; align-self: flex-end; filter: drop-shadow(0 6px 8px rgba(0, 0, 0, .35)); pointer-events: none; transform: rotate(8deg); }
+.kl-kleber { position: absolute; transform: translate(-50%, -50%) rotate(-6deg); pointer-events: none; border-radius: 58% 42% 52% 48% / 46% 54% 46% 54%; background: radial-gradient(ellipse at 32% 26%, #fff 0 12%, rgba(236, 246, 255, .97) 28%, rgba(176, 208, 244, .95) 75%, rgba(120, 166, 224, .95) 100%); border: 2.500px solid #5C8ACC; box-shadow: 0 0 0 3px rgba(255, 255, 255, .9), 0 6px 8px rgba(30, 70, 140, .45), inset -4px -6px 9px rgba(70, 120, 200, .3); }
+.kl-kleber s { position: absolute; left: 14%; top: 14%; width: 36%; height: 20%; border-radius: 50%; background: #fff; transform: rotate(-22deg); }
+.kl-kleber u { position: absolute; left: 50%; top: 78%; width: 30%; height: 70%; transform: translateX(-50%); border-radius: 50% 50% 55% 55% / 24% 24% 76% 76%; background: radial-gradient(ellipse at 36% 30%, #fff 0 10%, rgba(214, 232, 252, .98) 30%, rgba(130, 176, 232, .96) 100%); border: 2.500px solid #5C8ACC; border-top: 0; box-shadow: 0 5px 5px rgba(30, 70, 140, .35); }
+.kl-kleber.glanz { animation: kl-glanz 1.4s ease-in-out infinite; }
+.kl-kleber.puls { animation: puls .6s 4; }
+@keyframes kl-glanz { 50% { filter: brightness(1.18) saturate(1.2); } }
+.kl-zone { position: absolute; transform: translate(-50%, -50%); cursor: pointer; border-radius: 16px; }
+.kl-dreh { align-self: center; flex-direction: column; padding: 8px 18px; min-width: 130px; flex: none; }
+.kl-dreh svg { width: 26px; height: 26px; }
+.kl-mond .ring { width: 60px; height: 60px; margin: -30px 0 0 -30px; }
+.kl-teil { display: flex; flex-direction: column; gap: 8px; animation: hoch .4s both; }
+.kl-f { margin: 0; color: #fff; font-size: 17.5px; font-weight: 800; line-height: 1.3; display: flex; gap: 8px; align-items: flex-start; }
+.kl-f b { flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--senf); color: var(--senf-tinte); font-size: 15px; display: grid; place-items: center; margin-top: 1px; }
+.kl-f .s-b, .kl-f .s-r { color: inherit; }
+.kl-karten { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.kl-k, .kl-g { position: relative; background: var(--papier); color: var(--tinte); border-radius: 14px; border: 3px solid transparent; box-shadow: 0 3px 0 #D8CDB2, 0 8px 14px rgba(0, 0, 0, .25); text-align: center; }
+.kl-k { padding: 6px 6px 8px; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.kl-kb { position: relative; display: block; width: 100%; height: 64px; }
+.kl-tab { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 64%; object-fit: fill; border-radius: 6px; }
+.kl-km { position: absolute; left: 50%; bottom: 14%; height: 86%; width: auto; transform: translateX(-50%); }
+.kl-kt { font-weight: 800; font-size: 15.5px; line-height: 1.2; }
+.kl-g { padding: 9px 12px; font-weight: 700; font-size: 16px; line-height: 1.3; text-align: left; }
+.kl-gruende { display: flex; flex-direction: column; gap: 8px; }
+.kl-k.an, .kl-g.an { border-color: var(--senf); background: #FFF6D6; }
+.kl-k.ja, .kl-g.ja { border-color: #3E9B3E; background: #EAF6E3; }
+.kl-k.nein, .kl-g.nein { animation: wackel .4s; border-color: var(--rot); }
+.kl-g .s-b, .kl-g .s-r, .kl-kt .s-b, .kl-kt .s-r { color: inherit; }
+.kl-note { animation: hoch .4s both; }
+.kl-note .rp p { font-size: 16px; padding: 8px 12px; }
+.kl-note .rp img { width: 34px; height: 54px; }

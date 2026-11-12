@@ -701,3 +701,89 @@ export function spiegel(r: HTMLElement, d: Daten, fertig: () => void) {
   };
   hook.loese = () => loesen(zi.querySelector(`.sp-o[data-o="${d.richtig}"]`), false);
 }
+
+/* ============================ 6.1 Wie lag der Mond? (klebstoff) ============================ */
+const DREHPFEIL = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0 1 14-5.300M20 12a8 8 0 0 1-14 5.300" fill="none" stroke="currentColor" stroke-width="2.400" stroke-linecap="round"/><path d="M18.500 3v4.500H14M5.500 21v-4.500H10" fill="none" stroke="currentColor" stroke-width="2.400" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+/**
+ * Drei Schritte auf einem Bildschirm: a) Mond untersuchen (umdrehen, nassen Kleber antippen),
+ * b) wie lag er?  c) warum?  „Prüfen“ prüft b und c zusammen.
+ */
+export function klebstoff(r: HTMLElement, d: Daten, fertig: () => void) {
+  const zi = $('.zi', r);
+  const kl = d.kleber;
+  let seite: 'vorne' | 'hinten' = 'vorne', dreht = false, gesehen = new Set<string>(['vorne']), fehlTipp = 0;
+  let phase: 'suchen' | 'waehlen' | 'aus' = 'suchen', fehl = 0, karte: string | null = null, grund: string | null = null, gesperrt = false, ja = false;
+  const mondHtml = () => `<div class="kl-mond${phase !== 'suchen' ? '' : ' gross'}" style="aspect-ratio:${d.ratio}"><img src="${K.img(d[seite])}" alt="" draggable="false">${seite === 'hinten' && kl.zeichnen ? `<i class="kl-kleber${phase === 'suchen' ? ' glanz' : ''}" style="left:${kl.x}%;top:${kl.y}%;width:${kl.w}%;height:${kl.h}%"><s></s><u></u></i>` : ''}${seite === 'hinten' ? `<b class="kl-zone" data-z="1" style="left:${kl.x}%;top:${kl.y + 4}%;width:${kl.w + 12}%;height:${kl.h + 22}%"></b>` : ''}</div>`;
+  const kartenHtml = () => d.karten.map((k: any) => `<button class="kl-k${karte === k.id ? ' an' : ''}${ja && k.id === d.richtigKarte ? ' ja' : ''}" data-k="${k.id}"><span class="kl-kb"><img class="kl-tab" src="${K.img(d.tablett)}" alt="" draggable="false"><img class="kl-km" src="${K.img(d[k.seite])}" alt="" draggable="false"></span><span class="kl-kt">${k.text}</span></button>`).join('');
+  const gruendeHtml = () => d.gruende.map((g: any) => `<button class="kl-g${grund === g.id ? ' an' : ''}${ja && g.richtig ? ' ja' : ''}" data-g="${g.id}"><span>${g.text}</span></button>`).join('');
+  const mal = () => {
+    const weiter = phase !== 'suchen';
+    zi.innerHTML = `<div class="kl-tisch${weiter ? ' klein' : ''}">${mondHtml()}<img class="kl-flasche" src="${K.img(d.flasche)}" alt="" draggable="false"></div><button class="kn zwei um-dreh kl-dreh" data-a="dreh">${DREHPFEIL}<span>${K.UI.umdrehen}</span></button>${weiter ? `<div class="kl-note">${rp('tipp', d.nass)}</div><div class="kl-teil"><p class="kl-f"><b>1</b><span>${d.frage1}</span></p><div class="kl-karten">${kartenHtml()}</div></div><div class="kl-teil"><p class="kl-f"><b>2</b><span>${d.frage2}</span></p><div class="kl-gruende">${gruendeHtml()}</div></div>` : ''}`;
+    unten(weiter ? knopf('pruefen', K.UI.pruefen, !karte || !grund || gesperrt || phase === 'aus') : '', (a) => { if (a === 'pruefen') pruefen(); });
+  };
+  const drehe = () => {
+    if (dreht || gesperrt) return;
+    dreht = true;
+    const m = $('.kl-mond', zi);
+    m.classList.add('dreh1');
+    setTimeout(() => {
+      seite = seite === 'vorne' ? 'hinten' : 'vorne'; gesehen.add(seite);
+      const g = r.scrollTop; mal(); r.scrollTop = g;
+      const m2 = $('.kl-mond', zi); m2.classList.add('dreh2');
+      if (phase === 'suchen' && seite === 'hinten') sag(r, 'tipp', d.suche);
+      setTimeout(() => { m2.classList.remove('dreh2'); dreht = false; }, 200);
+    }, 200);
+  };
+  const gefunden = () => {
+    if (phase !== 'suchen') return;
+    phase = 'waehlen';
+    mal();
+    $('.kl-mond', zi).insertAdjacentHTML('beforeend', `<i class="ring da" style="left:${kl.x}%;top:${kl.y}%"></i>`);
+    K.summ(30);
+    sag(r, 'tipp', '');
+  };
+  const loesen = (mitHilfe: boolean) => {
+    phase = 'aus'; ja = true; gesperrt = true; hook.loese = null; karte = d.richtigKarte; grund = d.gruende.find((g: any) => g.richtig).id;
+    mal();
+    ende(r, d, fertig, mitHilfe ? [K.UI.hilfe, d.warum].join(' ') : '');
+  };
+  const pruefen = () => {
+    if (phase !== 'waehlen' || !karte || !grund || gesperrt) return;
+    const kOk = karte === d.richtigKarte, gOk = !!d.gruende.find((g: any) => g.id === grund)?.richtig;
+    if (kOk && gOk) return loesen(false);
+    fehl++;
+    gesperrt = true; mal();
+    if (!kOk) wackel(zi.querySelector(`.kl-k[data-k="${karte}"]`));
+    if (!gOk) wackel(zi.querySelector(`.kl-g[data-g="${grund}"]`));
+    if (fehl === 1) {
+      sag(r, 'tipp', K.UI.nochmal + ' ' + d.tipp1);
+      return setTimeout(() => { if (!zi.isConnected) return; if (!kOk) karte = null; if (!gOk) grund = null; gesperrt = false; const g = r.scrollTop; mal(); r.scrollTop = g; }, 700);
+    }
+    sag(r, 'tipp', K.UI.hilfe + ' ' + d.warum);
+    setTimeout(() => zi.isConnected && loesen(true), 1100);
+  };
+  zi.onclick = (e) => {
+    const t = e.target as HTMLElement;
+    if (t.closest('[data-a="dreh"]')) return drehe();
+    if (phase === 'suchen') {
+      if (t.closest('.kl-zone')) return gefunden();
+      if (t.closest('.kl-mond')) { // woanders auf den Mond getippt: die weiße Seite wird gesucht
+        if (seite === 'hinten' && ++fehlTipp >= 3) { sag(r, 'tipp', K.UI.hilfe + ' ' + d.suche); $('.kl-kleber', zi)?.classList.add('puls'); }
+        else if (seite === 'hinten') sag(r, 'tipp', K.UI.nochmal);
+        else drehe();
+        return;
+      }
+    }
+    if (phase !== 'waehlen' || gesperrt) return;
+    const k = t.closest<HTMLElement>('.kl-k'), g = t.closest<HTMLElement>('.kl-g');
+    if (k) { karte = k.dataset.k!; const s = r.scrollTop; mal(); r.scrollTop = s; }
+    else if (g) { grund = g.dataset.g!; const s = r.scrollTop; mal(); r.scrollTop = s; }
+  };
+  // Wischen über den Mond dreht ihn auch
+  let sx = 0, st = false;
+  zi.addEventListener('pointerdown', (e) => { st = !!(e.target as HTMLElement).closest('.kl-mond'); sx = e.clientX; });
+  zi.addEventListener('pointerup', (e) => { if (st && Math.abs(e.clientX - sx) > 40) { st = false; drehe(); sx = -9999; } });
+  hook.loese = () => { if (phase === 'suchen') { seite = 'hinten'; gefunden(); } loesen(false); };
+  mal();
+  sag(r, 'tipp', '');
+}
