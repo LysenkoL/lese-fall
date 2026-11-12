@@ -1582,10 +1582,10 @@
     "tablett": "objekte/tablett_leer",
     "ratio": 0.733,
     "kleber": {
-     "x": 51,
-     "y": 35,
-     "w": 38,
-     "h": 22,
+     "x": 50,
+     "y": 29.9,
+     "w": 30,
+     "h": 21,
      "zeichnen": true
     },
     "suche": "Schau auf die wei|ße Sei|te. Da glänzt et|was Nas|ses. Tip|pe da|rauf.",
@@ -2933,7 +2933,7 @@
     }
    ],
    "karte": {
-    "bild": "objekte/mond_hinten",
+    "bild": "objekte/mond_hinten_faden",
     "text": "Mi|las Mond: hin|ten ein blau|er Stern und der auf|ge|roll|te Fa|den.",
     "staub": false
    },
@@ -2993,37 +2993,37 @@
      {
       "id": "k1",
       "name": "Kreis 1",
-      "x": 18,
-      "y": 22,
-      "r": 12
+      "x": 17.9,
+      "y": 28.8,
+      "r": 14.5
      },
      {
       "id": "k2",
       "name": "Kreis 2",
-      "x": 50,
-      "y": 22,
-      "r": 12
+      "x": 49.9,
+      "y": 28.8,
+      "r": 14.5
      },
      {
       "id": "k3",
       "name": "Kreis 3",
-      "x": 82,
-      "y": 22,
-      "r": 12
+      "x": 81.9,
+      "y": 28.8,
+      "r": 14.5
      },
      {
       "id": "k4",
       "name": "Kreis 4",
-      "x": 34,
-      "y": 66,
-      "r": 12
+      "x": 33.3,
+      "y": 69.2,
+      "r": 14.5
      },
      {
       "id": "k5",
       "name": "Kreis 5",
-      "x": 66,
-      "y": 66,
-      "r": 12
+      "x": 66.4,
+      "y": 69.2,
+      "r": 14.5
      }
     ],
     "loesung": "k4",
@@ -3656,28 +3656,34 @@
     "ratio": 1.5,
     "zoom": 3.2,
     "ziel": {
-     "x": 86,
-     "y": 57,
+     "x": 76.9,
+     "y": 38.8,
      "r": 6.5
     },
     "fehlFunde": [
      {
-      "x": 9.8,
-      "y": 64,
-      "r": 5,
+      "x": 19,
+      "y": 40,
+      "r": 4.5,
       "text": "Ei|ne ro|sa Schlei|fe an Mi|las Zopf. Die ge|hört zum Zopf. Das ist kein Mäu|se|schwanz."
      },
      {
-      "x": 23.5,
-      "y": 64,
-      "r": 5,
+      "x": 29,
+      "y": 40,
+      "r": 4.5,
       "text": "Wie|der ei|ne ro|sa Schlei|fe an Mi|las Zopf. Auch kein Mäu|se|schwanz."
      },
      {
-      "x": 49.5,
-      "y": 92,
-      "r": 8,
+      "x": 42.4,
+      "y": 82,
+      "r": 5,
       "text": "Ro|sa Schnür|sen|kel an Bens Schu|hen. Die ste|cken im Schuh. Das ist kein Mäu|se|schwanz."
+     },
+     {
+      "x": 57.1,
+      "y": 82,
+      "r": 5,
+      "text": "Wie|der ro|sa Schnür|sen|kel an Bens Schuh. Auch kein Mäu|se|schwanz."
      }
     ],
     "start": "Mit mei|ner Lu|pe sieht man Klei|nes groß. Et|was ist ro|sa. A|ber nicht al|les Ro|sa ist ein Mäu|se|schwanz!",
@@ -3806,7 +3812,7 @@
      {
       "bild": "objekte/theater",
       "x": 50,
-      "y": 43,
+      "y": 52,
       "w": 36,
       "vorhin": true,
       "jetzt": true
@@ -3843,7 +3849,7 @@
       },
       "jetzt": {
        "x": 33,
-       "y": 33,
+       "y": 38,
        "w": 5
       },
       "zonen": [
@@ -3855,7 +3861,7 @@
        },
        {
         "x": 33,
-        "y": 33,
+        "y": 38,
         "w": 9,
         "h": 9
        }
@@ -3957,8 +3963,8 @@
        "rot": 70
       },
       "jetzt": {
-       "x": 12,
-       "y": 33,
+       "x": 14,
+       "y": 52.5,
        "w": 3.4
       },
       "zonen": [
@@ -3969,8 +3975,8 @@
         "h": 8
        },
        {
-        "x": 12,
-        "y": 34,
+        "x": 14,
+        "y": 52.5,
         "w": 8,
         "h": 8
        }
@@ -4014,11 +4020,11 @@
       "id": "bleistift",
       "bild": "objekte/bleistift_gruen",
       "x": 84,
-      "y": 58,
+      "y": 80,
       "w": 7,
       "vorhin": {
        "x": 84,
-       "y": 58,
+       "y": 80,
        "w": 7,
        "rot": -20
       },
@@ -4031,7 +4037,7 @@
       "zonen": [
        {
         "x": 84,
-        "y": 58,
+        "y": 80,
         "w": 9,
         "h": 9
        },

@@ -126,10 +126,10 @@
         "tablett": "objekte/tablett_leer",
         "ratio": 0.733,
         "kleber": {
-          "x": 51,
-          "y": 35,
-          "w": 38,
-          "h": 22,
+          "x": 50,
+          "y": 29.9,
+          "w": 30,
+          "h": 21,
           "zeichnen": true
         },
         "suche": "Schau auf die weiße Seite. Da glänzt etwas Nasses. Tippe darauf.",

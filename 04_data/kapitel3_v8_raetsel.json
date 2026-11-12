@@ -1,502 +1,502 @@
 {
- "_info": "Rätsel, Ermittlungsbrett und Fallkarte zu Kapitel 3 (Spuren 13–18), Konzept v8 (02_design/KONZEPT_v8.md). Texte ohne Silben; app/scripts/build-v8.ts setzt Silben. Positionen in Prozent der Bildbreite/-höhe. Bildnamen unter objekte/, die es noch nicht gibt (voegel, gelbe_kreise_vorne/hinten, plakat, vogelschatten, tisch_leer), ersetzt app/src/v8/bilder.ts.",
- "kapitel": 3,
- "bild": "kapitel_3",
- "vorspann": "Ein gelber Kreis mit drei braunen Flecken. Und ein Schatten mit Flügeln.",
- "code": {
-  "wort": "NEST",
-  "buchstabe": "N",
-  "pos": 0
- },
- "fallkarte": {
-  "bild": "k3_s18",
-  "titel": "Das wissen wir jetzt",
-  "saetze": [
-   "Der Käse mit den drei braunen Flecken ist Milas Mond. Hinten hat er den blauen Stern und den aufgerollten Faden.",
-   "Oskar hat ihn nicht zerschnitten. Er hat nur Flecken aufgeklebt.",
-   "Es war ein Missverständnis. Niemand wollte den Mond stehlen.",
-   "Ein Vogel zieht Papierstreifen in eine Astgabel."
-  ],
-  "frage": "Aber was will der Vogel mit dem Faden?",
-  "stempel": "KAPITEL 3 GELÖST"
- },
- "ausblick": "Da klappen zwei Flügel auf. Der Vogel packt den weißen Faden. Und der Mond hebt ab.",
- "ui": {
-  "lupeStart": "Schiebe die Lupe über den Käse.",
-  "anLupe": "Lupe"
- },
- "spuren": [
-  {
-   "spur": 13,
-   "bild": "k3_s13",
-   "haken": "Ein Faden am Käse? Milas Mond hat auch einen.",
-   "karte": {
-    "bild": "objekte/kaese_auf_teller",
-    "text": "Am Käse schaut ein kleines Stück weißer Faden heraus.",
-    "staub": false
-   },
-   "fragenNeu": [
-    {
-     "id": "k3faden",
-     "text": "Warum hat ein Käse einen Faden?"
-    }
-   ],
-   "raetsel": {
-    "art": "lupe",
-    "titel": "Der Käse unter der Lupe",
-    "text": "Was passt nicht zu einem Käse? Fahre mit der Lupe über den Teller.",
-    "bild": "objekte/kaese_auf_teller",
-    "ratio": 1.125,
-    "zoom": 3.3,
-    "ziel": {
-     "x": 62.5,
-     "y": 79.5,
-     "r": 6.5
-    },
-    "start": "Mit meiner Lupe sieht man Kleines groß. Schiebe sie über den Käse.",
-    "tipp": "Schau am Rand entlang. Es ist etwas Dünnes, Weißes.",
-    "erfolg": "Ein kleines Stück weißer Faden! Seit wann hat ein Käse einen Faden? Milas Mond hat einen!"
-   }
+  "_info": "Rätsel, Ermittlungsbrett und Fallkarte zu Kapitel 3 (Spuren 13–18), Konzept v8 (02_design/KONZEPT_v8.md). Texte ohne Silben; app/scripts/build-v8.ts setzt Silben. Positionen in Prozent der Bildbreite/-höhe. Bildnamen unter objekte/, die es noch nicht gibt (voegel, gelbe_kreise_vorne/hinten, plakat, vogelschatten, tisch_leer), ersetzt app/src/v8/bilder.ts.",
+  "kapitel": 3,
+  "bild": "kapitel_3",
+  "vorspann": "Ein gelber Kreis mit drei braunen Flecken. Und ein Schatten mit Flügeln.",
+  "code": {
+    "wort": "NEST",
+    "buchstabe": "N",
+    "pos": 0
   },
-  {
-   "spur": 14,
-   "bild": "k3_s14",
-   "haken": "Oben in der Astgabel sitzt ein schwarz-weißer Vogel. Er zieht an einem langen weißen Papierstreifen. Ruck. Ruck. Dann ist der Streifen verschwunden.",
-   "karte": {
-    "bild": "objekte/vogelschatten",
-    "text": "Ein Schatten mit zwei Flügeln, spitzem Schnabel und langem Schwanz.",
-    "staub": false
-   },
-   "fragenNeu": [
-    {
-     "id": "k3vogel",
-     "text": "Wer ist der Vogel mit dem langen Schwanz?"
-    }
-   ],
-   "raetsel": {
-    "art": "schatten",
-    "titel": "Wessen Schatten?",
-    "text": "Der Schatten hatte zwei Flügel, einen spitzen Schnabel und einen langen Schwanz. Welcher Vogel passt dazu?",
-    "bild": "objekte/voegel",
-    "anzahl": 5,
-    "richtig": 0,
-    "tipp": "Schau auf den Schwanz und auf den Schnabel.",
-    "warum": "Nur dieser Vogel hat einen so langen Schwanz und einen spitzen Schnabel.",
-    "erfolg": "Dieser Vogel passt zum Schatten. Aber war er es wirklich? Das ist erst ein Verdacht."
-   }
-  },
-  {
-   "spur": 15,
-   "bild": "k3_s15",
-   "haken": "Noch fünfzehn Minuten. Da kommen Ida und Nele über den Hof gelaufen.",
-   "karte": {
-    "bild": "objekte/mond_mit_flecken",
-    "text": "Die Flecken und die Krümel sind nur aufgeklebt. Der Kreis darunter ist ganz.",
-    "staub": false
-   },
-   "fragenNeu": [
-    {
-     "id": "k3ganz",
-     "text": "Ist der Mond unter den Flecken noch ganz?"
-    }
-   ],
-   "raetsel": {
-    "art": "unterschiede",
-    "titel": "Was ist anders?",
-    "text": "Das erste Bild zeigt den Tisch vorhin, mit Milas Mond. Das zweite zeigt ihn jetzt, mit dem Käse. Finde sechs Unterschiede. Einige sind winzig!",
-    "basis": "objekte/tisch_leer",
-    "deko": [
-     {
-      "bild": "objekte/mond_vorne",
-      "x": 50,
-      "y": 50,
-      "w": 30,
-      "vorhin": true
-     },
-     {
-      "bild": "objekte/mond_mit_flecken",
-      "x": 50,
-      "y": 50,
-      "w": 29.2,
-      "jetzt": true,
-      "clip": "inset(25.8% 0 0 0)"
-     }
+  "fallkarte": {
+    "bild": "k3_s18",
+    "titel": "Das wissen wir jetzt",
+    "saetze": [
+      "Der Käse mit den drei braunen Flecken ist Milas Mond. Hinten hat er den blauen Stern und den aufgerollten Faden.",
+      "Oskar hat ihn nicht zerschnitten. Er hat nur Flecken aufgeklebt.",
+      "Es war ein Missverständnis. Niemand wollte den Mond stehlen.",
+      "Ein Vogel zieht Papierstreifen in eine Astgabel."
     ],
-    "dinge": [
-     {
-      "id": "flecken",
-      "x": 50,
-      "y": 53.2,
-      "zonen": [
-       {
-        "x": 50,
-        "y": 53.2,
-        "w": 18,
-        "h": 14
-       }
-      ],
-      "vorhin": false,
-      "jetzt": true,
-      "tipp": "Schau auf den gelben Kreis. Er hat sich verändert."
-     },
-     {
-      "id": "faden",
-      "bild": "objekte/u_fadenende",
-      "x": 50.6,
-      "y": 33.8,
-      "w": 4.2,
-      "zonen": [
-       {
-        "x": 55,
-        "y": 29,
-        "w": 17,
-        "h": 13
-       }
-      ],
-      "vorhin": false,
-      "jetzt": true,
-      "tipp": "Schau auf den Faden am Kreis."
-     },
-     {
-      "id": "riss",
-      "bild": "objekte/u_riss",
-      "x": 60.6,
-      "y": 50.2,
-      "w": 3.2,
-      "zonen": [
-       {
-        "x": 60.6,
-        "y": 50.2,
-        "w": 9,
-        "h": 8
-       }
-      ],
-      "vorhin": false,
-      "jetzt": true,
-      "tipp": "Schau ganz genau auf den Rand vom Kreis."
-     },
-     {
-      "id": "kleber",
-      "bild": "objekte/u_klebefleck",
-      "x": 33,
-      "y": 55,
-      "w": 4.6,
-      "zonen": [
-       {
-        "x": 33,
-        "y": 55,
-        "w": 10,
-        "h": 9
-       }
-      ],
-      "vorhin": false,
-      "jetzt": true,
-      "tipp": "Schau links neben den Kreis. Da glänzt etwas."
-     },
-     {
-      "id": "streifen",
-      "bild": "objekte/papierstreifen_rot",
-      "x": 29,
-      "y": 70,
-      "w": 14,
-      "zonen": [
-       {
-        "x": 29,
-        "y": 69,
-        "w": 22,
-        "h": 12
-       }
-      ],
-      "vorhin": {
-       "x": 26.5,
-       "y": 72,
-       "rot": -6
-      },
-      "jetzt": {
-       "x": 31,
-       "y": 67,
-       "rot": 9
-      },
-      "tipp": "Schau unten links. Der rote Streifen liegt anders."
-     },
-     {
-      "id": "kruemel",
-      "bild": "objekte/gelbe_schnipsel",
-      "x": 79,
-      "y": 76,
-      "w": 14,
-      "vorhin": false,
-      "jetzt": true,
-      "tipp": "Schau neben den Kreis, unten rechts."
-     }
-    ],
-    "sortieren": {
-     "text": "Wer hat das gemacht? Ziehe jeden Unterschied zu dem, der ihn verursacht hat.",
-     "start": "Gut gesucht! Jetzt kommt das Schwierige. Überlege: Wer hat das gemacht? Denke an das, was du gelesen hast.",
-     "ziele": [
-      {
-       "id": "oskar",
-       "name": "Hat Oskar gemacht",
-       "unter": "",
-       "bild": "frei/oskar_froh"
-      },
-      {
-       "id": "ben",
-       "name": "Hat Ben gemacht",
-       "unter": "",
-       "bild": "frei/ben_froh"
-      },
-      {
-       "id": "zufall",
-       "name": "Liegt nur herum",
-       "unter": "",
-       "bild": "objekte/u_zufall"
-      }
-     ],
-     "dinge": [
-      {
-       "id": "flecken",
-       "name": "Braune Flecken",
-       "bild": "objekte/braune_kreise",
-       "ziel": "oskar",
-       "warum": "Oskar hat die braunen Kreise aus braunem Papier ausgeschnitten und aufgeklebt."
-      },
-      {
-       "id": "kruemel",
-       "name": "Gelbe Krümel",
-       "bild": "objekte/gelbe_schnipsel",
-       "ziel": "oskar",
-       "warum": "Die Krümel sind aus Oskars gelbem Blatt."
-      },
-      {
-       "id": "faden",
-       "name": "Faden eingerollt",
-       "bild": "objekte/u_fadenende",
-       "ziel": "ben",
-       "warum": "Ben hat den Faden hinten aufgerollt und festgeklebt."
-      },
-      {
-       "id": "kleber",
-       "name": "Klebefleck",
-       "bild": "objekte/u_klebefleck",
-       "ziel": "ben",
-       "warum": "Der Kleber gehört Ben. Er hat damit den Faden festgeklebt."
-      },
-      {
-       "id": "streifen",
-       "name": "Roter Streifen",
-       "bild": "objekte/papierstreifen_rot",
-       "ziel": "zufall",
-       "warum": "Der rote Streifen lag schon vorher auf dem Tablett. Er ist nur ein bisschen verrutscht."
-      },
-      {
-       "id": "riss",
-       "name": "Kleiner Riss",
-       "bild": "objekte/u_riss_icon",
-       "ziel": "zufall",
-       "warum": "Der winzige Riss kommt vom vielen Anfassen. Niemand wollte ihn machen."
-      }
-     ]
-    },
-    "erfolg": "Alles passt. Die Flecken und Krümel sind nur aufgeklebt, der Faden ist eingerollt. Der Kreis darunter ist ganz."
-   }
+    "frage": "Aber was will der Vogel mit dem Faden?",
+    "stempel": "KAPITEL 3 GELÖST"
   },
-  {
-   "spur": 16,
-   "bild": "k3_s16_vorher",
-   "haken": "Oskar ist ganz still geworden.",
-   "karte": {
-    "bild": "objekte/mond_hinten",
-    "text": "Milas Mond: hinten ein blauer Stern und der aufgerollte Faden.",
-    "staub": false
-   },
-   "fragenWeg": [
-    "k3faden",
-    "k3ganz"
-   ],
-   "raetsel": {
-    "art": "kreise",
-    "titel": "Welcher Kreis ist Milas Mond?",
-    "text": "Fünf gelbe Kreise mit braunen Flecken. Von vorn sehen sie gleich aus. Erst erinnerst du dich, dann vergleichst du.",
-    "erinnern": {
-     "text": "Was weißt du über Milas Mond? Wähle die drei Merkmale, die zu ihm gehören.",
-     "start": "Denk an das, was Mila und Ben erzählt haben. Nicht alles auf den Karten stimmt!",
-     "karten": [
-      {
-       "id": "stern",
-       "text": "Blauer Stern hinten",
-       "richtig": true
-      },
-      {
-       "id": "faden",
-       "text": "Faden oben, aufgerollt und festgeklebt",
-       "richtig": true
-      },
-      {
-       "id": "loch",
-       "text": "Kleines Loch oben für den Faden",
-       "richtig": true
-      },
-      {
-       "id": "herz",
-       "text": "Rotes Herz hinten",
-       "richtig": false
-      },
-      {
-       "id": "name",
-       "text": "Ein Name auf der Rückseite",
-       "richtig": false
-      },
-      {
-       "id": "gelb",
-       "text": "Gelbe Rückseite",
-       "richtig": false
-      }
-     ],
-     "tipp": "Mila hat etwas hinten aufgemalt. Ben hat oben etwas festgeklebt. Und der Faden geht durch etwas hindurch.",
-     "erfolg": "Richtig! Stern hinten, Faden aufgerollt, Loch oben. Das sind die drei Merkmale.",
-     "warum": "Mila hat hinten einen blauen Stern gemalt. Ben hat den Faden oben aufgerollt und festgeklebt. Und der Faden geht durch ein kleines Loch. Herz, Name und gelbe Rückseite kommen in der Geschichte nicht vor."
-    },
-    "vorne": "objekte/gelbe_kreise_vorne",
-    "hinten": "objekte/gelbe_kreise_hinten",
-    "ratio": 1.15,
-    "kreise": [
-     {
-      "id": "k1",
-      "name": "Kreis 1",
-      "x": 18,
-      "y": 22,
-      "r": 12
-     },
-     {
-      "id": "k2",
-      "name": "Kreis 2",
-      "x": 50,
-      "y": 22,
-      "r": 12
-     },
-     {
-      "id": "k3",
-      "name": "Kreis 3",
-      "x": 82,
-      "y": 22,
-      "r": 12
-     },
-     {
-      "id": "k4",
-      "name": "Kreis 4",
-      "x": 34,
-      "y": 66,
-      "r": 12
-     },
-     {
-      "id": "k5",
-      "name": "Kreis 5",
-      "x": 66,
-      "y": 66,
-      "r": 12
-     }
-    ],
-    "loesung": "k4",
-    "vergleichen": {
-     "text": "Tippe einen Kreis an, dann dreht er sich um. Es ist immer nur ein Kreis umgedreht. Merke dir, was du siehst. Streiche Kreise aus, die nicht passen.",
-     "start": "Von vorn sieht man das nicht. Tippe einen Kreis an, dann dreht er sich um.",
-     "liste": "Milas Mond hat:",
-     "frage": "Streiche jeden Kreis aus, dem ein Merkmal fehlt. Tippe dafür auf das Kreuz unter dem Kreis. Oder drücke lange auf den Kreis.",
-     "zuViel": "Hm, ein Kreis ist zu Unrecht ausgestrichen. Hat er vielleicht doch alle drei Merkmale? Dreh ihn noch einmal um.",
-     "nochMehr": "Es sind noch mehrere Kreise übrig. Hat wirklich jeder von ihnen alle drei Merkmale?",
-     "falsch": "Der letzte Kreis hat nicht alle drei Merkmale. Dreh die Kreise noch einmal um und vergleiche genau.",
-     "warum": "Nur ein Kreis hat hinten den Stern, oben den aufgerollten Faden und das Loch."
-    },
-    "stempel": "MILAS MOND",
-    "erfolg": "Das ist Milas Mond! Nur dieser Kreis hat hinten den blauen Stern, oben das Loch und den aufgerollten Faden."
-   }
+  "ausblick": "Da klappen zwei Flügel auf. Der Vogel packt den weißen Faden. Und der Mond hebt ab.",
+  "ui": {
+    "lupeStart": "Schiebe die Lupe über den Käse.",
+    "anLupe": "Lupe"
   },
-  {
-   "spur": 17,
-   "bild": "k3_s17",
-   "haken": "Noch zehn Minuten. Mila schaut auf ihren gefleckten Mond.",
-   "karte": {
-    "bild": "objekte/mond_auf_tablett",
-    "text": "Ben hat den Mond aufs Tablett für alle gelegt. Oskar hielt ihn für Papier.",
-    "staub": false
-   },
-   "raetsel": {
-    "art": "agentencode",
-    "titel": "Geheimagenten-Code",
-    "text": "Oskar schreibt wie ein Geheimagent. Sein Zettel hat zu viele Buchstaben. Streiche die überflüssigen durch und lies die Botschaft.",
-    "regel": "Jeder Buchstabe steht doppelt. Streiche von jedem Paar einen durch.",
-    "regelart": "doppelt",
-    "demo": {
-     "wort": "MOND",
-     "code": "MMOONNDD"
-    },
-    "start": "Ich zeige es dir: MMOONNDD. Jeder Buchstabe steht doppelt. Ich streiche einen von jedem Paar. Dann bleibt MOND.",
-    "woerter": [
-     {
-      "echt": "TUT",
-      "code": "TTUUTT"
-     },
-     {
-      "echt": "MIR",
-      "code": "MMIIRR"
-     },
-     {
-      "echt": "LEID",
-      "code": "LLEEIIDD"
-     }
-    ],
-    "tipp": "Schau dir immer zwei Buchstaben an. Sie sind gleich. Einer davon muss weg.",
-    "erfolg": "Tut mir leid! Oskar hat den Mond nicht mit Absicht genommen. Es war ein Missverständnis."
-   }
-  },
-  {
-   "spur": 18,
-   "bild": "k3_s18",
-   "haken": "Oben in der Astgabel legt der schwarz-weiße Vogel den Kopf schief. Er schaut auf den langen weißen Faden.",
-   "karte": {
-    "bild": "objekte/plakat",
-    "text": "Neues Stück: Der größte Käse der Welt.",
-    "staub": false
-   },
-   "fragenNeu": [
+  "spuren": [
     {
-     "id": "k3plan",
-     "text": "Was will der Vogel mit dem Faden?"
-    }
-   ],
-   "schluessel": true,
-   "raetsel": {
-    "art": "plakat",
-    "titel": "Das Plakat",
-    "text": "Das Plakat für das neue Stück ist in sechs Stücke zerschnitten. Setz es wieder zusammen.",
-    "bild": "objekte/plakat",
-    "spalten": 2,
-    "zeilen": 3,
-    "ratio": 0.75,
-    "tipp": "Oben ist das Dach vom Theater mit der Wolke. Der Käse und die Maus sind in der Mitte. Unten ist der Boden der Bühne.",
-    "erfolg": "Genau. Sicher ist nur, was wir bewiesen haben: Der Käse ist Milas Mond. Alles andere ist erst ein Verdacht.",
-    "schluss": {
-     "frage": "Was wissen wir jetzt sicher?",
-     "optionen": [
-      {
-       "text": "Der Käse ist Milas Mond. Hinten hat er den blauen Stern und den aufgerollten Faden.",
-       "sicher": true
+      "spur": 13,
+      "bild": "k3_s13",
+      "haken": "Ein Faden am Käse? Milas Mond hat auch einen.",
+      "karte": {
+        "bild": "objekte/kaese_auf_teller",
+        "text": "Am Käse schaut ein kleines Stück weißer Faden heraus.",
+        "staub": false
       },
-      {
-       "text": "Der Vogel mit dem langen Schwanz ist derselbe, der den Schatten geworfen hat.",
-       "sicher": false,
-       "tipp": "Das ist erst ein Verdacht. Vom Schatten kennen wir nur die Form. Und vom Vogel in der Astgabel nur die Farben."
-      },
-      {
-       "text": "Der Vogel will den Faden für sich haben.",
-       "sicher": false,
-       "tipp": "Das ist erst ein Verdacht. Wir haben nur gesehen, dass er Papierstreifen zieht. Was er damit vorhat, wissen wir nicht."
+      "fragenNeu": [
+        {
+          "id": "k3faden",
+          "text": "Warum hat ein Käse einen Faden?"
+        }
+      ],
+      "raetsel": {
+        "art": "lupe",
+        "titel": "Der Käse unter der Lupe",
+        "text": "Was passt nicht zu einem Käse? Fahre mit der Lupe über den Teller.",
+        "bild": "objekte/kaese_auf_teller",
+        "ratio": 1.125,
+        "zoom": 3.3,
+        "ziel": {
+          "x": 62.5,
+          "y": 79.5,
+          "r": 6.5
+        },
+        "start": "Mit meiner Lupe sieht man Kleines groß. Schiebe sie über den Käse.",
+        "tipp": "Schau am Rand entlang. Es ist etwas Dünnes, Weißes.",
+        "erfolg": "Ein kleines Stück weißer Faden! Seit wann hat ein Käse einen Faden? Milas Mond hat einen!"
       }
-     ]
     },
-    "plakatFertig": "Das Plakat ist fertig: Die Maus springt zu ihrem Käse!"
-   }
-  }
- ]
+    {
+      "spur": 14,
+      "bild": "k3_s14",
+      "haken": "Oben in der Astgabel sitzt ein schwarz-weißer Vogel. Er zieht an einem langen weißen Papierstreifen. Ruck. Ruck. Dann ist der Streifen verschwunden.",
+      "karte": {
+        "bild": "objekte/vogelschatten",
+        "text": "Ein Schatten mit zwei Flügeln, spitzem Schnabel und langem Schwanz.",
+        "staub": false
+      },
+      "fragenNeu": [
+        {
+          "id": "k3vogel",
+          "text": "Wer ist der Vogel mit dem langen Schwanz?"
+        }
+      ],
+      "raetsel": {
+        "art": "schatten",
+        "titel": "Wessen Schatten?",
+        "text": "Der Schatten hatte zwei Flügel, einen spitzen Schnabel und einen langen Schwanz. Welcher Vogel passt dazu?",
+        "bild": "objekte/voegel",
+        "anzahl": 5,
+        "richtig": 0,
+        "tipp": "Schau auf den Schwanz und auf den Schnabel.",
+        "warum": "Nur dieser Vogel hat einen so langen Schwanz und einen spitzen Schnabel.",
+        "erfolg": "Dieser Vogel passt zum Schatten. Aber war er es wirklich? Das ist erst ein Verdacht."
+      }
+    },
+    {
+      "spur": 15,
+      "bild": "k3_s15",
+      "haken": "Noch fünfzehn Minuten. Da kommen Ida und Nele über den Hof gelaufen.",
+      "karte": {
+        "bild": "objekte/mond_mit_flecken",
+        "text": "Die Flecken und die Krümel sind nur aufgeklebt. Der Kreis darunter ist ganz.",
+        "staub": false
+      },
+      "fragenNeu": [
+        {
+          "id": "k3ganz",
+          "text": "Ist der Mond unter den Flecken noch ganz?"
+        }
+      ],
+      "raetsel": {
+        "art": "unterschiede",
+        "titel": "Was ist anders?",
+        "text": "Das erste Bild zeigt den Tisch vorhin, mit Milas Mond. Das zweite zeigt ihn jetzt, mit dem Käse. Finde sechs Unterschiede. Einige sind winzig!",
+        "basis": "objekte/tisch_leer",
+        "deko": [
+          {
+            "bild": "objekte/mond_vorne",
+            "x": 50,
+            "y": 50,
+            "w": 30,
+            "vorhin": true
+          },
+          {
+            "bild": "objekte/mond_mit_flecken",
+            "x": 50,
+            "y": 50,
+            "w": 29.2,
+            "jetzt": true,
+            "clip": "inset(25.8% 0 0 0)"
+          }
+        ],
+        "dinge": [
+          {
+            "id": "flecken",
+            "x": 50,
+            "y": 53.2,
+            "zonen": [
+              {
+                "x": 50,
+                "y": 53.2,
+                "w": 18,
+                "h": 14
+              }
+            ],
+            "vorhin": false,
+            "jetzt": true,
+            "tipp": "Schau auf den gelben Kreis. Er hat sich verändert."
+          },
+          {
+            "id": "faden",
+            "bild": "objekte/u_fadenende",
+            "x": 50.6,
+            "y": 33.8,
+            "w": 4.2,
+            "zonen": [
+              {
+                "x": 55,
+                "y": 29,
+                "w": 17,
+                "h": 13
+              }
+            ],
+            "vorhin": false,
+            "jetzt": true,
+            "tipp": "Schau auf den Faden am Kreis."
+          },
+          {
+            "id": "riss",
+            "bild": "objekte/u_riss",
+            "x": 60.6,
+            "y": 50.2,
+            "w": 3.2,
+            "zonen": [
+              {
+                "x": 60.6,
+                "y": 50.2,
+                "w": 9,
+                "h": 8
+              }
+            ],
+            "vorhin": false,
+            "jetzt": true,
+            "tipp": "Schau ganz genau auf den Rand vom Kreis."
+          },
+          {
+            "id": "kleber",
+            "bild": "objekte/u_klebefleck",
+            "x": 33,
+            "y": 55,
+            "w": 4.6,
+            "zonen": [
+              {
+                "x": 33,
+                "y": 55,
+                "w": 10,
+                "h": 9
+              }
+            ],
+            "vorhin": false,
+            "jetzt": true,
+            "tipp": "Schau links neben den Kreis. Da glänzt etwas."
+          },
+          {
+            "id": "streifen",
+            "bild": "objekte/papierstreifen_rot",
+            "x": 29,
+            "y": 70,
+            "w": 14,
+            "zonen": [
+              {
+                "x": 29,
+                "y": 69,
+                "w": 22,
+                "h": 12
+              }
+            ],
+            "vorhin": {
+              "x": 26.5,
+              "y": 72,
+              "rot": -6
+            },
+            "jetzt": {
+              "x": 31,
+              "y": 67,
+              "rot": 9
+            },
+            "tipp": "Schau unten links. Der rote Streifen liegt anders."
+          },
+          {
+            "id": "kruemel",
+            "bild": "objekte/gelbe_schnipsel",
+            "x": 79,
+            "y": 76,
+            "w": 14,
+            "vorhin": false,
+            "jetzt": true,
+            "tipp": "Schau neben den Kreis, unten rechts."
+          }
+        ],
+        "sortieren": {
+          "text": "Wer hat das gemacht? Ziehe jeden Unterschied zu dem, der ihn verursacht hat.",
+          "start": "Gut gesucht! Jetzt kommt das Schwierige. Überlege: Wer hat das gemacht? Denke an das, was du gelesen hast.",
+          "ziele": [
+            {
+              "id": "oskar",
+              "name": "Hat Oskar gemacht",
+              "unter": "",
+              "bild": "frei/oskar_froh"
+            },
+            {
+              "id": "ben",
+              "name": "Hat Ben gemacht",
+              "unter": "",
+              "bild": "frei/ben_froh"
+            },
+            {
+              "id": "zufall",
+              "name": "Liegt nur herum",
+              "unter": "",
+              "bild": "objekte/u_zufall"
+            }
+          ],
+          "dinge": [
+            {
+              "id": "flecken",
+              "name": "Braune Flecken",
+              "bild": "objekte/braune_kreise",
+              "ziel": "oskar",
+              "warum": "Oskar hat die braunen Kreise aus braunem Papier ausgeschnitten und aufgeklebt."
+            },
+            {
+              "id": "kruemel",
+              "name": "Gelbe Krümel",
+              "bild": "objekte/gelbe_schnipsel",
+              "ziel": "oskar",
+              "warum": "Die Krümel sind aus Oskars gelbem Blatt."
+            },
+            {
+              "id": "faden",
+              "name": "Faden eingerollt",
+              "bild": "objekte/u_fadenende",
+              "ziel": "ben",
+              "warum": "Ben hat den Faden hinten aufgerollt und festgeklebt."
+            },
+            {
+              "id": "kleber",
+              "name": "Klebefleck",
+              "bild": "objekte/u_klebefleck",
+              "ziel": "ben",
+              "warum": "Der Kleber gehört Ben. Er hat damit den Faden festgeklebt."
+            },
+            {
+              "id": "streifen",
+              "name": "Roter Streifen",
+              "bild": "objekte/papierstreifen_rot",
+              "ziel": "zufall",
+              "warum": "Der rote Streifen lag schon vorher auf dem Tablett. Er ist nur ein bisschen verrutscht."
+            },
+            {
+              "id": "riss",
+              "name": "Kleiner Riss",
+              "bild": "objekte/u_riss_icon",
+              "ziel": "zufall",
+              "warum": "Der winzige Riss kommt vom vielen Anfassen. Niemand wollte ihn machen."
+            }
+          ]
+        },
+        "erfolg": "Alles passt. Die Flecken und Krümel sind nur aufgeklebt, der Faden ist eingerollt. Der Kreis darunter ist ganz."
+      }
+    },
+    {
+      "spur": 16,
+      "bild": "k3_s16_vorher",
+      "haken": "Oskar ist ganz still geworden.",
+      "karte": {
+        "bild": "objekte/mond_hinten_faden",
+        "text": "Milas Mond: hinten ein blauer Stern und der aufgerollte Faden.",
+        "staub": false
+      },
+      "fragenWeg": [
+        "k3faden",
+        "k3ganz"
+      ],
+      "raetsel": {
+        "art": "kreise",
+        "titel": "Welcher Kreis ist Milas Mond?",
+        "text": "Fünf gelbe Kreise mit braunen Flecken. Von vorn sehen sie gleich aus. Erst erinnerst du dich, dann vergleichst du.",
+        "erinnern": {
+          "text": "Was weißt du über Milas Mond? Wähle die drei Merkmale, die zu ihm gehören.",
+          "start": "Denk an das, was Mila und Ben erzählt haben. Nicht alles auf den Karten stimmt!",
+          "karten": [
+            {
+              "id": "stern",
+              "text": "Blauer Stern hinten",
+              "richtig": true
+            },
+            {
+              "id": "faden",
+              "text": "Faden oben, aufgerollt und festgeklebt",
+              "richtig": true
+            },
+            {
+              "id": "loch",
+              "text": "Kleines Loch oben für den Faden",
+              "richtig": true
+            },
+            {
+              "id": "herz",
+              "text": "Rotes Herz hinten",
+              "richtig": false
+            },
+            {
+              "id": "name",
+              "text": "Ein Name auf der Rückseite",
+              "richtig": false
+            },
+            {
+              "id": "gelb",
+              "text": "Gelbe Rückseite",
+              "richtig": false
+            }
+          ],
+          "tipp": "Mila hat etwas hinten aufgemalt. Ben hat oben etwas festgeklebt. Und der Faden geht durch etwas hindurch.",
+          "erfolg": "Richtig! Stern hinten, Faden aufgerollt, Loch oben. Das sind die drei Merkmale.",
+          "warum": "Mila hat hinten einen blauen Stern gemalt. Ben hat den Faden oben aufgerollt und festgeklebt. Und der Faden geht durch ein kleines Loch. Herz, Name und gelbe Rückseite kommen in der Geschichte nicht vor."
+        },
+        "vorne": "objekte/gelbe_kreise_vorne",
+        "hinten": "objekte/gelbe_kreise_hinten",
+        "ratio": 1.15,
+        "kreise": [
+          {
+            "id": "k1",
+            "name": "Kreis 1",
+            "x": 17.9,
+            "y": 28.8,
+            "r": 14.5
+          },
+          {
+            "id": "k2",
+            "name": "Kreis 2",
+            "x": 49.9,
+            "y": 28.8,
+            "r": 14.5
+          },
+          {
+            "id": "k3",
+            "name": "Kreis 3",
+            "x": 81.9,
+            "y": 28.8,
+            "r": 14.5
+          },
+          {
+            "id": "k4",
+            "name": "Kreis 4",
+            "x": 33.3,
+            "y": 69.2,
+            "r": 14.5
+          },
+          {
+            "id": "k5",
+            "name": "Kreis 5",
+            "x": 66.4,
+            "y": 69.2,
+            "r": 14.5
+          }
+        ],
+        "loesung": "k4",
+        "vergleichen": {
+          "text": "Tippe einen Kreis an, dann dreht er sich um. Es ist immer nur ein Kreis umgedreht. Merke dir, was du siehst. Streiche Kreise aus, die nicht passen.",
+          "start": "Von vorn sieht man das nicht. Tippe einen Kreis an, dann dreht er sich um.",
+          "liste": "Milas Mond hat:",
+          "frage": "Streiche jeden Kreis aus, dem ein Merkmal fehlt. Tippe dafür auf das Kreuz unter dem Kreis. Oder drücke lange auf den Kreis.",
+          "zuViel": "Hm, ein Kreis ist zu Unrecht ausgestrichen. Hat er vielleicht doch alle drei Merkmale? Dreh ihn noch einmal um.",
+          "nochMehr": "Es sind noch mehrere Kreise übrig. Hat wirklich jeder von ihnen alle drei Merkmale?",
+          "falsch": "Der letzte Kreis hat nicht alle drei Merkmale. Dreh die Kreise noch einmal um und vergleiche genau.",
+          "warum": "Nur ein Kreis hat hinten den Stern, oben den aufgerollten Faden und das Loch."
+        },
+        "stempel": "MILAS MOND",
+        "erfolg": "Das ist Milas Mond! Nur dieser Kreis hat hinten den blauen Stern, oben das Loch und den aufgerollten Faden."
+      }
+    },
+    {
+      "spur": 17,
+      "bild": "k3_s17",
+      "haken": "Noch zehn Minuten. Mila schaut auf ihren gefleckten Mond.",
+      "karte": {
+        "bild": "objekte/mond_auf_tablett",
+        "text": "Ben hat den Mond aufs Tablett für alle gelegt. Oskar hielt ihn für Papier.",
+        "staub": false
+      },
+      "raetsel": {
+        "art": "agentencode",
+        "titel": "Geheimagenten-Code",
+        "text": "Oskar schreibt wie ein Geheimagent. Sein Zettel hat zu viele Buchstaben. Streiche die überflüssigen durch und lies die Botschaft.",
+        "regel": "Jeder Buchstabe steht doppelt. Streiche von jedem Paar einen durch.",
+        "regelart": "doppelt",
+        "demo": {
+          "wort": "MOND",
+          "code": "MMOONNDD"
+        },
+        "start": "Ich zeige es dir: MMOONNDD. Jeder Buchstabe steht doppelt. Ich streiche einen von jedem Paar. Dann bleibt MOND.",
+        "woerter": [
+          {
+            "echt": "TUT",
+            "code": "TTUUTT"
+          },
+          {
+            "echt": "MIR",
+            "code": "MMIIRR"
+          },
+          {
+            "echt": "LEID",
+            "code": "LLEEIIDD"
+          }
+        ],
+        "tipp": "Schau dir immer zwei Buchstaben an. Sie sind gleich. Einer davon muss weg.",
+        "erfolg": "Tut mir leid! Oskar hat den Mond nicht mit Absicht genommen. Es war ein Missverständnis."
+      }
+    },
+    {
+      "spur": 18,
+      "bild": "k3_s18",
+      "haken": "Oben in der Astgabel legt der schwarz-weiße Vogel den Kopf schief. Er schaut auf den langen weißen Faden.",
+      "karte": {
+        "bild": "objekte/plakat",
+        "text": "Neues Stück: Der größte Käse der Welt.",
+        "staub": false
+      },
+      "fragenNeu": [
+        {
+          "id": "k3plan",
+          "text": "Was will der Vogel mit dem Faden?"
+        }
+      ],
+      "schluessel": true,
+      "raetsel": {
+        "art": "plakat",
+        "titel": "Das Plakat",
+        "text": "Das Plakat für das neue Stück ist in sechs Stücke zerschnitten. Setz es wieder zusammen.",
+        "bild": "objekte/plakat",
+        "spalten": 2,
+        "zeilen": 3,
+        "ratio": 0.75,
+        "tipp": "Oben ist das Dach vom Theater mit der Wolke. Der Käse und die Maus sind in der Mitte. Unten ist der Boden der Bühne.",
+        "erfolg": "Genau. Sicher ist nur, was wir bewiesen haben: Der Käse ist Milas Mond. Alles andere ist erst ein Verdacht.",
+        "schluss": {
+          "frage": "Was wissen wir jetzt sicher?",
+          "optionen": [
+            {
+              "text": "Der Käse ist Milas Mond. Hinten hat er den blauen Stern und den aufgerollten Faden.",
+              "sicher": true
+            },
+            {
+              "text": "Der Vogel mit dem langen Schwanz ist derselbe, der den Schatten geworfen hat.",
+              "sicher": false,
+              "tipp": "Das ist erst ein Verdacht. Vom Schatten kennen wir nur die Form. Und vom Vogel in der Astgabel nur die Farben."
+            },
+            {
+              "text": "Der Vogel will den Faden für sich haben.",
+              "sicher": false,
+              "tipp": "Das ist erst ein Verdacht. Wir haben nur gesehen, dass er Papierstreifen zieht. Was er damit vorhat, wissen wir nicht."
+            }
+          ]
+        },
+        "plakatFertig": "Das Plakat ist fertig: Die Maus springt zu ihrem Käse!"
+      }
+    }
+  ]
 }

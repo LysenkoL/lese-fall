@@ -244,28 +244,34 @@
         "ratio": 1.5,
         "zoom": 3.2,
         "ziel": {
-          "x": 86,
-          "y": 57,
+          "x": 76.9,
+          "y": 38.8,
           "r": 6.5
         },
         "fehlFunde": [
           {
-            "x": 9.8,
-            "y": 64,
-            "r": 5,
+            "x": 19.0,
+            "y": 40.0,
+            "r": 4.5,
             "text": "Eine rosa Schleife an Milas Zopf. Die gehört zum Zopf. Das ist kein Mäuseschwanz."
           },
           {
-            "x": 23.5,
-            "y": 64,
-            "r": 5,
+            "x": 29.0,
+            "y": 40.0,
+            "r": 4.5,
             "text": "Wieder eine rosa Schleife an Milas Zopf. Auch kein Mäuseschwanz."
           },
           {
-            "x": 49.5,
-            "y": 92,
-            "r": 8,
+            "x": 42.4,
+            "y": 82.0,
+            "r": 5,
             "text": "Rosa Schnürsenkel an Bens Schuhen. Die stecken im Schuh. Das ist kein Mäuseschwanz."
+          },
+          {
+            "x": 57.1,
+            "y": 82.0,
+            "r": 5,
+            "text": "Wieder rosa Schnürsenkel an Bens Schuh. Auch kein Mäuseschwanz."
           }
         ],
         "start": "Mit meiner Lupe sieht man Kleines groß. Etwas ist rosa. Aber nicht alles Rosa ist ein Mäuseschwanz!",
@@ -314,7 +320,7 @@
           {
             "bild": "objekte/theater",
             "x": 50,
-            "y": 43,
+            "y": 52,
             "w": 36,
             "vorhin": true,
             "jetzt": true
@@ -351,7 +357,7 @@
             },
             "jetzt": {
               "x": 33,
-              "y": 33,
+              "y": 38,
               "w": 5
             },
             "zonen": [
@@ -363,7 +369,7 @@
               },
               {
                 "x": 33,
-                "y": 33,
+                "y": 38,
                 "w": 9,
                 "h": 9
               }
@@ -465,8 +471,8 @@
               "rot": 70
             },
             "jetzt": {
-              "x": 12,
-              "y": 33,
+              "x": 14,
+              "y": 52.5,
               "w": 3.4
             },
             "zonen": [
@@ -477,8 +483,8 @@
                 "h": 8
               },
               {
-                "x": 12,
-                "y": 34,
+                "x": 14,
+                "y": 52.5,
                 "w": 8,
                 "h": 8
               }
@@ -522,11 +528,11 @@
             "id": "bleistift",
             "bild": "objekte/bleistift_gruen",
             "x": 84,
-            "y": 58,
+            "y": 80,
             "w": 7,
             "vorhin": {
               "x": 84,
-              "y": 58,
+              "y": 80,
               "w": 7,
               "rot": -20
             },
@@ -539,7 +545,7 @@
             "zonen": [
               {
                 "x": 84,
-                "y": 58,
+                "y": 80,
                 "w": 9,
                 "h": 9
               },

@@ -132,7 +132,7 @@
 .kr-liste li { margin: 1px 0; }
 .kr-liste .s-b, .kr-liste .s-r { color: inherit; }
 .kr-bild img.kr-vorn { position: absolute; inset: 0; }
-.kr-bild .kr-um { position: absolute; transform: translate(-50%, -50%); aspect-ratio: 1; border-radius: 50%; overflow: hidden; border: 3px solid var(--senf); box-shadow: 0 0 0 3px rgba(255, 255, 255, .8), 0 6px 12px rgba(0, 0, 0, .35); pointer-events: none; animation: kr-klapp .22s both; z-index: 1; }
+.kr-bild .kr-um { position: absolute; transform: translate(-50%, -50%); aspect-ratio: 1; border-radius: 22%; overflow: hidden; border: 3px solid var(--senf); box-shadow: 0 0 0 3px rgba(255, 255, 255, .8), 0 6px 12px rgba(0, 0, 0, .35); pointer-events: none; animation: kr-klapp .22s both; z-index: 1; }
 .kr-bild .kr-um img { position: absolute; height: auto; max-width: none; width: auto; }
 @keyframes kr-klapp { from { transform: translate(-50%, -50%) scaleX(.1); } }
 .kr-bild .kr-k { z-index: 2; }
