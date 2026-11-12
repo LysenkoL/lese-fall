@@ -3,7 +3,6 @@
  * Tresor öffnet sich (Tür schwingt auf, goldenes Licht), drinnen das Finale-Bild, zuletzt die Urkunde „Meister-Detektiv“.
  * Schritte in stand.fin: 0 Szene · 1 Code legen · 2 Tresor offen · 3 Urkunde.
  */
-import { tresorSvg } from './zeichnen.ts';
 
 export interface FinCtx {
   buehne: HTMLElement;
@@ -53,7 +52,7 @@ export function zeigeFinale(c: FinCtx): void {
     wort.forEach((_, i) => { if (!ordnung.includes(i)) ordnung.push(i); }); // nie in der richtigen Reihenfolge
     const felder: (number | null)[] = wort.map(() => null); // Feld → Kärtchen-Nr
     let fehl = 0, gesperrt = false;
-    c.buehne.innerHTML = `<section class="zug fin" data-art="tresorcode"><div class="lampe"></div><div class="zk"><span class="tab hell">${c.UI.tresor}</span><h2>${F.code.titel}</h2></div><p class="zt1">${F.code.text}</p><div class="fin-tresor">${tresorSvg(wort.length)}</div><div class="fin-felder"></div><div class="fin-karten"></div><div class="zr"></div></section>`;
+    c.buehne.innerHTML = `<section class="zug fin" data-art="tresorcode"><div class="lampe"></div><div class="zk"><span class="tab hell">${c.UI.tresor}</span><h2>${F.code.titel}</h2></div><p class="zt1">${F.code.text}</p><div class="fin-tresor"><img src="${c.img('tresor_zu')}" alt="" draggable="false"><div class="fin-felder"></div></div><div class="fin-karten"></div><div class="zr"></div></section>`;
     const sec = c.buehne.querySelector<HTMLElement>('.fin')!;
     const sag = (b: string, t: string, kl = '') => { const z = sec.querySelector<HTMLElement>('.zr')!; z.innerHTML = t ? raupe(b, t, kl) : ''; if (t) requestAnimationFrame(() => z.scrollIntoView({ block: 'nearest', behavior: 'smooth' })); };
     const mal = () => {
@@ -126,10 +125,7 @@ export function zeigeFinale(c: FinCtx): void {
 
   /* ---------- 2: der Tresor öffnet sich ---------- */
   if (st.fin === 2) {
-    const wort = c.wort.split('');
-    const n = wort.length, w = 22, gap = 6, x0 = 100 - (n * w + (n - 1) * gap) / 2;
-    const codeHtml = wort.map((ch, i) => `<i style="left:${((x0 + i * (w + gap)) / 200) * 100}%;top:${(134 / 200) * 100}%;width:${(w / 200) * 100}%;height:${(26 / 200) * 100}%">${ch}</i>`).join('');
-    c.buehne.innerHTML = `<section class="zug fin"><div class="lampe"></div><div class="zk"><span class="tab hell">${c.UI.tresor}</span><h2>${F.auf.titel}</h2></div><div class="tv"><div class="tv-licht"></div><div class="tv-korpus"><div class="tv-innen"><img src="${c.img('finale_bild')}" alt=""></div></div><div class="tv-tuer">${tresorSvg(n)}<div class="tv-code">${codeHtml}</div></div></div><p class="zt1 gross">${F.auf.text}</p></section>`;
+    c.buehne.innerHTML = `<section class="zug fin"><div class="lampe"></div><div class="zk"><span class="tab hell">${c.UI.tresor}</span><h2>${F.auf.titel}</h2></div><div class="tv"><div class="tv-licht"></div><img class="tv-zu" src="${c.img('tresor_zu')}" alt="" draggable="false"><img class="tv-auf" src="${c.img('tresor_auf')}" alt="" draggable="false"><div class="tv-innen"><img src="${c.img('finale_bild')}" alt="" draggable="false"></div></div><p class="zt1 gross">${F.auf.text}</p></section>`;
     const tv = c.buehne.querySelector<HTMLElement>('.tv')!;
     c.fuss.innerHTML = '<div class="fz"><button class="kn haupt" style="visibility:hidden" tabindex="-1" aria-hidden="true"><span>·</span></button></div>';
     setTimeout(() => { if (!tv.isConnected) return; tv.classList.add('auf'); c.summ([30, 50, 80, 120]); }, 900);

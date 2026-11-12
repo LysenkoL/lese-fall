@@ -3284,10 +3284,10 @@
     "titel": "Das Pla|kat",
     "text": "Das Pla|kat für das neu|e Stück ist in sechs Stü|cke zer|schnit|ten. Setz es wie|der zu|sam|men.",
     "bild": "objekte/plakat",
-    "spalten": 3,
-    "zeilen": 2,
-    "ratio": 1.5,
-    "tipp": "Die Ü|ber|schrift steht o|ben. Der gro|ße gel|be Kä|se liegt in der Mit|te.",
+    "spalten": 2,
+    "zeilen": 3,
+    "ratio": 0.75,
+    "tipp": "O|ben ist das Dach vom The|a|ter mit der Wol|ke. Der Kä|se und die Maus sind in der Mit|te. Un|ten ist der Bo|den der Büh|ne.",
     "erfolg": "Ge|nau. Si|cher ist nur, was wir be|wie|sen ha|ben: Der Kä|se ist Mi|las Mond. Al|les an|de|re ist erst ein Ver|dacht.",
     "schluss": {
      "frage": "Was wis|sen wir jetzt si|cher?",
@@ -3308,7 +3308,7 @@
       }
      ]
     },
-    "plakatFertig": "Das Pla|kat ist fer|tig: Der größ|te Kä|se der Welt!"
+    "plakatFertig": "Das Pla|kat ist fer|tig: Die Maus springt zu ih|rem Kä|se!"
    },
    "schluessel": true
   },
@@ -3470,41 +3470,41 @@
     "gabeln": [
      {
       "id": "g1",
-      "x": 30,
-      "y": 72,
-      "r": 11,
+      "x": 43,
+      "y": 53.7,
+      "r": 9,
       "name": "Ast|ga|bel 1",
       "nicht": "Hier hängt ein Vo|gel|haus. Da|von stand nichts im Text."
      },
      {
       "id": "g2",
-      "x": 14.4,
-      "y": 45,
-      "r": 11,
+      "x": 26,
+      "y": 33,
+      "r": 9,
       "name": "Ast|ga|bel 2",
       "nicht": "Hier hängt ei|ne Schau|kel. Da|von stand nichts im Text."
      },
      {
       "id": "g3",
-      "x": 73.9,
-      "y": 40.8,
-      "r": 11,
+      "x": 66.5,
+      "y": 63,
+      "r": 9,
       "name": "Ast|ga|bel 3",
       "nicht": "Hier ist es rich|tig."
      },
      {
       "id": "g4",
-      "x": 45,
-      "y": 14.2,
-      "r": 11,
+      "x": 48.2,
+      "y": 10.3,
+      "r": 9,
       "name": "Ast|ga|bel 4",
       "nicht": "Hier lie|gen tro|cke|ne brau|ne Blät|ter. Das ist ganz o|ben, nicht un|ter dem Fens|ter."
      },
      {
       "id": "g5",
-      "x": 90,
-      "y": 65.8,
-      "r": 11,
+      "x": 72.6,
+      "y": 18.1,
+      "r": 9,
       "name": "Ast|ga|bel 5",
       "nicht": "Hier ist ein gro|ßes Ast|loch. Da|von stand nichts im Text."
      }
@@ -4508,33 +4508,33 @@
     "bild": "baum_nest",
     "ratio": 1.5,
     "zone": {
-     "x": 75,
-     "y": 54,
-     "r": 14
+     "x": 67,
+     "y": 66,
+     "r": 13
     },
     "start": "Wi|sche mit dem Fin|ger ü|ber die Blät|ter. Du schiebst sie zur Sei|te.",
     "ziele": [
      {
       "id": "nest",
-      "x": 73.9,
-      "y": 43.2,
-      "r": 8,
+      "x": 68.2,
+      "y": 62,
+      "r": 5,
       "ok": "Ein Nest aus wei|ßen Pa|pier|strei|fen!",
       "bedeutung": "Da|rum woll|te die Els|ter den Fa|den!"
      },
      {
       "id": "band",
-      "x": 75.5,
-      "y": 53.3,
-      "r": 4,
+      "x": 68.9,
+      "y": 67.6,
+      "r": 3.5,
       "ok": "Ein wei|ßes Band.",
       "bedeutung": "Das ist das Band von Frau Som|mers Schlüs|sel."
      },
      {
       "id": "schluessel",
-      "x": 75.7,
-      "y": 67.7,
-      "r": 4.5,
+      "x": 68.5,
+      "y": 74.5,
+      "r": 4,
       "ok": "Ein Schlüs|sel!",
       "bedeutung": "Frau Som|mers Schlüs|sel! Ge|fun|den!"
      }

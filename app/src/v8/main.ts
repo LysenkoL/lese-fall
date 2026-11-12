@@ -146,7 +146,7 @@ function intro() {
   let k = 0;
   const mal = () => {
     const s = D.intro[k], letzt = k === D.intro.length - 1;
-    buehne.innerHTML = `<section class="intro"><div class="lampe"></div><div class="ib ${s.bild === 'tresor' ? 'tresor' : s.bild.includes('/') ? 'frei' : 'foto'}">${s.bild === 'tresor' ? tresorSvg(D.kapitel[0].code.wort.length) : `<img src="${fig(s.bild)}" alt="">`}</div><p>${s.text}</p><div class="pkt hell">${D.intro.map((_: any, i: number) => `<i class="${i === k ? 'an' : ''}"></i>`).join('')}</div></section>`;
+    buehne.innerHTML = `<section class="intro"><div class="lampe"></div><div class="ib ${s.bild === 'tresor' ? 'tresor' : s.bild.includes('/') ? 'frei' : 'foto'}">${s.bild === 'tresor' ? `<img src="${img('tresor_zu')}" alt="">` : `<img src="${fig(s.bild)}" alt="">`}</div><p>${s.text}</p><div class="pkt hell">${D.intro.map((_: any, i: number) => `<i class="${i === k ? 'an' : ''}"></i>`).join('')}</div></section>`;
     fuss.innerHTML = `<div class="fz">${knopf('w', letzt ? UI.los : UI.weiter)}<button class="leise" data-a="skip" ${letzt ? 'style="visibility:hidden"' : ''}>${UI.ueberspringen}</button></div>`;
   };
   mal();
@@ -297,7 +297,7 @@ function codeFelder() {
   return felder.map((c) => `<i>${c}</i>`).join('');
 }
 function tresorInfo(zurueck: () => void) {
-  ueber.innerHTML = `<div class="schl mitte"><div class="kgross tresorinfo">${tresorSvg(D.kapitel[0].code.wort.length)}<h3>${UI.tresor}</h3><p>${UI.tresorInfo}</p><div class="wort">${codeFelder()}</div><button class="kn haupt" data-a="zu"><span>${UI.fertig}</span></button></div></div>`;
+  ueber.innerHTML = `<div class="schl mitte"><div class="kgross tresorinfo"><img class="tresor-bild" src="${img('tresor_zu')}" alt=""><h3>${UI.tresor}</h3><p>${UI.tresorInfo}</p><div class="wort">${codeFelder()}</div><button class="kn haupt" data-a="zu"><span>${UI.fertig}</span></button></div></div>`;
   ueber.onclick = (e) => { const t = e.target as HTMLElement; if (t.closest('[data-a="zu"]') || t.classList.contains('schl')) zurueck(); };
 }
 function brettHtml(bis: number, neu = 0, staubig = false) {

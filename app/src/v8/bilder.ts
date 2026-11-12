@@ -12,7 +12,7 @@ const ECHT = {
   ...import.meta.glob('../gen/{objekte,kinder}/*.webp', { eager: true, query: '?url', import: 'default' }),
   ...import.meta.glob('../../../assets/illustrationen/kinder/*.webp', { eager: true, query: '?url', import: 'default' }),
   ...import.meta.glob('../../../assets/illustrationen/objekte/*.webp', { eager: true, query: '?url', import: 'default' }),
-  ...import.meta.glob('../../../assets/illustrationen/{baum,baum_nest,nest_finale}.webp', { eager: true, query: '?url', import: 'default' }),
+  ...import.meta.glob('../../../assets/illustrationen/{baum,baum_nest,nest_finale,tresor_zu,tresor_auf}.webp', { eager: true, query: '?url', import: 'default' }),
 } as Record<string, string>;
 const SVGS = import.meta.glob('./ersatz/*.svg', { eager: true, query: '?url', import: 'default' }) as Record<string, string>;
 

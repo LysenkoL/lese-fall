@@ -144,41 +144,41 @@
         "gabeln": [
           {
             "id": "g1",
-            "x": 30,
-            "y": 72,
-            "r": 11,
+            "x": 43.0,
+            "y": 53.7,
+            "r": 9,
             "name": "Astgabel 1",
             "nicht": "Hier hängt ein Vogelhaus. Davon stand nichts im Text."
           },
           {
             "id": "g2",
-            "x": 14.4,
-            "y": 45,
-            "r": 11,
+            "x": 26.0,
+            "y": 33.0,
+            "r": 9,
             "name": "Astgabel 2",
             "nicht": "Hier hängt eine Schaukel. Davon stand nichts im Text."
           },
           {
             "id": "g3",
-            "x": 73.9,
-            "y": 40.8,
-            "r": 11,
+            "x": 66.5,
+            "y": 63.0,
+            "r": 9,
             "name": "Astgabel 3",
             "nicht": "Hier ist es richtig."
           },
           {
             "id": "g4",
-            "x": 45,
-            "y": 14.2,
-            "r": 11,
+            "x": 48.2,
+            "y": 10.3,
+            "r": 9,
             "name": "Astgabel 4",
             "nicht": "Hier liegen trockene braune Blätter. Das ist ganz oben, nicht unter dem Fenster."
           },
           {
             "id": "g5",
-            "x": 90,
-            "y": 65.8,
-            "r": 11,
+            "x": 72.6,
+            "y": 18.1,
+            "r": 9,
             "name": "Astgabel 5",
             "nicht": "Hier ist ein großes Astloch. Davon stand nichts im Text."
           }
@@ -796,33 +796,33 @@
         "bild": "baum_nest",
         "ratio": 1.5,
         "zone": {
-          "x": 75,
-          "y": 54,
-          "r": 14
+          "x": 67,
+          "y": 66,
+          "r": 13
         },
         "start": "Wische mit dem Finger über die Blätter. Du schiebst sie zur Seite.",
         "ziele": [
           {
             "id": "nest",
-            "x": 73.9,
-            "y": 43.2,
-            "r": 8,
+            "x": 68.2,
+            "y": 62.0,
+            "r": 5,
             "ok": "Ein Nest aus weißen Papierstreifen!",
             "bedeutung": "Darum wollte die Elster den Faden!"
           },
           {
             "id": "band",
-            "x": 75.5,
-            "y": 53.3,
-            "r": 4,
+            "x": 68.9,
+            "y": 67.6,
+            "r": 3.5,
             "ok": "Ein weißes Band.",
             "bedeutung": "Das ist das Band von Frau Sommers Schlüssel."
           },
           {
             "id": "schluessel",
-            "x": 75.7,
-            "y": 67.7,
-            "r": 4.5,
+            "x": 68.5,
+            "y": 74.5,
+            "r": 4,
             "ok": "Ein Schlüssel!",
             "bedeutung": "Frau Sommers Schlüssel! Gefunden!"
           }

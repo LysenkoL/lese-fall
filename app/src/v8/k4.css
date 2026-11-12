@@ -78,8 +78,10 @@
 .fin-bild img { width: 100%; display: block; }
 .fin-liste { margin: 4px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
 .fin-liste li { background: var(--papier); color: var(--tinte); border-radius: 14px; padding: 10px 14px; font-size: 17.5px; font-weight: 700; line-height: 1.45; box-shadow: 0 3px 0 #D8CDB2, 0 8px 14px rgba(0, 0, 0, .25); }
-.fin-tresor { width: min(46%, 170px); margin: 0 auto; }
-.fin-tresor svg { display: block; width: 100%; height: auto; }
+.fin-tresor { position: relative; container-type: inline-size; width: min(62%, 250px); margin: 0 auto; }
+.fin-tresor img { display: block; width: 100%; height: auto; border-radius: 9%; box-shadow: 0 8px 20px rgba(0, 0, 0, .4); }
+.fin-tresor .fin-felder { position: absolute; left: 28.7%; width: 42.6%; top: 65%; height: 8.6%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 4.3%; }
+.fin-tresor .fin-f { width: 100%; height: 100%; border-radius: 2.6cqw; font-size: 7cqw; border-width: .6cqw; }
 .fin-felder { display: flex; justify-content: center; gap: 10px; }
 .fin-f { width: 62px; height: 70px; border-radius: 14px; border: 3px dashed rgba(255, 255, 255, .55); background: rgba(255, 255, 255, .08); color: var(--senf-tinte, #26221C); font-weight: 800; font-size: 38px; display: grid; place-items: center; padding: 0; cursor: pointer; }
 .fin-f.voll { border: 0; background: var(--senf); box-shadow: 0 3px 0 var(--senf-dunkel, #C99A2E); }
@@ -90,24 +92,19 @@
 .fin-k.weg { opacity: .22; box-shadow: none; }
 .fin-k.zieht { z-index: 20; transition: none; box-shadow: 0 16px 24px rgba(0, 0, 0, .45); }
 
-/* Tresor mit aufschwingender Tür */
-.tv { position: relative; width: min(72%, 300px); aspect-ratio: 1; margin: 6px auto; perspective: 1000px; }
-.tv-licht { position: absolute; inset: -22%; border-radius: 50%; background: radial-gradient(circle, rgba(255, 224, 120, .95) 0, rgba(255, 200, 70, .55) 34%, rgba(255, 190, 60, 0) 68%); opacity: 0; transform: scale(.3); transition: opacity 1.2s .3s, transform 1.6s .2s; pointer-events: none; }
+/* Tresor: Bild zu, dann Bild auf (Licht, Finale-Bild in der goldenen Öffnung) */
+.tv { position: relative; width: min(78%, 320px); aspect-ratio: 1; margin: 6px auto; }
+.tv > img { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 9%; display: block; }
+.tv-licht { position: absolute; inset: -24%; border-radius: 50%; background: radial-gradient(circle, rgba(255, 224, 120, .95) 0, rgba(255, 200, 70, .5) 34%, rgba(255, 190, 60, 0) 68%); opacity: 0; transform: scale(.3); transition: opacity 1.2s .3s, transform 1.6s .2s; pointer-events: none; }
 .tv.auf .tv-licht { opacity: 1; transform: scale(1); animation: tv-puls 2.4s 1.6s ease-in-out infinite; }
 @keyframes tv-puls { 50% { transform: scale(1.08); opacity: .85; } }
-.tv-korpus { position: absolute; left: 8%; top: 6%; width: 84%; height: 85%; border-radius: 12%; background: #0E1733; border: 5px solid #33447C; overflow: hidden; box-shadow: inset 0 0 30px rgba(255, 210, 90, .0); transition: box-shadow 1.2s .5s; }
-.tv.auf .tv-korpus { box-shadow: inset 0 0 40px rgba(255, 210, 90, .8); }
-.tv-innen { position: absolute; inset: 0; display: grid; place-items: center; background: radial-gradient(circle, #FFE9A8, #E9B533); opacity: 0; transition: opacity .8s .8s; }
+.tv-zu { z-index: 1; transition: opacity .5s .2s; }
+.tv-auf { z-index: 1; opacity: 0; transform: scale(.96); transition: opacity .6s .3s, transform 1s .3s cubic-bezier(.2, 1.3, .4, 1); }
+.tv.auf .tv-zu { opacity: 0; }
+.tv.auf .tv-auf { opacity: 1; transform: none; box-shadow: 0 0 40px rgba(255, 210, 90, .7); }
+.tv-innen { position: absolute; left: 21.5%; top: 27%; width: 41%; height: 47.5%; z-index: 2; border-radius: 4%; overflow: hidden; opacity: 0; transition: opacity .9s 1.1s; box-shadow: inset 0 0 14px rgba(255, 220, 120, .9); }
 .tv.auf .tv-innen { opacity: 1; }
 .tv-innen img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.tv-tuer { position: absolute; inset: 0; transform-origin: 8% 50%; transition: transform 1.5s cubic-bezier(.5, 0, .25, 1), filter 1.5s; z-index: 2; }
-.tv-tuer .tresor-svg { display: block; width: 100%; height: 100%; }
-.tv { transition: transform 1.5s; }
-.tv.auf { transform: translateX(20%); }
-.tv.auf .tv-tuer { transform: rotateY(-72deg); filter: brightness(.8); }
-.tv-code { position: absolute; inset: 0; transition: opacity .4s; }
-.tv-code i { position: absolute; display: grid; place-items: center; font-style: normal; font-weight: 800; font-size: clamp(14px, 5.2vw, 24px); color: #F4C243; }
-.tv.auf .tv-code { opacity: 0; }
 
 /* Urkunde */
 .fin.urk { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 6px 4px 0; min-height: 100%; }
@@ -134,3 +131,7 @@
 .so-ziele.vier .so-kopf b { font-size: 14px; text-align: left; }
 .so-ziele.vier .so-drin { gap: 4px; display: flex; flex-wrap: wrap; justify-content: center; }
 .so-ziele.vier .so-ding.klein { width: 64px; }
+
+/* Tresor-Bild auf der Vorgeschichte-Karte und im Brett */
+.ib.tresor img { display: block; width: 210px; height: 210px; border-radius: 22px; box-shadow: 0 0 26px rgba(244, 194, 67, .55); }
+.tresorinfo > img.tresor-bild { width: 130px; height: 130px; border-radius: 16px; box-shadow: 0 0 18px rgba(244, 194, 67, .45); }
