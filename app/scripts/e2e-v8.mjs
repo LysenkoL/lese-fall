@@ -306,13 +306,16 @@ async function raetsel(spur, z) {
     if (Math.hypot(sp[0] - gr.x, sp[1] - gr.y) > 5 || !sp[2]) fehler.push(`Astgabel: Stempel liegt nicht auf der Gabel (${sp.map((x) => +x || x).join(', ')})`);
   } else if (z.art === 'faden') {
     await S(n + '_start');
-    const k = await (await p.$('.fd-knopf')).boundingBox();
-    await p.mouse.move(k.x + k.width / 2, k.y + k.height / 2); await p.mouse.down(); await sleep(900); await shot(n + '_zu_frueh'); await p.mouse.up();
-    for (let t = 0; t < 60 && !(await p.$('.fd-maus.achtung')); t++) await sleep(150);
-    await shot(n + '_achtung');
-    await p.mouse.down(); await sleep(2300); await shot(n + '_gezogen'); await p.mouse.up(); await sleep(400);
+    for (let t = 0; t < 80 && !(await p.$('.fd-maus.achtung')); t++) await sleep(100);
+    await shot(n + '_vorfuehrung'); await sleep(1800); await shot(n + '_vorfuehrung_gezogen');
+    for (let t = 0; t < 120 && !((await p.$('.fd-maus.achtung')) && !(await p.$('.fd-mond.hoch'))); t++) await sleep(100);
+    await sleep(300);
+    const g = await (await p.$('.fd-griff b')).boundingBox();
+    await p.mouse.move(g.x + g.width / 2, g.y + g.height / 2); await p.mouse.down();
+    await p.mouse.move(g.x + g.width / 2, g.y + g.height / 2 + 15, { steps: 3 }); await p.mouse.move(g.x + g.width / 2, g.y + g.height / 2 + 60, { steps: 6 }); await p.mouse.up(); await sleep(400);
+    await shot(n + '_gezogen');
     const punkte = await ev(() => document.querySelectorAll('.fd-zaehl i.an').length);
-    if (punkte < 1) fehler.push('Faden ziehen: Mit gedrücktem Knopf zur rechten Zeit gibt es keinen Punkt');
+    if (punkte < 1) fehler.push('Faden ziehen: Wischen am Griff zur rechten Zeit gibt keinen Punkt');
     await loese(); await sleep(800);
   } else if (z.art === 'nest') {
     await S(n + '_start');

@@ -25,29 +25,40 @@
 .ab-e.nein { animation: wackel .4s; }
 .ab-hin { margin-bottom: 8px; }
 
-/* ---------- Spur 22: Faden ziehen ---------- */
+/* ---------- Spur 22: Faden ziehen (Reaktionsspiel) ---------- */
 .fd-zaehl { display: flex; justify-content: center; min-height: 20px; }
-.fd-buehne { position: relative; height: min(46dvh, 330px); width: min(100%, 360px); align-self: center; margin: 0 auto; border-radius: 16px; border: 4px solid #fff; overflow: hidden; background: radial-gradient(ellipse at 50% 20%, #7A1F2B, #4B1019 80%); box-shadow: 0 12px 26px rgba(0, 0, 0, .4); touch-action: none; }
-.fd-buehne.alarm { animation: fd-bebt .18s infinite; }
-@keyframes fd-bebt { 50% { transform: translateX(2px); } }
+.fd-buehne { position: relative; height: min(46dvh, 330px); width: min(100%, 360px); align-self: center; margin: 0 auto; border-radius: 16px; border: 4px solid #fff; overflow: hidden; background: radial-gradient(ellipse at 50% 20%, #7A1F2B, #4B1019 80%); box-shadow: 0 12px 26px rgba(0, 0, 0, .4); touch-action: none; user-select: none; }
+.fd-buehne.alarm { box-shadow: 0 0 0 4px rgba(244, 194, 67, .8), 0 12px 26px rgba(0, 0, 0, .4); }
 .fd-vorhang { position: absolute; top: 0; bottom: 0; width: 17%; background: repeating-linear-gradient(90deg, #C12A32 0 10px, #A5202A 10px 20px); box-shadow: 0 0 14px rgba(0, 0, 0, .5); z-index: 3; pointer-events: none; }
 .fd-vorhang.l { left: 0; border-radius: 0 0 40% 0; }
 .fd-vorhang.rr { right: 0; border-radius: 0 0 0 40%; }
-.fd-faden { position: absolute; left: 50%; top: 0; width: 3px; margin-left: -1.5px; background: #fff; box-shadow: 0 0 3px rgba(255, 255, 255, .6); }
-.fd-mond { position: absolute; left: 50%; height: 34%; width: auto; transform: translateX(-50%); transition: none; filter: drop-shadow(0 6px 8px rgba(0, 0, 0, .4)); pointer-events: none; }
-.fd-mond.wipp { animation: fd-wipp .7s; }
+.fd-faden { position: absolute; left: 50%; top: 0; height: 30%; width: 3px; margin-left: -1.5px; background: #fff; box-shadow: 0 0 3px rgba(255, 255, 255, .6); transition: height .5s cubic-bezier(.3, 1.4, .5, 1); }
+.fd-faden.hoch { height: 0%; }
+.fd-mond { position: absolute; left: 50%; top: 24%; height: 34%; width: auto; transform: translateX(-50%); transition: top .5s cubic-bezier(.3, 1.4, .5, 1); filter: drop-shadow(0 6px 8px rgba(0, 0, 0, .4)); pointer-events: none; }
+.fd-mond.hoch { top: -8%; }
+.fd-mond.wipp { animation: fd-wipp .8s; }
 .fd-mond.tanzt { animation: fd-wipp .8s infinite; }
 @keyframes fd-wipp { 25% { transform: translateX(-50%) rotate(14deg); } 75% { transform: translateX(-50%) rotate(-14deg); } }
 .fd-maus { position: absolute; left: 50%; bottom: 2%; height: 34%; width: auto; transform: translateX(-50%); pointer-events: none; transform-origin: 50% 100%; }
-.fd-maus.achtung { animation: fd-bereit .25s infinite; }
-@keyframes fd-bereit { 50% { transform: translateX(-50%) scaleY(.86); } }
-.fd-maus.sprung { animation: fd-sprung 2s both; }
-@keyframes fd-sprung { 0% { transform: translateX(-50%) scaleY(.86); } 14% { transform: translateX(-50%) translateY(0) scaleY(1.1); } 50% { transform: translateX(-50%) translateY(-100%) scaleY(1); } 86% { transform: translateX(-50%) translateY(0); } 100% { transform: translateX(-50%) translateY(0); } }
+.fd-maus.achtung { animation: fd-bereit .12s infinite; filter: drop-shadow(0 0 10px #F4C243) drop-shadow(0 0 4px #F4C243); }
+@keyframes fd-bereit { 0% { transform: translateX(calc(-50% - 3px)) scaleY(.82); } 50% { transform: translateX(calc(-50% + 3px)) scaleY(.82); } 100% { transform: translateX(calc(-50% - 3px)) scaleY(.82); } }
+.fd-maus.sprung { animation: fd-sprung 2.3s both; }
+@keyframes fd-sprung { 0% { transform: translateX(-50%) scaleY(.82); } 12% { transform: translateX(-50%) translateY(0) scaleY(1.1); } 45% { transform: translateX(-50%) translateY(-110%) scaleY(1); } 80% { transform: translateX(-50%) translateY(0); } 100% { transform: translateX(-50%) translateY(0); } }
 .fd-maus.schnapp { filter: brightness(1.2) saturate(1.3); }
-.fd-achtung { position: absolute; left: 62%; bottom: 30%; width: 34px; height: 34px; border-radius: 50%; background: var(--senf); color: #26221C; font-style: normal; font-weight: 800; font-size: 24px; display: none; place-items: center; z-index: 2; }
-.fd-buehne.alarm .fd-achtung { display: grid; }
-.fd-knopf { margin-top: 12px; align-self: center; width: min(100%, 360px); min-height: 64px; touch-action: none; user-select: none; }
-.fd-knopf.an { transform: translateY(3px) scale(.98); filter: brightness(1.1); }
+.fd-achtung { position: absolute; left: 50%; top: 5%; transform: translateX(-50%); padding: 5px 12px; border-radius: 999px; background: var(--senf); color: #26221C; font-style: normal; font-weight: 800; font-size: 16px; white-space: nowrap; display: none; z-index: 2; box-shadow: 0 3px 0 var(--senf-dunkel, #C99A2E); }
+.fd-buehne.alarm .fd-achtung { display: block; animation: fd-puls .5s infinite alternate; }
+@keyframes fd-puls { to { transform: translateX(-50%) scale(1.08); } }
+.fd-griff { position: absolute; right: 21%; bottom: 4%; width: 54px; z-index: 4; display: flex; flex-direction: column; align-items: center; gap: 0; cursor: grab; touch-action: none; }
+.fd-griff b { width: 30px; height: 30px; border-radius: 50%; border: 6px solid #fff; background: #D8432F; box-shadow: 0 3px 6px rgba(0, 0, 0, .5); }
+.fd-griff span { font-size: 11px; font-weight: 800; color: #fff; letter-spacing: .02em; text-shadow: 0 1px 2px rgba(0, 0, 0, .6); }
+.fd-griff::before { content: ''; width: 3px; height: 26px; background: #fff; order: 1; display: none; }
+.fd-pfeil { font-style: normal; font-weight: 800; font-size: 24px; line-height: 1; color: var(--senf); visibility: hidden; }
+.fd-buehne.bereit .fd-pfeil { visibility: visible; animation: fd-pf .5s infinite alternate; }
+@keyframes fd-pf { to { transform: translateY(8px); } }
+.fd-griff.zieht b { animation: fd-zieh .5s; }
+.fd-griff.fass b { transform: translateY(14px); }
+@keyframes fd-zieh { 40% { transform: translateY(26px); } }
+.fd-knopf { margin-top: 12px; align-self: center; width: min(100%, 360px); min-height: 64px; user-select: none; }
 
 /* ---------- Spur 20/23: Ablenker, Vogelkarten aus dem Bildstreifen ---------- */
 .as-crop { display: block; width: 100%; aspect-ratio: 1; }

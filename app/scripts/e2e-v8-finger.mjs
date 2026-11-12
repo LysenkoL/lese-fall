@@ -273,14 +273,15 @@ const mitte = async (p, s) => { const r = await (await p.$(s)).boundingBox(); re
   pruef(!!(await p.$('.ab-hin')), 'Astgabel: Knopf zeigt den Absatz');
   await gt(z19.gabeln.find((g) => g.id === z19.richtig)); await sleep(1500);
   pruef(!!(await p.$('#fuss [data-a="stempeln"]')), 'Astgabel: richtige Gabel, der Stempel kommt');
-  // Spur 22: Knopf gedrückt halten, wenn die Maus springt (Berührung)
+  // Spur 22: Vorführung, dann mit dem Finger am Griff nach unten wischen
   await zustand(22, 1);
-  for (let t = 0; t < 60 && !(await p.$('.fd-maus.achtung')); t++) await sleep(150);
-  const kb = await (await p.$('.fd-knopf')).boundingBox();
-  await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: kb.x + kb.width / 2, y: kb.y + kb.height / 2 }] });
-  await sleep(2400);
-  await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] }); await sleep(300);
-  pruef((await p.$$('.fd-zaehl i.an')).length >= 1, 'Faden ziehen: Knopf mit dem Finger gehalten, die Maus springt, ein Punkt');
+  for (let t = 0; t < 80 && !(await p.$('.fd-maus.achtung')); t++) await sleep(150);
+  await sleep(2600);
+  for (let t = 0; t < 120 && !((await p.$('.fd-maus.achtung')) && !(await p.$('.fd-mond.hoch'))); t++) await sleep(100);
+  await sleep(300);
+  const gb = await (await p.$('.fd-griff b')).boundingBox();
+  await zieh(gb.x + gb.width / 2, gb.y + gb.height / 2, gb.x + gb.width / 2, gb.y + gb.height / 2 + 70); await sleep(400);
+  pruef((await p.$$('.fd-zaehl i.an')).length >= 1, 'Faden ziehen: mit dem Finger am Griff nach unten gewischt, ein Punkt');
   // Spur 24: Laub mit dem Finger wegwischen, dann Nest, Band, Schlüssel antippen
   await zustand(24, 1);
   const nb = await (await p.$('.nt-bild')).boundingBox();

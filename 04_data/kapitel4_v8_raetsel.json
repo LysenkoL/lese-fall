@@ -659,16 +659,19 @@
       "raetsel": {
         "art": "faden",
         "titel": "Ben zieht den Käse",
-        "text": "Du spielst Ben hinter dem Vorhang. Wenn die Maus springt, ziehst du am Faden. Dann steigt der Käse. Schaffst du es dreimal?",
+        "text": "Du spielst Ben hinter dem Vorhang. Wenn die Maus sich duckt, ziehst du am Faden. Dann steigt der Käse. Schaffst du es dreimal?",
         "runden": 3,
         "bild": "objekte/mond_mit_flecken",
         "maus": "objekte/maus_seite",
-        "start": "Halte den Knopf gedrückt, sobald die Maus springt. Ziehe nicht zu früh!",
-        "frueh": "Lass los! Die Maus springt nur, wenn der Käse unten hängt.",
-        "knapp": "Fast! Zieh gleich, wenn die Maus abspringt. Dann steigt der Käse hoch genug.",
+        "start": "Schau erst zu, wie es geht. Dann bist du dran: Wische am roten Griff nach unten oder tippe auf „Faden ziehen“.",
+        "frueh": "Noch nicht! Warte, bis sich die Maus duckt und zittert.",
+        "knapp": "Fast! Zieh am Faden, sobald die Maus zittert. Du hast viel Zeit.",
         "hilfe": "Ich ziehe diesmal mit. Du siehst, wie es geht.",
-        "tipp": "Warte, bis die Maus springt. Dann halte den Knopf gedrückt.",
-        "erfolg": "Der Käse tanzt! Die Maus kommt nie an ihn heran. Alle Kinder lachen."
+        "erfolg": "Der Käse tanzt! Die Maus kommt nie an ihn heran. Alle Kinder lachen.",
+        "demo": "Schau, so geht es! Die Maus duckt sich und zittert. Gleich springt sie. Jetzt ziehe ich am Faden.",
+        "jetzt": "Hast du es gesehen? Jetzt bist du dran!",
+        "gleich": "Gleich springt sie!",
+        "ok": "Hopp! Der Käse ist weg, bevor die Maus ihn fasst."
       }
     },
     {

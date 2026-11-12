@@ -1291,54 +1291,70 @@ export function astgabel(r: HTMLElement, d: Daten, fertig: () => void) {
   runde();
 }
 
-/* ============================ 7.2 Ben zieht den Käse (faden, Spiel ohne Verlieren) ============================ */
+/* ============================ 7.2 Ben zieht den Käse (faden, Reaktionsspiel ohne Verlieren) ============================ */
+/** Die Maus duckt sich (zittert, „Gleich springt sie!“), dann springt sie. Das Kind zieht den Faden: am Griff nach unten wischen
+ *  oder auf „Faden ziehen“ tippen. Erst eine Vorführrunde der Raupe, dann dreimal selbst; nach zwei verpassten Runden zieht die Raupe mit. */
 export function faden(r: HTMLElement, d: Daten, fertig: () => void) {
   const zi = $('.zi', r);
   const N: number = d.runden ?? 3;
-  let ok = 0, miss = 0, held = false, assist = false, m = 0.12, zustand: 'warte' | 'achtung' | 'sprung' | 'pause' = 'pause', t0 = 0, geprueft = false, fertigig = false, fruehGesagt = 0;
-  zi.innerHTML = `<div class="fd-zaehl"></div><div class="fd-buehne"><div class="fd-vorhang l"></div><div class="fd-vorhang rr"></div><div class="fd-faden"></div><img class="fd-mond" src="${K.img(d.bild)}" alt="" draggable="false"><img class="fd-maus" src="${K.img(d.maus)}" alt="" draggable="false"><i class="fd-achtung" aria-hidden="true">!</i></div><button class="kn haupt fd-knopf" data-a="ziehen"><span>${K.UI.faden}</span></button>`;
+  type Zu = 'pause' | 'warte' | 'achtung' | 'sprung';
+  let ok = 0, miss = 0, zustand: Zu = 'pause', t0 = performance.now(), gezogen = false, demo = true, fertigig = false, gesagtFrueh = 0, hilfeAn = false;
+  zi.innerHTML = `<div class="fd-zaehl"></div><div class="fd-buehne"><div class="fd-vorhang l"></div><div class="fd-vorhang rr"></div><div class="fd-faden"></div><img class="fd-mond" src="${K.img(d.bild)}" alt="" draggable="false"><img class="fd-maus" src="${K.img(d.maus)}" alt="" draggable="false"><i class="fd-achtung" aria-hidden="true">${d.gleich}</i><div class="fd-griff" aria-hidden="true"><i class="fd-pfeil">&#8595;</i><b></b><span>${K.UI.faden}</span></div></div><button class="kn haupt fd-knopf" data-a="ziehen"><span>${K.UI.faden}</span></button>`;
   unten('');
-  const bu = $('.fd-buehne', zi), mond = $('.fd-mond', zi), maus = $('.fd-maus', zi), fa = $('.fd-faden', zi), kn = $('.fd-knopf', zi);
-  const punkte = () => { $('.fd-zaehl', zi).innerHTML = `<span class="pkt hell">${[...Array(N)].map((_, i) => `<i class="${i < ok ? 'an' : ''}"></i>`).join('')}</span>`; };
+  const bu = $('.fd-buehne', zi), mond = $('.fd-mond', zi), maus = $('.fd-maus', zi), fa = $('.fd-faden', zi), griff = $('.fd-griff', zi), kn = $('.fd-knopf', zi);
+  const punkte = () => { $('.fd-zaehl', zi).innerHTML = demo ? '' : `<span class="pkt hell">${[...Array(N)].map((_, i) => `<i class="${i < ok ? 'an' : ''}"></i>`).join('')}</span>`; };
   punkte();
-  const setze = (neu: typeof zustand) => { zustand = neu; t0 = performance.now(); maus.classList.toggle('achtung', neu === 'achtung'); maus.classList.toggle('sprung', neu === 'sprung'); bu.classList.toggle('alarm', neu === 'achtung'); };
-  const hoch = (e: Event, v: boolean) => { e.preventDefault(); held = v; kn.classList.toggle('an', v); };
-  kn.addEventListener('pointerdown', (e) => { (e.target as HTMLElement).setPointerCapture?.(e.pointerId); hoch(e, true); });
-  kn.addEventListener('pointerup', (e) => hoch(e, false)); kn.addEventListener('pointercancel', (e) => hoch(e, false)); kn.addEventListener('contextmenu', (e) => e.preventDefault());
-  kn.addEventListener('keydown', (e) => { if (e.key === ' ' || e.key === 'Enter') hoch(e, true); }); kn.addEventListener('keyup', (e) => { if (e.key === ' ' || e.key === 'Enter') hoch(e, false); });
+  const kaese = (hoch: boolean) => { mond.classList.toggle('hoch', hoch); fa.classList.toggle('hoch', hoch); };
+  const setze = (neu: Zu) => { zustand = neu; t0 = performance.now(); maus.classList.toggle('achtung', neu === 'achtung'); maus.classList.toggle('sprung', neu === 'sprung'); bu.classList.toggle('alarm', neu === 'achtung'); bu.classList.toggle('bereit', neu === 'achtung' || neu === 'sprung'); };
+  /** Der Faden wird gezogen (vom Kind oder von der Raupe) */
+  const ziehen = (von: 'kind' | 'raupe') => {
+    if (fertigig) return;
+    griff.classList.remove('zieht'); void griff.offsetWidth; griff.classList.add('zieht'); setTimeout(() => griff.classList.remove('zieht'), 600);
+    if (zustand === 'warte' || zustand === 'pause') {
+      if (von === 'kind' && performance.now() - gesagtFrueh > 2500) { gesagtFrueh = performance.now(); sag(r, 'tipp', d.frueh); }
+      return;
+    }
+    if (gezogen) return;
+    gezogen = true; kaese(true);
+    if (von === 'raupe' && demo) return;
+    ok++; miss = 0; hilfeAn = false; punkte(); K.summ(25);
+    mond.classList.add('wipp'); setTimeout(() => mond.classList.remove('wipp'), 800);
+    if (ok >= N) return void fertigSpiel();
+    sag(r, 'lob', d.ok, 'gut');
+  };
   const fertigSpiel = () => {
     if (fertigig) return;
-    fertigig = true; hook.loese = null; held = false; ok = N; punkte(); setze('pause'); mond.classList.add('tanzt');
+    fertigig = true; hook.loese = null; ok = N; demo = false; punkte(); kaese(true); mond.classList.add('tanzt'); setze('pause');
     ende(r, d, fertig);
   };
-  const runde = (ms = 0) => { /* nächste Runde: warten, dann springt die Maus */ setze('pause'); setTimeout(() => { if (zi.isConnected && !fertigig) setze('warte'); }, ms); };
-  let letzt = performance.now();
-  const takt = (jetzt: number) => {
+  // Wischen nach unten (Bühne oder Griff, Finger oder Maus) und Knopf
+  let sy: number | null = null;
+  bu.addEventListener('pointerdown', (e) => { sy = e.clientY; (e.target as HTMLElement).setPointerCapture?.(e.pointerId); if ((e.target as HTMLElement).closest('.fd-griff')) griff.classList.add('fass'); });
+  bu.addEventListener('pointermove', (e) => { if (sy !== null && !demo && e.clientY - sy > 28) { sy = null; griff.classList.remove('fass'); ziehen('kind'); } });
+  const los = () => { sy = null; griff.classList.remove('fass'); };
+  bu.addEventListener('pointerup', los); bu.addEventListener('pointercancel', los);
+  kn.addEventListener('click', () => { if (!demo) ziehen('kind'); });
+  const runde = (ms: number) => { setze('pause'); kaese(false); gezogen = false; setTimeout(() => { if (zi.isConnected && !fertigig) setze('warte'); }, ms); };
+  const takt = () => {
     if (!zi.isConnected || fertigig) return;
-    const dt = Math.min(0.05, (jetzt - letzt) / 1000); letzt = jetzt;
-    const zieht = held || (assist && (zustand === 'sprung' || zustand === 'achtung'));
-    m = zieht ? Math.min(1, m + dt * 2.4) : Math.max(0.12, m - dt * 0.9);
-    mond.style.top = `${24 - 34 * m}%`;
-    fa.style.height = `${Math.max(0, 24 - 34 * m) + 6}%`;
-    const t = jetzt - t0;
-    if (zustand === 'warte') {
-      if (m > 0.3) { if (zieht && jetzt - fruehGesagt > 3500) { fruehGesagt = jetzt; sag(r, 'tipp', d.frueh); } t0 = jetzt; } // Käse oben: Die Maus wartet
-      else if (t > 1400) { sag(r, 'tipp', ''); setze('achtung'); }
-    } else if (zustand === 'achtung') {
-      if (t > 700) { geprueft = false; setze('sprung'); }
+    const t = performance.now() - t0;
+    if (zustand === 'warte' && t > 1300) { sag(r, demo ? 'tipp' : 'tipp', demo ? d.demo : ''); setze('achtung'); }
+    else if (zustand === 'achtung') {
+      if ((demo || hilfeAn) && t > 900 && !gezogen) ziehen('raupe');
+      if (t > 1500) setze('sprung');
     } else if (zustand === 'sprung') {
-      if (!geprueft && t > 1000) { // höchster Punkt: ist der Käse schon hoch genug?
-        geprueft = true;
-        if (m > 0.85) { ok++; miss = 0; assist = false; punkte(); K.summ(25); mond.classList.add('wipp'); setTimeout(() => mond.classList.remove('wipp'), 700); sag(r, 'lob', ok >= N ? '' : 'Hopp! Der Käse ist weg, bevor die Maus ihn fasst.', 'gut'); if (ok >= N) return void fertigSpiel(); }
-        else { miss++; maus.classList.add('schnapp'); setTimeout(() => maus.classList.remove('schnapp'), 500); assist = miss >= 2; sag(r, 'tipp', miss >= 2 ? d.hilfe : d.knapp); }
+      if ((demo || hilfeAn) && !gezogen) ziehen('raupe');
+      if (t > 2300) { // Fenster zu: verpasst?
+        if (demo) { demo = false; punkte(); sag(r, 'lob', d.jetzt, 'gut'); runde(2200); }
+        else if (!gezogen) { miss++; maus.classList.add('schnapp'); setTimeout(() => maus.classList.remove('schnapp'), 500); hilfeAn = miss >= 2; sag(r, 'tipp', hilfeAn ? d.hilfe : d.knapp); runde(1800); }
+        else runde(1500);
       }
-      if (t > 2000) { runde(900); }
     }
     requestAnimationFrame(takt);
   };
   hook.loese = fertigSpiel;
   sag(r, 'tipp', d.start);
-  runde(900);
+  runde(2600);
   requestAnimationFrame(takt);
 }
 

@@ -4229,16 +4229,19 @@
    "raetsel": {
     "art": "faden",
     "titel": "Ben zieht den Kä|se",
-    "text": "Du spielst Ben hin|ter dem Vor|hang. Wenn die Maus springt, ziehst du am Fa|den. Dann steigt der Kä|se. Schaffst du es drei|mal?",
+    "text": "Du spielst Ben hin|ter dem Vor|hang. Wenn die Maus sich duckt, ziehst du am Fa|den. Dann steigt der Kä|se. Schaffst du es drei|mal?",
     "runden": 3,
     "bild": "objekte/mond_mit_flecken",
     "maus": "objekte/maus_seite",
-    "start": "Hal|te den Knopf ge|drückt, so|bald die Maus springt. Zie|he nicht zu früh!",
-    "frueh": "Lass los! Die Maus springt nur, wenn der Kä|se un|ten hängt.",
-    "knapp": "Fast! Zieh gleich, wenn die Maus ab|springt. Dann steigt der Kä|se hoch ge|nug.",
+    "start": "Schau erst zu, wie es geht. Dann bist du dran: Wi|sche am ro|ten Griff nach un|ten o|der tip|pe auf „Fa|den zie|hen“.",
+    "frueh": "Noch nicht! War|te, bis sich die Maus duckt und zit|tert.",
+    "knapp": "Fast! Zieh am Fa|den, so|bald die Maus zit|tert. Du hast viel Zeit.",
     "hilfe": "Ich zie|he dies|mal mit. Du siehst, wie es geht.",
-    "tipp": "War|te, bis die Maus springt. Dann hal|te den Knopf ge|drückt.",
-    "erfolg": "Der Kä|se tanzt! Die Maus kommt nie an ihn he|ran. Al|le Kin|der la|chen."
+    "erfolg": "Der Kä|se tanzt! Die Maus kommt nie an ihn he|ran. Al|le Kin|der la|chen.",
+    "demo": "Schau, so geht es! Die Maus duckt sich und zit|tert. Gleich springt sie. Jetzt zie|he ich am Fa|den.",
+    "jetzt": "Hast du es ge|se|hen? Jetzt bist du dran!",
+    "gleich": "Gleich springt sie!",
+    "ok": "Hopp! Der Kä|se ist weg, be|vor die Maus ihn fasst."
    }
   },
   {

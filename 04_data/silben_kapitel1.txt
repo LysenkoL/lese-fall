@@ -1559,3 +1559,9 @@ sie|ben
 auf|recht
 ge|fal|len
 ge|rollt
+# neu für v8 (ungeprüft)
+duckt
+dran
+griff
+hopp
+fasst
