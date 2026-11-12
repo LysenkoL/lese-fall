@@ -38,10 +38,15 @@
 - Код: `app/src/v8/`, вход `app/v8.html`, данные `04_data/kapitel1_v8_raetsel.json` → `node scripts/build-v8.ts` → `04_data/buch1_v8.json`.
 - Проверка: `npm run test:v8` (телефон и компьютер, мышью) и `node scripts/e2e-v8-finger.mjs` (настоящие касания: буквы, свайп на доске, сброс с подтверждением, крупный шрифт 320×568).
 - Публикация: `npm run build && node scripts/artifact-v8.mjs`, затем Artifact с `app/dist/artifact_v8.html`.
-- Собрана Глава 1 (6 головоломок, доска, карточка дела). Главы 3–4 — после оценки владелицы.
+- Собраны Главы 1–3. Глава 4 — после оценки владелицы.
 - Глава 2 (Spur 7–12, код: буква T на позиции 3 слова NEST): `01_text/LESE-FALL_BUCH_1_TEXT_v8_KAPITEL2.md`, `04_data/kapitel2_v8_raetsel.json`. `build-v8.ts` читает все `kapitelN_v8_raetsel.json` и `..._KAPITELN.md`; новая глава = два новых файла.
 - Новые виды: `sortieren` (два ящика), `umdrehen` (как лежала Луна и почему), `suchbild`, `spiegel` (зеркальная надпись), `versteckt` с `muster: "laub"`, `ausschluss` с картинками предметов.
 - Картинки, которых ещё нет, подменяет `app/src/v8/bilder.ts` (таблица `ERSATZ`, рисованные SVG в `app/src/v8/ersatz/`). Настоящая картинка: положить `assets/illustrationen/objekte/<имя>.webp` (затем `python3 scripts/freistellen.py`) или `assets/illustrationen/kinder/<имя>.webp`; для `mond_hinten_feucht` в данных Спур 8 поставить `kleber.zeichnen: false`.
+
+- **Nachbesserung Kapitel 2 (12.11.2026):** Spur 8 neu als Art `klebstoff` (a: Mond umdrehen, nassen Kleberfleck mit Tropfnase antippen, Klebeflasche `objekte/kleber` daneben; b: gelbe/weiße Seite oben; c: drei Gründe; „Prüfen“ prüft b+c zusammen; 1. Fehler Hinweis, 2. Fehler zeigt die Raupe). Spur 11 Laub-Buchstabe mit 4 Störflecken, Winkel 45. Die alte Art `umdrehen` bleibt im Code, wird aber nicht mehr benutzt.
+- **Kapitel 3 (Spur 13–18, Code: N an Position 0 von NEST):** `01_text/LESE-FALL_BUCH_1_TEXT_v8_KAPITEL3.md`, `04_data/kapitel3_v8_raetsel.json`. Neue Arten in `raetsel.ts`: `lupe` (Faden am Käse), `schatten` (fünf Vögel, 5 gleich breite Spalten im Bild `voegel`, Schatten wird per CSS `brightness(0)` aus dem richtigen Vogel gemacht), `kreise` (Schlüsselmoment 2: Kreise umdrehen, Stern, aufgerollter Faden, Stempel), `agentencode` (Geheimagenten-Code: Buchstaben durchstreichen; Regel `doppelt`, Daten `woerter[{echt, code}]`, Regel/Beispiel `demo`), `plakat` (6 Stücke 3×2 programmatisch geschnitten, danach Schlussfrage „Was wissen wir jetzt sicher?“). `unterschiede` kann jetzt `deko` (Bilder pro Seite) und bildlose Zonen (`h`). Neue Styles: `app/src/v8/k3.css` (v8.css unverändert).
+- Tausch gegenüber der Tabelle: „Reihe / Weg des Mondes“ (Spur 17) ersetzt durch den Geheimagenten-Code (Oskars Entschuldigung als Code); Reihe gab es schon in Kapitel 1 und die Fallkarte fasst den Weg zusammen. Für die fünf Kreise bringen Ida, Nele, Tom, Emil eigene Käse (zwei mit Stern hinten, nur Milas Kreis mit aufgerolltem Faden).
+- Platzhalter (siehe `ERSATZ` in `bilder.ts`): `objekte/voegel`, `vogelschatten`, `gelbe_kreise_vorne`, `gelbe_kreise_hinten`, `plakat`, `tisch_leer`, dazu `mond_hinten_feucht` (Kleber wird gezeichnet). Fehlen als echte Bilder auch: Mond-Rückseite mit aufgerolltem Faden (`mond_hinten` hat den Faden noch hängend).
 
 ## Ссылки
 
