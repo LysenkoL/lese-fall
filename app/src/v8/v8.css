@@ -595,3 +595,4 @@ em.neu .s-b, em.neu .s-r { color: inherit; }
 .ged::before { width: 14px; height: 14px; left: -10px; bottom: 4px; }
 .ged::after { width: 8px; height: 8px; left: -20px; bottom: -4px; }
 .ged img { width: 40px; height: 62px; margin-top: 0; filter: drop-shadow(0 2px 3px rgba(0, 0, 0, .12)); }
+.forts .s-b, .forts .s-r { color: inherit; }
