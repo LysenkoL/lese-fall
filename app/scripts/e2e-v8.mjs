@@ -329,7 +329,7 @@ async function raetsel(spur, z) {
       if (i === 0) { await p.mouse.click(bx.x + 30, bx.y + 30); await sleep(300); await shot(n + '_daneben'); }
       await p.mouse.click(bx.x + bx.width * t.x / 100, bx.y + bx.height * t.y / 100); await sleep(1100);
     }
-    await sleep(1500);
+    await sleep(4300);
   } else if (z.art === 'spiegel') {
     await S(n + '_zettel');
     const falsch = z.lesungen.findIndex((_, i) => i !== z.richtig);

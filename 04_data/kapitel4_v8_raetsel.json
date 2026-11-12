@@ -792,43 +792,44 @@
       "raetsel": {
         "art": "nest",
         "titel": "Was blitzt da?",
-        "text": "Dichte Blätter verdecken die Astgabel unter dem Fenster. Wische sie weg. Dann suche das Nest.",
+        "text": "Dichte Blätter verdecken die Astgabel unter dem Fenster. Wische sie weg. Dann suche, was die Elster dort versteckt hat.",
         "bild": "baum_nest",
         "ratio": 1.5,
         "zone": {
-          "x": 74.5,
-          "y": 47,
-          "r": 13
+          "x": 75,
+          "y": 54,
+          "r": 14
         },
         "start": "Wische mit dem Finger über die Blätter. Du schiebst sie zur Seite.",
         "ziele": [
           {
             "id": "nest",
             "x": 73.9,
-            "y": 42,
+            "y": 43.2,
             "r": 8,
-            "frage": "Tippe auf das Nest aus weißen Papierstreifen.",
-            "ok": "Das Nest! Es ist aus weißen Papierstreifen gebaut."
+            "ok": "Ein Nest aus weißen Papierstreifen!",
+            "bedeutung": "Darum wollte die Elster den Faden!"
           },
           {
             "id": "band",
-            "x": 75.2,
-            "y": 49,
-            "r": 5,
-            "frage": "Tippe auf das weiße Band.",
-            "ok": "Das weiße Band! Es hängt am Nest."
+            "x": 75.5,
+            "y": 53.3,
+            "r": 4,
+            "ok": "Ein weißes Band.",
+            "bedeutung": "Das ist das Band von Frau Sommers Schlüssel."
           },
           {
             "id": "schluessel",
-            "x": 75.3,
-            "y": 56.5,
-            "r": 5.5,
-            "frage": "Tippe auf den Schlüssel.",
-            "ok": "Der Schlüssel! Er hängt am weißen Band."
+            "x": 75.7,
+            "y": 67.7,
+            "r": 4.5,
+            "ok": "Ein Schlüssel!",
+            "bedeutung": "Frau Sommers Schlüssel! Gefunden!"
           }
         ],
-        "tipp": "Schau genau auf die Astgabel unter dem Fenster.",
-        "erfolg": "Frau Sommers Schlüssel! Die Elster hat ihn mit dem weißen Band in ihr Nest gehängt."
+        "tipp": "Schau genau auf die Astgabel unter dem Fenster. Was ist dort zu sehen?",
+        "erfolg": "Fall gelöst! Die Elster hat den Faden für ihr Nest geholt. Dabei hat sie auch Frau Sommers Schlüssel mit dem weißen Band mitgenommen. Jetzt wissen wir alles.",
+        "frage": "Die Elster hat etwas versteckt. Tippe auf alles, was hier nicht hingehört."
       }
     }
   ]

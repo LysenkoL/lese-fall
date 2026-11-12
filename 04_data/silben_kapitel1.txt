@@ -1565,3 +1565,5 @@ dran
 griff
 hopp
 fasst
+# neu für v8 (ungeprüft)
+mit|ge|nom|men

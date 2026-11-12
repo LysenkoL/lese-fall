@@ -289,7 +289,7 @@ const mitte = async (p, s) => { const r = await (await p.$(s)).boundingBox(); re
   await sleep(900);
   pruef(!(await p.$('canvas.staub.laub')) || !!(await p.$('canvas.staub.laub.weg')), 'Laub: mit dem Finger weggewischt');
   for (const t of D.spuren[23].raetsel.ziele) { await p.touchscreen.tap(nb.x + nb.width * t.x / 100, nb.y + nb.height * t.y / 100); await sleep(1100); }
-  await sleep(1400);
+  await sleep(4300);
   pruef(!!(await weiterDa()), 'Nest: Nest, Band und Schlüssel gefunden, weiter');
   // Finale: Szene → Code legen (ein Kärtchen ziehen, den Rest antippen) → Tresor → Urkunde
   await p.evaluate(() => { const v = window.__v8; Object.assign(v.stand, { view: 'finale', fin: 1, weiter: 'finale', fertig: Array.from({ length: 24 }, (_, j) => 1 + j) }); v.zeige(); }); await sleep(700);

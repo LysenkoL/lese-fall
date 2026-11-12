@@ -1365,31 +1365,37 @@ export function nest(r: HTMLElement, d: Daten, fertig: () => void) {
   unten('');
   const box = $('.nt-bild', zi);
   sag(r, 'tipp', d.start);
-  const Z: any[] = d.ziele;
-  let i = 0, fehl = 0, zu = false;
-  const frage = () => { $('.nt-frage', zi).innerHTML = i < Z.length ? Z[i].frage : ''; };
+  const Z: any[] = d.ziele, gef = new Set<string>();
+  let fehl = 0, zu = false;
+  const frage = () => { $('.nt-frage', zi).innerHTML = zu ? '' : `${d.frage} <b class="nt-z">${gef.size} / ${Z.length}</b>`; };
+  /** Ringe erscheinen erst, wenn etwas angetippt und gefunden wurde */
   const ring = (z: any, kl: string) => box.insertAdjacentHTML('beforeend', `<i class="ring ${kl}" style="left:${z.x}%;top:${z.y}%;width:${z.r * 2}%;height:auto;aspect-ratio:1;margin:0;transform:translate(-50%,-50%)"></i>`);
-  const weiter = (hilfe: boolean) => {
-    const z = Z[i];
+  const fund = (z: any, hilfe: boolean) => {
+    gef.add(z.id); fehl = 0;
     ring(z, hilfe ? 'da blink' : 'da');
     K.summ(25);
-    sag(r, 'lob', (hilfe ? K.UI.hilfe + ' ' : '') + z.ok, 'gut');
-    i++; fehl = 0;
-    if (i >= Z.length) { zu = true; hook.loese = null; $('.nt-frage', zi).innerHTML = ''; return void setTimeout(() => zi.isConnected && ende(r, d, fertig), 1300); }
+    sag(r, 'lob', (hilfe ? K.UI.hilfe + ' ' : '') + z.ok + ' ' + z.bedeutung, 'gut');
     frage();
+    if (gef.size >= Z.length) {
+      zu = true; hook.loese = null; frage();
+      setTimeout(() => zi.isConnected && ende(r, d, fertig), 3600);
+    }
   };
   const suche = () => {
-    hook.loese = () => { while (i < Z.length && !zu) weiter(false); };
+    hook.loese = () => { Z.filter((z) => !gef.has(z.id)).forEach((z) => gef.add(z.id)); zu = true; Z.forEach((z) => ring(z, 'da')); frage(); ende(r, d, fertig); };
     frage();
     box.onclick = (e) => {
       if (zu) return;
-      const rc = box.getBoundingClientRect(), z = Z[i];
-      const dx = ((e.clientX - rc.left) / rc.width * 100 - z.x) / 100 * rc.width, dy = ((e.clientY - rc.top) / rc.height * 100 - z.y) / 100 * rc.height;
-      if (Math.hypot(dx, dy) <= (z.r / 100) * rc.width * 1.25) return weiter(false);
-      box.insertAdjacentHTML('beforeend', `<i class="ring miss" style="left:${((e.clientX - rc.left) / rc.width) * 100}%;top:${((e.clientY - rc.top) / rc.height) * 100}%"></i>`);
+      const rc = box.getBoundingClientRect();
+      const px = e.clientX - rc.left, py = e.clientY - rc.top;
+      const dist = (q: any) => Math.hypot(px - q.x / 100 * rc.width, py - q.y / 100 * rc.height) / ((q.r / 100) * rc.width * 1.3);
+      const z = Z.filter((q) => !gef.has(q.id) && dist(q) <= 1).sort((a, b) => dist(a) - dist(b))[0];
+      if (z) return fund(z, false);
+      box.insertAdjacentHTML('beforeend', `<i class="ring miss" style="left:${px / rc.width * 100}%;top:${py / rc.height * 100}%"></i>`);
       setTimeout(() => box.querySelector('.ring.miss')?.remove(), 800);
-      if (++fehl === 1) return sag(r, 'tipp', K.UI.nochmal + ' ' + d.tipp);
-      weiter(true);
+      fehl++;
+      if (fehl === 3) sag(r, 'tipp', d.tipp);
+      else if (fehl >= 6) fund(Z.find((q) => !gef.has(q.id)), true);
     };
   };
   hook.loese = _laub(box, () => { sag(r, 'tipp', ''); suche(); }, d.zone);

@@ -4504,43 +4504,44 @@
    "raetsel": {
     "art": "nest",
     "titel": "Was blitzt da?",
-    "text": "Dich|te Blät|ter ver|de|cken die Ast|ga|bel un|ter dem Fens|ter. Wi|sche sie weg. Dann su|che das Nest.",
+    "text": "Dich|te Blät|ter ver|de|cken die Ast|ga|bel un|ter dem Fens|ter. Wi|sche sie weg. Dann su|che, was die Els|ter dort ver|steckt hat.",
     "bild": "baum_nest",
     "ratio": 1.5,
     "zone": {
-     "x": 74.5,
-     "y": 47,
-     "r": 13
+     "x": 75,
+     "y": 54,
+     "r": 14
     },
     "start": "Wi|sche mit dem Fin|ger ü|ber die Blät|ter. Du schiebst sie zur Sei|te.",
     "ziele": [
      {
       "id": "nest",
       "x": 73.9,
-      "y": 42,
+      "y": 43.2,
       "r": 8,
-      "frage": "Tip|pe auf das Nest aus wei|ßen Pa|pier|strei|fen.",
-      "ok": "Das Nest! Es ist aus wei|ßen Pa|pier|strei|fen ge|baut."
+      "ok": "Ein Nest aus wei|ßen Pa|pier|strei|fen!",
+      "bedeutung": "Da|rum woll|te die Els|ter den Fa|den!"
      },
      {
       "id": "band",
-      "x": 75.2,
-      "y": 49,
-      "r": 5,
-      "frage": "Tip|pe auf das wei|ße Band.",
-      "ok": "Das wei|ße Band! Es hängt am Nest."
+      "x": 75.5,
+      "y": 53.3,
+      "r": 4,
+      "ok": "Ein wei|ßes Band.",
+      "bedeutung": "Das ist das Band von Frau Som|mers Schlüs|sel."
      },
      {
       "id": "schluessel",
-      "x": 75.3,
-      "y": 56.5,
-      "r": 5.5,
-      "frage": "Tip|pe auf den Schlüs|sel.",
-      "ok": "Der Schlüs|sel! Er hängt am wei|ßen Band."
+      "x": 75.7,
+      "y": 67.7,
+      "r": 4.5,
+      "ok": "Ein Schlüs|sel!",
+      "bedeutung": "Frau Som|mers Schlüs|sel! Ge|fun|den!"
      }
     ],
-    "tipp": "Schau ge|nau auf die Ast|ga|bel un|ter dem Fens|ter.",
-    "erfolg": "Frau Som|mers Schlüs|sel! Die Els|ter hat ihn mit dem wei|ßen Band in ihr Nest ge|hängt."
+    "tipp": "Schau ge|nau auf die Ast|ga|bel un|ter dem Fens|ter. Was ist dort zu se|hen?",
+    "erfolg": "Fall ge|löst! Die Els|ter hat den Fa|den für ihr Nest ge|holt. Da|bei hat sie auch Frau Som|mers Schlüs|sel mit dem wei|ßen Band mit|ge|nom|men. Jetzt wis|sen wir al|les.",
+    "frage": "Die Els|ter hat et|was ver|steckt. Tip|pe auf al|les, was hier nicht hin|ge|hört."
    }
   }
  ]
