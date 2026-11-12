@@ -27,18 +27,29 @@ for n in ('fliege', 'schal', 'brille', 'notizbuch', 'taschenlampe', 'hut', 'mond
 KDST = os.path.join(ROOT, 'app/src/gen/kinder')
 os.makedirs(KDST, exist_ok=True)
 JOBS += [(f, os.path.join(KDST, os.path.basename(f))) for f in sorted(glob.glob(os.path.join(ROOT, 'assets/illustrationen/kinder', '*.webp')))]
+# Feinere Schwelle / größere Breite für Bilder mit weißen Flächen am Rand (Elster: weißer Bauch)
+SCHWELLE = {'voegel.webp': 20}
+BREITE = {'voegel.webp': 1400}
+WARM = {'voegel.webp'}
 for f, ziel in JOBS:
     src = Image.open(f)
     if src.mode == 'RGBA':  # hat schon Transparenz (z. B. Tasche, Mondbrosche): nur übernehmen
         src.save(ziel, 'WEBP', quality=88, method=6); print('✓', os.path.basename(f)); continue
     im = src.convert('RGB')
-    if max(im.size) > 700: im.thumbnail((640, 640))  # große Figuren für die App verkleinern
+    b = BREITE.get(os.path.basename(f), 640)
+    if max(im.size) > b + 60: im.thumbnail((b, b))  # große Figuren für die App verkleinern
     w, h = im.size
     work = im.copy()
+    if os.path.basename(f) in WARM:  # cremiger Grund, weiße Flächen im Bild: nur warmen Grund als Hintergrund zählen
+        wp = work.load()
+        for yy in range(h):
+            for xx in range(w):
+                r_, g_, b_ = wp[xx, yy]
+                wp[xx, yy] = (250, 246, 236) if (r_ > 228 and g_ > 224 and r_ - b_ >= 6) else (0, 0, 0) if (r_ > 228 and g_ > 224) else wp[xx, yy]
     seeds = [(0, 0), (w - 1, 0), (0, h - 1), (w - 1, h - 1), (w // 2, 0), (w // 2, h - 1), (0, h // 2), (w - 1, h // 2)]
     for s in seeds:
         if work.getpixel(s) != (255, 0, 255):
-            ImageDraw.floodfill(work, s, (255, 0, 255), thresh=28)
+            ImageDraw.floodfill(work, s, (255, 0, 255), thresh=SCHWELLE.get(os.path.basename(f), 28))
     mask = Image.new('L', (w, h), 255)
     px, mp = work.load(), mask.load()
     for y in range(h):

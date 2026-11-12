@@ -18,8 +18,10 @@ ATT = {
     "EDIT": "сама картинка k1_s1 (редактировать её)",
     "SAFE": "ничего (или старую mondtresor_zu как образец стиля)",
 }
-SHEET = HEAD_SHEET
-SHEET_STARS_OK = HEAD_SHEET.replace("no stars", "no stars except where the description asks for one")
+PAINT = " Soft hand-painted picture-book look (watercolor and colored pencil) like the attached images – NOT flat vector clip-art, no glossy 3D look."
+SHEET = HEAD_SHEET + PAINT
+SHEET_STARS_OK = SHEET.replace("no stars", "no stars except where the description asks for one")
+BIRDS_HEAD = SHEET.replace("Plain warm white background", "Plain flat LIGHT-BLUE background (#CFE6F5), one even color, no gradient, no vignette")
 BLUE = HEAD_SHEET.replace("Plain warm white background", "Plain deep twilight-blue background")
 
 P = []
@@ -46,10 +48,10 @@ busy with paper at the table. Her stripes must look like Oskar's stripes, so tha
 # ---------------------------------------------------------------- Дети
 CK = "Дети (для глав 2–4)"
 KIDS = [
-    ("lina", "a girl with two dark braids, sweater with BLUE-and-white horizontal stripes and a hood"),
-    ("tom", "a boy with short blond hair, plain RED sweater with a hood, no stripes"),
+    ("lina", "a girl with straight BLACK hair in a short bob with a blue hairband (NOT braids), sweater with BLUE-and-white horizontal stripes and a hood"),
+    ("tom", "a boy with short straight BLACK hair and freckles (NOT blond, NOT curly), plain RED sweater with a hood, no stripes"),
     ("ida", "a girl with a light-brown ponytail, RED-and-white horizontal stripes, NO hood, three white buttons at the neck"),
-    ("emil", "a boy with curly black hair and round glasses, RED sweater with white polka dots and a hood"),
+    ("emil", "a boy with straight light-brown hair in a bowl cut and round glasses (NOT curly), RED sweater with white polka dots and a hood"),
     ("nele", "a girl with a short red bob, RED-and-white VERTICAL stripes and a hood"),
 ]
 for n, d in KIDS:
@@ -70,14 +72,14 @@ add(C2, "objekte/pappbaum", "OBJ", "A finished theater prop: a flat cardboard tr
 add(C2, "objekte/papierstapel", "OBJ", "A loose stack of colored craft paper sheets (red, blue, yellow, green), slightly fanned out, a few paper strips on top.",
     size="1:1", where="Spur 7 — «два ящика»: бумага для всех")
 add(C2, "objekte/mond_hinten_feucht", "OBJ", """
-The flat round cardboard moon lying WHITE SIDE UP, seen from above. On the white side a small hand-painted BLUE star near the edge.
-At the top edge the long white thread is neatly COILED into a small loop on the white side and held by a fresh, wet, shiny drop of white craft glue
+The flat round cardboard moon (a THIN flat cardboard disc, NOT a ball, no 3D shine) lying WHITE SIDE UP, seen exactly from above. On the white side a small hand-painted BLUE star near the edge.
+At the top edge the long white thread is clearly visible, neatly COILED into a flat spiral about a quarter of the disc wide, on the white side and held by a fresh, wet, shiny drop of white craft glue
 (glossy highlight so it clearly looks wet). Only a short thread end sticks out over the edge.""",
     head=SHEET_STARS_OK, size="1:1", where="Spur 8 — как лежала Луна и почему",
     note="Нитка свёрнута колечком — так в главе 3 из-под «сыра» виден только кончик (замечание ревью).")
 add(C2, "objekte/mond_hinten_faden", "OBJ", """
-The same flat round cardboard moon lying WHITE SIDE UP, seen from above, small hand-painted BLUE star near the edge.
-At the top edge the long white thread is neatly COILED into a small flat spiral and glued down, the glue is DRY (no shine).
+The same THIN flat cardboard disc (NOT a ball) lying WHITE SIDE UP, seen exactly from above, small hand-painted BLUE star near the edge.
+At the top edge the long white thread is clearly visible, neatly COILED into a flat spiral about a quarter of the disc wide and glued down, the glue is DRY (no shine).
 Only a short thread end sticks out over the edge.""",
     head=SHEET_STARS_OK, size="1:1", where="Spur 16 и доска: оборот Луны после ремонта Бена",
     note="Отличается от предыдущей только тем, что клей сухой (без блеска).")
@@ -102,7 +104,7 @@ Five birds in a row, each sitting on a short twig, side view, the same size, wit
 3) a great spotted woodpecker: black and white with a red patch under the tail;
 4) a blackbird: all black with a yellow-orange beak;
 5) a great tit: yellow belly, black head with white cheeks.""",
-    size="5:1 или 3:1, белый фон (разрежу на 5)", where="Spur 14 «чья тень» и Spur 23 «какая птица?»",
+    head=BIRDS_HEAD, size="5:1 или 3:1, белый фон (разрежу на 5)", where="Spur 14 «чья тень» и Spur 23 «какая птица?»",
     note="Три чёрно-белые птицы специально: ребёнок должен различать по длинному хвосту и белому пятну на крыле.")
 add(C3, "gelbe_kreise_vorne", "OBJ", """
 Five flat round yellow cardboard circles seen from the front on a plain light-brown wooden table, same size, in two rows:
@@ -249,7 +251,7 @@ pre {{ white-space:pre-wrap; word-break:break-word; background:var(--pre); borde
 <p class="lead">{len(P)} картинок. Нажмите «Скопировать промт», вставьте в генератор, приложите указанные эталоны из <code>assets/reference/</code> и <code>assets/illustrationen/</code>. Сохраните под именем из заголовка карточки и пришлите — разложу и вставлю в приложение.</p>
 <ul class="rules">
 <li>Главное сейчас: <b>дети</b> (5), <b>Глава 2</b> (предметы) и <b>k1_s1</b> с Идой. Глава 3–4 и сейф — когда будет время.</li>
-<li>На предметах и детях фон светлый и ровный — вырезаю сама.</li>
+<li><b>Стиль:</b> как остальные картинки книги — мягкая акварель и карандаш. Не плоская векторная графика и не глянцевое 3D.</li>\n<li>На предметах и детях фон светлый и ровный — вырезаю сама. У птиц фон ровный голубой: у сороки белое брюхо, на белом фоне его не вырезать.</li>
 <li>Нигде нет букв и цифр. Галочка «готово» запоминается только в этом браузере.</li>
 </ul>
 <nav>{''.join(nav)}<span id="stand"></span></nav>
