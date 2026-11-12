@@ -232,7 +232,8 @@ const mitte = async (p, s) => { const r = await (await p.$(s)).boundingBox(); re
   await zustand(18, 1);
   const N = D.spuren[17].raetsel.spalten * D.spuren[17].raetsel.zeilen;
   const [qx, qy] = await mitte(p, '.pk-pool .pk-st[data-s="0"]'), [rx, ry] = await mitte(p, '.pk-platz[data-p="0"]');
-  await zieh(qx, qy, rx, ry);
+  // Hochkant-Plakat: Brett und Vorrat passen auf dem Telefon nicht zugleich auf den Schirm; dann gilt Antippen statt Ziehen
+  if (qy < 820 && ry < 820 && qy > 0) await zieh(qx, qy, rx, ry); else { await tipp('.pk-pool .pk-st[data-s="0"]'); await tipp('.pk-platz[data-p="0"]'); }
   pruef(!!(await p.$('.pk-platz[data-p="0"] .pk-st[data-s="0"]')), 'Plakat: Stück mit dem Finger ins Feld gezogen');
   for (let runde = 0; runde < 2; runde++) {
     for (let i = 0; i < N; i++) {

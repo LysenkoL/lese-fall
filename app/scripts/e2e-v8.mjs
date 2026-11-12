@@ -262,11 +262,14 @@ async function raetsel(spur, z) {
     await S(n + '_voll_falsch');
     await klick('#fuss [data-a="fertig"]'); await sleep(1200); await shot(n + '_zurueck');
     for (let i = 0; i < N; i++) {
-      if (i === 0) { // einmal echt ziehen
-        const a = await (await p.$(`.pk-pool .pk-st[data-s="0"]`)).boundingBox(), t = await (await p.$(`.pk-platz[data-p="0"]`)).boundingBox();
+      if (i === 0) await ev(() => document.querySelector('.pk-brett').scrollIntoView({ block: 'start' }));
+      const a0 = i === 0 ? await (await p.$(`.pk-pool .pk-st[data-s="0"]`)).boundingBox() : null, t0 = i === 0 ? await (await p.$(`.pk-platz[data-p="0"]`)).boundingBox() : null;
+      if (i === 0 && a0.y + a0.height < H && t0.y + t0.height < H) { // einmal echt ziehen (nur wenn Vorrat und Brett zugleich zu sehen sind)
+        const a = a0, t = t0;
         await p.mouse.move(a.x + a.width / 2, a.y + a.height / 2); await p.mouse.down();
         await p.mouse.move(a.x + a.width / 2 + 10, a.y + a.height / 2 - 20, { steps: 3 });
         await p.mouse.move(t.x + t.width / 2, t.y + t.height / 2, { steps: 8 }); await shot(n + '_ziehen'); await p.mouse.up(); await sleep(200);
+        if (!(await p.$('.pk-platz[data-p="0"] .pk-st[data-s="0"]'))) { fehler.push('Plakat: Ziehen ins Feld hat nicht geklappt (Brett/Vorrat zu hoch für den Schirm?), weiter mit Antippen'); await klick('.pk-pool .pk-st[data-s="0"]'); await klick('.pk-platz[data-p="0"]'); }
       } else { await klick(`.pk-pool .pk-st[data-s="${i}"]`); await klick(`.pk-platz[data-p="${i}"]`); }
     }
     await S(n + '_voll');

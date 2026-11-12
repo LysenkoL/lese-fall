@@ -101,7 +101,7 @@
 .ag-botschaft { margin: 0; text-align: center; color: var(--senf); font-weight: 800; font-size: 28px; letter-spacing: .08em; animation: hoch .5s both; }
 
 /* ---------- Spur 18: Plakat ---------- */
-.pk-brett { display: grid; grid-template-columns: repeat(var(--sp), minmax(0, 1fr)); gap: 4px; width: min(100%, 400px); align-self: center; padding: 6px; background: rgba(255, 255, 255, .1); border-radius: 12px; }
+.pk-brett { display: grid; grid-template-columns: repeat(var(--sp), minmax(0, 1fr)); gap: 4px; width: min(100%, 400px, calc(46dvh * 0.75)); align-self: center; padding: 6px; background: rgba(255, 255, 255, .1); border-radius: 12px; }
 .pk-brett.fest { gap: 0; padding: 0; background: none; border: 4px solid #fff; box-shadow: 0 12px 26px rgba(0, 0, 0, .35); border-radius: 6px; overflow: hidden; }
 .pk-platz { position: relative; border: 3px dashed rgba(255, 255, 255, .4); border-radius: 6px; aspect-ratio: 1 / 1; min-height: 0; }
 .pk-platz.voll { border-style: solid; border-color: transparent; }
@@ -111,7 +111,7 @@
 .pk-st.sel { border-color: var(--senf); }
 .pk-st.zieht { z-index: 20; transition: none; box-shadow: 0 16px 24px rgba(0, 0, 0, .45); }
 .pk-st.nein { animation: wackel .4s; border-color: var(--rot); }
-.pk-pool { padding: 4px; box-sizing: border-box; display: grid; grid-template-columns: repeat(var(--sp), minmax(0, 1fr)); gap: 8px; width: min(100%, 400px); align-self: center; }
+.pk-pool { padding: 4px; box-sizing: border-box; display: grid; grid-template-columns: repeat(var(--sp), minmax(0, 1fr)); gap: 8px; width: min(100%, 400px, calc(46dvh * 0.75)); align-self: center; }
 .pk-zelle { aspect-ratio: 1 / 1; background: rgba(255, 255, 255, .06); border-radius: 8px; transform: rotate(var(--w)); }
 
 /* ---------- Spur 15: Unterschiede sortieren (drei Felder) ---------- */
