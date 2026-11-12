@@ -23,6 +23,10 @@ GDST = os.path.join(ROOT, 'app/src/gen/garderobe')
 os.makedirs(GDST, exist_ok=True)
 for n in ('fliege', 'schal', 'brille', 'notizbuch', 'taschenlampe', 'hut', 'mondbrosche', 'tasche'):
     JOBS += [(os.path.join(GAR, f'{n}.webp'), os.path.join(GDST, f'{n}.webp')), (os.path.join(GAR, f'raupe_{n}.webp'), os.path.join(GDST, f'raupe_{n}.webp'))]
+# v8: Nebenfiguren (Kinder) freistellen
+KDST = os.path.join(ROOT, 'app/src/gen/kinder')
+os.makedirs(KDST, exist_ok=True)
+JOBS += [(f, os.path.join(KDST, os.path.basename(f))) for f in sorted(glob.glob(os.path.join(ROOT, 'assets/illustrationen/kinder', '*.webp')))]
 for f, ziel in JOBS:
     src = Image.open(f)
     if src.mode == 'RGBA':  # hat schon Transparenz (z. B. Tasche, Mondbrosche): nur übernehmen
