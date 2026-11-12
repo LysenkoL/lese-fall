@@ -83,8 +83,8 @@
 .tv-tuer { position: absolute; inset: 0; transform-origin: 8% 50%; transition: transform 1.5s cubic-bezier(.5, 0, .25, 1), filter 1.5s; z-index: 2; }
 .tv-tuer .tresor-svg { display: block; width: 100%; height: 100%; }
 .tv { transition: transform 1.5s; }
-.tv.auf { transform: translateX(10%); }
-.tv.auf .tv-tuer { transform: rotateY(-84deg); filter: brightness(.75); }
+.tv.auf { transform: translateX(20%); }
+.tv.auf .tv-tuer { transform: rotateY(-72deg); filter: brightness(.8); }
 .tv-code { position: absolute; inset: 0; transition: opacity .4s; }
 .tv-code i { position: absolute; display: grid; place-items: center; font-style: normal; font-weight: 800; font-size: clamp(14px, 5.2vw, 24px); color: #F4C243; }
 .tv.auf .tv-code { opacity: 0; }

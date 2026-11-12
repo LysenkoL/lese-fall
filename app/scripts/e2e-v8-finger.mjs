@@ -269,8 +269,8 @@ const mitte = async (p, s) => { const r = await (await p.$(s)).boundingBox(); re
   pruef(!!(await p.$('#fuss [data-a="stempeln"]')), 'Astgabel: richtige Gabel, der Stempel kommt');
   // Spur 22: Knopf gedrückt halten, wenn die Maus springt (Berührung)
   await zustand(22, 1);
-  const kb = await (await p.$('.fd-knopf')).boundingBox();
   for (let t = 0; t < 60 && !(await p.$('.fd-maus.achtung')); t++) await sleep(150);
+  const kb = await (await p.$('.fd-knopf')).boundingBox();
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: kb.x + kb.width / 2, y: kb.y + kb.height / 2 }] });
   await sleep(2400);
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] }); await sleep(300);
