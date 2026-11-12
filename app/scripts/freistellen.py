@@ -88,3 +88,22 @@ if os.path.exists(vp):
     wand.alpha_composite(sch.resize((270, 270)), (65, 15))
     wand.convert('RGB').save(os.path.join(ROOT, 'assets/illustrationen/objekte/vogelschatten.webp'), 'WEBP', quality=90)
     print('✓ Vögel gepackt, Schattenbild')
+
+
+# v8: Mond von vorn mit kurzem Fadenende (nach Bens Reparatur ist der Faden hinten aufgerollt; vorn schaut nur ein Stück heraus)
+mv = os.path.join(DST, 'mond_vorne.webp')
+if os.path.exists(mv):
+    m = Image.open(mv).convert('RGBA')
+    w, h = m.size
+    px = m.load()
+    def gelb(x, y):
+        r, g, b, a = px[x, y]
+        return a > 200 and r > 200 and g > 150 and b < 110
+    oben = next(y for y in range(h) if sum(1 for x in range(0, w, 2) if gelb(x, y)) > w * 0.12)
+    stummel = max(0, oben - int(h * 0.035))
+    for y in range(stummel):
+        for x in range(w):
+            r, g, b, a = px[x, y]
+            px[x, y] = (r, g, b, 0)
+    m.crop(m.getbbox()).save(os.path.join(DST, 'mond_vorne_kurz.webp'), 'WEBP', quality=90, method=6)
+    print('✓ mond_vorne_kurz')

@@ -84,7 +84,7 @@
           },
           {
             "id": "mond",
-            "bild": "objekte/mond_vorne",
+            "bild": "objekte/mond_vorne_kurz",
             "name": "Milas Mond",
             "ziel": "kiste",
             "warum": "Der Mond ist fertig. Er gehört in die grüne Kiste. Auf dem Tablett lag er nur zufällig."
@@ -120,7 +120,7 @@
         "art": "klebstoff",
         "titel": "Wie lag der Mond?",
         "text": "Untersuche zuerst den Mond. Dreh ihn um und sieh dir beide Seiten genau an.",
-        "vorne": "objekte/mond_vorne",
+        "vorne": "objekte/mond_vorne_kurz",
         "hinten": "objekte/mond_hinten_feucht",
         "flasche": "objekte/kleber",
         "tablett": "objekte/tablett_leer",

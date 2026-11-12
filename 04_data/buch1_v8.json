@@ -1466,7 +1466,7 @@
      },
      {
       "id": "mond",
-      "bild": "objekte/mond_vorne",
+      "bild": "objekte/mond_vorne_kurz",
       "name": "Mi|las Mond",
       "ziel": "kiste",
       "warum": "Der Mond ist fer|tig. Er ge|hört in die grü|ne Kis|te. Auf dem Tab|lett lag er nur zu|fäl|lig."
@@ -1579,7 +1579,7 @@
     "art": "klebstoff",
     "titel": "Wie lag der Mond?",
     "text": "Un|ter|su|che zu|erst den Mond. Dreh ihn um und sieh dir bei|de Sei|ten ge|nau an.",
-    "vorne": "objekte/mond_vorne",
+    "vorne": "objekte/mond_vorne_kurz",
     "hinten": "objekte/mond_hinten_feucht",
     "flasche": "objekte/kleber",
     "tablett": "objekte/tablett_leer",
