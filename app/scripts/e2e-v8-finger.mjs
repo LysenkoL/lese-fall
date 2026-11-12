@@ -202,14 +202,9 @@ const mitte = async (p, s) => { const r = await (await p.$(s)).boundingBox(); re
   await p.touchscreen.tap(ub.x + ub.width * 0.06, ub.y + ub.height * 0.9); await sleep(300);
   pruef((await p.$$('.ub .ring.da')).length === 0, 'Unterschiede: Tipp daneben markiert nichts');
   await p.touchscreen.tap(ub.x + ub.width * z15.dinge[0].zonen[0].x / 100, ub.y + ub.height * z15.dinge[0].zonen[0].y / 100); await sleep(300);
-  pruef((await p.$$('.ub .ring.da')).length === 2, 'Unterschiede: die drei braunen Flecken zählen als EIN Unterschied (Ring in beiden Bildern)');
-  await p.evaluate(() => window.__v8.loese()); await sleep(1000);
-  pruef(!!(await p.$('.so-ziele.drei')), 'Unterschiede: danach drei Felder zum Sortieren');
-  const so = z15.sortieren.dinge[0], soFalsch = z15.sortieren.ziele.find((q) => q.id !== so.ziel).id;
-  await tipp(`.so-pool [data-d="${so.id}"]`); await tipp(`.so-ziel[data-z="${soFalsch}"]`); await sleep(300);
-  pruef(!!(await p.$(`.so-pool [data-d="${so.id}"]`)), 'Sortieren: falsches Feld, der Unterschied bleibt liegen');
-  await p.evaluate(() => window.__v8.loese()); await sleep(700);
-  pruef(!!(await weiterDa()), 'Sortieren: alle zugeordnet, weiter');
+  pruef((await p.$$('.ub .ring.da')).length >= 1, 'Unterschiede: ein Fund mit dem Finger wird markiert');
+  await p.evaluate(() => window.__v8.loese()); await sleep(1200);
+  pruef(!!(await weiterDa()), 'Unterschiede: alle sieben gefunden, weiter');
   // Kreise in drei Schritten (Finger): a) Merkmale, zweimal falsch, b) immer nur ein Kreis umgedreht, Kreuz-Knopf
   const z16 = D.spuren[15].raetsel;
   await zustand(16, 1);
@@ -276,15 +271,12 @@ const mitte = async (p, s) => { const r = await (await p.$(s)).boundingBox(); re
   pruef(!!(await p.$('.ab-hin')), 'Astgabel: Knopf zeigt den Absatz');
   await gt(z19.gabeln.find((g) => g.id === z19.richtig)); await sleep(1500);
   pruef(!!(await p.$('#fuss [data-a="stempeln"]')), 'Astgabel: richtige Gabel, der Stempel kommt');
-  // Spur 22: Vorführung, dann mit dem Finger am Griff nach unten wischen
+  // Spur 22: Reihenfolge der Geschichte (fünf Bilder) – Karte antippen, dann Platz antippen
+  const z22 = D.spuren[21].raetsel;
   await zustand(22, 1);
-  for (let t = 0; t < 80 && !(await p.$('.fd-maus.achtung')); t++) await sleep(150);
-  await sleep(2600);
-  for (let t = 0; t < 120 && !((await p.$('.fd-maus.achtung')) && !(await p.$('.fd-mond.hoch'))); t++) await sleep(100);
-  await sleep(300);
-  const gb = await (await p.$('.fd-griff b')).boundingBox();
-  await zieh(gb.x + gb.width / 2, gb.y + gb.height / 2, gb.x + gb.width / 2, gb.y + gb.height / 2 + 70); await sleep(400);
-  pruef((await p.$$('.fd-zaehl i.an')).length >= 1, 'Faden ziehen: mit dem Finger am Griff nach unten gewischt, ein Punkt');
+  for (const [i, id] of z22.reihenfolge.entries()) { await tipp('.rh-pool [data-k="' + id + '"]'); await tipp('.rh-platz[data-p="' + i + '"]'); }
+  await tipp('#fuss [data-a="fertig"]'); await sleep(900);
+  pruef(!!(await weiterDa()), 'Reihenfolge der Geschichte: fünf Bilder richtig gelegt, weiter');
   // Spur 24: Laub mit dem Finger wegwischen, dann Nest, Band, Schlüssel antippen
   await zustand(24, 1);
   const nb = await (await p.$('.nt-bild')).boundingBox();

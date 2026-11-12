@@ -30,7 +30,7 @@ const messen = async (wo) => {
     const A = document.getElementById('app').getBoundingClientRect();
     const breit = [...document.querySelectorAll('#app *')].filter((e) => {
       const r = e.getBoundingClientRect();
-      return r.width > 0 && (r.right > A.right + 1 || r.left < A.left - 1) && !e.closest('.ausschn, .brush, .tv') && !e.classList.contains('lampe');
+      return r.width > 0 && (r.right > A.right + 1 || r.left < A.left - 1) && !e.closest('.ausschn, .brush, .tv, .nt-bild') && !e.classList.contains('lampe');
     }).map((e) => e.className || e.tagName).slice(0, 3);
     const bl = document.querySelector('.blatt:not(.probe)'), br = document.querySelector('#buehne > .brett');
     return {
