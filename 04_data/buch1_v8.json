@@ -25,6 +25,29 @@
     "stempel": "KAPITEL 1 GELÖST"
    },
    "ausblick": "Schnipp. Schnapp. Drau|ßen schnei|det je|mand Pap|pe."
+  },
+  {
+   "nr": 2,
+   "titel": "Ein Tab|lett für al|le",
+   "bild": "kapitel_2",
+   "vorspann": "Ei|ne grü|ne Kis|te. Ein blau|es Tab|lett. Und ein Rät|sel mit Lö|chern.",
+   "code": {
+    "wort": "NEST",
+    "buchstabe": "T",
+    "pos": 3
+   },
+   "fallkarte": {
+    "bild": "k2_s12",
+    "titel": "Das wis|sen wir jetzt",
+    "saetze": [
+     "Ben hat den Mond mit der wei|ßen Sei|te nach o|ben auf das Tab|lett ge|legt.",
+     "Auf dem Tab|lett darf sich je|des Kind Pa|pier neh|men.",
+     "Os|kar sagt: Ich ha|be ei|nen wei|ßen Kreis vom Tab|lett ge|nom|men."
+    ],
+    "frage": "A|ber war es Mi|las Mond? Und was liegt un|ter dem Sei|den|pa|pier?",
+    "stempel": "KAPITEL 2 GELÖST"
+   },
+   "ausblick": "Os|kar zieht das Sei|den|pa|pier weg. Auf dem Tel|ler liegt et|was Gel|bes mit drei brau|nen Lö|chern."
   }
  ],
  "intro": [
@@ -95,7 +118,10 @@
   "passtFrage": "Hm, so wird es nicht das Wort zum Bild. Pas|sen die Buch|sta|ben ü|ber|haupt? Wenn nicht, tip|pe auf den Knopf mit dem gel|ben Rand.",
   "dochGeht": "Doch, die Buch|sta|ben pas|sen! Pro|bier es noch ein|mal.",
   "tresorInfo": "Der Tre|sor öff|net sich mit ei|nem Co|de-Wort aus vier Buch|sta|ben. Für je|des ge|lös|te Ka|pi|tel be|kommst du ei|nen Buch|sta|ben. Im Tre|sor war|tet ei|ne Ü|ber|ra|schung auf dich.",
-  "tresor": "Der Tre|sor der Le|se-Rau|pe"
+  "tresor": "Der Tre|sor der Le|se-Rau|pe",
+  "legen": "Aufs Tab|lett le|gen",
+  "ausDinge": "Was passt nicht? Tip|pe es an.",
+  "nochDing": "Gut! A|ber da ist noch et|was."
  },
  "spuren": [
   {
@@ -1177,6 +1203,981 @@
      ]
     },
     "erfolg": "Ge|nau. Si|cher ist nur: Der Är|mel ge|hört Os|kar. Was hat er vom Tab|lett ge|nom|men?"
+   },
+   "schluessel": true
+  },
+  {
+   "nr": 7,
+   "kap": 2,
+   "spur": 7,
+   "titel": "Schnipp, schnapp",
+   "bild": "k2_s7",
+   "haken": "Noch drei|ßig Mi|nu|ten. Drau|ßen schnei|det noch im|mer je|mand.",
+   "blocks": [
+    {
+     "id": "s7-p1",
+     "typ": "p",
+     "s": [
+      "*Schnipp.*",
+      "*Schnapp.*"
+     ]
+    },
+    {
+     "id": "s7-p2",
+     "typ": "p",
+     "s": [
+      "Mi|la hört es auch.",
+      "„Da schnei|det je|mand!“, flüs|tert sie.",
+      "„Hof|fent|lich nicht mei|nen Mond.“"
+     ]
+    },
+    {
+     "id": "s7-p3",
+     "typ": "p",
+     "s": [
+      "Ben schaut auf das lee|re Tab|lett.",
+      "Dann schaut er auf die grü|ne Kis|te da|ne|ben.",
+      "Er wird ein bis|schen rot."
+     ]
+    },
+    {
+     "id": "s7-p4",
+     "typ": "p",
+     "s": [
+      "„Oh je“, mur|melt er.",
+      "„Ich glau|be, ich ha|be ei|nen Feh|ler ge|macht.“"
+     ]
+    },
+    {
+     "id": "s7-p5",
+     "typ": "p",
+     "s": [
+      "„Wel|chen Feh|ler?“, fragt Mi|la."
+     ]
+    },
+    {
+     "id": "s7-p6",
+     "typ": "p",
+     "s": [
+      "Ben zeigt auf den Tisch.",
+      "„Du kennst doch un|se|re Re|gel.“"
+     ]
+    },
+    {
+     "id": "s7-p7",
+     "typ": "p",
+     "s": [
+      "Am Bas|tel|tisch gilt ei|ne fes|te Re|gel."
+     ],
+     "umbruch": true
+    },
+    {
+     "id": "s7-p8",
+     "typ": "p",
+     "s": [
+      "In die **grü|ne Kis|te** kom|men fer|ti|ge Fi|gu|ren und The|a|ter|sa|chen.",
+      "Die darf nie|mand ver|än|dern."
+     ]
+    },
+    {
+     "id": "s7-p9",
+     "typ": "p",
+     "s": [
+      "Auf das **blau|e Tab|lett** kom|men Pa|pier und Pap|pe zum Bas|teln.",
+      "Da|von darf sich je|des Kind et|was neh|men."
+     ]
+    },
+    {
+     "id": "s7-p10",
+     "typ": "p",
+     "s": [
+      "„Das Tab|lett war ein|fach der nächs|te frei|e Platz“, sagt Ben lei|se.",
+      "„Ich ha|be nicht nach|ge|dacht.“"
+     ]
+    },
+    {
+     "id": "s7-p11",
+     "typ": "p",
+     "s": [
+      "Mi|la nickt lang|sam.",
+      "„Dann lag mein Mond dort, wo sich je|der et|was neh|men darf.“"
+     ]
+    },
+    {
+     "id": "s7-p12",
+     "typ": "th",
+     "s": [
+      "„Wer sich vom Tab|lett Pa|pier nimmt, tut nichts Ver|bo|te|nes“, denkt die Rau|pe.",
+      "„A|ber wer schnei|det da drau|ßen?“"
+     ]
+    },
+    {
+     "id": "s7-p13",
+     "typ": "p",
+     "s": [
+      "Noch drei|ßig Mi|nu|ten."
+     ]
+    }
+   ],
+   "karte": {
+    "bild": "objekte/kiste_gruen",
+    "text": "Grü|ne Kis|te: fer|ti|ge Fi|gu|ren. Blau|es Tab|lett: Pa|pier für al|le.",
+    "staub": false
+   },
+   "fragenNeu": [
+    {
+     "id": "schneider",
+     "text": "Wer schnei|det da drau|ßen?"
+    }
+   ],
+   "fragenWeg": [],
+   "tipp": null,
+   "raetsel": {
+    "art": "sortieren",
+    "titel": "Zwei Kis|ten",
+    "text": "Al|les liegt dur|chei|nan|der. Fer|ti|ge Fi|gu|ren und The|a|ter|sa|chen kom|men in die grü|ne Kis|te. Pa|pier zum Bas|teln kommt auf das blau|e Tab|lett. Tip|pe ei|ne Sa|che an und dann ih|ren Platz. Du kannst sie auch hin|zie|hen.",
+    "ziele": [
+     {
+      "id": "kiste",
+      "bild": "objekte/kiste_gruen",
+      "name": "Grü|ne Kis|te",
+      "unter": "fer|ti|ge Sa|chen"
+     },
+     {
+      "id": "tablett",
+      "bild": "objekte/tablett_leer",
+      "name": "Blau|es Tab|lett",
+      "unter": "Pa|pier für al|le"
+     }
+    ],
+    "dinge": [
+     {
+      "id": "fuchs",
+      "bild": "objekte/fuchs_puppe",
+      "name": "Fuchs-Pup|pe",
+      "ziel": "kiste",
+      "warum": "Die Pup|pe ist fer|tig. Fer|ti|ge Fi|gu|ren kom|men in die grü|ne Kis|te."
+     },
+     {
+      "id": "papier",
+      "bild": "objekte/papierstapel",
+      "name": "Pa|pier|sta|pel",
+      "ziel": "tablett",
+      "warum": "Pa|pier zum Bas|teln liegt auf dem blau|en Tab|lett."
+     },
+     {
+      "id": "koenig",
+      "bild": "objekte/koenig_puppe",
+      "name": "Kö|nig-Pup|pe",
+      "ziel": "kiste",
+      "warum": "Die Pup|pe ist fer|tig. Fer|ti|ge Fi|gu|ren kom|men in die grü|ne Kis|te."
+     },
+     {
+      "id": "mond",
+      "bild": "objekte/mond_vorne",
+      "name": "Mi|las Mond",
+      "ziel": "kiste",
+      "warum": "Der Mond ist fer|tig. Er ge|hört in die grü|ne Kis|te. Auf dem Tab|lett lag er nur zu|fäl|lig."
+     },
+     {
+      "id": "baum",
+      "bild": "objekte/pappbaum",
+      "name": "Papp|baum",
+      "ziel": "kiste",
+      "warum": "Der Baum ge|hört zum The|a|ter. Er ist fer|tig und kommt in die grü|ne Kis|te."
+     },
+     {
+      "id": "streifen",
+      "bild": "objekte/papierstreifen_rot",
+      "name": "Ro|ter Strei|fen",
+      "ziel": "tablett",
+      "warum": "Ein Strei|fen Pa|pier zum Bas|teln liegt auf dem blau|en Tab|lett."
+     }
+    ],
+    "erfolg": "Der Mond ge|hört in die grü|ne Kis|te. A|ber er lag auf dem Tab|lett. Dort darf sich je|der Pa|pier neh|men."
+   }
+  },
+  {
+   "nr": 8,
+   "kap": 2,
+   "spur": 8,
+   "titel": "Ein Mond, der sich tarnt",
+   "bild": "k2_s8",
+   "haken": "Ein gel|ber Mond, der sich als wei|ßer Kreis tarnt. Drau|ßen ra|schelt wie|der Pa|pier.",
+   "blocks": [
+    {
+     "id": "s8-p1",
+     "typ": "p",
+     "s": [
+      "Mi|la schüt|telt den Kopf.",
+      "„A|ber mein Mond ist gelb“, sagt sie.",
+      "„So ein gro|ßer gel|ber Mond!",
+      "Den er|kennt doch je|der so|fort.“"
+     ]
+    },
+    {
+     "id": "s8-p2",
+     "typ": "p",
+     "s": [
+      "Ben ü|ber|legt.",
+      "Er schaut auf sei|ne Fin|ger.",
+      "Dort klebt noch ein klei|ner Rest."
+     ]
+    },
+    {
+     "id": "s8-p3",
+     "typ": "p",
+     "s": [
+      "„Mo|ment“, sagt er lang|sam.",
+      "„Der Fa|den sitzt hin|ten.",
+      "Ich ha|be ihn dort auf|ge|rollt und fest|ge|klebt.",
+      "Der Kle|ber war auf der wei|ßen Sei|te.",
+      "Und er war noch ganz nass.“"
+     ]
+    },
+    {
+     "id": "s8-p4",
+     "typ": "p",
+     "s": [
+      "„Ja, und?“"
+     ]
+    },
+    {
+     "id": "s8-p5",
+     "typ": "p",
+     "s": [
+      "„Nas|ser Kle|ber darf nichts be|rüh|ren.",
+      "Sonst klebt der Mond am Tab|lett fest.",
+      "Da|rum ha|be ich ihn ganz vor|sich|tig hin|ge|legt.“"
+     ]
+    },
+    {
+     "id": "s8-p6",
+     "typ": "p",
+     "s": [
+      "„Zeig mir, wie du ihn hin|ge|legt hast“, sagt Mi|la."
+     ],
+     "umbruch": true
+    },
+    {
+     "id": "s8-p7",
+     "typ": "p",
+     "s": [
+      "Die Le|se-Rau|pe wa|ckelt mit den Füh|lern."
+     ]
+    },
+    {
+     "id": "s8-p8",
+     "typ": "th",
+     "s": [
+      "„Wie lag der Mond?“, denkt sie.",
+      "„Und wa|rum lag er so?“"
+     ]
+    }
+   ],
+   "karte": {
+    "bild": "objekte/mond_hinten_feucht",
+    "text": "Mi|las Mond lag mit der wei|ßen Sei|te o|ben. Der Kle|ber war noch nass.",
+    "staub": false
+   },
+   "fragenNeu": [],
+   "fragenWeg": [],
+   "tipp": null,
+   "raetsel": {
+    "art": "umdrehen",
+    "titel": "Wie lag der Mond?",
+    "text": "Ben hat den Mond aufs Tab|lett ge|legt. Der Kle|ber war noch nass. Dreh den Mond um und leg ihn so aufs Tab|lett, wie Ben es ge|tan hat.",
+    "vorne": "objekte/mond_vorne",
+    "hinten": "objekte/mond_hinten_feucht",
+    "tablett": "objekte/tablett_leer",
+    "ratio": 0.733,
+    "kleber": {
+     "x": 52,
+     "y": 29,
+     "w": 34,
+     "h": 20,
+     "zeichnen": true
+    },
+    "klebt": "Ups! Der nas|se Kle|ber klebt am Tab|lett fest. Das ging schief.",
+    "frage2": "Und wa|rum liegt er so? Tip|pe auf den nas|sen Kle|ber.",
+    "warum2": "Hier ist der Kle|ber. Er ist noch nass und darf das Tab|lett nicht be|rüh|ren.",
+    "erfolg": "Die wei|ße Sei|te lag o|ben. Von o|ben sah der Mond weiß aus, nicht gelb."
+   }
+  },
+  {
+   "nr": 9,
+   "kap": 2,
+   "spur": 9,
+   "titel": "Die Maus auf der Bank",
+   "bild": "k2_s9",
+   "haken": "Was liegt un|ter dem Sei|den|pa|pier?",
+   "blocks": [
+    {
+     "id": "s9-p1",
+     "typ": "p",
+     "s": [
+      "Lang|sam kriecht die Le|se-Rau|pe los.",
+      "Ein Füß|chen.",
+      "Noch ein Füß|chen.",
+      "Vom Blu|men|topf bis zum of|fe|nen Fens|ter ist es weit für ei|ne Rau|pe."
+     ]
+    },
+    {
+     "id": "s9-p2",
+     "typ": "p",
+     "s": [
+      "End|lich ist sie da.",
+      "Sie schaut hi|naus."
+     ]
+    },
+    {
+     "id": "s9-p3",
+     "typ": "p",
+     "s": [
+      "Un|ter dem gro|ßen Baum steht die Holz|bank.",
+      "Und dort sitzt Os|kar.",
+      "Sein Pul|li hat ro|te und wei|ße Strei|fen."
+     ]
+    },
+    {
+     "id": "s9-p4",
+     "typ": "th",
+     "s": [
+      "„Das ist der Är|mel“, denkt die Rau|pe.",
+      "„A|ber ein Är|mel al|lein ist kein Be|weis.“"
+     ]
+    },
+    {
+     "id": "s9-p5",
+     "typ": "p",
+     "s": [
+      "Ne|ben Os|kar sitzt sei|ne klei|ne grau|e Maus aus Pa|pier.",
+      "Sie hat gro|ße run|de Oh|ren und ein ro|tes Herz auf dem Bauch.",
+      "Vor ihr liegt grü|nes Gras aus Pa|pier."
+     ]
+    },
+    {
+     "id": "s9-p6",
+     "typ": "th",
+     "s": [
+      "„A|ha“, denkt die Rau|pe.",
+      "„Da|her kommt al|so mein scheuß|li|ches Früh|stück.“"
+     ]
+    },
+    {
+     "id": "s9-p7",
+     "typ": "p",
+     "s": [
+      "Dann macht Os|kar et|was Selt|sa|mes.",
+      "Er stellt ei|nen wei|ßen Papp|tel|ler ne|ben die Maus.",
+      "Schnell legt er ein wei|ßes Sei|den|pa|pier da|rü|ber."
+     ],
+     "umbruch": true
+    },
+    {
+     "id": "s9-p8",
+     "typ": "p",
+     "s": [
+      "Von hier o|ben kann die Rau|pe nicht se|hen, was auf dem **Tel|ler** liegt."
+     ]
+    },
+    {
+     "id": "s9-p9",
+     "typ": "p",
+     "s": [
+      "„Heu|te ist dein Glücks|tag, klei|ne Maus“, sagt Os|kar.",
+      "„Gleich gibt es ein Fest|es|sen.“"
+     ]
+    },
+    {
+     "id": "s9-p10",
+     "typ": "p",
+     "s": [
+      "Er nimmt sei|ne Kle|be|fla|sche und steht auf.",
+      "„Ich brin|ge nur schnell den Kle|ber rein.“"
+     ]
+    },
+    {
+     "id": "s9-p11",
+     "typ": "p",
+     "s": [
+      "Die Füh|ler der Rau|pe leuch|ten gol|den."
+     ]
+    },
+    {
+     "id": "s9-p12",
+     "typ": "p",
+     "s": [
+      "Was liegt un|ter dem Sei|den|pa|pier?"
+     ]
+    }
+   ],
+   "karte": {
+    "bild": "objekte/teller_zugedeckt",
+    "text": "Os|kar hat ei|nen Tel|ler zu|ge|deckt. Was da|rauf liegt, sieht man nicht.",
+    "staub": true
+   },
+   "fragenNeu": [
+    {
+     "id": "seide",
+     "text": "Was liegt un|ter dem Sei|den|pa|pier?"
+    }
+   ],
+   "fragenWeg": [],
+   "tipp": null,
+   "raetsel": {
+    "art": "suchbild",
+    "titel": "Was sieht die Rau|pe?",
+    "text": "Die Rau|pe schaut aus dem Fens|ter. Fin|de al|les auf der Lis|te. Tip|pe es im Bild an.",
+    "bild": "k2_s9",
+    "dinge": [
+     {
+      "id": "maus",
+      "name": "die Maus mit dem ro|ten Herz",
+      "x": 75.5,
+      "y": 47,
+      "w": 11,
+      "h": 20,
+      "sagt": "Das ist Os|kars Pa|pier|maus."
+     },
+     {
+      "id": "seide",
+      "name": "das Sei|den|pa|pier",
+      "x": 64.5,
+      "y": 48,
+      "w": 15,
+      "h": 20,
+      "sagt": "Da|run|ter steht ein Tel|ler. Was da|rauf liegt, sieht man nicht."
+     },
+     {
+      "id": "kleber",
+      "name": "die Kle|be|fla|sche",
+      "x": 52.5,
+      "y": 43,
+      "w": 8,
+      "h": 14,
+      "sagt": "Os|kar hat die Kle|be|fla|sche in der Hand."
+     },
+     {
+      "id": "gras",
+      "name": "das Pa|pier|gras",
+      "x": 72,
+      "y": 56,
+      "w": 8,
+      "h": 7,
+      "sagt": "Aus so grü|nem Pa|pier war das Früh|stück der Rau|pe."
+     }
+    ],
+    "erfolg": "Al|les ge|fun|den. Nur ei|nes sieht die Rau|pe nicht: was un|ter dem Sei|den|pa|pier liegt."
+   }
+  },
+  {
+   "nr": 10,
+   "kap": 2,
+   "spur": 10,
+   "titel": "Ein wei|ßer Kreis",
+   "bild": "k2_s10",
+   "haken": "Noch fünf|und|zwan|zig Mi|nu|ten. Os|kar läuft schon zur Tür.",
+   "blocks": [
+    {
+     "id": "s10-p1",
+     "typ": "p",
+     "s": [
+      "Die Tür zum Schul|hof geht auf.",
+      "Os|kar kommt he|rein."
+     ]
+    },
+    {
+     "id": "s10-p2",
+     "typ": "p",
+     "s": [
+      "Er stellt den Kle|ber ins Re|gal und wäscht sich die Hän|de."
+     ]
+    },
+    {
+     "id": "s10-p3",
+     "typ": "p",
+     "s": [
+      "„Hal|lo, ihr zwei!“, sagt er fröh|lich.",
+      "Dann sieht er Mi|las Ge|sicht.",
+      "„Was ist denn los?“"
+     ]
+    },
+    {
+     "id": "s10-p4",
+     "typ": "p",
+     "s": [
+      "„Mein gel|ber Mond ist weg“, sagt Mi|la lei|se."
+     ]
+    },
+    {
+     "id": "s10-p5",
+     "typ": "p",
+     "s": [
+      "Os|kar zieht die Stirn kraus.",
+      "„Ein gel|ber Mond?",
+      "Den ha|be ich nicht ge|se|hen.“"
+     ]
+    },
+    {
+     "id": "s10-p6",
+     "typ": "p",
+     "s": [
+      "Dann ü|ber|legt er.",
+      "„Ich ha|be vor|hin nur ei|nen wei|ßen Kreis vom Tab|lett ge|nom|men.",
+      "Ich brauch|te run|de Pap|pe für mei|ne Maus.",
+      "Der Kreis lag doch bei den Bas|tel|sa|chen für al|le.“"
+     ],
+     "umbruch": true
+    },
+    {
+     "id": "s10-p7",
+     "typ": "p",
+     "s": [
+      "Mi|la und Ben schau|en sich an."
+     ]
+    },
+    {
+     "id": "s10-p8",
+     "typ": "p",
+     "s": [
+      "„Ein wei|ßer Kreis“, flüs|tert Ben.",
+      "„Vom Tab|lett …“"
+     ]
+    },
+    {
+     "id": "s10-p9",
+     "typ": "p",
+     "s": [
+      "„Wo ist der Kreis jetzt?“, fragt Mi|la schnell."
+     ]
+    },
+    {
+     "id": "s10-p10",
+     "typ": "p",
+     "s": [
+      "Os|kar lä|chelt ge|heim|nis|voll.",
+      "„Drau|ßen bei mei|ner Maus.",
+      "Ich ha|be ei|ne Ü|ber|ra|schung da|raus ge|bas|telt.“"
+     ]
+    },
+    {
+     "id": "s10-p11",
+     "typ": "p",
+     "s": [
+      "„Ge|bas|telt?“",
+      "Mi|las Stim|me zit|tert ein bis|schen."
+     ]
+    },
+    {
+     "id": "s10-p12",
+     "typ": "p",
+     "s": [
+      "Os|kar zieht ei|nen Zet|tel aus der Ho|sen|ta|sche.",
+      "„Das ist die Ein|la|dung für mei|ne Maus.",
+      "Ich schrei|be nur noch in Spie|gel|schrift.",
+      "Wie ein Ge|heim|a|gent!",
+      "Könnt ihr sie le|sen?“"
+     ],
+     "umbruch": true
+    },
+    {
+     "id": "s10-p13",
+     "typ": "p",
+     "s": [
+      "„Jetzt?“, stöhnt Ben."
+     ]
+    },
+    {
+     "id": "s10-p14",
+     "typ": "p",
+     "s": [
+      "„Lies sie ein|fach“, sagt Mi|la.",
+      "„Dann zeigt er uns be|stimmt gleich die Ü|ber|ra|schung.“"
+     ]
+    }
+   ],
+   "karte": {
+    "bild": "objekte/tablett_leer",
+    "text": "Os|kar sagt: Ich ha|be ei|nen wei|ßen Kreis vom Tab|lett ge|nom|men.",
+    "staub": false
+   },
+   "fragenNeu": [
+    {
+     "id": "kreis",
+     "text": "War der wei|ße Kreis Mi|las Mond?"
+    }
+   ],
+   "fragenWeg": [],
+   "tipp": null,
+   "raetsel": {
+    "art": "spiegel",
+    "titel": "Ge|heim|schrift",
+    "text": "Os|kar schreibt wie ein Ge|heim|a|gent. Was steht auf sei|nem Zet|tel?",
+    "zettel": "FEST FÜR MAUS",
+    "lesungen": [
+     "FEST FÜR MAUS",
+     "REST FÜR MAUS",
+     "FEST FÜR HAUS"
+    ],
+    "richtig": 0,
+    "warum": "Im Spie|gel steht al|les ver|kehrt he|rum. Lies von rechts nach links.",
+    "erfolg": "Fest für Maus! Das ist die Ein|la|dung für Os|kars Maus."
+   }
+  },
+  {
+   "nr": 11,
+   "kap": 2,
+   "spur": 11,
+   "titel": "Kei|ne Renn|maus",
+   "bild": "k2_s11",
+   "haken": "Ne|ben dem Tel|ler liegt et|was. Et|was Gel|bes. Vie|le klei|ne Stü|cke.",
+   "blocks": [
+    {
+     "id": "s11-p1",
+     "typ": "p",
+     "s": [
+      "Die drei Kin|der lau|fen hi|naus auf den Schul|hof.",
+      "Mi|la und Ben flüs|tern."
+     ]
+    },
+    {
+     "id": "s11-p2",
+     "typ": "p",
+     "s": [
+      "„Ist das dein Mond?“, fragt Ben lei|se."
+     ]
+    },
+    {
+     "id": "s11-p3",
+     "typ": "p",
+     "s": [
+      "„Viel|leicht“, flüs|tert Mi|la.",
+      "„A|ber ich ha|be mich heu|te schon ein|mal ge|irrt.",
+      "Wir müs|sen ihn ge|nau an|se|hen.“"
+     ]
+    },
+    {
+     "id": "s11-p4",
+     "typ": "p",
+     "s": [
+      "Die Le|se-Rau|pe schaut ih|nen hin|ter|her."
+     ]
+    },
+    {
+     "id": "s11-p5",
+     "typ": "th",
+     "s": [
+      "„Na toll.",
+      "Und ich?“, denkt sie.",
+      "„Ich bin ei|ne ge|müt|li|che Rau|pe und kei|ne Renn|maus!“"
+     ]
+    },
+    {
+     "id": "s11-p6",
+     "typ": "p",
+     "s": [
+      "Zum Glück steht das Fens|ter of|fen.",
+      "Die Bank steht di|rekt da|run|ter.",
+      "Der äu|ße|re Rand vom Fens|ter|brett liegt ge|nau ü|ber ihr."
+     ],
+     "umbruch": true
+    },
+    {
+     "id": "s11-p7",
+     "typ": "th",
+     "s": [
+      "„Auf zum Rand!“, denkt die Rau|pe."
+     ]
+    },
+    {
+     "id": "s11-p8",
+     "typ": "p",
+     "s": [
+      "Schnell kriecht sie los.",
+      "Na ja, auf Rau|pen|art schnell."
+     ]
+    },
+    {
+     "id": "s11-p9",
+     "typ": "p",
+     "s": [
+      "Un|ten lau|fen die Kin|der durch das ra|scheln|de Laub.",
+      "Auf der Wie|se sit|zen I|da und Ne|le.",
+      "I|da hält ei|ne Sche|re und ein blau|es Stück Pa|pier."
+     ]
+    },
+    {
+     "id": "s11-p10",
+     "typ": "p",
+     "s": [
+      "*Schnipp.",
+      "Schnapp.*"
+     ]
+    },
+    {
+     "id": "s11-p11",
+     "typ": "p",
+     "s": [
+      "„Das warst du!“, ruft Mi|la.",
+      "„Du hast ge|schnit|ten!“"
+     ]
+    },
+    {
+     "id": "s11-p12",
+     "typ": "p",
+     "s": [
+      "„Ja“, sagt I|da.",
+      "„Für mei|ne Kro|ne.",
+      "Schau, sie wird blau.“",
+      "Sie hält die Kro|ne hoch."
+     ]
+    },
+    {
+     "id": "s11-p13",
+     "typ": "p",
+     "s": [
+      "„Os|kar hat vor|hin auch et|was ge|schnit|ten“, sagt Ne|le.",
+      "„A|ber ich weiß nicht, was.“"
+     ]
+    },
+    {
+     "id": "s11-p14",
+     "typ": "p",
+     "s": [
+      "Noch zwan|zig Mi|nu|ten.",
+      "Mi|la und Ben lau|fen wei|ter zur Bank."
+     ],
+     "umbruch": true
+    },
+    {
+     "id": "s11-p15",
+     "typ": "p",
+     "s": [
+      "Die Rau|pe er|reicht den Rand.",
+      "Sie schiebt den Kopf da|rü|ber und schaut hi|nun|ter."
+     ]
+    }
+   ],
+   "karte": {
+    "bild": "kinder/ida",
+    "text": "I|da hat ei|ne Sche|re und blau|es Pa|pier. Sie bas|telt ei|ne Kro|ne.",
+    "staub": false
+   },
+   "fragenNeu": [],
+   "fragenWeg": [],
+   "tipp": null,
+   "raetsel": {
+    "art": "versteckt",
+    "titel": "Im Laub ver|steckt",
+    "text": "Das Laub ra|schelt und ra|schelt. Zwi|schen den Blät|tern ver|steckt sich ein Buch|sta|be. Wel|cher?",
+    "buchstabe": "B",
+    "optionen": [
+     "B",
+     "R",
+     "P",
+     "D"
+    ],
+    "winkel": 55,
+    "farbe": "#3E7B2A",
+    "muster": "laub",
+    "erfolg": "B wie Baum!",
+    "stoerer": 0
+   }
+  },
+  {
+   "nr": 12,
+   "kap": 2,
+   "spur": 12,
+   "titel": "Os|kars Rät|sel",
+   "bild": "k2_s12",
+   "haken": "Drei … zwei … eins …",
+   "blocks": [
+    {
+     "id": "s12-p1",
+     "typ": "p",
+     "s": [
+      "Un|ter dem Baum ist es warm.",
+      "Die Son|ne scheint durch die Zwei|ge."
+     ]
+    },
+    {
+     "id": "s12-p2",
+     "typ": "p",
+     "s": [
+      "Mi|la, Ben und Os|kar ste|hen vor der Bank.",
+      "Dort sitzt die klei|ne Maus.",
+      "Da|ne|ben steht der zu|ge|deck|te Tel|ler."
+     ]
+    },
+    {
+     "id": "s12-p3",
+     "typ": "p",
+     "s": [
+      "Ben starrt auf die Bank.",
+      "Ne|ben dem Tel|ler lie|gen ei|ne Sche|re und vie|le klei|ne gel|be Schnip|sel."
+     ]
+    },
+    {
+     "id": "s12-p4",
+     "typ": "p",
+     "s": [
+      "Ben wird blass.",
+      "„Mi|la“, flüs|tert er.",
+      "„Gel|be Schnip|sel.",
+      "Hat er dei|nen Mond zer|schnit|ten?“"
+     ]
+    },
+    {
+     "id": "s12-p5",
+     "typ": "p",
+     "s": [
+      "Mi|la schluckt."
+     ]
+    },
+    {
+     "id": "s12-p6",
+     "typ": "p",
+     "s": [
+      "Os|kar merkt nichts.",
+      "Er grinst von ei|nem Ohr zum an|de|ren."
+     ],
+     "umbruch": true
+    },
+    {
+     "id": "s12-p7",
+     "typ": "p",
+     "s": [
+      "„Ich ha|be ein Rät|sel für euch!",
+      "Ich ha|be den wei|ßen Kreis um|ge|dreht.",
+      "Und was war auf der an|de|ren Sei|te?",
+      "Wun|der|schö|nes Gelb!",
+      "Ge|nau rich|tig für das Lieb|lings|es|sen mei|ner Maus.",
+      "Dann ha|be ich drei klei|ne brau|ne Krei|se auf|ge|klebt.",
+      "Wie Lö|cher.",
+      "Was ist es?“"
+     ]
+    },
+    {
+     "id": "s12-p8",
+     "typ": "p",
+     "s": [
+      "Die Le|se-Rau|pe reißt die Au|gen auf."
+     ]
+    },
+    {
+     "id": "s12-p9",
+     "typ": "th",
+     "s": [
+      "„Gelb, rund und mit Lö|chern?“, denkt sie.",
+      "„Für ei|ne Maus?“"
+     ]
+    },
+    {
+     "id": "s12-p10",
+     "typ": "p",
+     "s": [
+      "Os|kar legt die Hand auf das Sei|den|pa|pier."
+     ]
+    },
+    {
+     "id": "s12-p11",
+     "typ": "p",
+     "s": [
+      "„Drei … zwei … eins …“"
+     ]
+    }
+   ],
+   "karte": {
+    "bild": "objekte/gelbe_schnipsel",
+    "text": "Ne|ben dem Tel|ler: ei|ne Sche|re und gel|be Schnip|sel. Nie|mand hat ge|se|hen, was ge|schnit|ten wur|de.",
+    "staub": false
+   },
+   "fragenNeu": [],
+   "fragenWeg": [],
+   "tipp": null,
+   "raetsel": {
+    "art": "ausschluss",
+    "titel": "Os|kars Rät|sel",
+    "text": "Os|kar hat ein Rät|sel. Lies je|den Hin|weis und tip|pe al|les an, was nicht passt.",
+    "rausText": "ausDinge",
+    "nochText": "nochDing",
+    "kandidaten": [
+     {
+      "id": "kaese",
+      "name": "Kä|se",
+      "bild": "objekte/raetsel_kaese"
+     },
+     {
+      "id": "keks",
+      "name": "Scho|ko-Keks",
+      "bild": "objekte/raetsel_keks"
+     },
+     {
+      "id": "sonne",
+      "name": "Son|ne",
+      "bild": "objekte/raetsel_sonne"
+     },
+     {
+      "id": "ball",
+      "name": "Fuß|ball",
+      "bild": "objekte/raetsel_ball"
+     },
+     {
+      "id": "zitrone",
+      "name": "Zi|tro|ne",
+      "bild": "objekte/raetsel_zitrone"
+     },
+     {
+      "id": "schwamm",
+      "name": "Schwamm",
+      "bild": "objekte/raetsel_schwamm"
+     }
+    ],
+    "hinweise": [
+     {
+      "text": "Es ist gelb.",
+      "raus": [
+       "keks",
+       "ball"
+      ]
+     },
+     {
+      "text": "Es hat Lö|cher.",
+      "raus": [
+       "sonne",
+       "zitrone"
+      ]
+     },
+     {
+      "text": "Es ist rund wie ein Kreis.",
+      "raus": [
+       "schwamm"
+      ]
+     }
+    ],
+    "loesung": "kaese",
+    "stempel": "DIE LÖSUNG: KÄSE",
+    "schluss": {
+     "frage": "Was wis|sen wir jetzt si|cher?",
+     "optionen": [
+      {
+       "text": "Os|kar sagt: Ich ha|be ei|nen wei|ßen Kreis vom Tab|lett ge|nom|men.",
+       "sicher": true
+      },
+      {
+       "text": "Der wei|ße Kreis war Mi|las Mond.",
+       "sicher": false,
+       "tipp": "Das ist erst ein Ver|dacht. Den Kreis hat noch nie|mand ge|se|hen."
+      },
+      {
+       "text": "Os|kar hat Mi|las Mond zer|schnit|ten.",
+       "sicher": false,
+       "tipp": "Das ist erst ein Ver|dacht. Wir se|hen ei|ne Sche|re und Schnip|sel. A|ber nie|mand hat ge|se|hen, was ge|schnit|ten wur|de."
+      }
+     ]
+    },
+    "erfolg": "Ge|nau. Si|cher ist nur, was Os|kar ge|sagt hat. Ob es Mi|las Mond war, weiß noch nie|mand."
    },
    "schluessel": true
   }

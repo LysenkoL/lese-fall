@@ -1,5 +1,5 @@
 /**
- * Die sechs Rätsel von Kapitel 1. Jede Funktion bekommt (rahmen, daten, fertig):
+ * Die Rätsel der Kapitel 1 und 2. Jede Funktion bekommt (rahmen, daten, fertig):
  *   rahmen = der dunkle Rahmen (.zug) mit .zi (Spielfläche) und .zr (Sprechblase der Lese-Raupe),
  *   daten  = das Rätsel aus den Daten (Texte schon als HTML mit Silben),
  *   fertig = wird aufgerufen, wenn das Rätsel gelöst ist (die Raupe hat dann schon `erfolg` gesagt).
@@ -200,7 +200,7 @@ export function unterschiede(r: HTMLElement, d: Daten, fertig: () => void) {
 export function versteckt(r: HTMLElement, d: Daten, fertig: () => void) {
   const zi = $('.zi', r);
   const id = 'vb' + Math.floor(Math.random() * 1e6);
-  zi.innerHTML = `<div class="vb"><div class="vb-svg">${versteckterBuchstabe(d.buchstabe, d.winkel, d.farbe, id, false, d.stoerer ?? 0)}</div><canvas class="vb-cv"></canvas></div><div class="vb-opts">${d.optionen.map((o: string) => `<button class="vb-o" data-o="${o}">${o}</button>`).join('')}</div>`;
+  zi.innerHTML = `<div class="vb"><div class="vb-svg">${versteckterBuchstabe(d.buchstabe, d.winkel, d.farbe, id, false, d.stoerer ?? 0, d.muster)}</div><canvas class="vb-cv"></canvas></div><div class="vb-opts">${d.optionen.map((o: string) => `<button class="vb-o" data-o="${o}">${o}</button>`).join('')}</div>`;
   unten('');
   // Zusatz für die Hand: mit dem Finger über das Bild fahren zeichnet eine helle Spur (wird nicht geprüft)
   const cv = $<HTMLCanvasElement>('.vb-cv', zi), box = $('.vb', zi);
@@ -223,7 +223,7 @@ export function versteckt(r: HTMLElement, d: Daten, fertig: () => void) {
   const los = () => { aktiv = false; };
   cv.addEventListener('pointerup', los); cv.addEventListener('pointercancel', los);
   let fehl = 0, aus = false;
-  const zeigen = () => { $('.vb-svg', zi).innerHTML = versteckterBuchstabe(d.buchstabe, d.winkel, d.farbe, id, true, d.stoerer ?? 0); cv.style.pointerEvents = 'none'; };
+  const zeigen = () => { $('.vb-svg', zi).innerHTML = versteckterBuchstabe(d.buchstabe, d.winkel, d.farbe, id, true, d.stoerer ?? 0, d.muster); cv.style.pointerEvents = 'none'; };
   const wahl = (o: string, btn: HTMLElement | null) => {
     if (aus) return;
     if (o === d.buchstabe) { aus = true; btn?.classList.add('an'); zeigen(); return ende(r, d, fertig); }
@@ -441,9 +441,9 @@ export function ausschluss(r: HTMLElement, d: Daten, fertig: () => void) {
   const gestr = new Set<string>(), neuGestr = new Set<string>(), sel = new Set<string>();
   let hi = 0, fehl = 0, gesperrt = false;
   const kreuz = '<svg class="kreuz" viewBox="0 0 100 100" aria-hidden="true"><path d="M12 12L88 88M88 12L12 88" stroke="#26221C" stroke-width="7" stroke-linecap="round" fill="none"/></svg>';
-  const karteHtml = (c: any) => `<button class="as-k${gestr.has(c.id) ? ' weg' : ''}${neuGestr.has(c.id) ? ' neu' : ''}${sel.has(c.id) ? ' an' : ''}" data-id="${c.id}" ${gestr.has(c.id) ? 'disabled' : ''}>${pulliSvg(c.pulli, 'pl-' + c.id)}<span class="as-n">${c.name}</span>${gestr.has(c.id) ? kreuz : ''}</button>`;
+  const karteHtml = (c: any) => `<button class="as-k${gestr.has(c.id) ? ' weg' : ''}${neuGestr.has(c.id) ? ' neu' : ''}${sel.has(c.id) ? ' an' : ''}" data-id="${c.id}" ${gestr.has(c.id) ? 'disabled' : ''}>${c.pulli ? pulliSvg(c.pulli, 'pl-' + c.id) : `<img src="${K.img(c.bild)}" alt="" draggable="false">`}<span class="as-n">${c.name}</span>${gestr.has(c.id) ? kreuz : ''}</button>`;
   const mal = () => {
-    zi.innerHTML = `<div class="as-hin"><span class="as-z">Hinweis ${hi + 1} von ${N}</span><p>${hin[hi].text}</p></div><p class="as-raus">${K.UI.raus}</p><div class="as-grid">${ordnung.map((id) => karteHtml(kand.find((c) => c.id === id))).join('')}</div>`;
+    zi.innerHTML = `<div class="as-hin"><span class="as-z">Hinweis ${hi + 1} von ${N}</span><p>${hin[hi].text}</p></div><p class="as-raus">${K.UI[d.rausText ?? 'raus']}</p><div class="as-grid">${ordnung.map((id) => karteHtml(kand.find((c) => c.id === id))).join('')}</div>`;
     neuGestr.clear();
     unten(knopf('fertig', K.UI.fertig, sel.size === 0 || gesperrt), () => pruefen());
   };
@@ -495,7 +495,7 @@ export function ausschluss(r: HTMLElement, d: Daten, fertig: () => void) {
     fehl++;
     const daneben = [...sel].filter((x) => !raus.includes(x));
     zi.querySelectorAll<HTMLElement>('.as-k.an').forEach((e) => { if (daneben.includes(e.dataset.id!)) wackel(e); });
-    if (fehl === 1) { sag(r, 'tipp', daneben.length ? K.UI.nochmal : K.UI.nochEiner); gesperrt = true; setTimeout(() => { daneben.forEach((x) => sel.delete(x)); gesperrt = false; mal(); }, 600); return; }
+    if (fehl === 1) { sag(r, 'tipp', daneben.length ? K.UI.nochmal : K.UI[d.nochText ?? 'nochEiner']); gesperrt = true; setTimeout(() => { daneben.forEach((x) => sel.delete(x)); gesperrt = false; mal(); }, 600); return; }
     sag(r, 'tipp', K.UI.hilfe);
     setTimeout(() => streichen(raus, true), 500);
   };
@@ -509,4 +509,194 @@ export function ausschluss(r: HTMLElement, d: Daten, fertig: () => void) {
   };
   hook.loese = () => { if (!gesperrt && hi < N) { sel.clear(); hin[hi].raus.forEach((x: string) => sel.add(x)); pruefen(); } };
   mal();
+}
+
+/* ============================ 5.1 Zwei Kisten (sortieren) ============================ */
+export function sortieren(r: HTMLElement, d: Daten, fertig: () => void) {
+  const zi = $('.zi', r);
+  const dinge: any[] = d.dinge, ziele: any[] = d.ziele;
+  const ordnung = K.mischen(dinge.map((x) => x.id));
+  const drin = new Map<string, string>(), fehl = new Map<string, number>();
+  let sel: string | null = null, sperre = false;
+  const kachel = (x: any, klein = false) => `<div class="so-ding${klein ? ' klein' : ''}${sel === x.id ? ' sel' : ''}" data-d="${x.id}"><img src="${K.img(x.bild)}" alt="" draggable="false"><span>${x.name}</span></div>`;
+  const mal = () => {
+    zi.innerHTML = `<div class="so-ziele">${ziele.map((z) => `<div class="so-ziel" data-z="${z.id}"><div class="so-kopf"><img src="${K.img(z.bild)}" alt=""><b>${z.name}</b><small>${z.unter}</small></div><div class="so-drin">${dinge.filter((x) => drin.get(x.id) === z.id).map((x) => kachel(x, true)).join('')}</div></div>`).join('')}</div><div class="so-pool">${ordnung.filter((id) => !drin.has(id)).map((id) => kachel(dinge.find((x) => x.id === id))).join('')}</div>`;
+    unten('');
+  };
+  const fertigPruefen = () => { if (drin.size === dinge.length) { sperre = true; hook.loese = null; ende(r, d, fertig); } };
+  const lege = (x: any, hilfe = false) => {
+    drin.set(x.id, x.ziel); sel = null; K.summ(15); mal();
+    if (hilfe) sag(r, 'tipp', K.UI.hilfe + ' ' + (x.warum ?? ''));
+    fertigPruefen();
+  };
+  const versuch = (id: string, ziel: string) => {
+    const x = dinge.find((q) => q.id === id);
+    if (!x || sperre || drin.has(id)) return;
+    if (x.ziel === ziel) { sag(r, 'tipp', ''); return lege(x); }
+    const n = (fehl.get(id) ?? 0) + 1;
+    fehl.set(id, n); sel = null;
+    mal();
+    wackel(zi.querySelector(`.so-pool [data-d="${id}"]`));
+    zi.querySelector(`.so-ziel[data-z="${ziel}"]`)?.classList.add('nein');
+    setTimeout(() => zi.querySelector('.so-ziel.nein')?.classList.remove('nein'), 450);
+    if (n === 1) return sag(r, 'tipp', K.UI.nochmal);
+    sperre = true; sag(r, 'tipp', K.UI.hilfe + ' ' + (x.warum ?? ''));
+    setTimeout(() => { if (!zi.isConnected) return; sperre = false; lege(x); sag(r, 'tipp', K.UI.hilfe + ' ' + (x.warum ?? '')); }, 1300);
+  };
+  let drag: { el: HTMLElement; id: string; x: number; y: number; bewegt: boolean } | null = null;
+  zi.addEventListener('pointerdown', (e) => {
+    if (sperre) return;
+    const el = (e.target as HTMLElement).closest<HTMLElement>('.so-pool .so-ding');
+    if (!el) return;
+    drag = { el, id: el.dataset.d!, x: e.clientX, y: e.clientY, bewegt: false };
+    el.setPointerCapture(e.pointerId);
+  });
+  zi.addEventListener('pointermove', (e) => {
+    if (!drag) return;
+    const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+    if (!drag.bewegt && Math.hypot(dx, dy) > 8) { drag.bewegt = true; drag.el.classList.add('zieht'); }
+    if (drag.bewegt) drag.el.style.transform = `translate(${dx}px, ${dy}px) rotate(3deg)`;
+  });
+  const ablegen = (e: PointerEvent) => {
+    if (!drag) return;
+    const { el, id, bewegt } = drag; drag = null;
+    if (!bewegt) { // Tippen: Sache merken, dann Platz antippen
+      if (e.type !== 'pointerup') return;
+      sel = sel === id ? null : id;
+      zi.querySelectorAll('.so-pool .so-ding').forEach((q) => q.classList.toggle('sel', (q as HTMLElement).dataset.d === sel));
+      return;
+    }
+    el.classList.remove('zieht');
+    const z = e.type === 'pointerup' ? (document.elementsFromPoint(e.clientX, e.clientY).find((x) => x.classList.contains('so-ziel')) as HTMLElement | undefined) : undefined;
+    if (z) versuch(id, z.dataset.z!); else { el.style.transform = ''; }
+  };
+  zi.addEventListener('pointerup', ablegen); zi.addEventListener('pointercancel', ablegen);
+  zi.addEventListener('click', (e) => {
+    const z = (e.target as HTMLElement).closest<HTMLElement>('.so-ziel');
+    if (z && sel && !sperre) versuch(sel, z.dataset.z!);
+  });
+  hook.loese = () => { sperre = false; dinge.filter((x) => !drin.has(x.id)).forEach((x) => drin.set(x.id, x.ziel)); mal(); fertigPruefen(); };
+  mal();
+}
+
+/* ============================ 5.2 Wie lag der Mond? (umdrehen) ============================ */
+export function umdrehen(r: HTMLElement, d: Daten, fertig: () => void) {
+  const zi = $('.zi', r);
+  const kl = d.kleber;
+  let seite: 'vorne' | 'hinten' = 'vorne', dreht = false, fehl = 0, phase: 'legen' | 'warum' | 'aus' = 'legen', liegt = false;
+  const mal = () => {
+    zi.innerHTML = `${phase === 'warum' ? `<p class="um-frage">${d.frage2}</p>` : ''}<div class="um-tisch${liegt ? ' liegt' : ''}"><img class="um-tablett" src="${K.img(d.tablett)}" alt=""><div class="um-mond" style="aspect-ratio:${d.ratio}"><img src="${K.img(d[seite])}" alt="">${seite === 'hinten' && kl.zeichnen ? `<i class="um-kleber" style="left:${kl.x}%;top:${kl.y}%;width:${kl.w * 0.6}%;height:${kl.h * 0.8}%"></i>` : ''}${phase === 'warum' ? `<b class="um-zone" data-z="1" style="left:${kl.x}%;top:${kl.y}%;width:${kl.w}%;height:${kl.h}%"></b>` : ''}</div>${fleck ? '<i class="um-fleck"></i>' : ''}</div>${phase === 'legen' ? `<button class="kn zwei um-dreh" data-a="dreh"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0 1 14-5.300M20 12a8 8 0 0 1-14 5.300" fill="none" stroke="currentColor" stroke-width="2.400" stroke-linecap="round"/><path d="M18.500 3v4.500H14M5.500 21v-4.500H10" fill="none" stroke="currentColor" stroke-width="2.400" stroke-linecap="round" stroke-linejoin="round"/></svg><span>${K.UI.umdrehen}</span></button>` : ''}`;
+  };
+  let fleck = false;
+  const drehe = (danach?: () => void) => {
+    if (dreht) return;
+    dreht = true;
+    const m = $('.um-mond', zi);
+    m.classList.add('dreh1');
+    setTimeout(() => {
+      seite = seite === 'vorne' ? 'hinten' : 'vorne';
+      mal();
+      const m2 = $('.um-mond', zi); m2.classList.add('dreh2');
+      setTimeout(() => { m2.classList.remove('dreh2'); dreht = false; danach?.(); }, 200);
+    }, 200);
+  };
+  const legen = () => {
+    if (phase !== 'legen' || dreht) return;
+    if (seite === 'hinten') return richtigGelegt();
+    fehl++; fleck = true; liegt = true; mal();
+    K.summ(30);
+    sag(r, 'tipp', d.klebt + (fehl === 1 ? ' ' + K.UI.nochmal : ''));
+    if (fehl === 1) return setTimeout(() => { if (!zi.isConnected) return; fleck = false; liegt = false; mal(); }, 1600);
+    phase = 'aus';
+    unten('');
+    setTimeout(() => { if (!zi.isConnected) return; fleck = false; liegt = false; mal(); sag(r, 'tipp', K.UI.hilfe); drehe(() => setTimeout(() => { liegt = true; mal(); richtigGelegt(true); }, 500)); }, 1700);
+  };
+  const richtigGelegt = (mitHilfe = false) => {
+    liegt = true; phase = 'warum'; fehl = 0; mal();
+    sag(r, mitHilfe ? 'tipp' : 'lob', mitHilfe ? K.UI.hilfe : K.UI.stimmt);
+    unten('');
+    hook.loese = () => frei();
+  };
+  const frei = (mitHilfe = false, warum = '') => { phase = 'aus'; hook.loese = null; mal(); $('.um-mond', zi).insertAdjacentHTML('beforeend', '<i class="ring da" style="left:' + kl.x + '%;top:' + kl.y + '%"></i>'); ende(r, d, fertig, mitHilfe ? [K.UI.hilfe, warum].join(' ') : ''); };
+  zi.onclick = (e) => {
+    const t = e.target as HTMLElement;
+    if (t.closest('[data-a="dreh"]')) return drehe();
+    if (phase !== 'warum') return;
+    if (t.closest('.um-zone')) return frei();
+    if (!t.closest('.um-tisch')) return;
+    wackel($('.um-mond', zi));
+    if (++fehl === 1) return sag(r, 'tipp', K.UI.nochmal);
+    sag(r, 'tipp', K.UI.hilfe + ' ' + d.warum2);
+    phase = 'aus';
+    zi.querySelector('.um-zone')?.classList.add('puls');
+    setTimeout(() => zi.isConnected && frei(true, d.warum2), 1300);
+  };
+  // Wischen über den Mond dreht ihn auch
+  let sx = 0, st = false;
+  zi.addEventListener('pointerdown', (e) => { st = phase === 'legen' && !!(e.target as HTMLElement).closest('.um-mond'); sx = e.clientX; });
+  zi.addEventListener('pointerup', (e) => { if (st && Math.abs(e.clientX - sx) > 40) drehe(); st = false; });
+  mal();
+  unten(knopf('legen', K.UI.legen), (a) => { if (a === 'legen') legen(); });
+  hook.loese = () => { if (phase === 'legen') { seite = 'hinten'; richtigGelegt(); } };
+}
+
+/* ============================ 5.3 Was sieht die Raupe? (suchbild) ============================ */
+export function suchbild(r: HTMLElement, d: Daten, fertig: () => void) {
+  const zi = $('.zi', r);
+  const dinge: any[] = d.dinge, gef = new Set<string>();
+  let fehl = 0, aus = false;
+  const liste = () => `<ul class="sb-liste">${dinge.map((x) => `<li class="${gef.has(x.id) ? 'da' : ''}"><i></i><span>${x.name}</span></li>`).join('')}</ul>`;
+  zi.innerHTML = `${liste()}<div class="sb-bild"><img src="${K.img(d.bild)}" alt="" draggable="false"></div>`;
+  const finde = (x: any, blink = false) => {
+    gef.add(x.id);
+    $('.sb-liste', zi).outerHTML = liste();
+    $('.sb-bild', zi).insertAdjacentHTML('beforeend', `<i class="sb-ring${blink ? ' blink' : ''}" style="left:${x.x}%;top:${x.y}%;width:${x.w + 3}%;height:${x.h + 4}%"></i>`);
+    K.summ(20);
+    if (gef.size === dinge.length) { aus = true; hook.loese = null; setTimeout(() => ende(r, d, fertig), 500); } else sag(r, 'tipp', x.sagt ?? '');
+  };
+  const trifft = (x: any, tx: number, ty: number) => Math.abs(tx - x.x) <= x.w / 2 + 2.5 && Math.abs(ty - x.y) <= x.h / 2 + 3.5;
+  zi.onclick = (e) => {
+    const b = (e.target as HTMLElement).closest<HTMLElement>('.sb-bild');
+    if (!b || aus) return;
+    const rc = b.getBoundingClientRect(), tx = ((e.clientX - rc.left) / rc.width) * 100, ty = ((e.clientY - rc.top) / rc.height) * 100;
+    const treffer = dinge.filter((x) => !gef.has(x.id) && trifft(x, tx, ty)).sort((p, q) => Math.hypot(tx - p.x, ty - p.y) - Math.hypot(tx - q.x, ty - q.y))[0];
+    if (treffer) { fehl = 0; return finde(treffer); }
+    const bekannt = dinge.find((x) => gef.has(x.id) && trifft(x, tx, ty));
+    if (bekannt) return sag(r, 'tipp', bekannt.sagt ?? '');
+    b.insertAdjacentHTML('beforeend', `<i class="ring miss" style="left:${tx}%;top:${ty}%"></i>`);
+    setTimeout(() => b.querySelector('.ring.miss')?.remove(), 800);
+    if (++fehl === 1) return sag(r, 'tipp', K.UI.nochmal);
+    fehl = 0;
+    const offen = dinge.find((x) => !gef.has(x.id))!;
+    sag(r, 'tipp', K.UI.hilfe + ' ' + offen.name);
+    finde(offen, true);
+  };
+  hook.loese = () => { dinge.filter((x) => !gef.has(x.id)).forEach((x) => gef.add(x.id)); aus = true; $('.sb-liste', zi).outerHTML = liste(); ende(r, d, fertig); };
+  unten('');
+}
+
+/* ============================ 5.4 Geheimschrift (spiegel) ============================ */
+export function spiegel(r: HTMLElement, d: Daten, fertig: () => void) {
+  const zi = $('.zi', r);
+  const reihe = K.mischen(d.lesungen.map((_: any, i: number) => String(i)));
+  let fehl = 0, zu = false;
+  zi.innerHTML = `<div class="sp-zettel"><div class="sp-text">${(d.zettel as string).split(' ').map((w) => `<span>${w}</span>`).join('')}</div></div><div class="sp-opts">${reihe.map((i: string) => `<button class="sp-o" data-o="${i}"><span>${d.lesungen[+i]}</span></button>`).join('')}</div>`;
+  unten('');
+  const loesen = (btn: HTMLElement | null, hilfe: boolean) => {
+    zu = true; hook.loese = null;
+    btn?.classList.add('an');
+    $('.sp-zettel', zi).classList.add('klar');
+    ende(r, d, fertig, hilfe ? [K.UI.hilfe, d.warum].join(' ') : '');
+  };
+  zi.onclick = (e) => {
+    const b = (e.target as HTMLElement).closest<HTMLElement>('.sp-o');
+    if (!b || zu) return;
+    if (+b.dataset.o! === d.richtig) return loesen(b, false);
+    wackel(b);
+    if (++fehl === 1) return sag(r, 'tipp', K.UI.nochmal);
+    zu = true;
+    sag(r, 'tipp', [K.UI.hilfe, d.warum].join(' '));
+    setTimeout(() => zi.isConnected && loesen(zi.querySelector(`.sp-o[data-o="${d.richtig}"]`), true), 900);
+  };
+  hook.loese = () => loesen(zi.querySelector(`.sp-o[data-o="${d.richtig}"]`), false);
 }

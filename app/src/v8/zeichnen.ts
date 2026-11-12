@@ -24,12 +24,14 @@ export function pulliSvg(p: Pulli, id: string): string {
     ${knoepfe}</svg>`;
 }
 
-/** Buchstabe, der sich in Linien versteckt: außen laufen die Linien senkrecht, im Buchstaben um `winkel` Grad gedreht; `stoerer` Flecken lenken ab. */
-export function versteckterBuchstabe(buchstabe: string, winkel: number, farbe: string, id: string, gefunden = false, stoerer = 0): string {
+/** Buchstabe, der sich in Linien (oder Laub) versteckt: außen liegen die Muster gerade, im Buchstaben um `winkel` Grad gedreht; `stoerer` Flecken lenken ab. */
+export function versteckterBuchstabe(buchstabe: string, winkel: number, farbe: string, id: string, gefunden = false, stoerer = 0, muster = 'linien'): string {
   const linien = (pid: string, dreh: number) => `<pattern id="${pid}" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(${dreh})"><rect width="9" height="9" fill="#EAF3FB"/><rect width="3.4" height="9" fill="${farbe}"/></pattern>`;
+  const laub = (pid: string, dreh: number) => `<pattern id="${pid}" width="26" height="26" patternUnits="userSpaceOnUse" patternTransform="rotate(${dreh})"><rect width="26" height="26" fill="#E3F0C8"/><g fill="${farbe}"><ellipse cx="7" cy="7" rx="7.500" ry="3" transform="rotate(-18 7 7)"/><ellipse cx="20" cy="20" rx="7.500" ry="3" transform="rotate(-18 20 20)"/></g><g fill="#8CC24E"><ellipse cx="20" cy="6" rx="4.500" ry="1.800" transform="rotate(-18 20 6)"/><ellipse cx="6" cy="20" rx="4.500" ry="1.800" transform="rotate(-18 6 20)"/></g></pattern>`;
+  const m = muster === 'laub' ? laub : linien;
   const F = [[52, 62, 36, 24], [240, 86, 30, 42], [66, 238, 42, 26], [232, 236, 36, 24], [150, 36, 28, 16]];
   const flecken = F.slice(0, stoerer).map(([x, y, rx, ry], i) => `<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" fill="url(#${id}-${i % 2 ? 'c' : 'd'})"/>`).join('');
-  return `<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Linienbild"><defs>${linien(id + '-a', 0)}${linien(id + '-b', winkel)}${linien(id + '-c', -winkel)}${linien(id + '-d', winkel * 1.7)}</defs>
+  return `<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${muster === 'laub' ? 'Laubbild' : 'Linienbild'}"><defs>${m(id + '-a', 0)}${m(id + '-b', winkel)}${m(id + '-c', -winkel)}${m(id + '-d', winkel * 1.7)}</defs>
     <rect width="300" height="300" rx="18" fill="url(#${id}-a)"/>${flecken}
     <text x="150" y="238" text-anchor="middle" font-family="'Inter Schule', system-ui, sans-serif" font-weight="800" font-size="250" fill="${gefunden ? '#F4C243' : `url(#${id}-b)`}">${buchstabe}</text></svg>`;
 }

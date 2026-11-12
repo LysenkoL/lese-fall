@@ -510,3 +510,72 @@ em.neu .s-b, em.neu .s-r { color: inherit; }
 .as-so.offen em .s-b, .as-so.offen em .s-r { color: inherit; }
 .as-so.nein { animation: wackel .4s; }
 .as-sf .s-b, .as-sf .s-r { color: inherit; }
+
+/* ======================= Kapitel 2: Zwei Kisten, Wie lag der Mond, Suchbild, Geheimschrift ======================= */
+.as-k img { width: 100%; height: 76px; object-fit: contain; pointer-events: none; }
+.as-k.gross img { height: auto; max-height: 220px; }
+
+/* Zwei Kisten */
+.so-ziele { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.so-ziel { color: #fff; border: 3px dashed rgba(255, 255, 255, .45); background: rgba(255, 255, 255, .08); border-radius: 16px; padding: 8px 6px 10px; display: flex; flex-direction: column; align-items: center; gap: 6px; min-height: 176px; transition: border-color .2s, background .2s; }
+.so-ziel.nein { animation: wackel .4s; border-color: var(--rot); background: rgba(232, 71, 58, .18); }
+.so-kopf { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1px; }
+.so-kopf img { height: 54px; width: auto; max-width: 100%; object-fit: contain; }
+.so-kopf b { font-size: 16.5px; font-weight: 800; line-height: 1.15; }
+.so-kopf small { font-size: 13px; opacity: .85; font-weight: 600; }
+.so-kopf .s-b, .so-kopf .s-r { color: inherit; }
+.so-drin { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
+.so-pool { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.so-ding { background: var(--papier); border-radius: 12px; padding: 6px 4px; display: flex; flex-direction: column; align-items: center; gap: 3px; min-height: 96px; border: 3px solid transparent; box-shadow: 0 3px 0 #D8CDB2, 0 8px 14px rgba(0, 0, 0, .3); touch-action: none; cursor: grab; user-select: none; color: var(--tinte); position: relative; }
+.so-ding img { width: 100%; height: 60px; object-fit: contain; pointer-events: none; }
+.so-ding span { font-size: 13.5px; font-weight: 800; line-height: 1.15; text-align: center; }
+.so-ding .s-b, .so-ding .s-r { color: inherit; }
+.so-ding.sel { border-color: var(--senf); background: #FFF6D6; }
+.so-ding.zieht { z-index: 20; transition: none; box-shadow: 0 16px 24px rgba(0, 0, 0, .45); }
+.so-ding.nein { animation: wackel .4s; border-color: var(--rot); }
+.so-ding.klein { min-height: 0; width: 66px; padding: 3px; cursor: default; box-shadow: none; }
+.so-ding.klein img { height: 38px; }
+.so-ding.klein span { font-size: 10.5px; }
+
+/* Wie lag der Mond? */
+.um-frage { color: #fff; font-size: 18px; font-weight: 800; text-align: center; line-height: 1.3; }
+.um-tisch { position: relative; width: 100%; aspect-ratio: 5 / 4; max-height: 46dvh; margin: 0 auto; }
+.um-tablett { position: absolute; left: 0; bottom: 0; width: 100%; height: auto; filter: drop-shadow(0 10px 14px rgba(0, 0, 0, .35)); pointer-events: none; }
+.um-mond { position: absolute; left: 50%; bottom: 24%; height: 80%; transform: translateX(-50%); transition: bottom .4s, transform .2s; touch-action: pan-y; }
+.um-tisch.liegt .um-mond { bottom: 16%; height: 62%; }
+.um-mond > img { width: 100%; height: 100%; object-fit: contain; display: block; pointer-events: none; filter: drop-shadow(0 8px 10px rgba(0, 0, 0, .3)); }
+.um-mond.dreh1 { transform: translateX(-50%) perspective(500px) rotateY(90deg); }
+.um-mond.dreh2 { animation: um-dreh2 .2s both; }
+@keyframes um-dreh2 { from { transform: translateX(-50%) perspective(500px) rotateY(-90deg); } }
+.um-mond.nein { animation: wackel .4s; }
+.um-kleber { position: absolute; transform: translate(-50%, -50%); border-radius: 46% 54% 50% 50%; background: radial-gradient(circle at 34% 30%, #fff 0 10%, rgba(214, 232, 255, .96) 12%, rgba(158, 196, 238, .9) 62%, rgba(112, 160, 218, .75) 100%); box-shadow: 0 0 0 2px rgba(255, 255, 255, .7), 0 3px 6px rgba(20, 40, 90, .35); pointer-events: none; }
+.um-fleck { position: absolute; left: 50%; bottom: 20%; width: 46%; height: 11%; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(circle at 40% 35%, #fff 0 8%, rgba(190, 215, 245, .95) 12%, rgba(140, 180, 230, .85) 100%); pointer-events: none; animation: ein .2s both; }
+.um-zone { position: absolute; transform: translate(-50%, -50%); border-radius: 14px; border: 3px dashed rgba(244, 194, 67, .0); cursor: pointer; }
+.um-zone::before { content: ''; position: absolute; inset: -12px; }
+.um-zone.puls { animation: puls .6s 3; border-color: var(--senf); }
+.um-dreh { align-self: center; flex-direction: column; padding: 8px 18px; min-width: 130px; }
+.um-dreh svg { width: 28px; height: 28px; }
+.um-mond .ring { width: 54px; height: 54px; margin: -27px 0 0 -27px; }
+
+/* Was sieht die Raupe? */
+.sb-liste { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+.sb-liste li { display: flex; align-items: center; gap: 6px; background: rgba(255, 255, 255, .13); color: #fff; border-radius: 999px; padding: 6px 12px 6px 8px; font-size: 14.5px; font-weight: 700; line-height: 1.2; }
+.sb-liste li i { width: 16px; height: 16px; border-radius: 50%; border: 2.500px solid rgba(255, 255, 255, .6); flex: none; }
+.sb-liste li.da { background: var(--senf); color: var(--senf-tinte); }
+.sb-liste li.da i { background: var(--senf-tinte); border-color: var(--senf-tinte); box-shadow: inset 0 0 0 3px var(--senf); }
+.sb-liste .s-b, .sb-liste .s-r { color: inherit; }
+.sb-bild { position: relative; aspect-ratio: 3 / 2; border-radius: 12px; border: 4px solid #fff; box-shadow: 0 10px 22px rgba(0, 0, 0, .35); overflow: hidden; cursor: crosshair; }
+.sb-bild img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
+.sb-bild .ring.miss { width: 44px; height: 44px; margin: -22px 0 0 -22px; border-width: 4px; }
+.sb-ring { position: absolute; transform: translate(-50%, -50%); border: 4px solid var(--senf); border-radius: 16px; box-shadow: 0 0 0 3px rgba(244, 194, 67, .4), inset 0 0 0 2px rgba(255, 255, 255, .6); pointer-events: none; animation: ring .5s both; }
+.sb-ring.blink { animation: ring .5s both, puls .7s .5s 3; }
+
+/* Geheimschrift */
+.sp-zettel { align-self: center; width: min(100%, 320px); background: var(--papier-2); border-radius: 6px; padding: 18px 12px 20px; box-shadow: 0 4px 0 #D8CDB2, 0 14px 24px rgba(0, 0, 0, .35); transform: rotate(-1.5deg); }
+.sp-text { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.sp-text span { display: block; font-weight: 800; font-size: clamp(34px, 11vw, 46px); line-height: 1.1; letter-spacing: .1em; color: var(--tinte); transform: scaleX(-1); transition: transform .8s; }
+.sp-zettel.klar .sp-text span { transform: none; }
+.sp-opts { display: flex; flex-direction: column; gap: 8px; }
+.sp-o { background: var(--papier); color: var(--tinte); border-radius: 14px; padding: 12px 16px; font-weight: 800; font-size: 21px; letter-spacing: .06em; border: 3px solid transparent; box-shadow: 0 3px 0 #D8CDB2, 0 8px 14px rgba(0, 0, 0, .25); }
+.sp-o.an { border-color: var(--senf); background: #FFF6D6; }
+.sp-o.nein { animation: wackel .4s; }

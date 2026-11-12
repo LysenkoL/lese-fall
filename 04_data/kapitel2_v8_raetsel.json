@@ -1,0 +1,199 @@
+{
+  "_info": "Rätsel, Ermittlungsbrett und Fallkarte zu Kapitel 2 (Spuren 7–12), Konzept v8 (02_design/KONZEPT_v8.md). Texte ohne Silben; app/scripts/build-v8.ts setzt Silben. Positionen in Prozent der Bildbreite/-höhe. Bildnamen unter objekte/ und kinder/, die es noch nicht gibt, ersetzt app/src/v8/bilder.ts.",
+  "kapitel": 2,
+  "bild": "kapitel_2",
+  "vorspann": "Eine grüne Kiste. Ein blaues Tablett. Und ein Rätsel mit Löchern.",
+  "code": {
+    "wort": "NEST",
+    "buchstabe": "T",
+    "pos": 3
+  },
+  "fallkarte": {
+    "bild": "k2_s12",
+    "titel": "Das wissen wir jetzt",
+    "saetze": [
+      "Ben hat den Mond mit der weißen Seite nach oben auf das Tablett gelegt.",
+      "Auf dem Tablett darf sich jedes Kind Papier nehmen.",
+      "Oskar sagt: Ich habe einen weißen Kreis vom Tablett genommen."
+    ],
+    "frage": "Aber war es Milas Mond? Und was liegt unter dem Seidenpapier?",
+    "stempel": "KAPITEL 2 GELÖST"
+  },
+  "ausblick": "Oskar zieht das Seidenpapier weg. Auf dem Teller liegt etwas Gelbes mit drei braunen Löchern.",
+  "ui": {
+    "legen": "Aufs Tablett legen",
+    "ausDinge": "Was passt nicht? Tippe es an.",
+    "nochDing": "Gut! Aber da ist noch etwas."
+  },
+  "spuren": [
+    {
+      "spur": 7,
+      "bild": "k2_s7",
+      "haken": "Noch dreißig Minuten. Draußen schneidet noch immer jemand.",
+      "karte": {
+        "bild": "objekte/kiste_gruen",
+        "text": "Grüne Kiste: fertige Figuren. Blaues Tablett: Papier für alle.",
+        "staub": false
+      },
+      "fragenNeu": [
+        { "id": "schneider", "text": "Wer schneidet da draußen?" }
+      ],
+      "raetsel": {
+        "art": "sortieren",
+        "titel": "Zwei Kisten",
+        "text": "Alles liegt durcheinander. Fertige Figuren und Theatersachen kommen in die grüne Kiste. Papier zum Basteln kommt auf das blaue Tablett. Tippe eine Sache an und dann ihren Platz. Du kannst sie auch hinziehen.",
+        "ziele": [
+          { "id": "kiste", "bild": "objekte/kiste_gruen", "name": "Grüne Kiste", "unter": "fertige Sachen" },
+          { "id": "tablett", "bild": "objekte/tablett_leer", "name": "Blaues Tablett", "unter": "Papier für alle" }
+        ],
+        "dinge": [
+          { "id": "fuchs", "bild": "objekte/fuchs_puppe", "name": "Fuchs-Puppe", "ziel": "kiste", "warum": "Die Puppe ist fertig. Fertige Figuren kommen in die grüne Kiste." },
+          { "id": "papier", "bild": "objekte/papierstapel", "name": "Papierstapel", "ziel": "tablett", "warum": "Papier zum Basteln liegt auf dem blauen Tablett." },
+          { "id": "koenig", "bild": "objekte/koenig_puppe", "name": "König-Puppe", "ziel": "kiste", "warum": "Die Puppe ist fertig. Fertige Figuren kommen in die grüne Kiste." },
+          { "id": "mond", "bild": "objekte/mond_vorne", "name": "Milas Mond", "ziel": "kiste", "warum": "Der Mond ist fertig. Er gehört in die grüne Kiste. Auf dem Tablett lag er nur zufällig." },
+          { "id": "baum", "bild": "objekte/pappbaum", "name": "Pappbaum", "ziel": "kiste", "warum": "Der Baum gehört zum Theater. Er ist fertig und kommt in die grüne Kiste." },
+          { "id": "streifen", "bild": "objekte/papierstreifen_rot", "name": "Roter Streifen", "ziel": "tablett", "warum": "Ein Streifen Papier zum Basteln liegt auf dem blauen Tablett." }
+        ],
+        "erfolg": "Der Mond gehört in die grüne Kiste. Aber er lag auf dem Tablett. Dort darf sich jeder Papier nehmen."
+      }
+    },
+    {
+      "spur": 8,
+      "bild": "k2_s8",
+      "haken": "Ein gelber Mond, der sich als weißer Kreis tarnt. Draußen raschelt wieder Papier.",
+      "karte": {
+        "bild": "objekte/mond_hinten_feucht",
+        "text": "Milas Mond lag mit der weißen Seite oben. Der Kleber war noch nass.",
+        "staub": false
+      },
+      "raetsel": {
+        "art": "umdrehen",
+        "titel": "Wie lag der Mond?",
+        "text": "Ben hat den Mond aufs Tablett gelegt. Der Kleber war noch nass. Dreh den Mond um und leg ihn so aufs Tablett, wie Ben es getan hat.",
+        "vorne": "objekte/mond_vorne",
+        "hinten": "objekte/mond_hinten_feucht",
+        "tablett": "objekte/tablett_leer",
+        "ratio": 0.733,
+        "kleber": { "x": 52, "y": 29, "w": 34, "h": 20, "zeichnen": true },
+        "klebt": "Ups! Der nasse Kleber klebt am Tablett fest. Das ging schief.",
+        "frage2": "Und warum liegt er so? Tippe auf den nassen Kleber.",
+        "warum2": "Hier ist der Kleber. Er ist noch nass und darf das Tablett nicht berühren.",
+        "erfolg": "Die weiße Seite lag oben. Von oben sah der Mond weiß aus, nicht gelb."
+      }
+    },
+    {
+      "spur": 9,
+      "bild": "k2_s9",
+      "haken": "Was liegt unter dem Seidenpapier?",
+      "karte": {
+        "bild": "objekte/teller_zugedeckt",
+        "text": "Oskar hat einen Teller zugedeckt. Was darauf liegt, sieht man nicht.",
+        "staub": true
+      },
+      "fragenNeu": [
+        { "id": "seide", "text": "Was liegt unter dem Seidenpapier?" }
+      ],
+      "raetsel": {
+        "art": "suchbild",
+        "titel": "Was sieht die Raupe?",
+        "text": "Die Raupe schaut aus dem Fenster. Finde alles auf der Liste. Tippe es im Bild an.",
+        "bild": "k2_s9",
+        "dinge": [
+          { "id": "maus", "name": "die Maus mit dem roten Herz", "x": 75.5, "y": 47, "w": 11, "h": 20, "sagt": "Das ist Oskars Papiermaus." },
+          { "id": "seide", "name": "das Seidenpapier", "x": 64.5, "y": 48, "w": 15, "h": 20, "sagt": "Darunter steht ein Teller. Was darauf liegt, sieht man nicht." },
+          { "id": "kleber", "name": "die Klebeflasche", "x": 52.5, "y": 43, "w": 8, "h": 14, "sagt": "Oskar hat die Klebeflasche in der Hand." },
+          { "id": "gras", "name": "das Papiergras", "x": 72, "y": 56, "w": 8, "h": 7, "sagt": "Aus so grünem Papier war das Frühstück der Raupe." }
+        ],
+        "erfolg": "Alles gefunden. Nur eines sieht die Raupe nicht: was unter dem Seidenpapier liegt."
+      }
+    },
+    {
+      "spur": 10,
+      "bild": "k2_s10",
+      "haken": "Noch fünfundzwanzig Minuten. Oskar läuft schon zur Tür.",
+      "karte": {
+        "bild": "objekte/tablett_leer",
+        "text": "Oskar sagt: Ich habe einen weißen Kreis vom Tablett genommen.",
+        "staub": false
+      },
+      "fragenNeu": [
+        { "id": "kreis", "text": "War der weiße Kreis Milas Mond?" }
+      ],
+      "raetsel": {
+        "art": "spiegel",
+        "titel": "Geheimschrift",
+        "text": "Oskar schreibt wie ein Geheimagent. Was steht auf seinem Zettel?",
+        "zettel": "FEST FÜR MAUS",
+        "lesungen": ["FEST FÜR MAUS", "REST FÜR MAUS", "FEST FÜR HAUS"],
+        "richtig": 0,
+        "warum": "Im Spiegel steht alles verkehrt herum. Lies von rechts nach links.",
+        "erfolg": "Fest für Maus! Das ist die Einladung für Oskars Maus."
+      }
+    },
+    {
+      "spur": 11,
+      "bild": "k2_s11",
+      "haken": "Neben dem Teller liegt etwas. Etwas Gelbes. Viele kleine Stücke.",
+      "karte": {
+        "bild": "kinder/ida",
+        "text": "Ida hat eine Schere und blaues Papier. Sie bastelt eine Krone.",
+        "staub": false
+      },
+      "raetsel": {
+        "art": "versteckt",
+        "titel": "Im Laub versteckt",
+        "text": "Das Laub raschelt und raschelt. Zwischen den Blättern versteckt sich ein Buchstabe. Welcher?",
+        "buchstabe": "B",
+        "optionen": ["B", "R", "P", "D"],
+        "winkel": 55,
+        "farbe": "#3E7B2A",
+        "muster": "laub",
+        "erfolg": "B wie Baum!",
+        "stoerer": 0
+      }
+    },
+    {
+      "spur": 12,
+      "bild": "k2_s12",
+      "haken": "Drei … zwei … eins …",
+      "karte": {
+        "bild": "objekte/gelbe_schnipsel",
+        "text": "Neben dem Teller: eine Schere und gelbe Schnipsel. Niemand hat gesehen, was geschnitten wurde.",
+        "staub": false
+      },
+      "fragenWeg": [],
+      "schluessel": true,
+      "raetsel": {
+        "art": "ausschluss",
+        "titel": "Oskars Rätsel",
+        "text": "Oskar hat ein Rätsel. Lies jeden Hinweis und tippe alles an, was nicht passt.",
+        "rausText": "ausDinge",
+        "nochText": "nochDing",
+        "kandidaten": [
+          { "id": "kaese", "name": "Käse", "bild": "objekte/raetsel_kaese" },
+          { "id": "keks", "name": "Schoko-Keks", "bild": "objekte/raetsel_keks" },
+          { "id": "sonne", "name": "Sonne", "bild": "objekte/raetsel_sonne" },
+          { "id": "ball", "name": "Fußball", "bild": "objekte/raetsel_ball" },
+          { "id": "zitrone", "name": "Zitrone", "bild": "objekte/raetsel_zitrone" },
+          { "id": "schwamm", "name": "Schwamm", "bild": "objekte/raetsel_schwamm" }
+        ],
+        "hinweise": [
+          { "text": "Es ist gelb.", "raus": ["keks", "ball"] },
+          { "text": "Es hat Löcher.", "raus": ["sonne", "zitrone"] },
+          { "text": "Es ist rund wie ein Kreis.", "raus": ["schwamm"] }
+        ],
+        "loesung": "kaese",
+        "stempel": "DIE LÖSUNG: KÄSE",
+        "schluss": {
+          "frage": "Was wissen wir jetzt sicher?",
+          "optionen": [
+            { "text": "Oskar sagt: Ich habe einen weißen Kreis vom Tablett genommen.", "sicher": true },
+            { "text": "Der weiße Kreis war Milas Mond.", "sicher": false, "tipp": "Das ist erst ein Verdacht. Den Kreis hat noch niemand gesehen." },
+            { "text": "Oskar hat Milas Mond zerschnitten.", "sicher": false, "tipp": "Das ist erst ein Verdacht. Wir sehen eine Schere und Schnipsel. Aber niemand hat gesehen, was geschnitten wurde." }
+          ]
+        },
+        "erfolg": "Genau. Sicher ist nur, was Oskar gesagt hat. Ob es Milas Mond war, weiß noch niemand."
+      }
+    }
+  ]
+}

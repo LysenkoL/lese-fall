@@ -1,18 +1,18 @@
 /**
- * Lese-Fall · Vorschau „v8“: Kapitel 1 mit Rätseln nach dem Text, Ermittlungsbrett und Fallkarte.
+ * Lese-Fall · Vorschau „v8“: Kapitel 1–2 mit Rätseln nach dem Text, Ermittlungsbrett und Fallkarte.
  * Eigener Einstieg (v8.html), eigener Speicherstand (lesefall.v8). Alte App und v7 bleiben unverändert.
  */
 import { tresorSvg } from './zeichnen.ts';
 import './v8.css';
 import DATA_ from '../../../04_data/buch1_v8.json';
 import { T } from '../text';
-import { img } from '../data';
+import { bildUrl as img } from './bilder';
 import { staub } from './staub';
 import * as R from './raetsel';
 
 const D: any = structuredClone(DATA_);
 /** Texte der Daten einmal in HTML mit Silben verwandeln (gleiche Schlüssel wie in build-v8.ts) */
-const TEXT = new Set(['text', 'titel', 'haken', 'frage', 'aufloesung', 'warum', 'tipp', 'erfolg', 'unklarTipp', 'vorspann', 'ausblick', 'name', 'saetze']);
+const TEXT = new Set(['text', 'titel', 'haken', 'frage', 'aufloesung', 'warum', 'tipp', 'erfolg', 'unklarTipp', 'vorspann', 'ausblick', 'name', 'saetze', 'warum2', 'unter', 'sagt', 'klebt', 'frage2']);
 function html(v: any, key = ''): any {
   if (typeof v === 'string') return TEXT.has(key) ? T(v) : v;
   if (Array.isArray(v)) return v.map((x) => html(x, key));
@@ -42,7 +42,13 @@ const stand: Stand = (() => { try { const r = localStorage.getItem(KEY); if (r) 
 const speichern = () => { try { localStorage.setItem(KEY, JSON.stringify(stand)); } catch { /* egal */ } };
 
 const SP = (n: number) => D.spuren[n - 1];
-const KAP = D.kapitel[0];
+const kapOf = (n: number) => D.kapitel[SP(n).kap - 1];
+const kap = () => kapOf(stand.spur);
+/** letzte Spur ihres Kapitels? Dann folgt gleich die Fallkarte */
+const letzteSpur = (n: number) => !D.spuren[n] || D.spuren[n].kap !== SP(n).kap;
+const kapSpuren = (k: number): number[] => D.spuren.filter((s: any) => s.kap === k).map((s: any) => s.nr);
+/** Buchstabe von Kapitel c ist verdient: Fallkarte gelöst (bei uns schon beim Ausblick) oder ein späteres Kapitel läuft */
+const verdient = (c: number) => { const cur = SP(stand.spur).kap; return c < cur || (c === cur && stand.weiter === 'ausblick'); };
 const perlen = () => stand.fertig.length * 2 + stand.tippPerle;
 /** Schritte einer Spur: Lesen → [Tipp-Auflösung] → Rätsel → Brett → [Tipp-Frage] → Haken */
 type Step = 'lesen' | 'tippAufl' | 'raetsel' | 'brett' | 'tippFrage' | 'haken';
@@ -51,7 +57,7 @@ function steps(n: number): Step[] {
   if (n === 2 && SP(1).tipp) out.push('tippAufl');
   out.push('raetsel', 'brett');
   if (SP(n).tipp) out.push('tippFrage');
-  if (SP(n).spur !== 6) out.push('haken'); // nach der letzten Spur des Kapitels folgt gleich die Fallkarte
+  if (!letzteSpur(n)) out.push('haken'); // nach der letzten Spur des Kapitels folgt gleich die Fallkarte
   return out;
 }
 
@@ -72,7 +78,7 @@ const modus = (m: string) => { app.dataset.m = m; buehne.ontouchstart = buehne.o
 function kopf() {
   $('.kopf').hidden = stand.view !== 'spur';
   $('#kT1').textContent = `Spur ${SP(stand.spur).spur}`;
-  $('#kT2').innerHTML = `${UI.kapitel} ${KAP.nr} · ${KAP.titelH}`;
+  $('#kT2').innerHTML = `${UI.kapitel} ${kap().nr} · ${kap().titelH}`;
   $('#kPerl').textContent = String(perlen());
   document.documentElement.style.setProperty('--fs', stand.fs + 'px');
   document.documentElement.classList.toggle('ohne-silben', !stand.silben);
@@ -83,7 +89,7 @@ const nurKnopf = (a: string, html: string, f: () => void) => { fuss.innerHTML = 
 const klick = (a: string, f: () => void) => { fuss.onclick = (e) => { if ((e.target as HTMLElement).closest(`[data-a="${a}"]`)) f(); }; };
 
 R.init({ UI, img, fig, fuss, summ, staub, mischen: (ids) => {
-  if (stand.mix.length !== ids.length) { stand.mix = [...ids].sort(() => Math.random() - 0.5); speichern(); }
+  if (stand.mix.length !== ids.length || !ids.every((x) => stand.mix.includes(x))) { stand.mix = [...ids].sort(() => Math.random() - 0.5); speichern(); }
   return stand.mix;
 } });
 let hookStaub: (() => void) | null = null;
@@ -112,7 +118,7 @@ function weiter() {
   const n = steps(stand.spur).length;
   stand.blatt = 0;
   if (stand.i + 1 < n) stand.i++;
-  else if (stand.spur === 6) stand.view = 'fallkarte';
+  else if (letzteSpur(stand.spur)) stand.view = 'fallkarte';
   else { stand.spur++; stand.i = 0; }
   zeige();
 }
@@ -125,7 +131,7 @@ function titel() {
   fuss.innerHTML = `<div class="fz">${knopf('start', angefangen ? UI.weiterFall : UI.start)}${angefangen ? knopf('neu', UI.neuStart, 'still') : ''}</div>`;
   fuss.onclick = (e) => {
     const a = (e.target as HTMLElement).closest<HTMLElement>('[data-a]')?.dataset.a;
-    if (a === 'start') { stand.view = angefangen ? (['spur', 'fallkarte', 'ausblick'].includes(stand.weiter) ? stand.weiter : 'spur') : stand.intro ? 'kapitel' : 'intro'; zeige(); }
+    if (a === 'start') { stand.view = angefangen ? (['spur', 'kapitel', 'fallkarte', 'ausblick'].includes(stand.weiter) ? stand.weiter : 'spur') : stand.intro ? 'kapitel' : 'intro'; zeige(); }
     else if (a === 'neu') neuStart();
   };
 }
@@ -134,7 +140,7 @@ function intro() {
   let k = 0;
   const mal = () => {
     const s = D.intro[k], letzt = k === D.intro.length - 1;
-    buehne.innerHTML = `<section class="intro"><div class="lampe"></div><div class="ib ${s.bild === 'tresor' ? 'tresor' : s.bild.includes('/') ? 'frei' : 'foto'}">${s.bild === 'tresor' ? tresorSvg(KAP.code.wort.length) : `<img src="${fig(s.bild)}" alt="">`}</div><p>${s.text}</p><div class="pkt hell">${D.intro.map((_: any, i: number) => `<i class="${i === k ? 'an' : ''}"></i>`).join('')}</div></section>`;
+    buehne.innerHTML = `<section class="intro"><div class="lampe"></div><div class="ib ${s.bild === 'tresor' ? 'tresor' : s.bild.includes('/') ? 'frei' : 'foto'}">${s.bild === 'tresor' ? tresorSvg(D.kapitel[0].code.wort.length) : `<img src="${fig(s.bild)}" alt="">`}</div><p>${s.text}</p><div class="pkt hell">${D.intro.map((_: any, i: number) => `<i class="${i === k ? 'an' : ''}"></i>`).join('')}</div></section>`;
     fuss.innerHTML = `<div class="fz">${knopf('w', letzt ? UI.los : UI.weiter)}<button class="leise" data-a="skip" ${letzt ? 'style="visibility:hidden"' : ''}>${UI.ueberspringen}</button></div>`;
   };
   mal();
@@ -148,7 +154,7 @@ function intro() {
 }
 function kapitelKarte() {
   modus('titel');
-  buehne.innerHTML = `<section class="kapk"><div class="lampe"></div><span class="tab hell">${UI.kapitel} ${KAP.nr}</span><h1>${KAP.titelH}</h1><img class="vig" src="${img(KAP.bild)}" alt=""><p>${KAP.vorspann}</p></section>`;
+  buehne.innerHTML = `<section class="kapk"><div class="lampe"></div><span class="tab hell">${UI.kapitel} ${kap().nr}</span><h1>${kap().titelH}</h1><img class="vig" src="${img(kap().bild)}" alt=""><p>${kap().vorspann}</p></section>`;
   nurKnopf('w', knopf('w', UI.los), () => { stand.view = 'spur'; zeige(); });
 }
 
@@ -257,7 +263,7 @@ function tippAufl() {
 }
 
 /* ---------- Rätsel ---------- */
-const RAETSEL: Record<string, (r: HTMLElement, d: any, f: () => void) => void> = { buchstaben: R.buchstaben, unterschiede: R.unterschiede, versteckt: R.versteckt, merkmale: R.merkmale, reihe: R.reihe, ausschluss: R.ausschluss };
+const RAETSEL: Record<string, (r: HTMLElement, d: any, f: () => void) => void> = { buchstaben: R.buchstaben, unterschiede: R.unterschiede, versteckt: R.versteckt, merkmale: R.merkmale, reihe: R.reihe, ausschluss: R.ausschluss, sortieren: R.sortieren, umdrehen: R.umdrehen, suchbild: R.suchbild, spiegel: R.spiegel };
 function raetsel() {
   modus('zug');
   const z = SP(stand.spur).raetsel;
@@ -280,25 +286,27 @@ function bildKarte(k: any) {
 /** Spurenkarten (3×2), offene Fragen (2×2) und Code. `bis` = höchste gezeigte Spur; `neu` = Spur, deren Karte unter Staub liegt */
 /** Code-Felder; Buchstaben erst, wenn die Fallkarte gelöst ist */
 function codeFelder() {
-  const da = stand.weiter === 'ausblick';
-  return KAP.code.wort.split('').map((c: string, i: number) => `<i>${da && i === KAP.code.pos ? KAP.code.buchstabe : ''}</i>`).join('');
+  const felder: string[] = [...D.kapitel[0].code.wort].map(() => '');
+  for (const k of D.kapitel) if (verdient(k.nr)) felder[k.code.pos] = k.code.buchstabe;
+  return felder.map((c) => `<i>${c}</i>`).join('');
 }
 function tresorInfo(zurueck: () => void) {
-  ueber.innerHTML = `<div class="schl mitte"><div class="kgross tresorinfo">${tresorSvg(KAP.code.wort.length)}<h3>${UI.tresor}</h3><p>${UI.tresorInfo}</p><div class="wort">${codeFelder()}</div><button class="kn haupt" data-a="zu"><span>${UI.fertig}</span></button></div></div>`;
+  ueber.innerHTML = `<div class="schl mitte"><div class="kgross tresorinfo">${tresorSvg(D.kapitel[0].code.wort.length)}<h3>${UI.tresor}</h3><p>${UI.tresorInfo}</p><div class="wort">${codeFelder()}</div><button class="kn haupt" data-a="zu"><span>${UI.fertig}</span></button></div></div>`;
   ueber.onclick = (e) => { const t = e.target as HTMLElement; if (t.closest('[data-a="zu"]') || t.classList.contains('schl')) zurueck(); };
 }
 function brettHtml(bis: number, neu = 0, staubig = false) {
-  const slots = [1, 2, 3, 4, 5, 6].map((n) => {
+  const liste = kapSpuren(SP(bis).kap);
+  const slots = liste.map((n) => {
     if (n > bis || !stand.fertig.includes(n)) return `<div class="bkarte leer"></div>`;
     const k = SP(n).karte;
     return `<div class="bkarte${n === neu ? (staubig ? ' neu' : ' fall') : ''}" data-k="${n}"><div class="bk-bild">${bildKarte(k)}</div><p>${k.text}</p></div>`;
   }).join('');
   const fragen: { id: string; text: string; n: number }[] = [];
-  for (let n = 1; n <= bis; n++) SP(n).fragenNeu.forEach((f: any) => fragen.push({ ...f, n }));
+  for (const n of liste) if (n <= bis) SP(n).fragenNeu.forEach((f: any) => fragen.push({ ...f, n }));
   const weg = new Set<string>(SP(bis).fragenWeg);
   const zettel = fragen.filter((f) => !stand.geklaert.includes(f.id)).map((f) => `<div class="zettel fr${f.n === neu && staubig ? ' versteckt' : ''}${neu && weg.has(f.id) ? ' wackelt' : ''}" data-q="${f.id}"><span>${f.text}</span>${f.n === neu ? `<em class="neu">${UI.neu}</em>` : ''}</div>`).join('');
   const code = codeFelder();
-  return `<div class="bgrid">${slots}</div><h3>${UI.fragen}</h3><div class="fragen">${zettel}</div><div class="codez" data-a="code" role="button" tabindex="0"><span class="tresor-mini">${tresorSvg(KAP.code.wort.length)}</span><span>${UI.code}</span><div class="wort">${code}</div></div>`;
+  return `<div class="bgrid">${slots}</div><h3>${UI.fragen}</h3><div class="fragen">${zettel}</div><div class="codez" data-a="code" role="button" tabindex="0"><span class="tresor-mini">${tresorSvg(D.kapitel[0].code.wort.length)}</span><span>${UI.code}</span><div class="wort">${code}</div></div>`;
 }
 function brett() {
   modus('brett');
@@ -341,8 +349,9 @@ function karteGross(n: number) {
   ueber.onclick = () => { ueber.innerHTML = ''; };
 }
 function brettOffen() {
-  const bis = Math.max(0, ...stand.fertig);
-  ueber.innerHTML = `<div class="schl"><section class="brett ueberl"><div class="ak"><span class="tab hell">${UI.brett}</span><button class="kb" data-a="zu" aria-label="Schließen">${IC.zu}</button></div>${brettHtml(Math.max(1, bis))}</section></div>`;
+  const liste = kapSpuren(SP(stand.spur).kap);
+  const bis = Math.max(liste[0], ...stand.fertig.filter((n) => liste.includes(n)));
+  ueber.innerHTML = `<div class="schl"><section class="brett ueberl"><div class="ak"><span class="tab hell">${UI.brett}</span><button class="kb" data-a="zu" aria-label="Schließen">${IC.zu}</button></div>${brettHtml(bis)}</section></div>`;
   ueber.onclick = (e) => {
     const t = e.target as HTMLElement;
     if (t.closest('[data-a="zu"]') || t.classList.contains('schl')) { ueber.innerHTML = ''; return; }
@@ -357,14 +366,14 @@ function haken() {
   modus('haken');
   const sp = SP(stand.spur);
   buehne.innerHTML = `<section class="haken"><div class="lampe"></div><img class="hr" src="${fig('raupe/staunt')}" alt=""><p>${sp.haken}</p></section>`;
-  nurKnopf('weiter', knopf('weiter', stand.spur === 6 ? UI.weiter : `${UI.weiterlesen} ›`), weiter);
+  nurKnopf('weiter', knopf('weiter', letzteSpur(stand.spur) ? UI.weiter : `${UI.weiterlesen} ›`), weiter);
 }
 
 /* ---------- Fallkarte, Ausblick ---------- */
 function fallkarte() {
   modus('zug');
-  const f = KAP.fallkarte, c = KAP.code;
-  buehne.innerHTML = `<section class="zug fall"><div class="lampe"></div><article class="fk"><span class="tab">${UI.kapitel} ${KAP.nr}</span><h2>${f.titel}</h2><figure class="foto"><img src="${img(f.bild)}" alt=""></figure><ul>${f.saetze.map((s: string) => `<li>${s}</li>`).join('')}</ul><p class="fk-frage">${f.frage}</p></article><div class="codez hell" hidden><span>${UI.code}</span><div class="wort">${c.wort.split('').map((_: string, i: number) => `<i class="${i === c.pos ? 'fall' : ''}">${i === c.pos ? c.buchstabe : ''}</i>`).join('')}</div></div></section>`;
+  const f = kap().fallkarte, c = kap().code;
+  buehne.innerHTML = `<section class="zug fall"><div class="lampe"></div><article class="fk"><span class="tab">${UI.kapitel} ${kap().nr}</span><h2>${f.titel}</h2><figure class="foto"><img src="${img(f.bild)}" alt=""></figure><ul>${f.saetze.map((s: string) => `<li>${s}</li>`).join('')}</ul><p class="fk-frage">${f.frage}</p></article><div class="codez hell" hidden><span>${UI.code}</span><div class="wort">${c.wort.split('').map((_: string, i: number) => `<i class="${i === c.pos ? 'fall' : ''}">${i === c.pos ? c.buchstabe : (D.kapitel.find((k: any) => k.code.pos === i && verdient(k.nr))?.code.buchstabe ?? '')}</i>`).join('')}</div></div></section>`;
   const sec = $('.fall'), fk = $('.fk', sec);
   const stempelt = () => {
     fk.classList.add('stempelziel');
@@ -383,8 +392,13 @@ function fallkarte() {
 }
 function ausblick() {
   modus('haken');
-  buehne.innerHTML = `<section class="haken"><div class="lampe"></div><img class="hr" src="${fig('raupe/staunt')}" alt=""><p>${KAP.ausblick}</p><p class="forts">${UI.fortsetzung}</p></section>`;
-  nurKnopf('neu', knopf('neu', UI.neuStart, 'still'), neuStart);
+  const k = kap(), nxt = D.kapitel[k.nr];
+  buehne.innerHTML = `<section class="haken"><div class="lampe"></div><img class="hr" src="${fig('raupe/staunt')}" alt=""><p>${k.ausblick}</p>${nxt ? '' : `<p class="forts">${UI.fortsetzung}</p>`}</section>`;
+  if (!nxt) return nurKnopf('neu', knopf('neu', UI.neuStart, 'still'), neuStart);
+  nurKnopf('naechstes', knopf('naechstes', `${UI.naechstesKapitel} ${nxt.nr} ›`), () => {
+    Object.assign(stand, { spur: kapSpuren(nxt.nr)[0], i: 0, blatt: 0, mix: [], view: 'kapitel' });
+    zeige();
+  });
 }
 /** Fragt erst nach: ein versehentlicher Tipp darf den Fall nicht löschen. */
 function neuStart() {
