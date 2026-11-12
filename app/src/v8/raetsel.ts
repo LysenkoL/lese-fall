@@ -1265,7 +1265,7 @@ export function astgabel(r: HTMLElement, d: Daten, fertig: () => void) {
     const nachsehen = () => {
       if (hinOffen) return;
       hinOffen = true;
-      zi.insertAdjacentHTML('afterbegin', `<div class="as-hin ab-hin"><span class="as-z">${d.erinnerung.text}</span><p>${d.erinnerung.absatz}</p></div>`);
+      zi.insertAdjacentHTML('beforeend', `<div class="as-hin ab-hin"><span class="as-z">${d.erinnerung.text}</span><p>${d.erinnerung.absatz}</p></div>`);
       unten('');
     };
     box.onclick = (e) => {

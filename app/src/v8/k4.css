@@ -14,7 +14,16 @@
 .ab-g.nein { animation: wackel .4s; }
 .ab-erinnerung ul { margin: 4px 0 0; padding: 0 0 0 20px; font-size: 16px; font-weight: 800; line-height: 1.3; }
 .ab-erinnerung .s-b, .ab-erinnerung .s-r { color: inherit; }
-.ab-bild .stempel.abdruck { font-size: 17px; width: 78%; }
+.ab-bild .stempel.abdruck { font-size: clamp(11px, 3.2vw, 15px); width: 42%; padding: 4px 6px; }
+.ab-bild { cursor: pointer; }
+.ab-bild .ring { border-width: 4px; }
+.ab-ek { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.ab-e { min-height: 78px; padding: 8px 10px; border-radius: 14px; border: 4px solid transparent; background: var(--papier); color: var(--tinte); font: 800 17px/1.25 inherit; font-family: inherit; text-align: center; box-shadow: 0 3px 0 #D8CDB2, 0 8px 14px rgba(0, 0, 0, .3); cursor: pointer; }
+.ab-e .s-b, .ab-e .s-r { color: inherit; }
+.ab-e.ja { border-color: #7ACB62; background: #EAF8DF; }
+.ab-e.falsch { border-color: var(--rot); opacity: .6; }
+.ab-e.nein { animation: wackel .4s; }
+.ab-hin { margin-bottom: 8px; }
 
 /* ---------- Spur 22: Faden ziehen ---------- */
 .fd-zaehl { display: flex; justify-content: center; min-height: 20px; }

@@ -3472,55 +3472,76 @@
       "id": "g1",
       "x": 30,
       "y": 72,
-      "r": 8.5,
-      "name": "Ast|ga|bel 1"
+      "r": 11,
+      "name": "Ast|ga|bel 1",
+      "nicht": "Hier hängt ein Vo|gel|haus. Da|von stand nichts im Text."
      },
      {
       "id": "g2",
       "x": 14.4,
       "y": 45,
-      "r": 8.5,
-      "name": "Ast|ga|bel 2"
+      "r": 11,
+      "name": "Ast|ga|bel 2",
+      "nicht": "Hier hängt ei|ne Schau|kel. Da|von stand nichts im Text."
      },
      {
       "id": "g3",
       "x": 73.9,
       "y": 40.8,
-      "r": 8.5,
-      "name": "Ast|ga|bel 3"
+      "r": 11,
+      "name": "Ast|ga|bel 3",
+      "nicht": "Hier ist es rich|tig."
      },
      {
       "id": "g4",
       "x": 45,
       "y": 14.2,
-      "r": 8.5,
-      "name": "Ast|ga|bel 4"
+      "r": 11,
+      "name": "Ast|ga|bel 4",
+      "nicht": "Hier lie|gen tro|cke|ne brau|ne Blät|ter. Das ist ganz o|ben, nicht un|ter dem Fens|ter."
      },
      {
       "id": "g5",
       "x": 90,
       "y": 65.8,
-      "r": 8.5,
-      "name": "Ast|ga|bel 5"
+      "r": 11,
+      "name": "Ast|ga|bel 5",
+      "nicht": "Hier ist ein gro|ßes Ast|loch. Da|von stand nichts im Text."
      }
     ],
     "richtig": "g3",
-    "frage": "Wel|che Ast|ga|bel passt zum Text? Tip|pe sie an. Denk da|ran, was du ge|le|sen hast.",
-    "tipp": "Lies noch ein|mal in der Ge|schich|te: Wo ist der Vo|gel ge|lan|det? Wie ste|hen die Zwei|ge dort?",
+    "frage": "Wo hängt der Mond? Tip|pe im Baum auf den rich|ti|gen Ast.",
     "erinnerung": {
      "text": "Das stand im Text:",
-     "zeilen": [
-      {
-       "text": "Der Vo|gel lan|det in der Ast|ga|bel un|ter dem Fens|ter."
-      },
-      {
-       "text": "Dort ste|hen zwei dün|ne Zwei|ge wie ein V."
-      }
-     ]
+     "absatz": "Er lan|det in der Ast|ga|bel un|ter dem Fens|ter. Dort ste|hen zwei dün|ne Zwei|ge wie ein V."
     },
     "warum": "Nur die|se Ast|ga|bel liegt un|ter dem Fens|ter. Und nur hier ste|hen zwei dün|ne Zwei|ge wie ein V.",
     "stempel": "HIER HÄNGT ER",
-    "erfolg": "Hier hängt der Mond! Un|ter dem Fens|ter, zwi|schen den zwei dün|nen Zwei|gen."
+    "erfolg": "Hier hängt der Mond! Un|ter dem Fens|ter, zwi|schen den zwei dün|nen Zwei|gen.",
+    "start": "Der Baum hat vie|le Äs|te. Tip|pe da|hin, wo du den Mond ver|mu|test.",
+    "erinnern": {
+     "frage": "Wel|cher Ast? Was weißt du noch?",
+     "start": "Das Wort AST reicht nicht. Wäh|le die zwei Kar|ten, die zum Text pas|sen.",
+     "karten": [
+      {
+       "text": "Un|ter dem Fens|ter",
+       "ok": true
+      },
+      {
+       "text": "Zwei dün|ne Zwei|ge wie ein V",
+       "ok": true
+      },
+      {
+       "text": "Ganz o|ben im Baum"
+      },
+      {
+       "text": "Beim Vo|gel|haus"
+      }
+     ],
+     "nein": "Das stand nicht im Text. Denk an den Vogel und das Fenster.",
+     "ok": "Ge|nau! Der Ast liegt un|ter dem Fens|ter, und dort ste|hen zwei dün|ne Zwei|ge wie ein V. Jetzt such ihn im Baum."
+    },
+    "nachsehen": "Im Text nach|se|hen"
    },
    "schluessel": true
   },

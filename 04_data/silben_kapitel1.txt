@@ -1543,3 +1543,11 @@ ge|hol|fen
 ur|kun|de
 dan|ke
 de|tek|ti|vin
+# neu für v8 (ungeprüft)
+vo|gel|haus
+schau|kel
+tro|cke|ne
+gro|ßes
+ast|loch
+äs|te
+da|hin

@@ -263,9 +263,15 @@ const mitte = async (p, s) => { const r = await (await p.$(s)).boundingBox(); re
   await sleep(600);
   pruef((await p.$$('.ab-wort i.da')).length === 3, 'Astgabel: die drei Buchstaben stehen im Wort');
   await tipp('#fuss [data-a="weiter"]'); await sleep(400);
-  await tipp(`.ab-g[data-g="${z19.gabeln.find((g) => g.id !== z19.richtig).id}"]`); await sleep(400);
-  pruef(!!(await p.$('.ab-erinnerung')), 'Astgabel: nach dem ersten Fehler erinnert ein Kasten an den Text');
-  await tipp(`.ab-g[data-g="${z19.richtig}"]`); await sleep(900);
+  for (const [i, c] of z19.erinnern.karten.entries()) if (c.ok) await tipp(`.ab-e[data-i="${i}"]`);
+  await sleep(2000);
+  const ab = await (await p.$('.ab-bild')).boundingBox();
+  const gt = (g) => p.touchscreen.tap(ab.x + ab.width * g.x / 100, ab.y + ab.height * g.y / 100);
+  await gt(z19.gabeln.find((g) => g.id !== z19.richtig)); await sleep(400);
+  pruef(!!(await p.$('#fuss [data-a="nachsehen"]')) && !(await p.$('.ab-hin')), 'Astgabel: nach dem ersten Fehler erscheint der Knopf „Im Text nachsehen“, der Absatz noch nicht');
+  await tipp('#fuss [data-a="nachsehen"]'); await sleep(300);
+  pruef(!!(await p.$('.ab-hin')), 'Astgabel: Knopf zeigt den Absatz');
+  await gt(z19.gabeln.find((g) => g.id === z19.richtig)); await sleep(1500);
   pruef(!!(await p.$('#fuss [data-a="stempeln"]')), 'Astgabel: richtige Gabel, der Stempel kommt');
   // Spur 22: Knopf gedrückt halten, wenn die Maus springt (Berührung)
   await zustand(22, 1);

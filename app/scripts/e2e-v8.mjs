@@ -286,11 +286,24 @@ async function raetsel(spur, z) {
     }
     await sleep(500); await S(n + '_wort');
     if ((await p.$$('.ab-wort i.da')).length !== z.wort.length) fehler.push('Astgabel: nicht alle Buchstaben des Wortes stehen da');
-    await klick('#fuss [data-a="weiter"]'); await sleep(400); await S(n + '_gabeln');
-    const falsch = z.gabeln.find((g) => g.id !== z.richtig).id;
-    await klick(`.ab-g[data-g="${falsch}"]`); await sleep(300); await S(n + '_gabel_falsch'); await sleep(400);
-    await klick(`.ab-g[data-g="${z.richtig}"]`); await sleep(900); await S(n + '_gabel_richtig');
-    await klick('#fuss [data-a="stempeln"]'); await sleep(800);
+    await klick('#fuss [data-a="weiter"]'); await sleep(400); await S(n + '_erinnern');
+    const falschK = z.erinnern.karten.findIndex((c) => !c.ok);
+    await klick(`.ab-e[data-i="${falschK}"]`); await sleep(300);
+    for (const [i, c] of z.erinnern.karten.entries()) if (c.ok) await klick(`.ab-e[data-i="${i}"]`);
+    await sleep(2000); await S(n + '_gabeln');
+    if (await p.$('.ab-g, .ab-bild b')) fehler.push('Astgabel: Kreise oder Nummern auf dem Bild');
+    if (await p.$('.ab-hin')) fehler.push('Astgabel: Text-Hinweis schon vor dem ersten Fehler sichtbar');
+    const bb = await (await p.$('.ab-bild')).boundingBox();
+    const at = (g) => p.mouse.click(bb.x + bb.width * g.x / 100, bb.y + bb.height * g.y / 100);
+    await p.mouse.click(bb.x + bb.width * 0.5, bb.y + bb.height * 0.95); await sleep(200);
+    if (await p.$('#fuss [data-a="nachsehen"]')) fehler.push('Astgabel: Tipp daneben zählt als Fehler');
+    const gf = z.gabeln.find((g) => g.id !== z.richtig), gr = z.gabeln.find((g) => g.id === z.richtig);
+    await at(gf); await sleep(400); await S(n + '_gabel_falsch');
+    await klick('#fuss [data-a="nachsehen"]'); await sleep(300); await S(n + '_nachgesehen');
+    await at(gr); await sleep(1200); await S(n + '_gabel_richtig');
+    await klick('#fuss [data-a="stempeln"]'); await sleep(900); await S(n + '_stempel');
+    const sp = await ev(() => { const b = document.querySelector('.ab-bild').getBoundingClientRect(), s = document.querySelector('.ab-bild .stempel').getBoundingClientRect(); return [(s.left + s.width / 2 - b.left) / b.width * 100, (s.top + s.height / 2 - b.top) / b.height * 100, s.left >= b.left - 1 && s.right <= b.right + 1]; });
+    if (Math.hypot(sp[0] - gr.x, sp[1] - gr.y) > 5 || !sp[2]) fehler.push(`Astgabel: Stempel liegt nicht auf der Gabel (${sp.map((x) => +x || x).join(', ')})`);
   } else if (z.art === 'faden') {
     await S(n + '_start');
     const k = await (await p.$('.fd-knopf')).boundingBox();
