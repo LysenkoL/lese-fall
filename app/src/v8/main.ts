@@ -450,11 +450,13 @@ function fallkarte() {
     fk.insertAdjacentHTML('beforeend', `<b class="stempel abdruck">${f.stempel}</b>`);
     summ(40);
     const cz = $('.codez', sec);
+    cz.classList.add('zu');
     cz.hidden = false;
     cz.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
     fuss.innerHTML = '<div class="fz"><button class="kn haupt" style="visibility:hidden" tabindex="-1"><span>·</span></button></div>';
     setTimeout(() => {
       const feld = $('.wort i.fall', sec);
+      requestAnimationFrame(() => cz.classList.remove('zu'));
       hookStaub = staub(feld, () => { hookStaub = null; nurKnopf('weiter', knopf('weiter', UI.weiter), () => { stand.view = D.kapitel[kap().nr] ? 'ausblick' : 'finale'; stand.fin = 0; zeige(); }); });
     }, 700);
   };

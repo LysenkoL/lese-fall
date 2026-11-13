@@ -76,3 +76,36 @@
 .zettel.fr.nein { animation: frNein .7s; }
 @keyframes frNein { 0%, 60% { background: #FFD9BF; } 15% { margin-left: -6px; } 35% { margin-left: 5px; } 50% { margin-left: -3px; } }
 @media (prefers-reduced-motion: reduce) { .zettel.fr.zeig, .zettel.fr.nein, .fr-frage { animation: none; } }
+
+/* ---------- Runde 3b ---------- */
+/* Kleber: einfacher nasser Klecks statt geformter Tropfen */
+#app .kl-kleber { background: none !important; box-shadow: none !important; border: 0 !important; border-radius: 0; transform: translate(-50%, -50%) rotate(-6deg); filter: drop-shadow(0 2px 2px rgba(50, 70, 110, .35)); }
+#app .kl-kleber svg { width: 100%; height: 100%; display: block; overflow: visible; }
+/* Spur 8: Umdrehen-Knopf rechts neben dem Mond, damit alles auf eine Seite passt */
+#app .kl-tisch.klein { height: min(15dvh, 120px); justify-content: flex-start; padding-left: 6%; }
+#app .kl-tisch.klein + .kl-dreh { position: absolute; right: 22px; top: calc(16px + min(15dvh, 120px) / 2 - 22px); z-index: 2; }
+#app .kl-teil { gap: 6px; }
+/* Raupe in den Rätseln: überall derselbe runde Kopf */
+#app .zi .rp img, #app .kl-note .rp img { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; object-position: 50% 6%; background: radial-gradient(circle at 50% 30%, #FFFFFF, var(--gedanke)); border: 3px solid var(--gedanke-rand); box-shadow: 0 4px 8px rgba(0, 0, 0, .25); flex: none; }
+#app .zi .rp { align-items: center; }
+#app .zi .rp p { border-radius: 16px; font-size: 15.5px; padding: 8px 12px; }
+/* Lupe: greifbar */
+#app .lp-box { cursor: grab; touch-action: none; }
+#app .lp-box:active { cursor: grabbing; }
+/* Fallkarte: passt auf eine Seite; Buchstabe erst unter dem Staub sichtbar */
+#app .fk { padding: 12px 14px 14px; gap: 7px; }
+#app .fk h2 { font-size: 21px; }
+#app .fk .foto { margin: 2px auto; width: 78%; }
+#app .fk .foto img { max-height: 27dvh; width: 100%; object-fit: cover; }
+#app .fk li { font-size: 16.5px; line-height: 1.35; }
+#app .fk ul { gap: 5px; }
+#app .zug.fall { padding-bottom: 8px; gap: 10px; }
+#app .codez.hell { padding: 8px 12px; }
+#app .codez.zu .wort i.fall { color: transparent; }
+/* Fragen als Klebezettel statt Zettel mit Nadel */
+#app .zettel.fr::before { top: -7px; left: 50%; width: 46px; height: 14px; margin-left: -23px; border-radius: 2px; background: rgba(255, 255, 255, .55); box-shadow: 0 1px 2px rgba(0, 0, 0, .18); transform: rotate(-3deg); }
+#app .zettel.fr { background: linear-gradient(160deg, #FFF3A6, #FFE56B); border-radius: 2px 2px 14px 2px; box-shadow: 0 6px 10px rgba(60, 30, 0, .28), inset -10px -10px 14px -10px rgba(160, 120, 0, .35); padding: 12px 11px 10px; font-weight: 700; min-height: 54px; }
+#app .zettel.fr:nth-child(3n+2) { background: linear-gradient(160deg, #D9F2B4, #BFE48A); box-shadow: 0 6px 10px rgba(60, 30, 0, .28), inset -10px -10px 14px -10px rgba(70, 120, 0, .35); }
+#app .zettel.fr:nth-child(3n) { background: linear-gradient(160deg, #FFD9E4, #FFBDD0); box-shadow: 0 6px 10px rgba(60, 30, 0, .28), inset -10px -10px 14px -10px rgba(160, 40, 80, .3); }
+#app .zettel.fr span::before { content: '? '; font-weight: 800; opacity: .45; }
+#app .zettel.fr span.s-b::before, #app .zettel.fr span.s-r::before, #app .zettel.fr span span::before { content: none; }

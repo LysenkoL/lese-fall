@@ -695,7 +695,7 @@ export function suchbild(r: HTMLElement, d: Daten, fertig: () => void) {
 /* ============================ 5.4 Geheimschrift (spiegel) ============================ */
 export function spiegel(r: HTMLElement, d: Daten, fertig: () => void) {
   const zi = $('.zi', r);
-  const reihe = K.mischen(d.lesungen.map((_: any, i: number) => String(i)));
+  const reihe = [...K.mischen(d.lesungen.map((_: any, i: number) => String(i)).filter((i: string) => +i !== d.richtig)), String(d.richtig)];
   let fehl = 0, zu = false;
   zi.innerHTML = `<div class="sp-zettel"><div class="sp-text">${(d.zettel as string).split(' ').map((w) => `<span>${w}</span>`).join('')}</div></div><div class="sp-opts">${reihe.map((i: string) => `<button class="sp-o" data-o="${i}"><span>${d.lesungen[+i]}</span></button>`).join('')}</div>`;
   unten('');
@@ -729,7 +729,7 @@ export function klebstoff(r: HTMLElement, d: Daten, fertig: () => void) {
   const kl = d.kleber;
   let seite: 'vorne' | 'hinten' = 'vorne', dreht = false, gesehen = new Set<string>(['vorne']), fehlTipp = 0;
   let phase: 'suchen' | 'waehlen' | 'aus' = 'suchen', fehl = 0, karte: string | null = null, grund: string | null = null, gesperrt = false, ja = false;
-  const mondHtml = () => `<div class="kl-mond${phase !== 'suchen' ? '' : ' gross'}" style="aspect-ratio:${d.ratio}"><img src="${K.img(d[seite])}" alt="" draggable="false">${seite === 'hinten' && kl.zeichnen ? `<i class="kl-kleber${phase === 'suchen' ? ' glanz' : ''}" style="left:${kl.x}%;top:${kl.y}%;width:${kl.w}%;height:${kl.h}%"><s></s><u></u></i>` : ''}${seite === 'hinten' ? `<b class="kl-zone" data-z="1" style="left:${kl.x}%;top:${kl.y + 4}%;width:${kl.w + 12}%;height:${kl.h + 22}%"></b>` : ''}</div>`;
+  const mondHtml = () => `<div class="kl-mond${phase !== 'suchen' ? '' : ' gross'}" style="aspect-ratio:${d.ratio}"><img src="${K.img(d[seite])}" alt="" draggable="false">${seite === 'hinten' && kl.zeichnen ? `<i class="kl-kleber${phase === 'suchen' ? ' glanz' : ''}" style="left:${kl.x}%;top:${kl.y}%;width:${kl.w}%;height:${kl.h}%"><svg viewBox="0 0 100 70" preserveAspectRatio="none" aria-hidden="true"><defs><radialGradient id="klg" cx="38%" cy="30%" r="75%"><stop offset="0" stop-color="#fff"/><stop offset=".55" stop-color="#F4F8FC"/><stop offset="1" stop-color="#C9D8EA"/></radialGradient></defs><path d="M12 34C8 20 24 8 40 12C52 4 72 6 80 18C94 22 96 40 84 46C86 58 70 66 58 58C50 68 30 66 26 54C12 56 8 44 12 34Z" fill="url(#klg)" stroke="#9FB6D2" stroke-width="1.6"/><ellipse cx="34" cy="24" rx="11" ry="4.5" fill="#fff" opacity=".95" transform="rotate(-18 34 24)"/><ellipse cx="66" cy="20" rx="5" ry="2.2" fill="#fff" opacity=".9"/><circle cx="93" cy="58" r="4" fill="url(#klg)" stroke="#9FB6D2" stroke-width="1.2"/><circle cx="6" cy="60" r="2.6" fill="url(#klg)" stroke="#9FB6D2" stroke-width="1"/></svg></i>` : ''}${seite === 'hinten' ? `<b class="kl-zone" data-z="1" style="left:${kl.x}%;top:${kl.y + 4}%;width:${kl.w + 12}%;height:${kl.h + 22}%"></b>` : ''}</div>`;
   const kartenHtml = () => d.karten.map((k: any) => `<button class="kl-k${karte === k.id ? ' an' : ''}${ja && k.id === d.richtigKarte ? ' ja' : ''}" data-k="${k.id}"><span class="kl-kb"><img class="kl-tab" src="${K.img(d.tablett)}" alt="" draggable="false"><img class="kl-km" src="${K.img(d[k.seite])}" alt="" draggable="false"></span><span class="kl-kt">${k.text}</span></button>`).join('');
   const gruendeHtml = () => d.gruende.map((g: any) => `<button class="kl-g${grund === g.id ? ' an' : ''}${ja && g.richtig ? ' ja' : ''}" data-g="${g.id}"><span>${g.text}</span></button>`).join('');
   const mal = () => {
@@ -870,7 +870,7 @@ export function lupe(r: HTMLElement, d: Daten, fertig: () => void) {
   };
   box.addEventListener('pointerdown', (e) => { if (aus) return; unten0 = true; weit = false; x0 = e.clientX; y0 = e.clientY; box.setPointerCapture(e.pointerId); pos(e); glas.classList.add('an'); });
   box.addEventListener('pointermove', (e) => {
-    if (aus || (!unten0 && e.pointerType !== 'mouse')) return;
+    if (aus || !unten0) return;
     if (Math.hypot(e.clientX - x0, e.clientY - y0) > 10) weit = true;
     pos(e);
   });
