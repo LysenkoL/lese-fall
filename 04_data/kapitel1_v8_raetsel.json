@@ -34,7 +34,7 @@
   "verdacht": "nur ein Verdacht",
   "ueberspringen": "Überspringen",
   "neuTitel": "Wirklich von vorn beginnen?",
-  "neuFrage": "Dann beginnt der Fall wieder bei Spur 1. Deine Perlen und alle Karten auf dem Brett sind weg.",
+  "neuFrage": "Dann beginnt der Fall wieder ganz am Anfang. Deine Perlen und alle Karten auf dem Brett sind weg.",
   "neuJa": "Ja, alles löschen",
   "neuNein": "Nein, weiter ermitteln",
   "nochEiner": "Gut! Aber da fehlt noch jemand.",
@@ -91,7 +91,8 @@
   "welcheFrage": "Eine Frage ist jetzt geklärt. Welche? Tippe sie an.",
   "welcheFragen": "Zwei Fragen sind jetzt geklärt. Welche? Tippe sie an.",
   "frageFalsch": "Diese Frage ist noch offen. Lies alle Fragen noch einmal.",
-  "frageHilfe": "Die Lese-Raupe zeigt es dir. Tippe die Frage an."
+  "frageHilfe": "Die Lese-Raupe zeigt es dir. Tippe die Frage an.",
+  "ubSchalter": "Schalte zwischen Vorhin und Jetzt hin und her. Tippe an, was anders ist."
  },
  "intro": [
   {
@@ -408,7 +409,8 @@
        "farbe2": "#FFFFFF",
        "kapuze": true,
        "knoepfe": false
-      }
+      },
+      "bild": "objekte/pulli_lina"
      },
      {
       "id": "tom",
@@ -418,7 +420,8 @@
        "farbe": "#D8432F",
        "kapuze": true,
        "knoepfe": false
-      }
+      },
+      "bild": "objekte/pulli_tom"
      },
      {
       "id": "oskar",
@@ -429,7 +432,8 @@
        "farbe2": "#FFFFFF",
        "kapuze": true,
        "knoepfe": false
-      }
+      },
+      "bild": "objekte/pulli_oskar"
      },
      {
       "id": "ida",
@@ -440,7 +444,8 @@
        "farbe2": "#FFFFFF",
        "kapuze": false,
        "knoepfe": true
-      }
+      },
+      "bild": "objekte/pulli_ida"
      },
      {
       "id": "emil",
@@ -451,7 +456,8 @@
        "farbe2": "#FFFFFF",
        "kapuze": true,
        "knoepfe": false
-      }
+      },
+      "bild": "objekte/pulli_emil"
      },
      {
       "id": "nele",
@@ -462,7 +468,8 @@
        "farbe2": "#FFFFFF",
        "kapuze": true,
        "knoepfe": false
-      }
+      },
+      "bild": "objekte/pulli_nele"
      }
     ],
     "hinweise": [

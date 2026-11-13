@@ -1,3 +1,8 @@
+import wzFuehler from '../../../assets/illustrationen/objekte/kraft_fuehler.webp';
+import wzLupe from '../../../assets/illustrationen/objekte/kraft_lupe.webp';
+import wzZeit from '../../../assets/illustrationen/objekte/kraft_zeit.webp';
+import wzLesen from '../../../assets/illustrationen/objekte/kraft_lesen.webp';
+const WZ_BILD: Record<string, string> = { fuehler: wzFuehler, lupe: wzLupe, zeit: wzZeit, lesen: wzLesen };
 /** SVG-Zeichnungen für die Rätsel: Pullis (Ausschluss) und der versteckte Buchstabe. */
 export type Pulli = { muster: 'einfarbig' | 'quer' | 'laengs' | 'punkte'; farbe: string; farbe2?: string; kapuze: boolean; knoepfe: boolean };
 
@@ -91,5 +96,6 @@ const ICONS: Record<Werkzeug, string> = {
 };
 /** Rundes Werkzeug-Icon (Senf-Gold auf Nachtblau), skaliert über CSS (width/height) */
 export function werkzeugIcon(w: Werkzeug): string {
+  if (WZ_BILD[w]) return `<svg class="wzi wzi-bild" viewBox="0 0 100 100" role="img" aria-hidden="true"><defs><clipPath id="wzc-${w}"><rect width="100" height="100" rx="23"/></clipPath></defs><image href="${WZ_BILD[w]}" width="100" height="100" clip-path="url(#wzc-${w})" preserveAspectRatio="xMidYMid slice"/><rect x="1.5" y="1.5" width="97" height="97" rx="22" fill="none" stroke="#F4C243" stroke-width="3"/></svg>`;
   return `<svg class="wzi" viewBox="0 0 64 64" role="img" aria-hidden="true"><circle cx="32" cy="32" r="31" fill="${NACHT}" stroke="${GOLD}" stroke-opacity=".55" stroke-width="2"/>${ICONS[w]}</svg>`;
 }

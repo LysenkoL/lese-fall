@@ -169,7 +169,14 @@ export function unterschiede(r: HTMLElement, d: Daten, fertig: () => void) {
   const pos = (x: any, art: 'vorhin' | 'jetzt') => (x[art] && typeof x[art] === 'object' ? { ...x, ...x[art] } : x);
   const ding = (x: any, art: 'vorhin' | 'jetzt') => { const q = pos(x, art); return q.bild ? `<img class="ding" data-d="${x.id}" src="${K.img(q.bild)}" alt="" style="left:${q.x}%;top:${q.y}%;width:${q.w}%${q.rot ? `;transform:translate(-50%,-50%) rotate(${q.rot}deg)` : ''}">` : ''; };
   const pane = (art: 'vorhin' | 'jetzt') => `<figure class="ub" data-p="${art}"><span class="tab hell">${K.UI[art]}</span><div class="ub-bild" style="background-image:url(${K.img(d.basis)})">${(d.deko ?? []).filter((x: any) => x[art]).map((x: any) => `<img class="ding" src="${K.img(x.bild)}" alt="" style="left:${x.x}%;top:${x.y}%;width:${x.w}%${x.clip ? `;clip-path:${x.clip}` : ''}">`).join('')}${dinge.filter((x) => x[art]).map((x) => ding(x, art)).join('')}</div></figure>`;
-  zi.innerHTML = `<p class="ub-zaehl"></p><div class="ub-paar">${pane('vorhin')}${pane('jetzt')}</div>`;
+  zi.innerHTML = `<p class="ub-zaehl"></p><div class="ub-schalter"><button data-s="vorhin" class="an"><span>${K.UI.vorhin}</span></button><button data-s="jetzt"><span>${K.UI.jetzt}</span></button></div><div class="ub-paar" data-zeig="vorhin">${pane('vorhin')}${pane('jetzt')}<i class="ub-lid"></i></div><p class="ub-hin">${K.UI.ubSchalter}</p>`;
+  const schalte = (s: string) => {
+    const paar = $('.ub-paar', zi);
+    if (paar.dataset.zeig === s) return;
+    paar.classList.remove('blinzel'); void paar.offsetWidth; paar.classList.add('blinzel');
+    zi.querySelectorAll<HTMLElement>('.ub-schalter button').forEach((b) => b.classList.toggle('an', b.dataset.s === s));
+    setTimeout(() => { paar.dataset.zeig = s; }, 130);
+  };
   const zaehl = () => { $('.ub-zaehl', zi).innerHTML = `<b>${gef.size} / ${dinge.length}</b> ${K.UI.gefunden}`; };
   zaehl();
   const seite = (x: any) => { const e = zi.querySelector<HTMLImageElement>(`img[data-d="${x.id}"]`); return e && e.naturalWidth ? e.naturalHeight / e.naturalWidth : 1; };
@@ -188,6 +195,8 @@ export function unterschiede(r: HTMLElement, d: Daten, fertig: () => void) {
     sortieren(r, { ...d.sortieren, erfolg: d.erfolg }, fertig);
   };
   zi.onclick = (e) => {
+    const sch = (e.target as HTMLElement).closest<HTMLElement>('.ub-schalter [data-s]');
+    if (sch) return schalte(sch.dataset.s!);
     const b = (e.target as HTMLElement).closest<HTMLElement>('.ub-bild');
     if (!b || fertigig) return;
     const rc = b.getBoundingClientRect(), tx = (e.clientX - rc.left) / rc.width, ty = (e.clientY - rc.top) / rc.width; // beides in Bildbreiten
@@ -215,7 +224,7 @@ export function unterschiede(r: HTMLElement, d: Daten, fertig: () => void) {
 export function versteckt(r: HTMLElement, d: Daten, fertig: () => void) {
   const zi = $('.zi', r);
   const id = 'vb' + Math.floor(Math.random() * 1e6);
-  zi.innerHTML = `<div class="vb"><div class="vb-svg">${versteckterBuchstabe(d.buchstabe, d.winkel, d.farbe, id, false, d.stoerer ?? 0, d.muster)}</div><canvas class="vb-cv"></canvas></div><div class="vb-opts">${d.optionen.map((o: string) => `<button class="vb-o" data-o="${o}">${o}</button>`).join('')}</div>`;
+  zi.innerHTML = `<div class="vb"><div class="vb-svg">${versteckterBuchstabe(d.buchstabe, d.winkel, d.farbe, id, false, d.stoerer ?? 0, d.muster)}</div><canvas class="vb-cv"></canvas></div><div class="vb-opts">${K.mischen([...d.optionen]).map((o: string) => `<button class="vb-o" data-o="${o}">${o}</button>`).join('')}</div>`;
   unten('');
   // Zusatz für die Hand: mit dem Finger über das Bild fahren zeichnet eine helle Spur (wird nicht geprüft)
   const cv = $<HTMLCanvasElement>('.vb-cv', zi), box = $('.vb', zi);
@@ -457,7 +466,7 @@ export function ausschluss(r: HTMLElement, d: Daten, fertig: () => void) {
   const gestr = new Set<string>(), neuGestr = new Set<string>(), sel = new Set<string>();
   let hi = 0, fehl = 0, gesperrt = false;
   const kreuz = '<svg class="kreuz" viewBox="0 0 100 100" aria-hidden="true"><path d="M12 12L88 88M88 12L12 88" stroke="#26221C" stroke-width="7" stroke-linecap="round" fill="none"/></svg>';
-  const karteHtml = (c: any) => `<button class="as-k${gestr.has(c.id) ? ' weg' : ''}${neuGestr.has(c.id) ? ' neu' : ''}${sel.has(c.id) ? ' an' : ''}" data-id="${c.id}" ${gestr.has(c.id) ? 'disabled' : ''}>${c.pulli ? pulliSvg(c.pulli, 'pl-' + c.id) : c.crop ? `<span class="as-crop"><span class="sc-v" style="background-image:url(${K.img(c.crop.bild)});background-size:${c.crop.n * 100}% 100%;background-position:${(c.crop.i / (c.crop.n - 1)) * 100}% 0"></span></span>` : `<img src="${K.img(c.bild)}" alt="" draggable="false">`}<span class="as-n">${c.name}</span>${gestr.has(c.id) ? kreuz : ''}</button>`;
+  const karteHtml = (c: any) => `<button class="as-k${gestr.has(c.id) ? ' weg' : ''}${neuGestr.has(c.id) ? ' neu' : ''}${sel.has(c.id) ? ' an' : ''}" data-id="${c.id}" ${gestr.has(c.id) ? 'disabled' : ''}>${c.bild ? `<img src="${K.img(c.bild)}" alt="" draggable="false">` : c.pulli ? pulliSvg(c.pulli, 'pl-' + c.id) : c.crop ? `<span class="as-crop"${c.skala ? ` style="transform:scale(${c.skala});transform-origin:50% 100%"` : ''}><span class="sc-v" style="background-image:url(${K.img(c.crop.bild)});background-size:${c.crop.n * 100}% 100%;background-position:${(c.crop.i / (c.crop.n - 1)) * 100}% 0"></span></span>` : `<img src="${K.img(c.bild)}" alt="" draggable="false">`}<span class="as-n">${c.name}${c.cm ? ` <small class="as-cm">${c.cm} cm</small>` : ''}</span>${gestr.has(c.id) ? kreuz : ''}</button>`;
   const mal = () => {
     zi.innerHTML = `<div class="as-hin"><span class="as-z">Hinweis ${hi + 1} von ${N}</span><p>${hin[hi].text}</p></div><p class="as-raus">${K.UI[d.rausText ?? 'raus']}</p><div class="as-grid">${ordnung.map((id) => karteHtml(kand.find((c) => c.id === id))).join('')}</div>`;
     neuGestr.clear();
@@ -1409,6 +1418,8 @@ export function nest(r: HTMLElement, d: Daten, fertig: () => void) {
     hook.loese = () => { Z.filter((z) => !gef.has(z.id)).forEach((z) => gef.add(z.id)); zu = true; Z.forEach((z) => ring(z, 'da')); frage(); ende(r, d, fertig); };
     frage();
     nah.classList.add('nah');
+    const sl = (d.ziele as any[]).find((q) => q.id === 'schluessel');
+    if (sl) nah.insertAdjacentHTML('beforeend', `<i class="funkel" style="left:${sl.x}%;top:${sl.y}%"></i>`);
     box.onclick = (e) => {
       if (zu) return;
       const rc = nah.getBoundingClientRect();

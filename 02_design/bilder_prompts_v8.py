@@ -163,7 +163,7 @@ The magpie is NOT there. Everything else unchanged.""",
     head=HEAD, size="3:2", where="Spur 24 — раздвинуть листья и найти гнездо (листья рисую программно сверху)")
 add(C4, "nest_finale", "IN", """
 Happy final scene at the open classroom window: Mila, Ben, Oskar and Frau Sommer lean out and look down into the nest of white paper strips in the fork of the tree.
-Frau Sommer carefully takes out the white ribbon with her small brass key; next to the nest she lays a fresh white paper strip as a present for the bird.
+Frau Sommer carefully takes out the white ribbon with ONE single small silver key (clearly a key, not coins, nothing golden or coin-like in or around the nest); the tree fork and the nest must look exactly like in the attached picture baum_nest (two thin branches forming a V right below the window, nest woven from white paper strips); next to the nest she lays a fresh white paper strip as a present for the bird.
 On the windowsill the caterpillar smiles, holding her dewdrop magnifier. Warm afternoon light, everyone relieved and happy.""",
     head=HEAD, size="3:2", glow=False, where="последняя сцена: всё нашлось, все счастливы")
 
@@ -217,13 +217,14 @@ for n, d in [
 
 # ---------------------------------------------------------------- Stand der Bilder
 # Fertig und im Repo (assets/illustrationen/...): erscheinen nicht mehr auf der Seite.
-FERTIG = {"objekte/raetsel_ball", "objekte/raetsel_schwamm", "kinder/ida", "kinder/nele", "objekte/fuchs_puppe", "objekte/koenig_puppe", "objekte/pappbaum", "objekte/papierstapel",
+FERTIG = {"objekte/raetsel_kaese", "objekte/kraft_fuehler", "objekte/kraft_lupe", "objekte/kraft_zeit", "objekte/kraft_lesen", "objekte/pulli_oskar", "objekte/pulli_lina", "objekte/pulli_tom", "objekte/pulli_emil", "objekte/pulli_nele", "objekte/pulli_ida", "objekte/raetsel_ball", "objekte/raetsel_schwamm", "kinder/ida", "kinder/nele", "objekte/fuchs_puppe", "objekte/koenig_puppe", "objekte/pappbaum", "objekte/papierstapel",
           "objekte/raetsel_keks", "objekte/raetsel_sonne", "objekte/raetsel_zitrone",
-          "plakat", "baum", "baum_nest", "nest_finale", "tresor_zu", "tresor_auf",
+          "plakat", "baum", "baum_nest", "tresor_zu", "tresor_auf",
           "k1_s1", "kinder/lina", "kinder/tom", "kinder/emil", "objekte/mond_hinten_feucht", "objekte/mond_hinten_faden",
           "voegel", "gelbe_kreise_vorne", "gelbe_kreise_hinten", "objekte/kinder_hinten", "objekte/raum_leer"}
 # Geliefert, aber nicht passend: Grund steht auf der Karte.
 NOCHMAL = {
+    "nest_finale": "Ветка и гнездо выглядят иначе, чем на картинке baum_nest из загадки, а золотой ключ читается как монеты. Приложить baum_nest: та же развилка из двух тонких веток под окном, то же гнездо из белых бумажных полосок; ключ один, серебристый, на белой ленточке в руке у Frau Sommer; сбоку ничего лишнего.",
     "objekte/raetsel_kaese": "Сыр выглядит как глянцевое желе. Нужен матовый круглый сыр с ровным верхом и чёткими дырками.",
     "objekte/raetsel_ball": "Мяч нарисован криво: пятна разной формы, выглядит сломанным. Нужен простой аккуратный мяч с ровным узором.",
     "objekte/raetsel_schwamm": "На губке не видно дырок (только мелкие пузырьки), а подсказка в загадке — «с дырками». Нужны крупные тёмные круглые дырки.",

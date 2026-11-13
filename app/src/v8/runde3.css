@@ -127,3 +127,64 @@
 #app .kl-tisch.klein { height: min(11dvh, 90px); }
 #app .kl-tisch.klein + .kl-dreh { top: calc(10px + min(11dvh, 90px) / 2 - 22px); }
 #app .zi:has(.kl-tisch.klein) { gap: 7px; padding-top: 10px; padding-bottom: 12px; }
+
+/* ================= Runde 4 (nach dem Durchspielen von Kapitel 3 und 4) ================= */
+/* Werkzeug-Bilder */
+#app .wzi-bild { filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .35)); }
+/* Kandidaten-Karten: Pullis als Bild, Größenangabe bei den Vögeln */
+#app .as-k > img { width: 100%; aspect-ratio: 4 / 3; object-fit: contain; display: block; }
+#app .as-cm { display: block; font-size: .82em; font-weight: 700; opacity: .7; }
+#app .as-crop { transition: transform .3s; }
+/* Brett: Ausschnitt-Fotos wie die anderen Bilder auf dem Karton; große Karte zeigt das Bild */
+#app .bk-bild .ausschn.voll { width: 90%; height: 90%; margin: 5%; border-radius: 3px; background-repeat: no-repeat; flex: none; }
+#app .kgross .bk-bild { aspect-ratio: 4 / 3; min-height: 0; max-height: none; }
+/* Unterschiede: ein großes Bild mit Schalter */
+#app .ub-paar { display: grid; grid-template-columns: minmax(0, 1fr); justify-items: center; position: relative; }
+#app .ub-paar > .ub { grid-area: 1 / 1; width: min(100%, max(260px, calc((100dvh - 440px) * 1.5))); }
+#app .ub-paar > .ub > .tab { display: none; }
+#app .ub-paar[data-zeig="vorhin"] > .ub[data-p="jetzt"], #app .ub-paar[data-zeig="jetzt"] > .ub[data-p="vorhin"] { visibility: hidden; pointer-events: none; }
+#app .ub-lid { grid-area: 1 / 1; width: min(100%, max(260px, calc((100dvh - 440px) * 1.5))); border-radius: 12px; background: #1B2752; opacity: 0; pointer-events: none; z-index: 3; }
+#app .ub-paar.blinzel .ub-lid { animation: ubLid .28s ease-in-out; }
+@keyframes ubLid { 0% { opacity: 0; transform: scaleY(0); transform-origin: top; } 45%, 55% { opacity: 1; transform: scaleY(1); transform-origin: top; } 100% { opacity: 0; transform: scaleY(0); transform-origin: top; } }
+#app .ub-schalter { align-self: center; display: inline-flex; background: rgba(0, 0, 0, .28); border-radius: 999px; padding: 4px; gap: 4px; box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .25); }
+#app .ub-schalter button { border-radius: 999px; padding: 8px 22px; font-weight: 800; font-size: 16px; color: #fff; background: transparent; min-width: 110px; }
+#app .ub-schalter button.an { background: linear-gradient(#FFD564, #F0B62E); color: #26221C; box-shadow: 0 3px 0 #B8851A; }
+#app .ub-schalter button span span { color: inherit; }
+#app .ub-hin { text-align: center; color: #fff; font-size: 14px; font-weight: 600; opacity: .85; }
+#app .ub-hin .s-b, #app .ub-hin .s-r { color: inherit; }
+/* versteckter Buchstabe: kleiner, passt auf eine Seite */
+#app .vb { max-width: min(100%, 38dvh); align-self: center; }
+/* Nest: Blick durch die Tautropfen-Lupe */
+#app .nt-bild:has(.nt-zoom.nah) { border-radius: 50%; aspect-ratio: 1 !important; max-width: min(100%, 52dvh); border: 10px solid #D9A938; box-shadow: 0 0 0 3px #8A6417, inset 0 0 0 3px rgba(255, 255, 255, .5), 0 14px 30px rgba(0, 0, 0, .45), 0 0 40px rgba(244, 194, 67, .35); transition: border-radius .8s, border-width .8s; }
+#app .nt-bild:has(.nt-zoom.nah)::after { content: ''; position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle at 30% 22%, rgba(255, 255, 255, .5), transparent 32%); pointer-events: none; z-index: 4; }
+#app .nt-zoom .funkel { position: absolute; width: 7%; aspect-ratio: 1; transform: translate(-50%, -50%); pointer-events: none; background: radial-gradient(circle, #fff 0 12%, rgba(255, 240, 170, .9) 20%, transparent 60%); clip-path: polygon(50% 0, 58% 42%, 100% 50%, 58% 58%, 50% 100%, 42% 58%, 0 50%, 42% 42%); animation: funkel 1.3s ease-in-out infinite; }
+@keyframes funkel { 0%, 100% { transform: translate(-50%, -50%) scale(.3) rotate(0); opacity: .2; } 50% { transform: translate(-50%, -50%) scale(1.2) rotate(40deg); opacity: 1; } }
+/* Nachfrage „Von vorn": Text lesbar, Knöpfe gleich groß */
+#app .einst, #app .einst header b, #app .einst .nf { color: var(--tinte); }
+#app .einst.frage .er { flex-direction: column; }
+#app .einst.frage .kn { width: 100%; justify-content: center; }
+/* ---------- Kopf, zweiter Anlauf: Brett-Knopf im Nachtstil, Raupe deutlich auf ihrem Weg ---------- */
+#app .kopf { padding-bottom: 24px; }
+#app .kopf .kb.brettb { background: rgba(255, 255, 255, .08); color: #FFE9A6; border-radius: 12px; box-shadow: inset 0 0 0 1.5px rgba(244, 194, 67, .6); font-weight: 800; padding: 0 12px 0 10px; height: 42px; }
+#app .kopf .kb.brettb::before { display: none; }
+#app .kopf .kb.brettb:active { transform: translateY(1px); box-shadow: inset 0 0 0 1.5px rgba(244, 194, 67, .9); }
+.kweg { bottom: 8px; height: 7px; left: 22px; right: 22px; }
+.kweg img { width: 34px; height: 34px; bottom: -4px; left: var(--weg, 0%); filter: drop-shadow(0 0 5px rgba(244, 194, 67, .8)) drop-shadow(0 2px 2px rgba(0, 0, 0, .5)); }
+/* Lesefuß: Perlen statt Blätter */
+#app[data-m="lesen"] .pkt i, #app[data-m="lesen"] .pkt i.war, #app[data-m="lesen"] .pkt i.an { border-radius: 50%; transform: none; width: 13px; height: 13px; }
+#app[data-m="lesen"] .pkt i { background: transparent; box-shadow: inset 0 0 0 2px #D9C9A0; }
+#app[data-m="lesen"] .pkt i.war { background: radial-gradient(circle at 35% 30%, #FFF4C8, #F4C243 55%, #C9951A); box-shadow: none; opacity: .75; }
+#app[data-m="lesen"] .pkt i.an { width: 20px; height: 20px; background: radial-gradient(circle at 35% 30%, #FFF4C8, #F4C243 55%, #C9951A); box-shadow: 0 0 0 4px rgba(244, 194, 67, .28), 0 0 12px rgba(244, 194, 67, .7); animation: perlAn .45s cubic-bezier(.3, 1.6, .5, 1); }
+@keyframes perlAn { from { transform: scale(.4); } }
+/* ---------- Alles Antippbare reagiert: sanftes Leuchten unter der Maus, Einsinken beim Drücken ---------- */
+#app button:not(:disabled) { cursor: pointer; }
+@media (hover: hover) {
+  #app button:not(:disabled):hover, #app .codez[role="button"]:hover, #app .bkarte[data-k]:hover { filter: brightness(1.06) drop-shadow(0 0 9px rgba(244, 194, 67, .6)); }
+}
+#app button:not(:disabled):active { filter: brightness(.96); }
+#app .kn.haupt:not(:disabled) { box-shadow: 0 4px 0 var(--senf-dunkel), 0 10px 22px rgba(120, 80, 0, .28), 0 0 22px rgba(244, 194, 67, .35); }
+@media (prefers-reduced-motion: reduce) { #app .ub-paar.blinzel .ub-lid, #app .nt-zoom .funkel, #app[data-m="lesen"] .pkt i.an { animation: none; } }
+
+#app .as-k > img { height: clamp(84px, 14dvh, 140px); aspect-ratio: auto; }
+#app .nt-bild:has(.nt-zoom.nah) { max-width: min(100%, 42dvh); }
+#app .vb { max-width: min(100%, 30dvh); }

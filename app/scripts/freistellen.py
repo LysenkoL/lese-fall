@@ -10,7 +10,7 @@ SRC = os.path.join(ROOT, 'assets/illustrationen/objekte')
 DST = os.path.join(ROOT, 'app/src/gen/objekte')
 os.makedirs(DST, exist_ok=True)
 OHNE = {'vogelschatten.webp', 'plakat.webp', 'gelbe_kreise_vorne.webp', 'gelbe_kreise_hinten.webp', 'kinder_hinten.webp', 'raum_leer.webp'}  # ganze Bilder mit eigenem Papiergrund: nicht freistellen
-JOBS = [(f, os.path.join(DST, os.path.basename(f))) for f in sorted(glob.glob(os.path.join(SRC, '*.webp'))) if os.path.basename(f) not in OHNE and not os.path.basename(f).startswith('u15_')]
+JOBS = [(f, os.path.join(DST, os.path.basename(f))) for f in sorted(glob.glob(os.path.join(SRC, '*.webp'))) if os.path.basename(f) not in OHNE and not os.path.basename(f).startswith(('u15_', 'pulli_', 'kraft_'))]
 # Figuren, die im Spiel als Ding gelegt werden (z. B. Spur 2: die Lese-Raupe unter das Blatt)
 FREI = os.path.join(ROOT, 'app/src/gen/frei')
 os.makedirs(FREI, exist_ok=True)

@@ -338,7 +338,9 @@ function brettHtml(bis: number, neu = 0, staubig = false, wartet = false) {
   const fragen: { id: string; text: string; n: number }[] = [];
   for (const sp of D.spuren) if (sp.spur <= bis) sp.fragenNeu.forEach((f: any) => fragen.push({ ...f, n: sp.spur }));
   const weg = new Set<string>(SP(bis).fragenWeg);
-  const zettel = fragen.filter((f) => !stand.geklaert.includes(f.id)).map((f) => `<div class="zettel fr${f.n === neu && (staubig || wartet) ? ' versteckt' : ''}" ${neu && weg.has(f.id) ? 'data-ok="1" ' : ''}data-q="${f.id}" style="--n:${NEIGUNG[(f.id.length * 3 + f.n) % NEIGUNG.length] * 0.8}deg"><span>${f.text}</span>${f.n === neu ? `<em class="neu">${UI.neu}</em>` : ''}${neu && weg.has(f.id) ? `<em class="klaer">${UI.klaerMich}</em>` : ''}</div>`).join('');
+  const wegBei: Record<string, number> = {};
+  for (const sp of D.spuren) (sp.fragenWeg ?? []).forEach((id: string) => { wegBei[id] = sp.spur; });
+  const zettel = fragen.filter((f) => !stand.geklaert.includes(f.id) && !(wegBei[f.id] < bis)).map((f) => `<div class="zettel fr${f.n === neu && (staubig || wartet) ? ' versteckt' : ''}" ${neu && weg.has(f.id) ? 'data-ok="1" ' : ''}data-q="${f.id}" style="--n:${NEIGUNG[(f.id.length * 3 + f.n) % NEIGUNG.length] * 0.8}deg"><span>${f.text}</span>${f.n === neu ? `<em class="neu">${UI.neu}</em>` : ''}${neu && weg.has(f.id) ? `<em class="klaer">${UI.klaerMich}</em>` : ''}</div>`).join('');
   const code = codeFelder();
   return `<div class="bgrid">${slots}</div><h3>${UI.fragen}<img class="brett-raupe" src="${fig('raupe/denkt')}" alt=""></h3><div class="fragen">${zettel}</div><div class="codez" data-a="code" role="button" tabindex="0"><img class="tresor-mini" src="${img('tresor_zu')}" alt=""><span>${UI.code}</span><div class="wort">${code}</div></div>`;
 }

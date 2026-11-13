@@ -720,7 +720,9 @@
        "bild": "objekte/voegel",
        "n": 5,
        "i": 0
-      }
+      },
+      "cm": 46,
+      "skala": 1.0
      },
      {
       "id": "bachstelze",
@@ -729,7 +731,9 @@
        "bild": "objekte/voegel",
        "n": 5,
        "i": 1
-      }
+      },
+      "cm": 18,
+      "skala": 0.63
      },
      {
       "id": "specht",
@@ -738,7 +742,9 @@
        "bild": "objekte/voegel",
        "n": 5,
        "i": 2
-      }
+      },
+      "cm": 23,
+      "skala": 0.7
      },
      {
       "id": "amsel",
@@ -747,7 +753,9 @@
        "bild": "objekte/voegel",
        "n": 5,
        "i": 3
-      }
+      },
+      "cm": 25,
+      "skala": 0.72
      },
      {
       "id": "meise",
@@ -756,7 +764,9 @@
        "bild": "objekte/voegel",
        "n": 5,
        "i": 4
-      }
+      },
+      "cm": 14,
+      "skala": 0.58
      }
     ],
     "hinweise": [
@@ -774,7 +784,7 @@
       ]
      },
      {
-      "text": "Er ist groß, fast so groß wie eine Taube.",
+      "text": "Er ist groß, so groß wie eine Taube. Das sind mehr als 30 cm.",
       "raus": [
        "bachstelze"
       ]

@@ -1,102 +1,12 @@
 [
  {
-  "ch": "Переделать · Глава 2",
-  "name": "objekte/raetsel_kaese",
-  "att": "objekte_1_mond + objekte_3_basteln (стиль предметов)",
-  "note": "Шесть картинок одного размера и ракурса, как карточки.",
-  "size": "1:1",
-  "where": "Spur 12 — загадка Оскара «жёлтое, круглое, с дырками, для мыши»",
-  "text": "Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain warm white background, no text, no letters, no numbers, no stars. Every item clearly separated from the others with empty space around it, so it can be cut out. Soft hand-painted picture-book look (watercolor and colored pencil) like the attached images – NOT flat vector clip-art, no glossy 3D look.\nOne object, centered, slightly from above: a round flat wheel of yellow Swiss cheese, seen slightly from above, MATTE surface like real cheese (NOT glossy, NOT plastic, NOT jelly), a clean cylinder shape with a flat top, with 6-8 clearly visible round holes of different sizes on top and on the side.",
-  "redo": "Сыр выглядит как глянцевое желе. Нужен матовый круглый сыр с ровным верхом и чёткими дырками."
- },
- {
-  "ch": "Ещё нет · Силы гусенички (4 медальона)",
-  "name": "objekte/kraft_fuehler",
-  "att": "2 листа гусенички (внешность должна совпадать точь-в-точь)",
-  "note": "Все четыре лучше генерировать в одном чате подряд, чтобы рамка и стиль совпали.",
-  "size": "1:1",
-  "where": "Вступление, значок перед каждой загадкой и финал — сила «Leucht-Fühler»",
-  "text": "Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain warm white background, no text, no letters, no numbers, no stars. Every item clearly separated from the others with empty space around it, so it can be cut out. Soft hand-painted picture-book look (watercolor and colored pencil) like the attached images – NOT flat vector clip-art, no glossy 3D look.\nA round medallion, centered, filling about 85% of the picture: a circular picture with a thin golden rim, inside a deep night-blue background with a few tiny soft sparkles. In the medallion, a close-up (head and upper body) of the SAME little green caterpillar as on the attached sheets – same face, same colours, same small blue cape. No text, no letters, no numbers. Outside the medallion only the plain background. All four medallions of this set must have the same size, rim and style. Her two antennae glow brightly: the little balls at the tips shine warm golden like tiny lanterns and cast a soft golden light, a few golden sparks float around them. She looks up at them, amazed and proud."
- },
- {
-  "ch": "Ещё нет · Силы гусенички (4 медальона)",
-  "name": "objekte/kraft_lupe",
-  "att": "2 листа гусенички (внешность должна совпадать точь-в-точь)",
+  "ch": "Переделать · Глава 4",
+  "name": "nest_finale",
+  "att": "2 листа гусенички + лист детей (kinder_figurenblatt) + k1_s1 (комната)",
   "note": "",
-  "size": "1:1",
-  "where": "Вступление, значок перед каждой загадкой и финал — сила «Tautropfen-Lupe»",
-  "text": "Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain warm white background, no text, no letters, no numbers, no stars. Every item clearly separated from the others with empty space around it, so it can be cut out. Soft hand-painted picture-book look (watercolor and colored pencil) like the attached images – NOT flat vector clip-art, no glossy 3D look.\nA round medallion, centered, filling about 85% of the picture: a circular picture with a thin golden rim, inside a deep night-blue background with a few tiny soft sparkles. In the medallion, a close-up (head and upper body) of the SAME little green caterpillar as on the attached sheets – same face, same colours, same small blue cape. No text, no letters, no numbers. Outside the medallion only the plain background. All four medallions of this set must have the same size, rim and style. She holds up her magnifying glass made of nature: a big clear round DEWDROP sitting on a small green grass stalk as handle. She looks through the dewdrop with one eye, and that eye appears much bigger through the drop. The drop glitters."
- },
- {
-  "ch": "Ещё нет · Силы гусенички (4 медальона)",
-  "name": "objekte/kraft_zeit",
-  "att": "2 листа гусенички (внешность должна совпадать точь-в-точь)",
-  "note": "",
-  "size": "1:1",
-  "where": "Вступление, значок перед каждой загадкой и финал — сила «Zeitlupen-Blick»",
-  "text": "Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain warm white background, no text, no letters, no numbers, no stars. Every item clearly separated from the others with empty space around it, so it can be cut out. Soft hand-painted picture-book look (watercolor and colored pencil) like the attached images – NOT flat vector clip-art, no glossy 3D look.\nA round medallion, centered, filling about 85% of the picture: a circular picture with a thin golden rim, inside a deep night-blue background with a few tiny soft sparkles. In the medallion, a close-up (head and upper body) of the SAME little green caterpillar as on the attached sheets – same face, same colours, same small blue cape. No text, no letters, no numbers. Outside the medallion only the plain background. All four medallions of this set must have the same size, rim and style. She looks very slowly and carefully: both eyes wide open and focused, head slightly tilted, one little hand at her chin. Next to her a tiny friendly snail on a leaf and one single leaf falling very slowly, hanging in the air – everything feels calm and slow."
- },
- {
-  "ch": "Ещё нет · Силы гусенички (4 медальона)",
-  "name": "objekte/kraft_lesen",
-  "att": "2 листа гусенички (внешность должна совпадать точь-в-точь)",
-  "note": "",
-  "size": "1:1",
-  "where": "Вступление, значок перед каждой загадкой и финал — сила «Lese-Blick»",
-  "text": "Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain warm white background, no text, no letters, no numbers, no stars. Every item clearly separated from the others with empty space around it, so it can be cut out. Soft hand-painted picture-book look (watercolor and colored pencil) like the attached images – NOT flat vector clip-art, no glossy 3D look.\nA round medallion, centered, filling about 85% of the picture: a circular picture with a thin golden rim, inside a deep night-blue background with a few tiny soft sparkles. In the medallion, a close-up (head and upper body) of the SAME little green caterpillar as on the attached sheets – same face, same colours, same small blue cape. No text, no letters, no numbers. Outside the medallion only the plain background. All four medallions of this set must have the same size, rim and style. She reads an open little book that she holds in front of her, wearing small round golden reading glasses, smiling, fully absorbed. A soft warm light shines from the pages onto her face."
- },
- {
-  "ch": "Ещё нет · Свитера для загадки «Чей рукав?» (6 штук)",
-  "name": "objekte/pulli_oskar",
-  "att": "objekte_1_mond + objekte_3_basteln (стиль предметов)",
-  "note": "Фон ровный голубой, чтобы белые полоски не пропали при вырезании. Все шесть — в одном чате подряд. Важно: у Неле полоски вдоль рукава, у Иды пуговицы на манжетах.",
-  "size": "1:1",
-  "where": "Spur 6 — загадка «Wessen Ärmel war es?»",
-  "text": "Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain flat LIGHT-BLUE background (#CFE6F5), one even color, no gradient, no vignette, no text, no letters, no numbers, no stars. Every item clearly separated from the others with empty space around it, so it can be cut out. Soft hand-painted picture-book look (watercolor and colored pencil) like the attached images – NOT flat vector clip-art, no glossy 3D look.\nOne single children's garment, laid flat, seen straight from the front, centered, BOTH sleeves spread out to the sides so that each sleeve is fully and clearly visible. Soft knitted fabric. No child, no hanger, no other objects, no text. All six garments of this set have exactly the same size, pose and viewing angle – only pattern and details differ. A hoodie with a hood. Body and sleeves have bold RED and WHITE HORIZONTAL stripes; on the sleeves the stripes run AROUND the arm like rings. No buttons anywhere."
- },
- {
-  "ch": "Ещё нет · Свитера для загадки «Чей рукав?» (6 штук)",
-  "name": "objekte/pulli_lina",
-  "att": "objekte_1_mond + objekte_3_basteln (стиль предметов)",
-  "note": "",
-  "size": "1:1",
-  "where": "Spur 6 — загадка «Wessen Ärmel war es?»",
-  "text": "Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain flat LIGHT-BLUE background (#CFE6F5), one even color, no gradient, no vignette, no text, no letters, no numbers, no stars. Every item clearly separated from the others with empty space around it, so it can be cut out. Soft hand-painted picture-book look (watercolor and colored pencil) like the attached images – NOT flat vector clip-art, no glossy 3D look.\nOne single children's garment, laid flat, seen straight from the front, centered, BOTH sleeves spread out to the sides so that each sleeve is fully and clearly visible. Soft knitted fabric. No child, no hanger, no other objects, no text. All six garments of this set have exactly the same size, pose and viewing angle – only pattern and details differ. A hoodie with a hood. Body and sleeves have bold dark BLUE and WHITE HORIZONTAL stripes; on the sleeves the stripes run around the arm like rings. No buttons. No red at all."
- },
- {
-  "ch": "Ещё нет · Свитера для загадки «Чей рукав?» (6 штук)",
-  "name": "objekte/pulli_tom",
-  "att": "objekte_1_mond + objekte_3_basteln (стиль предметов)",
-  "note": "",
-  "size": "1:1",
-  "where": "Spur 6 — загадка «Wessen Ärmel war es?»",
-  "text": "Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain flat LIGHT-BLUE background (#CFE6F5), one even color, no gradient, no vignette, no text, no letters, no numbers, no stars. Every item clearly separated from the others with empty space around it, so it can be cut out. Soft hand-painted picture-book look (watercolor and colored pencil) like the attached images – NOT flat vector clip-art, no glossy 3D look.\nOne single children's garment, laid flat, seen straight from the front, centered, BOTH sleeves spread out to the sides so that each sleeve is fully and clearly visible. Soft knitted fabric. No child, no hanger, no other objects, no text. All six garments of this set have exactly the same size, pose and viewing angle – only pattern and details differ. A hoodie with a hood, completely plain RED, one single colour. No stripes, no dots, no pattern, no buttons."
- },
- {
-  "ch": "Ещё нет · Свитера для загадки «Чей рукав?» (6 штук)",
-  "name": "objekte/pulli_emil",
-  "att": "objekte_1_mond + objekte_3_basteln (стиль предметов)",
-  "note": "",
-  "size": "1:1",
-  "where": "Spur 6 — загадка «Wessen Ärmel war es?»",
-  "text": "Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain flat LIGHT-BLUE background (#CFE6F5), one even color, no gradient, no vignette, no text, no letters, no numbers, no stars. Every item clearly separated from the others with empty space around it, so it can be cut out. Soft hand-painted picture-book look (watercolor and colored pencil) like the attached images – NOT flat vector clip-art, no glossy 3D look.\nOne single children's garment, laid flat, seen straight from the front, centered, BOTH sleeves spread out to the sides so that each sleeve is fully and clearly visible. Soft knitted fabric. No child, no hanger, no other objects, no text. All six garments of this set have exactly the same size, pose and viewing angle – only pattern and details differ. A hoodie with a hood, RED with many round WHITE polka DOTS on body and sleeves. No stripes, no buttons."
- },
- {
-  "ch": "Ещё нет · Свитера для загадки «Чей рукав?» (6 штук)",
-  "name": "objekte/pulli_nele",
-  "att": "objekte_1_mond + objekte_3_basteln (стиль предметов)",
-  "note": "",
-  "size": "1:1",
-  "where": "Spur 6 — загадка «Wessen Ärmel war es?»",
-  "text": "Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain flat LIGHT-BLUE background (#CFE6F5), one even color, no gradient, no vignette, no text, no letters, no numbers, no stars. Every item clearly separated from the others with empty space around it, so it can be cut out. Soft hand-painted picture-book look (watercolor and colored pencil) like the attached images – NOT flat vector clip-art, no glossy 3D look.\nOne single children's garment, laid flat, seen straight from the front, centered, BOTH sleeves spread out to the sides so that each sleeve is fully and clearly visible. Soft knitted fabric. No child, no hanger, no other objects, no text. All six garments of this set have exactly the same size, pose and viewing angle – only pattern and details differ. A hoodie with a hood. Bold RED and WHITE VERTICAL stripes: on the body they run from top to bottom, and on the sleeves they run ALONG the arm from shoulder to cuff (lengthwise, NOT as rings). No buttons."
- },
- {
-  "ch": "Ещё нет · Свитера для загадки «Чей рукав?» (6 штук)",
-  "name": "objekte/pulli_ida",
-  "att": "objekte_1_mond + objekte_3_basteln (стиль предметов)",
-  "note": "",
-  "size": "1:1",
-  "where": "Spur 6 — загадка «Wessen Ärmel war es?»",
-  "text": "Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain flat LIGHT-BLUE background (#CFE6F5), one even color, no gradient, no vignette, no text, no letters, no numbers, no stars. Every item clearly separated from the others with empty space around it, so it can be cut out. Soft hand-painted picture-book look (watercolor and colored pencil) like the attached images – NOT flat vector clip-art, no glossy 3D look.\nOne single children's garment, laid flat, seen straight from the front, centered, BOTH sleeves spread out to the sides so that each sleeve is fully and clearly visible. Soft knitted fabric. No child, no hanger, no other objects, no text. All six garments of this set have exactly the same size, pose and viewing angle – only pattern and details differ. A cardigan WITHOUT a hood, with a small round collar. Bold RED and WHITE HORIZONTAL stripes; on the sleeves the stripes run around the arm like rings. A row of big dark-blue BUTTONS down the front, and TWO big dark-blue buttons clearly visible on EACH sleeve cuff."
+  "size": "3:2",
+  "where": "последняя сцена: всё нашлось, все счастливы",
+  "text": "Use the attached images as the exact reference for characters, places and style. Indoors always the same classroom as in the attached classroom image: the NATURAL WOOD puppet theater (light wood, two posts with round knobs, the top board is ONE smooth round arch – not wavy) on the big table with the red tablecloth, the window with the caterpillar's plant on the LEFT. Children's picture-book illustration in exactly the same style, landscape 3:2. No text, no letters, no numbers, no stars anywhere. Mila has no backpack. The hand puppets are a fox, a bear and a king – never a mouse (the only mouse in the book is Oskar's small grey PAPER mouse). The moon is always a FULL ROUND flat cardboard disc (never a crescent): yellow on the front, white on the back.\nThe caterpillar's antenna tips are plain yellow-green, NOT glowing.\nHappy final scene at the open classroom window: Mila, Ben, Oskar and Frau Sommer lean out and look down into the nest of white paper strips in the fork of the tree. Frau Sommer carefully takes out the white ribbon with ONE single small silver key (clearly a key, not coins, nothing golden or coin-like in or around the nest); the tree fork and the nest must look exactly like in the attached picture baum_nest (two thin branches forming a V right below the window, nest woven from white paper strips); next to the nest she lays a fresh white paper strip as a present for the bird. On the windowsill the caterpillar smiles, holding her dewdrop magnifier. Warm afternoon light, everyone relieved and happy.",
+  "redo": "Ветка и гнездо выглядят иначе, чем на картинке baum_nest из загадки, а золотой ключ читается как монеты. Приложить baum_nest: та же развилка из двух тонких веток под окном, то же гнездо из белых бумажных полосок; ключ один, серебристый, на белой ленточке в руке у Frau Sommer; сбоку ничего лишнего."
  }
 ]
