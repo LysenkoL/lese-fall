@@ -81,7 +81,7 @@
    "fragenNeu": [
     {
      "id": "k4wo",
-     "text": "Wo hängt der Mond?"
+     "text": "Wo im Baum hängt der Mond?"
     }
    ],
    "raetsel": {
@@ -218,7 +218,8 @@
     },
     "nachsehen": "Im Text nachsehen",
     "werkzeug": "fuehler"
-   }
+   },
+   "fragenWeg": []
   },
   {
    "spur": 20,
@@ -229,12 +230,7 @@
     "text": "Aus Oskars Kapuze hing ein rosa Schwanz. Dort steckte seine Maus.",
     "staub": false
    },
-   "fragenNeu": [
-    {
-     "id": "k4maus",
-     "text": "Wo ist Oskars Maus?"
-    }
-   ],
+   "fragenNeu": [],
    "fragenWeg": [
     "k4wo"
    ],
@@ -311,9 +307,7 @@
     "text": "Jedes Ding hat seinen Platz: Papier aufs Tablett, Puppen in die Kiste, der Mond neben die Wolke.",
     "staub": false
    },
-   "fragenWeg": [
-    "k4maus"
-   ],
+   "fragenWeg": [],
    "raetsel": {
     "art": "unterschiede",
     "titel": "Alles an seinem Platz",
@@ -645,7 +639,8 @@
     },
     "erfolg": "Fast alles hat seinen Platz, und du weißt, wer es war. Jetzt können die Zuschauer kommen.",
     "werkzeug": "zeit"
-   }
+   },
+   "fragenNeu": []
   },
   {
    "spur": 22,
@@ -656,16 +651,7 @@
     "text": "Immer wenn die Maus springt, zieht Ben den Käse höher. Das Publikum lacht.",
     "staub": false
    },
-   "fragenNeu": [
-    {
-     "id": "k4schluessel",
-     "text": "Wo ist Frau Sommers Schlüssel?"
-    },
-    {
-     "id": "k4vogel",
-     "text": "Welcher Vogel hat den Faden geholt?"
-    }
-   ],
+   "fragenNeu": [],
    "raetsel": {
     "art": "reihe",
     "titel": "Wie kam der Mond auf die Bühne?",
@@ -706,7 +692,8 @@
     ],
     "erfolg": "Genau so war es. Und jetzt: Vorhang auf für den größten Käse der Welt!",
     "werkzeug": "zeit"
-   }
+   },
+   "fragenWeg": []
   },
   {
    "spur": 23,
@@ -718,7 +705,7 @@
     "staub": false
    },
    "fragenWeg": [
-    "k4vogel"
+    "k3vogel"
    ],
    "raetsel": {
     "art": "ausschluss",
@@ -797,7 +784,8 @@
     "stempel": "DER VOGEL: ELSTER",
     "erfolg": "Es war eine Elster! Elstern sammeln gern lange weiße Streifen und alles, was glänzt.",
     "werkzeug": "lesen"
-   }
+   },
+   "fragenNeu": []
   },
   {
    "spur": 24,
@@ -815,7 +803,8 @@
     "staub": false
    },
    "fragenWeg": [
-    "k4schluessel"
+    "schluessel",
+    "k3plan"
    ],
    "schluessel": false,
    "raetsel": {
@@ -860,7 +849,8 @@
     "erfolg": "Fall gelöst! Die Elster hat den Faden für ihr Nest geholt. Dabei hat sie auch Frau Sommers Schlüssel mit dem weißen Band mitgenommen. Jetzt wissen wir alles.",
     "frage": "Die Elster hat etwas versteckt. Tippe auf alles, was hier nicht hingehört.",
     "werkzeug": "lupe"
-   }
+   },
+   "fragenNeu": []
   }
  ]
 }

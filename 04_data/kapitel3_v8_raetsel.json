@@ -35,12 +35,7 @@
     "text": "Am Käse schaut ein kleines Stück weißer Faden heraus.",
     "staub": false
    },
-   "fragenNeu": [
-    {
-     "id": "k3faden",
-     "text": "Warum hat ein Käse einen Faden?"
-    }
-   ],
+   "fragenNeu": [],
    "raetsel": {
     "art": "lupe",
     "titel": "Der Käse unter der Lupe",
@@ -57,7 +52,10 @@
     "tipp": "Schau am Rand entlang. Es ist etwas Dünnes, Weißes.",
     "erfolg": "Ein kleines Stück weißer Faden! Seit wann hat ein Käse einen Faden? Milas Mond hat einen!",
     "werkzeug": "lupe"
-   }
+   },
+   "fragenWeg": [
+    "seide"
+   ]
   },
   {
    "spur": 14,
@@ -85,7 +83,8 @@
     "warum": "Nur dieser Vogel hat einen so langen Schwanz und einen spitzen Schnabel.",
     "erfolg": "Dieser Vogel passt zum Schatten. Aber war er es wirklich? Das ist erst ein Verdacht.",
     "werkzeug": "zeit"
-   }
+   },
+   "fragenWeg": []
   },
   {
    "spur": 15,
@@ -102,12 +101,7 @@
      "h": 27
     }
    },
-   "fragenNeu": [
-    {
-     "id": "k3ganz",
-     "text": "Ist der Mond unter den Flecken noch ganz?"
-    }
-   ],
+   "fragenNeu": [],
    "raetsel": {
     "art": "unterschiede",
     "titel": "Was ist anders?",
@@ -243,7 +237,10 @@
     ],
     "erfolg": "Sieben Unterschiede! Du schaust genau hin. Und der Käse? Die braunen Flecken sind nur aufgeklebt. Der Kreis darunter ist ganz.",
     "werkzeug": "zeit"
-   }
+   },
+   "fragenWeg": [
+    "zerschnitten"
+   ]
   },
   {
    "spur": 16,
@@ -255,8 +252,7 @@
     "staub": false
    },
    "fragenWeg": [
-    "k3faden",
-    "k3ganz"
+    "mond"
    ],
    "raetsel": {
     "art": "kreise",
@@ -355,7 +351,8 @@
     "stempel": "MILAS MOND",
     "erfolg": "Das ist Milas Mond! Nur dieser Kreis hat hinten den blauen Stern, oben das Loch und den aufgerollten Faden.",
     "werkzeug": "zeit"
-   }
+   },
+   "fragenNeu": []
   },
   {
    "spur": 17,
@@ -394,7 +391,9 @@
     "tipp": "Zähle in jedem Wort mit: 1 bleibt, 2 weg, 3 bleibt, 4 weg.",
     "erfolg": "Tut mir leid! Oskar hat den Mond nicht mit Absicht genommen. Es war ein Missverständnis.",
     "werkzeug": "lesen"
-   }
+   },
+   "fragenNeu": [],
+   "fragenWeg": []
   },
   {
    "spur": 18,
@@ -443,7 +442,8 @@
     },
     "plakatFertig": "Das Plakat ist fertig: Die Maus springt zu ihrem Käse!",
     "werkzeug": "lesen"
-   }
+   },
+   "fragenWeg": []
   }
  ]
 }

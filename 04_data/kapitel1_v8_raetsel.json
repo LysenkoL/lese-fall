@@ -23,6 +23,8 @@
   "start": "Fall öffnen",
   "weiterFall": "Weiter ermitteln",
   "neuStart": "Von vorn beginnen",
+  "neuerFund": "Neuer Fund!",
+  "fundTipp": "Tippe die Karte an. Dann hängt sie am Brett.",
   "krTippen": "Kreis antippen: umdrehen",
   "krKreuz": "Kreuz antippen: ausstreichen",
   "klaerMich": "Geklärt! Tippe mich an.",
@@ -84,7 +86,11 @@
   "wzLesen": "Lese-Blick",
   "wzLesenT": "Die Raupe liest jedes Wort genau. Du auch!",
   "wzKopf": "Die Raupe benutzt:",
-    "teamZeile": "Detektiv-Team: die Lese-Raupe und du"
+  "teamZeile": "Detektiv-Team: die Lese-Raupe und du",
+  "welcheFrage": "Eine Frage ist jetzt geklärt. Welche? Tippe sie an.",
+  "welcheFragen": "Zwei Fragen sind jetzt geklärt. Welche? Tippe sie an.",
+  "frageFalsch": "Diese Frage ist noch offen. Lies alle Fragen noch einmal.",
+  "frageHilfe": "Die Lese-Raupe zeigt es dir. Tippe die Frage an."
  },
  "intro": [
   {
@@ -177,7 +183,8 @@
     ],
     "erfolg": "Du hast scharfe Augen für Buchstaben!",
     "werkzeug": "lesen"
-   }
+   },
+   "fragenWeg": []
   },
   {
    "spur": 2,
@@ -253,7 +260,8 @@
     ],
     "erfolg": "Vier Dinge sind anders. Und das Wichtigste fehlt: der Mond.",
     "werkzeug": "zeit"
-   }
+   },
+   "fragenWeg": []
   },
   {
    "spur": 3,
@@ -280,7 +288,9 @@
     "erfolg": "W wie Wasser!",
     "stoerer": 4,
     "werkzeug": "fuehler"
-   }
+   },
+   "fragenNeu": [],
+   "fragenWeg": []
   },
   {
    "spur": 4,
@@ -291,12 +301,7 @@
     "text": "Der gelbe Kreis unter den Zeitungen ist nicht Milas Mond.",
     "staub": false
    },
-   "fragenNeu": [
-    {
-     "id": "kreis",
-     "text": "Wem gehört der gelbe Kreis?"
-    }
-   ],
+   "fragenNeu": [],
    "raetsel": {
     "art": "merkmale",
     "titel": "Ist das Milas Mond?",
@@ -325,7 +330,8 @@
     "stempel": "NICHT MILAS MOND",
     "erfolg": "Gelb und rund reicht nicht. Das ist nur ein Bastelkreis.",
     "werkzeug": "zeit"
-   }
+   },
+   "fragenWeg": []
   },
   {
    "spur": 5,
@@ -370,7 +376,9 @@
     ],
     "erfolg": "Genau so hat Ben es erzählt.",
     "werkzeug": "zeit"
-   }
+   },
+   "fragenNeu": [],
+   "fragenWeg": []
   },
   {
    "spur": 6,
@@ -501,7 +509,8 @@
     },
     "erfolg": "Genau. Sicher ist nur: Der Ärmel gehört Oskar. Was hat er vom Tablett genommen?",
     "werkzeug": "lesen"
-   }
+   },
+   "fragenNeu": []
   }
  ]
 }

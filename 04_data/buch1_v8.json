@@ -152,6 +152,8 @@
   "start": "Fall öff|nen",
   "weiterFall": "Wei|ter er|mit|teln",
   "neuStart": "Von vorn be|gin|nen",
+  "neuerFund": "Neu|er Fund!",
+  "fundTipp": "Tip|pe die Kar|te an. Dann hängt sie am Brett.",
   "krTippen": "Kreis an|tip|pen: um|dre|hen",
   "krKreuz": "Kreuz an|tip|pen: aus|strei|chen",
   "klaerMich": "Ge|klärt! Tip|pe mich an.",
@@ -214,6 +216,10 @@
   "wzLesenT": "Die Rau|pe liest je|des Wort ge|nau. Du auch!",
   "wzKopf": "Die Rau|pe be|nutzt:",
   "teamZeile": "De|tek|tiv-Team: die Le|se-Rau|pe und du",
+  "welcheFrage": "Ei|ne Fra|ge ist jetzt ge|klärt. Wel|che? Tip|pe sie an.",
+  "welcheFragen": "Zwei Fra|gen sind jetzt ge|klärt. Wel|che? Tip|pe sie an.",
+  "frageFalsch": "Die|se Fra|ge ist noch of|fen. Lies al|le Fra|gen noch ein|mal.",
+  "frageHilfe": "Die Le|se-Rau|pe zeigt es dir. Tip|pe die Fra|ge an.",
   "legen": "Aufs Tab|lett le|gen",
   "ausDinge": "Was passt nicht? Tip|pe es an.",
   "nochDing": "Gut! A|ber da ist noch et|was.",
@@ -894,12 +900,7 @@
     "text": "Der gel|be Kreis un|ter den Zei|tun|gen ist nicht Mi|las Mond.",
     "staub": false
    },
-   "fragenNeu": [
-    {
-     "id": "kreis",
-     "text": "Wem ge|hört der gel|be Kreis?"
-    }
-   ],
+   "fragenNeu": [],
    "fragenWeg": [],
    "tipp": null,
    "raetsel": {
@@ -1968,12 +1969,7 @@
     "text": "Os|kar sagt: Ich ha|be ei|nen wei|ßen Kreis vom Tab|lett ge|nom|men.",
     "staub": false
    },
-   "fragenNeu": [
-    {
-     "id": "kreis",
-     "text": "War der wei|ße Kreis Mi|las Mond?"
-    }
-   ],
+   "fragenNeu": [],
    "fragenWeg": [],
    "tipp": null,
    "raetsel": {
@@ -2134,7 +2130,9 @@
     "staub": false
    },
    "fragenNeu": [],
-   "fragenWeg": [],
+   "fragenWeg": [
+    "schneider"
+   ],
    "tipp": null,
    "raetsel": {
     "art": "versteckt",
@@ -2263,7 +2261,12 @@
     "text": "Ne|ben dem Tel|ler: ei|ne Sche|re und gel|be Schnip|sel. Nie|mand hat ge|se|hen, was ge|schnit|ten wur|de.",
     "staub": false
    },
-   "fragenNeu": [],
+   "fragenNeu": [
+    {
+     "id": "zerschnitten",
+     "text": "Hat Os|kar den Mond zer|schnit|ten?"
+    }
+   ],
    "fragenWeg": [],
    "tipp": null,
    "raetsel": {
@@ -2442,13 +2445,10 @@
     "text": "Am Kä|se schaut ein klei|nes Stück wei|ßer Fa|den he|raus.",
     "staub": false
    },
-   "fragenNeu": [
-    {
-     "id": "k3faden",
-     "text": "Wa|rum hat ein Kä|se ei|nen Fa|den?"
-    }
+   "fragenNeu": [],
+   "fragenWeg": [
+    "seide"
    ],
-   "fragenWeg": [],
    "tipp": null,
    "raetsel": {
     "art": "lupe",
@@ -2703,13 +2703,10 @@
      "h": 27
     }
    },
-   "fragenNeu": [
-    {
-     "id": "k3ganz",
-     "text": "Ist der Mond un|ter den Fle|cken noch ganz?"
-    }
+   "fragenNeu": [],
+   "fragenWeg": [
+    "zerschnitten"
    ],
-   "fragenWeg": [],
    "tipp": null,
    "raetsel": {
     "art": "unterschiede",
@@ -2941,8 +2938,7 @@
    },
    "fragenNeu": [],
    "fragenWeg": [
-    "k3faden",
-    "k3ganz"
+    "mond"
    ],
    "tipp": null,
    "raetsel": {
@@ -3409,7 +3405,7 @@
    "fragenNeu": [
     {
      "id": "k4wo",
-     "text": "Wo hängt der Mond?"
+     "text": "Wo im Baum hängt der Mond?"
     }
    ],
    "fragenWeg": [],
@@ -3644,12 +3640,7 @@
     "text": "Aus Os|kars Ka|pu|ze hing ein ro|sa Schwanz. Dort steck|te sei|ne Maus.",
     "staub": false
    },
-   "fragenNeu": [
-    {
-     "id": "k4maus",
-     "text": "Wo ist Os|kars Maus?"
-    }
-   ],
+   "fragenNeu": [],
    "fragenWeg": [
     "k4wo"
    ],
@@ -3806,9 +3797,7 @@
     "staub": false
    },
    "fragenNeu": [],
-   "fragenWeg": [
-    "k4maus"
-   ],
+   "fragenWeg": [],
    "tipp": null,
    "raetsel": {
     "art": "unterschiede",
@@ -4237,16 +4226,7 @@
     "text": "Im|mer wenn die Maus springt, zieht Ben den Kä|se hö|her. Das Pu|bli|kum lacht.",
     "staub": false
    },
-   "fragenNeu": [
-    {
-     "id": "k4schluessel",
-     "text": "Wo ist Frau Som|mers Schlüs|sel?"
-    },
-    {
-     "id": "k4vogel",
-     "text": "Wel|cher Vo|gel hat den Fa|den ge|holt?"
-    }
-   ],
+   "fragenNeu": [],
    "fragenWeg": [],
    "tipp": null,
    "raetsel": {
@@ -4384,7 +4364,7 @@
    },
    "fragenNeu": [],
    "fragenWeg": [
-    "k4vogel"
+    "k3vogel"
    ],
    "tipp": null,
    "raetsel": {
@@ -4541,7 +4521,8 @@
    },
    "fragenNeu": [],
    "fragenWeg": [
-    "k4schluessel"
+    "schluessel",
+    "k3plan"
    ],
    "tipp": null,
    "raetsel": {

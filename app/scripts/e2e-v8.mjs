@@ -395,7 +395,8 @@ for (const kap of KAPITEL) {
       else if (s === 'raetsel') await raetsel(spur, sp.raetsel);
       else if (s === 'brett') {
         await S(`s${spur}_brett_staub`);
-        if (await p.$('canvas.staub')) { await p.mouse.move(W / 2, 300); await loese(); await sleep(900); } // Staub: eine Karte je Kapitel
+        if (await p.$('canvas.staub')) { await p.mouse.move(W / 2, 300); await loese(); await sleep(900); }
+        else if (await p.$('.fundov')) { await p.click('.fundk', { force: true }); await sleep(900); if (await p.$('.fundov')) fehler.push(`Spur ${spur}: Fundkarte hängt nicht am Brett`); } // Staub: eine Karte je Kapitel
         await S(`s${spur}_brett`);
         const ersteSpur = sp.nr === D.spuren.find((q) => q.kap === kap).nr;
         if (ersteSpur) { // Code: alle bisher verdienten Buchstaben stehen schon drin
@@ -410,7 +411,7 @@ for (const kap of KAPITEL) {
         if (br.karten > 6 || br.fragen > 4) fehler.push(`Spur ${spur}: Brett hat ${br.karten} Karten, ${br.fragen} Fragen`);
         const eigene = D.spuren.filter((q) => q.kap === kap).map((q) => q.nr);
         if (br.nrs.some((x) => !eigene.includes(x))) fehler.push(`Spur ${spur}: Brett zeigt Karten fremder Kapitel: ${br.nrs}`);
-        if (await p.$('.zettel.wackelt')) { await p.click('.zettel.wackelt', { force: true }); await sleep(400); await shot(`s${spur}_brett_geklaert`); await sleep(1300); }
+        if (await p.$('.zettel[data-ok]')) { await shot(`s${spur}_brett_frage`); const falsch = await p.$('.zettel.fr:not([data-ok])'); if (falsch) { await falsch.click({ force: true }); await sleep(300); if (await p.$('#fuss [data-a="weiter"]')) fehler.push(`Spur ${spur}: falsche Frage schaltet Weiter frei`); } for (const z of await p.$$('.zettel[data-ok]')) { await z.click({ force: true }); await sleep(300); } await shot(`s${spur}_brett_geklaert`); await sleep(1400); if (!(await p.$('#fuss [data-a="weiter"]'))) fehler.push(`Spur ${spur}: nach geklärter Frage fehlt Weiter`); }
         await weiter();
       } else if (s === 'tippFrage') {
         await S(`s${spur}_tippfrage`);

@@ -1,0 +1,78 @@
+/* Runde 3 (13.11.2026): Kopf, Lesefuß, Rätselfläche, Brett – nach Rückmeldung der Auftraggeberin */
+
+/* ---------- Kopf ---------- */
+#app .kopf { gap: 8px; padding: calc(var(--oben) + 9px) 12px 17px; background: radial-gradient(120% 140% at 80% -40%, #34478A 0, transparent 60%), linear-gradient(#1B2752, #131B3C); box-shadow: 0 1px 0 rgba(244, 194, 67, .35), 0 8px 18px rgba(0, 0, 0, .28); }
+#app .kopf .kb.brettb { background: linear-gradient(#FFF6DF, #F3E3BB); color: #5A3A14; border-radius: 10px 10px 10px 3px; box-shadow: 0 3px 0 #B89554, 0 6px 12px rgba(0, 0, 0, .25); font-weight: 800; position: relative; }
+#app .kopf .kb.brettb::before { content: ''; position: absolute; top: -5px; left: 8px; width: 40%; height: 7px; border-radius: 5px 5px 0 0; background: #F3E3BB; }
+#app .kopf .kb.brettb:active { transform: translateY(2px); box-shadow: 0 1px 0 #B89554; }
+#app .kopf .kb.aa { border-radius: 50%; width: 42px; height: 42px; background: rgba(255, 255, 255, .08); box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .28); }
+#app .kt b { font-size: 18px; letter-spacing: .01em; }
+#app .kt span { color: #C9D3F2; opacity: 1; }
+#app .perl { background: rgba(0, 0, 0, .28); box-shadow: inset 0 0 0 1.5px rgba(244, 194, 67, .55); border-radius: 999px; padding: 5px 11px 5px 7px; font-size: 15px; }
+#app .mondp { width: 30px; height: 30px; filter: drop-shadow(0 0 6px rgba(246, 211, 91, .55)); }
+.kweg { position: absolute; left: 14px; right: 14px; bottom: 6px; height: 5px; border-radius: 3px; background: rgba(255, 255, 255, .13);
+  -webkit-mask-image: none; }
+.kweg::after { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent 0 calc(100% / var(--teile, 6) - 3px), #131B3C calc(100% / var(--teile, 6) - 3px) calc(100% / var(--teile, 6))); border-radius: 3px; }
+.kweg i { position: absolute; left: 0; top: 0; bottom: 0; width: var(--weg, 0%); border-radius: 3px; background: linear-gradient(90deg, #8FCB52, #F4C243); transition: width .9s cubic-bezier(.3, 1, .4, 1); }
+.kweg img { position: absolute; z-index: 2; left: calc(var(--weg, 0%) * .94 + 3%); bottom: -5px; width: 24px; height: 24px; object-fit: contain; transform: translateX(-50%); transition: left .9s cubic-bezier(.3, 1, .4, 1); filter: drop-shadow(0 2px 2px rgba(0, 0, 0, .5)); }
+
+/* ---------- Lesefuß: Blätter statt Punkte, Rätsel-Knopf mit Glanz ---------- */
+#app[data-m="lesen"] #fuss { background: linear-gradient(rgba(255, 252, 244, 0), var(--papier) 30%); padding-top: 12px; }
+#app[data-m="lesen"] #fuss::before { content: ''; position: absolute; left: 18px; right: 18px; top: 2px; height: 2px; background: repeating-linear-gradient(90deg, #E2D4B0 0 7px, transparent 7px 13px); }
+#app[data-m="lesen"] .pkt { gap: 9px; align-items: center; }
+#app[data-m="lesen"] .pkt i { width: 15px; height: 15px; border-radius: 2px 80% 2px 80%; background: #DDE9C6; box-shadow: inset 0 0 0 1.5px #B9CF94; transform: rotate(-8deg); }
+#app[data-m="lesen"] .pkt i.war { background: #9CCB5A; box-shadow: inset 0 0 0 1.5px #6FA53A; opacity: 1; }
+#app[data-m="lesen"] .pkt i.an { width: 22px; height: 22px; background: linear-gradient(135deg, #FFE082, #F4C243); box-shadow: inset 0 0 0 2px #C9951A, 0 0 0 4px rgba(244, 194, 67, .25); transform: rotate(-8deg) scale(1); animation: blattAn .5s cubic-bezier(.3, 1.6, .5, 1); }
+@keyframes blattAn { from { transform: rotate(-40deg) scale(.5); } }
+#app[data-m="lesen"] .rund { background: #fff; box-shadow: inset 0 0 0 2px #E6DCC4, 0 4px 10px rgba(60, 40, 0, .12); }
+#app[data-m="lesen"] .rund.gold { background: linear-gradient(#FFD564, #F0B62E); box-shadow: 0 4px 0 #B8851A, 0 10px 18px rgba(120, 80, 0, .28); }
+#app .kn.zugk { position: relative; overflow: hidden; padding-left: 10px; gap: 10px; border-radius: 18px; background: linear-gradient(#FFD564, #F0B62E); box-shadow: 0 4px 0 #B8851A, 0 10px 20px rgba(120, 80, 0, .3); }
+#app .kn.zugk > svg { width: 38px; height: 38px; padding: 8px; border-radius: 50%; background: #1B2752; color: #FFD564; flex: none; }
+#app .kn.zugk::after { content: ''; position: absolute; top: 0; bottom: 0; left: -60%; width: 40%; background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .65), transparent); animation: glanz 2.8s ease-in-out infinite; }
+@keyframes glanz { 0%, 55% { left: -60%; } 100% { left: 130%; } }
+
+/* ---------- Rätselfläche: Filz-Unterlage statt dunklem Holz ---------- */
+#app .zi { gap: 14px; padding: 16px 12px 18px; margin-top: 8px; }
+#app .zi::before { inset: 0; border-radius: 22px;
+  background: radial-gradient(120% 90% at 50% 0, rgba(255, 255, 255, .13), transparent 60%), repeating-linear-gradient(45deg, rgba(255, 255, 255, .025) 0 2px, transparent 2px 5px), repeating-linear-gradient(-45deg, rgba(0, 0, 0, .05) 0 2px, transparent 2px 5px), linear-gradient(#2F7A66, #235E50);
+  box-shadow: inset 0 0 0 5px #6E4A24, inset 0 0 0 6.5px #C9A45C, inset 0 0 0 7.5px rgba(0, 0, 0, .25), inset 0 14px 28px rgba(0, 0, 0, .22), 0 0 0 1px rgba(0, 0, 0, .25), 0 14px 30px rgba(0, 0, 0, .35), 0 0 34px rgba(244, 194, 67, .12); }
+#app .zi::after { content: ''; position: absolute; inset: 13px; z-index: -1; border-radius: 13px; border: 1.5px dashed rgba(255, 255, 255, .22); pointer-events: none; }
+#app .zi:empty::after { display: none; }
+#app .zi { position: relative; }
+
+/* ---------- Brett ---------- */
+#app[data-m="brett"] { background: var(--nacht-1); }
+#app[data-m="brett"] #fuss { background: linear-gradient(#1B2752, #131B3C); box-shadow: 0 -1px 0 rgba(244, 194, 67, .3); padding-top: 12px; }
+#app .brett { background-color: #C98A47; }
+#app .bgrid { grid-auto-rows: 1fr; }
+#app .bkarte.leer { aspect-ratio: auto; min-height: 96px; height: 100%; border: 2px dashed rgba(255, 243, 220, .5); background: rgba(90, 50, 10, .1); display: grid; place-items: center; }
+#app .bkarte.leer::after { content: '?'; font-weight: 800; font-size: 26px; color: rgba(255, 243, 220, .38); }
+#app .bkarte.wartet { visibility: visible; background: rgba(255, 233, 166, .16); border: 2.5px dashed #FFE082; box-shadow: 0 0 0 4px rgba(244, 194, 67, .18); animation: puls 1s ease-in-out infinite; transform: none; }
+#app .bkarte.wartet > *, #app .bkarte.wartet::before { visibility: hidden; }
+#app .bkarte.gepinnt::before { animation: nadel .25s both; }
+#app .bkarte.gepinnt { animation: pinnwipp .5s ease-out; }
+@keyframes pinnwipp { 0% { transform: rotate(calc(var(--n, 0deg) + 5deg)); } 50% { transform: rotate(calc(var(--n, 0deg) - 3deg)); } }
+.fundov { position: absolute; inset: 0; z-index: 6; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 20px; background: rgba(19, 27, 60, .62); backdrop-filter: blur(2px); cursor: pointer; transition: background .5s, backdrop-filter .5s; animation: fundRein .3s ease-out; }
+@keyframes fundRein { from { opacity: 0; } }
+.fund-t { font-weight: 800; font-size: 24px; color: #FFE082; text-shadow: 0 2px 0 rgba(0, 0, 0, .35); }
+.fund-t .s-b, .fund-t .s-r, .fund-h .s-b, .fund-h .s-r { color: inherit; }
+.fund-h { font-weight: 700; font-size: 17px; color: #fff; text-align: center; max-width: 280px; background: rgba(0, 0, 0, .3); border-radius: 14px; padding: 8px 14px; }
+#app .fundov .fundk { width: min(62%, 250px); padding: 9px 9px 12px; gap: 7px; text-align: left; transform: rotate(-2deg); transform-origin: top left; transition: transform .55s cubic-bezier(.3, 1.1, .5, 1); box-shadow: 0 0 0 4px rgba(255, 224, 130, .5), 0 18px 36px rgba(0, 0, 0, .45); animation: fundWipp 1.6s ease-in-out infinite; border: 0; font: inherit; }
+#app .fundov .fundk p { font-size: 15px; line-height: 1.3; -webkit-line-clamp: 5; }
+@keyframes fundWipp { 50% { transform: rotate(1.5deg) translateY(-5px); } }
+.fundov.fliegt { background: transparent; backdrop-filter: none; pointer-events: none; }
+.fundov.fliegt .fund-t, .fundov.fliegt .fund-h { opacity: 0; transition: opacity .2s; }
+#app .fundov.fliegt .fundk { animation: none; box-shadow: 0 8px 16px rgba(60, 30, 0, .32); }
+@media (prefers-reduced-motion: reduce) { .kweg i, .kweg img, #app .fundov .fundk { transition: none; } #app .kn.zugk::after, #app .fundov .fundk, #app .bkarte.wartet, #app[data-m="lesen"] .pkt i.an, #app .bkarte.gepinnt { animation: none; } }
+
+/* ---------- Brett: Welche Frage ist geklärt? ---------- */
+.fr-frage { font-weight: 800; font-size: 15px; line-height: 1.3; color: #26221C; background: linear-gradient(#FFE082, #F4C243); border-radius: 12px; padding: 8px 12px; box-shadow: 0 3px 0 #B8851A; animation: hoch .4s both; }
+.fr-frage .s-b, .fr-frage .s-r { color: inherit; }
+.brett.fragt .zettel.fr { cursor: pointer; box-shadow: 0 0 0 2px rgba(255, 224, 130, .7), var(--sch-karte); }
+.brett.fragt .zettel.fr:active { transform: scale(.97); }
+.zettel.fr .klaer { display: none; }
+.zettel.fr.zeig { outline: 3px solid var(--senf); outline-offset: 1px; animation: leicht 1.2s infinite; }
+.zettel.fr.zeig .klaer { display: inline-block; }
+.zettel.fr.nein { animation: frNein .7s; }
+@keyframes frNein { 0%, 60% { background: #FFD9BF; } 15% { margin-left: -6px; } 35% { margin-left: 5px; } 50% { margin-left: -3px; } }
+@media (prefers-reduced-motion: reduce) { .zettel.fr.zeig, .zettel.fr.nein, .fr-frage { animation: none; } }

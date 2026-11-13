@@ -8,6 +8,7 @@ import './v8.css';
 import './k3.css';
 import './k4.css';
 import './politur.css';
+import './runde3.css';
 import DATA_ from '../../../04_data/buch1_v8.json';
 import { T } from '../text';
 import { bildUrl as img } from './bilder';
@@ -79,7 +80,7 @@ const IC = {
 
 /* ---------- Gerüst ---------- */
 const app = $('#app');
-app.innerHTML = `<header class="kopf"><button class="kb brettb" id="bBrett" aria-label="Brett">${IC.akte}<span>Brett</span></button><div class="kt"><b id="kT1"></b><span id="kT2"></span></div><span class="mondp" id="kMond" aria-hidden="true"></span><span class="perl" id="kPerl"></span><button class="kb aa" id="bAa" aria-label="Schrift">Aa</button></header><main id="buehne"></main><footer id="fuss"></footer><div id="ueber"></div>`;
+app.innerHTML = `<header class="kopf"><button class="kb brettb" id="bBrett" aria-label="Brett">${IC.akte}<span>Brett</span></button><div class="kt"><b id="kT1"></b><span id="kT2"></span></div><span class="mondp" id="kMond" aria-hidden="true"></span><span class="perl" id="kPerl"></span><button class="kb aa" id="bAa" aria-label="Schrift">Aa</button><div class="kweg" aria-hidden="true"><i></i><img id="kWegR" alt=""></div></header><main id="buehne"></main><footer id="fuss"></footer><div id="ueber"></div>`;
 const buehne = $('#buehne'), fuss = $('#fuss'), ueber = $('#ueber');
 const modus = (m: string) => { app.dataset.m = m; buehne.ontouchstart = buehne.ontouchend = null; /* Blättern per Wisch gilt nur beim Lesen */ };
 /** Mond im Kopf: füllt sich mit jeder gelösten Spur, am Ende ist Vollmond */
@@ -93,6 +94,7 @@ function kopf() {
   $('#kT1').textContent = `Spur ${SP(stand.spur).spur}`;
   $('#kT2').innerHTML = `${UI.kapitel} ${kap().nr} · ${kap().titelH}`;
   $('#kPerl').textContent = String(perlen());
+  { const li = kapSpuren(kap().nr); const kw = $('.kweg'); kw.style.setProperty('--weg', (li.filter((n) => stand.fertig.includes(n)).length / li.length * 100) + '%'); kw.style.setProperty('--teile', String(li.length)); ($('#kWegR') as HTMLImageElement).src = fig('raupe/lacht'); }
   $('#kMond').innerHTML = mondPhase(Math.min(1, stand.fertig.length / D.spuren.length));
   document.documentElement.style.setProperty('--fs', stand.fs + 'px');
   document.documentElement.classList.toggle('ohne-silben', !stand.silben);
@@ -326,24 +328,24 @@ function tresorInfo(zurueck: () => void) {
   ueber.onclick = (e) => { const t = e.target as HTMLElement; if (t.closest('[data-a="zu"]') || t.classList.contains('schl')) zurueck(); };
 }
 const NEIGUNG = [-1.6, 1.1, -0.6, 1.8, -1.2, 0.7, -1.9, 1.4];
-function brettHtml(bis: number, neu = 0, staubig = false) {
+function brettHtml(bis: number, neu = 0, staubig = false, wartet = false) {
   const liste = kapSpuren(SP(bis).kap);
   const slots = liste.map((n) => {
     if (n > bis || !stand.fertig.includes(n)) return `<div class="bkarte leer"></div>`;
     const k = SP(n).karte;
-    return `<div class="bkarte${n === neu ? (staubig ? ' neu' : ' fall') : ''}" data-k="${n}" style="--n:${NEIGUNG[(n * 5 + 2) % NEIGUNG.length]}deg"><div class="bk-bild">${bildKarte(k)}</div><p>${k.text}</p></div>`;
+    return `<div class="bkarte${n === neu ? (staubig ? ' neu' : wartet ? ' wartet' : ' fall') : ''}" data-k="${n}" style="--n:${NEIGUNG[(n * 5 + 2) % NEIGUNG.length]}deg"><div class="bk-bild">${bildKarte(k)}</div><p>${k.text}</p></div>`;
   }).join('');
   const fragen: { id: string; text: string; n: number }[] = [];
-  for (const n of liste) if (n <= bis) SP(n).fragenNeu.forEach((f: any) => fragen.push({ ...f, n }));
+  for (const sp of D.spuren) if (sp.spur <= bis) sp.fragenNeu.forEach((f: any) => fragen.push({ ...f, n: sp.spur }));
   const weg = new Set<string>(SP(bis).fragenWeg);
-  const zettel = fragen.filter((f) => !stand.geklaert.includes(f.id)).map((f) => `<div class="zettel fr${f.n === neu && staubig ? ' versteckt' : ''}${neu && weg.has(f.id) ? ' wackelt' : ''}" data-q="${f.id}" style="--n:${NEIGUNG[(f.id.length * 3 + f.n) % NEIGUNG.length] * 0.8}deg"><span>${f.text}</span>${f.n === neu ? `<em class="neu">${UI.neu}</em>` : ''}${neu && weg.has(f.id) ? `<em class="klaer">${UI.klaerMich}</em>` : ''}</div>`).join('');
+  const zettel = fragen.filter((f) => !stand.geklaert.includes(f.id)).map((f) => `<div class="zettel fr${f.n === neu && (staubig || wartet) ? ' versteckt' : ''}" ${neu && weg.has(f.id) ? 'data-ok="1" ' : ''}data-q="${f.id}" style="--n:${NEIGUNG[(f.id.length * 3 + f.n) % NEIGUNG.length] * 0.8}deg"><span>${f.text}</span>${f.n === neu ? `<em class="neu">${UI.neu}</em>` : ''}${neu && weg.has(f.id) ? `<em class="klaer">${UI.klaerMich}</em>` : ''}</div>`).join('');
   const code = codeFelder();
   return `<div class="bgrid">${slots}</div><h3>${UI.fragen}<img class="brett-raupe" src="${fig('raupe/denkt')}" alt=""></h3><div class="fragen">${zettel}</div><div class="codez" data-a="code" role="button" tabindex="0"><img class="tresor-mini" src="${img('tresor_zu')}" alt=""><span>${UI.code}</span><div class="wort">${code}</div></div>`;
 }
 function brett() {
   modus('brett');
   const nr = stand.spur, staubig = SP(nr).karte.staub === true;
-  buehne.innerHTML = `<section class="brett"><div class="ak"><span class="tab hell">${UI.brett}</span><span class="plus"><span>+2 ${UI.perlen}</span></span></div>${staubig ? `<p class="wischz">${wzChip(UI, 'fuehler', 'klein')} ${UI.wisch}</p>` : ''}${brettHtml(nr, nr, staubig)}</section>`;
+  buehne.innerHTML = `<section class="brett"><div class="ak"><span class="tab hell">${UI.brett}</span><span class="plus"><span>+2 ${UI.perlen}</span></span></div>${staubig ? `<p class="wischz">${wzChip(UI, 'fuehler', 'klein')} ${UI.wisch}</p>` : ''}${brettHtml(nr, nr, staubig, !staubig)}</section>`;
   fuss.innerHTML = `<div class="fz"><button class="kn haupt" data-a="weiter" style="visibility:hidden" tabindex="-1"><span>${UI.weiter}</span></button></div>`;
   const sec = $('.brett');
   const karte = $<HTMLElement>('.bkarte.neu', sec);
@@ -352,24 +354,60 @@ function brett() {
     sec.querySelector<HTMLElement>('.wischz')?.style.setProperty('display', 'none');
     sec.querySelectorAll('.zettel.versteckt').forEach((z) => z.classList.remove('versteckt'));
     sec.querySelectorAll('.zettel.fr:has(em.neu)').forEach((z) => z.classList.add('frisch'));
+    const zeigWeiter = () => {
     fuss.innerHTML = `<div class="fz">${knopf('weiter', UI.weiter)}</div>`;
     klick('weiter', () => { SP(nr).fragenWeg.forEach((id: string) => { if (!stand.geklaert.includes(id)) stand.geklaert.push(id); }); speichern(); weiter(); });
+    };
     summ(25);
-  };
-  if (staubig) hookStaub = staub(karte, fertigWischen); else fertigWischen();
-  sec.addEventListener('click', (e) => {
-    const t = e.target as HTMLElement;
-    const q = t.closest<HTMLElement>('.zettel.wackelt');
-    if (q && !q.querySelector('.stempel')) {
-      q.classList.remove('wackelt');
+    // Welche Frage ist jetzt geklärt? Das Kind entscheidet selbst.
+    const offen = () => [...sec.querySelectorAll<HTMLElement>('.zettel[data-ok]')].filter((z) => !z.querySelector('.stempel'));
+    if (!offen().length) return zeigWeiter();
+    sec.classList.add('fragt');
+    $('.fragen', sec).insertAdjacentHTML('beforebegin', `<p class="fr-frage">${offen().length > 1 ? UI.welcheFragen : UI.welcheFrage}</p>`);
+    const ansage = $<HTMLElement>('.fr-frage', sec);
+    let fehl = 0;
+    const klaere = (q: HTMLElement) => {
+      q.classList.remove('zeig');
       q.insertAdjacentHTML('beforeend', `<b class="stempel klein2">${UI.geklaert}</b>`);
       summ(30);
       if (!stand.geklaert.includes(q.dataset.q!)) stand.geklaert.push(q.dataset.q!);
       speichern();
       setTimeout(() => q.classList.add('faellt'), 900);
       setTimeout(() => q.remove(), 1500);
-      return;
-    }
+      if (!offen().length) { fragePhase = null; hookStaub = null; sec.classList.remove('fragt'); ansage.remove(); zeigWeiter(); }
+    };
+    fragePhase = (q) => {
+      if (q.querySelector('.stempel')) return;
+      if (q.dataset.ok) return klaere(q);
+      fehl++;
+      q.classList.remove('nein'); void q.offsetWidth; q.classList.add('nein');
+      ansage.innerHTML = fehl >= 2 ? UI.frageHilfe : UI.frageFalsch;
+      if (fehl >= 2) offen().forEach((z) => z.classList.add('zeig'));
+    };
+    hookStaub = () => offen().forEach(klaere);
+  };
+  let fragePhase: ((q: HTMLElement) => void) | null = null;
+  if (staubig) hookStaub = staub(karte, fertigWischen);
+  else {
+    // Neuer Fund: das Kind hängt die Karte selbst ans Brett
+    const ziel = $<HTMLElement>('.bkarte.wartet', sec);
+    sec.insertAdjacentHTML('beforeend', `<div class="fundov"><p class="fund-t">${UI.neuerFund}</p><button class="bkarte fundk">${ziel.innerHTML}</button><p class="fund-h">${UI.fundTipp}</p></div>`);
+    const ov = $<HTMLElement>('.fundov', sec), fk = $<HTMLElement>('.fundk', ov);
+    let weg = false;
+    const haengen = () => {
+      if (weg) return; weg = true; hookStaub = null;
+      const z = ziel.getBoundingClientRect(), v = fk.getBoundingClientRect();
+      ov.classList.add('fliegt');
+      fk.style.transform = `translate(${z.left - v.left}px, ${z.top - v.top}px) scale(${z.width / v.width})`;
+      setTimeout(() => { ov.remove(); ziel.classList.remove('wartet'); ziel.classList.add('gepinnt'); if (sec.isConnected) fertigWischen(); }, 560);
+    };
+    hookStaub = haengen;
+    ov.addEventListener('click', (e) => { e.stopPropagation(); haengen(); });
+  }
+  sec.addEventListener('click', (e) => {
+    const t = e.target as HTMLElement;
+    const q = t.closest<HTMLElement>('.zettel.fr');
+    if (q && fragePhase) return fragePhase(q);
     if (t.closest('[data-a="code"]')) return tresorInfo(() => { ueber.innerHTML = ''; });
     const k = t.closest<HTMLElement>('.bkarte[data-k]');
     if (k && !k.classList.contains('neu')) karteGross(+k.dataset.k!);

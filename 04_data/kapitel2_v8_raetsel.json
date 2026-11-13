@@ -106,7 +106,8 @@
     ],
     "erfolg": "Der Mond gehört in die grüne Kiste. Aber er lag auf dem Tablett. Dort darf sich jeder Papier nehmen.",
     "werkzeug": "lesen"
-   }
+   },
+   "fragenWeg": []
   },
   {
    "spur": 8,
@@ -169,7 +170,9 @@
     "warum": "Der Kleber war noch nass. Er durfte das Tablett nicht berühren.",
     "erfolg": "Die weiße Seite lag oben. So hat der nasse Kleber das Tablett nicht berührt. Von oben sah der Mond weiß aus, nicht gelb.",
     "werkzeug": "lupe"
-   }
+   },
+   "fragenNeu": [],
+   "fragenWeg": []
   },
   {
    "spur": 9,
@@ -231,7 +234,8 @@
     ],
     "erfolg": "Alles gefunden. Nur eines sieht die Raupe nicht: was unter dem Seidenpapier liegt.",
     "werkzeug": "lupe"
-   }
+   },
+   "fragenWeg": []
   },
   {
    "spur": 10,
@@ -242,12 +246,7 @@
     "text": "Oskar sagt: Ich habe einen weißen Kreis vom Tablett genommen.",
     "staub": false
    },
-   "fragenNeu": [
-    {
-     "id": "kreis",
-     "text": "War der weiße Kreis Milas Mond?"
-    }
-   ],
+   "fragenNeu": [],
    "raetsel": {
     "art": "spiegel",
     "titel": "Geheimschrift",
@@ -262,7 +261,8 @@
     "warum": "Im Spiegel steht alles verkehrt herum. Lies von rechts nach links.",
     "erfolg": "Fest für Maus! Das ist die Einladung für Oskars Maus.",
     "werkzeug": "lesen"
-   }
+   },
+   "fragenWeg": []
   },
   {
    "spur": 11,
@@ -290,7 +290,11 @@
     "erfolg": "B wie Baum!",
     "stoerer": 4,
     "werkzeug": "fuehler"
-   }
+   },
+   "fragenNeu": [],
+   "fragenWeg": [
+    "schneider"
+   ]
   },
   {
    "spur": 12,
@@ -386,7 +390,13 @@
     },
     "erfolg": "Genau. Sicher ist nur, was Oskar gesagt hat. Ob es Milas Mond war, weiß noch niemand.",
     "werkzeug": "lesen"
-   }
+   },
+   "fragenNeu": [
+    {
+     "id": "zerschnitten",
+     "text": "Hat Oskar den Mond zerschnitten?"
+    }
+   ]
   }
  ]
 }

@@ -198,6 +198,23 @@ for n, d, wo in [
         where=f"Вступление, значок перед каждой загадкой и финал — сила «{wo}»",
         note="Все четыре лучше генерировать в одном чате подряд, чтобы рамка и стиль совпали." if n == "kraft_fuehler" else "")
 
+# ---------------------------------------------------------------- Sechs Pullis (Spur 6)
+CP = "Свитера для загадки «Чей рукав?» (6 штук)"
+PULLI_RAHMEN = ("One single children's garment, laid flat, seen straight from the front, centered, BOTH sleeves spread out to the sides "
+                "so that each sleeve is fully and clearly visible. Soft knitted fabric. No child, no hanger, no other objects, no text. "
+                "All six garments of this set have exactly the same size, pose and viewing angle – only pattern and details differ. ")
+for n, d in [
+    ("pulli_oskar", "A hoodie with a hood. Body and sleeves have bold RED and WHITE HORIZONTAL stripes; on the sleeves the stripes run AROUND the arm like rings. No buttons anywhere."),
+    ("pulli_lina", "A hoodie with a hood. Body and sleeves have bold dark BLUE and WHITE HORIZONTAL stripes; on the sleeves the stripes run around the arm like rings. No buttons. No red at all."),
+    ("pulli_tom", "A hoodie with a hood, completely plain RED, one single colour. No stripes, no dots, no pattern, no buttons."),
+    ("pulli_emil", "A hoodie with a hood, RED with many round WHITE polka DOTS on body and sleeves. No stripes, no buttons."),
+    ("pulli_nele", "A hoodie with a hood. Bold RED and WHITE VERTICAL stripes: on the body they run from top to bottom, and on the sleeves they run ALONG the arm from shoulder to cuff (lengthwise, NOT as rings). No buttons."),
+    ("pulli_ida", "A cardigan WITHOUT a hood, with a small round collar. Bold RED and WHITE HORIZONTAL stripes; on the sleeves the stripes run around the arm like rings. A row of big dark-blue BUTTONS down the front, and TWO big dark-blue buttons clearly visible on EACH sleeve cuff."),
+]:
+    add(CP, f"objekte/{n}", "OBJ", PULLI_RAHMEN + d, head=BIRDS_HEAD, size="1:1",
+        where="Spur 6 — загадка «Wessen Ärmel war es?»",
+        note="Фон ровный голубой, чтобы белые полоски не пропали при вырезании. Все шесть — в одном чате подряд. Важно: у Неле полоски вдоль рукава, у Иды пуговицы на манжетах." if n == "pulli_oskar" else "")
+
 # ---------------------------------------------------------------- Stand der Bilder
 # Fertig und im Repo (assets/illustrationen/...): erscheinen nicht mehr auf der Seite.
 FERTIG = {"objekte/raetsel_ball", "objekte/raetsel_schwamm", "kinder/ida", "kinder/nele", "objekte/fuchs_puppe", "objekte/koenig_puppe", "objekte/pappbaum", "objekte/papierstapel",
