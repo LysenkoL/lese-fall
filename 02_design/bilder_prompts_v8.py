@@ -179,7 +179,7 @@ The same safe, now open: the door swings open, warm golden light streams out; in
 
 # ---------------------------------------------------------------- Stand der Bilder
 # Fertig und im Repo (assets/illustrationen/...): erscheinen nicht mehr auf der Seite.
-FERTIG = {"kinder/ida", "kinder/nele", "objekte/fuchs_puppe", "objekte/koenig_puppe", "objekte/pappbaum", "objekte/papierstapel",
+FERTIG = {"objekte/raetsel_ball", "objekte/raetsel_schwamm", "kinder/ida", "kinder/nele", "objekte/fuchs_puppe", "objekte/koenig_puppe", "objekte/pappbaum", "objekte/papierstapel",
           "objekte/raetsel_kaese", "objekte/raetsel_keks", "objekte/raetsel_sonne", "objekte/raetsel_zitrone",
           "plakat", "baum", "baum_nest", "nest_finale", "tresor_zu", "tresor_auf",
           "k1_s1", "kinder/lina", "kinder/tom", "kinder/emil", "objekte/mond_hinten_feucht", "objekte/mond_hinten_faden",
