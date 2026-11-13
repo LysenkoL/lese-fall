@@ -121,7 +121,8 @@
     },
     "urkunde": {
      "titel": "Die Ur|kun|de"
-    }
+    },
+    "raupe": "Fall gelöst! Meine Fühler haben geleuchtet. Meine Lupe hat gesucht. Mein Blick war ganz langsam. Aber gelesen und nachgedacht hast du. Ohne dich hätte ich es nie geschafft. Bis zum nächsten Fall, Partner!"
    }
   }
  ],
@@ -137,6 +138,10 @@
   {
    "bild": "objekte/goldene_lupe",
    "text": "Die Le|se-Rau|pe ist lang|sam. Da|rum sieht sie, was an|de|re ü|ber|se|hen. Du liest und löst die Rät|sel. Zu|sam|men klärt ihr den Fall."
+  },
+  {
+   "werkzeuge": true,
+   "text": "Die Le|se-Rau|pe hat vier De|tek|tiv-Kräf|te. Bei je|dem Rät|sel siehst du, wel|che Kraft sie ge|ra|de be|nutzt."
   },
   {
    "bild": "tresor",
@@ -199,6 +204,15 @@
   "dochGeht": "Doch, die Buch|sta|ben pas|sen! Pro|bier es noch ein|mal.",
   "tresorInfo": "Der Tre|sor öff|net sich mit ei|nem Co|de-Wort aus vier Buch|sta|ben. Für je|des ge|lös|te Ka|pi|tel be|kommst du ei|nen Buch|sta|ben. Im Tre|sor war|tet ei|ne Ü|ber|ra|schung auf dich.",
   "tresor": "Der Tre|sor der Le|se-Rau|pe",
+  "wzFuehler": "Leucht-Füh|ler",
+  "wzFuehlerT": "Die Füh|ler leuch|ten gol|den. Sie zei|gen, was sich ver|steckt.",
+  "wzLupe": "Tau|trop|fen-Lu|pe",
+  "wzLupeT": "Durch den Tau|trop|fen wird das Kleins|te groß.",
+  "wzZeit": "Zeit|lu|pen-Blick",
+  "wzZeitT": "Die Rau|pe schaut ganz lang|sam. So ent|geht ihr nichts.",
+  "wzLesen": "Le|se-Blick",
+  "wzLesenT": "Die Rau|pe liest je|des Wort ge|nau. Du auch!",
+  "wzKopf": "Die Rau|pe be|nutzt:",
   "legen": "Aufs Tab|lett le|gen",
   "ausDinge": "Was passt nicht? Tip|pe es an.",
   "nochDing": "Gut! A|ber da ist noch et|was.",
@@ -387,7 +401,8 @@
       "warum": "THE|A|TER hat zwei T. Hier liegt nur eins."
      }
     ],
-    "erfolg": "Du hast schar|fe Au|gen für Buch|sta|ben!"
+    "erfolg": "Du hast schar|fe Au|gen für Buch|sta|ben!",
+    "werkzeug": "lesen"
    }
   },
   {
@@ -510,6 +525,14 @@
      "s": [
       "Die Füh|ler der Le|se-Rau|pe leuch|ten gol|den."
      ]
+    },
+    {
+     "id": "s2-p15",
+     "typ": "p",
+     "s": [
+      "Zeit für ih|ren Zeit|lu|pen-Blick.",
+      "Was ist am The|a|ter an|ders als vor|hin?"
+     ]
     }
    ],
    "karte": {
@@ -582,7 +605,8 @@
       "tipp": "Schau un|ter den Tisch."
      }
     ],
-    "erfolg": "Vier Din|ge sind an|ders. Und das Wich|tigs|te fehlt: der Mond."
+    "erfolg": "Vier Din|ge sind an|ders. Und das Wich|tigs|te fehlt: der Mond.",
+    "werkzeug": "zeit"
    }
   },
   {
@@ -700,6 +724,13 @@
      "s": [
       "Was wäscht er da nur so lan|ge von sei|nen Fin|gern?"
      ]
+    },
+    {
+     "id": "s3-p14",
+     "typ": "p",
+     "s": [
+      "Die Rau|pe rich|tet ih|re Leucht-Füh|ler auf das Was|ser."
+     ]
     }
    ],
    "karte": {
@@ -724,7 +755,8 @@
     "winkel": 10,
     "farbe": "#2F6FB8",
     "erfolg": "W wie Was|ser!",
-    "stoerer": 4
+    "stoerer": 4,
+    "werkzeug": "fuehler"
    }
   },
   {
@@ -895,7 +927,8 @@
      }
     ],
     "stempel": "NICHT MILAS MOND",
-    "erfolg": "Gelb und rund reicht nicht. Das ist nur ein Bas|tel|kreis."
+    "erfolg": "Gelb und rund reicht nicht. Das ist nur ein Bas|tel|kreis.",
+    "werkzeug": "zeit"
    }
   },
   {
@@ -1050,7 +1083,8 @@
      "3",
      "4"
     ],
-    "erfolg": "Ge|nau so hat Ben es er|zählt."
+    "erfolg": "Ge|nau so hat Ben es er|zählt.",
+    "werkzeug": "zeit"
    }
   },
   {
@@ -1296,7 +1330,8 @@
       }
      ]
     },
-    "erfolg": "Ge|nau. Si|cher ist nur: Der Är|mel ge|hört Os|kar. Was hat er vom Tab|lett ge|nom|men?"
+    "erfolg": "Ge|nau. Si|cher ist nur: Der Är|mel ge|hört Os|kar. Was hat er vom Tab|lett ge|nom|men?",
+    "werkzeug": "lesen"
    },
    "schluessel": true
   },
@@ -1329,8 +1364,8 @@
      "id": "s7-p3",
      "typ": "p",
      "s": [
-      "Ben schaut auf das lee|re Tab|lett.",
-      "Dann schaut er auf die grü|ne Kis|te da|ne|ben.",
+      "Ben starrt auf das lee|re Tab|lett.",
+      "Dann fällt sein Blick auf die grü|ne Kis|te da|ne|ben.",
       "Er wird ein bis|schen rot."
      ]
     },
@@ -1488,7 +1523,8 @@
       "warum": "Ein Strei|fen Pa|pier zum Bas|teln liegt auf dem blau|en Tab|lett."
      }
     ],
-    "erfolg": "Der Mond ge|hört in die grü|ne Kis|te. A|ber er lag auf dem Tab|lett. Dort darf sich je|der Pa|pier neh|men."
+    "erfolg": "Der Mond ge|hört in die grü|ne Kis|te. A|ber er lag auf dem Tab|lett. Dort darf sich je|der Pa|pier neh|men.",
+    "werkzeug": "lesen"
    }
   },
   {
@@ -1557,7 +1593,7 @@
      "id": "s8-p7",
      "typ": "p",
      "s": [
-      "Die Le|se-Rau|pe wa|ckelt mit den Füh|lern."
+      "Die Le|se-Rau|pe hält ih|re Tau|trop|fen-Lu|pe vors Au|ge."
      ]
     },
     {
@@ -1565,7 +1601,8 @@
      "typ": "th",
      "s": [
       "„Wie lag der Mond?“, denkt sie.",
-      "„Und wa|rum lag er so?“"
+      "„Und wa|rum lag er so?",
+      "Der Kle|ber ver|rät es.“"
      ]
     }
    ],
@@ -1627,7 +1664,8 @@
     ],
     "tipp1": "Denk an den nas|sen Kle|ber. Was darf er nicht be|rüh|ren?",
     "warum": "Der Kle|ber war noch nass. Er durf|te das Tab|lett nicht be|rüh|ren.",
-    "erfolg": "Die wei|ße Sei|te lag o|ben. So hat der nas|se Kle|ber das Tab|lett nicht be|rührt. Von o|ben sah der Mond weiß aus, nicht gelb."
+    "erfolg": "Die wei|ße Sei|te lag o|ben. So hat der nas|se Kle|ber das Tab|lett nicht be|rührt. Von o|ben sah der Mond weiß aus, nicht gelb.",
+    "werkzeug": "lupe"
    }
   },
   {
@@ -1653,7 +1691,7 @@
      "typ": "p",
      "s": [
       "End|lich ist sie da.",
-      "Sie schaut hi|naus."
+      "Sie hebt ih|re Tau|trop|fen-Lu|pe und schaut hi|naus."
      ]
     },
     {
@@ -1794,7 +1832,8 @@
       "sagt": "Aus so grü|nem Pa|pier war das Früh|stück der Rau|pe."
      }
     ],
-    "erfolg": "Al|les ge|fun|den. Nur ei|nes sieht die Rau|pe nicht: was un|ter dem Sei|den|pa|pier liegt."
+    "erfolg": "Al|les ge|fun|den. Nur ei|nes sieht die Rau|pe nicht: was un|ter dem Sei|den|pa|pier liegt.",
+    "werkzeug": "lupe"
    }
   },
   {
@@ -1948,7 +1987,8 @@
     ],
     "richtig": 0,
     "warum": "Im Spie|gel steht al|les ver|kehrt he|rum. Lies von rechts nach links.",
-    "erfolg": "Fest für Maus! Das ist die Ein|la|dung für Os|kars Maus."
+    "erfolg": "Fest für Maus! Das ist die Ein|la|dung für Os|kars Maus.",
+    "werkzeug": "lesen"
    }
   },
   {
@@ -2081,7 +2121,9 @@
      "typ": "p",
      "s": [
       "Die Rau|pe er|reicht den Rand.",
-      "Sie schiebt den Kopf da|rü|ber und schaut hi|nun|ter."
+      "Sie schiebt den Kopf da|rü|ber.",
+      "Un|ten ra|schelt das Laub.",
+      "Da be|gin|nen ih|re Leucht-Füh|ler zu glim|men."
      ]
     }
    ],
@@ -2108,7 +2150,8 @@
     "farbe": "#3E7B2A",
     "muster": "laub",
     "erfolg": "B wie Baum!",
-    "stoerer": 4
+    "stoerer": 4,
+    "werkzeug": "fuehler"
    }
   },
   {
@@ -2303,7 +2346,8 @@
       }
      ]
     },
-    "erfolg": "Ge|nau. Si|cher ist nur, was Os|kar ge|sagt hat. Ob es Mi|las Mond war, weiß noch nie|mand."
+    "erfolg": "Ge|nau. Si|cher ist nur, was Os|kar ge|sagt hat. Ob es Mi|las Mond war, weiß noch nie|mand.",
+    "werkzeug": "lesen"
    },
    "schluessel": true
   },
@@ -2419,7 +2463,8 @@
     },
     "start": "Mit mei|ner Lu|pe sieht man Klei|nes groß. Schie|be sie ü|ber den Kä|se.",
     "tipp": "Schau am Rand ent|lang. Es ist et|was Dün|nes, Wei|ßes.",
-    "erfolg": "Ein klei|nes Stück wei|ßer Fa|den! Seit wann hat ein Kä|se ei|nen Fa|den? Mi|las Mond hat ei|nen!"
+    "erfolg": "Ein klei|nes Stück wei|ßer Fa|den! Seit wann hat ein Kä|se ei|nen Fa|den? Mi|las Mond hat ei|nen!",
+    "werkzeug": "lupe"
    }
   },
   {
@@ -2500,11 +2545,19 @@
     },
     {
      "id": "s14-p9",
+     "typ": "p",
+     "s": [
+      "Zum Glück hat sie ih|ren Zeit|lu|pen-Blick.",
+      "Der Schat|ten war schnell.",
+      "A|ber sie hat ihn ganz lang|sam ge|se|hen."
+     ]
+    },
+    {
+     "id": "s14-p10",
      "typ": "th",
      "s": [
       "„Wer war das?“, denkt sie.",
-      "„Ich ha|be nur den Schat|ten ge|se|hen.",
-      "Spit|zer Schna|bel.",
+      "„Spit|zer Schna|bel.",
       "Lan|ger Schwanz.“"
      ]
     }
@@ -2531,7 +2584,8 @@
     "richtig": 0,
     "tipp": "Schau auf den Schwanz und auf den Schna|bel.",
     "warum": "Nur die|ser Vo|gel hat ei|nen so lan|gen Schwanz und ei|nen spit|zen Schna|bel.",
-    "erfolg": "Die|ser Vo|gel passt zum Schat|ten. A|ber war er es wirk|lich? Das ist erst ein Ver|dacht."
+    "erfolg": "Die|ser Vo|gel passt zum Schat|ten. A|ber war er es wirk|lich? Das ist erst ein Ver|dacht.",
+    "werkzeug": "zeit"
    }
   },
   {
@@ -2789,7 +2843,8 @@
       "tipp": "Schau auf Mi|las Zopf."
      }
     ],
-    "erfolg": "Sie|ben Un|ter|schie|de! Du schaust ge|nau hin. Und der Kä|se? Die brau|nen Fle|cken sind nur auf|ge|klebt. Der Kreis da|run|ter ist ganz."
+    "erfolg": "Sie|ben Un|ter|schie|de! Du schaust ge|nau hin. Und der Kä|se? Die brau|nen Fle|cken sind nur auf|ge|klebt. Der Kreis da|run|ter ist ganz.",
+    "werkzeug": "zeit"
    }
   },
   {
@@ -2984,7 +3039,8 @@
      "warum": "Nur ein Kreis hat hin|ten den Stern, o|ben den auf|ge|roll|ten Fa|den und das Loch."
     },
     "stempel": "MILAS MOND",
-    "erfolg": "Das ist Mi|las Mond! Nur die|ser Kreis hat hin|ten den blau|en Stern, o|ben das Loch und den auf|ge|roll|ten Fa|den."
+    "erfolg": "Das ist Mi|las Mond! Nur die|ser Kreis hat hin|ten den blau|en Stern, o|ben das Loch und den auf|ge|roll|ten Fa|den.",
+    "werkzeug": "zeit"
    }
   },
   {
@@ -3121,7 +3177,8 @@
      }
     ],
     "tipp": "Zäh|le in je|dem Wort mit: 1 bleibt, 2 weg, 3 bleibt, 4 weg.",
-    "erfolg": "Tut mir leid! Os|kar hat den Mond nicht mit Ab|sicht ge|nom|men. Es war ein Miss|ver|ständ|nis."
+    "erfolg": "Tut mir leid! Os|kar hat den Mond nicht mit Ab|sicht ge|nom|men. Es war ein Miss|ver|ständ|nis.",
+    "werkzeug": "lesen"
    }
   },
   {
@@ -3153,7 +3210,7 @@
      "id": "s18-p3",
      "typ": "p",
      "s": [
-      "Mi|la schaut auf ih|ren ge|fleck|ten Mond.",
+      "Mi|la hält ih|ren ge|fleck|ten Mond hoch.",
       "„So kann er nicht ans The|a|ter“, sagt sie lei|se.",
       "„Was ma|chen wir jetzt?“"
      ]
@@ -3162,8 +3219,8 @@
      "id": "s18-p4",
      "typ": "p",
      "s": [
-      "Os|kar schaut auf sei|ne klei|ne Maus.",
-      "Dann schaut er auf den Mond.",
+      "Os|kar sieht sei|ne klei|ne Maus an.",
+      "Dann den Mond.",
       "Plötz|lich strahlt sein gan|zes Ge|sicht."
      ]
     },
@@ -3254,7 +3311,8 @@
       }
      ]
     },
-    "plakatFertig": "Das Pla|kat ist fer|tig: Die Maus springt zu ih|rem Kä|se!"
+    "plakatFertig": "Das Pla|kat ist fer|tig: Die Maus springt zu ih|rem Kä|se!",
+    "werkzeug": "lesen"
    },
    "schluessel": true
   },
@@ -3312,7 +3370,7 @@
      "typ": "p",
      "s": [
       "„Wo ist er hin?“, ruft Ben.",
-      "Al|le drei schau|en in die Baum|kro|ne.",
+      "Al|le drei su|chen die Baum|kro|ne ab.",
       "Dort sind nur Blät|ter.",
       "Und der Baum hat vie|le Ast|ga|beln."
      ]
@@ -3321,8 +3379,8 @@
      "id": "s19-p6",
      "typ": "p",
      "s": [
-      "Die Le|se-Rau|pe schaut vom Fens|ter|rand aus ganz ge|nau hin.",
-      "Im Laub und in der Rin|de sind Zei|chen ver|steckt.",
+      "Die Le|se-Rau|pe rich|tet ih|re Leucht-Füh|ler auf den Baum.",
+      "Im Laub und in der Rin|de glimmt et|was.",
       "Es sind Buch|sta|ben!"
      ]
     },
@@ -3487,7 +3545,8 @@
      "nein": "Das stand nicht im Text. Denk an den Vogel und das Fenster.",
      "ok": "Ge|nau! Der Ast liegt un|ter dem Fens|ter, und dort ste|hen zwei dün|ne Zwei|ge wie ein V. Jetzt such ihn im Baum."
     },
-    "nachsehen": "Im Text nach|se|hen"
+    "nachsehen": "Im Text nach|se|hen",
+    "werkzeug": "fuehler"
    },
    "schluessel": true
   },
@@ -3565,14 +3624,14 @@
      "s": [
       "Al|le lau|fen hin und her.",
       "Nur die Le|se-Rau|pe bleibt ru|hig sit|zen.",
-      "Zeit für ih|ren Zeit|lu|pen-Blick."
+      "Sie nimmt ih|re Tau|trop|fen-Lu|pe."
      ]
     },
     {
      "id": "s20-p9",
      "typ": "p",
      "s": [
-      "Mit der Lu|pe schaut sie lang|sam je|des Kind an.",
+      "Lang|sam schaut sie je|des Kind an.",
       "Et|was Ro|sa|far|be|nes!",
       "A|ber was ist es?",
       "Und wo?"
@@ -3654,7 +3713,8 @@
       }
      ]
     },
-    "erfolg": "Si|cher ist nur, was wir ge|se|hen ha|ben. Al|les an|de|re müs|sen wir erst prü|fen."
+    "erfolg": "Si|cher ist nur, was wir ge|se|hen ha|ben. Al|les an|de|re müs|sen wir erst prü|fen.",
+    "werkzeug": "lupe"
    }
   },
   {
@@ -3733,9 +3793,9 @@
      "id": "s21-p8",
      "typ": "p",
      "s": [
-      "Die Le|se-Rau|pe schaut sich im Raum um.",
+      "Die Le|se-Rau|pe macht ih|ren Zeit|lu|pen-Blick.",
       "Vor|hin lag al|les dur|chei|nan|der.",
-      "Jetzt sieht der Raum ganz an|ders aus."
+      "Was ist jetzt an|ders?"
      ]
     }
    ],
@@ -4078,7 +4138,8 @@
       }
      ]
     },
-    "erfolg": "Fast al|les hat sei|nen Platz, und du weißt, wer es war. Jetzt kön|nen die Zu|schau|er kom|men."
+    "erfolg": "Fast al|les hat sei|nen Platz, und du weißt, wer es war. Jetzt kön|nen die Zu|schau|er kom|men.",
+    "werkzeug": "zeit"
    }
   },
   {
@@ -4159,6 +4220,15 @@
       "Hin|ter dem Vor|hang hält Ben das En|de vom Fa|den.",
       "Im|mer wenn die Maus springt, zieht er den Kä|se ein Stück hö|her."
      ]
+    },
+    {
+     "id": "s22-p9",
+     "typ": "th",
+     "s": [
+      "Am Fens|ter schaut die Le|se-Rau|pe zu.",
+      "„So ein lan|ger Weg für ei|nen Mond“, denkt sie.",
+      "„Weiß ich noch, wie al|les kam?“"
+     ]
     }
    ],
    "karte": {
@@ -4216,7 +4286,8 @@
      "4",
      "5"
     ],
-    "erfolg": "Ge|nau so war es. Und jetzt: Vor|hang auf für den größ|ten Kä|se der Welt!"
+    "erfolg": "Ge|nau so war es. Und jetzt: Vor|hang auf für den größ|ten Kä|se der Welt!",
+    "werkzeug": "zeit"
    }
   },
   {
@@ -4390,7 +4461,8 @@
     ],
     "loesung": "elster",
     "stempel": "DER VOGEL: ELSTER",
-    "erfolg": "Es war ei|ne Els|ter! Els|tern sam|meln gern lan|ge wei|ße Strei|fen und al|les, was glänzt."
+    "erfolg": "Es war ei|ne Els|ter! Els|tern sam|meln gern lan|ge wei|ße Strei|fen und al|les, was glänzt.",
+    "werkzeug": "lesen"
    }
   },
   {
@@ -4449,8 +4521,9 @@
      "typ": "p",
      "s": [
       "Die Le|se-Rau|pe hält den A|tem an.",
-      "Sie hat ei|ne I|dee.",
-      "Die Blät|ter müs|sen weg!"
+      "Ih|re Füh|ler leuch|ten gol|den.",
+      "Die Blät|ter müs|sen weg!",
+      "Und dann braucht sie ih|re Lu|pe."
      ]
     }
    ],
@@ -4510,7 +4583,8 @@
     ],
     "tipp": "Schau ge|nau auf die Ast|ga|bel un|ter dem Fens|ter. Was ist dort zu se|hen?",
     "erfolg": "Fall ge|löst! Die Els|ter hat den Fa|den für ihr Nest ge|holt. Da|bei hat sie auch Frau Som|mers Schlüs|sel mit dem wei|ßen Band mit|ge|nom|men. Jetzt wis|sen wir al|les.",
-    "frage": "Die Els|ter hat et|was ver|steckt. Tip|pe auf al|les, was hier nicht hin|ge|hört."
+    "frage": "Die Els|ter hat et|was ver|steckt. Tip|pe auf al|les, was hier nicht hin|ge|hört.",
+    "werkzeug": "lupe"
    }
   }
  ]

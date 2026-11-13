@@ -1,480 +1,506 @@
 {
-  "_info": "Rätsel, Ermittlungsbrett und Fallkarte zu Kapitel 1, Konzept v8 (02_design/KONZEPT_v8.md). Texte ohne Silben; app/scripts/build-v8.ts setzt Silben. Positionen in Prozent der Bildbreite/-höhe.",
-  "kapitel": 1,
-  "bild": "kapitel_1",
-  "vorspann": "Ein Mond aus Pappe. Ein Schlüssel an einem weißen Band. Und eine Stunde Zeit.",
-  "code": {
-    "wort": "NEST",
-    "buchstabe": "E",
-    "pos": 1
-  },
-  "fallkarte": {
-    "bild": "k1_s6_nachher",
-    "titel": "Das wissen wir jetzt",
-    "saetze": [
-      "Ben hat den Mond repariert und auf das Tablett gelegt.",
-      "Dann hat Oskar durch das Fenster gegriffen."
-    ],
-    "frage": "Aber wusste Oskar, dass es der Mond war?",
-    "stempel": "KAPITEL 1 GELÖST"
-  },
-  "ausblick": "Schnipp. Schnapp. Draußen schneidet jemand Pappe.",
-  "ui": {
-    "start": "Fall öffnen",
-    "weiterFall": "Weiter ermitteln",
-    "neuStart": "Von vorn beginnen",
-    "krTippen": "Kreis antippen: umdrehen",
-    "krKreuz": "Kreuz antippen: ausstreichen",
-    "klaerMich": "Geklärt! Tippe mich an.",
-    "lupeHier": "Hier! Das ist es.",
-    "lupeDann": "Hast du es gefunden? Dann tippe auf den Knopf.",
-    "verdacht": "nur ein Verdacht",
-    "ueberspringen": "Überspringen",
-    "neuTitel": "Wirklich von vorn beginnen?",
-    "neuFrage": "Dann beginnt der Fall wieder bei Spur 1. Deine Perlen und alle Karten auf dem Brett sind weg.",
-    "neuJa": "Ja, alles löschen",
-    "neuNein": "Nein, weiter ermitteln",
-    "nochEiner": "Gut! Aber da fehlt noch jemand.",
-    "weiter": "Weiter",
-    "weiterlesen": "Weiterlesen",
-    "los": "Los geht’s!",
-    "raetsel": "Rätsel",
-    "fertig": "Fertig",
-    "nochmal": "Schau noch einmal genau hin.",
-    "hilfe": "Die Lese-Raupe zeigt es dir:",
-    "brett": "Dein Ermittlungsbrett",
-    "wisch": "Wisch den Staub weg!",
-    "fragen": "Offene Fragen",
-    "geklaert": "geklärt",
-    "neu": "neu",
-    "perlen": "Schimmer-Perlen",
-    "code": "Der Code für den Tresor",
-    "passt": "Das Wort passt",
-    "passtNicht": "Das Wort passt nicht",
-    "vorhin": "Vorhin",
-    "jetzt": "Jetzt",
-    "gefunden": "gefunden",
-    "umdrehen": "Umdrehen",
-    "stempeln": "Stempeln",
-    "mPasst": "passt",
-    "mFehlt": "fehlt",
-    "mUnklar": "sieht man noch nicht",
-    "raus": "Wer passt nicht? Tippe sie an.",
-    "bleibt": "Übrig bleibt:",
-    "tippRichtig": "Du hattest recht!",
-    "tippFalsch": "Überraschung!",
-    "kapitel": "Kapitel",
-    "naechstesKapitel": "Weiter zu Kapitel",
-    "fortsetzung": "Fortsetzung folgt …",
-    "silben": "Silben",
-    "schrift": "Schrift",
-    "stimmt": "Stimmt!",
-    "wortPasst": "Die Buchstaben reichen genau für das Wort.",
-    "gehtNicht": "Die Buchstaben passen nicht",
-    "passtFrage": "Hm, so wird es nicht das Wort zum Bild. Passen die Buchstaben überhaupt? Wenn nicht, tippe auf den Knopf mit dem gelben Rand.",
-    "dochGeht": "Doch, die Buchstaben passen! Probier es noch einmal.",
-    "tresorInfo": "Der Tresor öffnet sich mit einem Code-Wort aus vier Buchstaben. Für jedes gelöste Kapitel bekommst du einen Buchstaben. Im Tresor wartet eine Überraschung auf dich.",
-    "tresor": "Der Tresor der Lese-Raupe"
-  },
-  "intro": [
-    {
-      "bild": "vorgeschichte",
-      "text": "Das ist die Lese-Raupe. Sie wohnt auf einer großen Pflanze im Gruppenraum der Schule."
-    },
-    {
-      "bild": "raupe/staunt",
-      "text": "Wenn etwas Rätselhaftes passiert, leuchten ihre Fühler golden. Die Menschen können ihre Gedanken nicht hören. Du aber schon!"
-    },
-    {
-      "bild": "objekte/goldene_lupe",
-      "text": "Die Lese-Raupe ist langsam. Darum sieht sie, was andere übersehen. Du liest und löst die Rätsel. Zusammen klärt ihr den Fall."
-    },
-    {
-      "bild": "tresor",
-      "text": "Das ist der Tresor der Lese-Raupe. Darin wartet eine Überraschung auf dich. Er öffnet sich nur mit einem Code-Wort aus vier Buchstaben. Für jedes gelöste Kapitel bekommst du einen Buchstaben."
-    }
+ "_info": "Rätsel, Ermittlungsbrett und Fallkarte zu Kapitel 1, Konzept v8 (02_design/KONZEPT_v8.md). Texte ohne Silben; app/scripts/build-v8.ts setzt Silben. Positionen in Prozent der Bildbreite/-höhe.",
+ "kapitel": 1,
+ "bild": "kapitel_1",
+ "vorspann": "Ein Mond aus Pappe. Ein Schlüssel an einem weißen Band. Und eine Stunde Zeit.",
+ "code": {
+  "wort": "NEST",
+  "buchstabe": "E",
+  "pos": 1
+ },
+ "fallkarte": {
+  "bild": "k1_s6_nachher",
+  "titel": "Das wissen wir jetzt",
+  "saetze": [
+   "Ben hat den Mond repariert und auf das Tablett gelegt.",
+   "Dann hat Oskar durch das Fenster gegriffen."
   ],
-  "spuren": [
+  "frage": "Aber wusste Oskar, dass es der Mond war?",
+  "stempel": "KAPITEL 1 GELÖST"
+ },
+ "ausblick": "Schnipp. Schnapp. Draußen schneidet jemand Pappe.",
+ "ui": {
+  "start": "Fall öffnen",
+  "weiterFall": "Weiter ermitteln",
+  "neuStart": "Von vorn beginnen",
+  "krTippen": "Kreis antippen: umdrehen",
+  "krKreuz": "Kreuz antippen: ausstreichen",
+  "klaerMich": "Geklärt! Tippe mich an.",
+  "lupeHier": "Hier! Das ist es.",
+  "lupeDann": "Hast du es gefunden? Dann tippe auf den Knopf.",
+  "verdacht": "nur ein Verdacht",
+  "ueberspringen": "Überspringen",
+  "neuTitel": "Wirklich von vorn beginnen?",
+  "neuFrage": "Dann beginnt der Fall wieder bei Spur 1. Deine Perlen und alle Karten auf dem Brett sind weg.",
+  "neuJa": "Ja, alles löschen",
+  "neuNein": "Nein, weiter ermitteln",
+  "nochEiner": "Gut! Aber da fehlt noch jemand.",
+  "weiter": "Weiter",
+  "weiterlesen": "Weiterlesen",
+  "los": "Los geht’s!",
+  "raetsel": "Rätsel",
+  "fertig": "Fertig",
+  "nochmal": "Schau noch einmal genau hin.",
+  "hilfe": "Die Lese-Raupe zeigt es dir:",
+  "brett": "Dein Ermittlungsbrett",
+  "wisch": "Wisch den Staub weg!",
+  "fragen": "Offene Fragen",
+  "geklaert": "geklärt",
+  "neu": "neu",
+  "perlen": "Schimmer-Perlen",
+  "code": "Der Code für den Tresor",
+  "passt": "Das Wort passt",
+  "passtNicht": "Das Wort passt nicht",
+  "vorhin": "Vorhin",
+  "jetzt": "Jetzt",
+  "gefunden": "gefunden",
+  "umdrehen": "Umdrehen",
+  "stempeln": "Stempeln",
+  "mPasst": "passt",
+  "mFehlt": "fehlt",
+  "mUnklar": "sieht man noch nicht",
+  "raus": "Wer passt nicht? Tippe sie an.",
+  "bleibt": "Übrig bleibt:",
+  "tippRichtig": "Du hattest recht!",
+  "tippFalsch": "Überraschung!",
+  "kapitel": "Kapitel",
+  "naechstesKapitel": "Weiter zu Kapitel",
+  "fortsetzung": "Fortsetzung folgt …",
+  "silben": "Silben",
+  "schrift": "Schrift",
+  "stimmt": "Stimmt!",
+  "wortPasst": "Die Buchstaben reichen genau für das Wort.",
+  "gehtNicht": "Die Buchstaben passen nicht",
+  "passtFrage": "Hm, so wird es nicht das Wort zum Bild. Passen die Buchstaben überhaupt? Wenn nicht, tippe auf den Knopf mit dem gelben Rand.",
+  "dochGeht": "Doch, die Buchstaben passen! Probier es noch einmal.",
+  "tresorInfo": "Der Tresor öffnet sich mit einem Code-Wort aus vier Buchstaben. Für jedes gelöste Kapitel bekommst du einen Buchstaben. Im Tresor wartet eine Überraschung auf dich.",
+  "tresor": "Der Tresor der Lese-Raupe",
+  "wzFuehler": "Leucht-Fühler",
+  "wzFuehlerT": "Die Fühler leuchten golden. Sie zeigen, was sich versteckt.",
+  "wzLupe": "Tautropfen-Lupe",
+  "wzLupeT": "Durch den Tautropfen wird das Kleinste groß.",
+  "wzZeit": "Zeitlupen-Blick",
+  "wzZeitT": "Die Raupe schaut ganz langsam. So entgeht ihr nichts.",
+  "wzLesen": "Lese-Blick",
+  "wzLesenT": "Die Raupe liest jedes Wort genau. Du auch!",
+  "wzKopf": "Die Raupe benutzt:"
+ },
+ "intro": [
+  {
+   "bild": "vorgeschichte",
+   "text": "Das ist die Lese-Raupe. Sie wohnt auf einer großen Pflanze im Gruppenraum der Schule."
+  },
+  {
+   "bild": "raupe/staunt",
+   "text": "Wenn etwas Rätselhaftes passiert, leuchten ihre Fühler golden. Die Menschen können ihre Gedanken nicht hören. Du aber schon!"
+  },
+  {
+   "bild": "objekte/goldene_lupe",
+   "text": "Die Lese-Raupe ist langsam. Darum sieht sie, was andere übersehen. Du liest und löst die Rätsel. Zusammen klärt ihr den Fall."
+  },
+  {
+   "werkzeuge": true,
+   "text": "Die Lese-Raupe hat vier Detektiv-Kräfte. Bei jedem Rätsel siehst du, welche Kraft sie gerade benutzt."
+  },
+  {
+   "bild": "tresor",
+   "text": "Das ist der Tresor der Lese-Raupe. Darin wartet eine Überraschung auf dich. Er öffnet sich nur mit einem Code-Wort aus vier Buchstaben. Für jedes gelöste Kapitel bekommst du einen Buchstaben."
+  }
+ ],
+ "spuren": [
+  {
+   "spur": 1,
+   "bild": "k1_s1",
+   "haken": "„Ein Schlüssel ist weg. Was verschwindet wohl als Nächstes?“",
+   "karte": {
+    "bild": "objekte/mond_hinten",
+    "text": "Milas Mond: gelb, oben ein weißer Faden, hinten ein blauer Stern.",
+    "staub": false
+   },
+   "fragenNeu": [
     {
-      "spur": 1,
-      "bild": "k1_s1",
-      "haken": "„Ein Schlüssel ist weg. Was verschwindet wohl als Nächstes?“",
-      "karte": {
-        "bild": "objekte/mond_hinten",
-        "text": "Milas Mond: gelb, oben ein weißer Faden, hinten ein blauer Stern.",
-        "staub": false
-      },
-      "fragenNeu": [
-        {
-          "id": "schluessel",
-          "text": "Wo ist Frau Sommers Schlüssel?"
-        }
-      ],
-      "tipp": {
-        "frage": "Was glaubst du: Was passiert als Nächstes?",
-        "optionen": [
-          {
-            "id": "a",
-            "text": "Noch etwas verschwindet."
-          },
-          {
-            "id": "b",
-            "text": "Frau Sommer findet ihren Schlüssel."
-          },
-          {
-            "id": "c",
-            "text": "Das Theaterstück fängt an."
-          }
-        ],
-        "richtig": "a",
-        "aufloesung": "Es ist noch etwas verschwunden: der Mond!"
-      },
-      "raetsel": {
-        "art": "buchstaben",
-        "titel": "Buchstaben-Salat",
-        "text": "Lege das Wort zum Bild. Tippe auf die Buchstaben oder zieh sie in die Felder. Passen sie nicht? Dann sag es der Lese-Raupe.",
-        "runden": [
-          {
-            "bild": "objekte/mond_vorne",
-            "wort": "MOND",
-            "buchstaben": "DNOM",
-            "passt": true
-          },
-          {
-            "bild": "objekte/wolke",
-            "wort": "WOLKE",
-            "buchstaben": "KLOWA",
-            "passt": false,
-            "warum": "Für WOLKE brauchst du ein E. Hier liegt aber ein A."
-          },
-          {
-            "bild": "objekte/maus_vorne",
-            "wort": "MAUS",
-            "buchstaben": "SUAM",
-            "passt": true
-          },
-          {
-            "bild": "objekte/theater",
-            "wort": "THEATER",
-            "buchstaben": "RETAEH",
-            "passt": false,
-            "warum": "THEATER hat zwei T. Hier liegt nur eins."
-          }
-        ],
-        "erfolg": "Du hast scharfe Augen für Buchstaben!"
-      }
-    },
-    {
-      "spur": 2,
-      "bild": "k1_s2_vorher",
-      "haken": "Der Mond ist weg!",
-      "karte": {
-        "bild": "k1_s2_nachher",
-        "ausschnitt": {
-          "x": 20,
-          "y": 78,
-          "w": 55,
-          "h": 22
-        },
-        "text": "Der Mond ist weg. Ein Ärmel mit Streifen hat am Tisch nach etwas gegriffen.",
-        "staub": true
-      },
-      "fragenNeu": [
-        {
-          "id": "mond",
-          "text": "Wo ist der Mond?"
-        },
-        {
-          "id": "aermel",
-          "text": "Wem gehört der Ärmel?"
-        }
-      ],
-      "raetsel": {
-        "art": "unterschiede",
-        "titel": "Was ist anders?",
-        "text": "Vergleiche die beiden Bilder. Finde vier Unterschiede.",
-        "basis": "spiel_theater_leer",
-        "dinge": [
-          {
-            "id": "mond",
-            "bild": "objekte/mond_vorne",
-            "x": 50.5,
-            "y": 21,
-            "w": 9,
-            "vorhin": true,
-            "jetzt": false,
-            "tipp": "Schau über den roten Vorhang."
-          },
-          {
-            "id": "blatt",
-            "bild": "objekte/blatt_papier",
-            "x": 18,
-            "y": 60,
-            "w": 6,
-            "vorhin": false,
-            "jetzt": true,
-            "tipp": "Schau neben den Blumentopf."
-          },
-          {
-            "id": "kleber",
-            "bild": "objekte/kleber",
-            "x": 38,
-            "y": 44,
-            "w": 3.5,
-            "vorhin": false,
-            "jetzt": true,
-            "tipp": "Schau auf den Tisch."
-          },
-          {
-            "id": "stift",
-            "bild": "objekte/bleistift_gruen",
-            "x": 52,
-            "y": 80,
-            "w": 7,
-            "vorhin": false,
-            "jetzt": true,
-            "tipp": "Schau unter den Tisch."
-          }
-        ],
-        "erfolg": "Vier Dinge sind anders. Und das Wichtigste fehlt: der Mond."
-      }
-    },
-    {
-      "spur": 3,
-      "bild": "k1_s3",
-      "haken": "Was wäscht Ben da nur so lange von seinen Fingern?",
-      "karte": {
-        "bild": "objekte/wasserhahn",
-        "text": "Der Ärmel: rot-weiße Streifen, rund um den Arm, keine Knöpfe.",
-        "staub": false
-      },
-      "raetsel": {
-        "art": "versteckt",
-        "titel": "Im Wasser versteckt",
-        "text": "Das Wasser rauscht und rauscht. In den Wasserlinien versteckt sich ein Buchstabe. Welcher?",
-        "buchstabe": "W",
-        "optionen": [
-          "M",
-          "W",
-          "V",
-          "N"
-        ],
-        "winkel": 10,
-        "farbe": "#2F6FB8",
-        "erfolg": "W wie Wasser!",
-        "stoerer": 4
-      }
-    },
-    {
-      "spur": 4,
-      "bild": "k1_s4_vorher",
-      "haken": "In der Ecke wird es plötzlich still. Ben hat das Wasser zugedreht.",
-      "karte": {
-        "bild": "objekte/falscher_kreis_hinten",
-        "text": "Der gelbe Kreis unter den Zeitungen ist nicht Milas Mond.",
-        "staub": false
-      },
-      "fragenNeu": [
-        {
-          "id": "kreis",
-          "text": "Wem gehört der gelbe Kreis?"
-        }
-      ],
-      "raetsel": {
-        "art": "merkmale",
-        "titel": "Ist das Milas Mond?",
-        "text": "Wisch zuerst den Staub vom Kreis. Dann prüfe ihn genau.",
-        "vorne": "objekte/falscher_kreis_vorne",
-        "hinten": "objekte/falscher_kreis_hinten",
-        "staub": true,
-        "merkmale": [
-          {
-            "text": "gelb und rund",
-            "wert": "passt",
-            "seite": "vorne"
-          },
-          {
-            "text": "oben ein weißer Faden",
-            "wert": "fehlt",
-            "seite": "vorne"
-          },
-          {
-            "text": "hinten ein blauer Stern",
-            "wert": "fehlt",
-            "seite": "hinten",
-            "unklarTipp": "Stimmt, das sieht man von vorne nicht. Dreh den Kreis um!"
-          }
-        ],
-        "stempel": "NICHT MILAS MOND",
-        "erfolg": "Gelb und rund reicht nicht. Das ist nur ein Bastelkreis."
-      }
-    },
-    {
-      "spur": 5,
-      "bild": "k1_s5",
-      "haken": "Noch vierzig Minuten. Die beiden laufen los.",
-      "karte": {
-        "bild": "objekte/kleber",
-        "text": "Ben hat den Faden festgeklebt und den Mond auf das blaue Tablett gelegt.",
-        "staub": false
-      },
-      "raetsel": {
-        "art": "reihe",
-        "titel": "Was war zuerst?",
-        "text": "Ben erzählt, was er gemacht hat. Bring die Bilder in die richtige Reihenfolge.",
-        "karten": [
-          {
-            "id": "3",
-            "bild": "k1_s5_karten/karte_3",
-            "text": "Mond aufs Tablett"
-          },
-          {
-            "id": "1",
-            "bild": "k1_s5_karten/karte_1",
-            "text": "Mond abnehmen"
-          },
-          {
-            "id": "4",
-            "bild": "k1_s5_karten/karte_4",
-            "text": "Hände waschen"
-          },
-          {
-            "id": "2",
-            "bild": "k1_s5_karten/karte_2",
-            "text": "Faden festkleben"
-          }
-        ],
-        "reihenfolge": [
-          "1",
-          "2",
-          "3",
-          "4"
-        ],
-        "erfolg": "Genau so hat Ben es erzählt."
-      }
-    },
-    {
-      "spur": 6,
-      "bild": "k1_s6_nachher",
-      "haken": "Sechs Kinder, sechs Pullis. Einer davon war es.",
-      "karte": {
-        "bild": "oskar/staunt",
-        "text": "Der Ärmel gehört Oskar.",
-        "staub": false
-      },
-      "fragenWeg": [
-        "aermel"
-      ],
-      "schluessel": true,
-      "raetsel": {
-        "art": "ausschluss",
-        "titel": "Wessen Ärmel war es?",
-        "text": "Sechs Kinder spielen draußen. Lies jeden Hinweis und tippe alle Pullis an, die nicht passen.",
-        "kandidaten": [
-          {
-            "id": "lina",
-            "name": "Lina",
-            "pulli": {
-              "muster": "quer",
-              "farbe": "#2F5FB3",
-              "farbe2": "#FFFFFF",
-              "kapuze": true,
-              "knoepfe": false
-            }
-          },
-          {
-            "id": "tom",
-            "name": "Tom",
-            "pulli": {
-              "muster": "einfarbig",
-              "farbe": "#D8432F",
-              "kapuze": true,
-              "knoepfe": false
-            }
-          },
-          {
-            "id": "oskar",
-            "name": "Oskar",
-            "pulli": {
-              "muster": "quer",
-              "farbe": "#D8432F",
-              "farbe2": "#FFFFFF",
-              "kapuze": true,
-              "knoepfe": false
-            }
-          },
-          {
-            "id": "ida",
-            "name": "Ida",
-            "pulli": {
-              "muster": "quer",
-              "farbe": "#D8432F",
-              "farbe2": "#FFFFFF",
-              "kapuze": false,
-              "knoepfe": true
-            }
-          },
-          {
-            "id": "emil",
-            "name": "Emil",
-            "pulli": {
-              "muster": "punkte",
-              "farbe": "#D8432F",
-              "farbe2": "#FFFFFF",
-              "kapuze": true,
-              "knoepfe": false
-            }
-          },
-          {
-            "id": "nele",
-            "name": "Nele",
-            "pulli": {
-              "muster": "laengs",
-              "farbe": "#D8432F",
-              "farbe2": "#FFFFFF",
-              "kapuze": true,
-              "knoepfe": false
-            }
-          }
-        ],
-        "hinweise": [
-          {
-            "text": "Der Ärmel hat Streifen.",
-            "raus": [
-              "tom",
-              "emil"
-            ]
-          },
-          {
-            "text": "Die Streifen sind rot und weiß.",
-            "raus": [
-              "lina"
-            ]
-          },
-          {
-            "text": "Die Streifen laufen rund um den Arm, nicht den Arm entlang.",
-            "raus": [
-              "nele"
-            ]
-          },
-          {
-            "text": "Am Ärmel sind keine Knöpfe.",
-            "raus": [
-              "ida"
-            ]
-          }
-        ],
-        "loesung": "oskar",
-        "stempel": "DAS WAR SEIN ÄRMEL",
-        "schluss": {
-          "frage": "Was wissen wir jetzt sicher?",
-          "optionen": [
-            { "text": "Der Ärmel gehört Oskar.", "sicher": true },
-            { "text": "Oskar hat den Mond genommen.", "sicher": false, "tipp": "Das ist erst ein Verdacht. Niemand hat gesehen, was der Ärmel genommen hat." }
-          ]
-        },
-        "erfolg": "Genau. Sicher ist nur: Der Ärmel gehört Oskar. Was hat er vom Tablett genommen?"
-      }
+     "id": "schluessel",
+     "text": "Wo ist Frau Sommers Schlüssel?"
     }
-  ]
+   ],
+   "tipp": {
+    "frage": "Was glaubst du: Was passiert als Nächstes?",
+    "optionen": [
+     {
+      "id": "a",
+      "text": "Noch etwas verschwindet."
+     },
+     {
+      "id": "b",
+      "text": "Frau Sommer findet ihren Schlüssel."
+     },
+     {
+      "id": "c",
+      "text": "Das Theaterstück fängt an."
+     }
+    ],
+    "richtig": "a",
+    "aufloesung": "Es ist noch etwas verschwunden: der Mond!"
+   },
+   "raetsel": {
+    "art": "buchstaben",
+    "titel": "Buchstaben-Salat",
+    "text": "Lege das Wort zum Bild. Tippe auf die Buchstaben oder zieh sie in die Felder. Passen sie nicht? Dann sag es der Lese-Raupe.",
+    "runden": [
+     {
+      "bild": "objekte/mond_vorne",
+      "wort": "MOND",
+      "buchstaben": "DNOM",
+      "passt": true
+     },
+     {
+      "bild": "objekte/wolke",
+      "wort": "WOLKE",
+      "buchstaben": "KLOWA",
+      "passt": false,
+      "warum": "Für WOLKE brauchst du ein E. Hier liegt aber ein A."
+     },
+     {
+      "bild": "objekte/maus_vorne",
+      "wort": "MAUS",
+      "buchstaben": "SUAM",
+      "passt": true
+     },
+     {
+      "bild": "objekte/theater",
+      "wort": "THEATER",
+      "buchstaben": "RETAEH",
+      "passt": false,
+      "warum": "THEATER hat zwei T. Hier liegt nur eins."
+     }
+    ],
+    "erfolg": "Du hast scharfe Augen für Buchstaben!",
+    "werkzeug": "lesen"
+   }
+  },
+  {
+   "spur": 2,
+   "bild": "k1_s2_vorher",
+   "haken": "Der Mond ist weg!",
+   "karte": {
+    "bild": "k1_s2_nachher",
+    "ausschnitt": {
+     "x": 20,
+     "y": 78,
+     "w": 55,
+     "h": 22
+    },
+    "text": "Der Mond ist weg. Ein Ärmel mit Streifen hat am Tisch nach etwas gegriffen.",
+    "staub": true
+   },
+   "fragenNeu": [
+    {
+     "id": "mond",
+     "text": "Wo ist der Mond?"
+    },
+    {
+     "id": "aermel",
+     "text": "Wem gehört der Ärmel?"
+    }
+   ],
+   "raetsel": {
+    "art": "unterschiede",
+    "titel": "Was ist anders?",
+    "text": "Vergleiche die beiden Bilder. Finde vier Unterschiede.",
+    "basis": "spiel_theater_leer",
+    "dinge": [
+     {
+      "id": "mond",
+      "bild": "objekte/mond_vorne",
+      "x": 50.5,
+      "y": 21,
+      "w": 9,
+      "vorhin": true,
+      "jetzt": false,
+      "tipp": "Schau über den roten Vorhang."
+     },
+     {
+      "id": "blatt",
+      "bild": "objekte/blatt_papier",
+      "x": 18,
+      "y": 60,
+      "w": 6,
+      "vorhin": false,
+      "jetzt": true,
+      "tipp": "Schau neben den Blumentopf."
+     },
+     {
+      "id": "kleber",
+      "bild": "objekte/kleber",
+      "x": 38,
+      "y": 44,
+      "w": 3.5,
+      "vorhin": false,
+      "jetzt": true,
+      "tipp": "Schau auf den Tisch."
+     },
+     {
+      "id": "stift",
+      "bild": "objekte/bleistift_gruen",
+      "x": 52,
+      "y": 80,
+      "w": 7,
+      "vorhin": false,
+      "jetzt": true,
+      "tipp": "Schau unter den Tisch."
+     }
+    ],
+    "erfolg": "Vier Dinge sind anders. Und das Wichtigste fehlt: der Mond.",
+    "werkzeug": "zeit"
+   }
+  },
+  {
+   "spur": 3,
+   "bild": "k1_s3",
+   "haken": "Was wäscht Ben da nur so lange von seinen Fingern?",
+   "karte": {
+    "bild": "objekte/wasserhahn",
+    "text": "Der Ärmel: rot-weiße Streifen, rund um den Arm, keine Knöpfe.",
+    "staub": false
+   },
+   "raetsel": {
+    "art": "versteckt",
+    "titel": "Im Wasser versteckt",
+    "text": "Das Wasser rauscht und rauscht. In den Wasserlinien versteckt sich ein Buchstabe. Welcher?",
+    "buchstabe": "W",
+    "optionen": [
+     "M",
+     "W",
+     "V",
+     "N"
+    ],
+    "winkel": 10,
+    "farbe": "#2F6FB8",
+    "erfolg": "W wie Wasser!",
+    "stoerer": 4,
+    "werkzeug": "fuehler"
+   }
+  },
+  {
+   "spur": 4,
+   "bild": "k1_s4_vorher",
+   "haken": "In der Ecke wird es plötzlich still. Ben hat das Wasser zugedreht.",
+   "karte": {
+    "bild": "objekte/falscher_kreis_hinten",
+    "text": "Der gelbe Kreis unter den Zeitungen ist nicht Milas Mond.",
+    "staub": false
+   },
+   "fragenNeu": [
+    {
+     "id": "kreis",
+     "text": "Wem gehört der gelbe Kreis?"
+    }
+   ],
+   "raetsel": {
+    "art": "merkmale",
+    "titel": "Ist das Milas Mond?",
+    "text": "Wisch zuerst den Staub vom Kreis. Dann prüfe ihn genau.",
+    "vorne": "objekte/falscher_kreis_vorne",
+    "hinten": "objekte/falscher_kreis_hinten",
+    "staub": true,
+    "merkmale": [
+     {
+      "text": "gelb und rund",
+      "wert": "passt",
+      "seite": "vorne"
+     },
+     {
+      "text": "oben ein weißer Faden",
+      "wert": "fehlt",
+      "seite": "vorne"
+     },
+     {
+      "text": "hinten ein blauer Stern",
+      "wert": "fehlt",
+      "seite": "hinten",
+      "unklarTipp": "Stimmt, das sieht man von vorne nicht. Dreh den Kreis um!"
+     }
+    ],
+    "stempel": "NICHT MILAS MOND",
+    "erfolg": "Gelb und rund reicht nicht. Das ist nur ein Bastelkreis.",
+    "werkzeug": "zeit"
+   }
+  },
+  {
+   "spur": 5,
+   "bild": "k1_s5",
+   "haken": "Noch vierzig Minuten. Die beiden laufen los.",
+   "karte": {
+    "bild": "objekte/kleber",
+    "text": "Ben hat den Faden festgeklebt und den Mond auf das blaue Tablett gelegt.",
+    "staub": false
+   },
+   "raetsel": {
+    "art": "reihe",
+    "titel": "Was war zuerst?",
+    "text": "Ben erzählt, was er gemacht hat. Bring die Bilder in die richtige Reihenfolge.",
+    "karten": [
+     {
+      "id": "3",
+      "bild": "k1_s5_karten/karte_3",
+      "text": "Mond aufs Tablett"
+     },
+     {
+      "id": "1",
+      "bild": "k1_s5_karten/karte_1",
+      "text": "Mond abnehmen"
+     },
+     {
+      "id": "4",
+      "bild": "k1_s5_karten/karte_4",
+      "text": "Hände waschen"
+     },
+     {
+      "id": "2",
+      "bild": "k1_s5_karten/karte_2",
+      "text": "Faden festkleben"
+     }
+    ],
+    "reihenfolge": [
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "erfolg": "Genau so hat Ben es erzählt.",
+    "werkzeug": "zeit"
+   }
+  },
+  {
+   "spur": 6,
+   "bild": "k1_s6_nachher",
+   "haken": "Sechs Kinder, sechs Pullis. Einer davon war es.",
+   "karte": {
+    "bild": "oskar/staunt",
+    "text": "Der Ärmel gehört Oskar.",
+    "staub": false
+   },
+   "fragenWeg": [
+    "aermel"
+   ],
+   "schluessel": true,
+   "raetsel": {
+    "art": "ausschluss",
+    "titel": "Wessen Ärmel war es?",
+    "text": "Sechs Kinder spielen draußen. Lies jeden Hinweis und tippe alle Pullis an, die nicht passen.",
+    "kandidaten": [
+     {
+      "id": "lina",
+      "name": "Lina",
+      "pulli": {
+       "muster": "quer",
+       "farbe": "#2F5FB3",
+       "farbe2": "#FFFFFF",
+       "kapuze": true,
+       "knoepfe": false
+      }
+     },
+     {
+      "id": "tom",
+      "name": "Tom",
+      "pulli": {
+       "muster": "einfarbig",
+       "farbe": "#D8432F",
+       "kapuze": true,
+       "knoepfe": false
+      }
+     },
+     {
+      "id": "oskar",
+      "name": "Oskar",
+      "pulli": {
+       "muster": "quer",
+       "farbe": "#D8432F",
+       "farbe2": "#FFFFFF",
+       "kapuze": true,
+       "knoepfe": false
+      }
+     },
+     {
+      "id": "ida",
+      "name": "Ida",
+      "pulli": {
+       "muster": "quer",
+       "farbe": "#D8432F",
+       "farbe2": "#FFFFFF",
+       "kapuze": false,
+       "knoepfe": true
+      }
+     },
+     {
+      "id": "emil",
+      "name": "Emil",
+      "pulli": {
+       "muster": "punkte",
+       "farbe": "#D8432F",
+       "farbe2": "#FFFFFF",
+       "kapuze": true,
+       "knoepfe": false
+      }
+     },
+     {
+      "id": "nele",
+      "name": "Nele",
+      "pulli": {
+       "muster": "laengs",
+       "farbe": "#D8432F",
+       "farbe2": "#FFFFFF",
+       "kapuze": true,
+       "knoepfe": false
+      }
+     }
+    ],
+    "hinweise": [
+     {
+      "text": "Der Ärmel hat Streifen.",
+      "raus": [
+       "tom",
+       "emil"
+      ]
+     },
+     {
+      "text": "Die Streifen sind rot und weiß.",
+      "raus": [
+       "lina"
+      ]
+     },
+     {
+      "text": "Die Streifen laufen rund um den Arm, nicht den Arm entlang.",
+      "raus": [
+       "nele"
+      ]
+     },
+     {
+      "text": "Am Ärmel sind keine Knöpfe.",
+      "raus": [
+       "ida"
+      ]
+     }
+    ],
+    "loesung": "oskar",
+    "stempel": "DAS WAR SEIN ÄRMEL",
+    "schluss": {
+     "frage": "Was wissen wir jetzt sicher?",
+     "optionen": [
+      {
+       "text": "Der Ärmel gehört Oskar.",
+       "sicher": true
+      },
+      {
+       "text": "Oskar hat den Mond genommen.",
+       "sicher": false,
+       "tipp": "Das ist erst ein Verdacht. Niemand hat gesehen, was der Ärmel genommen hat."
+      }
+     ]
+    },
+    "erfolg": "Genau. Sicher ist nur: Der Ärmel gehört Oskar. Was hat er vom Tablett genommen?",
+    "werkzeug": "lesen"
+   }
+  }
+ ]
 }

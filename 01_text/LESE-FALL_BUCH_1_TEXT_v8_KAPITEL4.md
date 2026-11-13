@@ -20,9 +20,9 @@ Der Faden rutscht zwischen die beiden Zweige. Dort klemmt er fest. Der Vogel zie
 
 Unten stehen die Kinder und schauen hoch. Oskar steckt seine Maus in die Kapuze. So hat er beide Hände frei.
 
-„Wo ist er hin?“, ruft Ben. Alle drei schauen in die Baumkrone. Dort sind nur Blätter. Und der Baum hat viele Astgabeln.
+„Wo ist er hin?“, ruft Ben. Alle drei suchen die Baumkrone ab. Dort sind nur Blätter. Und der Baum hat viele Astgabeln.
 
-Die Lese-Raupe schaut vom Fensterrand aus ganz genau hin. Im Laub und in der Rinde sind Zeichen versteckt. Es sind Buchstaben!
+Die Lese-Raupe richtet ihre Leucht-Fühler auf den Baum. Im Laub und in der Rinde glimmt etwas. Es sind Buchstaben!
 
 <!-- Ermittlung -->
 
@@ -50,9 +50,9 @@ Er sucht auf dem Tisch. Er schaut in die grüne Kiste. Mila sucht unter dem Tisc
 
 <!-- Ermittlung -->
 
-Alle laufen hin und her. Nur die Lese-Raupe bleibt ruhig sitzen. Zeit für ihren Zeitlupen-Blick.
+Alle laufen hin und her. Nur die Lese-Raupe bleibt ruhig sitzen. Sie nimmt ihre Tautropfen-Lupe.
 
-Mit der Lupe schaut sie langsam jedes Kind an. Etwas Rosafarbenes! Aber was ist es? Und wo?
+Langsam schaut sie jedes Kind an. Etwas Rosafarbenes! Aber was ist es? Und wo?
 
 ---
 
@@ -76,7 +76,7 @@ Zwei Dinge räumt niemand weg. Die Kleberflasche fällt vom Tisch auf den Boden.
 
 <!-- Ermittlung -->
 
-Die Lese-Raupe schaut sich im Raum um. Vorhin lag alles durcheinander. Jetzt sieht der Raum ganz anders aus.
+Die Lese-Raupe macht ihren Zeitlupen-Blick. Vorhin lag alles durcheinander. Was ist jetzt anders?
 
 ---
 
@@ -101,6 +101,8 @@ Die ersten Kinder kichern. Oskars Hände zittern nicht mehr.
 Die Maus schaut nach oben. Dort hängt der gelbe Mond mit seinen drei braunen Flecken. „Juhu! Am Himmel hängt ein riesiger Käse!“
 
 Hinter dem Vorhang hält Ben das Ende vom Faden. Immer wenn die Maus springt, zieht er den Käse ein Stück höher.
+
+Am Fenster schaut die Lese-Raupe zu. „So ein langer Weg für einen Mond“, denkt sie. „Weiß ich noch, wie alles kam?“
 
 ---
 
@@ -142,4 +144,4 @@ Sie schaut nach unten. Der Baum ist voller Blätter. Aber zwischen den Blättern
 
 „Was ist das?“, flüstert Frau Sommer. „Das sieht aus wie …“
 
-Die Lese-Raupe hält den Atem an. Sie hat eine Idee. Die Blätter müssen weg!
+Die Lese-Raupe hält den Atem an. Ihre Fühler leuchten golden. Die Blätter müssen weg! Und dann braucht sie ihre Lupe.

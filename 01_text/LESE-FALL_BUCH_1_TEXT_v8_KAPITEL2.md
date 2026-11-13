@@ -14,7 +14,7 @@
 
 Mila hört es auch. „Da schneidet jemand!“, flüstert sie. „Hoffentlich nicht meinen Mond.“
 
-Ben schaut auf das leere Tablett. Dann schaut er auf die grüne Kiste daneben. Er wird ein bisschen rot.
+Ben starrt auf das leere Tablett. Dann fällt sein Blick auf die grüne Kiste daneben. Er wird ein bisschen rot.
 
 „Oh je“, murmelt er. „Ich glaube, ich habe einen Fehler gemacht.“
 
@@ -56,9 +56,9 @@ Ben überlegt. Er schaut auf seine Finger. Dort klebt noch ein kleiner Rest.
 
 „Zeig mir, wie du ihn hingelegt hast“, sagt Mila.
 
-Die Lese-Raupe wackelt mit den Fühlern.
+Die Lese-Raupe hält ihre Tautropfen-Lupe vors Auge.
 
-„Wie lag der Mond?“, denkt sie. „Und warum lag er so?“
+„Wie lag der Mond?“, denkt sie. „Und warum lag er so? Der Kleber verrät es.“
 
 ---
 
@@ -66,7 +66,7 @@ Die Lese-Raupe wackelt mit den Fühlern.
 
 Langsam kriecht die Lese-Raupe los. Ein Füßchen. Noch ein Füßchen. Vom Blumentopf bis zum offenen Fenster ist es weit für eine Raupe.
 
-Endlich ist sie da. Sie schaut hinaus.
+Endlich ist sie da. Sie hebt ihre Tautropfen-Lupe und schaut hinaus.
 
 Unter dem großen Baum steht die Holzbank. Und dort sitzt Oskar. Sein Pulli hat rote und weiße Streifen.
 
@@ -162,7 +162,7 @@ Unten laufen die Kinder durch das raschelnde Laub. Auf der Wiese sitzen Ida und 
 
 Noch zwanzig Minuten. Mila und Ben laufen weiter zur Bank.
 
-Die Raupe erreicht den Rand. Sie schiebt den Kopf darüber und schaut hinunter.
+Die Raupe erreicht den Rand. Sie schiebt den Kopf darüber. Unten raschelt das Laub. Da beginnen ihre Leucht-Fühler zu glimmen.
 
 ---
 

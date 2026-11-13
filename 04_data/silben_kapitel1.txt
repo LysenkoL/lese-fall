@@ -1580,3 +1580,14 @@ gäs|ten
 # neu für v8 (ungeprüft)
 an|tip|pen
 aus|strei|chen
+# neu für v8 (ungeprüft)
+rich|tet
+kräf|te
+kraft
+be|nutzt
+vors
+au|ge
+glim|men
+glimmt
+kleins|te
+ent|geht

@@ -58,7 +58,8 @@
   },
   "urkunde": {
    "titel": "Die Urkunde"
-  }
+  },
+  "raupe": "Fall gelöst! Meine Fühler haben geleuchtet. Meine Lupe hat gesucht. Mein Blick war ganz langsam. Aber gelesen und nachgedacht hast du. Ohne dich hätte ich es nie geschafft. Bis zum nächsten Fall, Partner!"
  },
  "spuren": [
   {
@@ -215,7 +216,8 @@
      "nein": "Das stand nicht im Text. Denk an den Vogel und das Fenster.",
      "ok": "Genau! Der Ast liegt unter dem Fenster, und dort stehen zwei dünne Zweige wie ein V. Jetzt such ihn im Baum."
     },
-    "nachsehen": "Im Text nachsehen"
+    "nachsehen": "Im Text nachsehen",
+    "werkzeug": "fuehler"
    }
   },
   {
@@ -296,7 +298,8 @@
       }
      ]
     },
-    "erfolg": "Sicher ist nur, was wir gesehen haben. Alles andere müssen wir erst prüfen."
+    "erfolg": "Sicher ist nur, was wir gesehen haben. Alles andere müssen wir erst prüfen.",
+    "werkzeug": "lupe"
    }
   },
   {
@@ -640,7 +643,8 @@
       }
      ]
     },
-    "erfolg": "Fast alles hat seinen Platz, und du weißt, wer es war. Jetzt können die Zuschauer kommen."
+    "erfolg": "Fast alles hat seinen Platz, und du weißt, wer es war. Jetzt können die Zuschauer kommen.",
+    "werkzeug": "zeit"
    }
   },
   {
@@ -700,7 +704,8 @@
      "4",
      "5"
     ],
-    "erfolg": "Genau so war es. Und jetzt: Vorhang auf für den größten Käse der Welt!"
+    "erfolg": "Genau so war es. Und jetzt: Vorhang auf für den größten Käse der Welt!",
+    "werkzeug": "zeit"
    }
   },
   {
@@ -790,7 +795,8 @@
     ],
     "loesung": "elster",
     "stempel": "DER VOGEL: ELSTER",
-    "erfolg": "Es war eine Elster! Elstern sammeln gern lange weiße Streifen und alles, was glänzt."
+    "erfolg": "Es war eine Elster! Elstern sammeln gern lange weiße Streifen und alles, was glänzt.",
+    "werkzeug": "lesen"
    }
   },
   {
@@ -852,7 +858,8 @@
     ],
     "tipp": "Schau genau auf die Astgabel unter dem Fenster. Was ist dort zu sehen?",
     "erfolg": "Fall gelöst! Die Elster hat den Faden für ihr Nest geholt. Dabei hat sie auch Frau Sommers Schlüssel mit dem weißen Band mitgenommen. Jetzt wissen wir alles.",
-    "frage": "Die Elster hat etwas versteckt. Tippe auf alles, was hier nicht hingehört."
+    "frage": "Die Elster hat etwas versteckt. Tippe auf alles, was hier nicht hingehört.",
+    "werkzeug": "lupe"
    }
   }
  ]

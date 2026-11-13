@@ -68,6 +68,8 @@ Der Mond ist weg!
 
 Die Fühler der Lese-Raupe leuchten golden.
 
+Zeit für ihren Zeitlupen-Blick. Was ist am Theater anders als vorhin?
+
 ---
 
 ### Spur 3 — Am Waschbecken
@@ -99,6 +101,8 @@ Sie schaut aus dem Fenster. Auf dem Schulhof tragen heute viele Kinder Streifen.
 Mila ruft noch einmal. Ben dreht sich nicht um.
 
 Was wäscht er da nur so lange von seinen Fingern?
+
+Die Raupe richtet ihre Leucht-Fühler auf das Wasser.
 
 ---
 

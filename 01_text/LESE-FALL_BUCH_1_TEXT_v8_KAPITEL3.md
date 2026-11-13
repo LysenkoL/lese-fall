@@ -52,7 +52,9 @@ Da huscht ein Schatten über den Teller. Ein Schatten mit zwei Flügeln.
 
 Die Raupe schaut nach oben. Aber über der Bank bewegt sich nur ein Blatt.
 
-„Wer war das?“, denkt sie. „Ich habe nur den Schatten gesehen. Spitzer Schnabel. Langer Schwanz.“
+Zum Glück hat sie ihren Zeitlupen-Blick. Der Schatten war schnell. Aber sie hat ihn ganz langsam gesehen.
+
+„Wer war das?“, denkt sie. „Spitzer Schnabel. Langer Schwanz.“
 
 ---
 
@@ -144,9 +146,9 @@ Oskar zieht vorsichtig an einem braunen Fleck. Der Fleck bewegt sich nicht.
 
 „Nicht ziehen!“, ruft Ben. „Dein Kleber hält zu gut. Sonst reißt die Pappe.“
 
-Mila schaut auf ihren gefleckten Mond. „So kann er nicht ans Theater“, sagt sie leise. „Was machen wir jetzt?“
+Mila hält ihren gefleckten Mond hoch. „So kann er nicht ans Theater“, sagt sie leise. „Was machen wir jetzt?“
 
-Oskar schaut auf seine kleine Maus. Dann schaut er auf den Mond. Plötzlich strahlt sein ganzes Gesicht.
+Oskar sieht seine kleine Maus an. Dann den Mond. Plötzlich strahlt sein ganzes Gesicht.
 
 <!-- Blatt -->
 

@@ -55,7 +55,8 @@
     },
     "start": "Mit meiner Lupe sieht man Kleines groß. Schiebe sie über den Käse.",
     "tipp": "Schau am Rand entlang. Es ist etwas Dünnes, Weißes.",
-    "erfolg": "Ein kleines Stück weißer Faden! Seit wann hat ein Käse einen Faden? Milas Mond hat einen!"
+    "erfolg": "Ein kleines Stück weißer Faden! Seit wann hat ein Käse einen Faden? Milas Mond hat einen!",
+    "werkzeug": "lupe"
    }
   },
   {
@@ -82,7 +83,8 @@
     "richtig": 0,
     "tipp": "Schau auf den Schwanz und auf den Schnabel.",
     "warum": "Nur dieser Vogel hat einen so langen Schwanz und einen spitzen Schnabel.",
-    "erfolg": "Dieser Vogel passt zum Schatten. Aber war er es wirklich? Das ist erst ein Verdacht."
+    "erfolg": "Dieser Vogel passt zum Schatten. Aber war er es wirklich? Das ist erst ein Verdacht.",
+    "werkzeug": "zeit"
    }
   },
   {
@@ -239,7 +241,8 @@
       "tipp": "Schau auf Milas Zopf."
      }
     ],
-    "erfolg": "Sieben Unterschiede! Du schaust genau hin. Und der Käse? Die braunen Flecken sind nur aufgeklebt. Der Kreis darunter ist ganz."
+    "erfolg": "Sieben Unterschiede! Du schaust genau hin. Und der Käse? Die braunen Flecken sind nur aufgeklebt. Der Kreis darunter ist ganz.",
+    "werkzeug": "zeit"
    }
   },
   {
@@ -350,7 +353,8 @@
      "warum": "Nur ein Kreis hat hinten den Stern, oben den aufgerollten Faden und das Loch."
     },
     "stempel": "MILAS MOND",
-    "erfolg": "Das ist Milas Mond! Nur dieser Kreis hat hinten den blauen Stern, oben das Loch und den aufgerollten Faden."
+    "erfolg": "Das ist Milas Mond! Nur dieser Kreis hat hinten den blauen Stern, oben das Loch und den aufgerollten Faden.",
+    "werkzeug": "zeit"
    }
   },
   {
@@ -388,7 +392,8 @@
      }
     ],
     "tipp": "Zähle in jedem Wort mit: 1 bleibt, 2 weg, 3 bleibt, 4 weg.",
-    "erfolg": "Tut mir leid! Oskar hat den Mond nicht mit Absicht genommen. Es war ein Missverständnis."
+    "erfolg": "Tut mir leid! Oskar hat den Mond nicht mit Absicht genommen. Es war ein Missverständnis.",
+    "werkzeug": "lesen"
    }
   },
   {
@@ -436,7 +441,8 @@
       }
      ]
     },
-    "plakatFertig": "Das Plakat ist fertig: Die Maus springt zu ihrem Käse!"
+    "plakatFertig": "Das Plakat ist fertig: Die Maus springt zu ihrem Käse!",
+    "werkzeug": "lesen"
    }
   }
  ]
