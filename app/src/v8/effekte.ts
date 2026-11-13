@@ -14,6 +14,7 @@ export const wzChip = (UI: Record<string, string>, w: Werkzeug, kl = '') => `<sp
 /**
  * Werkzeug-Moment: Einblendung beim Start eines Rätsels (ca. 1,4 s). Die Fläche fängt keine Klicks ab
  * (pointer-events: none); der erste Tipp irgendwo schließt sie und geht ganz normal weiter.
+ * Der erste Tipp schließt nur die Einblendung und löst im Rätsel darunter nichts aus.
  * Gibt eine Funktion zurück, die die Einblendung sofort entfernt.
  */
 export function werkzeugMoment(host: HTMLElement, w: Werkzeug, UI: Record<string, string>, raupeUrl: string): () => void {
@@ -24,15 +25,17 @@ export function werkzeugMoment(host: HTMLElement, w: Werkzeug, UI: Record<string
   el.innerHTML = `<div class="wzm-k"><img class="wzm-r" src="${raupeUrl}" alt=""><p class="wzm-kopf">${UI.wzKopf}</p><div class="wzm-i">${werkzeugIcon(w)}</div><b class="wzm-n">${wzName(UI, w)}</b><p class="wzm-t">${wzSatz(UI, w)}</p></div>`;
   host.appendChild(el);
   let weg = false, t = 0;
+  const schluck = (e: Event) => { e.stopPropagation(); e.preventDefault(); };
+  const tipp = (e: Event) => { schluck(e); ab(); document.addEventListener('click', schluck, { capture: true, once: true }); setTimeout(() => document.removeEventListener('click', schluck, true), 400); };
   const ab = () => {
     if (weg) return;
     weg = true; clearTimeout(t);
-    document.removeEventListener('pointerdown', ab, true);
+    document.removeEventListener('pointerdown', tipp, true);
     if (weniger()) return el.remove();
     el.classList.add('geht');
     setTimeout(() => el.remove(), 220);
   };
-  document.addEventListener('pointerdown', ab, true); // Capture: das Ereignis läuft danach unverändert weiter
+  document.addEventListener('pointerdown', tipp, true); // Capture: der Tipp schließt nur die Einblendung
   t = window.setTimeout(ab, weniger() ? 800 : 1450);
   return ab;
 }

@@ -1145,7 +1145,7 @@ export function plakat(r: HTMLElement, d: Daten, fertig: () => void) {
   let sel: number | null = null, fehl = 0, sperre = false;
   const stueck = (i: number, kl = '') => `<div class="pk-st${kl}${sel === i ? ' sel' : ''}" data-s="${i}" style="background-image:url(${url});background-size:${cols * 100}% ${rows * 100}%;background-position:${cols > 1 ? ((i % cols) / (cols - 1)) * 100 : 0}% ${rows > 1 ? (Math.floor(i / cols) / (rows - 1)) * 100 : 0}%"></div>`;
   const mal = (fest = false) => {
-    zi.innerHTML = `<div class="pk-brett${fest ? ' fest' : ''}" style="--sp:${cols};aspect-ratio:${d.ratio}">${plaetze.map((s, p) => `<div class="pk-platz${s !== null ? ' voll' : ''}" data-p="${p}">${s !== null ? stueck(s) : ''}</div>`).join('')}</div>${fest ? '' : `<div class="pk-pool" style="--sp:${cols}">${ordnung.map((s, k) => `<div class="pk-zelle" style="--w:${[-3, 2, -2, 3, -3, 2][k % 6]}deg">${plaetze.includes(s) ? '' : stueck(s)}</div>`).join('')}</div>`}`;
+    zi.innerHTML = `<div class="pk-brett${fest ? ' fest' : ''}" style="--sp:${cols};--pr:${(d.ratio * rows / cols).toFixed(4)};aspect-ratio:${d.ratio}">${plaetze.map((s, p) => `<div class="pk-platz${s !== null ? ' voll' : ''}" data-p="${p}">${s !== null ? stueck(s) : ''}</div>`).join('')}</div>${fest ? '' : `<div class="pk-pool" style="--sp:${cols};--pr:${(d.ratio * rows / cols).toFixed(4)}">${ordnung.map((s, k) => `<div class="pk-zelle" style="--w:${[-3, 2, -2, 3, -3, 2][k % 6]}deg">${plaetze.includes(s) ? '' : stueck(s)}</div>`).join('')}</div>`}`;
     if (!fest) unten(knopf('fertig', K.UI.fertig, plaetze.some((p) => p === null) || sperre), () => pruefe());
   };
   const setze = (s: number, p: number) => {

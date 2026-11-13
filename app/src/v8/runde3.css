@@ -210,3 +210,14 @@
 /* Ausblick mit Bild (Ende Kapitel 3) */
 #app .haken.mitbild .ab-bild { width: min(92%, 520px); margin: 0 auto 6px; transform: rotate(-1.5deg); }
 #app .haken.mitbild .ab-bild img { width: 100%; display: block; }
+
+/* Plakat: Plätze und Stücke haben das Seitenverhältnis eines echten Stücks */
+#app .pk-platz { aspect-ratio: var(--pr, 1); }
+#app .pk-pool .pk-zelle { aspect-ratio: var(--pr, 1); }
+#app .pk-pool .pk-st { height: 100%; }
+#app .pk-brett { height: auto; }
+/* Tresor-Bilder freigestellt: weicher Schein statt blauem Quadrat */
+#app img[src*="tresor_"] { filter: drop-shadow(0 10px 18px rgba(0, 0, 0, .45)); }
+/* Tresor freigestellt: kein Kasten-Schatten mehr, nur weicher Schein */
+#app .fin-tresor img, #app .tv > img, #app .ib.tresor img, #app .tresorinfo > img.tresor-bild, #app .tresor-mini { box-shadow: none !important; border-radius: 0 !important; filter: drop-shadow(0 8px 14px rgba(0, 0, 0, .45)) drop-shadow(0 0 16px rgba(244, 194, 67, .35)); }
+#app .tv.auf .tv-auf { box-shadow: none; filter: drop-shadow(0 0 30px rgba(255, 210, 90, .8)); }

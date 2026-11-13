@@ -4233,9 +4233,15 @@
     }
    ],
    "karte": {
-    "bild": "objekte/mond_mit_flecken",
+    "bild": "k4_s22",
     "text": "Im|mer wenn die Maus springt, zieht Ben den Kä|se hö|her. Das Pu|bli|kum lacht.",
-    "staub": false
+    "staub": false,
+    "ausschnitt": {
+     "x": 32,
+     "y": 4,
+     "w": 42,
+     "h": 42
+    }
    },
    "fragenNeu": [],
    "fragenWeg": [],

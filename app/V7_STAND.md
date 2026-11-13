@@ -62,6 +62,17 @@
 - **Politur** (`app/src/v8/politur.css`, zuletzt geladen): Hineingleiten beim Ansichtswechsel (`wechsel()` in `main.ts`), Blattwechsel mit Richtung, Druck-/Fokus-/Disabled-Stile, Kartenneigung (`--n`), Etikett mit Reißzwecke, Himmel mit Sternen und Mond (`himmel()`), Detektiv-Tisch (Holz hinter `.zi`), Sprechblase mit Raupenkopf, freundliches Fehler-Wackeln (`--weich`), Rechner ab 900 px: Buch auf Nachthimmel. Bei „weniger Bewegung“ ist alles still.
 - Neue Textschlüssel `raupeSagt` (beide TEXT-Mengen), ui `teamZeile`. Bilder: `node scripts/politur-shots.mjs [b h name]` → `03_screens/v8/politur/`.
 
+## Runden 3–4 nach dem Durchspielen (13.11.2026)
+
+Alle Zusatz-Stile stehen in `app/src/v8/runde3.css` (wird nach `politur.css` geladen, Regeln mit `#app` davor).
+- **Kopf:** Mond-Phase `#kMond` (`mondPhase()` in `main.ts`, wächst mit gelösten Spuren), Raupen-Weg `.kweg` (Anteil gelöster Spuren des Kapitels).
+- **Brett:** Fragen laufen durch das ganze Buch (`fragenNeu`/`fragenWeg` je Spur, jede Frage wird irgendwo geklärt; schon beantwortete fallen auch bei altem Spielstand weg). Neue Karte erscheint groß („Neuer Fund!“) und wird angetippt; danach wählt das Kind selbst, welche Frage geklärt ist (`fragePhase` in `brett()`; Knopf „Erst die geklärte Frage antippen“). Fragen sind Klebezettel.
+- **Werkzeuge:** Bilder `assets/illustrationen/objekte/kraft_*.webp` (statt gezeichneter Icons, `WZ_BILD` in `zeichnen.ts`). Der erste Tipp während des Werkzeug-Moments schließt nur die Einblendung (`effekte.ts`).
+- **Rätsel neu/umgebaut:** Schatten (Spur 14) – Vogel antippen, sein Umriss legt sich blau über den Schatten, Knopf „Dieser Schatten passt genau“. Unterschiede (Spur 2, 15, 21) – ein Bild mit Schalter „Vorhin/Jetzt“. Pullis (Spur 6) als Bilder `objekte/pulli_*` (`scripts/pullis.py` stellt frei). Vögel (Spur 23) mit Größe in cm und Maßstab (`cm`, `skala`). Spur 22 mit sechs Karten. Nest (Spur 24) – „Der Schatz der Elster“: Laub wegwischen, dann in `nest_nah` alles antippen, was glänzt (`ziele`, 6), Ablenker ohne Glanz (`andere`: Knopf, Papierdreieck).
+- **Geschichte:** Die Elster sammelt, was glänzt, und baut ihr Nest aus weißen Streifen; sie holte den Faden, der Mond hing daran. Bild `k3_elster` beim Ausblick von Kapitel 3 (`ausblickBild`), `k4_s19_elster` in Spur 19, `k4_s24_fenster` in Spur 24.
+- **Bilder freigestellt:** Tresor (`tresor_zu`, `tresor_auf` ohne blaues Quadrat), Plakatstücke im echten Seitenverhältnis (`--pr`).
+- **Tests** (`e2e-v8*.mjs`) sind noch nicht an diese Runden angepasst – nach dem Durchspielen der Besitzerin anpassen und laufen lassen.
+
 ## Ссылки
 
 - Артефакт v8, Глава 1: https://claude.ai/artifact/NejzAvfd2FxeZJJYRJUpc9
