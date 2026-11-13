@@ -902,7 +902,9 @@ export function schatten(r: HTMLElement, d: Daten, fertig: () => void) {
   const n: number = d.anzahl;
   const crop = (i: number) => `<span class="sc-v" style="background-image:url(${K.img(d.bild)});background-size:${n * 100}% 100%;background-position:${(i / (n - 1)) * 100}% 0"></span>`;
   const reihe = K.mischen(Array.from({ length: n }, (_, i) => String(i)));
-  let fehl = 0, zu = false;
+  let fehl = 0, zu = false, wahl: string | null = null;
+  /** Schattenriss eines Vogels in Blau: legt sich zum Vergleichen über den gesuchten Schatten */
+  const riss = (i: number) => `<span class="sc-v sc-ueber" style="-webkit-mask-image:url(${K.img(d.bild)});mask-image:url(${K.img(d.bild)});-webkit-mask-size:${n * 100}% 100%;mask-size:${n * 100}% 100%;-webkit-mask-position:${(i / (n - 1)) * 100}% 0;mask-position:${(i / (n - 1)) * 100}% 0"></span>`;
   zi.innerHTML = `<div class="sc-licht"><div class="sc-schatten">${crop(d.richtig)}</div></div><div class="sc-grid">${reihe.map((i) => `<button class="sc-k" data-i="${i}" aria-label="Vogel ${+i + 1}">${crop(+i)}</button>`).join('')}</div>`;
   unten('');
   const loesen = (hilfe: boolean) => {
@@ -914,8 +916,21 @@ export function schatten(r: HTMLElement, d: Daten, fertig: () => void) {
   zi.onclick = (e) => {
     const b = (e.target as HTMLElement).closest<HTMLElement>('.sc-k');
     if (!b || zu) return;
-    if (+b.dataset.i! === d.richtig) return loesen(false);
-    wackel(b); b.classList.add('falsch');
+    // Vogel antippen: sein Schattenriss legt sich über den gesuchten Schatten
+    wahl = b.dataset.i!;
+    zi.querySelectorAll('.sc-k.an').forEach((x) => x.classList.remove('an'));
+    b.classList.add('an');
+    zi.querySelector('.sc-ueber')?.remove();
+    $('.sc-schatten', zi).insertAdjacentHTML('beforeend', riss(+wahl));
+    K.summ(10);
+    unten(knopf('passt', K.UI.scPasst), pruefe);
+  };
+  const pruefe = () => {
+    if (zu || wahl === null) return;
+    const b = zi.querySelector<HTMLElement>(`.sc-k[data-i="${wahl}"]`)!;
+    if (+wahl === d.richtig) { zi.querySelector('.sc-ueber')?.remove(); return loesen(false); }
+    wackel(b); b.classList.remove('an'); b.classList.add('falsch');
+    zi.querySelector('.sc-ueber')?.remove(); wahl = null; unten('');
     if (++fehl === 1) return sag(r, 'tipp', K.UI.nochmal + ' ' + d.tipp);
     zu = true;
     sag(r, 'tipp', [K.UI.hilfe, d.warum].join(' '));

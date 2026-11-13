@@ -75,12 +75,12 @@
    "raetsel": {
     "art": "schatten",
     "titel": "Wessen Schatten?",
-    "text": "Der Schatten hatte zwei Flügel, einen spitzen Schnabel und einen langen Schwanz. Welcher Vogel passt dazu?",
+    "text": "Der Schatten hatte einen spitzen Schnabel und einen langen Schwanz. Tippe einen Vogel an. Dann legt sich sein Schatten in Blau darüber. Welcher passt genau?",
     "bild": "objekte/voegel",
     "anzahl": 5,
     "richtig": 0,
-    "tipp": "Schau auf den Schwanz und auf den Schnabel.",
-    "warum": "Nur dieser Vogel hat einen so langen Schwanz und einen spitzen Schnabel.",
+    "tipp": "Schau auf den Schwanz. Ragt das Blau über den Schatten hinaus? Oder ist es zu kurz?",
+    "warum": "Nur bei diesem Vogel liegt das Blau genau auf dem Schatten. Schnabel und Schwanz passen.",
     "erfolg": "Dieser Vogel passt zum Schatten. Aber war er es wirklich? Das ist erst ein Verdacht.",
     "werkzeug": "zeit"
    },

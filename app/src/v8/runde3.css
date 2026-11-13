@@ -109,3 +109,21 @@
 #app .zettel.fr:nth-child(3n) { background: linear-gradient(160deg, #FFD9E4, #FFBDD0); box-shadow: 0 6px 10px rgba(60, 30, 0, .28), inset -10px -10px 14px -10px rgba(160, 40, 80, .3); }
 #app .zettel.fr span::before { content: '? '; font-weight: 800; opacity: .45; }
 #app .zettel.fr span.s-b::before, #app .zettel.fr span.s-r::before, #app .zettel.fr span span::before { content: none; }
+
+/* ---------- Schatten (Spur 14): Schattenriss des gewählten Vogels über dem gesuchten Schatten ---------- */
+#app .sc-licht { width: min(100%, 340px); }
+#app .sc-schatten { position: relative; width: 82%; }
+#app .sc-schatten .sc-v { filter: brightness(0) blur(.7px); opacity: .7; transform: none; }
+#app .sc-schatten .sc-v.sc-ueber { position: absolute; inset: 0; filter: none; opacity: 1; background: rgba(40, 140, 255, .55); outline: 0; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat; animation: scRein .35s ease-out; }
+@keyframes scRein { from { opacity: 0; transform: translateY(14px) scale(.9); } }
+#app .sc-schatten.klar .sc-v { filter: none; opacity: 1; }
+#app .sc-k { cursor: pointer; }
+#app .sc-k.an { border-color: #288CFF; box-shadow: 0 0 0 4px rgba(40, 140, 255, .3), 0 8px 14px rgba(0, 0, 0, .3); }
+#app .sc-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; }
+@media (max-width: 460px) { #app .sc-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } #app .sc-licht { width: min(100%, 250px); } }
+/* ---------- Unterschiede: beide Bilder passen ohne Rollen auf eine Seite ---------- */
+#app .ub { width: min(100%, max(250px, calc((100dvh - 520px) / 2 * 1.5))); }
+#app .ub-paar { gap: 6px; }
+#app .kl-tisch.klein { height: min(11dvh, 90px); }
+#app .kl-tisch.klein + .kl-dreh { top: calc(10px + min(11dvh, 90px) / 2 - 22px); }
+#app .zi:has(.kl-tisch.klein) { gap: 7px; padding-top: 10px; padding-bottom: 12px; }

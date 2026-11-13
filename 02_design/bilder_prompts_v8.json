@@ -1,5 +1,15 @@
 [
  {
+  "ch": "Переделать · Глава 2",
+  "name": "objekte/raetsel_kaese",
+  "att": "objekte_1_mond + objekte_3_basteln (стиль предметов)",
+  "note": "Шесть картинок одного размера и ракурса, как карточки.",
+  "size": "1:1",
+  "where": "Spur 12 — загадка Оскара «жёлтое, круглое, с дырками, для мыши»",
+  "text": "Use the attached images as the exact reference for characters and style. Same children's picture-book style. Plain warm white background, no text, no letters, no numbers, no stars. Every item clearly separated from the others with empty space around it, so it can be cut out. Soft hand-painted picture-book look (watercolor and colored pencil) like the attached images – NOT flat vector clip-art, no glossy 3D look.\nOne object, centered, slightly from above: a round flat wheel of yellow Swiss cheese, seen slightly from above, MATTE surface like real cheese (NOT glossy, NOT plastic, NOT jelly), a clean cylinder shape with a flat top, with 6-8 clearly visible round holes of different sizes on top and on the side.",
+  "redo": "Сыр выглядит как глянцевое желе. Нужен матовый круглый сыр с ровным верхом и чёткими дырками."
+ },
+ {
   "ch": "Ещё нет · Силы гусенички (4 медальона)",
   "name": "objekte/kraft_fuehler",
   "att": "2 листа гусенички (внешность должна совпадать точь-в-точь)",

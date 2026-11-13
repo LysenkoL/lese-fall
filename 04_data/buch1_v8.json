@@ -152,6 +152,7 @@
   "start": "Fall öff|nen",
   "weiterFall": "Wei|ter er|mit|teln",
   "neuStart": "Von vorn be|gin|nen",
+  "scPasst": "Die|ser Schat|ten passt ge|nau",
   "neuerFund": "Neu|er Fund!",
   "fundTipp": "Tip|pe die Kar|te an. Dann hängt sie am Brett.",
   "krTippen": "Kreis an|tip|pen: um|dre|hen",
@@ -2579,12 +2580,12 @@
    "raetsel": {
     "art": "schatten",
     "titel": "Wes|sen Schat|ten?",
-    "text": "Der Schat|ten hat|te zwei Flü|gel, ei|nen spit|zen Schna|bel und ei|nen lan|gen Schwanz. Wel|cher Vo|gel passt da|zu?",
+    "text": "Der Schat|ten hat|te ei|nen spit|zen Schna|bel und ei|nen lan|gen Schwanz. Tip|pe ei|nen Vo|gel an. Dann legt sich sein Schat|ten in Blau da|rü|ber. Wel|cher passt ge|nau?",
     "bild": "objekte/voegel",
     "anzahl": 5,
     "richtig": 0,
-    "tipp": "Schau auf den Schwanz und auf den Schna|bel.",
-    "warum": "Nur die|ser Vo|gel hat ei|nen so lan|gen Schwanz und ei|nen spit|zen Schna|bel.",
+    "tipp": "Schau auf den Schwanz. Ragt das Blau ü|ber den Schat|ten hi|naus? O|der ist es zu kurz?",
+    "warum": "Nur bei die|sem Vo|gel liegt das Blau ge|nau auf dem Schat|ten. Schna|bel und Schwanz pas|sen.",
     "erfolg": "Die|ser Vo|gel passt zum Schat|ten. A|ber war er es wirk|lich? Das ist erst ein Ver|dacht.",
     "werkzeug": "zeit"
    }
