@@ -365,6 +365,7 @@ function brett() {
     const offen = () => [...sec.querySelectorAll<HTMLElement>('.zettel[data-ok]')].filter((z) => !z.querySelector('.stempel'));
     if (!offen().length) return zeigWeiter();
     sec.classList.add('fragt');
+    fuss.innerHTML = `<div class="fz">${knopf('warte', UI.erstFrage, 'haupt', true)}</div>`;
     $('.fragen', sec).insertAdjacentHTML('beforebegin', `<p class="fr-frage">${offen().length > 1 ? UI.welcheFragen : UI.welcheFrage}</p>`);
     const ansage = $<HTMLElement>('.fr-frage', sec);
     let fehl = 0;

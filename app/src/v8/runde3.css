@@ -188,3 +188,17 @@
 #app .as-k > img { height: clamp(84px, 14dvh, 140px); aspect-ratio: auto; }
 #app .nt-bild:has(.nt-zoom.nah) { max-width: min(100%, 42dvh); }
 #app .vb { max-width: min(100%, 30dvh); }
+
+/* Spur 8: Frage 2 erst nach Frage 1; die aktuelle Frage leuchtet */
+#app .kl-teil.spaeter { opacity: .35; pointer-events: none; filter: saturate(.4); }
+#app .kl-teil.dran .kl-f b { animation: puls 1s ease-in-out infinite; }
+#app .kl-teil.dran .kl-karten > * { box-shadow: 0 0 0 3px rgba(255, 224, 130, .8), 0 6px 12px rgba(0, 0, 0, .25); }
+/* Brett: während der Frage leuchtet die neue Karte */
+#app .brett.fragt .bkarte.gepinnt, #app .brett.fragt .bkarte.neu { box-shadow: 0 0 0 4px #FFE082, 0 0 22px rgba(255, 224, 130, .8); z-index: 2; }
+#app .fr-frage { font-size: 16px; }
+/* Reihenfolge mit sechs Karten: passt ohne Rollen */
+#app .rh-plaetze:has(> :nth-child(6)), #app .rh-pool:has(> :nth-child(6)) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+#app .zi:has(.rh-plaetze > :nth-child(6)) .rh-karte img { aspect-ratio: 3 / 2; }
+#app .zi:has(.rh-plaetze > :nth-child(6)) .rh-platz, #app .zi:has(.rh-plaetze > :nth-child(6)) .rh-zelle { min-height: 92px; }
+#app .zi:has(.rh-plaetze > :nth-child(6)) .rh-karte span { font-size: 11.5px; }
+@media (min-width: 560px) { #app .rh-plaetze:has(> :nth-child(6)), #app .rh-pool:has(> :nth-child(6)) { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; } }

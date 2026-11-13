@@ -743,7 +743,8 @@ export function klebstoff(r: HTMLElement, d: Daten, fertig: () => void) {
   const gruendeHtml = () => d.gruende.map((g: any) => `<button class="kl-g${grund === g.id ? ' an' : ''}${ja && g.richtig ? ' ja' : ''}" data-g="${g.id}"><span>${g.text}</span></button>`).join('');
   const mal = () => {
     const weiter = phase !== 'suchen';
-    zi.innerHTML = `<div class="kl-tisch${weiter ? ' klein' : ''}">${mondHtml()}<img class="kl-flasche" src="${K.img(d.flasche)}" alt="" draggable="false"></div><button class="kn zwei um-dreh kl-dreh" data-a="dreh">${DREHPFEIL}<span>${K.UI.umdrehen}</span></button>${weiter ? `<div class="kl-note">${rp('tipp', d.nass)}</div><div class="kl-teil"><p class="kl-f"><b>1</b><span>${d.frage1}</span></p><div class="kl-karten">${kartenHtml()}</div></div><div class="kl-teil"><p class="kl-f"><b>2</b><span>${d.frage2}</span></p><div class="kl-gruende">${gruendeHtml()}</div></div>` : ''}`;
+    if (weiter && K.UI.klFragen) $('.zt1', r).innerHTML = K.UI.klFragen;
+    zi.innerHTML = `<div class="kl-tisch${weiter ? ' klein' : ''}">${mondHtml()}<img class="kl-flasche" src="${K.img(d.flasche)}" alt="" draggable="false"></div><button class="kn zwei um-dreh kl-dreh" data-a="dreh">${DREHPFEIL}<span>${K.UI.umdrehen}</span></button>${weiter ? `<div class="kl-note">${rp('tipp', d.nass)}</div><div class="kl-teil${karte ? '' : ' dran'}"><p class="kl-f"><b>1</b><span>${d.frage1}</span></p><div class="kl-karten">${kartenHtml()}</div></div><div class="kl-teil${karte ? '' : ' spaeter'}"><p class="kl-f"><b>2</b><span>${d.frage2}</span></p><div class="kl-gruende">${gruendeHtml()}</div></div>` : ''}`;
     unten(weiter ? knopf('pruefen', K.UI.pruefen, !karte || !grund || gesperrt || phase === 'aus') : '', (a) => { if (a === 'pruefen') pruefen(); });
   };
   const drehe = () => {

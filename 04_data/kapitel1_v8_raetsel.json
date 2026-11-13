@@ -88,11 +88,13 @@
   "wzLesenT": "Die Raupe liest jedes Wort genau. Du auch!",
   "wzKopf": "Die Raupe benutzt:",
   "teamZeile": "Detektiv-Team: die Lese-Raupe und du",
-  "welcheFrage": "Eine Frage ist jetzt geklärt. Welche? Tippe sie an.",
-  "welcheFragen": "Zwei Fragen sind jetzt geklärt. Welche? Tippe sie an.",
+  "welcheFrage": "Schau auf die neue Karte. Welche Frage ist jetzt geklärt? Tippe sie an.",
+  "welcheFragen": "Schau auf die neue Karte. Zwei Fragen sind jetzt geklärt. Tippe sie an.",
   "frageFalsch": "Diese Frage ist noch offen. Lies alle Fragen noch einmal.",
   "frageHilfe": "Die Lese-Raupe zeigt es dir. Tippe die Frage an.",
-  "ubSchalter": "Schalte zwischen Vorhin und Jetzt hin und her. Tippe an, was anders ist."
+  "ubSchalter": "Schalte zwischen Vorhin und Jetzt hin und her. Tippe an, was anders ist.",
+  "erstFrage": "Erst die geklärte Frage antippen",
+  "klFragen": "Der Kleber ist noch nass. Beantworte jetzt die Fragen. Du kannst den Mond weiter umdrehen."
  },
  "intro": [
   {

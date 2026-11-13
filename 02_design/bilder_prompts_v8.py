@@ -161,6 +161,12 @@ The same tree and the same view as the previous picture. Now in fork number 3 (r
 sits a small nest woven from WHITE PAPER STRIPS. A white ribbon hangs from it and on the ribbon a small brass key glints in the sun.
 The magpie is NOT there. Everything else unchanged.""",
     head=HEAD, size="3:2", where="Spur 24 — раздвинуть листья и найти гнездо (листья рисую программно сверху)")
+add(C4, "k4_s19_elster", "OUT", """
+    Outside under the big tree in front of the classroom window: a black-and-white magpie with a very long tail has just landed in a tree fork (two thin branches forming a V right below the open window)
+    and holds a white thread in its beak; on the thread hangs the round yellow cardboard moon with three brown paper spots, caught between the two thin branches.
+    Below on the grass Mila, Ben and Oskar look up, surprised, pointing. On the windowsill above, the small green caterpillar watches. Warm autumn afternoon light.""",
+    head=HEAD, size="3:2", glow=False, where="Spur 19 — сцена «Der Mond im Baum» (сейчас стоит просто дерево; старая картинка показывала уборку)",
+    note="Дерево и развилка — как на baum / baum_nest (приложить).")
 add(C4, "nest_finale", "IN", """
 Happy final scene at the open classroom window: Mila, Ben, Oskar and Frau Sommer lean out and look down into the nest of white paper strips in the fork of the tree.
 Frau Sommer carefully takes out the white ribbon with ONE single small silver key (clearly a key, not coins, nothing golden or coin-like in or around the nest); the tree fork and the nest must look exactly like in the attached picture baum_nest (two thin branches forming a V right below the window, nest woven from white paper strips); next to the nest she lays a fresh white paper strip as a present for the bird.
@@ -217,7 +223,7 @@ for n, d in [
 
 # ---------------------------------------------------------------- Stand der Bilder
 # Fertig und im Repo (assets/illustrationen/...): erscheinen nicht mehr auf der Seite.
-FERTIG = {"objekte/raetsel_kaese", "objekte/kraft_fuehler", "objekte/kraft_lupe", "objekte/kraft_zeit", "objekte/kraft_lesen", "objekte/pulli_oskar", "objekte/pulli_lina", "objekte/pulli_tom", "objekte/pulli_emil", "objekte/pulli_nele", "objekte/pulli_ida", "objekte/raetsel_ball", "objekte/raetsel_schwamm", "kinder/ida", "kinder/nele", "objekte/fuchs_puppe", "objekte/koenig_puppe", "objekte/pappbaum", "objekte/papierstapel",
+FERTIG = {"nest_finale", "objekte/raetsel_kaese", "objekte/kraft_fuehler", "objekte/kraft_lupe", "objekte/kraft_zeit", "objekte/kraft_lesen", "objekte/pulli_oskar", "objekte/pulli_lina", "objekte/pulli_tom", "objekte/pulli_emil", "objekte/pulli_nele", "objekte/pulli_ida", "objekte/raetsel_ball", "objekte/raetsel_schwamm", "kinder/ida", "kinder/nele", "objekte/fuchs_puppe", "objekte/koenig_puppe", "objekte/pappbaum", "objekte/papierstapel",
           "objekte/raetsel_keks", "objekte/raetsel_sonne", "objekte/raetsel_zitrone",
           "plakat", "baum", "baum_nest", "tresor_zu", "tresor_auf",
           "k1_s1", "kinder/lina", "kinder/tom", "kinder/emil", "objekte/mond_hinten_feucht", "objekte/mond_hinten_faden",

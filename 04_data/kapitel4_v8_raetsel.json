@@ -64,7 +64,7 @@
  "spuren": [
   {
    "spur": 19,
-   "bild": "k4_s19",
+   "bild": "baum",
    "schluessel": true,
    "haken": "Da lehnt sich Frau Sommer aus dem Fenster. Sie hat etwas Gelbes zwischen den Zweigen gesehen.",
    "karte": {
@@ -300,7 +300,7 @@
   },
   {
    "spur": 21,
-   "bild": "k4_s21",
+   "bild": "k4_s19",
    "haken": "Die Tür geht auf. Die ersten Kinder der Gruppe kommen herein.",
    "karte": {
     "bild": "objekte/kiste_gruen",
@@ -655,12 +655,17 @@
    "raetsel": {
     "art": "reihe",
     "titel": "Wie kam der Mond auf die Bühne?",
-    "text": "Vor dem Stück erzählt Mila den Gästen die ganze Geschichte. Bring die fünf Bilder in die richtige Reihenfolge.",
+    "text": "Vor dem Stück erzählt Mila den Gästen die ganze Geschichte. Bring die sechs Bilder in die richtige Reihenfolge.",
     "karten": [
      {
       "id": "3",
       "bild": "k2_s9",
       "text": "Oskar bastelt heimlich"
+     },
+     {
+      "id": "6",
+      "bild": "k4_s19",
+      "text": "Ben hängt den Mond wieder auf"
      },
      {
       "id": "1",
@@ -669,8 +674,8 @@
      },
      {
       "id": "5",
-      "bild": "k4_s19",
-      "text": "Der Mond hängt im Baum"
+      "bild": "baum",
+      "text": "Die Elster holt den Mond"
      },
      {
       "id": "2",
@@ -688,7 +693,8 @@
      "2",
      "3",
      "4",
-     "5"
+     "5",
+     "6"
     ],
     "erfolg": "Genau so war es. Und jetzt: Vorhang auf für den größten Käse der Welt!",
     "werkzeug": "zeit"

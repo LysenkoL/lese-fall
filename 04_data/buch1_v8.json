@@ -217,11 +217,13 @@
   "wzLesenT": "Die Rau|pe liest je|des Wort ge|nau. Du auch!",
   "wzKopf": "Die Rau|pe be|nutzt:",
   "teamZeile": "De|tek|tiv-Team: die Le|se-Rau|pe und du",
-  "welcheFrage": "Ei|ne Fra|ge ist jetzt ge|klärt. Wel|che? Tip|pe sie an.",
-  "welcheFragen": "Zwei Fra|gen sind jetzt ge|klärt. Wel|che? Tip|pe sie an.",
+  "welcheFrage": "Schau auf die neu|e Kar|te. Wel|che Fra|ge ist jetzt ge|klärt? Tip|pe sie an.",
+  "welcheFragen": "Schau auf die neu|e Kar|te. Zwei Fra|gen sind jetzt ge|klärt. Tip|pe sie an.",
   "frageFalsch": "Die|se Fra|ge ist noch of|fen. Lies al|le Fra|gen noch ein|mal.",
   "frageHilfe": "Die Le|se-Rau|pe zeigt es dir. Tip|pe die Fra|ge an.",
   "ubSchalter": "Schal|te zwi|schen Vor|hin und Jetzt hin und her. Tip|pe an, was an|ders ist.",
+  "erstFrage": "Erst die ge|klär|te Fra|ge an|tip|pen",
+  "klFragen": "Der Kle|ber ist noch nass. Be|ant|wor|te jetzt die Fra|gen. Du kannst den Mond wei|ter um|dre|hen.",
   "legen": "Aufs Tab|lett le|gen",
   "ausDinge": "Was passt nicht? Tip|pe es an.",
   "nochDing": "Gut! A|ber da ist noch et|was.",
@@ -3326,7 +3328,7 @@
    "kap": 4,
    "spur": 19,
    "titel": "Der Mond im Baum",
-   "bild": "k4_s19",
+   "bild": "baum",
    "haken": "Da lehnt sich Frau Som|mer aus dem Fens|ter. Sie hat et|was Gel|bes zwi|schen den Zwei|gen ge|se|hen.",
    "blocks": [
     {
@@ -3722,7 +3724,7 @@
    "kap": 4,
    "spur": 21,
    "titel": "Al|les an sei|nem Platz",
-   "bild": "k4_s21",
+   "bild": "k4_s19",
    "haken": "Die Tür geht auf. Die ers|ten Kin|der der Grup|pe kom|men he|rein.",
    "blocks": [
     {
@@ -4240,12 +4242,17 @@
    "raetsel": {
     "art": "reihe",
     "titel": "Wie kam der Mond auf die Büh|ne?",
-    "text": "Vor dem Stück er|zählt Mi|la den Gäs|ten die gan|ze Ge|schich|te. Bring die fünf Bil|der in die rich|ti|ge Rei|hen|fol|ge.",
+    "text": "Vor dem Stück er|zählt Mi|la den Gäs|ten die gan|ze Ge|schich|te. Bring die sechs Bil|der in die rich|ti|ge Rei|hen|fol|ge.",
     "karten": [
      {
       "id": "3",
       "bild": "k2_s9",
       "text": "Os|kar bas|telt heim|lich"
+     },
+     {
+      "id": "6",
+      "bild": "k4_s19",
+      "text": "Ben hängt den Mond wie|der auf"
      },
      {
       "id": "1",
@@ -4254,8 +4261,8 @@
      },
      {
       "id": "5",
-      "bild": "k4_s19",
-      "text": "Der Mond hängt im Baum"
+      "bild": "baum",
+      "text": "Die Els|ter holt den Mond"
      },
      {
       "id": "2",
@@ -4273,7 +4280,8 @@
      "2",
      "3",
      "4",
-     "5"
+     "5",
+     "6"
     ],
     "erfolg": "Ge|nau so war es. Und jetzt: Vor|hang auf für den größ|ten Kä|se der Welt!",
     "werkzeug": "zeit"
