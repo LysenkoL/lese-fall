@@ -1577,3 +1577,6 @@ auf|räu|men
 be|cher
 auf|ge|ho|ben
 gäs|ten
+# neu für v8 (ungeprüft)
+an|tip|pen
+aus|strei|chen

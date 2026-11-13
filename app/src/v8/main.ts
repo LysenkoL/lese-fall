@@ -77,14 +77,21 @@ const IC = {
 
 /* ---------- Gerüst ---------- */
 const app = $('#app');
-app.innerHTML = `<header class="kopf"><button class="kb brettb" id="bBrett" aria-label="Brett">${IC.akte}<span>Brett</span></button><div class="kt"><b id="kT1"></b><span id="kT2"></span></div><span class="perl" id="kPerl"></span><button class="kb aa" id="bAa" aria-label="Schrift">Aa</button></header><main id="buehne"></main><footer id="fuss"></footer><div id="ueber"></div>`;
+app.innerHTML = `<header class="kopf"><button class="kb brettb" id="bBrett" aria-label="Brett">${IC.akte}<span>Brett</span></button><div class="kt"><b id="kT1"></b><span id="kT2"></span></div><span class="mondp" id="kMond" aria-hidden="true"></span><span class="perl" id="kPerl"></span><button class="kb aa" id="bAa" aria-label="Schrift">Aa</button></header><main id="buehne"></main><footer id="fuss"></footer><div id="ueber"></div>`;
 const buehne = $('#buehne'), fuss = $('#fuss'), ueber = $('#ueber');
 const modus = (m: string) => { app.dataset.m = m; buehne.ontouchstart = buehne.ontouchend = null; /* Blättern per Wisch gilt nur beim Lesen */ };
+/** Mond im Kopf: füllt sich mit jeder gelösten Spur, am Ende ist Vollmond */
+function mondPhase(f: number): string {
+  const R = 10, c = 12, rx = Math.abs(1 - 2 * f) * R;
+  const licht = f >= 0.999 ? `<circle cx="${c}" cy="${c}" r="${R}" fill="#F6D35B"/>` : f <= 0.001 ? '' : `<path d="M${c} ${c - R}A${R} ${R} 0 0 1 ${c} ${c + R}A${rx.toFixed(2)} ${R} 0 0 ${f < 0.5 ? 0 : 1} ${c} ${c - R}Z" fill="#F6D35B"/>`;
+  return `<svg viewBox="0 0 24 24" class="${f >= 0.999 ? 'voll' : ''}"><circle cx="${c}" cy="${c}" r="${R}" fill="#2A3157" stroke="#F6D35B" stroke-opacity=".45" stroke-width="1"/>${licht}</svg>`;
+}
 function kopf() {
   $('.kopf').hidden = stand.view !== 'spur';
   $('#kT1').textContent = `Spur ${SP(stand.spur).spur}`;
   $('#kT2').innerHTML = `${UI.kapitel} ${kap().nr} · ${kap().titelH}`;
   $('#kPerl').textContent = String(perlen());
+  $('#kMond').innerHTML = mondPhase(Math.min(1, stand.fertig.length / D.spuren.length));
   document.documentElement.style.setProperty('--fs', stand.fs + 'px');
   document.documentElement.classList.toggle('ohne-silben', !stand.silben);
 }

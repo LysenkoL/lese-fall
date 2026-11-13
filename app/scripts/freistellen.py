@@ -107,3 +107,22 @@ if os.path.exists(mv):
             px[x, y] = (r, g, b, 0)
     m.crop(m.getbbox()).save(os.path.join(DST, 'mond_vorne_kurz.webp'), 'WEBP', quality=90, method=6)
     print('✓ mond_vorne_kurz')
+
+
+# v8: Mond auf dem Tablett neu zusammengesetzt (leeres Tablett + Rückseite mit aufgerolltem Faden) – ohne langen Faden
+tl, mh = os.path.join(DST, 'tablett_leer.webp'), os.path.join(DST, 'mond_hinten_faden.webp')
+if os.path.exists(tl) and os.path.exists(mh):
+    from PIL import ImageFilter
+    t = Image.open(tl).convert('RGBA'); m = Image.open(mh).convert('RGBA')
+    m = m.crop(m.getbbox())
+    t = t.resize((t.width * 2, t.height * 2), Image.LANCZOS)
+    mw = int(t.width * 0.42); mhh = int(mw * m.height / m.width * 0.44)
+    m = m.resize((mw, mhh), Image.LANCZOS)
+    x, y = int(t.width * 0.5 - mw / 2), int(t.height * 0.43 - mhh / 2)
+    sch = Image.new('RGBA', t.size, (0, 0, 0, 0))
+    dunkel = Image.new('RGBA', m.size, (10, 30, 80, 110)); dunkel.putalpha(m.getchannel('A').point(lambda v: v * 110 // 255))
+    sch.paste(dunkel, (x + 3, y + 5), dunkel)
+    t = Image.alpha_composite(t, sch.filter(ImageFilter.GaussianBlur(4)))
+    t.paste(m, (x, y), m)
+    t.save(os.path.join(DST, 'mond_auf_tablett.webp'), 'WEBP', quality=90, method=6)
+    print('✓ mond_auf_tablett (neu zusammengesetzt)')

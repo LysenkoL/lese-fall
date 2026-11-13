@@ -968,14 +968,14 @@ export function kreise(r: HTMLElement, d: Daten, fertig: () => void) {
   const kHtml = (c: any) => {
     const weg = gestr.has(c.id);
     const bhoehe = c.y + c.r * d.ratio + 8; // Mitte des Kreuz-Knopfs unter dem Kreis (in % der Höhe)
-    return `<button class="kr-k${weg ? ' weg' : ''}${offen === c.id ? ' um' : ''}${fertigRest(c) ? ' rest' : ''}" data-id="${c.id}" aria-label="Kreis ${kr.indexOf(c) + 1}" style="left:${c.x}%;top:${c.y}%;width:${klar(c)}%">${weg ? kreuz : ''}</button>${phase === 'b' ? `<button class="kr-x${weg ? ' an' : ''}" data-x="${c.id}" style="left:${c.x}%;top:${bhoehe}%" aria-label="Kreis ${kr.indexOf(c) + 1} ${weg ? 'zurücknehmen' : 'durchstreichen'}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="3.400" stroke-linecap="round"/></svg></button>` : ''}`;
+    return `<button class="kr-k${weg ? ' weg' : ''}${phase === 'b' && !geflippt && kr.indexOf(c) === 0 ? ' zeig' : ''}${offen === c.id ? ' um' : ''}${fertigRest(c) ? ' rest' : ''}" data-id="${c.id}" aria-label="Kreis ${kr.indexOf(c) + 1}" style="left:${c.x}%;top:${c.y}%;width:${klar(c)}%">${weg ? kreuz : ''}</button>${phase === 'b' ? `<button class="kr-x${weg ? ' an' : ''}" data-x="${c.id}" style="left:${c.x}%;top:${bhoehe}%" aria-label="Kreis ${kr.indexOf(c) + 1} ${weg ? 'zurücknehmen' : 'durchstreichen'}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="3.400" stroke-linecap="round"/></svg></button>` : ''}`;
   };
   const fertigRest = (c: any) => phase === 'c' && !gestr.has(c.id);
   const malB = () => {
     const merk = kar.filter((k) => k.richtig).map((k) => `<li>${k.text}</li>`).join('');
     const kopf = phase === 'c' ? '' : `<div class="as-hin kr-liste"><span class="as-z">${d.vergleichen.liste}</span><ul>${merk}</ul></div>`;
     const bild = (offen ? '' : '') + `<img class="kr-vorn" src="${K.img(d.vorne)}" alt="" draggable="false">`;
-    zi.innerHTML = `${kopf}<div class="kr-bild" style="aspect-ratio:${d.ratio}">${bild}${offen ? rueck(kr.find((c) => c.id === offen)!) : ''}${kr.map(kHtml).join('')}</div>${phase === 'c' ? '' : `<p class="as-raus">${d.vergleichen.frage}</p>`}`;
+    zi.innerHTML = `${kopf}<div class="kr-bild" style="aspect-ratio:${d.ratio}">${bild}${offen ? rueck(kr.find((c) => c.id === offen)!) : ''}${kr.map(kHtml).join('')}</div>${phase === 'c' ? '' : `<div class="kr-leg"><span><i class="kr-l1"></i>${K.UI.krTippen}</span><span><i class="kr-l2">✕</i>${K.UI.krKreuz}</span></div><p class="as-raus">${d.vergleichen.frage}</p>`}`;
     if (phase === 'b') unten(knopf('fertig', K.UI.fertig, gestr.size === 0 || gesperrt), () => pruefenB());
   };
   const flip = (id: string) => {

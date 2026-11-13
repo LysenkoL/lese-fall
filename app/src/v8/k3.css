@@ -162,3 +162,16 @@
 
 .sc-schatten { width: 78%; }
 .sc-schatten .sc-v { transform: scaleX(-1) skewX(-8deg); }
+
+
+/* Kreise: sichtbarer Hinweis, wie man umdreht */
+.kr-k.zeig::after { content: ''; position: absolute; inset: -8%; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 0 0 3px var(--senf), 0 0 18px 4px rgba(246, 211, 91, .7); animation: krZeig 1.1s ease-in-out infinite; pointer-events: none; }
+.kr-k.zeig::before { content: '☝'; position: absolute; left: 50%; top: 55%; font-size: 28px; transform: translate(-50%, 0); animation: krFinger 1.1s ease-in-out infinite; pointer-events: none; filter: drop-shadow(0 2px 3px rgba(0, 0, 0, .45)); }
+@keyframes krZeig { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.12); opacity: .55; } }
+@keyframes krFinger { 0%, 100% { transform: translate(-50%, 6px); } 50% { transform: translate(-50%, -4px); } }
+.kr-leg { display: flex; flex-wrap: wrap; gap: 6px 14px; justify-content: center; margin: 10px 0 2px; font-size: 14px; font-weight: 700; }
+.kr-leg > span { display: inline-flex; align-items: center; gap: 6px; background: rgba(255, 255, 255, .92); color: #26221C; border-radius: 999px; padding: 4px 12px 4px 6px; }
+.kr-leg i { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-size: 13px; font-weight: 800; }
+.kr-leg .kr-l1 { background: var(--senf); box-shadow: inset 0 0 0 2px #fff; }
+.kr-leg .kr-l2 { background: #26221C; color: #fff; }
+@media (prefers-reduced-motion: reduce) { .kr-k.zeig::after, .kr-k.zeig::before { animation: none; } }
