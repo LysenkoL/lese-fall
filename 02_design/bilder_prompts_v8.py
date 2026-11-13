@@ -167,6 +167,15 @@ add(C4, "k4_s19_elster", "OUT", """
     Below on the grass Mila, Ben and Oskar look up, surprised, pointing. On the windowsill above, the small green caterpillar watches. Warm autumn afternoon light.""",
     head=HEAD, size="3:2", glow=False, where="Spur 19 — сцена «Der Mond im Baum» (сейчас стоит просто дерево; старая картинка показывала уборку)",
     note="Дерево и развилка — как на baum / baum_nest (приложить).")
+add(C4, "nest_nah", "OUT", """
+    Close-up view straight from above into a magpie's nest that sits in a tree fork (two thin brown branches, a few yellow-green leaves at the edges of the picture).
+    The nest is big, fills most of the picture and is woven from white paper strips and a few twigs. Inside lies the magpie's little treasure collection –
+    EIGHT small things, each one clearly visible, NOT overlapping, spread out evenly with space between them:
+    1) a small silver key on a white ribbon, 2) a red button with four holes, 3) a silver paper clip, 4) a blue glass marble, 5) a golden bottle cap,
+    6) a tiny golden bell, 7) a crumpled ball of silver foil, 8) one small yellow paper scrap (triangle).
+    Each thing only ONCE. No bird, no eggs, no children, no text. Soft warm afternoon light, the shiny things glitter a little.""",
+    head=HEAD, size="3:2", glow=False, where="Spur 24 — новая загадка: гнездо крупным планом, найти всё, что натаскала сорока",
+    note="Важно: ровно восемь предметов, каждый один раз, не перекрываются. Приложить baum_nest (стиль гнезда и веток).")
 add(C4, "nest_finale", "IN", """
 Happy final scene at the open classroom window: Mila, Ben, Oskar and Frau Sommer lean out and look down into the nest of white paper strips in the fork of the tree.
 Frau Sommer carefully takes out the white ribbon with ONE single small silver key (clearly a key, not coins, nothing golden or coin-like in or around the nest); the tree fork and the nest must look exactly like in the attached picture baum_nest (two thin branches forming a V right below the window, nest woven from white paper strips); next to the nest she lays a fresh white paper strip as a present for the bird.
