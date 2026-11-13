@@ -2,10 +2,12 @@
  * Lese-Fall · Vorschau „v8“: Kapitel 1–3 mit Rätseln nach dem Text, Ermittlungsbrett und Fallkarte.
  * Eigener Einstieg (v8.html), eigener Speicherstand (lesefall.v8). Alte App und v7 bleiben unverändert.
  */
-import { tresorSvg } from './zeichnen.ts';
+import { tresorSvg, werkzeugIcon, WERKZEUGE, type Werkzeug } from './zeichnen.ts';
+import { werkzeugMoment, wzChip, wzName, belohnung } from './effekte.ts';
 import './v8.css';
 import './k3.css';
 import './k4.css';
+import './politur.css';
 import DATA_ from '../../../04_data/buch1_v8.json';
 import { T } from '../text';
 import { bildUrl as img } from './bilder';
@@ -15,7 +17,7 @@ import { zeigeFinale } from './finale.ts';
 
 const D: any = structuredClone(DATA_);
 /** Texte der Daten einmal in HTML mit Silben verwandeln (gleiche Schlüssel wie in build-v8.ts) */
-const TEXT = new Set(['text', 'titel', 'haken', 'frage', 'aufloesung', 'warum', 'tipp', 'erfolg', 'unklarTipp', 'vorspann', 'ausblick', 'name', 'saetze', 'warum2', 'unter', 'sagt', 'klebt', 'frage2', 'suche', 'nass', 'frage1', 'tipp1', 'unklar', 'frageRaus', 'regel', 'plakatFertig', 'start', 'liste', 'zuViel', 'nochMehr', 'falsch', 'ok', 'fund', 'knapp', 'frueh', 'hilfe', 'wortText', 'nicht', 'nachsehen', 'absatz', 'demo', 'jetzt', 'bedeutung']);
+const TEXT = new Set(['raupeSagt', 'text', 'titel', 'haken', 'frage', 'aufloesung', 'warum', 'tipp', 'erfolg', 'unklarTipp', 'vorspann', 'ausblick', 'name', 'saetze', 'warum2', 'unter', 'sagt', 'klebt', 'frage2', 'suche', 'nass', 'frage1', 'tipp1', 'unklar', 'frageRaus', 'regel', 'plakatFertig', 'start', 'liste', 'zuViel', 'nochMehr', 'falsch', 'ok', 'fund', 'knapp', 'frueh', 'hilfe', 'wortText', 'nicht', 'nachsehen', 'absatz', 'demo', 'jetzt', 'bedeutung']);
 function html(v: any, key = ''): any {
   if (typeof v === 'string') return TEXT.has(key) ? T(v) : v;
   if (Array.isArray(v)) return v.map((x) => html(x, key));
@@ -106,11 +108,14 @@ R.init({ UI, img, fig, fuss, summ, staub, mischen: (ids) => {
 } });
 let hookStaub: (() => void) | null = null;
 /** Für Tests: löst das aktuelle Rätsel oder die aktuelle Wisch-Fläche sofort */
-const loese = () => { (R.hook.loese ?? hookStaub)?.(); };
+let momentWeg: (() => void) | null = null;
+const loese = () => { momentWeg?.(); (R.hook.loese ?? hookStaub)?.(); };
 
 /* ---------- Ablauf ---------- */
-function zeige() {
+function zeige() { zeigeRaw(); wechsel(); }
+function zeigeRaw() {
   ueber.innerHTML = ''; R.hook.loese = null; hookStaub = null; fuss.onclick = null; buehne.onclick = null;
+  momentWeg?.(); momentWeg = null; $('.wzm', buehne)?.remove();
   if (stand.view !== 'titel') stand.weiter = stand.view;
   kopf(); speichern();
   if (stand.view === 'titel') return titel();
@@ -127,6 +132,8 @@ function zeige() {
   if (st === 'tippFrage') return tippFrage();
   return haken();
 }
+/** sanftes Hineingleiten der neuen Ansicht (höchstens 300 ms, bei „weniger Bewegung“ aus) */
+function wechsel() { buehne.firstElementChild?.classList.add('ein2'); }
 function weiter() {
   const n = steps(stand.spur).length;
   stand.blatt = 0;
@@ -137,10 +144,12 @@ function weiter() {
 }
 
 /* ---------- Titel, Vorgeschichte, Kapitelkarte ---------- */
+/** Nachthimmel: ein paar langsam funkelnde Sterne und ein Mond mit weichem Schein */
+const himmel = () => `<div class="himmel" aria-hidden="true"><span class="mondg"></span>${[...Array(7)].map((_, i) => `<i class="st s${i + 1}"></i>`).join('')}</div>`;
 function titel() {
   modus('titel');
   const angefangen = stand.fertig.length > 0 || stand.i > 0 || stand.spur > 1 || stand.weiter === 'fallkarte' || stand.weiter === 'ausblick' || stand.weiter === 'finale';
-  buehne.innerHTML = `<section class="titel"><div class="lampe"></div><p class="tl">LESE-FALL · FALL 1</p><h1>${T(D.fall.titel)}</h1><figure class="foto gross"><img src="${img('cover')}" alt=""></figure><p class="tu">Ein Krimi zum Selberlesen</p></section>`;
+  buehne.innerHTML = `<section class="titel"><div class="lampe"></div>${himmel()}<p class="tl">LESE-FALL · FALL 1</p><h1>${T(D.fall.titel)}</h1><figure class="foto gross"><img src="${img('cover')}" alt=""></figure><p class="tu">Ein Krimi zum Selberlesen</p><img class="t-raupe" src="${fig('raupe/lacht')}" alt=""></section>`;
   fuss.innerHTML = `<div class="fz">${knopf('start', angefangen ? UI.weiterFall : UI.start)}${angefangen ? knopf('neu', UI.neuStart, 'still') : ''}</div>`;
   fuss.onclick = (e) => {
     const a = (e.target as HTMLElement).closest<HTMLElement>('[data-a]')?.dataset.a;
@@ -153,7 +162,9 @@ function intro() {
   let k = 0;
   const mal = () => {
     const s = D.intro[k], letzt = k === D.intro.length - 1;
-    buehne.innerHTML = `<section class="intro"><div class="lampe"></div><div class="ib ${s.bild === 'tresor' ? 'tresor' : s.bild.includes('/') ? 'frei' : 'foto'}">${s.bild === 'tresor' ? `<img src="${img('tresor_zu')}" alt="">` : `<img src="${fig(s.bild)}" alt="">`}</div><p>${s.text}</p><div class="pkt hell">${D.intro.map((_: any, i: number) => `<i class="${i === k ? 'an' : ''}"></i>`).join('')}</div></section>`;
+    const bildH = s.werkzeuge ? `<div class="ib wzraster">${WERKZEUGE.map((w) => `<div class="wzr" data-w="${w}">${werkzeugIcon(w)}<b>${wzName(UI, w)}</b></div>`).join('')}</div>`
+      : `<div class="ib ${s.bild === 'tresor' ? 'tresor' : s.bild.includes('/') ? 'frei' : 'foto'}">${s.bild === 'tresor' ? `<img src="${img('tresor_zu')}" alt="">` : `<img src="${fig(s.bild)}" alt="">`}</div>`;
+    buehne.innerHTML = `<section class="intro"><div class="lampe"></div>${himmel()}${bildH}<p>${s.text}</p><div class="pkt hell">${D.intro.map((_: any, i: number) => `<i class="${i === k ? 'an' : ''}"></i>`).join('')}</div></section>`;
     fuss.innerHTML = `<div class="fz">${knopf('w', letzt ? UI.los : UI.weiter)}<button class="leise" data-a="skip" ${letzt ? 'style="visibility:hidden"' : ''}>${UI.ueberspringen}</button></div>`;
   };
   mal();
@@ -167,7 +178,7 @@ function intro() {
 }
 function kapitelKarte() {
   modus('titel');
-  buehne.innerHTML = `<section class="kapk"><div class="lampe"></div><span class="tab hell">${UI.kapitel} ${kap().nr}</span><h1>${kap().titelH}</h1><img class="vig" src="${img(kap().bild)}" alt=""><p>${kap().vorspann}</p></section>`;
+  buehne.innerHTML = `<section class="kapk"><div class="lampe"></div>${himmel()}<span class="tab hell">${UI.kapitel} ${kap().nr}</span><h1>${kap().titelH}</h1><img class="vig" src="${img(kap().bild)}" alt=""><p>${kap().vorspann}</p></section>`;
   nurKnopf('w', knopf('w', UI.los), () => { stand.view = 'spur'; zeige(); });
 }
 
@@ -229,22 +240,24 @@ function blaetter(blocks: any[], kopfHtml: string): { html: string; voll: number
 function lesen() {
   modus('lesen');
   const sp = SP(stand.spur);
-  const kopfH = `<div class="skopf"><span class="tab">SPUR ${sp.spur}</span><h2>${sp.titelH}</h2></div><figure class="foto"><img src="${img(sp.bild)}" alt=""></figure>`;
+  const kopfH = `<div class="skopf"><span class="tab etikett">SPUR ${sp.spur}</span><h2>${sp.titelH}</h2></div><figure class="foto"><img src="${img(sp.bild)}" alt=""></figure>`;
   buehne.innerHTML = '';
   const seiten = blaetter(sp.blocks, kopfH);
   stand.blatt = Math.min(stand.blatt, seiten.length - 1);
+  let richtung = '';
   const zeig = () => {
     const s = seiten[stand.blatt], n = seiten.length, b = stand.blatt;
-    buehne.innerHTML = `<div class="blatt${s.voll < 0.5 && b > 0 ? ' kurz' : ''}" data-art="lesen">${s.html}</div>`;
+    buehne.innerHTML = `<div class="blatt${s.voll < 0.5 && b > 0 ? ' kurz' : ''}" data-art="lesen" data-r="${richtung}">${s.html}</div>`;
     fuss.innerHTML = `<div class="fl"><button class="rund" data-a="prev" ${b === 0 ? 'disabled' : ''} aria-label="Zurück">${IC.zur}</button><div class="pkt">${[...Array(n)].map((_, k) => `<i class="${k === b ? 'an' : k < b ? 'war' : ''}"></i>`).join('')}</div>${b < n - 1 ? `<button class="rund gold" data-a="next" aria-label="Weiter">${IC.vor}</button>` : `<button class="kn haupt zugk" data-a="weiter">${IC.lupe}<span>${UI.raetsel}</span></button>`}</div>`;
+    richtung = '';
     speichern();
   };
   zeig();
   fuss.onclick = (e) => {
     const a = (e.target as HTMLElement).closest<HTMLElement>('[data-a]')?.dataset.a;
-    if (a === 'prev') { stand.blatt--; zeig(); } else if (a === 'next') { stand.blatt++; zeig(); } else if (a === 'weiter') weiter();
+    if (a === 'prev') { stand.blatt--; richtung = 'z'; zeig(); } else if (a === 'next') { stand.blatt++; richtung = 'v'; zeig(); } else if (a === 'weiter') weiter();
   };
-  wisch(buehne, () => stand.blatt < seiten.length - 1 && (stand.blatt++, zeig()), () => stand.blatt > 0 && (stand.blatt--, zeig()));
+  wisch(buehne, () => stand.blatt < seiten.length - 1 && (stand.blatt++, richtung = 'v', zeig()), () => stand.blatt > 0 && (stand.blatt--, richtung = 'z', zeig()));
 }
 function wisch(el: HTMLElement, links: () => void, rechts: () => void) {
   let x0 = 0, y0 = 0;
@@ -280,14 +293,16 @@ const RAETSEL: Record<string, (r: HTMLElement, d: any, f: () => void) => void> =
 function raetsel() {
   modus('zug');
   const z = SP(stand.spur).raetsel;
-  buehne.innerHTML = `<section class="zug" data-art="${z.art}"><div class="lampe"></div><div class="zk"><span class="tab hell">${UI.raetsel}</span><h2>${z.titel}</h2></div><p class="zt1">${z.text}</p><div class="zi"></div><div class="zr"></div></section>`;
+  const wz: Werkzeug | '' = (WERKZEUGE as string[]).includes(z.werkzeug) ? z.werkzeug : '';
+  buehne.innerHTML = `<section class="zug" data-art="${z.art}"${wz ? ` data-wz="${wz}"` : ''}><div class="lampe"></div>${wz ? '<div class="wzfx" aria-hidden="true"></div>' : ''}<div class="zk"><div class="zkr"><span class="tab hell">${UI.raetsel}</span>${wz ? wzChip(UI, wz) : ''}</div><h2>${z.titel}</h2></div><p class="zt1">${z.text}</p><div class="zi"></div><div class="zr"></div></section>`;
   fuss.innerHTML = '<div class="fz"><button class="kn haupt" style="visibility:hidden" tabindex="-1" aria-hidden="true"><span>·</span></button></div>';
   const fertig = () => {
-    if (!stand.fertig.includes(stand.spur)) { stand.fertig.push(stand.spur); kopf(); }
+    if (!stand.fertig.includes(stand.spur)) { stand.fertig.push(stand.spur); kopf(); belohnung($('.zr .rp img', buehne) ?? $('.zr', buehne), $('#kPerl'), $('#kMond')); }
     speichern();
     nurKnopf('weiter', knopf('weiter', UI.weiter), weiter);
   };
   RAETSEL[z.art]($('.zug'), z, fertig);
+  if (wz) momentWeg = werkzeugMoment(buehne, wz, UI, fig('raupe/' + (wz === 'lesen' ? 'denkt' : wz === 'zeit' ? 'muede' : wz === 'lupe' ? 'tipp' : 'staunt')));
 }
 
 /* ---------- Brett ---------- */
@@ -310,24 +325,25 @@ function tresorInfo(zurueck: () => void) {
   ueber.innerHTML = `<div class="schl mitte"><div class="kgross tresorinfo"><img class="tresor-bild" src="${img('tresor_zu')}" alt=""><h3>${UI.tresor}</h3><p>${UI.tresorInfo}</p><div class="wort">${codeFelder()}</div><button class="kn haupt" data-a="zu"><span>${UI.fertig}</span></button></div></div>`;
   ueber.onclick = (e) => { const t = e.target as HTMLElement; if (t.closest('[data-a="zu"]') || t.classList.contains('schl')) zurueck(); };
 }
+const NEIGUNG = [-1.6, 1.1, -0.6, 1.8, -1.2, 0.7, -1.9, 1.4];
 function brettHtml(bis: number, neu = 0, staubig = false) {
   const liste = kapSpuren(SP(bis).kap);
   const slots = liste.map((n) => {
     if (n > bis || !stand.fertig.includes(n)) return `<div class="bkarte leer"></div>`;
     const k = SP(n).karte;
-    return `<div class="bkarte${n === neu ? (staubig ? ' neu' : ' fall') : ''}" data-k="${n}"><div class="bk-bild">${bildKarte(k)}</div><p>${k.text}</p></div>`;
+    return `<div class="bkarte${n === neu ? (staubig ? ' neu' : ' fall') : ''}" data-k="${n}" style="--n:${NEIGUNG[(n * 5 + 2) % NEIGUNG.length]}deg"><div class="bk-bild">${bildKarte(k)}</div><p>${k.text}</p></div>`;
   }).join('');
   const fragen: { id: string; text: string; n: number }[] = [];
   for (const n of liste) if (n <= bis) SP(n).fragenNeu.forEach((f: any) => fragen.push({ ...f, n }));
   const weg = new Set<string>(SP(bis).fragenWeg);
-  const zettel = fragen.filter((f) => !stand.geklaert.includes(f.id)).map((f) => `<div class="zettel fr${f.n === neu && staubig ? ' versteckt' : ''}${neu && weg.has(f.id) ? ' wackelt' : ''}" data-q="${f.id}"><span>${f.text}</span>${f.n === neu ? `<em class="neu">${UI.neu}</em>` : ''}${neu && weg.has(f.id) ? `<em class="klaer">${UI.klaerMich}</em>` : ''}</div>`).join('');
+  const zettel = fragen.filter((f) => !stand.geklaert.includes(f.id)).map((f) => `<div class="zettel fr${f.n === neu && staubig ? ' versteckt' : ''}${neu && weg.has(f.id) ? ' wackelt' : ''}" data-q="${f.id}" style="--n:${NEIGUNG[(f.id.length * 3 + f.n) % NEIGUNG.length] * 0.8}deg"><span>${f.text}</span>${f.n === neu ? `<em class="neu">${UI.neu}</em>` : ''}${neu && weg.has(f.id) ? `<em class="klaer">${UI.klaerMich}</em>` : ''}</div>`).join('');
   const code = codeFelder();
-  return `<div class="bgrid">${slots}</div><h3>${UI.fragen}</h3><div class="fragen">${zettel}</div><div class="codez" data-a="code" role="button" tabindex="0"><img class="tresor-mini" src="${img('tresor_zu')}" alt=""><span>${UI.code}</span><div class="wort">${code}</div></div>`;
+  return `<div class="bgrid">${slots}</div><h3>${UI.fragen}<img class="brett-raupe" src="${fig('raupe/denkt')}" alt=""></h3><div class="fragen">${zettel}</div><div class="codez" data-a="code" role="button" tabindex="0"><img class="tresor-mini" src="${img('tresor_zu')}" alt=""><span>${UI.code}</span><div class="wort">${code}</div></div>`;
 }
 function brett() {
   modus('brett');
   const nr = stand.spur, staubig = SP(nr).karte.staub === true;
-  buehne.innerHTML = `<section class="brett"><div class="ak"><span class="tab hell">${UI.brett}</span><span class="plus"><span>+2 ${UI.perlen}</span></span></div>${staubig ? `<p class="wischz">${UI.wisch}</p>` : ''}${brettHtml(nr, nr, staubig)}</section>`;
+  buehne.innerHTML = `<section class="brett"><div class="ak"><span class="tab hell">${UI.brett}</span><span class="plus"><span>+2 ${UI.perlen}</span></span></div>${staubig ? `<p class="wischz">${wzChip(UI, 'fuehler', 'klein')} ${UI.wisch}</p>` : ''}${brettHtml(nr, nr, staubig)}</section>`;
   fuss.innerHTML = `<div class="fz"><button class="kn haupt" data-a="weiter" style="visibility:hidden" tabindex="-1"><span>${UI.weiter}</span></button></div>`;
   const sec = $('.brett');
   const karte = $<HTMLElement>('.bkarte.neu', sec);

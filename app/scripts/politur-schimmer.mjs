@@ -1,0 +1,11 @@
+import { createRequire } from 'node:module';
+const require = createRequire(import.meta.url);
+const { chromium } = require('playwright');
+const b = await chromium.launch();
+const p = await b.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1 });
+await p.goto('http://localhost:4173/v8.html');
+await new Promise((r) => setTimeout(r, 900));
+await p.evaluate(() => { const v = window.__v8; const i = v.steps(3).indexOf('raetsel'); Object.assign(v.stand, { view: 'spur', spur: 3, i, fertig: [] }); v.zeige(); });
+await new Promise((r) => setTimeout(r, 2100));
+await p.screenshot({ path: '/home/user/lese-fall/03_screens/v8/politur/schimmer_test.png' });
+await b.close();

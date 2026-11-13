@@ -1591,3 +1591,7 @@ glim|men
 glimmt
 kleins|te
 ent|geht
+# neu für v8 (ungeprüft)
+ge|leuch|tet
+hät|te
+Team

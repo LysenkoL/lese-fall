@@ -1,0 +1,197 @@
+/* Lese-Fall · v8 · Politur: Werkzeuge der Raupe, Übergänge, Belohnung, Detektiv-Tisch, Himmel.
+   Zuletzt geladen. Alle Bewegung fällt bei „weniger Bewegung“ weg (Regel am Ende dieser Datei). */
+:root {
+  --r-karte: 8px;
+  --sch-karte: 0 2px 0 rgba(0, 0, 0, .06), 0 8px 16px rgba(40, 25, 0, .26);
+  --weich: #EE9A55; --weich-bg: rgba(238, 154, 85, .2);
+}
+
+/* ---------- Knöpfe: Druck, Fokus, deaktiviert ---------- */
+.kn, .rund, .opt, .bsk, .vb-o, .sp-o, .as-so, .fin-k, .mm-wahl button, .kb { transition: transform .12s ease, box-shadow .12s ease, filter .2s, opacity .2s; }
+.kn:active:not(:disabled), .rund:active:not(:disabled), .bsk:active:not(:disabled), .kb:active { transform: translateY(2px) scale(.985); }
+.opt:active, .vb-o:active, .sp-o:active, .as-so:active { transform: translateY(2px) scale(.99); box-shadow: 0 1px 0 #D8CDB2, 0 4px 8px rgba(0, 0, 0, .2); }
+.fin-k:active:not(.weg) { transform: translateY(2px) scale(.97); }
+.kn.haupt:active:not(:disabled), .rund.gold:active:not(:disabled) { box-shadow: 0 1px 0 var(--senf-dunkel), 0 3px 8px rgba(120, 80, 0, .2); }
+.kn.zwei:active, .rund:active:not(:disabled):not(.gold) { box-shadow: 0 1px 0 var(--linie); }
+:focus-visible { outline: 3px solid #fff; outline-offset: 2px; box-shadow: 0 0 0 7px rgba(244, 194, 67, .75); border-radius: inherit; }
+.zug:focus-visible, .blatt:focus-visible, input:focus-visible { box-shadow: none; outline-color: var(--senf); }
+.kn:disabled, .rund:disabled, .bsk:disabled { opacity: .4; filter: grayscale(.75); box-shadow: none; cursor: not-allowed; }
+.kn.haupt:disabled { opacity: .4; }
+
+/* ---------- Karten und Zettel: gleiche Radien und Schatten, leichte Neigung ---------- */
+.bkarte, .zettel, .kgross, .fk, .sp-zettel, .fin-liste li { border-radius: var(--r-karte); }
+.bkarte, .zettel.fr, .kgross { box-shadow: var(--sch-karte); }
+.bkarte { transform: rotate(var(--n, 0deg)); }
+.bkarte:nth-child(even) { transform: rotate(var(--n, 0deg)); }
+.bkarte.leer { transform: none; }
+.zettel.fr { transform: rotate(var(--n, 0deg)); }
+.bkarte, .zettel.fr { transition: transform .18s ease, box-shadow .18s ease; }
+@media (hover: hover) {
+  .bkarte:not(.leer):hover { transform: translateY(-4px) rotate(0) scale(1.03); box-shadow: 0 2px 0 rgba(0, 0, 0, .06), 0 16px 26px rgba(40, 25, 0, .34); z-index: 2; }
+  .zettel.fr:not(.wackelt):hover { transform: translateY(-2px) rotate(0); box-shadow: 0 14px 22px rgba(40, 25, 0, .32); }
+}
+
+/* ---------- Leseseite: Etikett mit Faden und Reißzwecke, Foto, Seitenpunkte, Blattwechsel ---------- */
+.tab.etikett { position: relative; background: var(--papier-2); color: var(--nacht-2); border: 1px solid var(--linie); border-radius: 4px 9px 9px 4px; padding: 6px 14px 6px 27px; transform: rotate(-2deg); box-shadow: 0 2px 0 rgba(0, 0, 0, .06), 0 5px 10px rgba(70, 50, 10, .16); }
+.tab.etikett::before { content: ''; position: absolute; left: 8px; top: 50%; width: 11px; height: 11px; margin-top: -5.5px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #FF9A8C, var(--faden) 62%); box-shadow: 0 1px 2px rgba(0, 0, 0, .35); z-index: 2; }
+.tab.etikett::after { content: ''; position: absolute; right: calc(100% - 13px); top: 50%; width: 22px; height: 2px; margin-top: -1px; background: var(--faden); opacity: .8; transform: rotate(-9deg); transform-origin: right center; border-radius: 1px; }
+.foto { background: linear-gradient(#fff, #FBF6EA); }
+.foto img { outline: 1px solid rgba(70, 50, 10, .2); outline-offset: -1px; }
+.pkt i { transition: width .25s ease, background-color .25s, transform .25s; }
+.pkt i.war { background: var(--senf); opacity: .65; }
+.pkt i.an { background: linear-gradient(var(--senf), var(--senf-dunkel)); box-shadow: 0 0 0 3px rgba(244, 194, 67, .28); height: 10px; }
+.pkt.hell i.war { background: rgba(244, 194, 67, .6); opacity: 1; }
+.blatt[data-r="v"]:not(.probe) { animation: blattV .3s ease-out both; transform-origin: 0 60%; }
+.blatt[data-r="z"]:not(.probe) { animation: blattZ .3s ease-out both; transform-origin: 100% 60%; }
+@keyframes blattV { from { opacity: 0; transform: translateX(26px) rotate(1.2deg); } }
+@keyframes blattZ { from { opacity: 0; transform: translateX(-26px) rotate(-1.2deg); } }
+
+/* ---------- Übergang zwischen den Ansichten (nur Hineingleiten, kurz) ---------- */
+#buehne > .ein2:not(.probe) { animation: wechselEin .26s ease-out backwards; }
+@keyframes wechselEin { from { opacity: 0; transform: translateY(10px); } }
+
+/* ---------- Titel, Einführung, Kapitelstart: Himmel, Mond, Raupe ---------- */
+#buehne .himmel { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.himmel .mondg { position: absolute; right: 8%; top: 3%; width: 44px; height: 44px; border-radius: 50%; background: radial-gradient(circle at 36% 34%, #FFF8D8 0 28%, #F6D35B 78%); box-shadow: 0 0 22px 6px rgba(246, 211, 91, .35), 0 0 70px 26px rgba(246, 211, 91, .14); animation: schein 7s ease-in-out infinite; }
+.himmel .mondg::after { content: ''; position: absolute; left: 52%; top: 52%; width: 9px; height: 9px; border-radius: 50%; background: rgba(200, 160, 40, .25); box-shadow: -14px -9px 0 -2px rgba(200, 160, 40, .2), 4px 12px 0 -3px rgba(200, 160, 40, .18); }
+.himmel .st { position: absolute; width: 4px; height: 4px; border-radius: 50%; background: #fff; box-shadow: 0 0 6px 1px rgba(255, 255, 255, .7); opacity: .15; animation: funkel 5.5s ease-in-out infinite; }
+.himmel .s1 { left: 10%; top: 8%; } .himmel .s2 { left: 27%; top: 3%; width: 3px; height: 3px; animation-delay: 1.3s; }
+.himmel .s3 { left: 44%; top: 10%; animation-delay: 2.4s; background: #FFE9A6; } .himmel .s4 { left: 63%; top: 5%; width: 3px; height: 3px; animation-delay: .7s; }
+.himmel .s5 { left: 20%; top: 17%; width: 3px; height: 3px; animation-delay: 3.4s; } .himmel .s6 { left: 88%; top: 19%; animation-delay: 4.1s; background: #FFE9A6; }
+.himmel .s7 { left: 5%; top: 27%; width: 3px; height: 3px; animation-delay: 2s; }
+@keyframes funkel { 0%, 100% { opacity: .12; transform: scale(.8); } 50% { opacity: .95; transform: scale(1.35); } }
+@keyframes schein { 0%, 100% { box-shadow: 0 0 22px 6px rgba(246, 211, 91, .3), 0 0 70px 26px rgba(246, 211, 91, .12); } 50% { box-shadow: 0 0 28px 9px rgba(246, 211, 91, .45), 0 0 84px 32px rgba(246, 211, 91, .2); } }
+.titel .t-raupe { position: absolute; right: 12px; bottom: 4px; width: 50px; height: 82px; object-fit: contain; transform-origin: 50% 100%; animation: wipp 3.6s ease-in-out infinite; filter: drop-shadow(0 4px 8px rgba(0, 0, 0, .35)); pointer-events: none; }
+@keyframes wipp { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg) translateY(-2px); } }
+.haken .hr { animation: hoch .5s both, wipp 4s 1s ease-in-out infinite; transform-origin: 50% 100%; }
+.titel .foto.gross, .kapk .vig { box-shadow: 0 14px 30px rgba(0, 0, 0, .4), 0 0 46px rgba(246, 211, 91, .12); }
+
+/* Einführung: die vier Werkzeuge der Raupe */
+.ib.wzraster { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 22px; width: min(100%, 300px); }
+.wzr { display: flex; flex-direction: column; align-items: center; gap: 5px; text-align: center; }
+.wzr svg { width: min(76px, 10dvh); height: min(76px, 10dvh); filter: drop-shadow(0 0 14px rgba(244, 194, 67, .4)); }
+.wzr b { font-size: 16px; font-weight: 800; color: var(--senf-hell); line-height: 1.15; }
+.wzr b .s-b, .wzr b .s-r, .wzchip .s-b, .wzchip .s-r, .wzm .s-b, .wzm .s-r, .rw-blase .s-b, .rw-blase .s-r, .team .s-b, .team .s-r { color: inherit; }
+.wzr svg { animation: hoch .5s both; } .wzr:nth-child(2) svg { animation-delay: .08s; } .wzr:nth-child(3) svg { animation-delay: .16s; } .wzr:nth-child(4) svg { animation-delay: .24s; }
+
+/* ---------- Werkzeug der Raupe: Chip, Moment, Effekte ---------- */
+.zkr { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.wzchip { display: inline-flex; align-items: center; gap: 6px; vertical-align: middle; background: var(--nacht-2); color: #fff; border: 1.5px solid rgba(244, 194, 67, .5); border-radius: 999px; padding: 2px 12px 2px 2px; font-size: 13px; font-weight: 800; line-height: 1.1; transition: box-shadow .3s; }
+.wzchip svg { width: 28px; height: 28px; }
+.wzchip.klein { padding-right: 9px; font-size: 12px; margin-right: 2px; }
+.wzchip.klein svg { width: 22px; height: 22px; }
+.wzchip.hilft { border-color: var(--senf); box-shadow: 0 0 0 4px rgba(244, 194, 67, .45), 0 0 20px rgba(244, 194, 67, .8); animation: chipglut 1.2s ease-in-out 2; }
+.wzchip.hilft svg { filter: drop-shadow(0 0 5px #FFE9A6); }
+@keyframes chipglut { 50% { transform: scale(1.1); } }
+
+.wzm { position: absolute; inset: 0; z-index: 4; display: grid; place-items: center; padding: 18px; text-align: center; color: #fff; pointer-events: none; background: radial-gradient(circle at 50% 38%, rgba(32, 50, 96, .97), rgba(11, 17, 40, .985)); animation: ein .22s both; }
+.wzm.geht { opacity: 0; transition: opacity .2s; }
+.wzm-k { display: flex; flex-direction: column; align-items: center; gap: 7px; max-width: 330px; }
+.wzm-r { height: min(92px, 12dvh); width: auto; object-fit: contain; filter: drop-shadow(0 0 14px rgba(244, 194, 67, .4)); animation: hoch .45s both, wipp 3s .5s ease-in-out infinite; transform-origin: 50% 100%; }
+.wzm-kopf { font-size: 15px; font-weight: 700; letter-spacing: .04em; color: #C9D3F0; margin-top: 2px; }
+.wzm-i { position: relative; }
+.wzm-i::before { content: ''; position: absolute; inset: -14%; border-radius: 50%; background: radial-gradient(circle, rgba(244, 194, 67, .4), transparent 68%); animation: schein2 1.6s ease-in-out infinite; }
+.wzm-i svg { position: relative; width: min(120px, 17dvh); height: min(120px, 17dvh); filter: drop-shadow(0 0 16px rgba(244, 194, 67, .55)); animation: wzpop .55s .08s cubic-bezier(.2, 1.6, .4, 1) both; }
+.wzm-n { font-size: 28px; font-weight: 800; line-height: 1.1; color: var(--senf); }
+.wzm-t { font-size: 18px; line-height: 1.4; font-weight: 600; color: #EEF1FA; }
+@keyframes wzpop { from { opacity: 0; transform: scale(.4) rotate(-18deg); } }
+@keyframes schein2 { 50% { transform: scale(1.18); opacity: .7; } }
+
+.zug > .wzfx { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; }
+.wzfx::before, .wzfx::after { content: ''; position: absolute; top: 0; bottom: 0; left: -60%; width: 60%; opacity: 0; }
+.zug[data-wz="fuehler"] .wzfx::before { background: linear-gradient(100deg, rgba(244, 194, 67, 0), rgba(244, 194, 67, .1) 25%, rgba(244, 194, 67, .26) 50%, rgba(244, 194, 67, .1) 75%, rgba(244, 194, 67, 0)); width: 34%; filter: blur(8px); animation: schimmer 1.5s 1.3s ease-in-out backwards; }
+.zug[data-wz="zeit"] .wzfx::before { width: 40%; background: linear-gradient(90deg, rgba(190, 210, 255, 0), rgba(190, 210, 255, .2), rgba(190, 210, 255, 0)); filter: blur(6px); animation: zeitlupe 2.6s 1.3s cubic-bezier(.5, 0, .5, 1) backwards; }
+.zug[data-wz="zeit"] .wzfx::after { width: 20%; background: linear-gradient(90deg, rgba(190, 210, 255, 0), rgba(190, 210, 255, .12), rgba(190, 210, 255, 0)); filter: blur(10px); animation: zeitlupe 2.6s 1.55s cubic-bezier(.5, 0, .5, 1) backwards; }
+.zug[data-wz="lupe"] .wzfx::before { left: 0; width: 100%; background: radial-gradient(circle at 16% 9%, rgba(255, 255, 255, .85) 0 3px, transparent 4px), radial-gradient(circle at 84% 15%, rgba(190, 228, 255, .9) 0 2.500px, transparent 3.500px), radial-gradient(circle at 52% 5%, rgba(255, 255, 255, .8) 0 2px, transparent 3px); animation: tau 2.4s 1.3s ease-out backwards; }
+@keyframes schimmer { 0% { opacity: 0; transform: translateX(0); } 15% { opacity: 1; } 100% { opacity: 0; transform: translateX(300%); } }
+@keyframes zeitlupe { 0% { opacity: 0; transform: translateX(0); } 20% { opacity: 1; } 100% { opacity: 0; transform: translateX(330%); } }
+@keyframes tau { 0% { opacity: 0; transform: scale(.6); } 35% { opacity: 1; transform: scale(1.1); } 100% { opacity: 0; transform: scale(1); } }
+/* die vorhandene Lupe bekommt Tautropfen-Glanz */
+.zug[data-wz="lupe"] .lp-glas { filter: drop-shadow(0 0 7px rgba(190, 230, 255, .55)); }
+.zug[data-wz="lupe"] .lp-glas::before { background: rgba(255, 255, 255, .72); box-shadow: 0 0 9px 2px rgba(255, 255, 255, .55); animation: glanz 3.4s ease-in-out infinite; }
+.zug[data-wz="lupe"] .lp-glas::after { background: linear-gradient(90deg, #5E8A3A, #9CC463); }
+@keyframes glanz { 0%, 100% { opacity: .75; } 50% { opacity: 1; transform: rotate(-30deg) scale(1.15); } }
+
+/* Belohnung: Perlen und Sterne */
+.fx { position: fixed; inset: 0; z-index: 80; pointer-events: none; overflow: hidden; }
+.fxp { position: absolute; width: 16px; height: 16px; margin: -8px 0 0 -8px; }
+.fxp.perle, .fxp.flug { border-radius: 50%; background: radial-gradient(circle at 35% 30%, #FFF4C8, var(--senf) 55%, var(--senf-dunkel)); box-shadow: 0 0 8px rgba(244, 194, 67, .7); }
+.fxp.stern { width: 22px; height: 22px; margin: -11px 0 0 -11px; }
+.fxp.stern svg { width: 100%; height: 100%; display: block; }
+.fxp.perle, .fxp.stern { animation: knall .95s cubic-bezier(.2, .7, .3, 1) both; }
+.fxp.flug { width: 18px; height: 18px; margin: -9px 0 0 -9px; opacity: 0; }
+@keyframes knall { 0% { opacity: 0; transform: translate(0, 0) scale(.2) rotate(0); } 12% { opacity: 1; } 62% { opacity: 1; } 100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(1) rotate(var(--dr)); } }
+.perl.hupft { animation: perlhupf .6s cubic-bezier(.3, 1.6, .5, 1); }
+.perl.hupft::before { box-shadow: 0 0 12px 3px rgba(244, 194, 67, .9); }
+@keyframes perlhupf { 40% { transform: translateY(-7px) scale(1.25); } }
+.mondp.puls { animation: mondpuls .9s ease-in-out 2; }
+@keyframes mondpuls { 50% { transform: scale(1.5); filter: drop-shadow(0 0 9px rgba(246, 211, 91, .95)); } }
+.rp.gut img { animation: hupf .6s cubic-bezier(.3, 1.6, .5, 1) both; }
+@keyframes hupf { 40% { transform: translateY(-9px) rotate(-4deg); } }
+
+/* ---------- Detektiv-Tisch: Holz mit feiner Maserung hinter jeder Rätselfläche ---------- */
+.zi { isolation: isolate; }
+.zi::before { content: ''; position: absolute; inset: -8px -9px; z-index: -1; border-radius: 20px; pointer-events: none;
+  background: repeating-linear-gradient(92deg, rgba(255, 255, 255, .035) 0 2px, transparent 2px 9px), repeating-linear-gradient(88deg, rgba(0, 0, 0, .08) 0 1px, transparent 1px 15px),
+    radial-gradient(ellipse at 28% 0, rgba(255, 214, 150, .24), transparent 62%), linear-gradient(#7B5733, #5E4024);
+  box-shadow: inset 0 0 0 2px rgba(255, 220, 160, .16), inset 0 8px 18px rgba(0, 0, 0, .25), 0 10px 24px rgba(0, 0, 0, .3); }
+.zi:empty::before { display: none; }
+
+/* Hinweise der Raupe: Sprechblase mit kleinem Raupenkopf */
+.zr .rp, .fin .zr .rp { align-items: flex-end; gap: 8px; animation: sprech .35s cubic-bezier(.2, 1.4, .4, 1) both; }
+.zr .rp img { width: 54px; height: 54px; border-radius: 50%; object-fit: cover; object-position: 50% 6%; background: radial-gradient(circle at 50% 30%, #FFFFFF, var(--gedanke)); border: 3px solid var(--gedanke-rand); box-shadow: 0 5px 10px rgba(0, 0, 0, .25); }
+.zr .rp.gut img { border-color: var(--senf); }
+.zr .rp p { position: relative; border-radius: 20px 20px 20px 6px; background: linear-gradient(#FFFFFF, #FAFEF2); }
+.zr .rp.gut p { background: linear-gradient(#FFFDF2, #FFF6D3); }
+.zr .rp p::before { content: ''; position: absolute; left: -8px; bottom: 11px; width: 14px; height: 14px; background: inherit; border-left: 2px solid var(--gedanke-rand); border-bottom: 2px solid var(--gedanke-rand); border-radius: 0 0 0 5px; transform: rotate(45deg) skew(8deg, 8deg); }
+.zr .rp.gut p::before { border-color: var(--senf); }
+@keyframes sprech { from { opacity: 0; transform: translateY(10px) scale(.96); } }
+
+/* ---------- Fehler freundlich: weiches Wackeln, warmer Ton, nie rot ---------- */
+@keyframes wackel { 0%, 100% { translate: 0 0; rotate: 0deg; } 18% { translate: -5px 0; rotate: -.8deg; } 40% { translate: 4px 0; rotate: .6deg; } 62% { translate: -3px 0; rotate: -.3deg; } 82% { translate: 1.5px 0; } }
+@keyframes ton { 25%, 65% { box-shadow: 0 0 0 4px rgba(238, 154, 85, .5), 0 0 16px rgba(238, 154, 85, .4); } }
+#buehne .nein:not(.rh-karte) { animation: wackel .5s ease-in-out, ton .9s ease-out; }
+#buehne .so-ziel.nein { border-color: var(--weich); background: var(--weich-bg); }
+#buehne .so-ding.nein, #buehne .kl-k.nein, #buehne .kl-g.nein, #buehne .kr-k.nein, #buehne .ag-feld .ag-t.nein, #buehne .pk-st.nein, #buehne .kr-mk.nein { border-color: var(--weich); }
+#buehne .sc-k.falsch, #buehne .ab-e.falsch { border-color: var(--weich); }
+#buehne .ab-g.falsch { border-color: var(--weich); background: var(--weich-bg); }
+#buehne .fin-f.nein { background: #FFD9B0; }
+
+/* ---------- Brett: Raupen-Motiv ---------- */
+.brett-raupe { height: 40px; width: auto; float: right; margin: -22px 8px -3px 0; position: relative; transform-origin: 50% 100%; animation: wipp 4s ease-in-out infinite; filter: drop-shadow(0 3px 4px rgba(60, 30, 0, .35)); }
+.wischz { line-height: 1.3; }
+
+/* ---------- Finale: Raupe hat das letzte Wort ---------- */
+.fin.urk .dipl { width: min(100%, 440px, calc((100dvh - 305px) * .75)); }
+.team { display: flex; align-items: center; gap: 8px; margin: 0; background: rgba(255, 255, 255, .12); border: 1.5px solid rgba(244, 194, 67, .45); border-radius: 999px; padding: 3px 16px 3px 8px; font-size: 14.5px; font-weight: 800; color: #fff; text-align: left; line-height: 1.2; }
+.team img { height: 36px; width: auto; flex: none; }
+.fin.raupe-wort { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 16px 20px; }
+.fin.raupe-wort > :not(.lampe) { position: relative; }
+.rw-bild { height: min(170px, 22dvh); width: auto; object-fit: contain; filter: drop-shadow(0 0 22px rgba(244, 194, 67, .5)); animation: hoch .5s both, wipp 4s 1s ease-in-out infinite; transform-origin: 50% 100%; }
+.rw-blase { max-width: 440px; background: linear-gradient(#FFFFFF, #FFF8DE); color: var(--tinte); border: 3px solid var(--senf); border-radius: 22px; padding: 14px 18px; font-size: 18.5px; line-height: 1.45; font-weight: 700; text-align: center; box-shadow: 0 10px 24px rgba(0, 0, 0, .35); animation: hoch .6s .2s both; }
+.rw-blase::before { content: ''; position: absolute; left: 50%; top: -11px; width: 18px; height: 18px; margin-left: -9px; background: #fff; border-left: 3px solid var(--senf); border-top: 3px solid var(--senf); transform: rotate(45deg); }
+.rw-icons { display: flex; gap: 14px; animation: hoch .6s .45s both; }
+.rw-i svg { width: 48px; height: 48px; filter: drop-shadow(0 0 8px rgba(244, 194, 67, .35)); }
+
+/* ---------- Rechner (ab 900 px): Buch auf dem Tisch, drumherum Nachthimmel ---------- */
+@media (min-width: 900px) {
+  html, body { background: radial-gradient(circle at 80% 13%, rgba(246, 211, 91, .2), transparent 14%), radial-gradient(ellipse at 50% 115%, rgba(70, 100, 180, .38), transparent 62%), linear-gradient(#0C1430, #18274E 62%, #141F3F) fixed; }
+  body { display: grid; place-items: center; position: relative; }
+  body::before { content: ''; position: fixed; inset: 0; pointer-events: none; opacity: .85;
+    background-image: radial-gradient(1.4px 1.4px at 8% 12%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 17% 41%, #fff 50%, transparent 51%), radial-gradient(1.6px 1.6px at 26% 22%, #FFE9A6 50%, transparent 51%),
+      radial-gradient(1px 1px at 12% 74%, #fff 50%, transparent 51%), radial-gradient(1.3px 1.3px at 33% 88%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 5% 55%, #fff 50%, transparent 51%),
+      radial-gradient(1.3px 1.3px at 66% 9%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 74% 31%, #fff 50%, transparent 51%), radial-gradient(1.6px 1.6px at 91% 44%, #FFE9A6 50%, transparent 51%),
+      radial-gradient(1px 1px at 84% 68%, #fff 50%, transparent 51%), radial-gradient(1.3px 1.3px at 70% 91%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 95% 85%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 58% 4%, #fff 50%, transparent 51%); }
+  .zug { gap: 7px; padding-top: 10px; }
+  .zk h2 { margin-top: 3px; }
+  .zt1 { line-height: 1.35; }
+  .bkarte.leer { aspect-ratio: auto; min-height: 90px; }
+  .bk-bild { aspect-ratio: 2 / 1; }
+  #app { width: min(100%, 620px); max-width: none; height: min(100dvh, 920px); border-radius: 28px; box-shadow: 0 0 0 1px rgba(255, 255, 255, .1), 0 0 0 9px rgba(11, 17, 40, .5), 0 34px 90px rgba(0, 0, 0, .55), 0 0 140px rgba(244, 194, 67, .08); z-index: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .himmel .st { opacity: .6; }
+  .wzm-i::before { opacity: .6; }
+}

@@ -122,7 +122,7 @@
     "urkunde": {
      "titel": "Die Ur|kun|de"
     },
-    "raupe": "Fall gelöst! Meine Fühler haben geleuchtet. Meine Lupe hat gesucht. Mein Blick war ganz langsam. Aber gelesen und nachgedacht hast du. Ohne dich hätte ich es nie geschafft. Bis zum nächsten Fall, Partner!"
+    "raupeSagt": "Fall ge|löst! Mei|ne Füh|ler ha|ben ge|leuch|tet. Mei|ne Lu|pe hat ge|sucht. Mein Blick war ganz lang|sam. A|ber ge|le|sen und nach|ge|dacht hast du. Oh|ne dich hät|te ich es nie ge|schafft. Bis zum nächs|ten Fall, Part|ner!"
    }
   }
  ],
@@ -213,6 +213,7 @@
   "wzLesen": "Le|se-Blick",
   "wzLesenT": "Die Rau|pe liest je|des Wort ge|nau. Du auch!",
   "wzKopf": "Die Rau|pe be|nutzt:",
+  "teamZeile": "De|tek|tiv-Team: die Le|se-Rau|pe und du",
   "legen": "Aufs Tab|lett le|gen",
   "ausDinge": "Was passt nicht? Tip|pe es an.",
   "nochDing": "Gut! A|ber da ist noch et|was.",

@@ -7,6 +7,7 @@
  */
 import { pulliSvg, versteckterBuchstabe } from './zeichnen.ts';
 import { staub as _staub, laub as _laub } from './staub.ts';
+import { chipLeuchtet } from './effekte.ts';
 void _staub;
 
 export interface Kontext {
@@ -33,6 +34,7 @@ const rp = (b: string, t: string, kl = '') => `<div class="rp ${kl}"><img src="$
 function sag(r: HTMLElement, b: string, t: string, kl = '') {
   const z = $('.zr', r);
   z.innerHTML = t ? rp(b, t, kl) : '';
+  if (t && K.UI.hilfe && t.includes(K.UI.hilfe)) chipLeuchtet(r); // die Raupe hilft: ihr Werkzeug leuchtet auf
   if (t) requestAnimationFrame(() => z.scrollIntoView({ block: 'nearest', behavior: 'smooth' }));
 }
 const knopf = (a: string, t: string, dis = false) => `<button class="kn haupt" data-a="${a}" ${dis ? 'disabled' : ''}><span>${t}</span></button>`;

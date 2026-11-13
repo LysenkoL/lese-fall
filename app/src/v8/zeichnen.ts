@@ -54,3 +54,42 @@ export function tresorSvg(felder = 4): string {
     ${fenster}
   </svg>`;
 }
+
+/* ---------- Die vier Werkzeuge der Lese-Raupe: Senf-Gold auf Nachtblau ---------- */
+export type Werkzeug = 'fuehler' | 'lupe' | 'zeit' | 'lesen';
+export const WERKZEUGE: Werkzeug[] = ['fuehler', 'lupe', 'zeit', 'lesen'];
+const GOLD = '#F4C243', GOLD2 = '#C9951A', HELL = '#FFE9A6', NACHT = '#1D2E57', NACHT2 = '#2C4176';
+const ICONS: Record<Werkzeug, string> = {
+  /* zwei Fühler mit leuchtenden Kugeln */
+  fuehler: `<circle cx="17" cy="14" r="9" fill="${GOLD}" opacity=".22"/><circle cx="47" cy="14" r="9" fill="${GOLD}" opacity=".22"/>
+    <path d="M26 42Q19 28 17 16M38 42Q45 28 47 16" fill="none" stroke="${GOLD}" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="17" cy="14" r="5.200" fill="${HELL}" stroke="${GOLD}" stroke-width="2"/><circle cx="47" cy="14" r="5.200" fill="${HELL}" stroke="${GOLD}" stroke-width="2"/>
+    <path d="M9 8l1.400 2.600L13 12l-2.600 1.400L9 16l-1.400-2.600L5 12l2.600-1.400zM55 22l1 1.800 1.800 1-1.800 1-1 1.800-1-1.800-1.800-1 1.800-1z" fill="${HELL}"/>
+    <circle cx="32" cy="48" r="12" fill="${NACHT2}" stroke="${GOLD}" stroke-width="3"/>
+    <circle cx="27.500" cy="46" r="2" fill="${HELL}"/><circle cx="36.500" cy="46" r="2" fill="${HELL}"/><path d="M28 52q4 3.200 8 0" fill="none" stroke="${GOLD}" stroke-width="2" stroke-linecap="round"/>`,
+  /* Tautropfen als Linse, Griff aus einem Halm */
+  lupe: `<path d="M26 6C26 6 10 24 10 36a16 16 0 0 0 32 0C42 24 26 6 26 6z" fill="${HELL}" fill-opacity=".16" stroke="${GOLD}" stroke-width="3.200" stroke-linejoin="round"/>
+    <path d="M17 36a9 9 0 0 0 5 8" fill="none" stroke="${HELL}" stroke-width="3" stroke-linecap="round" opacity=".9"/>
+    <ellipse cx="20" cy="27" rx="2.600" ry="4.600" fill="${HELL}" transform="rotate(28 20 27)" opacity=".85"/>
+    <path d="M38 47Q46 52 49 60" fill="none" stroke="${GOLD2}" stroke-width="4.200" stroke-linecap="round"/>
+    <path d="M46 55q9-2 11-9q-8-1-11 9z" fill="${GOLD}" stroke="${GOLD2}" stroke-width="1.400" stroke-linejoin="round"/>
+    <path d="M50 12l1.200 2.400 2.400 1.200-2.400 1.200L50 19.200l-1.200-2.400-2.400-1.200 2.400-1.200z" fill="${HELL}"/>`,
+  /* Auge mit Uhr im Augapfel und langsamen Bögen */
+  zeit: `<path d="M5 30Q32 6 59 30Q32 54 5 30z" fill="${NACHT2}" stroke="${GOLD}" stroke-width="3" stroke-linejoin="round"/>
+    <circle cx="32" cy="30" r="12.500" fill="${HELL}" stroke="${GOLD}" stroke-width="2.600"/>
+    <path d="M32 30V22M32 30l6 3.600" stroke="${NACHT}" stroke-width="2.800" stroke-linecap="round"/><circle cx="32" cy="30" r="1.800" fill="${NACHT}"/>
+    <path d="M32 18.500v1.600M32 40v1.600M20.500 30h1.600M42 30h1.600" stroke="${GOLD2}" stroke-width="2" stroke-linecap="round"/>
+    <path d="M10 49Q20 57 32 57T54 49" fill="none" stroke="${GOLD}" stroke-width="2.600" stroke-linecap="round" stroke-dasharray="1 6"/>
+    <path d="M32 10v-4M18 14l-2-3M46 14l2-3" stroke="${GOLD}" stroke-width="2.600" stroke-linecap="round"/>`,
+  /* aufgeschlagenes Buch mit Brille */
+  lesen: `<path d="M6 30Q19 25 32 31V55Q19 49 6 53z" fill="${HELL}" stroke="${GOLD}" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M58 30Q45 25 32 31V55Q45 49 58 53z" fill="${HELL}" stroke="${GOLD}" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M12 37Q19 35 26 38M12 43Q19 41 26 44M38 38Q45 35 52 37M38 44Q45 41 52 43" fill="none" stroke="${GOLD2}" stroke-width="2.200" stroke-linecap="round"/>
+    <circle cx="21" cy="15" r="8.500" fill="${GOLD}" fill-opacity=".14" stroke="${GOLD}" stroke-width="3"/><circle cx="43" cy="15" r="8.500" fill="${GOLD}" fill-opacity=".14" stroke="${GOLD}" stroke-width="3"/>
+    <path d="M29.500 14.500Q32 12 34.500 14.500M12.500 14L7 11M51.500 14L57 11" fill="none" stroke="${GOLD}" stroke-width="3" stroke-linecap="round"/>
+    <path d="M17 12q2-2 5-1.600" fill="none" stroke="${HELL}" stroke-width="2" stroke-linecap="round"/>`,
+};
+/** Rundes Werkzeug-Icon (Senf-Gold auf Nachtblau), skaliert über CSS (width/height) */
+export function werkzeugIcon(w: Werkzeug): string {
+  return `<svg class="wzi" viewBox="0 0 64 64" role="img" aria-hidden="true"><circle cx="32" cy="32" r="31" fill="${NACHT}" stroke="${GOLD}" stroke-opacity=".55" stroke-width="2"/>${ICONS[w]}</svg>`;
+}

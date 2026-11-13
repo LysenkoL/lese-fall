@@ -83,7 +83,8 @@
   "wzZeitT": "Die Raupe schaut ganz langsam. So entgeht ihr nichts.",
   "wzLesen": "Lese-Blick",
   "wzLesenT": "Die Raupe liest jedes Wort genau. Du auch!",
-  "wzKopf": "Die Raupe benutzt:"
+  "wzKopf": "Die Raupe benutzt:",
+    "teamZeile": "Detektiv-Team: die Lese-Raupe und du"
  },
  "intro": [
   {

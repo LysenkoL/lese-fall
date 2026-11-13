@@ -3,6 +3,7 @@
  * Tresor öffnet sich (Tür schwingt auf, goldenes Licht), drinnen das Finale-Bild, zuletzt die Urkunde „Meister-Detektiv“.
  * Schritte in stand.fin: 0 Szene · 1 Code legen · 2 Tresor offen · 3 Urkunde.
  */
+import { werkzeugIcon, WERKZEUGE } from './zeichnen.ts';
 
 export interface FinCtx {
   buehne: HTMLElement;
@@ -134,11 +135,19 @@ export function zeigeFinale(c: FinCtx): void {
     return;
   }
 
+  /* ---------- 4: die Raupe hat das letzte Wort ---------- */
+  if (st.fin >= 4) {
+    c.modus('haken');
+    c.buehne.innerHTML = `<section class="fin raupe-wort"><div class="lampe"></div><img class="rw-bild" src="${c.fig('raupe/klatscht')}" alt=""><p class="rw-blase">${F.raupeSagt}</p><div class="rw-icons">${WERKZEUGE.map((w) => `<span class="rw-i" data-w="${w}">${werkzeugIcon(w)}</span>`).join('')}</div></section>`;
+    nurKnopf('neu', c.knopf('neu', c.UI.neuStart, 'still'), c.neuStart);
+    return;
+  }
+
   /* ---------- 3: Urkunde „Meister-Detektiv“ ---------- */
   c.modus('haken');
   const p = c.perlen();
-  c.buehne.innerHTML = `<section class="fin urk"><div class="lampe"></div><div class="dipl"><div class="dipl-in"><p class="dt">${c.UI.meister}</p><input id="dname" type="text" maxlength="18" placeholder="${esc(c.UI.nameFrage.replace(/<[^>]*>/g, ''))}" value="${esc(st.name)}" autocomplete="off" autocapitalize="words" aria-label="${esc(c.UI.nameFrage.replace(/<[^>]*>/g, ''))}"><p class="dh">${c.UI.hatGeloest}</p><p class="df">${c.UI.fallName}</p><p class="dl">${c.UI.urkLob}</p><p class="dp"><span class="perle"></span><b>${p}</b><span class="dpt">${c.UI.perlenSumme}</span></p></div></div><p class="forts">${c.UI.fortsetzung}</p></section>`;
+  c.buehne.innerHTML = `<section class="fin urk"><div class="lampe"></div><div class="dipl"><div class="dipl-in"><p class="dt">${c.UI.meister}</p><input id="dname" type="text" maxlength="18" placeholder="${esc(c.UI.nameFrage.replace(/<[^>]*>/g, ''))}" value="${esc(st.name)}" autocomplete="off" autocapitalize="words" aria-label="${esc(c.UI.nameFrage.replace(/<[^>]*>/g, ''))}"><p class="dh">${c.UI.hatGeloest}</p><p class="df">${c.UI.fallName}</p><p class="dl">${c.UI.urkLob}</p><p class="dp"><span class="perle"></span><b>${p}</b><span class="dpt">${c.UI.perlenSumme}</span></p></div></div><p class="team"><img src="${c.fig('raupe/lob')}" alt=""><span>${c.UI.teamZeile}</span></p><p class="forts">${c.UI.fortsetzung}</p></section>`;
   const inp = c.buehne.querySelector<HTMLInputElement>('#dname')!;
   inp.addEventListener('input', () => { st.name = inp.value; c.speichern(); });
-  nurKnopf('neu', c.knopf('neu', c.UI.neuStart, 'still'), c.neuStart);
+  nurKnopf('weiter', c.knopf('weiter', c.UI.weiter), () => gehe(4));
 }
