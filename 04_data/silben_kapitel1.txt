@@ -1605,3 +1605,22 @@ schal|te
 # neu für v8 (ungeprüft)
 ge|klär|te
 be|ant|wor|te
+# neu für v8 (ungeprüft)
+schät|ze
+glän|zen
+krims|krams
+her|ge|weht
+wischst
+glas
+bü|ro|klam|mer
+sil|bern
+gol|de|ner
+fla|schen|de|ckel
+mur|mel
+glit|zert
+glöck|chen
+ku|gel
+a|lu|fo|lie
+glän|zend
+drei|eck
+bei|des

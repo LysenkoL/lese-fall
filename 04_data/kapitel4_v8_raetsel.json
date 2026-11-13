@@ -64,7 +64,7 @@
  "spuren": [
   {
    "spur": 19,
-   "bild": "baum",
+   "bild": "k4_s19_elster",
    "schluessel": true,
    "haken": "Da lehnt sich Frau Sommer aus dem Fenster. Sie hat etwas Gelbes zwischen den Zweigen gesehen.",
    "karte": {
@@ -674,7 +674,7 @@
      },
      {
       "id": "5",
-      "bild": "baum",
+      "bild": "k3_elster",
       "text": "Die Elster holt den Mond"
      },
      {
@@ -805,17 +805,17 @@
   },
   {
    "spur": 24,
-   "bild": "k4_s24",
+   "bild": "k4_s24_fenster",
    "haken": "Das Nest! Und was hängt daran?",
    "karte": {
-    "bild": "baum_nest",
+    "bild": "nest_nah",
     "ausschnitt": {
-     "x": 55,
-     "y": 22,
-     "w": 40,
-     "h": 40
+     "x": 22,
+     "y": 18,
+     "w": 26,
+     "h": 36
     },
-    "text": "Im Nest aus weißen Papierstreifen hing der Schlüssel am weißen Band.",
+    "text": "Im Nest der Elster: Frau Sommers Schlüssel am weißen Band und viele andere Schätze, die glänzen.",
     "staub": false
    },
    "fragenWeg": [
@@ -825,45 +825,80 @@
    "schluessel": false,
    "raetsel": {
     "art": "nest",
-    "titel": "Was blitzt da?",
-    "text": "Dichte Blätter verdecken die Astgabel unter dem Fenster. Wische sie weg. Dann suche, was die Elster dort versteckt hat.",
-    "bild": "baum_nest",
+    "titel": "Der Schatz der Elster",
+    "text": "Im Nest der Elster liegt viel Krimskrams. Elstern sammeln, was glänzt. Ein paar Dinge hat aber nur der Wind hergeweht.",
+    "bild": "nest_nah",
     "ratio": 1.5,
     "zone": {
-     "x": 67,
-     "y": 66,
-     "r": 13
+     "x": 50,
+     "y": 47,
+     "r": 34
     },
-    "start": "Wische mit dem Finger über die Blätter. Du schiebst sie zur Seite.",
+    "start": "Erst wischst du die Blätter weg. Dann siehst du in das Nest.",
+    "nachLaub": "Was hat die Elster selbst geholt? Tippe nur an, was glänzt.",
+    "frage": "Tippe alles an, was glänzt.",
+    "tipp": "Glänzt das wirklich? Schau, was aus Metall oder Glas ist.",
     "ziele": [
      {
-      "id": "nest",
-      "x": 68.2,
-      "y": 62.0,
-      "r": 5,
-      "ok": "Ein Nest aus weißen Papierstreifen!",
-      "bedeutung": "Darum wollte die Elster den Faden!"
-     },
-     {
-      "id": "band",
-      "x": 68.9,
-      "y": 67.6,
-      "r": 3.5,
-      "ok": "Ein weißes Band.",
-      "bedeutung": "Das ist das Band von Frau Sommers Schlüssel."
-     },
-     {
       "id": "schluessel",
-      "x": 68.5,
-      "y": 74.5,
-      "r": 4,
-      "ok": "Ein Schlüssel!",
-      "bedeutung": "Frau Sommers Schlüssel! Gefunden!"
+      "x": 33,
+      "y": 46,
+      "r": 7.5,
+      "ok": "Ein Schlüssel am weißen Band! Das ist Frau Sommers Schlüssel!"
+     },
+     {
+      "id": "klammer",
+      "x": 66,
+      "y": 29,
+      "r": 6.5,
+      "ok": "Eine Büroklammer aus Metall. Sie glänzt silbern."
+     },
+     {
+      "id": "deckel",
+      "x": 50,
+      "y": 44,
+      "r": 7,
+      "ok": "Ein goldener Flaschendeckel. Der glänzt in der Sonne."
+     },
+     {
+      "id": "murmel",
+      "x": 70,
+      "y": 46,
+      "r": 6,
+      "ok": "Eine Murmel aus Glas. Sie glitzert blau."
+     },
+     {
+      "id": "gloeckchen",
+      "x": 33,
+      "y": 68,
+      "r": 6,
+      "ok": "Ein Glöckchen! Darum hat es vorhin „kling“ gemacht."
+     },
+     {
+      "id": "folie",
+      "x": 49,
+      "y": 72,
+      "r": 6.5,
+      "ok": "Eine Kugel aus Alufolie. Silbern und glänzend."
      }
     ],
-    "tipp": "Schau genau auf die Astgabel unter dem Fenster. Was ist dort zu sehen?",
-    "erfolg": "Fall gelöst! Die Elster hat den Faden für ihr Nest geholt. Dabei hat sie auch Frau Sommers Schlüssel mit dem weißen Band mitgenommen. Jetzt wissen wir alles.",
-    "frage": "Die Elster hat etwas versteckt. Tippe auf alles, was hier nicht hingehört.",
+    "andere": [
+     {
+      "id": "knopf",
+      "x": 51,
+      "y": 21,
+      "r": 6.5,
+      "nein": "Ein roter Knopf. Er glänzt nicht. Den hat wohl der Wind hergeweht."
+     },
+     {
+      "id": "papier",
+      "x": 65,
+      "y": 67,
+      "r": 6,
+      "nein": "Ein gelbes Dreieck aus Papier. Das ist ein Krümel von Oskars Käse! Er glänzt nicht. Der Wind hat ihn hergeweht."
+     }
+    ],
+    "erfolg": "Fall gelöst! Die Elster sammelt, was glänzt. Den weißen Faden wollte sie für ihr Nest. Und Frau Sommers Schlüssel am weißen Band war beides: weiß und glänzend.",
     "werkzeug": "lupe"
    },
    "fragenNeu": []

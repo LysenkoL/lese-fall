@@ -1394,46 +1394,49 @@ export function faden(r: HTMLElement, d: Daten, fertig: () => void) {
 /* ============================ 7.3 Was blitzt da? (nest) ============================ */
 export function nest(r: HTMLElement, d: Daten, fertig: () => void) {
   const zi = $('.zi', r);
-  zi.innerHTML = `<p class="nt-frage"></p><div class="nt-bild" style="aspect-ratio:${d.ratio}"><div class="nt-zoom" style="transform-origin:${d.zone.x}% ${d.zone.y}%"><img src="${K.img(d.bild)}" alt="" draggable="false"></div></div>`;
+  zi.innerHTML = `<p class="nt-frage"></p><div class="nt-bild" style="aspect-ratio:${d.ratio}"><div class="nt-zoom"><img src="${K.img(d.bild)}" alt="" draggable="false"></div></div>`;
   unten('');
-  const box = $('.nt-bild', zi);
+  const box = $('.nt-bild', zi), nah = $('.nt-zoom', zi);
   sag(r, 'tipp', d.start);
-  const Z: any[] = d.ziele, gef = new Set<string>();
+  /** ziele: was die Elster geholt hat (glänzt); andere: liegt auch im Nest, glänzt aber nicht */
+  const Z: any[] = d.ziele, X: any[] = d.andere ?? [], gef = new Set<string>(), erklaert = new Set<string>();
   let fehl = 0, zu = false;
   const frage = () => { $('.nt-frage', zi).innerHTML = zu ? '' : `${d.frage} <b class="nt-z">${gef.size} / ${Z.length}</b>`; };
-  /** Ringe erscheinen erst, wenn etwas angetippt und gefunden wurde */
-  const nah = $('.nt-zoom', zi);
-  const ring = (z: any, kl: string) => nah.insertAdjacentHTML('beforeend', `<i class="ring ${kl}" style="left:${z.x}%;top:${z.y}%;width:${z.r * 1.1}%;height:auto;aspect-ratio:1;margin:0;transform:translate(-50%,-50%)"></i>`);
+  const ring = (z: any, kl: string) => nah.insertAdjacentHTML('beforeend', `<i class="ring ${kl}" style="left:${z.x}%;top:${z.y}%;width:${z.r * 2.1}%;height:auto;aspect-ratio:1;margin:0;transform:translate(-50%,-50%)"></i>`);
   const fund = (z: any, hilfe: boolean) => {
     gef.add(z.id); fehl = 0;
     ring(z, hilfe ? 'da blink' : 'da');
-    K.summ(25);
-    sag(r, 'lob', (hilfe ? K.UI.hilfe + ' ' : '') + z.ok + ' ' + z.bedeutung, 'gut');
+    K.summ(z.id === 'schluessel' ? 40 : 20);
+    sag(r, 'lob', (hilfe ? K.UI.hilfe + ' ' : '') + z.ok, 'gut');
     frage();
     if (gef.size >= Z.length) {
       zu = true; hook.loese = null; frage();
-      setTimeout(() => zi.isConnected && ende(r, d, fertig), 3600);
+      setTimeout(() => zi.isConnected && ende(r, d, fertig), 2600);
     }
   };
+  const nein = (x: any) => {
+    const el = document.createElement('i'); el.className = 'ring nicht'; el.style.cssText = `left:${x.x}%;top:${x.y}%;width:${x.r * 2.1}%`; nah.appendChild(el);
+    setTimeout(() => el.remove(), 1200);
+    fehl++;
+    if (!erklaert.has(x.id)) { erklaert.add(x.id); return sag(r, 'tipp', x.nein); }
+    if (fehl >= 2) return fund(Z.find((q) => !gef.has(q.id)), true);
+    sag(r, 'tipp', d.tipp);
+  };
   const suche = () => {
-    hook.loese = () => { Z.filter((z) => !gef.has(z.id)).forEach((z) => gef.add(z.id)); zu = true; Z.forEach((z) => ring(z, 'da')); frage(); ende(r, d, fertig); };
+    hook.loese = () => { zu = true; Z.forEach((z) => { if (!gef.has(z.id)) { gef.add(z.id); ring(z, 'da'); } }); frage(); ende(r, d, fertig); };
     frage();
-    nah.classList.add('nah');
-    const sl = (d.ziele as any[]).find((q) => q.id === 'schluessel');
-    if (sl) nah.insertAdjacentHTML('beforeend', `<i class="funkel" style="left:${sl.x}%;top:${sl.y}%"></i>`);
     box.onclick = (e) => {
       if (zu) return;
       const rc = nah.getBoundingClientRect();
       const px = e.clientX - rc.left, py = e.clientY - rc.top;
-      const dist = (q: any) => Math.hypot(px - q.x / 100 * rc.width, py - q.y / 100 * rc.height) / ((q.r / 100) * rc.width * 1.3);
-      const z = Z.filter((q) => !gef.has(q.id) && dist(q) <= 1).sort((a, b) => dist(a) - dist(b))[0];
-      if (z) return fund(z, false);
+      const dist = (q: any) => Math.hypot(px - q.x / 100 * rc.width, py - q.y / 100 * rc.height) / ((q.r / 100) * rc.width * 1.15);
+      const z = [...Z.filter((q) => !gef.has(q.id)), ...X].filter((q) => dist(q) <= 1).sort((a, b) => dist(a) - dist(b))[0];
+      if (z && Z.includes(z)) return fund(z, false);
+      if (z) return nein(z);
+      if (Z.some((q) => gef.has(q.id) && dist(q) <= 1)) return; // schon gefunden: nichts tun
       nah.insertAdjacentHTML('beforeend', `<i class="ring miss" style="left:${px / rc.width * 100}%;top:${py / rc.height * 100}%"></i>`);
       setTimeout(() => box.querySelector('.ring.miss')?.remove(), 800);
-      fehl++;
-      if (fehl === 3) sag(r, 'tipp', d.tipp);
-      else if (fehl >= 6) fund(Z.find((q) => !gef.has(q.id)), true);
     };
   };
-  hook.loese = _laub(box, () => { sag(r, 'tipp', ''); suche(); }, d.zone);
+  hook.loese = _laub(box, () => { sag(r, 'tipp', d.nachLaub ?? ''); suche(); }, d.zone);
 }

@@ -71,7 +71,8 @@
     "frage": "A|ber was will der Vo|gel mit dem Fa|den?",
     "stempel": "KAPITEL 3 GELÖST"
    },
-   "ausblick": "Da klap|pen zwei Flü|gel auf. Der Vo|gel packt den wei|ßen Fa|den. Und der Mond hebt ab."
+   "ausblick": "Da klap|pen zwei Flü|gel auf. Der Vo|gel packt den wei|ßen Fa|den. Und der Mond hebt ab.",
+   "ausblickBild": "k3_elster"
   },
   {
    "nr": 4,
@@ -3328,7 +3329,7 @@
    "kap": 4,
    "spur": 19,
    "titel": "Der Mond im Baum",
-   "bild": "baum",
+   "bild": "k4_s19_elster",
    "haken": "Da lehnt sich Frau Som|mer aus dem Fens|ter. Sie hat et|was Gel|bes zwi|schen den Zwei|gen ge|se|hen.",
    "blocks": [
     {
@@ -3549,7 +3550,7 @@
        "text": "Beim Vo|gel|haus"
       }
      ],
-     "nein": "Das stand nicht im Text. Denk an den Vogel und das Fenster.",
+     "nein": "Das stand nicht im Text. Denk an den Vo|gel und das Fens|ter.",
      "ok": "Ge|nau! Der Ast liegt un|ter dem Fens|ter, und dort ste|hen zwei dün|ne Zwei|ge wie ein V. Jetzt such ihn im Baum."
     },
     "nachsehen": "Im Text nach|se|hen",
@@ -4261,7 +4262,7 @@
      },
      {
       "id": "5",
-      "bild": "baum",
+      "bild": "k3_elster",
       "text": "Die Els|ter holt den Mond"
      },
      {
@@ -4477,7 +4478,7 @@
    "kap": 4,
    "spur": 24,
    "titel": "Ein stil|ler Nach|mit|tag",
-   "bild": "k4_s24",
+   "bild": "k4_s24_fenster",
    "haken": "Das Nest! Und was hängt da|ran?",
    "blocks": [
     {
@@ -4535,14 +4536,14 @@
     }
    ],
    "karte": {
-    "bild": "baum_nest",
+    "bild": "nest_nah",
     "ausschnitt": {
-     "x": 55,
-     "y": 22,
-     "w": 40,
-     "h": 40
+     "x": 22,
+     "y": 18,
+     "w": 26,
+     "h": 36
     },
-    "text": "Im Nest aus wei|ßen Pa|pier|strei|fen hing der Schlüs|sel am wei|ßen Band.",
+    "text": "Im Nest der Els|ter: Frau Som|mers Schlüs|sel am wei|ßen Band und vie|le an|de|re Schät|ze, die glän|zen.",
     "staub": false
    },
    "fragenNeu": [],
@@ -4553,45 +4554,80 @@
    "tipp": null,
    "raetsel": {
     "art": "nest",
-    "titel": "Was blitzt da?",
-    "text": "Dich|te Blät|ter ver|de|cken die Ast|ga|bel un|ter dem Fens|ter. Wi|sche sie weg. Dann su|che, was die Els|ter dort ver|steckt hat.",
-    "bild": "baum_nest",
+    "titel": "Der Schatz der Els|ter",
+    "text": "Im Nest der Els|ter liegt viel Krims|krams. Els|tern sam|meln, was glänzt. Ein paar Din|ge hat a|ber nur der Wind her|ge|weht.",
+    "bild": "nest_nah",
     "ratio": 1.5,
     "zone": {
-     "x": 67,
-     "y": 66,
-     "r": 13
+     "x": 50,
+     "y": 47,
+     "r": 34
     },
-    "start": "Wi|sche mit dem Fin|ger ü|ber die Blät|ter. Du schiebst sie zur Sei|te.",
+    "start": "Erst wischst du die Blät|ter weg. Dann siehst du in das Nest.",
+    "nachLaub": "Was hat die Els|ter selbst ge|holt? Tip|pe nur an, was glänzt.",
+    "frage": "Tip|pe al|les an, was glänzt.",
+    "tipp": "Glänzt das wirk|lich? Schau, was aus Me|tall o|der Glas ist.",
     "ziele": [
      {
-      "id": "nest",
-      "x": 68.2,
-      "y": 62,
-      "r": 5,
-      "ok": "Ein Nest aus wei|ßen Pa|pier|strei|fen!",
-      "bedeutung": "Da|rum woll|te die Els|ter den Fa|den!"
-     },
-     {
-      "id": "band",
-      "x": 68.9,
-      "y": 67.6,
-      "r": 3.5,
-      "ok": "Ein wei|ßes Band.",
-      "bedeutung": "Das ist das Band von Frau Som|mers Schlüs|sel."
-     },
-     {
       "id": "schluessel",
-      "x": 68.5,
-      "y": 74.5,
-      "r": 4,
-      "ok": "Ein Schlüs|sel!",
-      "bedeutung": "Frau Som|mers Schlüs|sel! Ge|fun|den!"
+      "x": 33,
+      "y": 46,
+      "r": 7.5,
+      "ok": "Ein Schlüs|sel am wei|ßen Band! Das ist Frau Som|mers Schlüs|sel!"
+     },
+     {
+      "id": "klammer",
+      "x": 66,
+      "y": 29,
+      "r": 6.5,
+      "ok": "Ei|ne Bü|ro|klam|mer aus Me|tall. Sie glänzt sil|bern."
+     },
+     {
+      "id": "deckel",
+      "x": 50,
+      "y": 44,
+      "r": 7,
+      "ok": "Ein gol|de|ner Fla|schen|de|ckel. Der glänzt in der Son|ne."
+     },
+     {
+      "id": "murmel",
+      "x": 70,
+      "y": 46,
+      "r": 6,
+      "ok": "Ei|ne Mur|mel aus Glas. Sie glit|zert blau."
+     },
+     {
+      "id": "gloeckchen",
+      "x": 33,
+      "y": 68,
+      "r": 6,
+      "ok": "Ein Glöck|chen! Da|rum hat es vor|hin „kling“ ge|macht."
+     },
+     {
+      "id": "folie",
+      "x": 49,
+      "y": 72,
+      "r": 6.5,
+      "ok": "Ei|ne Ku|gel aus A|lu|fo|lie. Sil|bern und glän|zend."
      }
     ],
-    "tipp": "Schau ge|nau auf die Ast|ga|bel un|ter dem Fens|ter. Was ist dort zu se|hen?",
-    "erfolg": "Fall ge|löst! Die Els|ter hat den Fa|den für ihr Nest ge|holt. Da|bei hat sie auch Frau Som|mers Schlüs|sel mit dem wei|ßen Band mit|ge|nom|men. Jetzt wis|sen wir al|les.",
-    "frage": "Die Els|ter hat et|was ver|steckt. Tip|pe auf al|les, was hier nicht hin|ge|hört.",
+    "andere": [
+     {
+      "id": "knopf",
+      "x": 51,
+      "y": 21,
+      "r": 6.5,
+      "nein": "Ein ro|ter Knopf. Er glänzt nicht. Den hat wohl der Wind her|ge|weht."
+     },
+     {
+      "id": "papier",
+      "x": 65,
+      "y": 67,
+      "r": 6,
+      "nein": "Ein gel|bes Drei|eck aus Pa|pier. Das ist ein Krü|mel von Os|kars Kä|se! Er glänzt nicht. Der Wind hat ihn her|ge|weht."
+     }
+    ],
+    "erfolg": "Fall ge|löst! Die Els|ter sam|melt, was glänzt. Den wei|ßen Fa|den woll|te sie für ihr Nest. Und Frau Som|mers Schlüs|sel am wei|ßen Band war bei|des: weiß und glän|zend.",
     "werkzeug": "lupe"
    }
   }

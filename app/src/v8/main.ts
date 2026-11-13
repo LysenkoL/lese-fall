@@ -18,7 +18,7 @@ import { zeigeFinale } from './finale.ts';
 
 const D: any = structuredClone(DATA_);
 /** Texte der Daten einmal in HTML mit Silben verwandeln (gleiche Schlüssel wie in build-v8.ts) */
-const TEXT = new Set(['raupeSagt', 'text', 'titel', 'haken', 'frage', 'aufloesung', 'warum', 'tipp', 'erfolg', 'unklarTipp', 'vorspann', 'ausblick', 'name', 'saetze', 'warum2', 'unter', 'sagt', 'klebt', 'frage2', 'suche', 'nass', 'frage1', 'tipp1', 'unklar', 'frageRaus', 'regel', 'plakatFertig', 'start', 'liste', 'zuViel', 'nochMehr', 'falsch', 'ok', 'fund', 'knapp', 'frueh', 'hilfe', 'wortText', 'nicht', 'nachsehen', 'absatz', 'demo', 'jetzt', 'bedeutung']);
+const TEXT = new Set(['raupeSagt', 'nein', 'nachLaub', 'text', 'titel', 'haken', 'frage', 'aufloesung', 'warum', 'tipp', 'erfolg', 'unklarTipp', 'vorspann', 'ausblick', 'name', 'saetze', 'warum2', 'unter', 'sagt', 'klebt', 'frage2', 'suche', 'nass', 'frage1', 'tipp1', 'unklar', 'frageRaus', 'regel', 'plakatFertig', 'start', 'liste', 'zuViel', 'nochMehr', 'falsch', 'ok', 'fund', 'knapp', 'frueh', 'hilfe', 'wortText', 'nicht', 'nachsehen', 'absatz', 'demo', 'jetzt', 'bedeutung']);
 function html(v: any, key = ''): any {
   if (typeof v === 'string') return TEXT.has(key) ? T(v) : v;
   if (Array.isArray(v)) return v.map((x) => html(x, key));
@@ -468,7 +468,7 @@ function fallkarte() {
 function ausblick() {
   modus('haken');
   const k = kap(), nxt = D.kapitel[k.nr];
-  buehne.innerHTML = `<section class="haken"><div class="lampe"></div><img class="hr" src="${fig('raupe/staunt')}" alt=""><p>${k.ausblick}</p>${nxt ? '' : `<p class="forts">${UI.fortsetzung}</p>`}</section>`;
+  buehne.innerHTML = `<section class="haken${k.ausblickBild ? ' mitbild' : ''}"><div class="lampe"></div>${k.ausblickBild ? `<figure class="foto ab-bild"><img src="${img(k.ausblickBild)}" alt=""></figure>` : `<img class="hr" src="${fig('raupe/staunt')}" alt="">`}<p>${k.ausblick}</p>${nxt ? '' : `<p class="forts">${UI.fortsetzung}</p>`}</section>`;
   if (!nxt) return nurKnopf('neu', knopf('neu', UI.neuStart, 'still'), neuStart);
   nurKnopf('naechstes', knopf('naechstes', `${UI.naechstesKapitel} ${nxt.nr} ›`), () => {
     Object.assign(stand, { spur: kapSpuren(nxt.nr)[0], i: 0, blatt: 0, mix: [], view: 'kapitel' });

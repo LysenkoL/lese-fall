@@ -243,7 +243,7 @@ for n, d in [
 
 # ---------------------------------------------------------------- Stand der Bilder
 # Fertig und im Repo (assets/illustrationen/...): erscheinen nicht mehr auf der Seite.
-FERTIG = {"nest_finale", "objekte/raetsel_kaese", "objekte/kraft_fuehler", "objekte/kraft_lupe", "objekte/kraft_zeit", "objekte/kraft_lesen", "objekte/pulli_oskar", "objekte/pulli_lina", "objekte/pulli_tom", "objekte/pulli_emil", "objekte/pulli_nele", "objekte/pulli_ida", "objekte/raetsel_ball", "objekte/raetsel_schwamm", "kinder/ida", "kinder/nele", "objekte/fuchs_puppe", "objekte/koenig_puppe", "objekte/pappbaum", "objekte/papierstapel",
+FERTIG = {"k3_elster", "k4_s19_elster", "nest_nah", "k4_s24_fenster", "nest_finale", "objekte/raetsel_kaese", "objekte/kraft_fuehler", "objekte/kraft_lupe", "objekte/kraft_zeit", "objekte/kraft_lesen", "objekte/pulli_oskar", "objekte/pulli_lina", "objekte/pulli_tom", "objekte/pulli_emil", "objekte/pulli_nele", "objekte/pulli_ida", "objekte/raetsel_ball", "objekte/raetsel_schwamm", "kinder/ida", "kinder/nele", "objekte/fuchs_puppe", "objekte/koenig_puppe", "objekte/pappbaum", "objekte/papierstapel",
           "objekte/raetsel_keks", "objekte/raetsel_sonne", "objekte/raetsel_zitrone",
           "plakat", "baum", "baum_nest", "tresor_zu", "tresor_auf",
           "k1_s1", "kinder/lina", "kinder/tom", "kinder/emil", "objekte/mond_hinten_feucht", "objekte/mond_hinten_faden",
