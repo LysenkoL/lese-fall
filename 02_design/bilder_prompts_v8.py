@@ -16,6 +16,7 @@ ATT = {
     "OBJ": "objekte_1_mond + objekte_3_basteln (стиль предметов)",
     "BIRD": "лист гусенички (только для стиля)",
     "EDIT": "сама картинка k1_s1 (редактировать её)",
+    "RAUPE": "2 листа гусенички (внешность должна совпадать точь-в-точь)",
     "SAFE": "ничего (или старую mondtresor_zu как образец стиля)",
 }
 PAINT = " Soft hand-painted picture-book look (watercolor and colored pencil) like the attached images – NOT flat vector clip-art, no glossy 3D look."
@@ -176,6 +177,26 @@ No moon on it.""", head=BLUE, size="1:1", where="вступление, доск�
 add(CT, "tresor_auf", "SAFE", """
 The same safe, now open: the door swings open, warm golden light streams out; inside an empty glowing niche (a picture will be placed there later). Square 1:1.""",
     head=BLUE, size="1:1", where="финал: сейф открывается кодом NEST")
+
+# ---------------------------------------------------------------- Vier Kräfte der Lese-Raupe (Medaillons)
+CK = "Силы гусенички (4 медальона)"
+KRAFT_RAHMEN = ("A round medallion, centered, filling about 85% of the picture: a circular picture with a thin golden rim, inside a deep night-blue "
+                "background with a few tiny soft sparkles. In the medallion, a close-up (head and upper body) of the SAME little green caterpillar "
+                "as on the attached sheets – same face, same colours, same small blue cape. No text, no letters, no numbers. "
+                "Outside the medallion only the plain background. All four medallions of this set must have the same size, rim and style. ")
+for n, d, wo in [
+    ("kraft_fuehler", "Her two antennae glow brightly: the little balls at the tips shine warm golden like tiny lanterns and cast a soft golden light, "
+                      "a few golden sparks float around them. She looks up at them, amazed and proud.", "Leucht-Fühler"),
+    ("kraft_lupe", "She holds up her magnifying glass made of nature: a big clear round DEWDROP sitting on a small green grass stalk as handle. "
+                   "She looks through the dewdrop with one eye, and that eye appears much bigger through the drop. The drop glitters.", "Tautropfen-Lupe"),
+    ("kraft_zeit", "She looks very slowly and carefully: both eyes wide open and focused, head slightly tilted, one little hand at her chin. "
+                   "Next to her a tiny friendly snail on a leaf and one single leaf falling very slowly, hanging in the air – everything feels calm and slow.", "Zeitlupen-Blick"),
+    ("kraft_lesen", "She reads an open little book that she holds in front of her, wearing small round golden reading glasses, smiling, "
+                    "fully absorbed. A soft warm light shines from the pages onto her face.", "Lese-Blick"),
+]:
+    add(CK, f"objekte/{n}", "RAUPE", KRAFT_RAHMEN + d, size="1:1",
+        where=f"Вступление, значок перед каждой загадкой и финал — сила «{wo}»",
+        note="Все четыре лучше генерировать в одном чате подряд, чтобы рамка и стиль совпали." if n == "kraft_fuehler" else "")
 
 # ---------------------------------------------------------------- Stand der Bilder
 # Fertig und im Repo (assets/illustrationen/...): erscheinen nicht mehr auf der Seite.
