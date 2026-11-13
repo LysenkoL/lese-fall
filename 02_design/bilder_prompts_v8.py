@@ -176,6 +176,17 @@ add(C4, "nest_nah", "OUT", """
     Each thing only ONCE. No bird, no eggs, no children, no text. Soft warm afternoon light, the shiny things glitter a little.""",
     head=HEAD, size="3:2", glow=False, where="Spur 24 — новая загадка: гнездо крупным планом, найти всё, что натаскала сорока",
     note="Важно: ровно восемь предметов, каждый один раз, не перекрываются. Приложить baum_nest (стиль гнезда и веток).")
+add(C4, "k3_elster", "OUT", """
+    Outside at the wooden bench under the big tree: on the bench lies the round yellow cardboard moon with three brown paper spots; its long white thread hangs down over the edge of the bench.
+    A black-and-white magpie with a very long tail has just grabbed the END OF THE THREAD with its beak and takes off – the moon lifts from the bench and dangles on the thread below the bird.
+    Mila, Ben and Oskar jump up, shocked, arms reaching out. The little grey paper mouse with the red heart stands on the bench. Autumn light, yellow leaves.""",
+    head=HEAD, size="3:2", glow=False, where="конец Главы 3 — «Der Vogel packt den weißen Faden. Und der Mond hebt ab.» (сейчас без картинки)",
+    note="Главное, чтобы было видно: птица держит НИТКУ, а луна висит на нитке.")
+add(C4, "k4_s24_fenster", "IN", """
+    Late afternoon, the classroom is empty and quiet, warm low sunlight. Frau Sommer (red hair in a bun, round glasses, green cardigan) stands at the open window, one hand on the window handle,
+    and looks down, surprised, into the tree right below the window: between the yellow-green leaves something small and metallic glints (a tiny sparkle) and something white moves.
+    On the windowsill the small green caterpillar holds her breath, antennae glowing golden. In the background the puppet theatre with the yellow moon (three brown spots) hanging next to the white cloud.""",
+    head=HEAD, size="3:2", glow=True, where="Spur 24 — «Ein stiller Nachmittag» (сейчас стоит спящая гусеничка, с текстом не совпадает)")
 add(C4, "nest_finale", "IN", """
 Happy final scene at the open classroom window: Mila, Ben, Oskar and Frau Sommer lean out and look down into the nest of white paper strips in the fork of the tree.
 Frau Sommer carefully takes out the white ribbon with ONE single small silver key (clearly a key, not coins, nothing golden or coin-like in or around the nest); the tree fork and the nest must look exactly like in the attached picture baum_nest (two thin branches forming a V right below the window, nest woven from white paper strips); next to the nest she lays a fresh white paper strip as a present for the bird.
