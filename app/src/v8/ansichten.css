@@ -1,18 +1,6 @@
 /* Lese-Fall · v8 · Ansichten: Titel, Vorgeschichte, Kapitelkarte, Lesen, Haken, Tipp-Frage, Brett, Fallkarte. */
 
 /* ---------- Titel ---------- */
-.titel {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: .625rem;
-  padding: calc(var(--oben) + 1.25rem) 1.375rem .625rem;
-  text-align: center;
-}
-.titel > :not(.lampe) { position: relative; }
 .tl { font-size: .8125rem; font-weight: 800; letter-spacing: .16em; color: var(--senf); }
 .titel h1 { font-size: 2.125rem; line-height: 1.1; font-weight: 800; }
 .titel h1 .s-b, .titel h1 .s-r, .tu .s-b, .tu .s-r { color: inherit; }
@@ -32,28 +20,15 @@
 .titel .foto.gross { box-shadow: 0 14px 30px rgba(0, 0, 0, .4), 0 0 46px rgba(246, 211, 91, .12); }
 
 /* ---------- Vorgeschichte, Kapitelkarte ---------- */
-.intro, .kapk {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1.125rem;
-  padding: calc(var(--oben) + 1.5rem) 1.625rem .75rem;
-  text-align: center;
-}
-.intro > :not(.lampe), .kapk > :not(.lampe) { position: relative; }
 .intro p, .kapk p { font-size: 1.3125rem; line-height: 1.45; font-weight: 600; color: #EEF1FA; animation: hoch .5s .15s both; }
 .intro p .s-b, .intro p .s-r, .kapk .s-b, .kapk .s-r { color: inherit; }
 .intro p.frage { font-weight: 800; color: var(--senf); font-size: 1.4375rem; }
 .ib { animation: hoch .5s both; }
-.ib.foto { width: 88%; max-width: 22.5rem; margin: 0; transform: rotate(-1.5deg); }
-.ib.frei img { height: 11.875rem; width: auto; filter: drop-shadow(0 0 26px rgba(244, 194, 67, .55)); }
+.ib.foto { width: min(88%, 22.5rem, calc(44cqh * 1.5)); margin: 0; transform: rotate(-1.5deg); }
+.ib.frei img { height: min(11.875rem, 30cqh); width: auto; filter: drop-shadow(0 0 26px rgba(244, 194, 67, .55)); }
 .kapk h1 { font-size: 2.125rem; line-height: 1.12; font-weight: 800; animation: hoch .5s both; }
 .vig {
-  width: 78%;
-  max-width: 20rem;
+  width: min(78%, 20rem, 40cqh);
   border-radius: 50%;
   aspect-ratio: 1;
   object-fit: cover;
@@ -67,14 +42,12 @@
 .wzr { display: flex; flex-direction: column; align-items: center; gap: .3125rem; text-align: center; }
 .wzr b { font-size: 1rem; font-weight: 800; color: var(--senf-hell); line-height: 1.15; }
 .wzr b .s-b, .wzr b .s-r { color: inherit; }
-.wzr svg { width: min(4.75rem, 10dvh); height: min(4.75rem, 10dvh); filter: drop-shadow(0 0 14px rgba(244, 194, 67, .4)); animation: hoch .5s both; }
+.wzr svg { width: min(4.75rem, 12cqh); height: min(4.75rem, 12cqh); filter: drop-shadow(0 0 14px rgba(244, 194, 67, .4)); animation: hoch .5s both; }
 .wzr:nth-child(2) svg { animation-delay: .08s; }
 .wzr:nth-child(3) svg { animation-delay: .16s; }
 .wzr:nth-child(4) svg { animation-delay: .24s; }
 
 /* ---------- Lesen ---------- */
-.blatt { position: absolute; inset: 0; padding: .875rem 1.25rem .25rem; overflow: hidden auto; font-size: var(--fs); line-height: 1.58; font-weight: 500; }
-.blatt.probe { visibility: hidden; pointer-events: none; }
 .blatt.kurz { display: flex; flex-direction: column; justify-content: center; padding-bottom: 12%; }
 .blatt.kurz::before { content: ''; width: 3.375rem; height: .3125rem; border-radius: 3px; background: var(--senf); margin-bottom: 1rem; }
 .blatt p { margin: 0 0 .62em; overflow-wrap: break-word; }
@@ -105,8 +78,6 @@
 .blatt[data-r="z"]:not(.probe) { animation: blattZ .3s ease-out both; transform-origin: 100% 60%; }
 
 /* ---------- Haken und Ausblick ---------- */
-.haken { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 1.125rem; padding: 1.5rem 1.625rem; text-align: center; }
-.haken > :not(.lampe) { position: relative; }
 .haken p { font-size: 1.625rem; line-height: 1.35; font-weight: 800; animation: hoch .6s .25s both; }
 .haken p .s-b, .haken p .s-r { color: inherit; }
 .forts { text-align: center; font-weight: 800; font-size: 1.125rem; color: var(--senf); margin: 0 0 .25rem; }
@@ -115,14 +86,14 @@
 .haken .forts { font-size: 1.25rem; color: var(--senf); }
 .forts .s-b, .forts .s-r { color: inherit; }
 .haken .hr {
-  width: 5.75rem;
-  height: 9.375rem;
+  height: min(9.375rem, 26cqh);
+  width: auto;
   object-fit: contain;
   filter: drop-shadow(0 0 22px rgba(244, 194, 67, .5));
   animation: hoch .5s both, wipp 4s 1s ease-in-out infinite;
   transform-origin: 50% 100%;
 }
-.haken.mitbild .ab-bild { width: min(92%, 32.5rem); margin: 0 auto .375rem; transform: rotate(-1.5deg); }
+.haken.mitbild .ab-bild { width: min(92%, 32.5rem, calc(50cqh * 1.5)); margin: 0 auto .375rem; transform: rotate(-1.5deg); }
 .haken.mitbild .ab-bild img { width: 100%; display: block; }
 
 /* ---------- Tipp-Frage ---------- */
@@ -130,10 +101,10 @@
 .zug.tipp .opt { color: var(--tinte); }
 
 /* ---------- Brett ---------- */
-.ak { display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
 .zettel.fr:has(em.neu) { animation: hoch .5s .3s both; }
 .zettel.fr.weg { opacity: .7; text-decoration: line-through; text-decoration-thickness: 2px; }
-.brett.ueberl { position: relative; inset: auto; width: 100%; max-height: 90dvh; border-radius: 1.375rem 1.375rem 0 0; padding-bottom: calc(var(--unten) + .875rem); }
+.brett.ueberl { position: relative; inset: auto; width: min(100%, var(--mass-spiel)); border-radius: var(--r-tafel) var(--r-tafel) 0 0; padding-bottom: calc(var(--unten) + .875rem); }
+@media (min-width: 600px) and (min-height: 600px) { .brett.ueberl { border-radius: var(--r-tafel); padding-bottom: .875rem; } }
 .brett h3 .s-b, .brett h3 .s-r, .brett .tab .s-b, .brett .tab .s-r, .wischz .s-b, .wischz .s-r { color: inherit; }
 .bkarte::before {
   content: '';
@@ -158,7 +129,6 @@
 .zettel.fr.versteckt { visibility: hidden; }
 .zettel.fr.frisch { animation: hoch .5s both; }
 .zettel.fr.faellt { animation: faellt .6s both; }
-.brett .ak { gap: .375rem; }
 .bkarte.fall { animation: einfall .7s cubic-bezier(.3, 1.3, .5, 1) both; }
 .bkarte.fall::before { animation: nadel .2s .6s both; }
 .brett h3 { letter-spacing: .1em; text-transform: uppercase; color: #FFF3DC; font-weight: 800; text-shadow: 0 1px 0 rgba(0, 0, 0, .25); margin-top: 2px; font-size: .875rem; }
@@ -204,29 +174,20 @@
   .bk-bild { aspect-ratio: 2 / 1; }
 }
 .brett {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
   background: #C2813F;
   background-image: radial-gradient(rgba(90, 50, 10, .22) 1.2px, transparent 1.6px), radial-gradient(rgba(255, 230, 180, .22) 1.2px, transparent 1.6px), radial-gradient(circle at 30% 10%, rgba(255, 220, 160, .4), transparent 60%);
   background-size: 13px 13px, 17px 17px, 100% 100%;
   background-position: 0 0, 6px 9px, 0 0;
-  overflow-y: auto;
   box-shadow: inset 0 0 0 7px #8A5A2B, inset 0 0 0 9px #6E4520, inset 0 10px 26px rgba(60, 30, 0, .35);
-  padding: 1rem 1rem .875rem;
-  gap: .5625rem;
   background-color: #C98A47;
 }
-.bgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .625rem; grid-auto-rows: 1fr; }
+.bgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .625rem; }
 .bkarte.leer {
   box-shadow: none;
   cursor: default;
   transform: none;
   aspect-ratio: auto;
-  min-height: 6rem;
-  height: 100%;
+  min-height: clamp(3.25rem, 13cqh, 6rem); /* leere Reihe wird auf niedrigen Bühnen flacher */
   border: 2px dashed rgba(255, 243, 220, .5);
   background: rgba(90, 50, 10, .1);
   display: grid;
@@ -289,7 +250,7 @@
   font-weight: 800;
   background: var(--senf);
   color: var(--senf-tinte);
-  border-radius: 62.4375rem;
+  border-radius: var(--r-rund);
   padding: 2px .625rem;
   animation: puls 1s ease-in-out infinite;
   display: none;
@@ -362,8 +323,8 @@
   gap: .4375rem;
 }
 .fk h2 { font-weight: 800; color: var(--nacht-2); line-height: 1.2; font-size: 1.3125rem; }
-.fk .foto { margin: 2px auto; width: 78%; }
-.fk .foto img { max-height: 27dvh; width: 100%; object-fit: cover; }
+.fk .foto { margin: 2px auto; width: min(78%, calc(34cqh * 1.5)); } /* Bildhöhe höchstens ein Drittel der Bühne, nie beschnitten */
+.fk .foto img { width: 100%; object-fit: cover; }
 .fk li { font-weight: 600; padding-left: 1.25rem; position: relative; font-size: 1.03125rem; line-height: 1.35; }
 .fk ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: .3125rem; }
 .zug.fall { padding-bottom: .5rem; gap: .625rem; }

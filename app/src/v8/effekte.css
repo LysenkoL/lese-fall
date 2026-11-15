@@ -80,7 +80,7 @@
 .wzm.geht { opacity: 0; transition: opacity .2s; }
 .wzm-k { display: flex; flex-direction: column; align-items: center; gap: .4375rem; max-width: 20.625rem; }
 .wzm-r {
-  height: min(5.75rem, 12dvh);
+  height: min(5.75rem, 14cqh);
   width: auto;
   object-fit: contain;
   filter: drop-shadow(0 0 14px rgba(244, 194, 67, .4));
@@ -99,8 +99,8 @@
 }
 .wzm-i svg {
   position: relative;
-  width: min(7.5rem, 17dvh);
-  height: min(7.5rem, 17dvh);
+  width: min(7.5rem, 20cqh);
+  height: min(7.5rem, 20cqh);
   filter: drop-shadow(0 0 16px rgba(244, 194, 67, .55));
   animation: wzpop .55s .08s cubic-bezier(.2, 1.6, .4, 1) both;
 }

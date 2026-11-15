@@ -1,7 +1,7 @@
 /* Lese-Fall · v8 · Spiele von Kapitel 2/3 (Kleber, Lupe, Schatten, Kreise, Agenten-Code, Plakat), je Spiel ein Block. */
 
 /* ---------- Spur 8: nasser Kleber ---------- */
-.kl-tisch { position: relative; width: 100%; height: min(38dvh, 18.75rem); display: flex; justify-content: center; align-items: center; gap: 4%; transition: height .3s; }
+.kl-tisch { position: relative; width: 100%; height: min(46cqh, 18.75rem); display: flex; justify-content: center; align-items: center; gap: 4%; transition: height .3s; }
 .kl-tisch.klein + .kl-dreh svg { width: 1.25rem; height: 1.25rem; }
 .kl-mond { position: relative; height: 100%; max-width: 62%; transition: transform .2s; touch-action: pan-y; }
 .kl-mond > img { width: 100%; height: 100%; object-fit: contain; display: block; pointer-events: none; filter: drop-shadow(0 8px 10px rgba(0, 0, 0, .3)); }
@@ -112,8 +112,8 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, .25);
   flex: none;
 }
-.kl-tisch.klein { justify-content: flex-start; padding-left: 6%; height: min(11dvh, 5.625rem); }
-.kl-tisch.klein + .kl-dreh { flex-direction: row; padding: .3125rem .875rem; min-width: 0; gap: .5rem; position: absolute; right: 1.375rem; z-index: 2; top: calc(.625rem + min(11dvh, 5.625rem) / 2 - 1.375rem); }
+.kl-tisch.klein { justify-content: flex-start; padding-left: 6%; height: min(13cqh, 5.625rem); }
+.kl-tisch.klein + .kl-dreh { flex-direction: row; padding: .3125rem .875rem; min-width: 0; gap: .5rem; position: absolute; right: 1.375rem; z-index: 2; top: calc(.625rem + min(13cqh, 5.625rem) / 2 - 1.375rem); }
 .zi:has(.kl-tisch.klein) { gap: .4375rem; padding-top: .625rem; padding-bottom: .75rem; }
 .kl-teil.spaeter { opacity: .35; pointer-events: none; filter: saturate(.4); }
 .kl-teil.dran .kl-f b { animation: puls 1s ease-in-out infinite; }
@@ -327,7 +327,7 @@
   filter: drop-shadow(0 2px 3px rgba(0, 0, 0, .45));
 }
 .kr-leg { display: flex; flex-wrap: wrap; gap: .375rem .875rem; justify-content: center; margin: .625rem 0 2px; font-size: .875rem; font-weight: 700; }
-.kr-leg > span { display: inline-flex; align-items: center; gap: .375rem; background: rgba(255, 255, 255, .92); color: #26221C; border-radius: 62.4375rem; padding: .25rem .75rem .25rem .375rem; }
+.kr-leg > span { display: inline-flex; align-items: center; gap: .375rem; background: rgba(255, 255, 255, .92); color: #26221C; border-radius: var(--r-rund); padding: .25rem .75rem .25rem .375rem; }
 .kr-leg i { width: 1.375rem; height: 1.375rem; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-size: .8125rem; font-weight: 800; }
 .kr-leg .kr-l1 { background: var(--senf); box-shadow: inset 0 0 0 2px #fff; }
 .kr-leg .kr-l2 { background: #26221C; color: #fff; }
@@ -408,7 +408,7 @@
 .pk-st.zieht { z-index: 20; transition: none; box-shadow: 0 16px 24px rgba(0, 0, 0, .45); }
 .pk-st.nein { animation: wackel .4s; border-color: var(--rot); }
 .pk-zelle { aspect-ratio: 1 / 1; background: rgba(255, 255, 255, .06); border-radius: .5rem; transform: rotate(var(--w)); }
-.pk-pool { padding: .25rem; box-sizing: border-box; display: grid; align-self: center; grid-template-columns: repeat(3, minmax(0, 1fr)); width: min(100%, 16.875rem, 36dvh); gap: .375rem; }
+.pk-pool { padding: .25rem; box-sizing: border-box; display: grid; align-self: center; grid-template-columns: repeat(3, minmax(0, 1fr)); width: min(100%, 16.875rem, 43cqh); gap: .375rem; }
 #buehne .pk-st.nein { border-color: var(--weich); }
 .pk-platz { position: relative; border: 3px dashed rgba(255, 255, 255, .4); border-radius: .375rem; min-height: 0; aspect-ratio: var(--pr, 1); }
 .pk-pool .pk-zelle { aspect-ratio: var(--pr, 1); }
@@ -421,6 +421,6 @@
   padding: .375rem;
   background: rgba(255, 255, 255, .1);
   border-radius: .75rem;
-  width: min(100%, 18.75rem, calc(38dvh * .75));
+  width: min(100%, 18.75rem, calc(46cqh * .75));
   height: auto;
 }

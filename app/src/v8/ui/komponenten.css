@@ -106,7 +106,7 @@
 }
 
 /* ---------- Seitenpunkte ---------- */
-.pkt { flex: 1; display: flex; justify-content: center; gap: .4375rem; }
+.pkt { flex: 1; min-width: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: .4375rem; }
 .pkt.hell { flex: none; }
 .pkt.hell i { background: rgba(255, 255, 255, .25); }
 .pkt.hell i.an { background: var(--senf); }
@@ -236,7 +236,7 @@
   animation: stempel .35s cubic-bezier(.2, 1.6, .4, 1) both;
 }
 .stempel.klein {
-  font-size: .71875rem;
+  font-size: var(--t-etikett);
   border-width: 3px;
   padding: 3px .375rem;
   position: absolute;
@@ -294,7 +294,7 @@
   right: .75rem;
   transform: rotate(6deg);
 }
-.foto.gross { width: 88%; max-width: 21.25rem; margin: 1.125rem auto .75rem; transform: rotate(-2deg); }
+.foto.gross { width: min(88%, 21.25rem, 44cqh); margin: 1.125rem auto .75rem; transform: rotate(-2deg); }
 .foto.gross img { aspect-ratio: 1; }
 .foto {
   margin: .25rem auto 1rem;
@@ -426,7 +426,7 @@ em.neu.ok { background: var(--nacht-2); text-decoration: none; display: inline-b
 }
 em.neu {
   font-style: normal;
-  font-size: .625rem;
+  font-size: var(--t-etikett);
   font-weight: 800;
   letter-spacing: .06em;
   text-transform: uppercase;
@@ -448,7 +448,7 @@ em.neu .s-b, em.neu .s-r { color: inherit; }
   background: var(--nacht-2);
   color: #fff;
   border: 1.5px solid rgba(244, 194, 67, .5);
-  border-radius: 62.4375rem;
+  border-radius: var(--r-rund);
   padding: 2px .75rem 2px 2px;
   font-size: .8125rem;
   font-weight: 800;
@@ -470,7 +470,7 @@ em.neu .s-b, em.neu .s-r { color: inherit; }
 .er { display: flex; gap: .625rem; }
 .einst .kn.still { color: var(--tinte); border-color: var(--linie); background: #fff; opacity: 1; flex: 1; }
 .kgross {
-  width: 82%;
+  width: min(82%, var(--mass-dialog));
   background: var(--papier);
   padding: .75rem;
   display: flex;
@@ -483,7 +483,7 @@ em.neu .s-b, em.neu .s-r { color: inherit; }
 .kgross p { font-size: 1.0625rem; line-height: 1.4; font-weight: 600; color: var(--tinte); }
 .kgross p .s-b, .kgross p .s-r { color: inherit; }
 .kgross .ausschn { margin: auto 0; }
-.tresorinfo { align-items: center; text-align: center; background: var(--nacht-2); color: #fff; width: 88%; max-width: 26.25rem; }
+.tresorinfo { align-items: center; text-align: center; background: var(--nacht-2); color: #fff; width: min(88%, 26.25rem); }
 .tresorinfo > svg { width: 8.125rem; height: 8.125rem; filter: drop-shadow(0 0 18px rgba(244, 194, 67, .45)); }
 .tresorinfo h3 { font-size: 1.375rem; font-weight: 800; color: var(--senf); text-transform: none; letter-spacing: 0; }
 .tresorinfo p { color: #EEF1FA; font-size: 1rem; }
@@ -509,8 +509,7 @@ em.neu .s-b, em.neu .s-r { color: inherit; }
 .tresorinfo .wort i:not(:empty) { background: var(--senf); border: 0; color: var(--senf-tinte, #26221C); }
 .kgross .bk-bild { aspect-ratio: 4 / 3; min-height: 0; max-height: none; }
 .einst {
-  width: 100%;
-  max-height: 84dvh;
+  width: min(100%, var(--mass-dialog));
   display: flex;
   flex-direction: column;
   background: var(--papier);
@@ -539,3 +538,6 @@ button:not(:disabled) { cursor: pointer; }
   button:not(:disabled):hover, .codez[role="button"]:hover, .bkarte[data-k]:hover { filter: brightness(1.06) drop-shadow(0 0 9px rgba(244, 194, 67, .6)); }
 }
 button:not(:disabled):active { filter: brightness(.96); }
+
+@media (min-width: 600px) and (min-height: 600px) { .einst { border-radius: var(--r-tafel); padding-bottom: 1rem; } }
+@media (max-width: 359px) { .kn.zugk { padding-right: .875rem; font-size: var(--t-text); } }

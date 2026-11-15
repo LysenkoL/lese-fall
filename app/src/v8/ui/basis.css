@@ -1,4 +1,16 @@
-/* Lese-Fall · v8 · Basis: Schrift, Grundregeln, Silbenfarben, Schale (App, Kopf, Bühne, Fuß, Hintergründe je Modus, Überlagerungsrahmen), Rechner-Ansicht ab 900 px. */
+/* Lese-Fall · UI-System · 2 · Basis
+   Schrift, Grundregeln, Grundgröße je Gerät, Schale (Kopf · Bühne · Fuß · Überlagerung) und die
+   Rahmen der Ansichtsarten (Mitte, Lesen, Rätsel, Brett). Hier steht die Geometrie; das Aussehen
+   der Teile steht in komponenten.css, das der einzelnen Ansichten und Spiele in ihren Dateien.
+
+   Die vier Grundsätze (ausführlich in app/UI-SYSTEM.md):
+   1. Eine Grundgröße: alle Maße der Oberfläche sind rem. Tablet = größere Grundgröße, nicht andere Regeln.
+   2. Die Bühne kennt ihre Größe: #buehne ist ein Container. Was von der freien Höhe abhängt, rechnet
+      mit cqh/cqw der Bühne – nie mit dvh minus einer geschätzten Zahl.
+   3. Rollende Flächen stauchen nichts: Kinder einer rollenden Ansicht haben flex-shrink 0.
+      Passt etwas nicht, rollt die Ansicht – es überlappt nie.
+   4. Systemränder werden genau einmal gezählt: oben im Kopf (oder an der Bühne, wenn der Kopf fehlt),
+      unten im Fuß und in Überlagerungen, seitlich an #app. */
 
 /* ---------- Schrift ---------- */
 @font-face { font-family: 'Inter Schule'; src: url('../../../../assets/fonts/Inter-Medium.woff2') format('woff2'); font-weight: 400 500; font-display: block; }
@@ -8,8 +20,8 @@
 /* ---------- Grundregeln ---------- */
 * { box-sizing: border-box; }
 button {
-  font-family: 'Inter Schule', system-ui, sans-serif;
-  font-feature-settings: 'cv05' 1, 'cv11' 1;
+  font-family: var(--schrift);
+  font-feature-settings: var(--schrift-formen);
   font-size: inherit;
   color: inherit;
   border: 0;
@@ -22,17 +34,17 @@ button {
 img { -webkit-user-drag: none; user-select: none; max-width: 100%; }
 h1, h2, h3, h4, p { margin: 0; }
 svg { width: 1.5rem; height: 1.5rem; flex: none; }
-html { margin: 0; height: 100%; overflow: hidden; background: linear-gradient(#22335F, var(--nacht-1) 70%) fixed; }
+html { margin: 0; height: 100%; overflow: hidden; background: linear-gradient(var(--nacht-hell), var(--nacht-1) 70%) fixed; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 body {
   margin: 0;
   height: 100%;
   overflow: hidden;
-  font-family: 'Inter Schule', system-ui, sans-serif;
-  font-feature-settings: 'cv05' 1, 'cv11' 1;
+  font-family: var(--schrift);
+  font-feature-settings: var(--schrift-formen);
   color: var(--tinte);
   -webkit-tap-highlight-color: transparent;
   overscroll-behavior: none;
-  background: linear-gradient(#22335F, var(--nacht-1) 70%) fixed;
+  background: linear-gradient(var(--nacht-hell), var(--nacht-1) 70%) fixed;
 }
 html :focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
 html :focus-visible:where(:not(.bkarte)) { box-shadow: 0 0 0 7px rgba(244, 194, 67, .75); border-radius: inherit; }
@@ -43,20 +55,21 @@ html :focus-visible:where(:not(.bkarte)) { box-shadow: 0 0 0 7px rgba(244, 194, 
 .s-r { color: var(--rot); }
 .ohne-silben .s-b, .ohne-silben .s-r { color: inherit; }
 
+/* ---------- Grundgröße je Gerät (der einzige Ort für Geräte-Stufen) ---------- */
+@media (min-width: 600px) and (min-height: 700px) { :root { font-size: 112.5%; --lese-skala: 1.1; } }
+@media (min-width: 900px) and (min-height: 700px) { :root { font-size: 118.75%; --lese-skala: 1.15; } }
+@media (min-width: 1100px) and (min-height: 760px) { :root { font-size: 125%; --lese-skala: 1.2; } }
+/* wenig Höhe (kleines Telefon, Telefon quer, Tastatur offen): alles Senkrechte wird knapper */
+@media (max-height: 640px) { :root { --knopf-h: 3rem; --knopf-h-still: 2.75rem; --luft: var(--a-2); --kopf-knopf: 2.5rem; } }
+
 /* ---------- Schale ---------- */
 #app {
-  height: 100dvh;
-  max-width: 35rem;
-  margin: 0 auto;
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto;
-  grid-template-columns: minmax(0, 1fr);
-  position: relative;
-  background: var(--papier);
-  overflow: hidden;
+  position: fixed; inset: 0; padding: 0 var(--rechts) 0 var(--links);
+  display: grid; grid-template: auto minmax(0, 1fr) auto / minmax(0, 1fr);
+  overflow: hidden; isolation: isolate; touch-action: manipulation; /* kein Doppeltipp-Zoom */
+  background: linear-gradient(var(--nacht-hell), var(--nacht-1) 70%);
 }
-#app[data-m="lesen"], #app[data-m="text"] { background: var(--papier) radial-gradient(circle at 20% 0, #FFFFFF 0, transparent 55%); }
-#app[data-m="zug"], #app[data-m="haken"], #app[data-m="titel"] { color: #fff; background: linear-gradient(#22335F, var(--nacht-1) 70%); }
+#app[data-m="zug"], #app[data-m="haken"], #app[data-m="titel"] { color: #fff; }
 #app[data-m="zug"]::before, #app[data-m="haken"]::before, #app[data-m="titel"]::before {
   content: '';
   position: absolute;
@@ -67,138 +80,154 @@ html :focus-visible:where(:not(.bkarte)) { box-shadow: 0 0 0 7px rgba(244, 194, 
   mask-image: linear-gradient(#000 0, transparent 62%);
 }
 #app[data-m="brett"] { background: var(--nacht-1); }
+#buehne { grid-row: 2; position: relative; min-width: 0; min-height: 0; overflow: hidden; container: buehne / size; }
+#buehne > .ein2:not(.probe) { animation: wechselEin .26s ease-out backwards; }
+/* Ansichten ohne Kopf (Titel, Vorgeschichte, Kapitelkarte, Fallkarte, Finale): die Bühne hält den oberen Systemrand frei */
+.kopf[hidden] ~ #buehne { margin-top: var(--oben); }
 
-/* ---------- Kopf ---------- */
-.kt { flex: 1; min-width: 0; display: flex; flex-direction: column; line-height: 1.15; padding-left: .25rem; }
-.kt span { font-size: .78125rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #C9D3F2; opacity: 1; }
-.kt .s-b, .kt .s-r { color: inherit; }
-.kb.aa { font-weight: 800; font-size: 1.0625rem; }
-.kb i {
-  position: absolute;
-  top: -.25rem;
-  right: -.25rem;
-  min-width: 1.25rem;
-  height: 1.25rem;
-  padding: 0 .3125rem;
-  border-radius: .625rem;
-  background: var(--senf);
-  color: var(--senf-tinte);
-  font: 800 .75rem/1.25rem inherit;
-  font-style: normal;
-  text-align: center;
-}
-.kb i:empty { display: none; }
-.perl::before { content: ''; width: 1rem; height: 1rem; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #FFF4C8, var(--senf) 55%, var(--senf-dunkel)); }
-#app[data-m="zug"] .kopf, #app[data-m="haken"] .kopf { background: var(--nacht-1); }
-.kb.brettb { width: auto; padding: 0 .75rem 0 .625rem; gap: .375rem; display: flex; align-items: center; font-weight: 800; font-size: .875rem; }
-.kb.brettb svg { width: 1.375rem; height: 1.375rem; }
-#app[data-m="brett"] .kopf { background: var(--nacht-1); }
-@media (max-width: 420px) {
-  .kt span { font-size: .71875rem; }
-  .kb.brettb { padding: 0 .5rem 0 .4375rem; gap: .25rem; }
-}
-.mondp svg { width: 100%; height: 100%; display: block; }
-.mondp svg.voll { filter: drop-shadow(0 0 5px rgba(246, 211, 91, .9)); }
-.kb {
-  width: 2.75rem;
-  height: 2.75rem;
-  border-radius: .875rem;
-  display: grid;
-  place-items: center;
-  background: rgba(255, 255, 255, .1);
+/* ---------- Kopf: erste Zeile Knöpfe und Titel, zweite Zeile der Weg der Raupe (eigene Zeile – verdeckt nie Text) ---------- */
+.kopf {
+  grid-row: 1; position: relative; z-index: var(--z-kopf);
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--a-2);
+  padding: calc(var(--oben) + var(--a-2)) max(var(--rand), calc((100% - var(--mass-spiel-quer)) / 2)) var(--a-1);
   color: #fff;
-  position: relative;
-  flex: none;
-  transition: transform .12s ease, box-shadow .12s ease, filter .2s, opacity .2s;
+  background: radial-gradient(120% 140% at 80% -40%, #34478A 0, transparent 60%), linear-gradient(var(--kopf-1), var(--kopf-2));
+  box-shadow: 0 1px 0 rgba(244, 194, 67, .35), 0 8px 18px rgba(0, 0, 0, .28);
+}
+.kt { flex: 1; min-width: 0; display: flex; flex-direction: column; line-height: var(--zh-eng); padding-left: var(--a-1); }
+.kt b { font-weight: 800; font-size: var(--t-knopf); letter-spacing: .01em; white-space: nowrap; }
+.kt span { font-size: var(--t-fein); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--auf-nacht-leise); }
+.kt .s-b, .kt .s-r { color: inherit; }
+/* schmale Kopfzeile: der Kapitelname fällt weg, „Kapitel n“ bleibt */
+@media (max-width: 479px) { .kt-titel { display: none; } }
+.kb {
+  width: var(--kopf-knopf); height: var(--kopf-knopf); border-radius: var(--r-feld);
+  display: grid; place-items: center; position: relative; flex: none;
+  background: rgba(255, 255, 255, .1); color: #fff;
+  transition: transform var(--dauer-druck) ease, box-shadow var(--dauer-druck) ease, filter .2s, opacity .2s;
 }
 .kb:active { transform: translateY(2px) scale(.985); }
-.kopf .kb.aa { border-radius: 50%; width: 2.625rem; height: 2.625rem; background: rgba(255, 255, 255, .08); box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .28); }
-.kt b { font-weight: 800; font-size: 1.125rem; letter-spacing: .01em; }
-.perl {
-  font-weight: 800;
-  display: flex;
-  align-items: center;
-  gap: .3125rem;
-  background: rgba(0, 0, 0, .28);
-  box-shadow: inset 0 0 0 1.5px rgba(244, 194, 67, .55);
-  border-radius: 62.4375rem;
-  padding: .3125rem .6875rem .3125rem .4375rem;
-  font-size: .9375rem;
-}
-.mondp { flex: none; display: block; width: 1.875rem; height: 1.875rem; filter: drop-shadow(0 0 6px rgba(246, 211, 91, .55)); }
-.kweg::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(90deg, transparent 0 calc(100% / var(--teile, 6) - 3px), #131B3C calc(100% / var(--teile, 6) - 3px) calc(100% / var(--teile, 6)));
-  border-radius: 3px;
-}
-.kweg i {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: var(--weg, 0%);
-  border-radius: 3px;
-  background: linear-gradient(90deg, #8FCB52, #F4C243);
-  transition: width .9s cubic-bezier(.3, 1, .4, 1);
-}
-.kopf {
-  display: flex;
-  align-items: center;
-  color: #fff;
-  position: relative;
-  z-index: 3;
-  grid-row: 1;
-  gap: .5rem;
-  padding: calc(var(--oben) + .5625rem) .75rem 1.0625rem;
-  background: radial-gradient(120% 140% at 80% -40%, #34478A 0, transparent 60%), linear-gradient(#1B2752, #131B3C);
-  box-shadow: 0 1px 0 rgba(244, 194, 67, .35), 0 8px 18px rgba(0, 0, 0, .28);
-  padding-bottom: 1.5rem;
-}
-.kopf .kb.brettb {
-  position: relative;
-  background: rgba(255, 255, 255, .08);
-  color: #FFE9A6;
-  border-radius: .75rem;
-  box-shadow: inset 0 0 0 1.5px rgba(244, 194, 67, .6);
-  font-weight: 800;
-  padding: 0 .75rem 0 .625rem;
-  height: 2.625rem;
-}
-.kopf .kb.brettb::before { content: ''; position: absolute; top: -.3125rem; left: .5rem; width: 40%; height: .4375rem; border-radius: .3125rem .3125rem 0 0; background: #F3E3BB; display: none; }
+.kb.aa { font-weight: 800; font-size: var(--t-text); }
+.kopf .kb.aa { border-radius: 50%; background: rgba(255, 255, 255, .08); box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .28); }
+.kb.brettb { width: auto; min-width: var(--kopf-knopf); justify-content: center; padding: 0 var(--a-3) 0 .625rem; gap: .375rem; display: flex; align-items: center; font-weight: 800; font-size: var(--t-klein); }
+.kb.brettb svg { width: 1.375rem; height: 1.375rem; }
+.kopf .kb.brettb { background: rgba(255, 255, 255, .08); color: var(--senf-hell); border-radius: var(--a-3); box-shadow: inset 0 0 0 1.5px rgba(244, 194, 67, .6); }
 .kopf .kb.brettb:active { transform: translateY(1px); box-shadow: inset 0 0 0 1.5px rgba(244, 194, 67, .9); }
-.kweg { position: absolute; border-radius: 3px; background: rgba(255, 255, 255, .13); -webkit-mask-image: none; bottom: .5rem; height: .4375rem; left: 1.375rem; right: 1.375rem; }
+@media (max-width: 359px) { .kb.brettb { padding: 0 var(--a-2); } .kb.brettb span { display: none; } }
+.perl {
+  font-weight: 800; font-size: var(--t-klein); display: flex; align-items: center; gap: .3125rem; flex: none;
+  background: rgba(0, 0, 0, .28); box-shadow: inset 0 0 0 1.5px rgba(244, 194, 67, .55); border-radius: var(--r-rund); padding: .3125rem .6875rem .3125rem .4375rem;
+}
+.perl::before { content: ''; width: 1rem; height: 1rem; border-radius: 50%; background: var(--perle); }
+.mondp { flex: none; display: block; width: 1.875rem; height: 1.875rem; filter: drop-shadow(0 0 6px rgba(246, 211, 91, .55)); }
+.mondp svg { width: 100%; height: 100%; display: block; }
+.mondp svg.voll { filter: drop-shadow(0 0 5px rgba(246, 211, 91, .9)); }
+/* Weg der Raupe: Schiene unten in der zweiten Zeile, die Raupe steht darauf */
+.kweg { --schiene: .4375rem; --schiene-u: .3125rem; order: 9; flex: 0 0 100%; position: relative; height: 1.875rem; }
+.kweg::before, .kweg::after, .kweg i { content: ''; position: absolute; left: 0; bottom: var(--schiene-u); height: var(--schiene); border-radius: 3px; }
+.kweg::before { right: 0; background: rgba(255, 255, 255, .13); }
+.kweg i { width: var(--weg, 0%); background: linear-gradient(90deg, #8FCB52, var(--senf)); transition: width .9s var(--gleiten); }
+.kweg::after { right: 0; background: repeating-linear-gradient(90deg, transparent 0 calc(100% / var(--teile, 6) - 3px), var(--kopf-2) calc(100% / var(--teile, 6) - 3px) calc(100% / var(--teile, 6))); }
 .kweg img {
-  position: absolute;
-  z-index: 2;
-  object-fit: contain;
-  transform: translateX(-50%);
-  transition: left .9s cubic-bezier(.3, 1, .4, 1);
-  width: 2.125rem;
-  height: 2.125rem;
-  bottom: -.25rem;
-  left: var(--weg, 0%);
-  filter: drop-shadow(0 0 5px rgba(244, 194, 67, .8)) drop-shadow(0 2px 2px rgba(0, 0, 0, .5));
+  position: absolute; z-index: 2; bottom: 1px; left: clamp(.8rem, var(--weg, 0%), calc(100% - .8rem));
+  width: 1.625rem; height: 1.625rem; object-fit: contain; transform: translateX(-50%);
+  transition: left .9s var(--gleiten); filter: drop-shadow(0 0 5px rgba(244, 194, 67, .8)) drop-shadow(0 2px 2px rgba(0, 0, 0, .5));
+}
+@media (max-height: 640px) { .kweg { height: 1.5rem; } .kweg img { width: 1.375rem; height: 1.375rem; } }
+
+/* ---------- Fuß: Knöpfe nie breiter als --mass-knopf, unten der Systemrand (genau einmal) ---------- */
+#fuss { grid-row: 3; position: relative; z-index: var(--z-fuss); padding: var(--a-2) var(--rand) calc(var(--unten) + var(--a-3)); }
+.fz { display: flex; flex-direction: column; gap: var(--a-2); width: min(100%, var(--mass-knopf)); margin-inline: auto; }
+.fl { display: flex; align-items: center; gap: .625rem; }
+#app[data-m="brett"] #fuss { background: linear-gradient(var(--kopf-1), var(--kopf-2)); box-shadow: 0 -1px 0 rgba(244, 194, 67, .3); padding-top: var(--a-3); }
+
+/* ---------- Ansichtsart „Mitte“: Titel, Vorgeschichte, Kapitelkarte, Haken, Ausblick, Schlusswort ---------- */
+.titel, .intro, .kapk, .haken, .fin.raupe-wort {
+  position: absolute; inset: 0; overflow: hidden auto;
+  display: flex; flex-direction: column; align-items: center; justify-content: safe center; gap: var(--a-4);
+  padding: var(--a-5) max(var(--rand), calc((100cqw - 40rem) / 2)) var(--a-3); text-align: center;
+}
+:where(.titel, .intro, .kapk, .haken, .fin.raupe-wort) > :where(:not(.lampe, .himmel)) { position: relative; flex-shrink: 0; }
+
+/* ---------- Ansichtsart „Lesen“: ein Blatt Papier; auf breiten Bildschirmen liegt es auf dem Nachthimmel ---------- */
+#app[data-m="lesen"] { --blatt-b: calc(var(--t-lesen) * 30 + 6rem); }
+#app[data-m="lesen"] #buehne, #app[data-m="lesen"] #fuss {
+  justify-self: center; background-color: var(--papier); color: var(--tinte);
+  /* volle Breite, solange neben dem Blatt nicht wenigstens 4rem Himmel je Seite bleiben */
+  width: min(100%, calc(var(--blatt-b) + clamp(0px, calc((var(--blatt-b) + 8rem - 100vw) * 999), 100vw)));
+}
+#app[data-m="lesen"] #buehne { background-image: radial-gradient(circle at 20% 0, #FFFFFF 0, transparent 55%); }
+#app[data-m="lesen"] #fuss { padding-top: var(--a-3); }
+#app[data-m="lesen"] #fuss::before { content: ''; position: absolute; left: 1.125rem; right: 1.125rem; top: 2px; height: 2px; background: repeating-linear-gradient(90deg, #E2D4B0 0 7px, transparent 7px 13px); }
+.blatt {
+  --rand-blatt: clamp(1.25rem, 5cqw, 3rem);
+  position: absolute; inset: 0; overflow: hidden auto;
+  padding: .875rem max(var(--rand-blatt), calc((100cqw - var(--mass-lesen)) / 2)) var(--a-1);
+  font-size: var(--t-lesen); line-height: var(--zh-lesen); font-weight: 500;
+}
+.blatt.probe { visibility: hidden; pointer-events: none; }
+.blatt.probe > div { display: flow-root; } /* misst auch ein umflossenes Bild mit */
+.blatt .foto { width: min(94%, calc(40cqh * 1.5)); }
+/* breite, niedrige Bühne (Tablet quer): das Bild steht links, der Text läuft daneben weiter */
+@container buehne (min-aspect-ratio: 5 / 4) and (min-width: 36rem) {
+  .blatt .foto { float: left; width: min(46%, calc(62cqh * 1.5)); margin: .2em 1.1em .5em 0; }
 }
 
-/* ---------- Bühne und Fuß ---------- */
-#buehne { grid-row: 2; position: relative; min-height: 0; overflow: hidden; }
-#fuss { grid-row: 3; position: relative; z-index: 2; padding: .5rem .875rem calc(var(--unten) + .75rem); }
-.fl { display: flex; align-items: center; gap: .625rem; }
-.fz { display: flex; flex-direction: column; gap: .5rem; }
-#buehne > .ein2:not(.probe) { animation: wechselEin .26s ease-out backwards; }
-#app[data-m="lesen"] #fuss { background: linear-gradient(rgba(255, 252, 244, 0), var(--papier) 30%); padding-top: .75rem; }
-#app[data-m="lesen"] #fuss::before {
-  content: '';
-  position: absolute;
-  left: 1.125rem;
-  right: 1.125rem;
-  top: 2px;
-  height: 2px;
-  background: repeating-linear-gradient(90deg, #E2D4B0 0 7px, transparent 7px 13px);
+/* ---------- Ansichtsart „Rätsel“: Kopf · Aufgabe · Spielfläche · Raupe ---------- */
+.zug, .fin {
+  /* Höhe, die das Hauptbild eines Spiels haben darf: Bühne minus Nebenhöhen.
+     --neben-kopf: Titel, Aufgabe, Ränder (hier). --neben-spiel: eigene Teile des Spiels (je Spiel an .zug[data-art]). */
+  --neben-kopf: 11rem; --neben-spiel: 0rem; --bild-min: 9rem;
+  --bild-h: max(var(--bild-min), calc(100cqh - var(--neben-kopf) - var(--neben-spiel)));
 }
-#app[data-m="brett"] #fuss { background: linear-gradient(#1B2752, #131B3C); box-shadow: 0 -1px 0 rgba(244, 194, 67, .3); padding-top: .75rem; }
+.zug {
+  position: absolute; inset: 0; overflow: hidden auto;
+  display: flex; flex-direction: column; gap: var(--luft);
+  padding: var(--a-4) max(var(--rand), calc((100cqw - var(--mass-spiel)) / 2)) var(--a-3);
+  animation: ein .3s both;
+}
+:where(.zug) > :where(:not(.lampe, .wzfx)) { position: relative; flex-shrink: 0; }
+.zr { margin-top: auto; min-height: var(--a-1); color: var(--tinte); }
+/* breite, niedrige Bühne (Tablet quer): Aufgabe und Raupe links, Spielfläche rechts in voller Höhe */
+@container buehne (min-aspect-ratio: 5 / 4) and (min-width: 46rem) {
+  .zug[data-art] {
+    --neben-kopf: 4.5rem;
+    display: grid; grid-template-columns: minmax(15rem, 32%) minmax(0, 1fr); grid-template-rows: auto auto 1fr;
+    column-gap: var(--a-5); align-content: start;
+    padding-inline: max(var(--rand), calc((100cqw - var(--mass-spiel-quer)) / 2));
+  }
+  .zug[data-art] > .zk { grid-area: 1 / 1; }
+  .zug[data-art] > .zt1 { grid-area: 2 / 1; }
+  .zug[data-art] > .zr { grid-area: 3 / 1; align-self: end; margin-top: 0; }
+  .zug[data-art] > .zi { grid-area: 1 / 2 / -1 / 2; align-self: safe center; margin-top: 0; }
+}
+
+/* ---------- Ansichtsart „Brett“ ---------- */
+.brett {
+  position: absolute; inset: 0; overflow: hidden auto;
+  display: flex; flex-direction: column; gap: var(--luft);
+  padding: var(--a-4) max(var(--a-4), calc((100cqw - var(--mass-spiel)) / 2)) .875rem;
+}
+.brett > * { flex-shrink: 0; }
+.ak { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--a-2); }
+@container buehne (min-aspect-ratio: 5 / 4) and (min-width: 46rem) {
+  #buehne > .brett { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); column-gap: var(--a-5); align-content: start;
+    padding-inline: max(var(--a-4), calc((100cqw - var(--mass-spiel-quer)) / 2)); }
+  #buehne > .brett > .ak { grid-column: 1 / -1; }
+  #buehne > .brett > .wischz { grid-column: 1; grid-row: 2; }
+  #buehne > .brett > .bgrid { grid-column: 1; grid-row: 3 / span 8; }
+  #buehne > .brett > h3, #buehne > .brett > .fr-frage, #buehne > .brett > .fragen, #buehne > .brett > .codez { grid-column: 2; }
+}
+
+/* ---------- Überlagerungen: Blatt von unten (Telefon) oder Dialog in der Mitte (ab 600 px) ---------- */
+#ueber:empty { display: none; }
+.schl {
+  position: absolute; inset: 0; z-index: var(--z-ueber); display: flex; align-items: flex-end; justify-content: center;
+  padding: calc(var(--oben) + var(--a-4)) var(--rechts) 0 var(--links); background: var(--schleier); animation: ein .2s both;
+}
+.schl > * { max-height: 100%; overflow: hidden auto; }
+.schl.mitte { align-items: center; z-index: var(--z-ueber-mitte); padding-bottom: calc(var(--unten) + var(--a-4)); }
+@media (min-width: 600px) and (min-height: 600px) { .schl { align-items: center; padding-bottom: calc(var(--unten) + var(--a-4)); } }
 
 /* ---------- Himmel und Lampe ---------- */
 .lampe {
@@ -253,22 +282,10 @@ html :focus-visible:where(:not(.bkarte)) { box-shadow: 0 0 0 7px rgba(244, 194, 
 .himmel .s6 { left: 88%; top: 19%; animation-delay: 4.1s; background: #FFE9A6; }
 .himmel .s7 { left: 5%; top: 27%; width: 3px; height: 3px; animation-delay: 2s; }
 
-/* ---------- Überlagerungen ---------- */
-#ueber:empty { display: none; }
-.schl { position: absolute; inset: 0; z-index: 5; background: rgba(12, 18, 40, .62); display: flex; align-items: flex-end; animation: ein .2s both; }
-.schl.mitte { align-items: center; justify-content: center; z-index: 6; }
-
-/* ---------- Rechner (ab 900 px) ---------- */
-@media (min-width: 900px) {
-  html {
-    background: radial-gradient(circle at 80% 13%, rgba(246, 211, 91, .2), transparent 14%), radial-gradient(ellipse at 50% 115%, rgba(70, 100, 180, .38), transparent 62%), linear-gradient(#0C1430, #18274E 62%, #141F3F) fixed;
-  }
-  body {
-    background: radial-gradient(circle at 80% 13%, rgba(246, 211, 91, .2), transparent 14%), radial-gradient(ellipse at 50% 115%, rgba(70, 100, 180, .38), transparent 62%), linear-gradient(#0C1430, #18274E 62%, #141F3F) fixed;
-    display: grid;
-    place-items: center;
-    position: relative;
-  }
+/* ---------- sehr großer Bildschirm (Rechner): die App liegt als Buch auf dem Nachthimmel ---------- */
+@media (min-width: 1440px) and (min-height: 800px) {
+  html, body { background: radial-gradient(circle at 80% 13%, rgba(246, 211, 91, .2), transparent 14%), radial-gradient(ellipse at 50% 115%, rgba(70, 100, 180, .38), transparent 62%), linear-gradient(var(--nacht-0), #18274E 62%, var(--nacht-1)) fixed; }
+  body { display: grid; place-items: center; position: relative; }
   body::before {
     content: '';
     position: fixed;
@@ -278,11 +295,7 @@ html :focus-visible:where(:not(.bkarte)) { box-shadow: 0 0 0 7px rgba(244, 194, 
     background-image: radial-gradient(1.4px 1.4px at 8% 12%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 17% 41%, #fff 50%, transparent 51%), radial-gradient(1.6px 1.6px at 26% 22%, #FFE9A6 50%, transparent 51%), radial-gradient(1px 1px at 12% 74%, #fff 50%, transparent 51%), radial-gradient(1.3px 1.3px at 33% 88%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 5% 55%, #fff 50%, transparent 51%), radial-gradient(1.3px 1.3px at 66% 9%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 74% 31%, #fff 50%, transparent 51%), radial-gradient(1.6px 1.6px at 91% 44%, #FFE9A6 50%, transparent 51%), radial-gradient(1px 1px at 84% 68%, #fff 50%, transparent 51%), radial-gradient(1.3px 1.3px at 70% 91%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 95% 85%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 58% 4%, #fff 50%, transparent 51%);
   }
   #app {
-    width: min(100%, 38.75rem);
-    max-width: none;
-    height: min(100dvh, 57.5rem);
-    border-radius: 1.75rem;
+    position: relative; inset: auto; z-index: 1; width: min(100vw - 4rem, var(--mass-app)); height: min(100dvh - 3rem, 56rem); border-radius: 1.75rem;
     box-shadow: 0 0 0 1px rgba(255, 255, 255, .1), 0 0 0 9px rgba(11, 17, 40, .5), 0 34px 90px rgba(0, 0, 0, .55), 0 0 140px rgba(244, 194, 67, .08);
-    z-index: 1;
   }
 }

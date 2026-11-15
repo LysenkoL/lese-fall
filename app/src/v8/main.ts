@@ -95,7 +95,7 @@ function mondPhase(f: number): string {
 function kopf() {
   $('.kopf').hidden = stand.view !== 'spur';
   $('#kT1').textContent = `Spur ${SP(stand.spur).spur}`;
-  $('#kT2').innerHTML = `${UI.kapitel} ${kap().nr} · ${kap().titelH}`;
+  $('#kT2').innerHTML = `${UI.kapitel} ${kap().nr}<span class="kt-titel"> · ${kap().titelH}</span>`;
   $('#kPerl').textContent = String(perlen());
   { const li = kapSpuren(kap().nr); const kw = $('.kweg'); kw.style.setProperty('--weg', (li.filter((n) => stand.fertig.includes(n)).length / li.length * 100) + '%'); kw.style.setProperty('--teile', String(li.length)); ($('#kWegR') as HTMLImageElement).src = fig('raupe/lacht'); }
   $('#kMond').innerHTML = mondPhase(Math.min(1, stand.fertig.length / D.spuren.length));

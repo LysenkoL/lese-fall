@@ -1,12 +1,9 @@
 /* Lese-Fall · v8 · Rätselrahmen (.zug, .zi, .zr) und die Spiele der Kapitel 1–2, je Spiel ein Block mit allen Regeln. */
 
 /* ---------- Rätselrahmen ---------- */
-.zug > :not(.lampe) { position: relative; flex-shrink: 0; }
 .zk h2 { font-weight: 800; font-size: 1.5625rem; line-height: 1.15; margin-top: .5rem; }
 .zk h2 .s-b, .zk h2 .s-r, .zt1 .s-b, .zt1 .s-r { color: inherit; }
 .zt1 { font-size: 1.125rem; line-height: 1.45; font-weight: 600; color: #EEF1FA; }
-.zr { min-height: .25rem; color: var(--tinte); margin-top: auto; }
-.zug { position: absolute; inset: 0; overflow-y: auto; padding: 1rem 1rem .75rem; display: flex; flex-direction: column; gap: .75rem; animation: ein .3s both; overflow-x: hidden; }
 .zt1.gross { font-size: 1.4375rem; font-weight: 800; color: #fff; text-align: center; }
 .zkr { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
 .zi:empty::before { display: none; }
@@ -37,7 +34,7 @@
 .bsk.wahl { border-color: var(--senf); }
 .bsk.nein { animation: wackel .4s; }
 .bsk .s-b, .bsk .s-r { color: inherit; }
-.bs-knoepfe { display: grid; gap: .625rem; grid-template-columns: 1fr; }
+.bs-knoepfe { display: grid; gap: .625rem; grid-template-columns: minmax(0, 1fr); }
 .bs-lose { display: flex; flex-wrap: wrap; justify-content: center; gap: .375rem; min-height: 3.25rem; }
 .feld .bk { transform: none; transition: none; width: 100%; height: 100%; box-shadow: 0 2px 0 #D8CDB2; }
 .feld { width: 2.75rem; height: 3rem; border-radius: .5rem; border: 3px dashed rgba(255, 255, 255, .45); background: rgba(255, 255, 255, .08); padding: 0; display: block; }
@@ -65,7 +62,7 @@
 .bk.ok { outline: 4px solid var(--senf); outline-offset: -1px; background: #FFF6D6; }
 .bk.uebrig { outline: 3px dashed var(--senf); outline-offset: 1px; animation: none; }
 .feld.leer { border: 3px dashed var(--senf); animation: puls 1s 3; }
-.bs-knoepfe .bsk { width: max-content; max-width: 100%; margin: .5rem auto 0; padding: .375rem 1.125rem; font-size: 1.0625rem; }
+.bs-knoepfe .bsk { width: fit-content; max-width: 100%; margin: .5rem auto 0; padding: .375rem 1.125rem; font-size: 1.0625rem; }
 .bs-knoepfe .bsk img { width: 2.375rem; height: 2.875rem; }
 .bs-knoepfe .bsk.puls { border-color: var(--senf); animation: knopfpuls 1.1s ease-in-out infinite; }
 .bsk {
@@ -107,23 +104,24 @@
 }
 .ub-bild .ding { position: absolute; transform: translate(-50%, -50%); max-width: none; height: auto; pointer-events: none; }
 .ub-bild .ring:not(.miss) { width: 2.75rem; height: 2.75rem; margin: -1.375rem 0 0 -1.375rem; border-width: 4px; }
-.ub { margin: 0; display: flex; flex-direction: column; gap: .25rem; width: min(100%, max(15.625rem, calc((100dvh - 32.5rem) / 2 * 1.5))); }
+.ub { margin: 0; display: flex; flex-direction: column; gap: .25rem; width: min(100%, calc(var(--bild-h) * 1.5)); }
 .ub-paar { gap: .375rem; display: grid; grid-template-columns: minmax(0, 1fr); justify-items: center; position: relative; }
-.ub-paar > .ub { grid-area: 1 / 1; width: min(100%, max(16.25rem, calc((100dvh - 27.5rem) * 1.5))); }
+.zug[data-art="unterschiede"] { --neben-spiel: 8rem; }
+.ub-paar > .ub { grid-area: 1 / 1; width: min(100%, calc(var(--bild-h) * 1.5)); }
 .ub-paar > .ub > .tab { display: none; }
 .ub-paar[data-zeig="vorhin"] > .ub[data-p="jetzt"], .ub-paar[data-zeig="jetzt"] > .ub[data-p="vorhin"] { visibility: hidden; pointer-events: none; }
-.ub-lid { grid-area: 1 / 1; width: min(100%, max(16.25rem, calc((100dvh - 27.5rem) * 1.5))); border-radius: .75rem; background: #1B2752; opacity: 0; pointer-events: none; z-index: 3; }
+.ub-lid { grid-area: 1 / 1; width: min(100%, calc(var(--bild-h) * 1.5)); border-radius: .75rem; background: #1B2752; opacity: 0; pointer-events: none; z-index: 3; }
 .ub-paar.blinzel .ub-lid { animation: ubLid .28s ease-in-out; }
 .ub-schalter {
   align-self: center;
   display: inline-flex;
   background: rgba(0, 0, 0, .28);
-  border-radius: 62.4375rem;
+  border-radius: var(--r-rund);
   padding: .25rem;
   gap: .25rem;
   box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .25);
 }
-.ub-schalter button { border-radius: 62.4375rem; padding: .5rem 1.375rem; font-weight: 800; font-size: 1rem; color: #fff; background: transparent; min-width: 6.875rem; }
+.ub-schalter button { border-radius: var(--r-rund); padding: .5rem 1.375rem; font-weight: 800; font-size: 1rem; color: #fff; background: transparent; min-width: 6.875rem; min-height: var(--tipp); }
 .ub-schalter button.an { background: linear-gradient(#FFD564, #F0B62E); color: #26221C; box-shadow: 0 3px 0 #B8851A; }
 .ub-schalter button span span { color: inherit; }
 .ub-hin { text-align: center; color: #fff; font-size: .875rem; font-weight: 600; opacity: .85; }
@@ -149,13 +147,13 @@
 .vb-o:active { transform: translateY(2px) scale(.99); box-shadow: 0 1px 0 #D8CDB2, 0 4px 8px rgba(0, 0, 0, .2); }
 .vb {
   position: relative;
-  width: min(100%, 18.75rem, 36dvh);
+  width: min(100%, 18.75rem, 43cqh);
   aspect-ratio: 1;
   border-radius: 1.125rem;
   box-shadow: 0 12px 26px rgba(0, 0, 0, .35);
   overflow: hidden;
   align-self: center;
-  max-width: min(100%, 30dvh);
+  max-width: min(100%, 36cqh);
 }
 
 /* ---------- Spiel: Merkmale ---------- */
@@ -287,7 +285,7 @@
   position: relative;
 }
 .rh-karte img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: .375rem; pointer-events: none; }
-.rh-karte span { font-size: .78125rem; line-height: 1.2; font-weight: 700; text-align: center; color: var(--tinte); }
+.rh-karte span { font-size: .78125rem; line-height: 1.2; overflow-wrap: anywhere; font-weight: 700; text-align: center; color: var(--tinte); }
 .rh-karte .s-b, .rh-karte .s-r { color: inherit; }
 .rh-karte.sel { border-color: var(--senf); }
 .rh-karte.zieht { z-index: 20; transition: none; box-shadow: 0 16px 24px rgba(0, 0, 0, .45); }
@@ -296,7 +294,7 @@
 .rh-plaetze:has( > :nth-child(6)), .rh-pool:has( > :nth-child(6)) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .zi:has(.rh-plaetze > :nth-child(6)) .rh-karte img { aspect-ratio: 3 / 2; }
 .zi:has(.rh-plaetze > :nth-child(6)) .rh-platz, .zi:has(.rh-plaetze > :nth-child(6)) .rh-zelle { min-height: 5.75rem; }
-.zi:has(.rh-plaetze > :nth-child(6)) .rh-karte span { font-size: .71875rem; }
+.zi:has(.rh-plaetze > :nth-child(6)) .rh-karte span { font-size: var(--t-etikett); }
 @media (min-width: 560px) {
   .rh-plaetze:has( > :nth-child(6)), .rh-pool:has( > :nth-child(6)) { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .375rem; }
 }
@@ -366,7 +364,7 @@
 .as-so:active { transform: translateY(2px) scale(.99); box-shadow: 0 1px 0 #D8CDB2, 0 4px 8px rgba(0, 0, 0, .2); }
 .as-cm { display: block; font-size: .82em; font-weight: 700; opacity: .7; }
 .as-crop { display: block; width: 100%; aspect-ratio: 1; transition: transform .3s; }
-#app .as-k > img { width: 100%; object-fit: contain; display: block; height: clamp(5.25rem, 14dvh, 8.75rem); aspect-ratio: auto; }
+#app .as-k > img { width: 100%; object-fit: contain; display: block; height: clamp(5.25rem, 17cqh, 8.75rem); aspect-ratio: auto; }
 
 /* ---------- Spiel: Zwei Kisten ---------- */
 .so-ziele { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .625rem; }
@@ -427,13 +425,13 @@
 .so-ziele.vier .so-ding.klein { width: 4rem; }
 .so-ding span { font-size: .84375rem; font-weight: 800; line-height: 1.15; text-align: center; overflow-wrap: normal; word-break: normal; hyphens: none; }
 .so-ding.klein { min-height: 0; padding: 3px; cursor: default; box-shadow: none; width: 5.75rem; }
-.so-ding.klein span { overflow-wrap: normal; word-break: normal; hyphens: none; font-size: .6875rem; }
+.so-ding.klein span { overflow-wrap: normal; word-break: normal; hyphens: none; font-size: var(--t-etikett); }
 .so-ziel.nein { animation: wackel .4s; border-color: var(--weich); background: var(--weich-bg); }
 .so-ding.nein { animation: wackel .4s; border-color: var(--weich); }
 
 /* ---------- Spiel: Wie lag der Mond? ---------- */
 .um-frage { color: #fff; font-size: 1.125rem; font-weight: 800; text-align: center; line-height: 1.3; }
-.um-tisch { position: relative; width: 100%; aspect-ratio: 5 / 4; max-height: 46dvh; margin: 0 auto; }
+.um-tisch { position: relative; width: 100%; aspect-ratio: 5 / 4; max-height: 55cqh; margin: 0 auto; }
 .um-tablett { position: absolute; left: 0; bottom: 0; width: 100%; height: auto; filter: drop-shadow(0 10px 14px rgba(0, 0, 0, .35)); pointer-events: none; }
 .um-mond { position: absolute; left: 50%; bottom: 24%; height: 80%; transform: translateX(-50%); transition: bottom .4s, transform .2s; touch-action: pan-y; }
 .um-tisch.liegt .um-mond { bottom: 16%; height: 62%; }
@@ -477,7 +475,7 @@
   gap: .375rem;
   background: rgba(255, 255, 255, .13);
   color: #fff;
-  border-radius: 62.4375rem;
+  border-radius: var(--r-rund);
   padding: .375rem .75rem .375rem .5rem;
   font-size: .90625rem;
   font-weight: 700;
