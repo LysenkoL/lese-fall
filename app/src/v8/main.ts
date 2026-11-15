@@ -4,11 +4,14 @@
  */
 import { tresorSvg, werkzeugIcon, WERKZEUGE, type Werkzeug } from './zeichnen.ts';
 import { werkzeugMoment, wzChip, wzName, belohnung } from './effekte.ts';
-import './v8.css';
+import './ui/tokens.css';
+import './ui/basis.css';
+import './ui/komponenten.css';
+import './ansichten.css';
+import './raetsel.css';
 import './k3.css';
 import './k4.css';
-import './politur.css';
-import './runde3.css';
+import './effekte.css';
 import DATA_ from '../../../04_data/buch1_v8.json';
 import { T } from '../text';
 import { bildUrl as img } from './bilder';
