@@ -1,1 +1,5 @@
 __pycache__/
+# UI-Audit: Bilder und Rohdaten bleiben lokal (mehrere GB); nur die Kurzberichte werden versioniert
+03_screens/v8/audit/**
+!03_screens/v8/audit/*/
+!03_screens/v8/audit/*/kurz.md
