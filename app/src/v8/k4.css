@@ -1,18 +1,18 @@
 /* Lese-Fall · v8 · Spiele von Kapitel 4 (Astgabeln, Faden, Nest) und das Finale (Tresor, Urkunde, Raupe hat das letzte Wort). */
 
 /* ---------- Spur 19: Astgabeln ---------- */
-.ab-wort { display: flex; justify-content: center; gap: 10px; margin: 2px 0; }
+.ab-wort { display: flex; justify-content: center; gap: .625rem; margin: 2px 0; }
 .ab-wort i {
-  width: 52px;
-  height: 58px;
-  border-radius: 12px;
+  width: 3.25rem;
+  height: 3.625rem;
+  border-radius: .75rem;
   border: 3px dashed rgba(255, 255, 255, .5);
   background: rgba(255, 255, 255, .08);
   display: grid;
   place-items: center;
   font-style: normal;
   font-weight: 800;
-  font-size: 34px;
+  font-size: 2.125rem;
   color: var(--senf-tinte, #26221C);
   transition: transform .3s;
 }
@@ -20,29 +20,29 @@
 .ab-wort.fertig i { transform: translateY(-4px) scale(1.06); }
 .ab-bild:not(.foto) { background: #BFE0F0; }
 .ab-bild > img { display: block; width: 100%; height: 100%; object-fit: fill; pointer-events: none; }
-.ab-bild .stempel.abdruck { font-size: clamp(11px, 3.2vw, 15px); width: 42%; padding: 4px 6px; }
+.ab-bild .stempel.abdruck { font-size: clamp(.6875rem, 3.2vw, .9375rem); width: 42%; padding: .25rem .375rem; }
 .ab-bild {
   position: relative;
   width: 100%;
-  max-width: 520px;
+  max-width: 32.5rem;
   align-self: center;
   margin: 0 auto;
-  border-radius: 14px;
+  border-radius: .875rem;
   border: 4px solid #fff;
   overflow: hidden;
   box-shadow: 0 10px 22px rgba(0, 0, 0, .35);
   cursor: pointer;
 }
 .ab-bild .ring { border-width: 4px; }
-.ab-ek { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.ab-ek { display: grid; grid-template-columns: 1fr 1fr; gap: .625rem; }
 .ab-e {
-  min-height: 78px;
-  padding: 8px 10px;
-  border-radius: 14px;
+  min-height: 4.875rem;
+  padding: .5rem .625rem;
+  border-radius: .875rem;
   border: 4px solid transparent;
   background: var(--papier);
   color: var(--tinte);
-  font: 800 17px/1.25 inherit;
+  font: 800 1.0625rem/1.25 inherit;
   font-family: inherit;
   text-align: center;
   box-shadow: 0 3px 0 #D8CDB2, 0 8px 14px rgba(0, 0, 0, .3);
@@ -51,18 +51,18 @@
 .ab-e .s-b, .ab-e .s-r { color: inherit; }
 .ab-e.ja { border-color: #7ACB62; background: #EAF8DF; }
 .ab-e.nein { animation: wackel .4s; }
-.ab-hin { margin-bottom: 8px; }
+.ab-hin { margin-bottom: .5rem; }
 .ab-e.falsch { opacity: .6; border-color: var(--weich); }
 
 /* ---------- Spur 22: Faden ziehen ---------- */
-.fd-zaehl { display: flex; justify-content: center; min-height: 20px; }
+.fd-zaehl { display: flex; justify-content: center; min-height: 1.25rem; }
 .fd-buehne {
   position: relative;
-  height: min(46dvh, 330px);
-  width: min(100%, 360px);
+  height: min(46dvh, 20.625rem);
+  width: min(100%, 22.5rem);
   align-self: center;
   margin: 0 auto;
-  border-radius: 16px;
+  border-radius: 1rem;
   border: 4px solid #fff;
   overflow: hidden;
   background: radial-gradient(ellipse at 50% 20%, #7A1F2B, #4B1019 80%);
@@ -118,34 +118,34 @@
   left: 50%;
   top: 5%;
   transform: translateX(-50%);
-  padding: 5px 12px;
-  border-radius: 999px;
+  padding: .3125rem .75rem;
+  border-radius: 62.4375rem;
   background: var(--senf);
   color: #26221C;
   font-style: normal;
   font-weight: 800;
-  font-size: 16px;
+  font-size: 1rem;
   white-space: nowrap;
   display: none;
   z-index: 2;
   box-shadow: 0 3px 0 var(--senf-dunkel, #C99A2E);
 }
 .fd-buehne.alarm .fd-achtung { display: block; animation: fd-puls .5s infinite alternate; }
-.fd-griff { position: absolute; right: 21%; bottom: 4%; width: 54px; z-index: 4; display: flex; flex-direction: column; align-items: center; gap: 0; cursor: grab; touch-action: none; }
-.fd-griff b { width: 30px; height: 30px; border-radius: 50%; border: 6px solid #fff; background: #D8432F; box-shadow: 0 3px 6px rgba(0, 0, 0, .5); }
-.fd-griff span { font-size: 11px; font-weight: 800; color: #fff; letter-spacing: .02em; text-shadow: 0 1px 2px rgba(0, 0, 0, .6); }
-.fd-griff::before { content: ''; width: 3px; height: 26px; background: #fff; order: 1; display: none; }
-.fd-pfeil { font-style: normal; font-weight: 800; font-size: 24px; line-height: 1; color: var(--senf); visibility: hidden; }
+.fd-griff { position: absolute; right: 21%; bottom: 4%; width: 3.375rem; z-index: 4; display: flex; flex-direction: column; align-items: center; gap: 0; cursor: grab; touch-action: none; }
+.fd-griff b { width: 1.875rem; height: 1.875rem; border-radius: 50%; border: 6px solid #fff; background: #D8432F; box-shadow: 0 3px 6px rgba(0, 0, 0, .5); }
+.fd-griff span { font-size: .6875rem; font-weight: 800; color: #fff; letter-spacing: .02em; text-shadow: 0 1px 2px rgba(0, 0, 0, .6); }
+.fd-griff::before { content: ''; width: 3px; height: 1.625rem; background: #fff; order: 1; display: none; }
+.fd-pfeil { font-style: normal; font-weight: 800; font-size: 1.5rem; line-height: 1; color: var(--senf); visibility: hidden; }
 .fd-buehne.bereit .fd-pfeil { visibility: visible; animation: fd-pf .5s infinite alternate; }
 .fd-griff.zieht b { animation: fd-zieh .5s; }
 .fd-griff.fass b { transform: translateY(14px); }
-.fd-knopf { margin-top: 12px; align-self: center; width: min(100%, 360px); min-height: 64px; user-select: none; }
+.fd-knopf { margin-top: .75rem; align-self: center; width: min(100%, 22.5rem); min-height: 4rem; user-select: none; }
 
 /* ---------- Spur 24: Nest suchen ---------- */
-.nt-frage { color: #fff; font-weight: 800; font-size: 18px; text-align: center; min-height: 26px; margin: 0; }
+.nt-frage { color: #fff; font-weight: 800; font-size: 1.125rem; text-align: center; min-height: 1.625rem; margin: 0; }
 .nt-frage .s-b, .nt-frage .s-r { color: inherit; }
 .nt-bild > img { display: block; width: 100%; height: 100%; object-fit: fill; pointer-events: none; }
-.nt-bild canvas.staub.laub { border-radius: 10px; }
+.nt-bild canvas.staub.laub { border-radius: .625rem; }
 .nt-bild .ring.da { border-color: var(--senf); }
 .nt-zoom { position: relative; width: 100%; height: 100%; transition: transform 1s cubic-bezier(.3, 0, .2, 1); }
 .nt-zoom.nah { transform: scale(2.7); }
@@ -174,12 +174,12 @@
   width: 100%;
   align-self: center;
   margin: 0 auto;
-  border-radius: 14px;
+  border-radius: .875rem;
   border: 4px solid #fff;
   overflow: hidden;
   box-shadow: 0 10px 22px rgba(0, 0, 0, .35);
   background: #BFE0F0;
-  max-width: min(100%, calc((100dvh - 330px) * 1.5));
+  max-width: min(100%, calc((100dvh - 20.625rem) * 1.5));
 }
 .nt-zoom .ring.da { border-width: 4px; }
 .nt-zoom .ring.nicht {
@@ -196,20 +196,20 @@
 /* ---------- Finale: Szene, Tresor, Urkunde ---------- */
 .fin-bild { margin: 0; }
 .fin-bild img { width: 100%; display: block; }
-.fin-liste { margin: 4px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
-.fin-tresor { position: relative; container-type: inline-size; width: min(62%, 250px); margin: 0 auto; }
+.fin-liste { margin: .25rem 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: .5rem; }
+.fin-tresor { position: relative; container-type: inline-size; width: min(62%, 15.625rem); margin: 0 auto; }
 .fin-tresor .fin-felder { position: absolute; left: 28.7%; width: 42.6%; top: 65%; height: 8.6%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 4.3%; }
 .fin-tresor .fin-f { width: 100%; height: 100%; border-radius: 2.6cqw; font-size: 7cqw; border-width: .6cqw; }
-.fin-felder { display: flex; justify-content: center; gap: 10px; }
+.fin-felder { display: flex; justify-content: center; gap: .625rem; }
 .fin-f {
-  width: 62px;
-  height: 70px;
-  border-radius: 14px;
+  width: 3.875rem;
+  height: 4.375rem;
+  border-radius: .875rem;
   border: 3px dashed rgba(255, 255, 255, .55);
   background: rgba(255, 255, 255, .08);
   color: var(--senf-tinte, #26221C);
   font-weight: 800;
-  font-size: 38px;
+  font-size: 2.375rem;
   display: grid;
   place-items: center;
   padding: 0;
@@ -217,10 +217,10 @@
 }
 .fin-f.voll { border: 0; background: var(--senf); box-shadow: 0 3px 0 var(--senf-dunkel, #C99A2E); }
 .fin-f.ok { background: #7ACB62; box-shadow: 0 3px 0 #4C9B3A; }
-.fin-karten { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.fin-karten { display: flex; justify-content: center; gap: .75rem; flex-wrap: wrap; }
 .fin-k.weg { opacity: .22; box-shadow: none; }
 .fin-k.zieht { z-index: 20; transition: none; box-shadow: 0 16px 24px rgba(0, 0, 0, .45); }
-.tv { position: relative; width: min(78%, 320px); aspect-ratio: 1; margin: 6px auto; }
+.tv { position: relative; width: min(78%, 20rem); aspect-ratio: 1; margin: .375rem auto; }
 .tv-licht {
   position: absolute;
   inset: -24%;
@@ -240,10 +240,10 @@
 .dipl {
   position: relative;
   container-type: inline-size;
-  width: min(100%, 440px, calc((100dvh - 250px) * .75));
+  width: min(100%, 27.5rem, calc((100dvh - 15.625rem) * .75));
   aspect-ratio: 1086 / 1448;
   background: #FFF6E0 url('../../../assets/illustrationen/diplom.webp') center / 100% 100% no-repeat;
-  border-radius: 10px;
+  border-radius: .625rem;
   box-shadow: 0 14px 30px rgba(0, 0, 0, .45);
   color: #3A2F25;
 }
@@ -288,7 +288,7 @@
 }
 .fin.urk .forts { color: #fff; font-weight: 700; opacity: .85; margin: 0; }
 .zug.fin { overflow-x: clip; }
-.fin.urk { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 6px 4px 0; min-height: 100%; overflow-x: clip; }
+.fin.urk { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .625rem; padding: .375rem .25rem 0; min-height: 100%; overflow-x: clip; }
 .tv-innen {
   position: absolute;
   z-index: 2;
@@ -303,14 +303,14 @@
   height: 49%;
 }
 .fin-k {
-  width: 64px;
-  height: 72px;
-  border-radius: 14px;
+  width: 4rem;
+  height: 4.5rem;
+  border-radius: .875rem;
   border: 3px solid transparent;
   background: var(--papier);
   color: var(--tinte);
   font-weight: 800;
-  font-size: 38px;
+  font-size: 2.375rem;
   display: grid;
   place-items: center;
   padding: 0;
@@ -325,36 +325,36 @@
 .fin-liste li {
   background: var(--papier);
   color: var(--tinte);
-  padding: 10px 14px;
-  font-size: 17.5px;
+  padding: .625rem .875rem;
+  font-size: 1.09375rem;
   font-weight: 700;
   line-height: 1.45;
   box-shadow: 0 3px 0 #D8CDB2, 0 8px 14px rgba(0, 0, 0, .25);
-  border-radius: 8px;
+  border-radius: .5rem;
 }
 .rw-blase .s-b, .rw-blase .s-r, .team .s-b, .team .s-r { color: inherit; }
 .fin-f.nein { animation: wackel .4s; background: #FFD9B0; }
-.fin.urk .dipl { width: min(100%, 440px, calc((100dvh - 305px) * .75)); }
+.fin.urk .dipl { width: min(100%, 27.5rem, calc((100dvh - 19.0625rem) * .75)); }
 .team {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: .5rem;
   margin: 0;
   background: rgba(255, 255, 255, .12);
   border: 1.5px solid rgba(244, 194, 67, .45);
-  border-radius: 999px;
-  padding: 3px 16px 3px 8px;
-  font-size: 14.5px;
+  border-radius: 62.4375rem;
+  padding: 3px 1rem 3px .5rem;
+  font-size: .90625rem;
   font-weight: 800;
   color: #fff;
   text-align: left;
   line-height: 1.2;
 }
-.team img { height: 36px; width: auto; flex: none; }
-.fin.raupe-wort { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 16px 20px; }
+.team img { height: 2.25rem; width: auto; flex: none; }
+.fin.raupe-wort { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .875rem; padding: 1rem 1.25rem; }
 .fin.raupe-wort > :not(.lampe) { position: relative; }
 .rw-bild {
-  height: min(170px, 22dvh);
+  height: min(10.625rem, 22dvh);
   width: auto;
   object-fit: contain;
   filter: drop-shadow(0 0 22px rgba(244, 194, 67, .5));
@@ -362,13 +362,13 @@
   transform-origin: 50% 100%;
 }
 .rw-blase {
-  max-width: 440px;
+  max-width: 27.5rem;
   background: linear-gradient(#FFFFFF, #FFF8DE);
   color: var(--tinte);
   border: 3px solid var(--senf);
-  border-radius: 22px;
-  padding: 14px 18px;
-  font-size: 18.5px;
+  border-radius: 1.375rem;
+  padding: .875rem 1.125rem;
+  font-size: 1.15625rem;
   line-height: 1.45;
   font-weight: 700;
   text-align: center;
@@ -379,17 +379,17 @@
   content: '';
   position: absolute;
   left: 50%;
-  top: -11px;
-  width: 18px;
-  height: 18px;
-  margin-left: -9px;
+  top: -.6875rem;
+  width: 1.125rem;
+  height: 1.125rem;
+  margin-left: -.5625rem;
   background: #fff;
   border-left: 3px solid var(--senf);
   border-top: 3px solid var(--senf);
   transform: rotate(45deg);
 }
-.rw-icons { display: flex; gap: 14px; animation: hoch .6s .45s both; }
-.rw-i svg { width: 48px; height: 48px; filter: drop-shadow(0 0 8px rgba(244, 194, 67, .35)); }
+.rw-icons { display: flex; gap: .875rem; animation: hoch .6s .45s both; }
+.rw-i svg { width: 3rem; height: 3rem; filter: drop-shadow(0 0 8px rgba(244, 194, 67, .35)); }
 #app .fin-tresor img {
   display: block;
   width: 100%;

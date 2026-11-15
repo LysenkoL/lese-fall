@@ -1,8 +1,8 @@
 /* Lese-Fall · v8 · Spiele von Kapitel 2/3 (Kleber, Lupe, Schatten, Kreise, Agenten-Code, Plakat), je Spiel ein Block. */
 
 /* ---------- Spur 8: nasser Kleber ---------- */
-.kl-tisch { position: relative; width: 100%; height: min(38dvh, 300px); display: flex; justify-content: center; align-items: center; gap: 4%; transition: height .3s; }
-.kl-tisch.klein + .kl-dreh svg { width: 20px; height: 20px; }
+.kl-tisch { position: relative; width: 100%; height: min(38dvh, 18.75rem); display: flex; justify-content: center; align-items: center; gap: 4%; transition: height .3s; }
+.kl-tisch.klein + .kl-dreh svg { width: 1.25rem; height: 1.25rem; }
 .kl-mond { position: relative; height: 100%; max-width: 62%; transition: transform .2s; touch-action: pan-y; }
 .kl-mond > img { width: 100%; height: 100%; object-fit: contain; display: block; pointer-events: none; filter: drop-shadow(0 8px 10px rgba(0, 0, 0, .3)); }
 .kl-mond.dreh1 { transform: perspective(500px) rotateY(90deg); }
@@ -19,62 +19,62 @@
 }
 .kl-kleber.glanz { animation: kl-glanz 1.4s ease-in-out infinite; }
 .kl-kleber.puls { animation: puls .6s 4; }
-.kl-zone { position: absolute; transform: translate(-50%, -50%); cursor: pointer; border-radius: 16px; }
-.kl-dreh { align-self: center; flex-direction: column; padding: 8px 18px; min-width: 130px; flex: none; }
-.kl-dreh svg { width: 26px; height: 26px; }
-.kl-mond .ring { width: 60px; height: 60px; margin: -30px 0 0 -30px; }
-.kl-f { margin: 0; color: #fff; font-size: 17.5px; font-weight: 800; line-height: 1.3; display: flex; gap: 8px; align-items: flex-start; }
+.kl-zone { position: absolute; transform: translate(-50%, -50%); cursor: pointer; border-radius: 1rem; }
+.kl-dreh { align-self: center; flex-direction: column; padding: .5rem 1.125rem; min-width: 8.125rem; flex: none; }
+.kl-dreh svg { width: 1.625rem; height: 1.625rem; }
+.kl-mond .ring { width: 3.75rem; height: 3.75rem; margin: -1.875rem 0 0 -1.875rem; }
+.kl-f { margin: 0; color: #fff; font-size: 1.09375rem; font-weight: 800; line-height: 1.3; display: flex; gap: .5rem; align-items: flex-start; }
 .kl-f b {
   flex: none;
-  width: 26px;
-  height: 26px;
+  width: 1.625rem;
+  height: 1.625rem;
   border-radius: 50%;
   background: var(--senf);
   color: var(--senf-tinte);
-  font-size: 15px;
+  font-size: .9375rem;
   display: grid;
   place-items: center;
   margin-top: 1px;
 }
 .kl-f .s-b, .kl-f .s-r { color: inherit; }
-.kl-karten { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.kl-karten { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .625rem; }
 .kl-k {
   position: relative;
   background: var(--papier);
   color: var(--tinte);
-  border-radius: 14px;
+  border-radius: .875rem;
   border: 3px solid transparent;
   box-shadow: 0 3px 0 #D8CDB2, 0 8px 14px rgba(0, 0, 0, .25);
   text-align: center;
-  padding: 6px 6px 8px;
+  padding: .375rem .375rem .5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: .25rem;
 }
-.kl-kb { position: relative; display: block; width: 100%; height: 64px; }
-.kl-tab { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 64%; object-fit: fill; border-radius: 6px; }
+.kl-kb { position: relative; display: block; width: 100%; height: 4rem; }
+.kl-tab { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 64%; object-fit: fill; border-radius: .375rem; }
 .kl-km { position: absolute; left: 50%; bottom: 14%; height: 86%; width: auto; transform: translateX(-50%); }
-.kl-kt { font-weight: 800; font-size: 15.5px; line-height: 1.2; }
+.kl-kt { font-weight: 800; font-size: .96875rem; line-height: 1.2; }
 .kl-g {
   position: relative;
   background: var(--papier);
   color: var(--tinte);
-  border-radius: 14px;
+  border-radius: .875rem;
   border: 3px solid transparent;
   box-shadow: 0 3px 0 #D8CDB2, 0 8px 14px rgba(0, 0, 0, .25);
-  padding: 9px 12px;
+  padding: .5625rem .75rem;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.3;
   text-align: left;
 }
-.kl-gruende { display: flex; flex-direction: column; gap: 8px; }
+.kl-gruende { display: flex; flex-direction: column; gap: .5rem; }
 .kl-k.an, .kl-g.an { border-color: var(--senf); background: #FFF6D6; }
 .kl-k.ja, .kl-g.ja { border-color: #3E9B3E; background: #EAF6E3; }
 .kl-g .s-b, .kl-g .s-r, .kl-kt .s-b, .kl-kt .s-r { color: inherit; }
 .kl-note { animation: hoch .4s both; }
-.kl-note .rp p { padding: 8px 12px; }
+.kl-note .rp p { padding: .5rem .75rem; }
 .kl-kleber s { position: absolute; border-radius: 50%; background: #fff; transform: rotate(-22deg); left: 18%; top: 14%; width: 30%; height: 16%; opacity: .95; }
 .kl-kleber u {
   position: absolute;
@@ -100,10 +100,10 @@
   border: 0;
 }
 .kl-kleber svg { width: 100%; height: 100%; display: block; overflow: visible; }
-.kl-teil { display: flex; flex-direction: column; animation: hoch .4s both; gap: 6px; }
+.kl-teil { display: flex; flex-direction: column; animation: hoch .4s both; gap: .375rem; }
 .kl-note .rp img {
-  width: 46px;
-  height: 46px;
+  width: 2.875rem;
+  height: 2.875rem;
   border-radius: 50%;
   object-fit: cover;
   object-position: 50% 6%;
@@ -112,20 +112,20 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, .25);
   flex: none;
 }
-.kl-tisch.klein { justify-content: flex-start; padding-left: 6%; height: min(11dvh, 90px); }
-.kl-tisch.klein + .kl-dreh { flex-direction: row; padding: 5px 14px; min-width: 0; gap: 8px; position: absolute; right: 22px; z-index: 2; top: calc(10px + min(11dvh, 90px) / 2 - 22px); }
-.zi:has(.kl-tisch.klein) { gap: 7px; padding-top: 10px; padding-bottom: 12px; }
+.kl-tisch.klein { justify-content: flex-start; padding-left: 6%; height: min(11dvh, 5.625rem); }
+.kl-tisch.klein + .kl-dreh { flex-direction: row; padding: .3125rem .875rem; min-width: 0; gap: .5rem; position: absolute; right: 1.375rem; z-index: 2; top: calc(.625rem + min(11dvh, 5.625rem) / 2 - 1.375rem); }
+.zi:has(.kl-tisch.klein) { gap: .4375rem; padding-top: .625rem; padding-bottom: .75rem; }
 .kl-teil.spaeter { opacity: .35; pointer-events: none; filter: saturate(.4); }
 .kl-teil.dran .kl-f b { animation: puls 1s ease-in-out infinite; }
 .kl-teil.dran .kl-karten > * { box-shadow: 0 0 0 3px rgba(255, 224, 130, .8), 0 6px 12px rgba(0, 0, 0, .25); }
 
 /* ---------- Spur 13: Lupe ---------- */
-.lp-bild { display: block; width: 100%; height: 100%; object-fit: cover; pointer-events: none; border-radius: 12px; }
+.lp-bild { display: block; width: 100%; height: 100%; object-fit: cover; pointer-events: none; border-radius: .75rem; }
 .lp-glas {
   position: absolute;
-  width: 112px;
-  height: 112px;
-  margin: -56px 0 0 -56px;
+  width: 7rem;
+  height: 7rem;
+  margin: -3.5rem 0 0 -3.5rem;
   border-radius: 50%;
   background-repeat: no-repeat;
   background-color: #FBF5E6;
@@ -139,9 +139,9 @@
   position: absolute;
   left: 82%;
   top: 86%;
-  width: 14px;
-  height: 60px;
-  border-radius: 8px;
+  width: .875rem;
+  height: 3.75rem;
+  border-radius: .5rem;
   background: linear-gradient(90deg, #8A5A1E, #C98A4B);
   transform: rotate(-45deg);
   transform-origin: top center;
@@ -154,9 +154,9 @@
 .zug[data-wz="lupe"] .lp-glas::after { background: linear-gradient(90deg, #5E8A3A, #9CC463); }
 .lp-box {
   position: relative;
-  width: min(100%, 420px);
+  width: min(100%, 26.25rem);
   align-self: center;
-  border-radius: 16px;
+  border-radius: 1rem;
   border: 4px solid #fff;
   background: #FBF5E6;
   box-shadow: 0 12px 26px rgba(0, 0, 0, .35);
@@ -175,14 +175,14 @@
 .sc-licht {
   align-self: center;
   aspect-ratio: 1 / .8;
-  border-radius: 16px;
+  border-radius: 1rem;
   border: 4px solid #fff;
   background: radial-gradient(circle at 30% 20%, #FFF7DC, #F0DFB2 70%);
   box-shadow: 0 12px 26px rgba(0, 0, 0, .35);
   display: grid;
   place-items: center;
   overflow: hidden;
-  width: min(100%, 340px);
+  width: min(100%, 21.25rem);
 }
 .sc-schatten { aspect-ratio: 1; position: relative; width: 82%; }
 .sc-schatten .sc-v { transition: filter .8s, opacity .8s, transform .8s; filter: brightness(0) blur(.7px); opacity: .7; transform: none; }
@@ -199,8 +199,8 @@
 .sc-schatten.klar .sc-v { transform: none; filter: none; opacity: 1; }
 .sc-k {
   background: var(--papier);
-  border-radius: 14px;
-  padding: 6px;
+  border-radius: .875rem;
+  padding: .375rem;
   border: 3px solid transparent;
   box-shadow: 0 3px 0 #D8CDB2, 0 8px 14px rgba(0, 0, 0, .3);
   aspect-ratio: 1;
@@ -208,10 +208,10 @@
   cursor: pointer;
 }
 .sc-k.an { border-color: #288CFF; box-shadow: 0 0 0 4px rgba(40, 140, 255, .3), 0 8px 14px rgba(0, 0, 0, .3); }
-.sc-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; }
+.sc-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .375rem; }
 @media (max-width: 460px) {
   .sc-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .sc-licht { width: min(100%, 250px); }
+  .sc-licht { width: min(100%, 15.625rem); }
 }
 
 /* ---------- Spur 16: fünf Kreise ---------- */
@@ -219,9 +219,9 @@
   position: relative;
   width: 100%;
   align-self: center;
-  max-width: 440px;
+  max-width: 27.5rem;
   background: #C79A60;
-  border-radius: 14px;
+  border-radius: .875rem;
   border: 4px solid #fff;
   box-shadow: 0 10px 22px rgba(0, 0, 0, .35);
   overflow: hidden;
@@ -248,19 +248,19 @@
 .kr-k.weg::before { content: ''; position: absolute; inset: 0; border-radius: 50%; background: rgba(40, 30, 10, .35); }
 .kr-k.neu .kreuz path { stroke-dasharray: 110; animation: strich .5s both; }
 .kr-k.rest { border-color: var(--senf); box-shadow: 0 0 0 4px rgba(244, 194, 67, .5); }
-.kr-k.rest .stempel.abdruck { font-size: 12px; padding: 3px 5px; border-width: 3px; width: 92%; letter-spacing: .02em; }
-.kr-merk { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.kr-k.rest .stempel.abdruck { font-size: .75rem; padding: 3px .3125rem; border-width: 3px; width: 92%; letter-spacing: .02em; }
+.kr-merk { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .625rem; }
 .kr-mk {
   position: relative;
   background: var(--papier);
   color: var(--tinte);
-  border-radius: 14px;
+  border-radius: .875rem;
   border: 3px solid transparent;
   box-shadow: 0 3px 0 #D8CDB2, 0 8px 14px rgba(0, 0, 0, .25);
-  padding: 12px 10px;
-  min-height: 68px;
+  padding: .75rem .625rem;
+  min-height: 4.25rem;
   font-weight: 800;
-  font-size: 16.5px;
+  font-size: 1.03125rem;
   line-height: 1.25;
   text-align: center;
   display: grid;
@@ -268,7 +268,7 @@
 }
 .kr-mk .s-b, .kr-mk .s-r { color: inherit; }
 .kr-mk.an { border-color: var(--senf); background: #FFF6D6; }
-.kr-liste ul { margin: 4px 0 0; padding: 0 0 0 20px; font-size: 16px; font-weight: 800; line-height: 1.3; }
+.kr-liste ul { margin: .25rem 0 0; padding: 0 0 0 1.25rem; font-size: 1rem; font-weight: 800; line-height: 1.3; }
 .kr-liste li { margin: 1px 0; }
 .kr-liste .s-b, .kr-liste .s-r { color: inherit; }
 .kr-bild img.kr-vorn { position: absolute; inset: 0; }
@@ -291,8 +291,8 @@
   position: absolute;
   z-index: 3;
   transform: translate(-50%, -50%);
-  width: 44px;
-  height: 44px;
+  width: 2.75rem;
+  height: 2.75rem;
   border-radius: 50%;
   border: 3px solid #fff;
   background: rgba(38, 34, 28, .78);
@@ -303,7 +303,7 @@
   cursor: pointer;
   box-shadow: 0 3px 6px rgba(0, 0, 0, .35);
 }
-.kr-x svg { width: 20px; height: 20px; }
+.kr-x svg { width: 1.25rem; height: 1.25rem; }
 .kr-x.an { background: var(--rot); }
 .kr-k.zeig::after {
   content: '';
@@ -320,15 +320,15 @@
   position: absolute;
   left: 50%;
   top: 55%;
-  font-size: 28px;
+  font-size: 1.75rem;
   transform: translate(-50%, 0);
   animation: krFinger 1.1s ease-in-out infinite;
   pointer-events: none;
   filter: drop-shadow(0 2px 3px rgba(0, 0, 0, .45));
 }
-.kr-leg { display: flex; flex-wrap: wrap; gap: 6px 14px; justify-content: center; margin: 10px 0 2px; font-size: 14px; font-weight: 700; }
-.kr-leg > span { display: inline-flex; align-items: center; gap: 6px; background: rgba(255, 255, 255, .92); color: #26221C; border-radius: 999px; padding: 4px 12px 4px 6px; }
-.kr-leg i { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-size: 13px; font-weight: 800; }
+.kr-leg { display: flex; flex-wrap: wrap; gap: .375rem .875rem; justify-content: center; margin: .625rem 0 2px; font-size: .875rem; font-weight: 700; }
+.kr-leg > span { display: inline-flex; align-items: center; gap: .375rem; background: rgba(255, 255, 255, .92); color: #26221C; border-radius: 62.4375rem; padding: .25rem .75rem .25rem .375rem; }
+.kr-leg i { width: 1.375rem; height: 1.375rem; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-size: .8125rem; font-weight: 800; }
 .kr-leg .kr-l1 { background: var(--senf); box-shadow: inset 0 0 0 2px #fff; }
 .kr-leg .kr-l2 { background: #26221C; color: #fff; }
 #buehne .kr-k.nein { border-color: var(--weich); }
@@ -338,28 +338,28 @@
 .ag-zettel {
   background: var(--papier-2);
   color: var(--tinte);
-  border-radius: 8px;
-  padding: 12px 12px 12px;
+  border-radius: .5rem;
+  padding: .75rem .75rem .75rem;
   box-shadow: 0 3px 0 #D8CDB2, 0 12px 22px rgba(0, 0, 0, .3);
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: .5rem;
 }
-.ag-regel { margin: 0; font-size: 16px; font-weight: 600; line-height: 1.35; }
+.ag-regel { margin: 0; font-size: 1rem; font-weight: 600; line-height: 1.35; }
 .ag-regel b { font-weight: 800; color: #B4472F; }
-.ag-demo { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 6px 10px; background: rgba(38, 34, 28, .06); border-radius: 10px; padding: 8px; }
+.ag-demo { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: .375rem .625rem; background: rgba(38, 34, 28, .06); border-radius: .625rem; padding: .5rem; }
 .ag-dz { display: flex; gap: 2px; }
-.ag-pfeil { font-weight: 800; font-size: 22px; color: var(--senf-dunkel); }
+.ag-pfeil { font-weight: 800; font-size: 1.375rem; color: var(--senf-dunkel); }
 .ag-t {
   position: relative;
-  width: 31px;
-  height: 38px;
-  border-radius: 6px;
+  width: 1.9375rem;
+  height: 2.375rem;
+  border-radius: .375rem;
   background: #fff;
   color: var(--tinte);
   font-weight: 800;
-  font-size: 22px;
-  line-height: 38px;
+  font-size: 1.375rem;
+  line-height: 2.375rem;
   text-align: center;
   font-style: normal;
   display: inline-block;
@@ -367,34 +367,34 @@
   border: 2px solid var(--linie);
 }
 .ag-t.weg { color: #9B9486; background: #EEE8D8; }
-.ag-t.weg::after { content: ''; position: absolute; left: 3px; right: 3px; top: 50%; height: 4px; margin-top: -2px; background: #D8432F; border-radius: 2px; transform: rotate(-12deg); }
+.ag-t.weg::after { content: ''; position: absolute; left: 3px; right: 3px; top: 50%; height: .25rem; margin-top: -2px; background: #D8432F; border-radius: 2px; transform: rotate(-12deg); }
 .ag-t.ok { background: var(--senf-hell); border-color: var(--senf); }
 .ag-feld {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: .625rem;
   background: var(--papier);
-  border-radius: 12px;
-  padding: 12px 6px;
+  border-radius: .75rem;
+  padding: .75rem .375rem;
   box-shadow: 0 3px 0 #D8CDB2, 0 12px 22px rgba(0, 0, 0, .3);
 }
 .ag-w { display: flex; gap: 3px; justify-content: center; }
-.ag-feld .ag-t { width: 36px; height: 46px; line-height: 42px; font-size: 25px; cursor: pointer; }
+.ag-feld .ag-t { width: 2.25rem; height: 2.875rem; line-height: 2.625rem; font-size: 1.5625rem; cursor: pointer; }
 .ag-feld .ag-t.nein { animation: wackel .4s; border-color: var(--rot); }
 .ag-feld.klar .ag-t:not(.weg) { background: var(--senf-hell); border-color: var(--senf); }
 .ag-feld.klar .ag-t.weg { opacity: .35; }
-.ag-botschaft { margin: 0; text-align: center; color: var(--senf); font-weight: 800; font-size: 28px; letter-spacing: .08em; animation: hoch .5s both; }
+.ag-botschaft { margin: 0; text-align: center; color: var(--senf); font-weight: 800; font-size: 1.75rem; letter-spacing: .08em; animation: hoch .5s both; }
 #buehne .ag-feld .ag-t.nein { border-color: var(--weich); }
 
 /* ---------- Spur 18: Plakat ---------- */
-.pk-brett.fest { gap: 0; padding: 0; background: none; border: 4px solid #fff; box-shadow: 0 12px 26px rgba(0, 0, 0, .35); border-radius: 6px; overflow: hidden; }
+.pk-brett.fest { gap: 0; padding: 0; background: none; border: 4px solid #fff; box-shadow: 0 12px 26px rgba(0, 0, 0, .35); border-radius: .375rem; overflow: hidden; }
 .pk-platz.voll { border-style: solid; border-color: transparent; }
 .pk-brett.fest .pk-platz { border: 0; border-radius: 0; }
 .pk-st {
   width: 100%;
   height: 100%;
-  border-radius: 6px;
+  border-radius: .375rem;
   background-repeat: no-repeat;
   touch-action: none;
   cursor: grab;
@@ -407,20 +407,20 @@
 .pk-st.sel { border-color: var(--senf); }
 .pk-st.zieht { z-index: 20; transition: none; box-shadow: 0 16px 24px rgba(0, 0, 0, .45); }
 .pk-st.nein { animation: wackel .4s; border-color: var(--rot); }
-.pk-zelle { aspect-ratio: 1 / 1; background: rgba(255, 255, 255, .06); border-radius: 8px; transform: rotate(var(--w)); }
-.pk-pool { padding: 4px; box-sizing: border-box; display: grid; align-self: center; grid-template-columns: repeat(3, minmax(0, 1fr)); width: min(100%, 270px, 36dvh); gap: 6px; }
+.pk-zelle { aspect-ratio: 1 / 1; background: rgba(255, 255, 255, .06); border-radius: .5rem; transform: rotate(var(--w)); }
+.pk-pool { padding: .25rem; box-sizing: border-box; display: grid; align-self: center; grid-template-columns: repeat(3, minmax(0, 1fr)); width: min(100%, 16.875rem, 36dvh); gap: .375rem; }
 #buehne .pk-st.nein { border-color: var(--weich); }
-.pk-platz { position: relative; border: 3px dashed rgba(255, 255, 255, .4); border-radius: 6px; min-height: 0; aspect-ratio: var(--pr, 1); }
+.pk-platz { position: relative; border: 3px dashed rgba(255, 255, 255, .4); border-radius: .375rem; min-height: 0; aspect-ratio: var(--pr, 1); }
 .pk-pool .pk-zelle { aspect-ratio: var(--pr, 1); }
 .pk-pool .pk-st { height: 100%; }
 .pk-brett {
   display: grid;
   grid-template-columns: repeat(var(--sp), minmax(0, 1fr));
-  gap: 4px;
+  gap: .25rem;
   align-self: center;
-  padding: 6px;
+  padding: .375rem;
   background: rgba(255, 255, 255, .1);
-  border-radius: 12px;
-  width: min(100%, 300px, calc(38dvh * .75));
+  border-radius: .75rem;
+  width: min(100%, 18.75rem, calc(38dvh * .75));
   height: auto;
 }

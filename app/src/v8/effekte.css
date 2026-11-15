@@ -70,7 +70,7 @@
   z-index: 4;
   display: grid;
   place-items: center;
-  padding: 18px;
+  padding: 1.125rem;
   text-align: center;
   color: #fff;
   pointer-events: none;
@@ -78,16 +78,16 @@
   animation: ein .22s both;
 }
 .wzm.geht { opacity: 0; transition: opacity .2s; }
-.wzm-k { display: flex; flex-direction: column; align-items: center; gap: 7px; max-width: 330px; }
+.wzm-k { display: flex; flex-direction: column; align-items: center; gap: .4375rem; max-width: 20.625rem; }
 .wzm-r {
-  height: min(92px, 12dvh);
+  height: min(5.75rem, 12dvh);
   width: auto;
   object-fit: contain;
   filter: drop-shadow(0 0 14px rgba(244, 194, 67, .4));
   animation: hoch .45s both, wipp 3s .5s ease-in-out infinite;
   transform-origin: 50% 100%;
 }
-.wzm-kopf { font-size: 15px; font-weight: 700; letter-spacing: .04em; color: #C9D3F0; margin-top: 2px; }
+.wzm-kopf { font-size: .9375rem; font-weight: 700; letter-spacing: .04em; color: #C9D3F0; margin-top: 2px; }
 .wzm-i { position: relative; }
 .wzm-i::before {
   content: '';
@@ -99,13 +99,13 @@
 }
 .wzm-i svg {
   position: relative;
-  width: min(120px, 17dvh);
-  height: min(120px, 17dvh);
+  width: min(7.5rem, 17dvh);
+  height: min(7.5rem, 17dvh);
   filter: drop-shadow(0 0 16px rgba(244, 194, 67, .55));
   animation: wzpop .55s .08s cubic-bezier(.2, 1.6, .4, 1) both;
 }
-.wzm-n { font-size: 28px; font-weight: 800; line-height: 1.1; color: var(--senf); }
-.wzm-t { font-size: 18px; line-height: 1.4; font-weight: 600; color: #EEF1FA; }
+.wzm-n { font-size: 1.75rem; font-weight: 800; line-height: 1.1; color: var(--senf); }
+.wzm-t { font-size: 1.125rem; line-height: 1.4; font-weight: 600; color: #EEF1FA; }
 #app .wzi-bild { filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .35)); }
 
 /* ---------- Werkzeug-Schimmer ---------- */
@@ -138,7 +138,7 @@
 
 /* ---------- Belohnung ---------- */
 .fx { position: fixed; inset: 0; z-index: 80; pointer-events: none; overflow: hidden; }
-.fxp { position: absolute; width: 16px; height: 16px; margin: -8px 0 0 -8px; }
+.fxp { position: absolute; width: 1rem; height: 1rem; margin: -.5rem 0 0 -.5rem; }
 .fxp.stern svg { width: 100%; height: 100%; display: block; }
 .fxp.perle {
   border-radius: 50%;
@@ -146,14 +146,14 @@
   box-shadow: 0 0 8px rgba(244, 194, 67, .7);
   animation: knall .95s cubic-bezier(.2, .7, .3, 1) both;
 }
-.fxp.stern { width: 22px; height: 22px; margin: -11px 0 0 -11px; animation: knall .95s cubic-bezier(.2, .7, .3, 1) both; }
+.fxp.stern { width: 1.375rem; height: 1.375rem; margin: -.6875rem 0 0 -.6875rem; animation: knall .95s cubic-bezier(.2, .7, .3, 1) both; }
 .fxp.flug {
   border-radius: 50%;
   background: radial-gradient(circle at 35% 30%, #FFF4C8, var(--senf) 55%, var(--senf-dunkel));
   box-shadow: 0 0 8px rgba(244, 194, 67, .7);
-  width: 18px;
-  height: 18px;
-  margin: -9px 0 0 -9px;
+  width: 1.125rem;
+  height: 1.125rem;
+  margin: -.5625rem 0 0 -.5625rem;
   opacity: 0;
 }
 .perl.hupft { animation: perlhupf .6s cubic-bezier(.3, 1.6, .5, 1); }
@@ -164,7 +164,7 @@
 canvas.staub { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: inherit; touch-action: none; cursor: crosshair; transition: opacity .6s; z-index: 2; }
 canvas.staub.weg { opacity: 0; pointer-events: none; }
 .staubig { touch-action: none; position: relative; }
-.brush { position: fixed; width: 44px; height: 44px; pointer-events: none; z-index: 50; transform: translate(-30%, -80%); }
+.brush { position: fixed; width: 2.75rem; height: 2.75rem; pointer-events: none; z-index: 50; transform: translate(-30%, -80%); }
 
 /* ---------- Weniger Bewegung ---------- */
 @media (prefers-reduced-motion: reduce) {
