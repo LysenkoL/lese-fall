@@ -201,8 +201,8 @@ a golden wheel handle in the middle, and below it a row of exactly FOUR empty le
 No moon on it.""", head=BLUE, size="1:1", where="вступление, доска, финал",
     note="Сейчас в приложении нарисованный сейф. Если эта картинка понравится больше — заменю.")
 add(CT, "tresor_auf", "SAFE", """
-The same safe, now open: the door swings open, warm golden light streams out; inside an empty glowing niche (a picture will be placed there later). Square 1:1.""",
-    head=BLUE, size="1:1", where="финал: сейф открывается кодом NEST")
+The same safe, now open: the door is hinged on the LEFT edge of the safe and has swung OUTWARD toward the viewer and to the left, about 110 degrees. Because it opened outward, we now see the INSIDE (back) of the door: a plain dark-blue inner panel with the golden bolt mechanism and hinges – the golden wheel handle and the four letter windows are on the OUTSIDE of the door and are therefore NOT visible now. Warm golden light streams out; inside the safe an empty glowing niche (a picture will be placed there later). Square 1:1.""",
+    head=BLUE, size="1:1", where="финал: сейф открывается кодом NEST", note="16.11: в первой версии на открытой двери видны колесо и окошки кода — дверь «открылась внутрь». Проверить: на открытой двери видна только её внутренняя сторона.")
 
 # ---------------------------------------------------------------- Vier Kräfte der Lese-Raupe (Medaillons)
 CK = "Силы гусенички (4 медальона)"
