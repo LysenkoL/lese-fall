@@ -1002,7 +1002,7 @@ export function kreise(r: HTMLElement, d: Daten, fertig: () => void) {
     const merk = kar.filter((k) => k.richtig).map((k) => `<li>${k.text}</li>`).join('');
     const kopf = phase === 'c' ? '' : `<div class="as-hin kr-liste"><span class="as-z">${d.vergleichen.liste}</span><ul>${merk}</ul></div>`;
     const bild = (offen ? '' : '') + `<img class="kr-vorn" src="${K.img(d.vorne)}" alt="" draggable="false">`;
-    zi.innerHTML = `${kopf}<div class="kr-bild" style="aspect-ratio:${d.ratio}">${bild}${offen ? rueck(kr.find((c) => c.id === offen)!) : ''}${kr.map(kHtml).join('')}</div>${phase === 'c' ? '' : `<div class="kr-leg"><span><i class="kr-l1"></i>${K.UI.krTippen}</span><span><i class="kr-l2">✕</i>${K.UI.krKreuz}</span></div><p class="as-raus">${d.vergleichen.frage}</p>`}`;
+    zi.innerHTML = `${kopf}<div class="kr-bild" style="aspect-ratio:${d.ratio}">${bild}${offen ? rueck(kr.find((c) => c.id === offen)!) : ''}${kr.map(kHtml).join('')}</div>${phase === 'c' ? '' : `<div class="kr-leg"><span><i class="kr-l1"></i><b>${K.UI.krTippen}</b></span><span><i class="kr-l2">✕</i><b>${K.UI.krKreuz}</b></span></div><p class="as-raus">${d.vergleichen.frage}</p>`}`;
     if (phase === 'b') unten(knopf('fertig', K.UI.fertig, gestr.size === 0 || gesperrt), () => pruefenB());
   };
   const flip = (id: string) => {

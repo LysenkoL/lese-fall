@@ -99,7 +99,7 @@ html :focus-visible:where(:not(.bkarte)) { box-shadow: 0 0 0 7px rgba(244, 194, 
 .kt span { font-size: var(--t-fein); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--auf-nacht-leise); }
 .kt .s-b, .kt .s-r { color: inherit; }
 /* schmale Kopfzeile: der Kapitelname fällt weg, „Kapitel n“ bleibt */
-@media (max-width: 479px) { .kt-titel { display: none; } }
+@media (max-width: 479px) { .kt-titel { display: none; } .kt b, .kt span { white-space: normal; } } /* große Systemschrift: lieber umbrechen als überlappen */
 .kb {
   width: var(--kopf-knopf); height: var(--kopf-knopf); border-radius: var(--r-feld);
   display: grid; place-items: center; position: relative; flex: none;
@@ -198,7 +198,7 @@ html :focus-visible:where(:not(.bkarte)) { box-shadow: 0 0 0 7px rgba(244, 194, 
   }
   .zug[data-art] > .zk { grid-area: 1 / 1; }
   .zug[data-art] > .zt1 { grid-area: 2 / 1; }
-  .zug[data-art] > .zr { grid-area: 3 / 1; align-self: end; margin-top: 0; }
+  .zug[data-art] > .zr { grid-area: 3 / 1; align-self: safe end; margin-top: 0; } /* safe: wenig Höhe → Raupe rutscht unter den Text, nie darüber */
   .zug[data-art] > .zi { grid-area: 1 / 2 / -1 / 2; align-self: safe center; margin-top: 0; }
 }
 

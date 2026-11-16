@@ -53,7 +53,7 @@
   gap: .25rem;
 }
 .kl-kb { position: relative; display: block; width: 100%; height: 4rem; }
-.kl-tab { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 64%; object-fit: fill; border-radius: .375rem; }
+.kl-tab { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 64%; object-fit: contain; object-position: 50% 100%; border-radius: .375rem; }
 .kl-km { position: absolute; left: 50%; bottom: 14%; height: 86%; width: auto; transform: translateX(-50%); }
 .kl-kt { font-weight: 800; font-size: .96875rem; line-height: 1.2; }
 .kl-g {
@@ -224,7 +224,8 @@
   border-radius: .875rem;
   border: 4px solid #fff;
   box-shadow: 0 10px 22px rgba(0, 0, 0, .35);
-  overflow: hidden;
+  overflow: clip;
+  overflow-clip-margin: 1.5rem; /* die Kreuz-Knöpfe unter der unteren Reihe dürfen über den Rand ragen */
   transition: transform .2s;
 }
 .kr-bild img { display: block; width: 100%; height: 100%; object-fit: fill; pointer-events: none; }
@@ -327,7 +328,7 @@
   filter: drop-shadow(0 2px 3px rgba(0, 0, 0, .45));
 }
 .kr-leg { display: flex; flex-wrap: wrap; gap: .375rem .875rem; justify-content: center; margin: .625rem 0 2px; font-size: .875rem; font-weight: 700; }
-.kr-leg > span { display: inline-flex; align-items: center; gap: .375rem; background: rgba(255, 255, 255, .92); color: #26221C; border-radius: var(--r-rund); padding: .25rem .75rem .25rem .375rem; }
+.kr-leg > span { max-width: 100%; display: inline-flex; align-items: center; gap: .375rem; background: rgba(255, 255, 255, .92); color: #26221C; border-radius: var(--r-rund); padding: .25rem .75rem .25rem .375rem; }
 .kr-leg i { width: 1.375rem; height: 1.375rem; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-size: .8125rem; font-weight: 800; }
 .kr-leg .kr-l1 { background: var(--senf); box-shadow: inset 0 0 0 2px #fff; }
 .kr-leg .kr-l2 { background: #26221C; color: #fff; }
@@ -424,3 +425,5 @@
   width: min(100%, 18.75rem, calc(46cqh * .75));
   height: auto;
 }
+
+.kr-leg > span > b { font-weight: inherit; min-width: 0; } /* Silben bleiben ein Wort, keine Lücken */

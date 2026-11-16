@@ -191,7 +191,11 @@ function kapitelKarte() {
 const blockHtml = (b: any) => {
   if (b.roh) return b.roh;
   const s = b.s.map((x: string) => `<span class="satz">${T(x)}</span>`).join(' ');
-  return b.typ === 'th' ? `<div class="ged"><img src="${fig('raupe/denkt')}" alt=""><p>${s}</p></div>` : `<p>${s}</p>`;
+  if (b.typ !== 'th') return `<p>${s}</p>`;
+  // Gedanken der Raupe: vier Formen im Wechsel (Wolke links, Wolke rechts, Zettel, Raupe guckt über den Rand), Pose nach dem Ton des Gedankens
+  const roh = b.s.join(' '), v = (b.v ?? 0) % 4;
+  const pose = /!/.test(roh) && !/\?/.test(roh) ? (v % 2 ? 'lacht' : 'staunt') : /\?/.test(roh) ? (/!/.test(roh) ? 'traurig' : 'denkt') : (v % 2 ? 'tipp' : 'lob');
+  return `<div class="ged g${v}"><img src="${fig('raupe/' + pose)}" alt=""><p>${s}</p></div>`;
 };
 /**
  * Verteilt Blöcke auf Blätter ohne Rollen: so wenige Blätter wie möglich, dann möglichst gleich voll
@@ -247,6 +251,7 @@ function lesen() {
   const sp = SP(stand.spur);
   const kopfH = `<div class="skopf"><span class="tab etikett">SPUR ${sp.spur}</span><h2>${sp.titelH}</h2></div><figure class="foto"><img src="${img(sp.bild)}" alt=""></figure>`;
   buehne.innerHTML = '';
+  { let n = sp.spur; for (const b of sp.blocks) if (b.typ === 'th') b.v = n++; } // Form des Gedankens: fest je Spur und Reihenfolge
   const seiten = blaetter(sp.blocks, kopfH);
   stand.blatt = Math.min(stand.blatt, seiten.length - 1);
   let richtung = '';

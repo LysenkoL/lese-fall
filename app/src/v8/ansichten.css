@@ -55,25 +55,8 @@
 .skopf { margin-bottom: .625rem; }
 .skopf h2 { font-weight: 800; font-size: 1.24em; line-height: 1.2; margin-top: .375rem; color: var(--nacht-2); }
 .skopf h2 .s-b, .skopf h2 .s-r { color: inherit; }
-.ged p { margin: 0; }
 .blatt:not(.probe) { animation: blatt .28s both; }
 .satz { cursor: default; }
-.ged {
-  display: flex;
-  position: relative;
-  align-items: center;
-  gap: .75rem;
-  background: linear-gradient(180deg, #F4FAEA, #E6F2D6);
-  border: 0;
-  border-radius: 1.625rem;
-  padding: .75rem 1rem .75rem .625rem;
-  margin: .375rem 0 1em .875rem;
-  box-shadow: 0 2px 0 #CFE3B4, 0 8px 18px rgba(80, 110, 40, .14);
-  font-style: italic;
-}
-.ged::before { content: ''; position: absolute; border-radius: 50%; background: #E6F2D6; box-shadow: 0 2px 0 #CFE3B4; width: .875rem; height: .875rem; left: -.625rem; bottom: .25rem; }
-.ged::after { content: ''; position: absolute; border-radius: 50%; background: #E6F2D6; box-shadow: 0 2px 0 #CFE3B4; width: .5rem; height: .5rem; left: -1.25rem; bottom: -.25rem; }
-.ged img { object-fit: contain; flex: none; width: 2.5rem; height: 3.875rem; margin-top: 0; filter: drop-shadow(0 2px 3px rgba(0, 0, 0, .12)); }
 .blatt[data-r="v"]:not(.probe) { animation: blattV .3s ease-out both; transform-origin: 0 60%; }
 .blatt[data-r="z"]:not(.probe) { animation: blattZ .3s ease-out both; transform-origin: 100% 60%; }
 
@@ -225,7 +208,7 @@
 .fund-t .s-b, .fund-t .s-r, .fund-h .s-b, .fund-h .s-r { color: inherit; }
 .fund-h { font-weight: 700; font-size: 1.0625rem; color: #fff; text-align: center; max-width: 17.5rem; background: rgba(0, 0, 0, .3); border-radius: .875rem; padding: .5rem .875rem; }
 #app .fundov .fundk {
-  width: min(62%, 15.625rem);
+  width: min(62%, 15.625rem, 40cqh);
   padding: .5625rem .5625rem .75rem;
   gap: .4375rem;
   text-align: left;
@@ -328,3 +311,41 @@
 .fk li { font-weight: 600; padding-left: 1.25rem; position: relative; font-size: 1.03125rem; line-height: 1.35; }
 .fk ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: .3125rem; }
 .zug.fall { padding-bottom: .5rem; gap: .625rem; }
+
+/* ---------- Gedanken der Lese-Raupe: vier Formen im Wechsel ----------
+   g0 Denkwolke links · g1 Denkwolke rechts (gespiegelt) · g2 Notizzettel mit Klebestreifen · g3 Raupe guckt über den oberen Rand.
+   Gemeinsam: kursiv, Raupenbild, Text rückt nie unter das Bild. Die Pose wählt main.ts (blockHtml) nach dem Ton des Gedankens. */
+.ged { --ged-bg: #F1F8E6; --ged-bg2: #E3F0D1; --ged-kante: #CFE3B4;
+  position: relative; display: flex; align-items: center; gap: .75rem; font-style: italic;
+  margin: .5rem 0 1em; padding: .75rem 1rem .75rem .625rem; border-radius: 1.625rem;
+  background: linear-gradient(180deg, var(--ged-bg), var(--ged-bg2)); box-shadow: 0 2px 0 var(--ged-kante), 0 8px 18px rgba(80, 110, 40, .14); }
+.ged p { margin: 0; min-width: 0; overflow-wrap: break-word; }
+.ged img { flex: none; width: 2.5rem; height: 3.875rem; object-fit: contain; filter: drop-shadow(0 2px 3px rgba(0, 0, 0, .12)); }
+.ged::before, .ged::after { content: ''; position: absolute; border-radius: 50%; background: var(--ged-bg2); box-shadow: 0 2px 0 var(--ged-kante); }
+/* g0: Wolke, Bläschen links unten */
+.ged.g0 { margin-left: .875rem; margin-right: 8%; }
+.ged.g0::before { width: .875rem; height: .875rem; left: -.625rem; bottom: .25rem; }
+.ged.g0::after { width: .5rem; height: .5rem; left: -1.25rem; bottom: -.25rem; }
+/* g1: Wolke rechts, Raupe rechts und gespiegelt, wärmerer Ton */
+.ged.g1 { --ged-bg: #FFF8E1; --ged-bg2: #FDEDC0; --ged-kante: #EED9A0; flex-direction: row-reverse; margin-left: 10%; margin-right: .875rem; padding: .75rem .625rem .75rem 1.125rem; border-radius: 1.625rem 1.625rem .5rem 1.625rem; }
+.ged.g1 img { transform: scaleX(-1); }
+.ged.g1::before { width: .875rem; height: .875rem; right: -.625rem; bottom: .25rem; }
+.ged.g1::after { width: .5rem; height: .5rem; right: -1.25rem; bottom: -.25rem; }
+/* g2: Notizzettel, leicht schräg, mit Klebestreifen; Raupe sitzt unten links auf der Kante */
+.ged.g2 { --ged-bg: #FFFDF5; --ged-bg2: #FFF7DA; --ged-kante: #E6DCC4; border-radius: 3px 3px 1.125rem 3px; margin: 1rem 6% 1.1em 4%; padding: 1rem 1rem .875rem 3.5rem; rotate: -.8deg;
+  background: repeating-linear-gradient(transparent 0 1.5em, rgba(29, 63, 158, .08) 1.5em calc(1.5em + 1px)), linear-gradient(var(--ged-bg), var(--ged-bg2)); }
+.ged.g2 img { position: absolute; left: -.5rem; bottom: -.625rem; width: 3rem; height: 4.25rem; rotate: -6deg; }
+.ged.g2::before { width: 4.5rem; height: 1.125rem; border-radius: 2px; left: 50%; top: -.5rem; bottom: auto; translate: -50% 0; rotate: 3deg; background: rgba(244, 194, 67, .6); box-shadow: 0 1px 2px rgba(0, 0, 0, .1); }
+.ged.g2::after { display: none; }
+/* g3: Raupe guckt mittig über den oberen Rand der Wolke */
+.ged.g3 { --ged-bg: #EEF4FF; --ged-bg2: #DFE9FB; --ged-kante: #C3D3F0; margin: 2.125rem 4% 1.1em; padding: 1.25rem 1.125rem .875rem; text-align: center; justify-content: center; border-radius: 2rem; }
+.ged.g3 img { position: absolute; left: 50%; top: -2.25rem; translate: -50% 0; width: 2.25rem; height: 3.25rem; }
+.ged.g3::before { width: .75rem; height: .75rem; left: 18%; bottom: -.625rem; }
+.ged.g3::after { width: .4375rem; height: .4375rem; left: 14%; bottom: -1.125rem; }
+
+/* Neuer Fund: passt auch auf niedrige Bühnen (Telefon quer) und rollt notfalls selbst */
+.fundov { justify-content: safe center; overflow-y: auto; }
+/* Große Überschriften trennen lange Wörter statt über den Rand zu laufen (große Systemschrift) */
+.titel h1, .kapk h1, .haken h2, .zk h2, .fk h2 { overflow-wrap: anywhere; hyphens: auto; text-wrap: balance; }
+.titel h1 { font-size: min(2.125rem, 10.5cqw); }
+.kapk h1 { font-size: min(2.125rem, 10.5cqw); }
