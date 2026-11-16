@@ -59,8 +59,11 @@
   left: -60%;
   width: 40%;
   background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .65), transparent);
-  animation: glanz 2.8s ease-in-out infinite;
+  /* einmal beim Erscheinen, dann Ruhe beim Lesen; erneut nur unter der Maus oder beim Fokus */
+  animation: glanz 1.4s .6s ease-in-out 1 both;
 }
+@media (hover: hover) { #app .kn.zugk:hover::after { animation: glanz 1.4s ease-in-out infinite; } }
+#app .kn.zugk:focus-visible::after { animation: glanz 1.4s ease-in-out infinite; }
 #app .kn.haupt:not(:disabled) { box-shadow: 0 4px 0 var(--senf-dunkel), 0 10px 22px rgba(120, 80, 0, .28), 0 0 22px rgba(244, 194, 67, .35); }
 
 /* ---------- Etikett ---------- */
