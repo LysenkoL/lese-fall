@@ -179,9 +179,9 @@ add(C4, "nest_nah", "OUT", """
 add(C4, "k3_elster", "OUT", """
     Outside at the wooden bench under the big tree: on the bench lies the round yellow cardboard moon with three brown paper spots; its long white thread hangs down over the edge of the bench.
     A black-and-white magpie with a very long tail has just grabbed the END OF THE THREAD with its beak and takes off – the moon lifts from the bench and dangles on the thread below the bird.
-    Mila, Ben and Oskar jump up, shocked, arms reaching out. The little grey paper mouse with the red heart stands on the bench. Autumn light, yellow leaves.""",
+    Mila, Ben and Oskar jump up, shocked, arms reaching out. Oskar's little paper mouse stands on the bench, clearly visible: made of GREY paper (not white, not a real mouse), with two BIG ROUND ears, a red paper heart on its belly, a thin paper tail; same as in the attached picture of the mouse (maus_vorne / maus_seite). Autumn light, yellow leaves.""",
     head=HEAD, size="3:2", glow=False, where="конец Главы 3 — «Der Vogel packt den weißen Faden. Und der Mond hebt ab.» (сейчас без картинки)",
-    note="Главное, чтобы было видно: птица держит НИТКУ, а луна висит на нитке.")
+    note="Главное, чтобы было видно: птица держит НИТКУ, а луна висит на нитке. Мышка: серая бумага, большие круглые уши, красное сердечко — приложить maus_vorne как образец (16.11: в первой версии мышка вышла белой с маленькими ушами).")
 add(C4, "k4_s24_fenster", "IN", """
     Late afternoon, the classroom is empty and quiet, warm low sunlight. Frau Sommer (red hair in a bun, round glasses, green cardigan) stands at the open window, one hand on the window handle,
     and looks down, surprised, into the tree right below the window: between the yellow-green leaves something small and metallic glints (a tiny sparkle) and something white moves.
