@@ -14,10 +14,10 @@ Regeln für diese Datei:
 
 **Umsetzung in der App (17.11.2026):** Die Mechanik richtet sich nach den vorhandenen Spiel-Motoren, der Inhalt bleibt.
 - Spur 5 `sortieren`: Dinge nach der Regel auf Kiste und Tablett verteilen; der Mond ist nicht dabei.
-- Spur 8 `agentencode`: Oskars Zettel in Geheimschrift (doppelte Buchstaben streichen) → „Für meine Rolle. Da oben! Ein Käse!“
+- Spur 8 `agentencode`: Oskar schreibt seinen Zettel in Geheimschrift, jeder Buchstabe doppelt. Das Kind streicht die doppelten Buchstaben → „Für meine Rolle. Da oben! Ein Käse!“
 - Spur 10 `lupe` statt `versteckt`: mit der Lupe den abstehenden braunen Kreis finden.
-- Spur 16 `kreise` statt `faden`: Welches Weiße passt zum Faden vom Mond?
-- Spur 22 `ausschluss`: übrig bleibt die Karte „Wand hinten – dort hat noch niemand nachgesehen“. Sie sagt nicht, dass der Mond dort ist.
+- Spur 16 `kreise` statt `faden`: drei weiße Dinge (Faden an der Wand, Fussel, Wolle aus dem Schrank). Gefragt ist, womit die Raupe das Weiße vergleicht – nicht die Farbe.
+- Spur 22 `reihe` statt `ausschluss`: Der Motor `ausschluss` lässt immer eine Karte groß übrig; das wäre „hinter der Wand“ zwei Szenen vor dem Licht. Darum ordnet das Kind Milas vier Sätze.
 
 Mechanik, nie zweimal hintereinander, jede höchstens dreimal:
 
@@ -44,7 +44,7 @@ Mechanik, nie zweimal hintereinander, jede höchstens dreimal:
 | 19 | lupe | lupe |
 | 20 | plakat | lesen |
 | 21 | suchbild | lesen |
-| 22 | ausschluss | lesen |
+| 22 | reihe | lesen |
 | 23 | merkmale | fuehler |
 | 24 | schatten | fuehler |
 
@@ -86,7 +86,7 @@ Mechanik, nie zweimal hintereinander, jede höchstens dreimal:
 - Rätsel · text: Mila zählt Bens Schritte auf. Bring sie in seine Reihenfolge.
 - Antwort: 1. Faden mit Leim festgemacht. 2. Gelb nach oben. 3. Auf das blaue Tablett. Zitat: „Faden mit Leim festgemacht. Gelb nach oben. Auf das blaue Tablett.“
 - Tipp 1: Mila sagt die Schritte leise nach, bevor sie den Schrank verlässt.
-- Tipp 2: Zuerst der Faden. Dann die gelbe Seite. Dann der Platz.
+- Tipp 2: Das Erste hat mit dem Faden zu tun.
 - Erfolg: Genau diese drei Schritte. Mehr sagt Mila nicht.
 - Brettkarte: Bens Reihenfolge steht fest: Faden mit Leim, gelb nach oben, auf das Tablett.
 - Bleibt offen: Wo der Mond am Ende liegt, sagt diese Spur nicht.
@@ -163,7 +163,7 @@ Mechanik, nie zweimal hintereinander, jede höchstens dreimal:
 
 - Mechanik: `agentencode` · Kraft: `lesen`
 - Rätsel · titel: Der Zettel
-- Rätsel · text: Die Wörter auf dem Zettel stehen durcheinander. Leg sie so, wie Oskar sie vorliest.
+- Rätsel · text: Oskar schreibt geheim: Jeder Buchstabe steht doppelt da. Streiche die doppelten Buchstaben. Was steht auf dem Zettel?
 - Antwort: „Für meine Rolle. Da oben! Ein Käse!“
 - Tipp 1: Oskar liest den Zettel laut vor, als er auf seinem Knie liegt.
 - Tipp 2: Zwei Sätze. Der erste sagt, wofür der Zettel ist. Der zweite ist der Satz der Maus.
@@ -189,8 +189,8 @@ Mechanik, nie zweimal hintereinander, jede höchstens dreimal:
 ### Spur 10 — Nur aufgeklebt
 
 - Mechanik: `lupe` · Kraft: `lesen`
-- Rätsel · titel: Das lose Loch
-- Rätsel · text: Ein brauner Kreis steht ein wenig ab. Zieh ihn vorsichtig ab. Was ist das?
+- Rätsel · titel: Der lose Kreis
+- Rätsel · text: Such mit der Lupe den braunen Kreis, der ein wenig absteht. Was ist das?
 - Antwort: Papier, oben aufgeklebt. Kein Schnitt in den Käse. Zitat: „Das ist nur Papier. Es klebt oben drauf.“
 - Tipp 1: Die Raupe zieht an dem Kreis, der schon absteht.
 - Tipp 2: Mila dreht nur dieses kleine Stück um, nicht den ganzen Käse.
@@ -271,9 +271,9 @@ Mechanik, nie zweimal hintereinander, jede höchstens dreimal:
 - Mechanik: `reihe` · Kraft: `zeit`
 - Rätsel · titel: Drei Handgriffe
 - Rätsel · text: Oskar zählt an den Fingern, was er mit der Wand gemacht hat. Bring die drei Wörter in seine Reihenfolge.
-- Antwort: Hingelegt. Gewartet. Hochgehoben. Zitat: „Auf den Tisch. Da lag nur Papier.“ Mila von vorne: „Da ist nichts.“ Frau Sommer, nur hier: „Die Kulisse bleibt stehen. Sonst fällt das ganze Theater um.“
+- Antwort: Hingelegt. Gewartet. Hochgehoben. Zitat: „Hingelegt. Gewartet. Hochgehoben.“
 - Tipp 1: Oskar zählt genau drei Wörter an den Fingern.
-- Tipp 2: Zuerst flach hinlegen. Am Ende hochheben. In der Mitte das Warten.
+- Tipp 2: Das letzte Wort ist „hochgehoben“.
 - Erfolg: Hingelegt, gewartet, hochgehoben. Auf den Tisch, wo er nur Papier sah. Vorne an der Wand ist nichts.
 - Brettkarte: Oskar hat die Wand auf den Tisch gelegt und nur Papier gesehen. Vorne an der Wand ist nichts.
 - Neue offene Frage: Was lag auf dem Tisch, als die Wand darauf kam?
@@ -284,10 +284,10 @@ Mechanik, nie zweimal hintereinander, jede höchstens dreimal:
 
 - Mechanik: `kreise` · Kraft: `lupe`
 - Rätsel · titel: Etwas Weißes
-- Rätsel · text: Unten an der Wand schwingt etwas Kleines. Womit stimmt die Farbe überein?
-- Antwort: Mit dem Faden von Milas Mond. Zitat der Raupe: „Weiß. Wie der Faden am Mond.“ Ben nennt es einen Fussel. Mila: „Von vorne ist da nichts. Und das Klebeband bleibt dran.“
-- Tipp 1: Die Farbe ist dieselbe wie an dem Faden, den Mila in Spur 1 hochgehalten hat.
-- Tipp 2: Es hängt unten an der Wand, nicht auf dem Boden und nicht in der Kiste.
+- Rätsel · text: Unten an der Wand schwingt etwas Weißes. Daneben: ein Fussel und Wolle aus dem Schrank. Womit vergleicht die Raupe das Weiße?
+- Antwort: Mit dem Faden vom Mond. Zitat: „Weiß“, denkt die Raupe. „Wie der Faden am Mond.“
+- Tipp 1: Lies, was die Raupe denkt.
+- Tipp 2: Sie denkt an etwas, das Mila in Spur 1 hochgehalten hat.
 - Erfolg: Etwas Weißes wie der Mondfaden. Von vorne ist sonst nichts zu sehen. Die Wand bleibt fest.
 - Brettkarte: Unten an der Wand hängt etwas Weißes wie der Faden vom Mond. Von vorne ist die Wand leer.
 - Neue offene Frage: Gehört das Weiße zu Milas Faden?
@@ -299,8 +299,8 @@ Mechanik, nie zweimal hintereinander, jede höchstens dreimal:
 - Rätsel · titel: Wessen Tropfen?
 - Rätsel · text: Neben dem Tablett liegt ein kleiner trockener Tropfen. Nicht auf dem Tablett. Wessen Kleber ist das?
 - Antwort: Bens Leim aus der Flasche. Zitat: „Das ist mein Leim. Aus der Flasche. So einen Tropfen macht ein Klebestift nicht.“ Und: „Was oben lag, klebt fest.“
-- Tipp 1: Der Tropfen ist rund. Oskars Klebestift macht so eine Form nicht.
-- Tipp 2: Ben erkennt ihn, ohne die Wand abzunehmen. Er war am Waschbecken.
+- Tipp 1: Ben erkennt den Tropfen und sagt, woher er kommt.
+- Tipp 2: Oskar hatte nur einen Klebestift. Ben hatte eine Flasche.
 - Erfolg: Das ist Bens Leim. Was oben lag, klebt fest. Was es war, weiß Ben nicht.
 - Brettkarte: Der Tropfen neben dem Tablett ist Bens Leim. Was oben darauf lag, klebt fest.
 - Neue offene Frage: Was lag auf dem nassen Leim?
@@ -311,7 +311,7 @@ Mechanik, nie zweimal hintereinander, jede höchstens dreimal:
 - Mechanik: `umdrehen` · Kraft: `lesen`
 - Rätsel · titel: Alles klein
 - Rätsel · text: Dreh die kleinen Sachen um: Schnipsel, Käse, Puppen. Ist der Mond dabei?
-- Antwort: Nein. Zitat: „Alles klein. Alles ohne den Faden.“ Die Raupe: „Nichts Kleines.“ Vorne an der Wand ist nichts, und Mila nimmt sie nicht ab.
+- Antwort: Nein. Zitat: „Alles klein. Alles ohne den Faden.“
 - Tipp 1: Mila sagt selbst, was allen kleinen Sachen fehlt.
 - Tipp 2: Den Faden aus Spur 1 hat keine von ihnen.
 - Erfolg: Der Mond ist keine von den kleinen Sachen. Die Wand bleibt am Theater.
@@ -364,23 +364,22 @@ Mechanik, nie zweimal hintereinander, jede höchstens dreimal:
 - Mechanik: `suchbild` · Kraft: `lesen`
 - Rätsel · titel: Das weiße Ende
 - Rätsel · text: Unter der Wand hängt ein weißes Ende. Such im Bild alles Weiße. Welches hängt fest und kommt nicht los?
-- Antwort: Das Ende unter der Wand. Mila sagt: „Mein Mond hatte so einen Faden. Weiß. Zum Aufhängen.“ Sie sucht oben am Vorhang, an der Gardine vorbei und in der Kiste.
+- Antwort: Das Ende unter der Wand. Zitat: „Es hängt fest. Irgendwo.“
 - Tipp 1: Mila zieht vorsichtig. Ben sagt: nicht ziehen.
 - Tipp 2: Das Ende, das fest hängt, ist unten an der Wand. Die anderen weißen Stellen geben es nicht her.
-- Erfolg: Ein weißes Fadenende hängt fest unter der Wand. Mila sucht das andere Ende an der falschen Stelle.
-- Brettkarte: Unter der Wand hängt ein weißes Ende fest. Es ist der Faden von Milas Mond. Das andere Ende ist dort nicht, wo Mila sucht.
-- Geschlossen: Gehört das Weiße zu Milas Faden? Ja. Mila erkennt ihn.
+- Erfolg: Ein weißes Ende hängt fest unter der Wand. Mila schaut zum Vorhang, zur Gardine und den Tisch entlang.
+- Brettkarte: Unter der Wand hängt ein weißes Ende fest. Mila sagt: Ihr Mond hatte so einen Faden.
 - Neue offene Frage: Wo ist das andere Ende vom Faden?
 - Haken: „Nicht ziehen. Sonst reißt er.“
 
 ### Spur 22 — Gleich
 
-- Mechanik: `ausschluss` · Kraft: `lesen`
-- Rätsel · titel: Wo er nicht ist
-- Rätsel · text: Mila zählt die Orte an den Fingern. Tippe jeden Ort ab, an dem der Mond nicht liegt.
-- Antwort: Nicht in der Kiste. Nicht der Käse. Nicht der Schnipsel. Vorne an der Wand ist nichts. Zitat genau diese Sätze. Die Gardine macht das Zimmer dämmrig. Der Vorhang am Theater bleibt zu.
-- Tipp 1: Mila hat vier Dinge an den Fingern. Drei sind Sachen, eins ist eine Seite der Wand.
-- Tipp 2: Die grüne Kiste, der Käse und der Schnipsel sind schon geprüft. Vorne an der Wand auch.
+- Mechanik: `reihe` · Kraft: `lesen`
+- Rätsel · titel: Milas Finger
+- Rätsel · text: Mila zählt an den Fingern, wo der Mond nicht ist. Bring ihre vier Sätze in die Reihenfolge, in der sie sie sagt.
+- Antwort: 1. Nicht in der Kiste. 2. Nicht der Käse. 3. Nicht der Schnipsel. 4. Vorne an der Wand ist nichts. Zitat: „Nicht in der Kiste. Nicht der Käse. Nicht der Schnipsel. Vorne an der Wand ist nichts.“
+- Tipp 1: Lies, was Mila an den Fingern zählt.
+- Tipp 2: Zuerst die Kiste.
 - Erfolg: An diesen Orten ist der Mond nicht. Der Vorhang bleibt zu.
 - Brettkarte: Kiste, Käse, Schnipsel und die Vorderseite der Wand sind leer. Der Vorhang bleibt zu.
 - Bleibt offen: Wo ist der Mond? Was lag auf dem Leim? Wo ist das andere Ende?
@@ -404,11 +403,11 @@ Mechanik, nie zweimal hintereinander, jede höchstens dreimal:
 - Mechanik: `schatten` · Kraft: `fuehler`
 - Rätsel · titel: Der dunkle Kreis
 - Rätsel · text: Was war von vorne zuerst zu sehen, bevor Ben und Oskar die Wand abgenommen haben?
-- Antwort: Ein dunkler Kreis. Kein Stern. Zitat: „Nur einen dunklen Kreis. Rund. In der weißen Wand.“ Danach sagt Oskar: „Nehmt sie ab.“
+- Antwort: Ein dunkler Kreis. Kein Stern. Zitat: „Nur einen dunklen Kreis. Rund. In der weißen Wand.“
 - Tipp 1: Schau von vorne auf die weiße Wand. Die Fühler sind dahinter.
 - Tipp 2: Die Form ist rund und dunkel. Ein blaues Zeichen ist von vorne nicht dabei.
 - Erfolg: Von vorne war nur ein dunkler Kreis zu sehen. Kein Stern. Den Stern gibt es erst nach dem Umdrehen.
-- Nach dem Umdrehen, im Text, nicht in diesem Rätselbild: weiß, Loch, Faden, blauer Stern. Zitat: „Der Stern. Gelb und rund reicht nicht.“ Oskar: „Ich dachte, da liegt nur Papier.“ Gelb erst beim Ablösen. Ben: „Hier war mein Leim. Nass. Nur ein kleiner Klecks. Der hat die gelbe Seite festgehalten.“ Und: „Ein bisschen Leim ist unten herausgedrückt worden. Das war der Tropfen am Rand.“
+- Nach dem Umdrehen, im Text, nicht in diesem Rätselbild: weiß, Loch, Faden, blauer Stern. Zitat: „Der Stern. Gelb und rund reicht nicht.“ Oskar: „Ich dachte, da liegt nur Papier.“ Gelb erst beim Ablösen. Ben: „Hier war mein Leim. Nass. Nur ein kleiner Klecks. Der hat die gelbe Seite festgehalten.“ Und: „Ein bisschen Leim ist unten herausgekommen. Das war der Tropfen am Rand.“
 - Brettkarte: Der Mond klebte mit der gelben Seite an der Wand. Außen waren die weiße Seite, das Loch, der Faden und der blaue Stern. Festgehalten hat ihn Bens Leim am Loch.
 - Geschlossen: Wo ist der Mond? An der Rückseite der Pappwand, gelbe Seite zur Wand. Was lag auf dem Tisch? Der Mond, Oskar hielt ihn für Papier. Was lag auf dem Leim? Die gelbe Seite des Mondes. Wo ist das andere Ende? Am Mond hinter der Wand. Wie kam der Leim an den Rand? Vom kleinen Klecks am Loch.
 - Haken: „Da oben! Ein Käse!“ Der Vorhang geht auf.
@@ -444,7 +443,7 @@ Die Lese-Raupe sitzt auf ihrem Blatt am Fenster. Draußen sind gelbe Blätter. D
 - Tipp 2: Nicht Klebeband. Nicht der Klebestift. Bens Wort für den Kleber aus der Flasche.
 - Erfolg: LEIM. Der kleine Klecks am Loch hat den Mond festgehalten.
 
-**Tresor offen:** Die Tür geht auf. Drinnen liegt ein Bild: Mila, Ben, Oskar mit der Maus, Frau Sommer, und die Raupe auf ihrem Blatt. Darüber hängt der Mond, gelb, so wie im Stück. Auf dem Blatt der Raupe ein winziger blauer Stern.
+**Tresor offen:** Die Tür geht auf. Drinnen liegt ein Bild: Mila, Ben, Oskar mit der Maus, Frau Sommer, und die Raupe auf ihrem Blatt. Darüber hängt der Mond, gelb, so wie im Stück.
 
 - Stempel: FALL GELÖST
 

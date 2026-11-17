@@ -2,7 +2,7 @@
 
 Финальная редакция после брейншторма (Grok + GPT, Opus, Gemini) и разбора писателя, педагога и сценариста: все принятые правки внесены. Экраны после чтения (загадки, карточки доски, вопросы, карточки глав, сейф) — в `V9_SPUREN.md`, картинки — в `V9_BILDER.md`.
 
-Пометки: `<!-- Blatt -->` — желательное место перелистывания, `<!-- Ermittlung -->` — абзац, который ведёт к загадке. В главах 2–4 их в присланных версиях не было, поэтому там они не расставлены.
+Пометки: `<!-- Blatt -->` — желательное место перелистывания, `<!-- Ermittlung -->` — абзац, который ведёт к загадке. В главах 2–4 расставлен только один обязательный переворот: в Spur 24 после «Ein Kreis.», чтобы ребёнок сначала увидел круг, а звезду прочитал на следующем листе. Остальное приложение разбивает само.
 
 Код сейфа: **LEIM** (буквы по главам: E, M, L, I). Вопрос сейфа: «Was hat den Mond festgehalten?»
 
@@ -44,7 +44,7 @@ Die Raupe schaut auf den Stern. Er ist klein und blau. Nur Mila und sie wissen d
 
 Ben holt die Flasche mit Bastelleim. Er legt den Mond auf den Tisch. Die gelbe Seite ist oben.
 
-Neben dem Loch drückt er einen kleinen Klecks Leim heraus. Dann wickelt er den Faden hinein. Der Leim glänzt. Er ist noch ganz nass.
+Neben dem Loch drückt er einen kleinen Klecks Leim heraus. Ein Tropfen fällt daneben auf den Tisch. Dann wickelt er den Faden hinein. Der Leim glänzt. Er ist noch ganz nass.
 
 „Jetzt muss er trocknen“, sagt Ben.
 
@@ -186,7 +186,7 @@ Mila legt den Schnipsel zurück auf das Tablett.
 
 <!-- Ermittlung -->
 
-Mila schaut zum Fenster. Dort sitzt Oskar. Er hat eine Schere in der Hand. Er schneidet in einen großen gelben Kreis. Der Kreis ist vorne gelb und hinten gelb.
+Mila schaut zum Fenster. Dort sitzt Oskar. Er hat eine Schere in der Hand. Er schneidet in einen großen gelben Kreis.
 
 Oskar merkt, dass Mila ihn ansieht. Schnell versteckt er den Kreis hinter seinem Rücken.
 
@@ -356,7 +356,7 @@ Der Klebestift ist trocken. Mila dreht den Käse um.
 
 Hinten ist alles gelb. Kein blauer Stern.
 
-Mila lässt den Kreis sinken. „Das ist nicht mein Mond. Du hast ihn nicht zerschnitten.“
+Mila lässt den Kreis sinken. „Das ist nicht mein Mond. Du hast ihn nicht zerschnitten.“ Sie wird rot. „Tut mir leid, Oskar.“
 
 Oskar atmet aus. „Ich habe ihn aus einem anderen Bogen geschnitten. Für die Maus.“
 
@@ -486,6 +486,8 @@ Oskar liest sie leise. „Da oben! Ein Käse!“
 
 Er schaut zum Theater. Über der Wand hängt nichts.
 
+Oskar hebt die Maus. „Da oben …“ Dann schweigt er.
+
 Mila stellt sich neben ihn. „Auf dem Plakat hängt der Mond über der Maus. Bei uns hängt nichts.“
 
 Am Fenster hängt die Gardine. Draußen sind gelbe Blätter. Frau Sommer schaut hindurch.
@@ -522,7 +524,7 @@ Frau Sommer zieht die Gardine vor. Im Zimmer wird es dämmrig. Der Vorhang am Th
 
 Die Fühler der Raupe werden hell. Noch ganz schwach.
 
-„Die Gäste sind an der Tür“, sagt sie. „Noch nicht herein.“
+„Die Gäste sind an der Tür“, sagt Frau Sommer. „Noch nicht herein.“
 
 Mila zählt an den Fingern. „Nicht in der Kiste. Nicht der Käse. Nicht der Schnipsel. Vorne an der Wand ist nichts.“
 
@@ -562,6 +564,8 @@ Von vorne sieht man kein Bild. Nur einen dunklen Kreis. Rund. In der weißen Wan
 
 Mila zeigt darauf. „Ein Kreis.“
 
+<!-- Blatt -->
+
 Oskar schaut lange hin. Dann nickt er. „Nehmt sie ab.“
 
 Ben und Oskar lösen das Klebeband. Sie heben die Wand ab. Sie drehen sie um.
@@ -574,9 +578,9 @@ Oskar sagt leise: „Ich dachte, da liegt nur Papier.“
 
 Ben zeigt auf das Loch. „Hier war mein Leim. Nass. Nur ein kleiner Klecks. Der hat die gelbe Seite festgehalten.“
 
-Er zeigt auf den Rand. „Ein bisschen Leim ist unten herausgedrückt worden. Das war der Tropfen am Rand.“
+Er zeigt auf den Rand. „Ein bisschen Leim ist unten herausgekommen. Das war der Tropfen am Rand.“
 
-Sie lösen den Mond langsam an dieser Stelle. Jetzt kommt das Gelb zum Vorschein. Das Papier reißt nicht.
+Sie lösen den Mond langsam an dieser Stelle. Jetzt kommt das Gelb zum Vorschein. Die Pappe reißt nicht.
 
 Mila hängt den Mond über das Theater. Die Wand kommt zurück an ihren Platz. Das Mauseloch auch.
 
