@@ -2204,3 +2204,6 @@ spür|na|se
 bunt
 # neu für v8 (ungeprüft)
 klärst
+# neu für v8 (ungeprüft)
+bä|ren
+fell

@@ -54,7 +54,7 @@ Sofort leuchten ihre Fühler golden auf. Zeit für ihren Zeitlupen-Blick!
 
 ### Spur 3 — Am Waschbecken
 
-Mila kommt gut gelaunt mit der Prinzessin und dem Räuber vom Schrank zurück. Sie setzt die beiden Puppen auf die Bühne, klopft ihnen den Staub vom Umhang und sagt: „So, ihr zwei, schaut mal nach oben, wie schön unser Nachthimmel aussieht!“
+Mila kommt gut gelaunt mit dem Bären und dem Fuchs vom Schrank zurück. Sie setzt die beiden Puppen auf die Bühne, klopft ihnen den Staub vom Fell und sagt: „So, ihr zwei, schaut mal nach oben, wie schön unser Nachthimmel aussieht!“
 
 Sie hebt selbst den Kopf — und erstarrt. Am Nachthimmel über dem Vorhang hängt nur noch die einsame weiße Wolke!
 
