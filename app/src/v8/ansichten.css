@@ -221,6 +221,8 @@
   font: inherit;
 }
 #app .fundov .fundk p { font-size: .9375rem; line-height: 1.3; -webkit-line-clamp: 5; }
+#app .fundov .fundk .fund-titel { display: block; font-size: 1rem; line-height: 1.25; font-weight: 800; color: var(--nacht-2); margin: .375rem 0 .125rem; }
+#app .fundov .fundk .fund-titel .s-b, #app .fundov .fundk .fund-titel .s-r { color: inherit; }
 .fundov.fliegt { background: transparent; backdrop-filter: none; pointer-events: none; }
 .fundov.fliegt .fund-t, .fundov.fliegt .fund-h { opacity: 0; transition: opacity .2s; }
 #app .fundov.fliegt .fundk { animation: none; box-shadow: 0 8px 16px rgba(60, 30, 0, .32); }

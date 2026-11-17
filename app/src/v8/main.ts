@@ -346,7 +346,7 @@ function brettHtml(bis: number, neu = 0, staubig = false, wartet = false) {
   const slots = liste.map((n) => {
     if (n > bis || !stand.fertig.includes(n)) return `<div class="bkarte leer"></div>`;
     const k = SP(n).karte;
-    return `<div class="bkarte${n === neu ? (staubig ? ' neu' : wartet ? ' wartet' : ' fall') : ''}" data-k="${n}" style="--n:${NEIGUNG[(n * 5 + 2) % NEIGUNG.length]}deg"><div class="bk-bild">${bildKarte(k)}</div><p>${k.text}</p></div>`;
+    return `<div class="bkarte${n === neu ? (staubig ? ' neu' : wartet ? ' wartet' : ' fall') : ''}" data-k="${n}" style="--n:${NEIGUNG[(n * 5 + 2) % NEIGUNG.length]}deg"><div class="bk-bild">${bildKarte(k)}</div><p>${k.titel ?? k.text}</p></div>`;
   }).join('');
   const fragen: { id: string; text: string; n: number }[] = [];
   for (const sp of D.spuren) if (sp.spur <= bis) sp.fragenNeu.forEach((f: any) => fragen.push({ ...f, n: sp.spur }));
@@ -407,7 +407,7 @@ function brett() {
   else {
     // Neuer Fund: das Kind hängt die Karte selbst ans Brett
     const ziel = $<HTMLElement>('.bkarte.wartet', sec);
-    sec.insertAdjacentHTML('beforeend', `<div class="fundov"><p class="fund-t">${UI.neuerFund}</p><button class="bkarte fundk">${ziel.innerHTML}</button><p class="fund-h">${UI.fundTipp}</p></div>`);
+    sec.insertAdjacentHTML('beforeend', `<div class="fundov"><p class="fund-t">${UI.neuerFund}</p><button class="bkarte fundk">${fundInnen(SP(+ziel.dataset.k!).karte)}</button><p class="fund-h">${UI.fundTipp}</p></div>`);
     const ov = $<HTMLElement>('.fundov', sec), fk = $<HTMLElement>('.fundk', ov);
     let weg = false;
     const haengen = () => {
@@ -429,9 +429,11 @@ function brett() {
     if (k && !k.classList.contains('neu')) karteGross(+k.dataset.k!);
   });
 }
+/** Neuer Fund: Bild, Überschrift und ganzer Text (am Brett steht später nur die Überschrift) */
+const fundInnen = (k: any) => `<div class="bk-bild">${bildKarte(k)}</div>${k.titel ? `<b class="fund-titel">${k.titel}</b>` : ''}<p>${k.text}</p>`;
 function karteGross(n: number) {
   const k = SP(n).karte;
-  ueber.innerHTML = `<div class="schl mitte"><div class="kgross"><div class="bk-bild">${bildKarte(k)}</div><p>${k.text}</p></div></div>`;
+  ueber.innerHTML = `<div class="schl mitte"><div class="kgross"><div class="bk-bild">${bildKarte(k)}</div>${k.titel ? `<h3>${k.titel}</h3>` : ''}<p>${k.text}</p></div></div>`;
   ueber.onclick = () => { ueber.innerHTML = ''; };
 }
 function brettOffen() {

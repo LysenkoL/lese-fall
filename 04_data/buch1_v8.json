@@ -343,6 +343,7 @@
     }
    ],
    "karte": {
+    "titel": "Mi|las Mond",
     "bild": "objekte/mond_hinten",
     "text": "Mi|las Mond: gelb, o|ben ein wei|ßer Fa|den, hin|ten ein blau|er Stern.",
     "staub": false
@@ -515,6 +516,7 @@
     }
    ],
    "karte": {
+    "titel": "Der Mond ist weg",
     "bild": "k1_s2_nachher",
     "ausschnitt": {
      "x": 20,
@@ -666,6 +668,7 @@
     }
    ],
    "karte": {
+    "titel": "Ben am Wasch|be|cken",
     "bild": "objekte/wasserhahn",
     "text": "Ben hat den Fa|den am Mond fest|ge|klebt. Jetzt wäscht er den Kle|ber ab. Sein Pul|li ist dun|kel|blau, oh|ne Strei|fen.",
     "staub": false
@@ -772,6 +775,7 @@
     }
    ],
    "karte": {
+    "titel": "Ein frem|der Kreis",
     "bild": "objekte/falscher_kreis_hinten",
     "text": "Der gel|be Kreis un|ter den Zei|tun|gen ist nicht Mi|las Mond.",
     "staub": false
@@ -874,6 +878,7 @@
     }
    ],
    "karte": {
+    "titel": "Das blau|e Tab|lett",
     "bild": "objekte/kleber",
     "text": "Ben hat den Mond zum Trock|nen auf das blau|e Tab|lett di|rekt am of|fe|nen Fens|ter ge|legt.",
     "staub": false
@@ -986,6 +991,7 @@
     }
    ],
    "karte": {
+    "titel": "Os|kars Är|mel",
     "bild": "oskar/staunt",
     "text": "Der Är|mel ge|hört Os|kar.",
     "staub": false
@@ -1192,6 +1198,7 @@
     }
    ],
    "karte": {
+    "titel": "Kis|te und Tab|lett",
     "bild": "objekte/kiste_gruen",
     "text": "Grü|ne Kis|te: fer|ti|ge Fi|gu|ren. Blau|es Tab|lett: Pa|pier für al|le.",
     "staub": false
@@ -1330,6 +1337,7 @@
     }
    ],
    "karte": {
+    "titel": "Wei|ße Sei|te o|ben",
     "bild": "objekte/mond_hinten_feucht",
     "text": "Mi|las Mond lag mit der wei|ßen Sei|te o|ben. Der Kle|ber war noch nass.",
     "staub": false
@@ -1480,6 +1488,7 @@
     }
    ],
    "karte": {
+    "titel": "Der zu|ge|deck|te Tel|ler",
     "bild": "objekte/teller_zugedeckt",
     "text": "Os|kar hat ei|nen Tel|ler zu|ge|deckt. Was da|rauf liegt, sieht man nicht.",
     "staub": true
@@ -1633,6 +1642,7 @@
     }
    ],
    "karte": {
+    "titel": "Ein wei|ßer Kreis",
     "bild": "objekte/tablett_leer",
     "text": "Os|kar sagt: Ich ha|be ei|nen wei|ßen Kreis vom Tab|lett ge|nom|men.",
     "staub": false
@@ -1731,6 +1741,7 @@
     }
    ],
    "karte": {
+    "titel": "I|das Sche|re",
     "bild": "kinder/ida",
     "text": "I|da hat ei|ne Sche|re und blau|es Pa|pier. Sie bas|telt ei|ne Kro|ne.",
     "staub": false
@@ -1825,6 +1836,7 @@
     }
    ],
    "karte": {
+    "titel": "Gel|be Schnip|sel",
     "bild": "objekte/gelbe_schnipsel",
     "text": "Ne|ben dem Tel|ler: ei|ne Sche|re und gel|be Schnip|sel. Nie|mand hat ge|se|hen, was ge|schnit|ten wur|de.",
     "staub": false
@@ -1983,6 +1995,7 @@
     }
    ],
    "karte": {
+    "titel": "Ein Fa|den am Kä|se",
     "bild": "objekte/kaese_auf_teller",
     "text": "Am Kä|se schaut ein klei|nes Stück wei|ßer Fa|den he|raus.",
     "staub": false
@@ -2069,6 +2082,7 @@
     }
    ],
    "karte": {
+    "titel": "Ein Schat|ten",
     "bild": "objekte/vogelschatten",
     "text": "Ein Schat|ten mit zwei Flü|geln, spit|zem Schna|bel und lan|gem Schwanz.",
     "staub": false
@@ -2152,6 +2166,7 @@
     }
    ],
    "karte": {
+    "titel": "Nur auf|ge|klebt",
     "bild": "k3_s15",
     "text": "Die Fle|cken und die Krü|mel sind nur auf|ge|klebt. Der Kreis da|run|ter ist ganz.",
     "staub": false,
@@ -2371,6 +2386,7 @@
     }
    ],
    "karte": {
+    "titel": "Das ist Mi|las Mond",
     "bild": "objekte/mond_hinten_faden",
     "text": "Mi|las Mond: hin|ten ein blau|er Stern und der auf|ge|roll|te Fa|den.",
     "staub": false
@@ -2545,6 +2561,7 @@
     }
    ],
    "karte": {
+    "titel": "Ein Miss|ver|ständ|nis",
     "bild": "objekte/mond_auf_tablett",
     "text": "Ben hat den Mond aufs Tab|lett für al|le ge|legt. Os|kar hielt ihn für Pa|pier.",
     "staub": false
@@ -2672,6 +2689,7 @@
     }
    ],
    "karte": {
+    "titel": "Ein neu|es Stück",
     "bild": "objekte/plakat",
     "text": "Neu|es Stück: Der größ|te Kä|se der Welt.",
     "staub": false
@@ -2790,6 +2808,7 @@
     }
    ],
    "karte": {
+    "titel": "Das Nest",
     "bild": "baum",
     "ausschnitt": {
      "x": 55,
@@ -3073,6 +3092,7 @@
     }
    ],
    "karte": {
+    "titel": "Der Schlüs|sel",
     "bild": "nest_nah",
     "ausschnitt": {
      "x": 22,
@@ -3217,6 +3237,7 @@
     }
    ],
    "karte": {
+    "titel": "Os|kars Maus",
     "bild": "objekte/maus_seite",
     "text": "Os|kars Maus steck|te in sei|ner Ka|pu|ze. Und jetzt hat je|des Ding sei|nen Platz: Pa|pier aufs Tab|lett, Pup|pen in die Kis|te, der Mond ne|ben die Wol|ke.",
     "staub": false
@@ -3586,6 +3607,7 @@
     }
    ],
    "karte": {
+    "titel": "Das The|a|ter|stück",
     "bild": "k4_s22",
     "text": "Im|mer wenn die Maus springt, zieht Ben den Kä|se hö|her. Das Pu|bli|kum lacht.",
     "staub": false,
@@ -3729,6 +3751,7 @@
     }
    ],
    "karte": {
+    "titel": "Ei|ne Els|ter",
     "bild": "objekte/elster",
     "text": "Der Vo|gel ist ei|ne Els|ter: schwarz-weiß, mit sehr lan|gem Schwanz, groß wie ei|ne Tau|be. Sie schmückt ihr Nest mit Glit|zer.",
     "staub": false
@@ -3890,6 +3913,7 @@
     }
    ],
    "karte": {
+    "titel": "Die Glit|zer-Samm|lung",
     "bild": "nest_sammlung",
     "text": "Da ist das Nest der Els|ter mit ih|rer Glit|zer-Samm|lung vom Hof. Hier kommt der Schmuck hin.",
     "staub": false

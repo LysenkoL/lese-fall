@@ -68,6 +68,7 @@
    "schluessel": true,
    "haken": "„Was, wenn der Vogel auch Frau Sommers Schlüssel dort hochgeschleppt hat?!“",
    "karte": {
+    "titel": "Das Nest",
     "bild": "baum",
     "ausschnitt": {
      "x": 55,
@@ -226,6 +227,7 @@
    "bild": "k4_s20_spiel",
    "haken": "Die Lese-Raupe lässt ein kleines Blättchen direkt auf Oskars Nacken segeln …",
    "karte": {
+    "titel": "Der Schlüssel",
     "bild": "nest_nah",
     "ausschnitt": {
      "x": 22,
@@ -315,6 +317,7 @@
    "bild": "k4_s19",
    "haken": "Die Tür geht weit auf, und die Kinder der Gruppe strömen herein!",
    "karte": {
+    "titel": "Oskars Maus",
     "bild": "objekte/maus_seite",
     "text": "Oskars Maus steckte in seiner Kapuze. Und jetzt hat jedes Ding seinen Platz: Papier aufs Tablett, Puppen in die Kiste, der Mond neben die Wolke.",
     "staub": false
@@ -621,6 +624,7 @@
    "bild": "k4_s22",
    "haken": "Der Vorhang fällt. Einen Moment lang ist es ganz still.",
    "karte": {
+    "titel": "Das Theaterstück",
     "bild": "k4_s22",
     "text": "Immer wenn die Maus springt, zieht Ben den Käse höher. Das Publikum lacht.",
     "staub": false,
@@ -686,6 +690,7 @@
    "bild": "k4_s23",
    "haken": "„Wollen wir der Elster ein Glitzer-Kunstwerk für ihr Nest basteln?“ – „Jaaa!“",
    "karte": {
+    "titel": "Eine Elster",
     "bild": "objekte/elster",
     "text": "Der Vogel ist eine Elster: schwarz-weiß, mit sehr langem Schwanz, groß wie eine Taube. Sie schmückt ihr Nest mit Glitzer.",
     "staub": false
@@ -788,6 +793,7 @@
    "bild": "k4_s24_fenster",
    "haken": "Das Nest! Und was hängt daran?",
    "karte": {
+    "titel": "Die Glitzer-Sammlung",
     "bild": "nest_sammlung",
     "text": "Da ist das Nest der Elster mit ihrer Glitzer-Sammlung vom Hof. Hier kommt der Schmuck hin.",
     "staub": false

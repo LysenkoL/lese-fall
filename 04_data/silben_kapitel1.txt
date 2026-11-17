@@ -2207,3 +2207,5 @@ klärst
 # neu für v8 (ungeprüft)
 bä|ren
 fell
+# neu für v8 (ungeprüft)
+i|das

@@ -124,6 +124,7 @@
    "bild": "k1_s1",
    "haken": "„Wie seltsam! Bei uns in der Schule ist doch noch nie etwas einfach so verschwunden!“",
    "karte": {
+    "titel": "Milas Mond",
     "bild": "objekte/mond_hinten",
     "text": "Milas Mond: gelb, oben ein weißer Faden, hinten ein blauer Stern.",
     "staub": false
@@ -195,6 +196,7 @@
    "bild": "k1_s2_vorher",
    "haken": "Der Mond ist weg!",
    "karte": {
+    "titel": "Der Mond ist weg",
     "bild": "k1_s2_nachher",
     "ausschnitt": {
      "x": 20,
@@ -272,6 +274,7 @@
    "bild": "k1_s3",
    "haken": "Was wäscht Ben da nur so lange von seinen Fingern?",
    "karte": {
+    "titel": "Ben am Waschbecken",
     "bild": "objekte/wasserhahn",
     "text": "Ben hat den Faden am Mond festgeklebt. Jetzt wäscht er den Kleber ab. Sein Pulli ist dunkelblau, ohne Streifen.",
     "staub": false
@@ -301,6 +304,7 @@
    "bild": "k1_s4_vorher",
    "haken": "In der Ecke wird es plötzlich still. Ben hat das Wasser zugedreht.",
    "karte": {
+    "titel": "Ein fremder Kreis",
     "bild": "objekte/falscher_kreis_hinten",
     "text": "Der gelbe Kreis unter den Zeitungen ist nicht Milas Mond.",
     "staub": false
@@ -342,6 +346,7 @@
    "bild": "k1_s5",
    "haken": "Genau dort am Fenster hat vorhin der gestreifte Ärmel zugegriffen!",
    "karte": {
+    "titel": "Das blaue Tablett",
     "bild": "objekte/kleber",
     "text": "Ben hat den Mond zum Trocknen auf das blaue Tablett direkt am offenen Fenster gelegt.",
     "staub": false
@@ -389,6 +394,7 @@
    "bild": "k1_s6_nachher",
    "haken": "Sechs Kinder, sechs Pullis. Einer davon war es.",
    "karte": {
+    "titel": "Oskars Ärmel",
     "bild": "oskar/staunt",
     "text": "Der Ärmel gehört Oskar.",
     "staub": false

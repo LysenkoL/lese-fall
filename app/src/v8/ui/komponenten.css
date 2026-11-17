@@ -463,6 +463,8 @@ em.neu .s-b, em.neu .s-r { color: inherit; }
   border-radius: .5rem;
   box-shadow: var(--sch-karte);
 }
+.kgross h3 { font-size: 1.25rem; line-height: 1.25; font-weight: 800; color: var(--nacht-2); margin: 0; }
+.kgross h3 .s-b, .kgross h3 .s-r { color: inherit; }
 .kgross p { font-size: 1.0625rem; line-height: 1.4; font-weight: 600; color: var(--tinte); }
 .kgross p .s-b, .kgross p .s-r { color: inherit; }
 .kgross .ausschn { margin: auto 0; }

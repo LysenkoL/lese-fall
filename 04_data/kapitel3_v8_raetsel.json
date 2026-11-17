@@ -31,6 +31,7 @@
    "bild": "k3_s13",
    "haken": "Ein Faden am Käse? Milas Mond hat auch einen.",
    "karte": {
+    "titel": "Ein Faden am Käse",
     "bild": "objekte/kaese_auf_teller",
     "text": "Am Käse schaut ein kleines Stück weißer Faden heraus.",
     "staub": false
@@ -62,6 +63,7 @@
    "bild": "k3_s14",
    "haken": "Zwischen den Zweigen sitzt ein großer Vogel mit spitzem Schnabel und langem Schwanz. Er äugt neugierig nach unten.",
    "karte": {
+    "titel": "Ein Schatten",
     "bild": "objekte/vogelschatten",
     "text": "Ein Schatten mit zwei Flügeln, spitzem Schnabel und langem Schwanz.",
     "staub": false
@@ -91,6 +93,7 @@
    "bild": "k3_s15",
    "haken": "Da kommen Ida, Nele, Tom und Emil über den Hof zur Bank gerannt.",
    "karte": {
+    "titel": "Nur aufgeklebt",
     "bild": "k3_s15",
     "text": "Die Flecken und die Krümel sind nur aufgeklebt. Der Kreis darunter ist ganz.",
     "staub": false,
@@ -247,6 +250,7 @@
    "bild": "k3_s16_vorher",
    "haken": "Oskar ist ganz still geworden.",
    "karte": {
+    "titel": "Das ist Milas Mond",
     "bild": "objekte/mond_hinten_faden",
     "text": "Milas Mond: hinten ein blauer Stern und der aufgerollte Faden.",
     "staub": false
@@ -359,6 +363,7 @@
    "bild": "k3_s17",
    "haken": "Mila hält ihren gepunkteten Mond ratlos hoch. Was wird jetzt aus dem Theaterstück?",
    "karte": {
+    "titel": "Ein Missverständnis",
     "bild": "objekte/mond_auf_tablett",
     "text": "Ben hat den Mond aufs Tablett für alle gelegt. Oskar hielt ihn für Papier.",
     "staub": false
@@ -400,6 +405,7 @@
    "bild": "k3_s18",
    "haken": "Oben in der Astgabel legt der schwarz-weiße Vogel den Kopf schief. Er schaut auf den langen weißen Faden.",
    "karte": {
+    "titel": "Ein neues Stück",
     "bild": "objekte/plakat",
     "text": "Neues Stück: Der größte Käse der Welt.",
     "staub": false

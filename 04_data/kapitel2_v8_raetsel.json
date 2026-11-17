@@ -32,6 +32,7 @@
    "bild": "k2_s7",
    "haken": "„Wer sich vom blauen Tablett etwas nimmt, ist also kein Dieb. Aber wer schnippelt da draußen mit der Schere?“",
    "karte": {
+    "titel": "Kiste und Tablett",
     "bild": "objekte/kiste_gruen",
     "text": "Grüne Kiste: fertige Figuren. Blaues Tablett: Papier für alle.",
     "staub": false
@@ -114,6 +115,7 @@
    "bild": "k2_s8",
    "haken": "Wer von draußen aufs Tablett geschaut hat, sah nur einen weißen Pappkreis. Aber wer war draußen?",
    "karte": {
+    "titel": "Weiße Seite oben",
     "bild": "objekte/mond_hinten_feucht",
     "text": "Milas Mond lag mit der weißen Seite oben. Der Kleber war noch nass.",
     "staub": false
@@ -179,6 +181,7 @@
    "bild": "k2_s9",
    "haken": "Was versteckt Oskar unter dem Seidenpapier?",
    "karte": {
+    "titel": "Der zugedeckte Teller",
     "bild": "objekte/teller_zugedeckt",
     "text": "Oskar hat einen Teller zugedeckt. Was darauf liegt, sieht man nicht.",
     "staub": true
@@ -242,6 +245,7 @@
    "bild": "k2_s10",
    "haken": "„Gebastelt?!“ Milas Stimme zittert ein kleines bisschen.",
    "karte": {
+    "titel": "Ein weißer Kreis",
     "bild": "objekte/tablett_leer",
     "text": "Oskar sagt: Ich habe einen weißen Kreis vom Tablett genommen.",
     "staub": false
@@ -269,6 +273,7 @@
    "bild": "k2_s11",
    "haken": "Neben dem Teller liegt etwas. Etwas Gelbes. Viele kleine Stücke.",
    "karte": {
+    "titel": "Idas Schere",
     "bild": "kinder/ida",
     "text": "Ida hat eine Schere und blaues Papier. Sie bastelt eine Krone.",
     "staub": false
@@ -301,6 +306,7 @@
    "bild": "k2_s12",
    "haken": "Drei … zwei … eins …",
    "karte": {
+    "titel": "Gelbe Schnipsel",
     "bild": "objekte/gelbe_schnipsel",
     "text": "Neben dem Teller: eine Schere und gelbe Schnipsel. Niemand hat gesehen, was geschnitten wurde.",
     "staub": false
