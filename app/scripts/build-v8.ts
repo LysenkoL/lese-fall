@@ -35,7 +35,12 @@ function saetze(line: string): string[] {
   if (out.join(' ') !== line) throw new Error('Satzteilung kaputt: ' + line);
   return out;
 }
-const isThought = (line: string) => /„[^“]*“,? (denkt|schimpft)|(denkt|schimpft) (sie|die (Lese-)?[Rr]aupe)[^„]*„/.test(line);
+/** Gedanke der Raupe → Denkblase: „…“, denkt sie / „…“, schmunzelt die Raupe / Die Lese-Raupe staunt: „…“ (im selben Satz) */
+const isThought = (line: string) =>
+  /„[^“]*“,? (denkt|schimpft)|(denkt|schimpft) (sie|die (Lese-)?[Rr]aupe)[^„]*„/.test(line) ||
+  /“,? (überlegt|schmunzelt|kombiniert|kichert) die (Lese-)?Raupe/.test(line) ||
+  /Raupe\b[^.!?„“]*: „/.test(line) ||
+  /Raupe\b[^„]*„[^“]*“,? (wundert|schnauft) sie/.test(line);
 
 /* ---------- Text und Rätsel je Kapitel ---------- */
 interface Block { id: string; typ: 'p' | 'th'; s: string[]; umbruch?: boolean }

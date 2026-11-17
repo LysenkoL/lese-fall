@@ -1,8 +1,6 @@
-# LESE-FALL — DER VERSCHWUNDENE MOND · Text v8 · Kapitel 3 (Entwurf)
+# LESE-FALL — DER VERSCHWUNDENE MOND · Text v8.7 · Kapitel 3
 
-**Статус:** черновик 12.11.2026 по концепции `02_design/KONZEPT_v8.md`. Не проверен носителем языка. Основа — текст v7, Глава 3; изменено: нумерация Spur 13–18, продолжение сразу после Главы 2 (Оскар снимает шёлковую бумагу), нитка у «сыра» видна только кончиком (она свёрнута сзади), птица — сначала только тень (имя не называется), для ключевого момента 2 на скамейке лежат пять одинаковых «сыров» (Ида, Неле, Том, Эмиль сделали такие же и тоже нарисовали звезду), извинение Оскара — шифром, нитка разматывается только в конце.
-
-Пометка `<!-- Blatt -->` — желательное место переворота листа. Часы до спектакля: 20 → 15 → 10 минут.
+**Статус:** финальный текст автора от 17.11.2026 (`06_review/brainstorm/BUCH1_v8_7_FINAL.md`). Текст не менять здесь — сначала в файле автора. Разбивку на листы делает приложение.
 
 ---
 
@@ -10,156 +8,94 @@
 
 ### Spur 13 — Tadaa!
 
-„Tadaa!“ Oskar zieht das Seidenpapier weg.
+„Tadaa!“ Mit einem großen Schwung zieht Oskar das Seidenpapier weg.
 
-Auf dem Teller liegt ein großer runder Käse. Er ist leuchtend gelb. Er hat drei braune Löcher. Rundherum liegen kleine gelbe Krümel.
+Auf dem weißen Teller liegt ein großer, runder Käse! Er ist knallgelb, hat drei runde braune Käselöcher, und rundherum auf dem Teller liegen kleine gelbe Käsekrümel.
 
-Mila starrt auf den Teller. Ben klappt der Mund auf.
+Mila starrt sprachlos auf den Teller, und Ben klappt der Mund auf. „Ein Käse!“, bringt Ben heraus.
 
-„Ein Käse“, sagt Ben.
+„Ein echter Festtagskäse für meine kleine Maus!“, verkündet Oskar stolz. „Sogar mit echten Käsekrümeln!“
 
-„Ein Festtagskäse für meine Maus“, sagt Oskar stolz. „Sogar mit Krümeln!“
+Oben auf dem Fensterbrett läuft der Lese-Raupe schon das Wasser im Mund zusammen: „Mmmh, Käse!“ Doch gleich darauf muss sie über sich selbst kichern: „Ach Quatsch, der ist doch aus Pappe! Mein hungriger Raupenbauch hört einfach nie richtig zu.“
 
-<!-- Blatt -->
-
-Oben am Fensterrand läuft der Lese-Raupe das Wasser im Mund zusammen.
-
-„Käse!“, denkt sie. Dann muss sie lachen. „Ach nein. Das ist ja Pappe. Mein Bauch hört einfach nie zu.“
-
-Sie nimmt ihre Tautropfen-Lupe. Langsam schaut sie am Rand entlang.
-
-„Moment“, denkt sie. „An diesem Käse ist etwas, das nicht zu einem Käse passt.“
-
----
+Sie setzt ihre Tautropfen-Lupe vors Auge und mustert den Tellerrand ganz genau. „Moment mal“, denkt sie. „An diesem Käse blitzt etwas hervor, das überhaupt nicht zu einem normalen Käse passt!“
 
 ### Spur 14 — Ein Schatten mit Flügeln
 
-Mila beugt sich tief über den Teller.
+Mila beugt sich tief über den Teller auf der Bank. „Oskar, dein Käse ist ja auf den Millimeter genauso groß wie mein Mond!“, sagt sie leise.
 
-„Dein Käse ist genauso groß wie mein Mond“, sagt sie leise.
+„Und er hat genau dasselbe leuchtende Gelb!“, ruft Ben und zeigt auf den oberen Rand. „Und schau mal, da guckt ein Stück weißer Faden heraus!“
 
-„Und er hat genau dasselbe Gelb“, sagt Ben. Er zeigt auf den Rand. „Und da schaut ein Faden heraus!“
+Oskar schaut verwirrt von Mila zu Ben. „Wie, euer Mond? Das ist doch mein Mäusekäse! Und ich dachte, der Faden hing halt noch vom Basteln dran.“
 
-Oskar schaut von einem zum anderen. „Euer Mond? Wieso Mond? Das ist mein Mäusekäse! Und der Faden ist nur ein Bastelrest.“
+Mila holt tief Luft. „Nur gelb und rund reicht als Beweis noch nicht — das habe ich heute schon beim Kreis unter den Zeitungen gelernt. Wir müssen erst prüfen, ob dein Käse kaputtgeschnitten ist.“
 
-<!-- Blatt -->
+In diesem Augenblick blitzt Oskars silberne Bastelschere im Sonnenlicht auf — und plötzlich huscht ein großer Schatten mit zwei ausgebreiteten Flügeln dicht über die Bank!
 
-Mila will schon den Kopf schütteln. Dann hält sie inne.
-
-„Gelb und rund reicht nicht“, sagt sie. „Das weiß ich seit heute. Und ein Faden kann wirklich ein Bastelrest sein.“
-
-Da huscht ein Schatten über den Teller. Ein Schatten mit zwei Flügeln.
-
-Die Raupe schaut nach oben. Aber über der Bank bewegt sich nur ein Blatt.
-
-Zum Glück hat sie ihren Zeitlupen-Blick. Der Schatten war schnell. Aber sie hat ihn ganz langsam gesehen.
-
-„Wer war das?“, denkt sie. „Spitzer Schnabel. Langer Schwanz.“
-
----
+Die Lese-Raupe schaut blitzschnell mit ihrem Zeitlupen-Blick in die Baumkrone hinauf: Zwischen den Zweigen sitzt ein großer Vogel mit spitzem Schnabel und langem Schwanz und äugt neugierig nach unten.
 
 ### Spur 15 — Drei braune Flecken
 
-Ben schaut auf die braunen Löcher. Dann auf die Schere. Dann auf die gelben Schnipsel.
+Ben deutet vorsichtig auf die drei braunen Käselöcher und die gelben Schnipsel: „Oskar, sag mal … Hast du für die Löcher und die Krümel etwa in den großen gelben Kreis hineingeschnitten?“
 
-„Oskar“, sagt er vorsichtig. „Die braunen Flecken sind doch nur aufgeklebt? Du hast nicht in den Kreis geschnitten?“
+Oskar lacht laut los. „Quatsch! Die dicke Pappe wäre doch viel zu schwer zu schneiden! Die drei braunen Punkte habe ich nur oben draufgeklebt.“
 
-Geschnitten? Dann wäre Milas Mond kaputt!
+Zum Beweis hält er zwei dünne Bastelblätter hoch: ein braunes Papierblatt, in dem drei kreisrunde Stücke fehlen, und ein dünnes gelbes Blatt mit vielen kleinen Zacken.
 
-Oskar lacht. „Quatsch! Die Pappe ist viel zu dick zum Schneiden.“
+„Seht ihr? Die braunen Käselöcher habe ich hier aus dem braunen Bogen ausgeschnitten“, erklärt Oskar. „Und die leckeren Käsekrümel stammen aus dem dünnen gelben Papier!“
 
-Er hält zwei Blätter hoch. Ein braunes Blatt mit drei runden Löchern. Und ein dünnes gelbes Blatt mit vielen Zacken.
+Mila fällt ein riesiger Stein vom Herzen: „Puh, dann ist die große Pappscheibe darunter ja noch komplett heil!“
 
-<!-- Blatt -->
-
-„Die braunen Kreise habe ich hier ausgeschnitten“, sagt Oskar. „Und die Krümel sind aus dem gelben Blatt.“
-
-Mila atmet auf. „Dann ist der Kreis darunter noch ganz!“
-
-Ben lacht. „Und ich dachte schon, du hast ihn zerschnitten.“
-
-Mila fährt mit dem Finger über den Rand. Da ist ein winziger Riss. „Der kommt vom vielen Anfassen“, sagt sie. „Das ist nicht schlimm.“
-
-„Ein Kreis im Käse-Kostüm“, denkt die Raupe. „Mit drei aufgeklebten Sommersprossen.“
-
-Noch fünfzehn Minuten.
-
----
+Oben am Fenster schmunzelt die Lese-Raupe: „Ein Mond im Käse-Kostüm mit drei aufgeklebten Sommersprossen!“
 
 ### Spur 16 — Die Rückseite
 
-Da kommen Ida und Nele über den Hof gelaufen. Tom und Emil rennen hinterher.
+Da kommen Ida, Nele, Tom und Emil fröhlich über den Hof zur Bank gerannt. Jedes Kind hält stolz seine graue Papiermaus aus dem Werkunterricht und einen eigenen gelben Pappkreis in der Hand!
 
-„Wir haben auch Käse für die Maus gebastelt!“, ruft Ida. „Mit braunen Flecken, genau wie deiner, Oskar!“
+„Als wir gesehen haben, dass Oskar seiner Maus einen Festtagskäse bastelt, hatten wir eine super Idee!“, ruft Ida begeistert. „Wir haben für unsere Mäuse auch gelbe Käse mit drei braunen Flecken gebastelt, damit alle Mäuse nach eurem Theaterstück zusammen eine große Käse-Party feiern können!“
 
-Jedes Kind legt einen gelben Kreis auf die Bank. Oskar legt seinen Käse dazu. Jetzt liegen fünf Kreise nebeneinander. Alle sind gelb. Alle haben drei braune Flecken.
+Lachend legen die Kinder ihre Kreise neben Oskars Käse auf die Bank. Jetzt liegen dort fünf gelbe Käse-Kreise nebeneinander — und von vorne sehen alle fünf haargenau gleich aus!
 
-„Welcher davon ist mein Mond?“, flüstert Mila.
+„Ach du liebe Zeit!“, japst Mila. „Welcher von den fünf Kreisen ist denn jetzt mein Mond?!“
 
-<!-- Blatt -->
+Ida kichert: „Und weißt du was, Mila? Als du mir heute Morgen auf dem Schulweg deinen Mond mit dem kleinen blauen Stern auf der Rückseite gezeigt hast, fand ich das so schlau! Da habe ich vorhin beim Basteln allen vorgeschlagen: Statt langweilig unseren Namen draufzuschreiben, malt jeder hinten ein kleines Geheimzeichen auf seinen Käse — und ich habe mir auch einen blauen Stern gemalt!“
 
-„Mein Käse hat hinten auch einen blauen Stern“, sagt Ida. „Den habe ich von dir abgeguckt, Mila.“
+Mila schaut zu Ben: „Dann reicht der blaue Stern allein nicht mehr! Aber an meinem echten Mond ist hinten ja noch das kleine Loch, wo Ben den weißen Faden aufgerollt und festgeklebt hat!“
 
-Mila nickt langsam. „Dann reicht der Stern allein nicht. Mein Mond hat hinten noch etwas. Ben hat den Faden aufgerollt und festgeklebt.“
-
-„Von vorne sieht man das nicht“, sagt Ben. „Wir müssen die Kreise umdrehen.“
-
-Oben macht die Lese-Raupe einen ganz langen Hals. Fast fällt sie vom Fensterbrett.
-
-„Gleich dreht sie um“, denkt sie. „Welche Rückseite sagt die Wahrheit?“
-
----
+Oben am Fensterbrett macht die Lese-Raupe einen langen Hals: „Jetzt wird umgedreht! Welche Rückseite verrät uns den echten Mond?“
 
 ### Spur 17 — Ein Missverständnis
 
-Oskar schaut Mila erschrocken an. Er ist ganz blass.
+Als sie die Kreise umdrehen, ist alles klar: Unter Oskars Käse leuchtet nicht nur der kleine blaue Stern für die Raupe, sondern genau am Rand klebt auch Bens aufgerollter weißer Faden!
 
-„Es war dein Mond“, flüstert er. „Und ich habe ihn für ein Stück Papier gehalten.“
+Oskar wird ganz blass um die Nase. „Oh weh … Es war wirklich dein Theater-Mond, Mila!“, flüstert er erschrocken. „Und ich habe einfach drei braune Käseflecken vorne draufgeklebt!“
 
-Er kann nichts mehr sagen. Aber er greift in die Hosentasche. Dort steckt ein gefalteter Zettel.
+Er ist so verlegen, dass er schnell einen kleinen leeren Notizzettel und einen kurzen Bleistiftstummel aus seiner Hosentasche zieht. Auf seinem Knie kritzelt er eilig ein paar Wörter darauf und reicht den Zettel Mila: „Ich schreibe meine Entschuldigung lieber als Geheimagenten-Botschaft auf. Ein echter Agent bringt so etwas kaum laut über die Lippen.“
 
-„Ich schreibe es lieber auf“, murmelt er. „Wie ein Geheimagent. Ein Agent sagt so etwas nie laut.“
+Mila liest den Zettel und legt Oskar sofort tröstend den Arm um die Schulter. „Ach Oskar, du konntest es doch gar nicht wissen! Du saßt ja schon draußen auf der Bank, als ich den Mond drinnen gezeigt habe.“
 
-<!-- Blatt -->
+Ben kratzt sich grinsend am Kopf: „Eigentlich war ich schuld, weil ich den Mond mit der weißen Seite nach oben auf das Bastel-Tablett für alle gelegt habe!“
 
-Mila legt ihm die Hand auf die Schulter. „Du konntest es nicht wissen. Du warst draußen, als ich den Mond gezeigt habe.“
+„Und ich war so tief im Schrank verschwunden, dass ich nichts gemerkt habe!“, lacht Mila.
 
-Ben kratzt sich am Kopf. „Eigentlich war es mein Fehler. Ich habe den Mond auf das Tablett für alle gelegt.“
-
-„Und ich war so tief im Schrank, dass ich dich nicht gehört habe“, sagt Mila.
-
-<!-- Blatt -->
-
-Die drei schauen sich an. Dann müssen alle lachen.
-
-„Ein Mond, der heimlich als Käse arbeitet!“, kichert Mila.
-
-„Kein Dieb“, denkt die Raupe. „Nur drei gute Ideen, die sich in die Quere kamen.“
-
-Noch zehn Minuten.
-
----
+Auf ihrem Fensterbrett atmet die Lese-Raupe zufrieden auf: „Kein böser Dieb — nur drei gute Ideen, die sich lustig in die Quere gekommen sind!“
 
 ### Spur 18 — Die rettende Idee
 
-Oskar zieht vorsichtig an einem braunen Fleck. Der Fleck bewegt sich nicht.
+Oskar stupst vorsichtig an einen der braunen Papierflecken auf dem Mond, aber Ben ruft sofort: „Lieber nicht abziehen, Oskar! Dein Kleber hält so gut, dass sonst die gelbe Pappe vom Mond zerreißt.“
 
-„Nicht ziehen!“, ruft Ben. „Dein Kleber hält zu gut. Sonst reißt die Pappe.“
+Mila hält ihren gepunkteten Mond ratlos hoch. „Aber was machen wir denn jetzt mit unserem Theaterstück?“
 
-Mila hält ihren gefleckten Mond hoch. „So kann er nicht ans Theater“, sagt sie leise. „Was machen wir jetzt?“
+Da schaut Ben erst auf den gefleckten Mond und dann auf Oskars kleine graue Papiermaus. Plötzlich schnippt er begeistert mit den Fingern: „Wartet mal! Der echte Mond am Himmel hat doch auch dunkle Krater! Eigentlich sieht unser Mond mit den drei braunen Flecken jetzt noch viel echter aus! Für die Menschen ist es ein Mond mit Kratern — aber für eine hungrige kleine Maus sieht er natürlich aus wie der größte Käse der Welt! Oskar, wir spielen einfach ein neues Stück, und du führst deine Maus auf der Bühne!“
 
-Oskar sieht seine kleine Maus an. Dann den Mond. Plötzlich strahlt sein ganzes Gesicht.
+Oskar zuckt erschrocken zusammen und wird rot. „Wa-was? Ich soll selbst mit meiner Maus im Theater mitspielen? Vor allen Kindern?“
 
-<!-- Blatt -->
+„Ja, unbedingt!“, ruft Mila und hüpft vor Freude. „Das wird noch tausendmal lustiger als unser altes Stück! Du musst deine Maus nur auf die Bühne hüpfen lassen!“
 
-„Wir spielen ein neues Stück!“, ruft er. „Eine hungrige Maus schaut nachts zum Himmel. Und sie hält den Mond für einen riesigen Käse!“
+Da strahlt Oskar über das ganze Gesicht: „Na gut! Dann hat meine kleine Maus heute nicht nur ein Festessen, sondern auch noch ihre allererste Rolle im Theater!“
 
-Mila reißt die Augen auf. „Das ist ja viel lustiger als mein altes Stück!“
+„Und damit unser Mond am Theaterhimmel besonders magisch aussieht, kriegt er oben am Faden noch einen Glitzerstern!“, ruft Mila und klebt einen funkelnden Stern aus Silberfolie direkt über das Fadenloch. Dann ruft sie Ida und den anderen Kindern auf dem Hof zu: „Hey, bringt zur Aufführung unbedingt alle eure gebastelten Mäuse mit — wir haben eine Riesen-Überraschung für euch!“
 
-Ben grinst. „Und ich ziehe den Käse am Faden nach oben. Immer wenn die Maus springt!“
+„Au ja, wir kommen alle!“, rufen Ida und die anderen Kinder begeistert zurück. „Wir warten schon voller Ungeduld!“
 
-„Dann brauchen wir ein Plakat“, sagt Mila. „Für das neue Stück.“
-
-Ben rollt den Faden vorsichtig ab. Der Kleber ist inzwischen trocken. Ein langes Stück hängt über den Rand der Bank.
-
----
+Schnell holt Ben das Theaterplakat und Stifte aus dem Klassenzimmer. Mila, Ben und Oskar beugen sich mitten auf der Bank eifrig über das Plakat: Sie müssen gar nicht viel ändern — Oskar malt unten schnell eine kleine graue Maus dazu, und Mila tupft drei braune Punkte auf den gemalten Mond. Während die drei ganz in ihre Zeichnung vertieft sind, liegt der echte Mond mit dem abgewickelten weißen Faden und dem funkelnden Silberstern ganz außen am Bankrand ohne Aufsicht in der Sonne …

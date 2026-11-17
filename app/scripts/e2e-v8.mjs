@@ -228,8 +228,8 @@ async function raetsel(spur, z) {
   } else if (z.art === 'schatten') {
     await S(n + '_start');
     const falsch = await p.$eval(`.sc-k:not([data-i="${z.richtig}"])`, (e) => e.dataset.i);
-    await klick(`.sc-k[data-i="${falsch}"]`); await sleep(300); await S(n + '_falsch'); await sleep(500);
-    await klick(`.sc-k[data-i="${z.richtig}"]`); await sleep(1000);
+    await klick(`.sc-k[data-i="${falsch}"]`); await sleep(300); if (await p.$('#fuss [data-a="passt"]')) await klick('#fuss [data-a="passt"]'); await sleep(300); await S(n + '_falsch'); await sleep(500);
+    await klick(`.sc-k[data-i="${z.richtig}"]`); await sleep(300); if (await p.$('#fuss [data-a="passt"]')) await klick('#fuss [data-a="passt"]'); await sleep(1000);
   } else if (z.art === 'kreise') {
     await S(n + '_erinnern');
     const rich = z.erinnern.karten.filter((k) => k.richtig).map((k) => k.id), falsch0 = z.erinnern.karten.find((k) => !k.richtig).id;

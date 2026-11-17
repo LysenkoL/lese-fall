@@ -1,8 +1,6 @@
-# LESE-FALL — DER VERSCHWUNDENE MOND · Text v8 · Kapitel 4 (Entwurf)
+# LESE-FALL — DER VERSCHWUNDENE MOND · Text v8.7 · Kapitel 4
 
-**Статус:** черновик 12.11.2026 по концепции `02_design/KONZEPT_v8.md`. Не проверен носителем языка. Основа — текст v7, Глава 4; изменено: нумерация Spur 19–24, продолжение сразу после Главы 3 (птица уже схватила нитку), Луна ещё висит в развилке, пока ребёнок её не найдёт (Spur 19), уборка и «Sonne» вынесены в Spur 21, Spur 22 — спектакль (игра «Faden ziehen»), в Spur 23 названы три приметы птицы, Spur 24 заканчивается перед находкой гнезда.
-
-Пометка `<!-- Blatt -->` — желательное место переворота листа. Часы до спектакля: 5 → 2 минуты → стук в дверь.
+**Статус:** финальный текст автора от 17.11.2026 (`06_review/brainstorm/BUCH1_v8_7_FINAL.md`). Текст не менять здесь — сначала в файле автора. Разбивку на листы делает приложение.
 
 ---
 
@@ -10,138 +8,114 @@
 
 ### Spur 19 — Der Mond im Baum
 
-„Mein Mond!“, schreit Mila.
+Wusch! Noch bevor jemand hinschauen kann, schießt der große schwarz-weiße Vogel aus den Zweigen herab, schnappt sich den Faden am Mond und flattert damit in die Luft!
 
-Der Vogel hält den Faden fest im Schnabel. Er flattert mit dem gelben Mond davon. Aber er kommt nicht weit. Er landet in der Astgabel unter dem Fenster. Dort stehen zwei dünne Zweige wie ein V.
+„Mein Mond!“, schreit Mila entsetzt. „Der Vogel klaut unseren Himmelskäse!“
 
-Der Faden rutscht zwischen die beiden Zweige. Dort klemmt er fest. Der Vogel zieht. Ruck. Ruck. Nichts bewegt sich. Da lässt er los und fliegt davon.
+Alle Kinder schauen nach oben: Der Vogel fliegt direkt in die Astgabel unter dem Klassenzimmerfenster, wo zwischen zwei Zweigen wie in einem großen V sein rundes Nest sitzt! Obwohl der Vogel fast so groß wie eine Taube ist, ist das Nest für den riesigen Pappmond natürlich viel zu klein. Trotzdem zerrt und ruckelt der Vogel wie verrückt am Faden, um die dicke Pappscheibe irgendwie in sein Nest zu stopfen!
 
-<!-- Blatt -->
+Sofort rennen Mila, Ben und Oskar unter den Baum. „Hey, du frecher Dieb, gib den sofort wieder her!“, ruft Mila nach oben und winkt mit beiden Armen. „Was fällt dir denn ein?!“
 
-Unten stehen die Kinder und schauen hoch. Oskar steckt seine Maus in die Kapuze. So hat er beide Hände frei.
+Erschrocken stößt der Vogel ein lautes, schimpfendes „Schack-schack! Kräääh!“ aus, öffnet den Schnabel — und der Mond segelt unversehrt hinunter direkt in Milas ausgebreitete Arme!
 
-„Wo ist er hin?“, ruft Ben. Alle drei suchen die Baumkrone ab. Dort sind nur Blätter. Und der Baum hat viele Astgabeln.
+„Gerettet!“, jubelt Mila und drückt den Himmelskäse an sich, während Ben stolz grinst: „Seht ihr? Mein Spezial-Kleber am Faden hält sogar, wenn ein riesiger Vogel daran zerrt!“
 
-Die Lese-Raupe richtet ihre Leucht-Fühler auf den Baum. Im Laub und in der Rinde glimmt etwas. Es sind Buchstaben!
+Oskar steckt seine kleine Papiermaus schnell hinten in seine Kapuze, damit er beide Hände frei hat, und zeigt aufgeregt hoch zur Astgabel: „Aber schaut mal da oben ins Nest! Da hat gerade zwischen den Zweigen noch etwas anderes in der Sonne geblitzt! Was, wenn der Vogel vorhin auch Frau Sommers Schlüssel dort hochgeschleppt hat?!“
 
-<!-- Ermittlung -->
-
-„Drei Buchstaben“, denkt sie. „Vielleicht ergeben sie ein Wort. Vielleicht verrät es mir, wo ich suchen soll.“
-
----
+Oben am Fenster richtet die Lese-Raupe ihre goldenen Leucht-Fühler auf die Baumkrone: Im Laub glimmen drei Buchstaben auf! Und warum stiehlt dieser Vogel überhaupt unsere Sachen?
 
 ### Spur 20 — Wo ist die Maus?
 
-Frau Sommer lehnt sich weit aus dem Fenster. Vorsichtig zieht sie den Faden aus der Astgabel. Der Mond kommt frei!
+Unter dem Baum verschränkt Ben schon die Hände zu einer Räuberleiter, um Oskar ein Stück am Stamm hochzuheben: „Komm, Oskar, versuch mal, ob du bis ins Nest schauen kannst!“
 
-Mila drückt ihn an sich. „Der Kleber hat gehalten“, sagt Ben stolz.
+Genau in diesem Moment kommt Frau Sommer aus der Schultür geeilt und bleibt mit großen Augen stehen: „Ja, sagt mal, was macht ihr denn da?! In wenigen Minuten beginnt eure Theateraufführung, und ihr klettert hier draußen auf Bäume?! Was ist denn hier los?“
 
-Dann rennen alle ins Haus. Noch fünf Minuten bis zum Stück.
+„Frau Sommer, wir wollten Ihnen helfen!“, ruft Ben aufgeregt. „Ein großer schwarz-weißer Vogel wollte gerade unseren Mond in sein Nest da oben stopfen — und wir haben gesehen, dass im Nest noch etwas blitzt! Vielleicht liegt dort Ihr verschwundener Schlüssel!“
 
-<!-- Blatt -->
+Frau Sommer schaut verblüfft hinauf in die Astgabel direkt vor dem Klassenzimmerfenster. „Vom Boden aus kommt ihr da nie ran!“, sagt sie. „Nehmt schnell euer Plakat von der Bank und kommt mit ins Klassenzimmer — vom Fenster aus können wir direkt ins Nest schauen!“
 
-„Du spielst die Maus, Oskar“, sagt Mila.
+Schnell schnappen sich die Kinder das Plakat und den Mond und laufen mit Frau Sommer hinein ans offene Fenster. Frau Sommer beugt sich weit zur Astgabel hinaus, kann aber zwischen den dichten Blättern noch nichts erkennen. Da kriecht die kleine Lese-Raupe heimlich über den Zweig direkt bis an den Nestrand!
 
-„Klar!“, sagt Oskar. Dann wird er blass. „Wo ist denn meine Maus?“
+Als die Raupe ins Nest lugt, staunt sie: Da drinnen blitzt eine ganze Vogelsammlung vom Schulhof! Ein silberner Kronkorken, ein glitzerndes Bonbonpapier, ein buntes Glasscherbchen, das in der Sonne funkelt — und mitten darauf liegt tatsächlich Frau Sommers Schlüssel mit dem silbernen Glitzer-Stern!
 
-Er sucht auf dem Tisch. Er schaut in die grüne Kiste. Mila sucht unter dem Tisch. Ben sucht hinter dem Theater.
+Mit vollem Körpereinsatz stupst die Raupe den Schlüssel gegen das Glasscherbchen und den Kronkorken: KLING! KLIRR! Sofort greift Frau Sommer gezielt durch die Blätter und zieht überglücklich ihren Schlüssel heraus: „Mein Schlüssel! Ihr hattet recht!“
 
-„Sie war doch eben noch da!“, jammert Oskar. „Ohne Maus kann ich nicht spielen!“
+Lächelnd schaut sie auf den Kronkorken, das Glasscherbchen und das Bonbonpapier im Nest: „Den Schlüssel nehme ich mit, aber ihre anderen Glitzer-Schätze lassen wir ihr natürlich da. Eigentlich tut sie ja nichts Böses — sie hilft sogar mit und sammelt den glitzernden Kleinkram vom Hof auf!“
 
-<!-- Ermittlung -->
+Auf dem Zweig schaut die Lese-Raupe vom silbernen Schlüssel-Stern zum Silberstern am Mond und kombiniert: „Jetzt ist alles klar! Der Vogel wollte vorhin gar nicht den Pappmond fressen — er wurde einfach von dem funkelnden Silberstern am Faden angelockt, genau wie von Frau Sommers silbernem Schlüssel-Stern!“
 
-Alle laufen hin und her. Nur die Lese-Raupe bleibt ruhig sitzen. Sie nimmt ihre Tautropfen-Lupe.
+„So, mein Schlüssel ist gerettet, und jetzt fängt sofort eure Vorstellung an!“, ruft Frau Sommer fröhlich. „Oskar, halt deine Maus bereit!“
 
-Langsam schaut sie jedes Kind an. Etwas Rosafarbenes! Aber was ist es? Und wo?
+Oskar greift in seine Taschen, tastet über den Tisch — und wird kreidebleich. „Oh nein! Meine Maus ist weg! Eben draußen unterm Baum hatte ich sie doch noch!“
 
----
+Ben will ihn trösten: „Nimm doch einfach eine von den anderen Papiermäusen, die Kinder haben doch heute im Werkunterricht so viele gebastelt!“
+
+Doch Oskar schüttelt verzweifelt den Kopf: „Nein, niemals! Das ist doch meine Lieblingsmaus, mein allerbester Freund! Ohne sie kann ich nicht auftreten!“
+
+Während alle suchen, bleibt nur die Lese-Raupe ruhig sitzen und schaut durch ihre Tautropfen-Lupe: Da blitzt doch etwas Rosafarbenes an einem der Kinder hervor!
 
 ### Spur 21 — Alles an seinem Platz
 
-Frau Sommer steckt den Kopf herein. „Seid ihr so weit? Die anderen Kinder warten schon.“
+Die Lese-Raupe lässt ein kleines Blättchen direkt auf Oskars Nacken segeln. Oskar fasst sich an den Kragen — und zieht überglücklich seine kleine Maus aus der Kapuze! „Ach, da habe ich dich ja vorhin unterm Baum selbst hineingesteckt!“
 
-Dann sieht sie den gelben Kreis ohne Faden auf dem Tisch. „Ach, da ist ja meine Sonne für die Pinnwand!“, sagt sie. „Die suche ich seit heute Morgen. Genau wie meinen Schlüssel.“
+„Na Gott sei Dank!“, lacht Frau Sommer. „Und jetzt im Galopp noch schnell den Tisch aufräumen, bevor wir die Zuschauer hereinrufen!“
 
-Mila und Ben grinsen sich an.
+Diesmal kommt jedes Ding an seinen Platz: Oskar legt die Papierreste aufs blaue Tablett und steckt die Schere in den Stiftebecher. Mila legt die anderen Puppen in die grüne Kiste, und Ben steigt auf den Hocker, um den glitzernden Käse-Mond neben die Wolke an den Theater-Himmel zu hängen.
 
-<!-- Blatt -->
+Nur zwei Dinge räumt niemand weg: Die Kleberflasche fällt vom Tisch auf den Boden, und der grüne Bleistift rollt unter den Stuhl. Beide bleiben einfach liegen.
 
-„Ein paar Minuten habt ihr noch“, sagt Frau Sommer. „Räumt auf, bevor die Kinder kommen.“
+Beim Aufräumen hebt Frau Sommer den glatten gelben Pappkreis ohne Faden vom Zeitungsstapel auf und schlägt sich lachend vor die Stirn: „Ach du grüne Neune — was für ein verrückter Tag! Erst suche ich meinen Schlüssel im Baum, und dabei finde ich hier auch noch meine Bastelsonne für die Pinnwand wieder! Wie habe ich die denn bloß zwischen die alten Zeitungen gesteckt?!“
 
-Diesmal kommt jedes Ding an seinen Platz. Oskar legt die Papierreste auf das blaue Tablett. Er steckt die Schere in den Stiftebecher. Mila legt die Puppen in die grüne Kiste.
-
-Ben steigt auf den Hocker. Er legt den Faden über die Leiste. Dann hängt er den Mond links neben die Wolke.
-
-Zwei Dinge räumt niemand weg. Die Kleberflasche fällt vom Tisch auf den Boden. Der grüne Bleistift rollt unter den Stuhl. Beide bleiben einfach liegen.
-
-<!-- Ermittlung -->
-
-Die Lese-Raupe macht ihren Zeitlupen-Blick. Vorhin lag alles durcheinander. Was ist jetzt anders?
-
----
+Die Lese-Raupe schaltet ihren Zeitlupen-Blick ein: Vorhin lag auf dem Tisch alles durcheinander — was ist jetzt anders?
 
 ### Spur 22 — Der größte Käse der Welt
 
-Die Tür geht weit auf. Die Kinder der Gruppe kommen herein. Sie setzen sich auf den Teppich vor dem Theater.
+Die Tür geht weit auf, und die Kinder der Gruppe strömen herein! Jedes Kind hält gespannt seine gebastelte Maus aus dem Werkunterricht in den Händen.
 
-Hinter dem Theater hockt Oskar. Er hält seine Maus ganz fest. „Ich habe noch nie vor so vielen Kindern gespielt“, flüstert er.
+Hinter dem Theater hockt Oskar mit klopfendem Herzen. „Du hast heute einen Himmelskäse und ein ganzes Theaterstück erfunden, Oskar“, flüstert Mila ihm mutmachend zu. „Das schaffst du!“
 
-„Du hast heute einen Käse erfunden“, flüstert Mila. „Und ein ganzes Theaterstück. Das schaffst du.“
+Mila zieht den roten Vorhang auf: „Es war einmal eine kleine graue Maus in einer sternenklaren Nacht …“
 
-<!-- Blatt -->
+Oskar lässt seine Maus mutig auf die Bühne hüpfen und piepst: „Oh weh, mein kleiner Mäusebauch ist so leer! Ich habe bestimmt seit hundert Jahren keinen Krümel mehr gegessen!“
 
-Mila zieht den roten Vorhang auf. „Es war einmal eine kleine graue Maus“, beginnt sie.
+Schon kichern die ersten Kinder auf dem Teppich, und Oskars Hände zittern überhaupt nicht mehr! Seine Maus schaut hoch zum gelben Mond mit den drei braunen Flecken und dem funkelnden Silberstern: „Juhu! Da oben am Himmel hängt ja der größte Käse der Welt!“
 
-Oskar lässt die Maus auf die Bühne hüpfen. „Oh weh, mein Bauch ist so leer!“, piepst er. „Ich habe seit hundert Jahren nichts gegessen!“
+Immer wenn Oskars Maus hochspringt, zieht Ben hinter dem Vorhang den Käse-Mond am Faden ein Stückchen höher — und im Publikum machen plötzlich alle Kinder begeistert mit: Mit beiden Händen heben sie ihre eigenen Papiermäuse hoch in die Luft und lassen sie im Takt mit nach oben hüpfen!
 
-Die ersten Kinder kichern. Oskars Hände zittern nicht mehr.
-
-<!-- Ermittlung -->
-
-Die Maus schaut nach oben. Dort hängt der gelbe Mond mit seinen drei braunen Flecken. „Juhu! Am Himmel hängt ein riesiger Käse!“
-
-Hinter dem Vorhang hält Ben das Ende vom Faden. Immer wenn die Maus springt, zieht er den Käse ein Stück höher.
-
-Am Fenster schaut die Lese-Raupe zu. „So ein langer Weg für einen Mond“, denkt sie. „Weiß ich noch, wie alles kam?“
-
----
+Am Fenster schaut die Lese-Raupe begeistert zu. „Was für eine Reise für einen einzigen Mond!“, denkt sie. „Weiß ich noch genau, wie heute alles Schritt für Schritt kam?“
 
 ### Spur 23 — Zugabe!
 
-Schließlich gibt die kleine Maus auf. „Na gut, du Himmelskäse“, piepst sie. „Dann bleib eben dort oben und leuchte für mich.“
+Schließlich schnauft Oskars kleine Maus auf der Bühne: „Na gut, du frecher Himmelskäse! Dann bleib eben dort oben am Himmel und leuchte heute Nacht für uns alle!“
 
-Mila schließt langsam den Vorhang. Einen Moment lang ist es still. Dann klatschen alle.
+Mila schließt langsam den roten Vorhang. Einen Moment lang ist es mucksmäuschenstill — und dann bricht ein tosender Applaus los! „Zugabe! Zugabe!“, rufen alle Kinder und winken mit ihren Papiermäusen.
 
-„**Zugabe!** Zugabe!“, rufen die Kinder.
+Oskars Gesicht glüht vor Glück. „Ich habe mich wirklich getraut!“, flüstert er stolz.
 
-<!-- Blatt -->
+Da schaut Mila zum offenen Fenster hinüber und wird plötzlich ganz still: „Schaut mal da draußen auf dem Zweig …“
 
-„Ich habe mich getraut“, flüstert Oskar. Sein Gesicht glüht.
+Direkt neben dem Nest in der Astgabel sitzt der große schwarz-weiße Vogel mit dem langen Schwanz. Er schaut ganz traurig mal in sein Nest und mal durchs Fenster hinüber zum Theater-Mond, an dem der helle Silberstern funkelt.
 
-„Und alles nur wegen deines Käses“, lacht Mila. „Und wegen meines Klebers“, sagt Ben.
+Frau Sommer tritt ans Fenster und betrachtet den Vogel warmherzig: „Wisst ihr eigentlich, was für ein kluges Tier das ist? Dieser schwarz-weiße Vogel gehört zur Familie der Rabenvögel und zählt zu den schlausten Tieren der Welt — er kann sich sogar selbst im Spiegel erkennen! Und weil er glänzende Dinge über alles liebt, schmückt er sein Nest gern mit funkelnden Fundstücken.“
 
-Am Fenster klatscht die Lese-Raupe mit allen Füßchen. Dann fällt ihr etwas ein. Der Mond ist wieder da. Die Sonne ist wieder da. Die Maus auch. Aber eine Sache fehlt noch. Frau Sommers Schlüssel!
+Mila seufzt: „Und jetzt ist er bestimmt ganz traurig, weil wir ihm die beiden schönsten Silbersterne vom Schlüssel und vom Mond wieder wegnehmen mussten.“
 
-<!-- Blatt -->
+Als Werklehrerin hat Frau Sommer sofort eine wunderbare Idee: „Kinder, heute soll doch ein großes Fest für alle sein — niemand soll an unserem Theatertag traurig leer ausgehen! Wollen wir dem Vogel alle zusammen ein echtes Glitzer-Kunstwerk basteln, mit dem er sein Nest schmücken kann?“
 
-„Heute Morgen saß ein Vogel auf dem Fensterbrett“, sagt Frau Sommer. „Er war schwarz und weiß. Sein Schwanz war sehr lang. Und er war groß, fast so groß wie eine Taube.“
-
-Die Lese-Raupe nickt. „Den Vogel kenne ich“, denkt sie. „Aber wie heißt er? Es gibt so viele schwarz-weiße Vögel.“
-
----
+Die Lese-Raupe nickt eifrig mit ihren Fühlern: „Schwarz-weiß, langer Schwanz und verrückt nach allem, was glitzert — wie heißt dieser schlaue Vogel gleich noch mal?“
 
 ### Spur 24 — Ein stiller Nachmittag
 
-Am späten Nachmittag sind alle Kinder nach Hause gegangen.
+Alle Kinder im Raum rufen begeistert: „Jaaa!“
 
-Frau Sommer geht zum Fenster. Sie will es schließen. Da hört sie etwas.
+Sofort holen sie alle Reste der silbernen und goldenen Glitzerfolie, feste Pappe und bunte Bänder zum großen Basteltisch. Gemeinsam schneiden, falten und flechten sie einen prächtigen Nest-Schmuck aus wetterfesten Glitzer-Sternen und einer funkelnden Silberkrone.
 
-*Kling.*
+Alle Kinder bewundern das fertige Kunstwerk. Dann sagt Ida feierlich zu Mila, Ben und Oskar: „Wenn wir jetzt alle auf einmal ans Fenster stürmen, erschrickt der Vogel bestimmt! Ihr drei seid heute unsere großen Theater-Schauspieler — wir übertragen euch diese wichtige Ehren-Mission!“
 
-<!-- Blatt -->
+Als die anderen Kinder sich glücklich mit ihren Mäusen verabschiedet haben, treten Mila, Ben, Oskar und Frau Sommer leise ans offene Fenster, um das Glitzer-Kunstwerk am Nest zu befestigen.
 
-Sie schaut nach unten. Der Baum ist voller Blätter. Aber zwischen den Blättern blitzt es kurz auf. Etwas Kleines aus Metall. Daneben bewegt sich etwas Weißes im Wind.
+Doch der Nachmittagswind hat die dicht belaubten Zweige direkt vor die Astgabel geschoben, sodass man von oben kaum noch erkennt, wo genau der Nestrand zwischen den Blättern sitzt.
 
-„Was ist das?“, flüstert Frau Sommer. „Das sieht aus wie …“
+„Wartet kurz, wir müssen erst genau schauen, wo die Zweige vor dem Nest liegen“, flüstert Frau Sommer.
 
-Die Lese-Raupe hält den Atem an. Ihre Fühler leuchten golden. Die Blätter müssen weg! Und dann braucht sie ihre Lupe.
+Das ist der große Einsatz für die Lese-Raupe! Ihre Fühler leuchten golden auf: Erst müssen die Blätter vor der Astgabel zur Seite geschoben werden — und dann zeigt ihre Tautropfen-Lupe ganz genau, wo das Nest sitzt!

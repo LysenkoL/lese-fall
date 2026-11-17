@@ -2,7 +2,7 @@
  "_info": "Rätsel, Ermittlungsbrett und Fallkarte zu Kapitel 1, Konzept v8 (02_design/KONZEPT_v8.md). Texte ohne Silben; app/scripts/build-v8.ts setzt Silben. Positionen in Prozent der Bildbreite/-höhe.",
  "kapitel": 1,
  "bild": "kapitel_1",
- "vorspann": "Ein Mond aus Pappe. Ein Schlüssel an einem weißen Band. Und eine Stunde Zeit.",
+ "vorspann": "Ein Mond aus Pappe. Ein Schlüssel an einem Glitzer-Stern. Und eine Stunde Zeit.",
  "code": {
   "wort": "NEST",
   "buchstabe": "E",
@@ -12,8 +12,8 @@
   "bild": "k1_s6_nachher",
   "titel": "Das wissen wir jetzt",
   "saetze": [
-   "Ben hat den Mond repariert und auf das Tablett gelegt.",
-   "Dann hat Oskar durch das Fenster gegriffen."
+   "Ben hat den Faden festgeklebt und den Mond auf das blaue Tablett am Fenster gelegt.",
+   "Dann hat ein rot-weiß gestreifter Ärmel von draußen zugegriffen. Er gehört Oskar."
   ],
   "frage": "Aber wusste Oskar, dass es der Mond war?",
   "stempel": "KAPITEL 1 GELÖST"
@@ -99,7 +99,7 @@
  "intro": [
   {
    "bild": "vorgeschichte",
-   "text": "Das ist die Lese-Raupe. Sie wohnt auf einer großen Pflanze im Gruppenraum der Schule."
+   "text": "Das ist die Lese-Raupe. Sie wohnt auf einer großen grünen Pflanze im Gruppenraum der Schule."
   },
   {
    "bild": "raupe/staunt",
@@ -107,7 +107,7 @@
   },
   {
    "bild": "objekte/goldene_lupe",
-   "text": "Die Lese-Raupe ist langsam. Darum sieht sie, was andere übersehen. Du liest und löst die Rätsel. Zusammen klärt ihr den Fall."
+   "text": "Die Lese-Raupe hat keine Eile. Und genau darum sieht sie Dinge, an denen alle anderen einfach vorbeirennen. Wenn die Kinder einmal gar nicht weiterwissen, stupst sie heimlich eine Spur an!"
   },
   {
    "werkzeuge": true,
@@ -115,14 +115,14 @@
   },
   {
    "bild": "tresor",
-   "text": "Das ist der Tresor der Lese-Raupe. Darin wartet eine Überraschung auf dich. Er öffnet sich nur mit einem Code-Wort aus vier Buchstaben. Für jedes gelöste Kapitel bekommst du einen Buchstaben."
+   "text": "Und am Ende wartet ihr geheimer Tresor auf dich: Er öffnet sich nur mit dem Code-Wort aus den Kapiteln. Für jedes gelöste Kapitel bekommst du einen Buchstaben. Zusammen klärt ihr den Fall!"
   }
  ],
  "spuren": [
   {
    "spur": 1,
    "bild": "k1_s1",
-   "haken": "„Ein Schlüssel ist weg. Was verschwindet wohl als Nächstes?“",
+   "haken": "„Wie seltsam! Bei uns in der Schule ist doch noch nie etwas einfach so verschwunden!“",
    "karte": {
     "bild": "objekte/mond_hinten",
     "text": "Milas Mond: gelb, oben ein weißer Faden, hinten ein blauer Stern.",
@@ -202,7 +202,7 @@
      "w": 55,
      "h": 22
     },
-    "text": "Der Mond ist weg. Ein Ärmel mit Streifen hat am Tisch nach etwas gegriffen.",
+    "text": "Der Mond ist weg. Ein Ärmel hat am Tisch nach etwas gegriffen: rot-weiße Streifen rund um den Arm, keine Knöpfe.",
     "staub": true
    },
    "fragenNeu": [
@@ -273,7 +273,7 @@
    "haken": "Was wäscht Ben da nur so lange von seinen Fingern?",
    "karte": {
     "bild": "objekte/wasserhahn",
-    "text": "Der Ärmel: rot-weiße Streifen, rund um den Arm, keine Knöpfe.",
+    "text": "Ben hat den Faden am Mond festgeklebt. Jetzt wäscht er den Kleber ab. Sein Pulli ist dunkelblau, ohne Streifen.",
     "staub": false
    },
    "raetsel": {
@@ -340,10 +340,10 @@
   {
    "spur": 5,
    "bild": "k1_s5",
-   "haken": "Noch vierzig Minuten. Die beiden laufen los.",
+   "haken": "Genau dort am Fenster hat vorhin der gestreifte Ärmel zugegriffen!",
    "karte": {
     "bild": "objekte/kleber",
-    "text": "Ben hat den Faden festgeklebt und den Mond auf das blaue Tablett gelegt.",
+    "text": "Ben hat den Mond zum Trocknen auf das blaue Tablett direkt am offenen Fenster gelegt.",
     "staub": false
    },
    "raetsel": {
@@ -400,7 +400,7 @@
    "raetsel": {
     "art": "ausschluss",
     "titel": "Wessen Ärmel war es?",
-    "text": "Sechs Kinder spielen draußen. Lies jeden Hinweis und tippe alle Pullis an, die nicht passen.",
+    "text": "Bens Pulli ist dunkelblau. Draußen spielen sechs Kinder. Lies jeden Hinweis und tippe alle Pullis an, die nicht passen.",
     "kandidaten": [
      {
       "id": "lina",

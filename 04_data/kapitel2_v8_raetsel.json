@@ -30,7 +30,7 @@
   {
    "spur": 7,
    "bild": "k2_s7",
-   "haken": "Noch dreißig Minuten. Draußen schneidet noch immer jemand.",
+   "haken": "„Wer sich vom blauen Tablett etwas nimmt, ist also kein Dieb. Aber wer schnippelt da draußen mit der Schere?“",
    "karte": {
     "bild": "objekte/kiste_gruen",
     "text": "Grüne Kiste: fertige Figuren. Blaues Tablett: Papier für alle.",
@@ -112,7 +112,7 @@
   {
    "spur": 8,
    "bild": "k2_s8",
-   "haken": "Ein gelber Mond, der sich als weißer Kreis tarnt. Draußen raschelt wieder Papier.",
+   "haken": "Wer von draußen aufs Tablett geschaut hat, sah nur einen weißen Pappkreis. Aber wer war draußen?",
    "karte": {
     "bild": "objekte/mond_hinten_feucht",
     "text": "Milas Mond lag mit der weißen Seite oben. Der Kleber war noch nass.",
@@ -177,7 +177,7 @@
   {
    "spur": 9,
    "bild": "k2_s9",
-   "haken": "Was liegt unter dem Seidenpapier?",
+   "haken": "Was versteckt Oskar unter dem Seidenpapier?",
    "karte": {
     "bild": "objekte/teller_zugedeckt",
     "text": "Oskar hat einen Teller zugedeckt. Was darauf liegt, sieht man nicht.",
@@ -240,7 +240,7 @@
   {
    "spur": 10,
    "bild": "k2_s10",
-   "haken": "Noch fünfundzwanzig Minuten. Oskar läuft schon zur Tür.",
+   "haken": "„Gebastelt?!“ Milas Stimme zittert ein kleines bisschen.",
    "karte": {
     "bild": "objekte/tablett_leer",
     "text": "Oskar sagt: Ich habe einen weißen Kreis vom Tablett genommen.",

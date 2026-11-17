@@ -15,9 +15,9 @@
    "Der Käse mit den drei braunen Flecken ist Milas Mond. Hinten hat er den blauen Stern und den aufgerollten Faden.",
    "Oskar hat ihn nicht zerschnitten. Er hat nur Flecken aufgeklebt.",
    "Es war ein Missverständnis. Niemand wollte den Mond stehlen.",
-   "Ein Vogel zieht Papierstreifen in eine Astgabel."
+   "Ein großer Vogel mit langem Schwanz schaut aus dem Baum herunter."
   ],
-  "frage": "Aber was will der Vogel mit dem Faden?",
+  "frage": "Aber was will der Vogel bei uns auf dem Hof?",
   "stempel": "KAPITEL 3 GELÖST"
  },
  "ausblick": "Da klappen zwei Flügel auf. Der Vogel packt den weißen Faden. Und der Mond hebt ab.",
@@ -60,7 +60,7 @@
   {
    "spur": 14,
    "bild": "k3_s14",
-   "haken": "Oben in der Astgabel sitzt ein schwarz-weißer Vogel. Er zieht an einem langen weißen Papierstreifen. Ruck. Ruck. Dann ist der Streifen verschwunden.",
+   "haken": "Zwischen den Zweigen sitzt ein großer Vogel mit spitzem Schnabel und langem Schwanz. Er äugt neugierig nach unten.",
    "karte": {
     "bild": "objekte/vogelschatten",
     "text": "Ein Schatten mit zwei Flügeln, spitzem Schnabel und langem Schwanz.",
@@ -89,7 +89,7 @@
   {
    "spur": 15,
    "bild": "k3_s15",
-   "haken": "Noch fünfzehn Minuten. Da kommen Ida und Nele über den Hof gelaufen.",
+   "haken": "Da kommen Ida, Nele, Tom und Emil über den Hof zur Bank gerannt.",
    "karte": {
     "bild": "k3_s15",
     "text": "Die Flecken und die Krümel sind nur aufgeklebt. Der Kreis darunter ist ganz.",
@@ -357,7 +357,7 @@
   {
    "spur": 17,
    "bild": "k3_s17",
-   "haken": "Noch zehn Minuten. Mila schaut auf ihren gefleckten Mond.",
+   "haken": "Mila hält ihren gepunkteten Mond ratlos hoch. Was wird jetzt aus dem Theaterstück?",
    "karte": {
     "bild": "objekte/mond_auf_tablett",
     "text": "Ben hat den Mond aufs Tablett für alle gelegt. Oskar hielt ihn für Papier.",
@@ -404,12 +404,7 @@
     "text": "Neues Stück: Der größte Käse der Welt.",
     "staub": false
    },
-   "fragenNeu": [
-    {
-     "id": "k3plan",
-     "text": "Was will der Vogel mit dem Faden?"
-    }
-   ],
+   "fragenNeu": [],
    "schluessel": true,
    "raetsel": {
     "art": "plakat",
@@ -434,9 +429,9 @@
        "tipp": "Das ist erst ein Verdacht. Vom Schatten kennen wir nur die Form. Und vom Vogel in der Astgabel nur die Farben."
       },
       {
-       "text": "Der Vogel will den Faden für sich haben.",
+       "text": "Der Vogel will unseren Mond haben.",
        "sicher": false,
-       "tipp": "Das ist erst ein Verdacht. Wir haben nur gesehen, dass er Papierstreifen zieht. Was er damit vorhat, wissen wir nicht."
+       "tipp": "Das ist erst ein Verdacht. Wir haben nur einen Schatten und einen Vogel im Baum gesehen. Was er vorhat, wissen wir nicht."
       }
      ]
     },
