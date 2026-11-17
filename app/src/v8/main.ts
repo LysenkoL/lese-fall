@@ -47,9 +47,11 @@ interface Stand {
   intro: boolean; fs: number; silben: boolean;
   /** Finale: 0 Szene, 1 Code, 2 Tresor offen, 3 Urkunde; Name auf der Urkunde */
   fin: number; name: string;
+  /** weitester erreichter Schritt (pos()); alles davor darf man vor- und zurückblättern */
+  weit: number;
 }
 const KEY = 'lesefall.v8';
-const START: Stand = { view: 'titel', weiter: 'intro', spur: 1, i: 0, blatt: 0, fertig: [], tipps: {}, tippPerle: 0, geklaert: [], mix: [], intro: false, fs: 20, silben: true, fin: 0, name: '' };
+const START: Stand = { view: 'titel', weiter: 'intro', spur: 1, i: 0, blatt: 0, fertig: [], tipps: {}, tippPerle: 0, geklaert: [], mix: [], intro: false, fs: 20, silben: true, fin: 0, name: '', weit: 0 };
 const stand: Stand = (() => { try { const r = localStorage.getItem(KEY); if (r) return { ...structuredClone(START), ...JSON.parse(r) }; } catch { /* ohne Speichern weiter */ } return structuredClone(START); })();
 const speichern = () => { try { localStorage.setItem(KEY, JSON.stringify(stand)); } catch { /* egal */ } };
 
@@ -118,7 +120,7 @@ let momentWeg: (() => void) | null = null;
 const loese = () => { momentWeg?.(); (R.hook.loese ?? hookStaub)?.(); };
 
 /* ---------- Ablauf ---------- */
-function zeige() { zeigeRaw(); wechsel(); }
+function zeige() { zeigeRaw(); wechsel(); if (stand.view !== 'titel') { stand.weit = Math.max(stand.weit, pos()); speichern(); } nav(); }
 function zeigeRaw() {
   ueber.innerHTML = ''; R.hook.loese = null; hookStaub = null; fuss.onclick = null; buehne.onclick = null;
   momentWeg?.(); momentWeg = null; $('.wzm', buehne)?.remove();
@@ -163,11 +165,12 @@ function titel() {
     else if (a === 'neu') neuStart();
   };
 }
+let introK = 0;
 function intro() {
   modus('titel');
-  let k = 0;
+  introK = Math.min(Math.max(introK, 0), D.intro.length - 1);
   const mal = () => {
-    const s = D.intro[k], letzt = k === D.intro.length - 1;
+    const k = introK, s = D.intro[k], letzt = k === D.intro.length - 1;
     const bildH = s.werkzeuge ? `<div class="ib wzraster">${WERKZEUGE.map((w) => `<div class="wzr" data-w="${w}">${werkzeugIcon(w)}<b>${wzName(UI, w)}</b></div>`).join('')}</div>`
       : `<div class="ib ${s.bild === 'tresor' ? 'tresor' : s.bild.includes('/') ? 'frei' : 'foto'}">${s.bild === 'tresor' ? `<img src="${img('tresor_zu')}" alt="">` : `<img src="${fig(s.bild)}" alt="">`}</div>`;
     buehne.innerHTML = `<section class="intro"><div class="lampe"></div>${himmel()}${bildH}<p>${s.text}</p><div class="pkt hell">${D.intro.map((_: any, i: number) => `<i class="${i === k ? 'an' : ''}"></i>`).join('')}</div></section>`;
@@ -176,10 +179,10 @@ function intro() {
   mal();
   fuss.onclick = (e) => {
     const t = e.target as HTMLElement;
-    if (t.closest('[data-a="skip"]')) k = D.intro.length;
+    if (t.closest('[data-a="skip"]')) introK = D.intro.length;
     else if (!t.closest('[data-a="w"]')) return;
-    if (++k < D.intro.length) return mal();
-    stand.intro = true; stand.view = 'kapitel'; zeige();
+    if (++introK < D.intro.length) { mal(); wechsel(); return nav(); }
+    introK = 0; stand.intro = true; stand.view = 'kapitel'; zeige();
   };
 }
 function kapitelKarte() {
@@ -260,14 +263,14 @@ function lesen() {
   const zeig = () => {
     const s = seiten[stand.blatt], n = seiten.length, b = stand.blatt;
     buehne.innerHTML = `<div class="blatt${s.voll < 0.5 && b > 0 ? ' kurz' : ''}" data-art="lesen" data-r="${richtung}">${s.html}</div>`;
-    fuss.innerHTML = `<div class="fl"><button class="rund" data-a="prev" ${b === 0 ? 'disabled' : ''} aria-label="Zurück">${IC.zur}</button><div class="pkt">${[...Array(n)].map((_, k) => `<i class="${k === b ? 'an' : k < b ? 'war' : ''}"></i>`).join('')}</div>${b < n - 1 ? `<button class="rund gold" data-a="next" aria-label="Weiter">${IC.vor}</button>` : `<button class="kn haupt zugk" data-a="weiter">${IC.lupe}<span>${UI.raetsel}</span></button>`}</div>`;
+    fuss.innerHTML = `<div class="fl"><button class="rund" data-a="prev" ${b === 0 && !hatVorher() ? 'disabled' : ''} aria-label="Zurück">${IC.zur}</button><div class="pkt">${[...Array(n)].map((_, k) => `<i class="${k === b ? 'an' : k < b ? 'war' : ''}"></i>`).join('')}</div>${b < n - 1 ? `<button class="rund gold" data-a="next" aria-label="Weiter">${IC.vor}</button>` : `<button class="kn haupt zugk" data-a="weiter">${IC.lupe}<span>${UI.raetsel}</span></button>`}</div>`;
     richtung = '';
     speichern();
   };
   zeig();
   fuss.onclick = (e) => {
     const a = (e.target as HTMLElement).closest<HTMLElement>('[data-a]')?.dataset.a;
-    if (a === 'prev') { stand.blatt--; richtung = 'z'; zeig(); } else if (a === 'next') { stand.blatt++; richtung = 'v'; zeig(); } else if (a === 'weiter') weiter();
+    if (a === 'prev') { if (stand.blatt === 0) return zurueckSchritt(); stand.blatt--; richtung = 'z'; zeig(); } else if (a === 'next') { stand.blatt++; richtung = 'v'; zeig(); } else if (a === 'weiter') weiter();
   };
   wisch(buehne, () => stand.blatt < seiten.length - 1 && (stand.blatt++, richtung = 'v', zeig()), () => stand.blatt > 0 && (stand.blatt--, richtung = 'z', zeig()));
 }
@@ -514,6 +517,64 @@ $('#bAa').onclick = () => {
 };
 let rz = 0;
 addEventListener('resize', () => { clearTimeout(rz); rz = window.setTimeout(() => { if (stand.view === 'spur' && steps(stand.spur)[stand.i] === 'lesen' && !ueber.innerHTML) zeige(); }, 200); });
+
+/* ---------- Zurück und wieder vor: auf jedem Bildschirm ein Schritt zurück ---------- */
+const ersteSpur = (n: number) => kapSpuren(SP(n).kap)[0] === n;
+/** Reihenfolge aller Bildschirme als Zahl (Abstand 20 je Spur, damit Kapitelkarte, Fallkarte und Ausblick dazwischen passen) */
+function pos(): number {
+  if (stand.view === 'intro') return -100 + introK;
+  if (stand.view === 'kapitel') return kapSpuren(kap().nr)[0] * 20 - 1;
+  if (stand.view === 'fallkarte') return stand.spur * 20 + 15;
+  if (stand.view === 'ausblick') return stand.spur * 20 + 16;
+  if (stand.view === 'finale') return 10000 + stand.fin;
+  if (stand.view === 'spur') return stand.spur * 20 + stand.i;
+  return -1000;
+}
+const hatVorher = () => stand.view !== 'titel';
+function zurueckSchritt() {
+  ueber.innerHTML = '';
+  stand.blatt = 0;
+  if (stand.view === 'intro') { if (introK > 0) { introK--; return zeige(); } stand.view = 'titel'; return zeige(); }
+  if (stand.view === 'kapitel') {
+    if (kap().nr === 1) { stand.view = 'intro'; introK = D.intro.length - 1; return zeige(); }
+    const vorher = kapSpuren(kap().nr - 1); stand.spur = vorher[vorher.length - 1]; stand.view = 'ausblick'; return zeige();
+  }
+  if (stand.view === 'spur') {
+    if (stand.i > 0) { stand.i--; if (steps(stand.spur)[stand.i] === 'lesen') stand.blatt = 999; return zeige(); }
+    if (ersteSpur(stand.spur)) { stand.view = 'kapitel'; return zeige(); }
+    stand.spur--; stand.i = steps(stand.spur).length - 1; return zeige();
+  }
+  if (stand.view === 'fallkarte') { stand.view = 'spur'; stand.i = steps(stand.spur).length - 1; return zeige(); }
+  if (stand.view === 'ausblick') { stand.view = 'fallkarte'; return zeige(); }
+  if (stand.view === 'finale') { if (stand.fin > 0) { stand.fin--; return zeige(); } stand.view = 'fallkarte'; return zeige(); }
+}
+/** Vor: nur über Schritte, die das Kind schon einmal geschafft hat */
+function vorSchritt() {
+  if (stand.view === 'spur') return weiter();
+  if (stand.view === 'fallkarte') { stand.view = D.kapitel[kap().nr] ? 'ausblick' : 'finale'; stand.fin = 0; return zeige(); }
+  if (stand.view === 'finale') { stand.fin++; return zeige(); }
+}
+/** Steht im Fuß gerade ein sichtbarer Haupt-Knopf, der weiterführt? Dann braucht es keinen Vor-Pfeil. */
+const hatWeiter = () => [...fuss.querySelectorAll<HTMLButtonElement>('.fz .kn.haupt')].some((k) => !k.disabled && k.style.visibility !== 'hidden' && k.dataset.a !== 'stempeln' && k.dataset.a !== 'warte');
+/** Pfeile links und rechts vom Haupt-Knopf; beim Lesen gibt es sie schon im Fuß (‹ ›) */
+function nav() {
+  const lesen = app.dataset.m === 'lesen';
+  const zur = hatVorher() && !lesen && !!fuss.querySelector('.fz');
+  const vor = zur && pos() < stand.weit && !hatWeiter();
+  const hat = (a: string) => !!fuss.querySelector(`:scope > [data-a="${a}"]`);
+  if (fuss.classList.contains('mitnav') === zur && hat('zback') === zur && hat('zvor') === vor && (!zur || hat('zplatz') === !vor)) return;
+  fuss.querySelectorAll(':scope > .znav').forEach((x) => x.remove());
+  fuss.classList.toggle('mitnav', zur);
+  if (!zur) return;
+  fuss.insertAdjacentHTML('afterbegin', `<button class="rund znav zback" data-a="zback" aria-label="Zurück">${IC.zur}</button>`);
+  fuss.insertAdjacentHTML('beforeend', vor ? `<button class="rund znav zvor" data-a="zvor" aria-label="Weiter">${IC.vor}</button>` : '<span class="znav" data-a="zplatz" aria-hidden="true"></span>');
+}
+new MutationObserver(() => nav()).observe(fuss, { childList: true, subtree: true, attributes: true, attributeFilter: ['disabled', 'style'] });
+fuss.addEventListener('click', (e) => {
+  const a = (e.target as HTMLElement).closest<HTMLElement>('.znav')?.dataset.a;
+  if (a === 'zback') { e.stopPropagation(); zurueckSchritt(); }
+  else if (a === 'zvor') { e.stopPropagation(); vorSchritt(); }
+}, true);
 /** Android-Zurück: erst Fenster schließen, dann zurückblättern, sonst zum Titel (Stand bleibt), auf dem Titel App beenden */
 function zurueck() {
   if (ueber.innerHTML.trim()) {
@@ -525,6 +586,7 @@ function zurueck() {
   const prev = fuss.querySelector('[data-a="prev"]:not([disabled])') as HTMLElement | null;
   if (prev) { prev.click(); return; }
   if (stand.view === 'titel') { App.exitApp().catch(() => {}); return; }
+  if (hatVorher()) return zurueckSchritt();
   stand.view = 'titel'; zeige();
 }
 App.addListener('backButton', zurueck).catch(() => {});
