@@ -29,7 +29,7 @@ KDST = os.path.join(ROOT, 'app/src/gen/kinder')
 os.makedirs(KDST, exist_ok=True)
 JOBS += [(f, os.path.join(KDST, os.path.basename(f))) for f in sorted(glob.glob(os.path.join(ROOT, 'assets/illustrationen/kinder', '*.webp')))]
 # Haus der Lese-Raupe (02_design/PROMPT_RAUPENHAUS.md): Raupe isst, Raupe mit goldener Lupe – nur, wenn die Bilder schon da sind
-JOBS += [(f, os.path.join(FREI, 'raupe_' + os.path.basename(f))) for n in ('isst', 'goldlupe') for f in glob.glob(os.path.join(ROOT, f'assets/illustrationen/raupe/{n}.webp'))]
+JOBS += [(f, os.path.join(FREI, 'raupe_' + os.path.basename(f))) for n in ('isst',) for f in glob.glob(os.path.join(ROOT, f'assets/illustrationen/raupe/{n}.webp'))]
 # Feinere Schwelle / größere Breite für Bilder mit weißen Flächen am Rand (Elster: weißer Bauch)
 SCHWELLE = {}
 BREITE = {'voegel.webp': 1400}

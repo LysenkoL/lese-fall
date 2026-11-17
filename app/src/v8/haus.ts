@@ -10,13 +10,10 @@ import { weniger } from './effekte.ts';
 /** Bilder, die die Besitzerin noch erzeugt (02_design/PROMPT_RAUPENHAUS.md). Fehlen sie, gilt der gezeichnete Ersatz. */
 const KOMMT = {
   ...import.meta.glob('../../../assets/illustrationen/raupenhaus.webp', { eager: true, query: '?url', import: 'default' }),
-  ...import.meta.glob('../gen/frei/raupe_{isst,goldlupe}.webp', { eager: true, query: '?url', import: 'default' }),
+  ...import.meta.glob('../gen/frei/raupe_isst.webp', { eager: true, query: '?url', import: 'default' }),
 } as Record<string, string>;
 const HAUS_BILD = KOMMT['../../../assets/illustrationen/raupenhaus.webp'];
 const ISST = KOMMT['../gen/frei/raupe_isst.webp'];
-const GOLDLUPE = KOMMT['../gen/frei/raupe_goldlupe.webp'];
-/** Bild „Raupe hält die goldene Lupe“ (auch für das Geschenk im Finale) oder null */
-export const goldlupeBild = (): string | null => GOLDLUPE ?? null;
 
 export const DINGE: { id: string; ab: number }[] = [
   { id: 'fliege', ab: 6 }, { id: 'schal', ab: 12 }, { id: 'brille', ab: 18 }, { id: 'notizbuch', ab: 24 },
@@ -25,8 +22,8 @@ export const DINGE: { id: string; ab: number }[] = [
 /** Sachen, die bei dieser Perlenzahl frei sind (die Lupe zählt extra, siehe `lupeFrei`) */
 export const freiBei = (p: number) => DINGE.filter((d) => p >= d.ab).map((d) => d.id);
 
-/** goldene Tautropfen-Lupe (Ring aus Grashalm, Glas wie ein Tropfen), gezeichnet */
-export const LUPE_SVG = `<svg class="glupe" viewBox="0 0 64 64" aria-hidden="true"><defs><radialGradient id="glg" cx=".38" cy=".32" r=".7"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".95"/><stop offset=".45" stop-color="#FFF1B8" stop-opacity=".75"/><stop offset="1" stop-color="#F4C243" stop-opacity=".55"/></radialGradient><linearGradient id="glr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFE082"/><stop offset=".5" stop-color="#F0B62E"/><stop offset="1" stop-color="#B8851A"/></linearGradient></defs><path d="M39 41 L56 58" stroke="#8A5A10" stroke-width="9" stroke-linecap="round"/><path d="M39 41 L56 58" stroke="url(#glr)" stroke-width="6" stroke-linecap="round"/><circle cx="26" cy="26" r="19" fill="url(#glg)" stroke="url(#glr)" stroke-width="6"/><path d="M15 20 Q19 12 27 11" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" opacity=".9"/></svg>`;
+/** goldene Tautropfen-Lupe: das fertige Bild aus objekte/ (geflochtener Goldring, Glas wie ein Tropfen) */
+export const LUPE_SVG = `<img class="glupe" src="${img('objekte/goldene_lupe')}" alt="" draggable="false">`;
 
 const FUTTER: Record<string, string> = {
   blatt: '<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 40 C6 20 20 6 42 6 C42 28 28 42 8 40Z" fill="#7FC24E" stroke="#3F7A24" stroke-width="2.500" stroke-linejoin="round"/><path d="M8 40 C18 30 26 20 36 12" stroke="#3F7A24" stroke-width="2.500" fill="none" stroke-linecap="round"/></svg>',
@@ -53,7 +50,7 @@ export interface HausCtx {
 /** Bild der Raupe mit der Sache, die sie gerade trägt (Lupe: Lob-Bild + gezeichnete Lupe) */
 export function raupeMitSache(id: string, fig: (n: string) => string, pose = 'lacht'): string {
   if (id && id !== 'lupe' && DINGE.some((d) => d.id === id)) return `<span class="rms"><img src="${img('garderobe/raupe_' + id)}" alt=""></span>`;
-  if (id === 'lupe') return GOLDLUPE ? `<span class="rms"><img src="${GOLDLUPE}" alt=""></span>` : `<span class="rms mitlupe"><img src="${fig('raupe/lob')}" alt="">${LUPE_SVG}</span>`;
+  if (id === 'lupe') return `<span class="rms mitlupe"><img src="${fig('raupe/lob')}" alt="">${LUPE_SVG}</span>`;
   return `<span class="rms"><img src="${fig('raupe/' + pose)}" alt=""></span>`;
 }
 

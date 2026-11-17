@@ -5,7 +5,7 @@
  * Schritte in stand.fin: 0 Szene · 1 Code legen · 2 Tresor offen · 3 Lupe · 4 Urkunde · 5 Raupe · 6 Epilog.
  */
 import { werkzeugIcon, WERKZEUGE } from './zeichnen.ts';
-import { LUPE_SVG, konfetti, feuerwerk, raupeMitSache, goldlupeBild } from './haus.ts';
+import { LUPE_SVG, konfetti, feuerwerk, raupeMitSache } from './haus.ts';
 
 export interface FinCtx {
   buehne: HTMLElement;
@@ -155,7 +155,7 @@ export function zeigeFinale(c: FinCtx): void {
   if (st.fin === 3) {
     c.modus('haken');
     const L = F.lupe;
-    c.buehne.innerHTML = `<section class="fin raupe-wort lupe-gabe"><div class="lampe"></div><span class="tab hell">${L.titel}</span><div class="lg-buehne"><div class="lg-licht"></div>${goldlupeBild() ? '' : `<div class="lg-lupe">${LUPE_SVG}</div>`}<img class="lg-raupe" src="${goldlupeBild() ?? c.fig('raupe/lob')}" alt=""></div><p class="lg-text">${L.text}</p><p class="rw-blase">${L.sagt}</p></section>`;
+    c.buehne.innerHTML = `<section class="fin raupe-wort lupe-gabe"><div class="lampe"></div><span class="tab hell">${L.titel}</span><div class="lg-buehne"><div class="lg-licht"></div><div class="lg-lupe">${LUPE_SVG}</div><img class="lg-raupe" src="${c.fig('raupe/lob')}" alt=""></div><p class="lg-text">${L.text}</p><p class="rw-blase">${L.sagt}</p></section>`;
     konfetti(c.buehne.querySelector('.lupe-gabe')!);
     c.summ([20, 40]);
     nurKnopf('weiter', c.knopf('weiter', c.UI.danke), () => gehe(4));

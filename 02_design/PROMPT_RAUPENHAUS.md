@@ -5,7 +5,7 @@
 | # | Что | Файл | Обязательно? |
 |---|---|---|---|
 | 1 | Домик (фон сцены) | `assets/illustrationen/raupenhaus.webp` | желательно |
-| 2 | Гусеничка с золотой лупой | `assets/illustrationen/raupe/goldlupe.webp` | **да** — главная награда книги |
+| 2 | Гусеничка с золотой лупой | `assets/illustrationen/raupe/goldlupe.webp` | не используется (17.11): в приложении стоит готовая `objekte/goldene_lupe` + поза «lob» |
 | 3 | Гусеничка ест листик | `assets/illustrationen/raupe/isst.webp` | желательно |
 
 После картинок 2 и 3 один раз запустить: `python3 app/scripts/freistellen.py` (вырезает фон), потом `cd app && npm run build`.
