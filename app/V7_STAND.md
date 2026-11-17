@@ -80,3 +80,10 @@ Alle Zusatz-Stile stehen in `app/src/v8/runde3.css` (wird nach `politur.css` gel
 - Артефакт превью v7: https://claude.ai/artifact/6q5UsxszhqaLAGEQ3qw2rC
   Обновление: `npm run build && node scripts/artifact-v7.mjs`, затем Artifact с `file_path` = `app/dist/artifact_v7.html`, `root` = `app/dist`, `files` = новые `assets/v7-*.js`, `assets/v7-*.css`, `assets/text-*.js` и новые картинки.
 - Старая версия: https://claude.ai/artifact/JJwRcyUdYKSvTaU28qHtFW
+
+## Zurück auf jedem Bildschirm (17.11.2026)
+
+- Überall außer dem Titel gibt es links im Fuß einen runden Zurück-Pfeil (`nav()` in `main.ts`, Stil `#fuss.mitnav` in `ui/basis.css`). Beim Lesen übernimmt das der vorhandene Pfeil ‹: auf dem ersten Blatt führt er zum vorigen Bildschirm.
+- Kette rückwärts: Vorgeschichte (Karte für Karte) → Titel; Kapitelkarte → Ausblick des vorigen Kapitels bzw. letzte Karte der Vorgeschichte; Spur-Schritte rückwärts (Lesen öffnet auf dem letzten Blatt); erste Spur → Kapitelkarte; Fallkarte → letzter Schritt der letzten Spur; Ausblick → Fallkarte; Finale Schritt für Schritt → Fallkarte.
+- `stand.weit` merkt den weitesten Schritt (`pos()`). Ist man zurückgegangen, erscheint rechts ein Vor-Pfeil auf Bildschirmen ohne sichtbaren Weiter-Knopf (Rätsel, Brett, Fallkarte, Tresor-Code): schon Gelöstes muss man nicht noch einmal lösen. Perlen werden nie doppelt vergeben.
+- Android-Zurück nutzt dieselbe Kette. Die Pfeile werden per MutationObserver nachgetragen, wenn Rätsel den Fuß neu zeichnen.
