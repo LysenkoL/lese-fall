@@ -2215,3 +2215,34 @@ span|ge
 # neu für v8 (ungeprüft)
 hübsch
 vie|les
+# neu für v8 (ungeprüft)
+ge|schenk
+gol|de|ne
+de|tek|ti|ve
+a|bend
+putzt
+fe|dern
+letz|ten
+ku|schelt
+schläft
+al|bum
+füt|tern
+an|zie|hen
+mmh
+fri|sches
+knack
+ap|fel
+süß
+erd|bee|re
+brrr
+kalt
+le|cker
+hi|hi
+bes|ser
+mampf
+kit|zelt
+es|sen
+wach
+be|suchst
+se|he
+schick

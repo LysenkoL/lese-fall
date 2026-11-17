@@ -31,7 +31,49 @@
   "perlenSumme": "Schimmer-Perlen",
   "urkunde": "Zur Urkunde",
   "nameFrage": "Dein Name",
-  "tresorOeffnen": "Tresor öffnen"
+  "tresorOeffnen": "Tresor öffnen",
+  "danke": "Danke!",
+  "album": "Mein Fall-Album",
+  "zurRaupe": "Zur Lese-Raupe",
+  "geloestStempel": "GELÖST",
+  "fallGeloest": "Der Fall ist gelöst!",
+  "albumTipp": "Tippe auf eine Spur. Dann kannst du sie noch einmal lesen.",
+  "zumAlbum": "Zurück zum Album",
+  "meineUrkunde": "Meine Urkunde",
+  "haus": "Das Haus der Lese-Raupe",
+  "futter": "Füttern",
+  "anziehen": "Anziehen",
+  "ohneSachen": "ohne Sachen",
+  "neuImHaus": "Neu im Haus der Lese-Raupe:",
+  "hausHallo": "Hallo, Partner! Schön, dass du da bist.",
+  "d_fliege": "die Fliege",
+  "d_schal": "der Schal",
+  "d_brille": "die Brille",
+  "d_notizbuch": "das Notizbuch",
+  "d_taschenlampe": "die Taschenlampe",
+  "d_hut": "der Hut",
+  "d_mondbrosche": "die Mondbrosche",
+  "d_tasche": "die Blatt-Tasche",
+  "d_lupe": "die goldene Lupe",
+  "iss_blatt": "Mmh, ein frisches Blatt! Mein Lieblingsessen.",
+  "iss_apfel": "Knack! Der Apfel ist so süß. Danke!",
+  "iss_erdbeere": "Eine Erdbeere! Sie ist so rot wie Oskars Pulli.",
+  "iss_eis": "Brrr, ist das kalt! Aber lecker. Hihi!",
+  "sagt1": "Mit vollem Bauch denke ich viel besser.",
+  "sagt2": "Du bist der beste Partner der Welt.",
+  "sagt3": "Mampf, mampf. Danke schön!",
+  "sagt4": "Hihi, das kitzelt im Bauch!",
+  "sagt5": "Weißt du was? Du liest richtig gut.",
+  "sagt6": "Ein Detektiv braucht gutes Essen.",
+  "sagt7": "Lecker! Jetzt bin ich wieder ganz wach.",
+  "sagt8": "Schön, dass du mich besuchst.",
+  "zieh1": "Wie sehe ich aus?",
+  "zieh2": "Schick, oder?",
+  "ziehLupe": "Ich halte deine goldene Lupe. Sie glänzt so schön!",
+  "ziehOhne": "So bin ich auch ganz zufrieden.",
+  "duHast": "Du hast",
+  "abWort": "ab",
+  "perlenWort": "Perlen"
  },
  "finale": {
   "szene": {
@@ -59,7 +101,21 @@
   "urkunde": {
    "titel": "Die Urkunde"
   },
-  "raupeSagt": "„Mila, Ben und Oskar glauben bestimmt, sie hätten das Rätsel ganz allein gelöst“, kichert die Raupe. „Dabei habe ich ihnen überall heimlich die Spuren vor die Nase geschubst! Aber psst — dass ich die eigentliche Chef-Detektivin war, bleibt unser kleines Geheimnis. Denn die Menschen hören mich ja nicht — nur du! Ohne deine kluge Spürnase hätte ich es nie geschafft. Bis zum nächsten Fall, mein Partner!“"
+  "raupeSagt": "„Mila, Ben und Oskar glauben bestimmt, sie hätten das Rätsel ganz allein gelöst“, kichert die Raupe. „Dabei habe ich ihnen überall heimlich die Spuren vor die Nase geschubst! Aber psst — dass ich die eigentliche Chef-Detektivin war, bleibt unser kleines Geheimnis. Denn die Menschen hören mich ja nicht — nur du! Ohne deine kluge Spürnase hätte ich es nie geschafft. Bis zum nächsten Fall, mein Partner!“",
+  "lupe": {
+   "titel": "Ein Geschenk für dich",
+   "text": "Ganz hinten im Tresor glänzt noch etwas. Die Lese-Raupe holt es heraus. Es ist eine goldene Tautropfen-Lupe!",
+   "sagt": "„Die ist für dich, Partner. Nur echte Detektive bekommen sie.“"
+  },
+  "epilog": {
+   "titel": "Ein stiller Abend",
+   "saetze": [
+    "Es wird Abend. Das Klassenzimmer ist still und leer.",
+    "Draußen sitzt die Elster in ihrem Glitzer-Nest und putzt ihre Federn.",
+    "Im Theater hängt der Mond. Sein Silberstern funkelt im letzten Licht.",
+    "Die Lese-Raupe kuschelt sich unter den Mond. Sie gähnt und schläft ein."
+   ]
+  }
  },
  "spuren": [
   {

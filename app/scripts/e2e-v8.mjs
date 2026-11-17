@@ -369,9 +369,59 @@ async function finale() {
   }
   await sleep(300); await shot('finale_code_richtig');
   await sleep(2400); await S('finale_tresor_auf_start'); await sleep(2800); await S('finale_tresor_offen');
+  if (!(await p.$('.fin.fest .fest-bild'))) fehler.push('Finale: Bild aus dem Tresor wird nicht groß');
+  await klick('#fuss [data-a="weiter"]');
+  await sleep(600); await S('finale_lupe');
+  if (!(await p.$('.lupe-gabe .glupe'))) fehler.push('Finale: goldene Lupe fehlt');
   await klick('#fuss [data-a="weiter"]');
   await p.fill('#dname', 'Mia'); await sleep(200); await S('finale_urkunde');
   if (!(await p.$('.dipl .dt'))) fehler.push('Finale: Urkunde fehlt');
+  await klick('#fuss [data-a="weiter"]'); await S('finale_raupe');
+  if (await p.$('#fuss [data-a="neu"]')) fehler.push('Finale: „Von vorn beginnen“ steht noch am Ende');
+  await klick('#fuss [data-a="weiter"]'); await sleep(1800); await S('finale_epilog');
+  if (!(await p.$('#fuss [data-a="album"]')) || !(await p.$('#fuss [data-a="haus"]'))) fehler.push('Epilog: Wege „Fall-Album“ und „Lese-Raupe“ fehlen');
+  if (!(await ev(() => window.__v8.stand.geloest))) fehler.push('Epilog: Fall nicht als gelöst gespeichert');
+}
+
+/** Nach dem Fall: Haus (füttern, anziehen, Lupe), Fall-Album, eine Spur noch einmal, Seite „Fall gelöst“, Neustart der App */
+async function nachDemFall() {
+  const vorher = await ev(() => ({ fertig: window.__v8.stand.fertig.length, tipp: window.__v8.stand.tippPerle, weit: window.__v8.stand.weit }));
+  await klick('#fuss [data-a="haus"]'); await sleep(400); await S('haus');
+  const blase0 = await ev(() => document.querySelector('.h-blase').textContent);
+  await klick('.h-essen[data-f="blatt"]'); await sleep(800); await S('haus_gefuettert');
+  const blase1 = await ev(() => document.querySelector('.h-blase').textContent);
+  if (blase0 === blase1) fehler.push('Haus: Füttern ändert nichts');
+  await klick('.h-essen[data-f="blatt"]'); await sleep(300);
+  if ((await ev(() => document.querySelector('.h-blase').textContent)) === blase1) fehler.push('Haus: zweites Füttern sagt dasselbe');
+  const zu = await ev(() => document.querySelectorAll('.h-sache.zu').length);
+  if (zu) fehler.push(`Haus: nach allen 24 Spuren sind noch ${zu} Sachen zu`);
+  await klick('.h-sache[data-s="hut"]'); await sleep(300); await S('haus_hut');
+  if (!(await ev(() => document.querySelector('.h-raupe img').src.includes('raupe_hut')))) fehler.push('Haus: Hut wird nicht angezogen');
+  await klick('.h-sache[data-s="lupe"]'); await sleep(300); await S('haus_lupe');
+  if (!(await p.$('.h-raupe .glupe'))) fehler.push('Haus: Raupe hält die Lupe nicht');
+  await klick('.haus [data-a="zu"]');
+  await klick('#fuss [data-a="album"]'); await S('album');
+  if ((await ev(() => document.querySelectorAll('.al-karte').length)) !== 6) fehler.push('Album: nicht 6 Spuren je Kapitel');
+  await klick('.al-reiter[data-k="3"]'); await S('album_kap3');
+  const n = await ev(() => +document.querySelector('.al-karte').dataset.s);
+  await klick(`.al-karte[data-s="${n}"]`); await sleep(500);
+  const st = await ev(() => ({ v: window.__v8.stand.view, s: window.__v8.stand.spur, w: window.__v8.stand.wieder }));
+  if (st.v !== 'spur' || st.s !== n || !st.w) fehler.push(`Album: Spur ${n} öffnet nicht (${JSON.stringify(st)})`);
+  await S('album_spur_lesen');
+  for (let k = 0; k < 14 && !(await p.$('#fuss [data-a="weiter"]')); k++) await klick('#fuss [data-a="next"]');
+  await weiter(); await sleep(500); await loese(); await sleep(900); await S('album_spur_raetsel');
+  const nachher = await ev(() => ({ fertig: window.__v8.stand.fertig.length, tipp: window.__v8.stand.tippPerle }));
+  if (nachher.fertig !== vorher.fertig || nachher.tipp !== vorher.tipp) fehler.push('Album: Wiederholen ändert die Perlen');
+  if (await p.$('.neuhaus')) fehler.push('Album: Hinweis „Neu im Haus“ beim Wiederholen');
+  await weiter(); await sleep(300);
+  if ((await ev(() => window.__v8.stand.view)) !== 'album') fehler.push('Album: nach der Spur nicht zurück im Album');
+  await klick('#fuss [data-a="zback"]'); await S('fall_geloest');
+  if ((await ev(() => window.__v8.stand.view)) !== 'fertig') fehler.push('Zurück aus dem Album führt nicht zu „Fall gelöst“');
+  await klick('.fg-urk'); await S('fall_geloest_urkunde'); await klick('.urk-box [data-a="zu"]');
+  await p.reload(); await sleep(900); await S('titel_geloest');
+  await klick('[data-a="start"]'); await sleep(400);
+  if ((await ev(() => window.__v8.stand.view)) !== 'fertig') fehler.push('Nach Neustart: „Weiter“ führt nicht zu „Fall gelöst“');
+  if ((await ev(() => window.__v8.stand.traegt)) !== 'lupe') fehler.push('Nach Neustart: Raupe trägt die Lupe nicht mehr');
 }
 
 await S('titel');
@@ -425,7 +475,7 @@ for (const kap of KAPITEL) {
   const sollK = D.kapitel.filter((q) => q.nr <= kap).sort((a, b) => a.code.pos - b.code.pos).map((q) => q.code.buchstabe).join('');
   if (code.replace(/\s/g, '') !== sollK) fehler.push(`Fallkarte ${kap}: Code zeigt „${code}“, erwartet „${sollK}“`);
   await weiter();
-  if (kap === KAPITEL[KAPITEL.length - 1]) await finale();
+  if (kap === KAPITEL[KAPITEL.length - 1]) { await finale(); await nachDemFall(); }
   else await S(`k${kap}_ausblick`);
 }
 // Kopfzeile, Brett, Schrift (nach Neustart bis Spur 2)
@@ -434,6 +484,14 @@ await p.reload(); await sleep(900);
 await klick('[data-a="start"]'); await sleep(600);
 await klick('#bBrett'); await S('brett_ueberlagerung'); await klick('.schl [data-a="zu"]');
 await klick('#bAa'); await S('schrift'); await klick('.schl [data-a="zu"]');
+// Haus während des Lesens: neue Sache wird angekündigt (Spur 3 macht 6 Perlen voll), Tippen öffnet das Haus
+await ev(() => { window.__v8.stand.i = window.__v8.steps(3).indexOf('raetsel'); window.__v8.zeige(); }); await sleep(500);
+await loese(); await sleep(2200);
+if (!(await p.$('.neuhaus'))) fehler.push('Haus: neue Sache bei 6 Perlen nicht angekündigt');
+else { await shot('neu_im_haus'); await klick('.neuhaus'); await sleep(400); await S('haus_waehrend_buch');
+  if (await ev(() => document.querySelector('.h-sache[data-s="fliege"]') === null)) fehler.push('Haus: Fliege bei 6 Perlen nicht frei');
+  if (await p.$('.h-sache[data-s="lupe"]')) fehler.push('Haus: Lupe schon vor dem Ende da'); await klick('.haus [data-a="zu"]'); }
+await klick('#kPerl'); await sleep(300); if (!(await p.$('.haus'))) fehler.push('Haus: Perlen im Kopf öffnen das Haus nicht'); else await klick('.haus [data-a="zu"]');
 await b.close();
 if (fehler.length) { console.error('✗', fehler.length, 'Befunde:\n' + [...new Set(fehler)].join('\n')); process.exit(1); }
 console.log(`✓ v8 ${NAME} ${W}×${H}: Kapitel ${KAPITEL.join(' und ')} durchgespielt, ${nr} Bilder`);

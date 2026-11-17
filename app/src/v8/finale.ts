@@ -1,9 +1,11 @@
 /**
  * Finale nach Spur 24: Szene am Nest, dann der Tresor (das Kind legt N-E-S-T selbst in die Felder),
- * Tresor öffnet sich (Tür schwingt auf, goldenes Licht), drinnen das Finale-Bild, zuletzt die Urkunde „Meister-Detektiv“.
- * Schritte in stand.fin: 0 Szene · 1 Code legen · 2 Tresor offen · 3 Urkunde.
+ * Tresor öffnet sich (Tür schwingt auf, goldenes Licht, Konfetti, das Bild wird groß), die Raupe schenkt die goldene Lupe,
+ * Urkunde „Meister-Detektiv“, das letzte Wort der Raupe, ein stiller Abend (Epilog) und zwei Wege weiter.
+ * Schritte in stand.fin: 0 Szene · 1 Code legen · 2 Tresor offen · 3 Lupe · 4 Urkunde · 5 Raupe · 6 Epilog.
  */
 import { werkzeugIcon, WERKZEUGE } from './zeichnen.ts';
+import { LUPE_SVG, konfetti, feuerwerk, raupeMitSache, goldlupeBild } from './haus.ts';
 
 export interface FinCtx {
   buehne: HTMLElement;
@@ -24,6 +26,11 @@ export interface FinCtx {
   hook: { loese: (() => void) | null };
   /** gibt dem Rahmen (Lesen, Fußzeile) einen Knopf */
   knopf: (a: string, t: string, kl?: string) => string;
+  /** Fall ist gelöst (beim Epilog): ab jetzt führt „Weiter“ ins Fall-Album */
+  geloest: () => void;
+  album: () => void;
+  haus: () => void;
+  traegt: () => string;
 }
 
 const esc = (t: string) => t.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]!));
@@ -124,30 +131,71 @@ export function zeigeFinale(c: FinCtx): void {
     return;
   }
 
-  /* ---------- 2: der Tresor öffnet sich ---------- */
+  /* ---------- 2: der Tresor öffnet sich – mit Konfetti, dann wird das Bild groß ---------- */
   if (st.fin === 2) {
     c.buehne.innerHTML = `<section class="zug fin"><div class="lampe"></div><div class="zk"><span class="tab hell">${c.UI.tresor}</span><h2>${F.auf.titel}</h2></div><div class="tv"><div class="tv-licht"></div><img class="tv-zu" src="${c.img('tresor_zu')}" alt="" draggable="false"><img class="tv-auf" src="${c.img('tresor_auf')}" alt="" draggable="false"><div class="tv-innen"><img src="${c.img('finale_bild')}" alt="" draggable="false"></div></div><p class="zt1 gross">${F.auf.text}</p></section>`;
     const tv = c.buehne.querySelector<HTMLElement>('.tv')!;
     c.fuss.innerHTML = '<div class="fz"><button class="kn haupt" style="visibility:hidden" tabindex="-1" aria-hidden="true"><span>·</span></button></div>';
-    setTimeout(() => { if (!tv.isConnected) return; tv.classList.add('auf'); c.summ([30, 50, 80, 120]); }, 900);
-    setTimeout(() => { if (tv.isConnected) nurKnopf('weiter', c.knopf('weiter', c.UI.urkunde), () => gehe(3)); }, 2600);
-    c.hook.loese = () => { tv.classList.add('auf'); nurKnopf('weiter', c.knopf('weiter', c.UI.urkunde), () => gehe(3)); };
+    let gross = false;
+    const bildGross = () => {
+      if (gross || !tv.isConnected) return; gross = true;
+      c.buehne.innerHTML = `<section class="fin fest"><div class="lampe"></div><figure class="fest-bild"><img src="${c.img('finale_bild')}" alt=""></figure><div class="fest-raupe">${raupeMitSache('', c.fig, 'klatscht')}</div><h2 class="fest-t">${F.auf.titel}</h2></section>`;
+      konfetti(c.buehne.querySelector('.fest')!);
+      feuerwerk(c.buehne.querySelector('.fest')!, 7);
+      c.summ([30, 50, 80, 120]);
+      nurKnopf('weiter', c.knopf('weiter', c.UI.weiter), () => gehe(3));
+    };
+    setTimeout(() => { if (!tv.isConnected) return; tv.classList.add('auf'); c.summ([30, 50, 80]); konfetti(c.buehne.querySelector('.fin')!); feuerwerk(c.buehne.querySelector('.fin')!, 4, 0.3); }, 900);
+    setTimeout(bildGross, 2900);
+    c.hook.loese = () => { tv.classList.add('auf'); bildGross(); };
     return;
   }
 
-  /* ---------- 4: die Raupe hat das letzte Wort ---------- */
-  if (st.fin >= 4) {
+  /* ---------- 3: die Raupe schenkt dem Kind die goldene Lupe ---------- */
+  if (st.fin === 3) {
+    c.modus('haken');
+    const L = F.lupe;
+    c.buehne.innerHTML = `<section class="fin raupe-wort lupe-gabe"><div class="lampe"></div><span class="tab hell">${L.titel}</span><div class="lg-buehne"><div class="lg-licht"></div>${goldlupeBild() ? '' : `<div class="lg-lupe">${LUPE_SVG}</div>`}<img class="lg-raupe" src="${goldlupeBild() ?? c.fig('raupe/lob')}" alt=""></div><p class="lg-text">${L.text}</p><p class="rw-blase">${L.sagt}</p></section>`;
+    konfetti(c.buehne.querySelector('.lupe-gabe')!);
+    c.summ([20, 40]);
+    nurKnopf('weiter', c.knopf('weiter', c.UI.danke), () => gehe(4));
+    return;
+  }
+
+  /* ---------- 5: die Raupe hat das letzte Wort ---------- */
+  if (st.fin === 5) {
     c.modus('haken');
     c.buehne.innerHTML = `<section class="fin raupe-wort"><div class="lampe"></div><img class="rw-bild" src="${c.fig('raupe/klatscht')}" alt=""><p class="rw-blase">${F.raupeSagt}</p><div class="rw-icons">${WERKZEUGE.map((w) => `<span class="rw-i" data-w="${w}">${werkzeugIcon(w)}</span>`).join('')}</div></section>`;
-    nurKnopf('neu', c.knopf('neu', c.UI.neuStart, 'still'), c.neuStart);
+    nurKnopf('weiter', c.knopf('weiter', c.UI.weiter), () => gehe(6));
     return;
   }
 
-  /* ---------- 3: Urkunde „Meister-Detektiv“ ---------- */
+  /* ---------- 6: Epilog – ein stiller Abend, dann zwei Wege weiter ---------- */
+  if (st.fin >= 6) {
+    c.modus('haken');
+    c.geloest();
+    const E = F.epilog;
+    c.buehne.innerHTML = `<section class="fin raupe-wort epilog"><div class="lampe"></div><div class="ep-mond" aria-hidden="true"></div><span class="tab hell">${E.titel}</span><img class="ep-raupe" src="${c.fig('raupe/muede')}" alt=""><div class="ep-text">${E.saetze.map((s: string) => `<p>${s}</p>`).join('')}</div></section>`;
+    setTimeout(() => { const ep = c.buehne.querySelector<HTMLElement>('.epilog'); if (ep) feuerwerk(ep, 5, 0.25); }, 2200);
+    c.fuss.innerHTML = `<div class="fz">${c.knopf('album', c.UI.album)}${c.knopf('haus', c.UI.zurRaupe, 'still')}</div>`;
+    c.fuss.onclick = (e) => {
+      const a = (e.target as HTMLElement).closest<HTMLElement>('[data-a]')?.dataset.a;
+      if (a === 'album') c.album(); else if (a === 'haus') c.haus();
+    };
+    return;
+  }
+
+  /* ---------- 4: Urkunde „Meister-Detektiv“ ---------- */
   c.modus('haken');
   const p = c.perlen();
-  c.buehne.innerHTML = `<section class="fin urk"><div class="lampe"></div><div class="dipl"><div class="dipl-in"><p class="dt">${c.UI.meister}</p><input id="dname" type="text" maxlength="18" placeholder="${esc(c.UI.nameFrage.replace(/<[^>]*>/g, ''))}" value="${esc(st.name)}" autocomplete="off" autocapitalize="words" aria-label="${esc(c.UI.nameFrage.replace(/<[^>]*>/g, ''))}"><p class="dh">${c.UI.hatGeloest}</p><p class="df">${c.UI.fallName}</p><p class="dl">${c.UI.urkLob}</p><p class="dp"><span class="perle"></span><b>${p}</b><span class="dpt">${c.UI.perlenSumme}</span></p></div></div><p class="team"><img src="${c.fig('raupe/lob')}" alt=""><span>${c.UI.teamZeile}</span></p><p class="forts">${c.UI.fortsetzung}</p></section>`;
+  c.buehne.innerHTML = urkundeHtml(c.UI, st.name, p, c.fig, true);
+  konfetti(c.buehne.querySelector('.urk')!);
   const inp = c.buehne.querySelector<HTMLInputElement>('#dname')!;
   inp.addEventListener('input', () => { st.name = inp.value; c.speichern(); });
-  nurKnopf('weiter', c.knopf('weiter', c.UI.weiter), () => gehe(4));
+  nurKnopf('weiter', c.knopf('weiter', c.UI.weiter), () => gehe(5));
+}
+
+/** Urkunde noch einmal ansehen (aus dem Fall-Album): gleiche Gestaltung, Name änderbar */
+export function urkundeHtml(UI: Record<string, string>, name: string, perlen: number, fig: (n: string) => string, imFinale = false): string {
+  return `<section class="fin urk">${imFinale ? '<div class="lampe"></div>' : ''}<div class="dipl"><div class="dipl-in"><p class="dt">${UI.meister}</p><input id="dname" type="text" maxlength="18" placeholder="${esc(UI.nameFrage.replace(/<[^>]*>/g, ''))}" value="${esc(name)}" autocomplete="off" autocapitalize="words" aria-label="${esc(UI.nameFrage.replace(/<[^>]*>/g, ''))}"><p class="dh">${UI.hatGeloest}</p><p class="df">${UI.fallName}</p><p class="dl">${UI.urkLob}</p><p class="dp"><span class="perle"></span><b>${perlen}</b><span class="dpt">${UI.perlenSumme}</span></p></div></div><p class="team"><img src="${fig('raupe/lob')}" alt=""><span>${UI.teamZeile}</span></p>${imFinale ? `<p class="forts">${UI.fortsetzung}</p>` : ''}</section>`;
 }

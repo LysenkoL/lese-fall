@@ -1,0 +1,164 @@
+/* Lese-Fall · v8 · Nach dem Fall: festlicher Tresor, goldene Lupe, Epilog, Seite „Fall gelöst“, Fall-Album, Haus der Lese-Raupe. */
+
+@keyframes ko-fall { from { transform: translate(0, -2rem) rotate(0); opacity: 1; } 85% { opacity: 1; } to { transform: translate(var(--x), 105vh) rotate(var(--r)); opacity: 0; } }
+@keyframes gross-auf { from { transform: scale(.45) rotate(-4deg); opacity: 0; } 70% { transform: scale(1.03) rotate(.6deg); opacity: 1; } to { transform: scale(1) rotate(-1deg); } }
+@keyframes tanz { 0%, 100% { transform: rotate(-7deg) translateY(0); } 25% { transform: rotate(6deg) translateY(-.6rem); } 50% { transform: rotate(-4deg) translateY(0); } 75% { transform: rotate(8deg) translateY(-.4rem); } }
+@keyframes schweb { 0%, 100% { transform: translateY(0) rotate(-8deg); } 50% { transform: translateY(-.5rem) rotate(6deg); } }
+@keyframes glanz { 0%, 100% { opacity: .55; transform: scale(.92); } 50% { opacity: 1; transform: scale(1.08); } }
+@keyframes mampf { 0%, 100% { transform: scale(1, 1); } 20% { transform: scale(1.08, .9); } 40% { transform: scale(.95, 1.06); } 60% { transform: scale(1.06, .93); } 80% { transform: scale(.98, 1.03); } }
+@keyframes ploepp { from { transform: scale(.8); } 60% { transform: scale(1.08); } }
+@keyframes blase { from { opacity: 0; transform: translateY(6px) scale(.96); } }
+@keyframes toast { from { opacity: 0; transform: translate(-50%, 1rem); } }
+@keyframes stempel-auf { from { opacity: 0; transform: rotate(-14deg) scale(2.2); } }
+@keyframes atmen { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.025, .975); } }
+
+/* ---------- Konfetti (Perlen und Goldpapier, keine Sterne) ---------- */
+.konfetti { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: var(--z-effekt); }
+.konfetti i { position: absolute; top: 0; width: .5rem; height: .75rem; border-radius: 2px; animation: ko-fall var(--d) var(--v) cubic-bezier(.3, .2, .6, 1) both; }
+.konfetti i.rund { width: .625rem; height: .625rem; border-radius: 50%; }
+
+/* ---------- Tresor offen: das Bild wird groß, die Raupe tanzt ---------- */
+.fin.fest { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: safe center; gap: var(--a-3); padding: var(--a-4) var(--rand); overflow: hidden auto; text-align: center; }
+.fin.fest > :not(.lampe, .konfetti) { position: relative; flex-shrink: 0; }
+.fest-bild { margin: 0; width: min(100%, 34rem, calc((100cqh - 9rem) * 1.5)); background: #fff; padding: .5rem; border-radius: .375rem; box-shadow: 0 0 0 3px var(--senf), 0 0 60px rgba(244, 194, 67, .55), 0 18px 40px rgba(0, 0, 0, .45); animation: gross-auf .9s cubic-bezier(.2, 1.2, .4, 1) both; transform: rotate(-1deg); }
+.fest-bild img { width: 100%; display: block; border-radius: .25rem; }
+.fest-t { font-size: 1.5rem; font-weight: 800; color: var(--senf); animation: hoch .5s .5s both; }
+.fest-t .s-b, .fest-t .s-r { color: inherit; }
+.fest-raupe { position: absolute !important; right: max(.25rem, calc(50% - 18rem)); bottom: 3.25rem; height: 6.5rem; z-index: 2; }
+.fest-raupe .rms { height: 100%; display: block; animation: tanz 1.2s .6s ease-in-out infinite; transform-origin: 50% 100%; filter: drop-shadow(0 6px 10px rgba(0, 0, 0, .4)); }
+
+/* ---------- Die Raupe schenkt die goldene Lupe ---------- */
+.lupe-gabe { gap: var(--a-3); }
+.lg-buehne { width: min(16rem, 70cqw); height: min(11rem, 28cqh); }
+.lg-licht { position: absolute; inset: -12%; border-radius: 50%; background: radial-gradient(circle, rgba(255, 224, 130, .75), rgba(244, 194, 67, .25) 45%, transparent 70%); animation: glanz 2.4s ease-in-out infinite; }
+.lg-lupe { position: absolute; left: 4%; top: 6%; width: 48%; height: 70%; animation: gross-auf .8s .2s both, schweb 3.2s 1s ease-in-out infinite; }
+.lg-lupe svg { width: 100%; height: 100%; filter: drop-shadow(0 0 14px rgba(255, 210, 90, .9)); }
+.lg-raupe { position: absolute; right: 2%; bottom: 0; height: 92%; width: auto; object-fit: contain; animation: hoch .5s both; filter: drop-shadow(0 4px 10px rgba(0, 0, 0, .35)); }
+.lg-text { font-size: 1.1875rem; line-height: 1.45; font-weight: 700; color: var(--auf-nacht); max-width: 28rem; animation: hoch .5s .3s both; }
+.lg-text .s-b, .lg-text .s-r { color: inherit; }
+
+/* ---------- Urkunde: goldene Lupe als Siegel ---------- */
+
+.urk-box { width: min(100%, 27.5rem); display: flex; flex-direction: column; gap: var(--a-3); padding: var(--a-3) 0; }
+.urk-box .fin.urk { min-height: 0; padding: 0; }
+.urk-box .fin.urk .dipl { width: min(100%, 27.5rem, calc((100cqh - 12rem) * .75)); }
+
+/* ---------- Epilog: ein stiller Abend ---------- */
+.epilog { background: linear-gradient(#0B1230, #141F3F 60%, #1A2550); }
+.ep-mond { position: absolute !important; right: 12%; top: 6%; width: 3.25rem; height: 3.25rem; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #FFF3C4, #F6D35B 60%, #E3B53C); box-shadow: 0 0 40px rgba(246, 211, 91, .5); }
+.ep-raupe { height: min(8.5rem, 22cqh); width: auto; object-fit: contain; filter: brightness(.82) drop-shadow(0 0 22px rgba(246, 211, 91, .25)); animation: hoch .6s both, atmen 4.5s 1s ease-in-out infinite; transform-origin: 50% 100%; }
+.ep-text { display: flex; flex-direction: column; gap: .5rem; max-width: 28rem; }
+.ep-text p { font-size: 1.1875rem; line-height: 1.45; font-weight: 600; color: var(--auf-nacht); animation: hoch .6s both; }
+.ep-text p:nth-child(2) { animation-delay: .5s; } .ep-text p:nth-child(3) { animation-delay: 1s; } .ep-text p:nth-child(4) { animation-delay: 1.5s; }
+.ep-text .s-b, .ep-text .s-r { color: inherit; }
+
+/* ---------- Seite „Fall gelöst“ ---------- */
+.titel.fertig { gap: var(--a-3); }
+.titel.fertig .fg-cover { position: relative; width: min(70%, 17rem, calc(34cqh * 1.1)); margin: 0; }
+.fg-cover img { width: 100%; display: block; }
+.fg-stempel { position: absolute; left: 50%; top: 52%; translate: -50% -50%; rotate: -12deg; padding: .25rem .875rem; font-size: 1.625rem; font-weight: 800; letter-spacing: .12em; color: var(--blau); border: .25rem solid var(--blau); border-radius: .5rem; background: rgba(255, 252, 244, .88); box-shadow: 0 4px 12px rgba(0, 0, 0, .3); animation: stempel-auf .5s .3s cubic-bezier(.3, 1.4, .5, 1) both; }
+.fg-stempel .s-b, .fg-stempel .s-r { color: inherit; }
+.fg-raupe { background: none; border: 0; padding: 0; height: min(6rem, 15cqh); cursor: pointer; }
+.fg-raupe .rms { height: 100%; display: block; animation: wipp 3.6s ease-in-out infinite; transform-origin: 50% 100%; filter: drop-shadow(0 4px 8px rgba(0, 0, 0, .35)); }
+.fertig .forts { font-size: 1.0625rem; color: var(--auf-nacht); font-weight: 600; max-width: 26rem; }
+.fg-urk { background: none; border: 0; color: var(--senf); font: inherit; font-weight: 800; font-size: 1rem; text-decoration: underline; text-underline-offset: .25em; min-height: 2.75rem; padding: 0 1rem; }
+.fg-urk .s-b, .fg-urk .s-r { color: inherit; }
+
+/* ---------- Fall-Album ---------- */
+.album { position: absolute; inset: 0; overflow: hidden auto; display: flex; flex-direction: column; gap: var(--a-3); padding: var(--a-4) max(var(--rand), calc((100cqw - 40rem) / 2)) var(--a-5); }
+.album > :not(.lampe) { position: relative; flex-shrink: 0; }
+.al-kopf { display: flex; flex-direction: column; align-items: flex-start; gap: .5rem; }
+.al-kopf p { font-size: 1rem; line-height: 1.4; font-weight: 600; color: var(--auf-nacht-leise); }
+.al-kopf p .s-b, .al-kopf p .s-r { color: inherit; }
+.al-reiterz { display: grid; grid-template-columns: repeat(4, 1fr); gap: .5rem; }
+.al-reiter { display: flex; flex-direction: column; align-items: center; gap: .25rem; padding: .3125rem .3125rem .375rem; border-radius: .75rem; border: 2px solid rgba(244, 194, 67, .35); background: rgba(255, 255, 255, .06); color: var(--auf-nacht); font: inherit; font-weight: 800; font-size: var(--t-fein); min-height: 2.75rem; }
+.al-reiter img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: .4375rem; display: block; opacity: .7; }
+.al-reiter span .s-b, .al-reiter span .s-r { color: inherit; }
+.al-reiter.an { border-color: var(--senf); background: rgba(244, 194, 67, .18); color: var(--senf-hell); box-shadow: 0 0 0 3px rgba(244, 194, 67, .25); }
+.al-reiter.an img { opacity: 1; }
+.al-titel { font-size: 1.375rem; font-weight: 800; color: #fff; line-height: 1.2; }
+.al-titel .s-b, .al-titel .s-r { color: inherit; }
+.al-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: .875rem .75rem; }
+@media (min-width: 600px) { .al-grid { grid-template-columns: repeat(3, 1fr); } }
+.al-karte { display: flex; flex-direction: column; align-items: flex-start; gap: .375rem; text-align: left; background: var(--papier); color: var(--tinte); border: 0; border-radius: .375rem; padding: .375rem .375rem .625rem; font: inherit; box-shadow: 0 2px 0 var(--kante), 0 10px 20px rgba(0, 0, 0, .3); transform: rotate(var(--n, 0deg)); animation: hoch .4s both; }
+.al-karte:active { transform: rotate(var(--n, 0deg)) translateY(2px) scale(.98); }
+.al-bild { width: 100%; aspect-ratio: 4 / 3; border-radius: .25rem; overflow: hidden; background: var(--papier-foto); }
+.al-bild img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.al-karte .tab.etikett { margin-top: -.875rem; margin-left: .25rem; }
+.al-karte b { font-size: 1rem; line-height: 1.25; font-weight: 800; padding: 0 .25rem; overflow-wrap: anywhere; }
+
+/* ---------- Perlen im Kopf: Knopf zum Haus ---------- */
+button.perl { border: 0; color: inherit; font-family: inherit; cursor: pointer; min-height: 2.75rem; }
+.kopf button.perl { color: #fff; }
+button.perl:active { transform: translateY(1px); }
+
+/* ---------- Haus der Lese-Raupe ---------- */
+.haus { width: min(100%, var(--mass-dialog)); background: var(--papier); color: var(--tinte); border-radius: 1.375rem 1.375rem 0 0; padding: 0 1rem calc(var(--unten) + 1rem); display: flex; flex-direction: column; gap: .5rem; animation: hoch .25s both; }
+.schl.mitte .haus { border-radius: 1.375rem; padding-bottom: 1rem; }
+.haus header { display: flex; align-items: center; justify-content: space-between; padding: .75rem 0 .25rem; position: sticky; top: 0; background: var(--papier); z-index: 1; }
+.haus header b { font-size: 1.1875rem; font-weight: 800; }
+.haus header .kb { background: rgba(38, 34, 28, .08); color: var(--tinte); }
+.haus h4 { font-size: var(--t-klein); font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--leise); margin-top: .25rem; }
+.haus :is(header, h4, .h-perl, .h-sache) :is(.s-b, .s-r) { color: inherit; }
+.h-buehne { display: flex; align-items: flex-end; gap: .625rem; padding: .5rem .25rem .25rem; background: radial-gradient(ellipse at 30% 100%, #E9F3D8, transparent 70%); border-radius: 1rem; }
+.h-raupe { height: min(8.5rem, 22cqh); flex: none; transform-origin: 50% 100%; }
+.h-raupe .rms { height: 100%; display: block; }
+.h-raupe.mampf { animation: mampf .7s ease-in-out; }
+.h-raupe.zieht { animation: ploepp .35s cubic-bezier(.3, 1.6, .5, 1); }
+.h-blase { flex: 1; position: relative; background: #fff; border: 2.5px solid var(--senf); border-radius: 1.125rem; padding: .625rem .875rem; font-size: 1.0625rem; line-height: 1.4; font-weight: 700; margin-bottom: 2.25rem; box-shadow: 0 6px 14px rgba(70, 50, 10, .12); }
+.h-blase::before { content: ''; position: absolute; left: -.6875rem; bottom: .875rem; width: 1rem; height: 1rem; background: #fff; border-left: 2.5px solid var(--senf); border-bottom: 2.5px solid var(--senf); transform: rotate(45deg); }
+.h-blase.neu { animation: blase .3s both; }
+.h-perl { display: flex; align-items: center; gap: .4375rem; font-size: var(--t-klein); font-weight: 700; color: var(--leise); }
+.h-perl .perle, .neuhaus .perle { width: 1rem; height: 1rem; border-radius: 50%; background: var(--perle); flex: none; }
+.h-futter { display: grid; grid-template-columns: repeat(4, 1fr); gap: .5rem; }
+.h-essen { aspect-ratio: 1; max-height: 4.5rem; border-radius: 1rem; border: 2px solid var(--linie); background: #fff; box-shadow: 0 3px 0 var(--linie); display: grid; place-items: center; padding: .5rem; }
+.h-essen svg { width: 100%; height: 100%; max-width: 3rem; }
+.h-essen:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--linie); }
+.h-sachen { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; }
+.h-sache { display: flex; flex-direction: column; align-items: center; gap: .25rem; padding: .5rem .25rem; border-radius: .875rem; border: 2px solid var(--linie); background: #fff; font: inherit; color: var(--tinte); min-height: 2.75rem; box-shadow: 0 3px 0 var(--linie); }
+.h-sache b { font-size: var(--t-fein); font-weight: 700; line-height: 1.2; text-align: center; }
+.h-bild { width: 3rem; height: 3rem; display: block; overflow: hidden; }
+.h-bild img, .h-bild svg { width: 100%; height: 100%; object-fit: contain; display: block; }
+.h-ohne { border: 2.5px dashed var(--kante); border-radius: 50%; width: 2.5rem; height: 2.5rem; }
+.h-sache.an { border-color: var(--senf-dunkel); background: var(--senf-hell); box-shadow: 0 3px 0 var(--senf-dunkel); }
+.h-sache.gold { background: linear-gradient(#FFFBEA, #FFF1C2); }
+.h-sache.gold.an { background: var(--senf-hell); }
+.h-sache.zu { box-shadow: none; background: transparent; border-style: dashed; color: var(--leise); }
+.h-sache.zu img { filter: grayscale(1) brightness(1.1); opacity: .4; }
+.h-flug { position: fixed; z-index: var(--z-effekt); pointer-events: none; }
+
+/* Raupe mit Sache */
+.rms { position: relative; display: inline-block; height: 100%; }
+.rms img { height: 100%; width: auto; display: block; object-fit: contain; }
+.rms.mitlupe .glupe { position: absolute; right: -18%; bottom: 8%; width: 52%; height: auto; transform: rotate(-24deg); filter: drop-shadow(0 0 8px rgba(255, 210, 90, .8)); }
+
+/* Hinweis „Neu im Haus“ */
+.neuhaus { position: fixed; left: 50%; bottom: calc(var(--unten) + 6rem); transform: translateX(-50%); z-index: var(--z-effekt); display: flex; align-items: center; gap: .625rem; width: max-content; max-width: min(22rem, calc(100vw - 2rem)); padding: .5rem 1rem .5rem .5rem; border-radius: 1rem; background: var(--papier); color: var(--tinte); border: 2.5px solid var(--senf); box-shadow: 0 10px 24px rgba(0, 0, 0, .35); font: inherit; text-align: left; animation: toast .35s cubic-bezier(.3, 1.4, .5, 1) both; transition: opacity .35s, transform .35s; }
+.neuhaus img { width: 2.75rem; height: 2.75rem; object-fit: contain; flex: none; }
+.neuhaus .nh-t { display: flex; flex-direction: column; min-width: 0; }
+.neuhaus small { font-size: var(--t-fein); font-weight: 700; color: var(--leise); }
+.neuhaus b { font-size: 1.0625rem; font-weight: 800; }
+.neuhaus .s-b, .neuhaus .s-r { color: inherit; }
+.neuhaus.weg { opacity: 0; transform: translate(-50%, .75rem); }
+
+@media (prefers-reduced-motion: reduce) {
+  .fest-bild, .fest-raupe .rms, .lg-lupe, .lg-licht, .ep-raupe, .ep-text p, .fg-stempel, .fg-raupe .rms, .al-karte, .h-raupe.mampf, .h-raupe.zieht, .h-blase.neu, .neuhaus { animation: none !important; }
+}
+
+/* ---------- Feuerwerk und Herzchen ---------- */
+@keyframes fw-auf { 0% { transform: translate(0, 0) scale(.3); opacity: 0; } 12% { opacity: 1; } 70% { opacity: 1; } 100% { transform: translate(var(--dx), calc(var(--dy) + 1.25rem)) scale(.6); opacity: 0; } }
+@keyframes fw-blitz { 0% { opacity: 0; transform: scale(.2); } 15% { opacity: .9; transform: scale(1); } 100% { opacity: 0; transform: scale(1.6); } }
+@keyframes herz { from { transform: translate(var(--x), 0) scale(.4); opacity: 0; } 25% { opacity: 1; transform: translate(var(--x), -1rem) scale(1); } to { transform: translate(calc(var(--x) * 1.4), -4rem) scale(.9); opacity: 0; } }
+.feuerwerk { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: var(--z-effekt); }
+.fw { position: absolute; width: 0; height: 0; }
+.fw::before { content: ''; position: absolute; left: -2.5rem; top: -2.5rem; width: 5rem; height: 5rem; border-radius: 50%; background: radial-gradient(circle, rgba(255, 240, 190, .8), transparent 65%); animation: fw-blitz .9s var(--v) ease-out both; }
+.fw i { position: absolute; left: -.1875rem; top: -.1875rem; width: .375rem; height: .375rem; border-radius: 50%; box-shadow: 0 0 6px currentColor; animation: fw-auf 1.4s var(--v) cubic-bezier(.15, .7, .35, 1) both; }
+.herzchen { position: absolute; left: 50%; top: 10%; width: 0; height: 0; pointer-events: none; z-index: 3; }
+.herzchen i { position: absolute; left: -.75rem; top: 0; width: 1.5rem; height: 1.5rem; animation: herz 1.2s var(--v) ease-out both; }
+.herzchen svg { width: 100%; height: 100%; display: block; }
+.h-raupe { position: relative; }
+
+#app[data-m="album"] #fuss { color: var(--auf-nacht); }
+.h-perl b { color: var(--tinte); }
+.h-buehne.mitbild { background-size: cover; background-position: center; min-height: 11rem; }
+.h-buehne.mitbild .h-blase { margin-bottom: 4rem; }
