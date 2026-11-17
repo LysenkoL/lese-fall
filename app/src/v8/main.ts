@@ -263,7 +263,7 @@ function lesen() {
   const zeig = () => {
     const s = seiten[stand.blatt], n = seiten.length, b = stand.blatt;
     buehne.innerHTML = `<div class="blatt${s.voll < 0.5 && b > 0 ? ' kurz' : ''}" data-art="lesen" data-r="${richtung}">${s.html}</div>`;
-    fuss.innerHTML = `<div class="fl"><button class="rund" data-a="prev" ${b === 0 && !hatVorher() ? 'disabled' : ''} aria-label="Zurück">${IC.zur}</button>${n > 7 ? `<div class="pkt zahl" aria-label="Blatt ${b + 1} von ${n}"><b>${b + 1}</b> / ${n}</div>` : `<div class="pkt">${[...Array(n)].map((_, k) => `<i class="${k === b ? 'an' : k < b ? 'war' : ''}"></i>`).join('')}</div>`}${b < n - 1 ? `<button class="rund gold" data-a="next" aria-label="Weiter">${IC.vor}</button>` : `<button class="kn haupt zugk" data-a="weiter">${IC.lupe}<span>${UI.raetsel}</span></button>`}</div>`;
+    fuss.innerHTML = `<div class="fl"><button class="rund" data-a="prev" ${b === 0 && !hatVorher() ? 'disabled' : ''} aria-label="Zurück">${IC.zur}</button><div class="pkt${n > 12 ? ' sehr-dicht' : n > 7 ? ' dicht' : ''}" aria-label="Blatt ${b + 1} von ${n}">${[...Array(n)].map((_, k) => `<i class="${k === b ? 'an' : k < b ? 'war' : ''}"></i>`).join('')}</div>${b < n - 1 ? `<button class="rund gold" data-a="next" aria-label="Weiter">${IC.vor}</button>` : `<button class="kn haupt zugk" data-a="weiter">${IC.lupe}<span>${UI.raetsel}</span></button>`}</div>`;
     richtung = '';
     speichern();
   };
@@ -399,7 +399,7 @@ function brett() {
   else {
     // Neuer Fund: das Kind hängt die Karte selbst ans Brett
     const ziel = $<HTMLElement>('.bkarte.wartet', sec);
-    sec.insertAdjacentHTML('beforeend', `<div class="fundov"><p class="fund-t">${UI.neuerFund}</p><button class="bkarte fundk">${fundInnen(SP(+ziel.dataset.k!).karte)}</button><p class="fund-h">${UI.fundTipp}</p></div>`);
+    sec.insertAdjacentHTML('beforeend', `<div class="fundov"><p class="fund-t">${UI.neuerFund}</p><button class="bkarte fundk">${ziel.innerHTML}</button><p class="fund-text">${SP(+ziel.dataset.k!).karte.text}</p><p class="fund-h">${UI.fundTipp}</p></div>`);
     const ov = $<HTMLElement>('.fundov', sec), fk = $<HTMLElement>('.fundk', ov);
     let weg = false;
     const haengen = () => {
@@ -419,8 +419,6 @@ function brett() {
     if (k && !k.classList.contains('neu')) karteGross(+k.dataset.k!);
   });
 }
-/** Neuer Fund: Bild, Überschrift und ganzer Text (am Brett steht später nur die Überschrift) */
-const fundInnen = (k: any) => `<div class="bk-bild">${bildKarte(k)}</div>${k.titel ? `<b class="fund-titel">${k.titel}</b>` : ''}<p>${k.text}</p>`;
 function karteGross(n: number) {
   const k = SP(n).karte;
   ueber.innerHTML = `<div class="schl mitte"><div class="kgross"><div class="bk-bild">${bildKarte(k)}</div>${k.titel ? `<h3>${k.titel}</h3>` : ''}<p>${k.text}</p></div></div>`;

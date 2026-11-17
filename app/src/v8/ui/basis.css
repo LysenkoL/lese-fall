@@ -302,10 +302,11 @@ html :focus-visible:where(:not(.bkarte)) { box-shadow: 0 0 0 7px rgba(244, 194, 
 }
 
 /* ---------- Zurück / Vor neben dem Haupt-Knopf (main.ts: nav) ---------- */
-#fuss.mitnav { display: grid; grid-template-columns: 3.375rem minmax(0, 1fr) 3.375rem; column-gap: var(--a-2); align-items: start; }
-#fuss.mitnav > .fz { grid-column: 2; grid-row: 1; width: min(100%, var(--mass-knopf)); }
+#fuss.mitnav { display: grid; grid-template-columns: 3rem minmax(0, 1fr) 3rem; column-gap: var(--a-2); align-items: center; }
+#fuss.mitnav > .fz { grid-column: 2; grid-row: 1; width: min(100%, var(--mass-knopf)); justify-self: center; }
+#fuss.mitnav > .znav { width: 3rem; height: 3rem; min-width: 0; justify-self: center; }
 #fuss.mitnav > .zback { grid-column: 1; grid-row: 1; }
 #fuss.mitnav > .zvor, #fuss.mitnav > [data-a="zplatz"] { grid-column: 3; grid-row: 1; }
-.rund.znav { background: rgba(255, 255, 255, .12); color: #fff; box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .45); }
+.rund.znav { background: transparent; color: rgba(255, 255, 255, .85); box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .28); }
 .rund.znav svg { width: 1.375rem; height: 1.375rem; }
 .rund.znav:active:not(:disabled) { box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .7); }
