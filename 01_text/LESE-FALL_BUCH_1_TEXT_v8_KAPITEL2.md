@@ -82,7 +82,7 @@ Oskar zieht stolz einen Zettel aus der Hosentasche und reicht ihn durchs Fenster
 
 ### Spur 11 — Keine Rennmaus
 
-Kaum haben Mila und Ben die Spiegelschrift entziffert, öffnen sie die Klassenzimmertür und gehen zusammen mit Oskar hinaus in den Hof zur Bank.
+Kaum haben Mila und Ben die Spiegelschrift entziffert, öffnen sie die Klassenzimmertür und laufen hinaus in den Hof zu Oskar.
 
 Unterwegs flüstert Ben Mila zu: „Glaubst du, auf der Bank liegt wirklich dein Mond?“
 
