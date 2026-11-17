@@ -209,7 +209,8 @@ function blaetter(blocks: any[], kopfHtml: string): { html: string; voll: number
   const innen = document.createElement('div');
   probe.appendChild(innen);
   const cs = getComputedStyle(probe);
-  const H = probe.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
+  // 8 px Reserve: Rundungen und Schmuck der Denkblasen (Pünktchen unter der Blase) sollen das Blatt nie zum Rollen bringen
+  const H = probe.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom) - 8;
   const messe = (h: string) => { innen.innerHTML = h; return innen.offsetHeight; };
   const teile: any[] = [];
   // Passt nicht einmal der erste Satz unter Titel und Bild (kleine Fläche, große Schrift), bekommt der Kopf ein eigenes Blatt.

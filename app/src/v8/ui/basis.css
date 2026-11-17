@@ -170,7 +170,8 @@ html :focus-visible:where(:not(.bkarte)) { box-shadow: 0 0 0 7px rgba(244, 194, 
 .blatt .foto { width: min(94%, calc(40cqh * 1.5)); }
 /* breite, niedrige Bühne (Tablet quer): das Bild steht links, der Text läuft daneben weiter */
 @container buehne (min-aspect-ratio: 5 / 4) and (min-width: 36rem) {
-  .blatt .foto { float: left; width: min(46%, calc(62cqh * 1.5)); margin: .2em 1.1em .5em 0; }
+  /* niedrig (Telefon quer): Titel + Bild müssen auf ein Blatt passen → Bildhöhe höchstens Bühne minus Titel und Ränder */
+  .blatt .foto { float: left; width: min(46%, calc(62cqh * 1.5), calc((100cqh - 7.5rem) * 1.5)); margin: .2em 1.1em .5em 0; }
 }
 
 /* ---------- Ansichtsart „Rätsel“: Kopf · Aufgabe · Spielfläche · Raupe ---------- */
