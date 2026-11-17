@@ -808,7 +808,7 @@
     "start": "Erst wischst du die Blätter weg. Dann siehst du in das Nest.",
     "nachLaub": "Da ist das Nest! Was gehört zur Glitzer-Sammlung der Elster? Tippe nur an, was glänzt.",
     "frage": "Tippe alles an, was glänzt.",
-    "tipp": "Glänzt das wirklich? Schau, was aus Metall oder Glas ist.",
+    "tipp": "Glänzt das wirklich? Schau, was aus Metall, Glas oder Glitzerfolie ist.",
     "ziele": [
      {
       "id": "klammer",
@@ -822,14 +822,14 @@
       "x": 50,
       "y": 44,
       "r": 7,
-      "ok": "Ein Kronkorken. Der glänzt in der Sonne."
+      "ok": "Ein silberner Kronkorken. Er glänzt in der Sonne."
      },
      {
       "id": "murmel",
       "x": 70,
       "y": 46,
       "r": 6,
-      "ok": "Eine Murmel aus Glas. Sie glitzert blau."
+      "ok": "Ein buntes Glasscherbchen. Es funkelt in der Sonne."
      },
      {
       "id": "gloeckchen",
@@ -843,7 +843,7 @@
       "x": 49,
       "y": 72,
       "r": 6.5,
-      "ok": "Eine Kugel aus Alufolie. Silbern und glänzend."
+      "ok": "Ein glitzerndes Bonbonpapier. Silbern und bunt."
      }
     ],
     "andere": [

@@ -3911,7 +3911,7 @@
     "start": "Erst wischst du die Blät|ter weg. Dann siehst du in das Nest.",
     "nachLaub": "Da ist das Nest! Was ge|hört zur Glit|zer-Samm|lung der Els|ter? Tip|pe nur an, was glänzt.",
     "frage": "Tip|pe al|les an, was glänzt.",
-    "tipp": "Glänzt das wirk|lich? Schau, was aus Me|tall o|der Glas ist.",
+    "tipp": "Glänzt das wirk|lich? Schau, was aus Me|tall, Glas o|der Glit|zer|fo|lie ist.",
     "ziele": [
      {
       "id": "klammer",
@@ -3925,14 +3925,14 @@
       "x": 50,
       "y": 44,
       "r": 7,
-      "ok": "Ein Kron|kor|ken. Der glänzt in der Son|ne."
+      "ok": "Ein sil|ber|ner Kron|kor|ken. Er glänzt in der Son|ne."
      },
      {
       "id": "murmel",
       "x": 70,
       "y": 46,
       "r": 6,
-      "ok": "Ei|ne Mur|mel aus Glas. Sie glit|zert blau."
+      "ok": "Ein bun|tes Glas|scherb|chen. Es fun|kelt in der Son|ne."
      },
      {
       "id": "gloeckchen",
@@ -3946,7 +3946,7 @@
       "x": 49,
       "y": 72,
       "r": 6.5,
-      "ok": "Ei|ne Ku|gel aus A|lu|fo|lie. Sil|bern und glän|zend."
+      "ok": "Ein glit|zern|des Bon|bon|pa|pier. Sil|bern und bunt."
      }
     ],
     "andere": [

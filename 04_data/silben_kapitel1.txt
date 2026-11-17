@@ -2200,3 +2200,5 @@ ei|gent|li|che
 chef
 klu|ge
 spür|na|se
+# neu für v8 (ungeprüft)
+bunt
