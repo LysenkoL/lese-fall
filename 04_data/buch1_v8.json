@@ -123,7 +123,21 @@
     "urkunde": {
      "titel": "Die Ur|kun|de"
     },
-    "raupeSagt": "„Mi|la, Ben und Os|kar glau|ben be|stimmt, sie hät|ten das Rät|sel ganz al|lein ge|löst“, ki|chert die Rau|pe. „Da|bei ha|be ich ih|nen ü|ber|all heim|lich die Spu|ren vor die Na|se ge|schubst! A|ber psst — dass ich die ei|gent|li|che Chef-De|tek|ti|vin war, bleibt un|ser klei|nes Ge|heim|nis. Denn die Men|schen hö|ren mich ja nicht — nur du! Oh|ne dei|ne klu|ge Spür|na|se hät|te ich es nie ge|schafft. Bis zum nächs|ten Fall, mein Part|ner!“"
+    "raupeSagt": "„Mi|la, Ben und Os|kar glau|ben be|stimmt, sie hät|ten das Rät|sel ganz al|lein ge|löst“, ki|chert die Rau|pe. „Da|bei ha|be ich ih|nen ü|ber|all heim|lich die Spu|ren vor die Na|se ge|schubst! A|ber psst — dass ich die ei|gent|li|che Chef-De|tek|ti|vin war, bleibt un|ser klei|nes Ge|heim|nis. Denn die Men|schen hö|ren mich ja nicht — nur du! Oh|ne dei|ne klu|ge Spür|na|se hät|te ich es nie ge|schafft. Bis zum nächs|ten Fall, mein Part|ner!“",
+    "lupe": {
+     "titel": "Ein Ge|schenk für dich",
+     "text": "Ganz hin|ten im Tre|sor glänzt noch et|was. Die Le|se-Rau|pe holt es he|raus. Es ist ei|ne gol|de|ne Tau|trop|fen-Lu|pe!",
+     "sagt": "„Die ist für dich, Part|ner. Nur ech|te De|tek|ti|ve be|kom|men sie.“"
+    },
+    "epilog": {
+     "titel": "Ein stil|ler A|bend",
+     "saetze": [
+      "Es wird A|bend. Das Klas|sen|zim|mer ist still und leer.",
+      "Drau|ßen sitzt die Els|ter in ih|rem Glit|zer-Nest und putzt ih|re Fe|dern.",
+      "Im The|a|ter hängt der Mond. Sein Sil|ber|stern fun|kelt im letz|ten Licht.",
+      "Die Le|se-Rau|pe ku|schelt sich un|ter den Mond. Sie gähnt und schläft ein."
+     ]
+    }
    }
   }
  ],
@@ -198,7 +212,7 @@
   "tippFalsch": "Ü|ber|ra|schung!",
   "kapitel": "Ka|pi|tel",
   "naechstesKapitel": "Wei|ter zu Ka|pi|tel",
-  "fortsetzung": "Fort|set|zung folgt …",
+  "fortsetzung": "Viel|leicht gibt es bald ei|nen neu|en Fall. Bis da|hin kannst du je|de Spur wie|der le|sen.",
   "silben": "Sil|ben",
   "schrift": "Schrift",
   "stimmt": "Stimmt!",
@@ -240,7 +254,49 @@
   "perlenSumme": "Schim|mer-Per|len",
   "urkunde": "Zur Ur|kun|de",
   "nameFrage": "Dein Na|me",
-  "tresorOeffnen": "Tre|sor öff|nen"
+  "tresorOeffnen": "Tre|sor öff|nen",
+  "danke": "Dan|ke!",
+  "album": "Mein Fall-Al|bum",
+  "zurRaupe": "Zur Le|se-Rau|pe",
+  "geloestStempel": "GE|LÖST",
+  "fallGeloest": "Der Fall ist ge|löst!",
+  "albumTipp": "Tip|pe auf ei|ne Spur. Dann kannst du sie noch ein|mal le|sen.",
+  "zumAlbum": "Zu|rück zum Al|bum",
+  "meineUrkunde": "Mei|ne Ur|kun|de",
+  "haus": "Das Haus der Le|se-Rau|pe",
+  "futter": "Füt|tern",
+  "anziehen": "An|zie|hen",
+  "ohneSachen": "oh|ne Sa|chen",
+  "neuImHaus": "Neu im Haus der Le|se-Rau|pe:",
+  "hausHallo": "Hal|lo, Part|ner! Schön, dass du da bist.",
+  "d_fliege": "die Flie|ge",
+  "d_schal": "der Schal",
+  "d_brille": "die Bril|le",
+  "d_notizbuch": "das No|tiz|buch",
+  "d_taschenlampe": "die Ta|schen|lam|pe",
+  "d_hut": "der Hut",
+  "d_mondbrosche": "die Mond|bro|sche",
+  "d_tasche": "die Blatt-Ta|sche",
+  "d_lupe": "die gol|de|ne Lu|pe",
+  "iss_blatt": "Mmh, ein fri|sches Blatt! Mein Lieb|lings|es|sen.",
+  "iss_apfel": "Knack! Der Ap|fel ist so süß. Dan|ke!",
+  "iss_erdbeere": "Ei|ne Erd|bee|re! Sie ist so rot wie Os|kars Pul|li.",
+  "iss_eis": "Brrr, ist das kalt! A|ber le|cker. Hi|hi!",
+  "sagt1": "Mit vol|lem Bauch den|ke ich viel bes|ser.",
+  "sagt2": "Du bist der bes|te Part|ner der Welt.",
+  "sagt3": "Mampf, mampf. Dan|ke schön!",
+  "sagt4": "Hi|hi, das kit|zelt im Bauch!",
+  "sagt5": "Weißt du was? Du liest rich|tig gut.",
+  "sagt6": "Ein De|tek|tiv braucht gu|tes Es|sen.",
+  "sagt7": "Le|cker! Jetzt bin ich wie|der ganz wach.",
+  "sagt8": "Schön, dass du mich be|suchst.",
+  "zieh1": "Wie se|he ich aus?",
+  "zieh2": "Schick, o|der?",
+  "ziehLupe": "Ich hal|te dei|ne gol|de|ne Lu|pe. Sie glänzt so schön!",
+  "ziehOhne": "So bin ich auch ganz zu|frie|den.",
+  "duHast": "Du hast",
+  "abWort": "ab",
+  "perlenWort": "Per|len"
  },
  "spuren": [
   {

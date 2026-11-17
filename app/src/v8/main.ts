@@ -12,12 +12,14 @@ import './raetsel.css';
 import './k3.css';
 import './k4.css';
 import './effekte.css';
+import './ende.css';
 import DATA_ from '../../../04_data/buch1_v8.json';
 import { T } from '../text';
 import { bildUrl as img } from './bilder';
 import { staub } from './staub';
 import * as R from './raetsel';
-import { zeigeFinale } from './finale.ts';
+import { zeigeFinale, urkundeHtml } from './finale.ts';
+import { zeigeHaus, neuHinweis, freiBei, raupeMitSache, konfetti, feuerwerk } from './haus.ts';
 import { App } from '@capacitor/app';
 
 const D: any = structuredClone(DATA_);
@@ -40,8 +42,8 @@ const summ = (ms: number | number[]) => { try { navigator.vibrate?.(ms); } catch
 
 /* ---------- Speicherstand (nur auf dem Gerät) ---------- */
 interface Stand {
-  view: 'titel' | 'intro' | 'kapitel' | 'spur' | 'fallkarte' | 'ausblick' | 'finale';
-  weiter: 'intro' | 'kapitel' | 'spur' | 'fallkarte' | 'ausblick' | 'finale';
+  view: 'titel' | 'intro' | 'kapitel' | 'spur' | 'fallkarte' | 'ausblick' | 'finale' | 'fertig' | 'album';
+  weiter: 'intro' | 'kapitel' | 'spur' | 'fallkarte' | 'ausblick' | 'finale' | 'fertig' | 'album';
   spur: number; i: number; blatt: number;
   fertig: number[]; tipps: Record<number, string>; tippPerle: number; geklaert: string[]; mix: string[];
   intro: boolean; fs: number; silben: boolean;
@@ -49,9 +51,17 @@ interface Stand {
   fin: number; name: string;
   /** weitester erreichter Schritt (pos()); alles davor darf man vor- und zurückblättern */
   weit: number;
+  /** Fall gelöst (Epilog erreicht): „Weiter“ führt ab jetzt zur Seite „Fall gelöst“ */
+  geloest: boolean;
+  /** Spur aus dem Fall-Album noch einmal: nur Lesen und Rätsel, danach zurück ins Album; Fortschritt bleibt */
+  wieder: boolean;
+  /** offenes Kapitel im Fall-Album */
+  albumKap: number;
+  /** Haus der Lese-Raupe: was sie trägt ('' = nichts), welche freien Sachen schon angekündigt sind */
+  traegt: string; gesehen: string[] | null;
 }
 const KEY = 'lesefall.v8';
-const START: Stand = { view: 'titel', weiter: 'intro', spur: 1, i: 0, blatt: 0, fertig: [], tipps: {}, tippPerle: 0, geklaert: [], mix: [], intro: false, fs: 20, silben: true, fin: 0, name: '', weit: 0 };
+const START: Stand = { view: 'titel', weiter: 'intro', spur: 1, i: 0, blatt: 0, fertig: [], tipps: {}, tippPerle: 0, geklaert: [], mix: [], intro: false, fs: 20, silben: true, fin: 0, name: '', weit: 0, geloest: false, wieder: false, albumKap: 1, traegt: '', gesehen: null };
 const stand: Stand = (() => { try { const r = localStorage.getItem(KEY); if (r) return { ...structuredClone(START), ...JSON.parse(r) }; } catch { /* ohne Speichern weiter */ } return structuredClone(START); })();
 const speichern = () => { try { localStorage.setItem(KEY, JSON.stringify(stand)); } catch { /* egal */ } };
 
@@ -64,9 +74,12 @@ const kapSpuren = (k: number): number[] => D.spuren.filter((s: any) => s.kap ===
 /** Buchstabe von Kapitel c ist verdient: Fallkarte gelöst (bei uns schon beim Ausblick) oder ein späteres Kapitel läuft */
 const verdient = (c: number) => { const cur = SP(stand.spur).kap; return c < cur || (c === cur && (stand.weiter === 'ausblick' || stand.weiter === 'finale')); };
 const perlen = () => stand.fertig.length * 2 + stand.tippPerle;
+// Alter Speicherstand: was schon frei ist, nicht nachträglich ankündigen
+if (!stand.gesehen) { stand.gesehen = freiBei(perlen()); speichern(); }
 /** Schritte einer Spur: Lesen → [Tipp-Auflösung] → Rätsel → Brett → [Tipp-Frage] → Haken */
 type Step = 'lesen' | 'tippAufl' | 'raetsel' | 'brett' | 'tippFrage' | 'haken';
 function steps(n: number): Step[] {
+  if (stand.wieder) return ['lesen', 'raetsel'];
   const out: Step[] = ['lesen'];
   if (n === 2 && SP(1).tipp) out.push('tippAufl');
   out.push('raetsel', 'brett');
@@ -86,7 +99,7 @@ const IC = {
 
 /* ---------- Gerüst ---------- */
 const app = $('#app');
-app.innerHTML = `<header class="kopf"><div class="k-seite k-links"><button class="kb brettb" id="bBrett" aria-label="Brett">${IC.akte}<span>Brett</span></button><span class="mondp" id="kMond" aria-hidden="true"></span></div><div class="kt"><b id="kT1"></b><span id="kT2"></span></div><div class="k-seite k-rechts"><span class="perl" id="kPerl"></span><button class="kb aa" id="bAa" aria-label="Schrift">Aa<span>Schrift</span></button></div><div class="kweg" aria-hidden="true"><i></i><img id="kWegR" alt=""></div></header><main id="buehne"></main><footer id="fuss"></footer><div id="ueber"></div>`;
+app.innerHTML = `<header class="kopf"><div class="k-seite k-links"><button class="kb brettb" id="bBrett" aria-label="Brett">${IC.akte}<span>Brett</span></button><span class="mondp" id="kMond" aria-hidden="true"></span></div><div class="kt"><b id="kT1"></b><span id="kT2"></span></div><div class="k-seite k-rechts"><button class="perl" id="kPerl" aria-label="Haus der Lese-Raupe"></button><button class="kb aa" id="bAa" aria-label="Schrift">Aa<span>Schrift</span></button></div><div class="kweg" aria-hidden="true"><i></i><img id="kWegR" alt=""></div></header><main id="buehne"></main><footer id="fuss"></footer><div id="ueber"></div>`;
 const buehne = $('#buehne'), fuss = $('#fuss'), ueber = $('#ueber');
 const modus = (m: string) => { app.dataset.m = m; buehne.ontouchstart = buehne.ontouchend = null; /* Blättern per Wisch gilt nur beim Lesen */ };
 /** Mond im Kopf: füllt sich mit jeder gelösten Spur, am Ende ist Vollmond */
@@ -132,6 +145,8 @@ function zeigeRaw() {
   if (stand.view === 'fallkarte') return fallkarte();
   if (stand.view === 'ausblick') return ausblick();
   if (stand.view === 'finale') return finale();
+  if (stand.view === 'fertig') return fertigSeite();
+  if (stand.view === 'album') return album();
   const st = steps(stand.spur)[stand.i];
   if (st === 'lesen') return lesen();
   if (st === 'tippAufl') return tippAufl();
@@ -146,6 +161,7 @@ function weiter() {
   const n = steps(stand.spur).length;
   stand.blatt = 0;
   if (stand.i + 1 < n) stand.i++;
+  else if (stand.wieder) { stand.wieder = false; stand.view = 'album'; }
   else if (letzteSpur(stand.spur)) stand.view = 'fallkarte';
   else { stand.spur++; stand.i = 0; }
   zeige();
@@ -161,7 +177,8 @@ function titel() {
   fuss.innerHTML = `<div class="fz">${knopf('start', angefangen ? UI.weiterFall : UI.start)}${angefangen ? knopf('neu', UI.neuStart, 'still') : ''}</div>`;
   fuss.onclick = (e) => {
     const a = (e.target as HTMLElement).closest<HTMLElement>('[data-a]')?.dataset.a;
-    if (a === 'start') { stand.view = angefangen ? (['spur', 'kapitel', 'fallkarte', 'ausblick', 'finale'].includes(stand.weiter) ? stand.weiter : 'spur') : stand.intro ? 'kapitel' : 'intro'; zeige(); }
+    if (a === 'start' && stand.geloest) { stand.wieder = false; stand.view = 'fertig'; zeige(); }
+    else if (a === 'start') { stand.view = angefangen ? (['spur', 'kapitel', 'fallkarte', 'ausblick', 'finale'].includes(stand.weiter) ? stand.weiter : 'spur') : stand.intro ? 'kapitel' : 'intro'; zeige(); }
     else if (a === 'neu') neuStart();
   };
 }
@@ -312,9 +329,14 @@ function raetsel() {
   buehne.innerHTML = `<section class="zug" data-art="${z.art}"${wz ? ` data-wz="${wz}"` : ''}><div class="lampe"></div>${wz ? '<div class="wzfx" aria-hidden="true"></div>' : ''}<div class="zk"><div class="zkr"><span class="tab hell">${UI.raetsel}</span>${wz ? wzChip(UI, wz) : ''}</div><h2>${z.titel}</h2></div><p class="zt1">${z.text}</p><div class="zi"></div><div class="zr"></div></section>`;
   fuss.innerHTML = '<div class="fz"><button class="kn haupt" style="visibility:hidden" tabindex="-1" aria-hidden="true"><span>·</span></button></div>';
   const fertig = () => {
-    if (!stand.fertig.includes(stand.spur)) { stand.fertig.push(stand.spur); kopf(); belohnung($('.zr .rp img', buehne) ?? $('.zr', buehne), $('#kPerl'), $('#kMond')); }
+    if (!stand.fertig.includes(stand.spur)) {
+      stand.fertig.push(stand.spur); kopf(); belohnung($('.zr .rp img', buehne) ?? $('.zr', buehne), $('#kPerl'), $('#kMond'));
+      // neue Sache im Haus? kurz zeigen, ohne das Lesen aufzuhalten
+      const neu = freiBei(perlen()).filter((id) => !stand.gesehen!.includes(id));
+      if (neu.length) { stand.gesehen!.push(...neu); setTimeout(() => { if (stand.view === 'spur') neuHinweis(app, UI, neu[neu.length - 1], hausOeffnen); }, 1700); }
+    }
     speichern();
-    nurKnopf('weiter', knopf('weiter', UI.weiter), weiter);
+    nurKnopf('weiter', knopf('weiter', stand.wieder ? UI.zumAlbum : UI.weiter), weiter);
   };
   RAETSEL[z.art]($('.zug'), z, fertig);
   if (wz) momentWeg = werkzeugMoment(buehne, wz, UI, fig('raupe/' + (wz === 'lesen' ? 'denkt' : wz === 'zeit' ? 'muede' : wz === 'lupe' ? 'tipp' : 'staunt')));
@@ -455,6 +477,7 @@ function fallkarte() {
     fk.classList.add('stempelziel');
     fk.insertAdjacentHTML('beforeend', `<b class="stempel abdruck">${f.stempel}</b>`);
     summ(40);
+    konfetti(sec);
     const cz = $('.codez', sec);
     cz.classList.add('zu');
     cz.hidden = false;
@@ -481,7 +504,51 @@ function ausblick() {
 /** Finale nach dem letzten Kapitel: Szene, Tresor, Urkunde (siehe finale.ts) */
 function finale() {
   const letzt = D.kapitel[D.kapitel.length - 1];
-  zeigeFinale({ buehne, fuss, UI, img, fig, summ, fin: letzt.finale, wort: D.kapitel[0].code.wort, stand, speichern, perlen, modus, neuStart, hook: R.hook, knopf });
+  zeigeFinale({ buehne, fuss, UI, img, fig, summ, fin: letzt.finale, wort: D.kapitel[0].code.wort, stand, speichern, perlen, modus, neuStart, hook: R.hook, knopf,
+    geloest: () => { if (!stand.geloest) { stand.geloest = true; speichern(); } },
+    album: () => { stand.view = 'album'; zeige(); },
+    haus: hausOeffnen,
+    traegt: () => stand.traegt });
+}
+
+/* ---------- Nach dem Fall: Seite „Fall gelöst“, Fall-Album, Haus der Lese-Raupe ---------- */
+function fertigSeite() {
+  modus('titel');
+  buehne.innerHTML = `<section class="titel fertig"><div class="lampe"></div>${himmel()}<p class="tl">LESE-FALL · FALL 1</p><h1>${T(D.fall.titel)}</h1><figure class="foto gross fg-cover"><img src="${img('cover')}" alt=""><b class="fg-stempel">${UI.geloestStempel}</b></figure><button class="fg-raupe" data-a="haus" aria-label="Haus der Lese-Raupe">${raupeMitSache(stand.traegt, fig)}</button><p class="forts">${UI.fortsetzung}</p><button class="fg-urk" data-a="urkunde"><span>${UI.meineUrkunde}</span></button></section>`;
+  feuerwerk($('.fertig', buehne), 3, 0.2);
+  fuss.innerHTML = `<div class="fz">${knopf('album', UI.album)}${knopf('haus', UI.zurRaupe, 'still')}</div>`;
+  const tu = (a?: string) => { if (a === 'album') { stand.view = 'album'; zeige(); } else if (a === 'haus') hausOeffnen(); else if (a === 'urkunde') urkundeOffen(); };
+  fuss.onclick = (e) => tu((e.target as HTMLElement).closest<HTMLElement>('[data-a]')?.dataset.a);
+  buehne.onclick = (e) => tu((e.target as HTMLElement).closest<HTMLElement>('[data-a]')?.dataset.a);
+}
+function urkundeOffen() {
+  ueber.innerHTML = `<div class="schl mitte"><div class="urk-box">${urkundeHtml(UI, stand.name, perlen(), fig)}<div class="fz">${knopf('zu', UI.fertig)}</div></div></div>`;
+  const inp = $<HTMLInputElement>('#dname', ueber);
+  inp.addEventListener('input', () => { stand.name = inp.value; speichern(); });
+  ueber.onclick = (e) => { const t = e.target as HTMLElement; if (t.closest('[data-a="zu"]') || t.classList.contains('schl')) ueber.innerHTML = ''; };
+}
+/** Fall-Album: oben die vier Kapitel, darunter ihre Spuren als Karten mit dem Bild der Szene. Tippen = noch einmal lesen */
+function album() {
+  modus('album');
+  stand.wieder = false;
+  const k = D.kapitel.find((x: any) => x.nr === stand.albumKap) ?? D.kapitel[0];
+  const reiter = D.kapitel.map((x: any) => `<button class="al-reiter${x.nr === k.nr ? ' an' : ''}" data-k="${x.nr}" aria-pressed="${x.nr === k.nr}"><img src="${img(x.bild)}" alt=""><span>${UI.kapitel} ${x.nr}</span></button>`).join('');
+  const karten = kapSpuren(k.nr).map((n) => { const sp = SP(n); return `<button class="al-karte" data-s="${n}" style="--n:${NEIGUNG[(n * 5 + 2) % NEIGUNG.length] * 0.6}deg"><span class="al-bild"><img src="${img(sp.bild)}" alt="" loading="lazy"></span><span class="tab etikett">SPUR ${sp.spur}</span><b>${sp.titelH}</b></button>`; }).join('');
+  buehne.innerHTML = `<section class="album"><div class="lampe"></div><div class="al-kopf"><span class="tab hell">${UI.album}</span><p>${UI.albumTipp}</p></div><div class="al-reiterz" role="tablist">${reiter}</div><h2 class="al-titel">${k.titelH}</h2><div class="al-grid">${karten}</div></section>`;
+  fuss.innerHTML = `<div class="fz">${knopf('haus', UI.zurRaupe, 'still')}</div>`;
+  klick('haus', hausOeffnen);
+  buehne.onclick = (e) => {
+    const t = e.target as HTMLElement;
+    const r = t.closest<HTMLElement>('.al-reiter');
+    if (r) { stand.albumKap = +r.dataset.k!; speichern(); album(); nav(); return; }
+    const c = t.closest<HTMLElement>('.al-karte');
+    if (c) { Object.assign(stand, { view: 'spur', spur: +c.dataset.s!, i: 0, blatt: 0, mix: [], wieder: true }); zeige(); }
+  };
+}
+function hausOeffnen() {
+  zeigeHaus({ ueber, UI, fig, perlen, summ, lupe: () => stand.geloest, traegt: () => stand.traegt,
+    setzeTraegt: (id) => { stand.traegt = id; speichern(); },
+    zu: () => { if (stand.view === 'fertig') fertigSeite(); } });
 }
 /** Fragt erst nach: ein versehentlicher Tipp darf den Fall nicht löschen. */
 function neuStart() {
@@ -495,6 +562,7 @@ function neuStart() {
 
 /* ---------- Kopf-Knöpfe, Einstellungen ---------- */
 $('#bBrett').onclick = brettOffen;
+$('#kPerl').onclick = hausOeffnen;
 $('#bAa').onclick = () => {
   ueber.innerHTML = `<div class="schl"><section class="einst"><header><b>${UI.schrift}</b><button class="kb" data-a="zu" aria-label="Schließen">${IC.zu}</button></header><div class="er"><button class="kn zwei" data-f="-2">A−</button><button class="kn zwei" data-f="2">A+</button></div><div class="er"><button class="kn zwei${stand.silben ? ' an' : ''}" data-si="1"><span>${UI.silben}: ${stand.silben ? 'an' : 'aus'}</span></button></div><div class="er">${knopf('neu', UI.neuStart, 'still')}</div></section></div>`;
   ueber.onclick = (e) => {
@@ -517,6 +585,8 @@ function pos(): number {
   if (stand.view === 'fallkarte') return stand.spur * 20 + 15;
   if (stand.view === 'ausblick') return stand.spur * 20 + 16;
   if (stand.view === 'finale') return 10000 + stand.fin;
+  if (stand.view === 'fertig') return 20000;
+  if (stand.view === 'album') return 20001;
   if (stand.view === 'spur') return stand.spur * 20 + stand.i;
   return -1000;
 }
@@ -529,8 +599,11 @@ function zurueckSchritt() {
     if (kap().nr === 1) { stand.view = 'intro'; introK = D.intro.length - 1; return zeige(); }
     const vorher = kapSpuren(kap().nr - 1); stand.spur = vorher[vorher.length - 1]; stand.view = 'ausblick'; return zeige();
   }
+  if (stand.view === 'album') { stand.view = 'fertig'; return zeige(); }
+  if (stand.view === 'fertig') { stand.view = 'titel'; return zeige(); }
   if (stand.view === 'spur') {
     if (stand.i > 0) { stand.i--; if (steps(stand.spur)[stand.i] === 'lesen') stand.blatt = 999; return zeige(); }
+    if (stand.wieder) { stand.wieder = false; stand.view = 'album'; return zeige(); }
     if (ersteSpur(stand.spur)) { stand.view = 'kapitel'; return zeige(); }
     stand.spur--; stand.i = steps(stand.spur).length - 1; return zeige();
   }
