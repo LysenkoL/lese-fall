@@ -36,7 +36,7 @@ Frau Sommer ruft von der Tür: „In einer Stunde kommen die anderen Kinder!“
 
 <!-- Ermittlung -->
 
-Die Raupe schaut auf den Stern. Er ist klein und blau. Nur Mila und sie wissen davon.
+Die Raupe schaut auf den Stern. Er ist klein und blau. Man sieht ihn nur von hinten.
 
 „Langsam ist auch eine Richtung“, denkt sie.
 
@@ -54,7 +54,7 @@ Er schaut sich um. Am Rand vom Tisch steht das blaue Tablett. Es ist ganz flach.
 
 „Fertige Sachen kommen in die grüne Kiste“, sagt Ben. „Papier kommt auf das blaue Tablett.“
 
-Er schaut auf den nassen Leim. „Der Mond bleibt nur kurz hier. Sonst klebt der Leim am Tablett.“
+Er schaut auf den nassen Leim. „Gelb bleibt oben. Sonst klebt der Leim am Tablett.“
 
 Seine Finger sind ganz klebrig. Ben geht zum Waschbecken in der Ecke. Das Wasser beginnt zu rauschen.
 
@@ -80,7 +80,7 @@ Sie schiebt eine Decke zur Seite. Sie hebt einen Karton hoch. Darin sind nur Wol
 
 <!-- Blatt -->
 
-Von weit weg rauscht Wasser. Ben wäscht noch immer seine Hände.
+Von weit weg rauscht Wasser. Ben wäscht noch immer seine Hände. Das dauert bei ihm immer lange.
 
 Dann kommt ein Schnipp. Große Pappe raschelt. Jemand summt ein kleines Lied.
 
@@ -114,7 +114,7 @@ Auf ihrem Blatt liegt ein kleines gelbes Stückchen. Halb im Schlaf knabbert sie
 
 Der rote Vorhang hängt da. Darüber ist der Himmel aus Pappe. Links über dem Vorhang ist ein leerer Platz. Dort soll der Mond hängen.
 
-Neben dem Theater lehnt jetzt die weiße Pappwand. Unten hat sie ein kleines Mauseloch. Die Raupe schaut kurz hin. Dann schaut sie wieder nach oben.
+Am Theater steht jetzt die weiße Pappwand. Unten hat sie ein kleines Mauseloch. Die Raupe schaut kurz hin. Dann schaut sie wieder nach oben.
 
 Mila kommt mit den Puppen zurück. Sie bleibt mitten im Raum stehen. Sie starrt auf den leeren Platz.
 
@@ -150,7 +150,7 @@ Ben nimmt die Hände weg. Das Tablett bleibt.
 
 <!-- Blatt -->
 
-Ben hebt den Deckel von der grünen Kiste. „Vielleicht liegt er hier.“
+Ben und Mila laufen zum Schrank. Ben hebt den Deckel von der grünen Kiste. „Vielleicht liegt er hier.“
 
 In der Kiste liegen die anderen Puppen. Ein Krokodil. Ein König. Ein Hund mit Schlappohren.
 
@@ -240,11 +240,11 @@ Die Raupe hat jedes Wort gehört.
 
 „Für die Rolle“, denkt die Raupe. „Nicht für die Schere.“
 
-Oskar schaut unter die Bank. Dort liegt noch etwas Gelbes.
+Oskar holt den gelben Kreis hinter dem Rücken hervor.
 
 ### Spur 9 — Gelb und rund
 
-Oskar zieht einen großen gelben Kreis unter der Bank hervor. Drei braune Papierkreise kleben darauf.
+Jetzt sehen alle den Kreis. Er ist groß und gelb. Drei braune Papierkreise kleben darauf.
 
 „Nicht anfassen“, sagt Oskar. „Der Klebestift ist noch nass.“
 
@@ -560,7 +560,7 @@ Noch zwei Minuten.
 
 Hinter der Wand wird es hell. Die Leucht-Fühler der Raupe gehen an.
 
-Von vorne sieht man kein Bild. Nur einen dunklen Kreis. Rund. In der weißen Wand. Keinen Stern.
+Von vorne sieht man nicht viel. Nur einen dunklen Kreis. Rund. In der weißen Wand. Keinen Stern.
 
 Mila zeigt darauf. „Ein Kreis.“
 
@@ -584,13 +584,11 @@ Sie lösen den Mond langsam an dieser Stelle. Jetzt kommt das Gelb zum Vorschein
 
 Mila hängt den Mond über das Theater. Die Wand kommt zurück an ihren Platz. Das Mauseloch auch.
 
-Frau Sommer öffnet die Tür. Die Gäste kommen herein.
+Frau Sommer öffnet die Tür. Die Gäste kommen herein. Der Vorhang geht auf.
 
 Oskar hebt die Maus. Er schaut nach oben.
 
 „Da oben!“, sagt die Maus. „Ein Käse!“
-
-Der Vorhang geht auf.
 
 ---
 

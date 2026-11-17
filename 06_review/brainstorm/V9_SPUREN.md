@@ -102,6 +102,7 @@ Mechanik, nie zweimal hintereinander, jede höchstens dreimal:
 - Tipp 2: Vorhang und Himmel sind noch da. Links daneben nicht.
 - Erfolg: Der Mond fehlt. Die Pappwand steht am Theater, mit einem Mauseloch.
 - Brettkarte: Über dem Vorhang fehlt der Mond. Die Pappwand steht am Theater und hat ein Mauseloch.
+- Geschlossen: Bleibt der Mond auf dem blauen Tablett? Nein.
 - Neue offene Frage: Wo ist der Mond?
 - Haken: „Ben! Der Mond ist weg!“
 
@@ -109,7 +110,7 @@ Mechanik, nie zweimal hintereinander, jede höchstens dreimal:
 
 - Mechanik: `sortieren` · Kraft: `lesen`
 - Rätsel · titel: Kiste oder Tablett?
-- Rätsel · text: Fertige Sachen kommen in die grüne Kiste. Papier kommt auf das blaue Tablett. Schau in die Kiste. Ist der Mond dabei?
+- Rätsel · text: Fertige Sachen kommen in die grüne Kiste. Papier kommt auf das blaue Tablett. Sortiere die Sachen nach der Regel. Ist der Mond in der Kiste?
 - Antwort: Nein. In der Kiste liegen die anderen Puppen. Zitat: „Krokodil, König, Hund.“ Und: „Kein Mond.“ Das Tablett bleibt. Zitat: „Lass das hier!“
 - Tipp 1: Ben hebt den Deckel. Mila sagt kein Wort. Die Raupe zählt die Puppen.
 - Tipp 2: Drei Puppen. Nichts Gelbes. Nichts Rundes. Das Tablett räumt Ben nicht weg.
@@ -171,7 +172,7 @@ Mechanik, nie zweimal hintereinander, jede höchstens dreimal:
 - Brettkarte: Der Käse gehört zur Rolle. Die Maus soll zum Mond hinaufschauen und „Ein Käse!“ sagen.
 - Geschlossen: Wer schneidet den großen gelben Kreis? Oskar, für seine Rolle.
 - Neue offene Frage: Ist dieser Käse Milas Mond?
-- Haken: Unter der Bank liegt noch etwas Gelbes.
+- Haken: Oskar holt den gelben Kreis hinter dem Rücken hervor.
 
 ### Spur 9 — Gelb und rund
 
@@ -409,8 +410,8 @@ Mechanik, nie zweimal hintereinander, jede höchstens dreimal:
 - Erfolg: Von vorne war nur ein dunkler Kreis zu sehen. Kein Stern. Den Stern gibt es erst nach dem Umdrehen.
 - Nach dem Umdrehen, im Text, nicht in diesem Rätselbild: weiß, Loch, Faden, blauer Stern. Zitat: „Der Stern. Gelb und rund reicht nicht.“ Oskar: „Ich dachte, da liegt nur Papier.“ Gelb erst beim Ablösen. Ben: „Hier war mein Leim. Nass. Nur ein kleiner Klecks. Der hat die gelbe Seite festgehalten.“ Und: „Ein bisschen Leim ist unten herausgekommen. Das war der Tropfen am Rand.“
 - Brettkarte: Der Mond klebte mit der gelben Seite an der Wand. Außen waren die weiße Seite, das Loch, der Faden und der blaue Stern. Festgehalten hat ihn Bens Leim am Loch.
-- Geschlossen: Wo ist der Mond? An der Rückseite der Pappwand, gelbe Seite zur Wand. Was lag auf dem Tisch? Der Mond, Oskar hielt ihn für Papier. Was lag auf dem Leim? Die gelbe Seite des Mondes. Wo ist das andere Ende? Am Mond hinter der Wand. Wie kam der Leim an den Rand? Vom kleinen Klecks am Loch.
-- Haken: „Da oben! Ein Käse!“ Der Vorhang geht auf.
+- Geschlossen: Wo ist der Mond? An der Rückseite der Pappwand, gelbe Seite zur Wand. Was lag auf dem Tisch? Der Mond, Oskar hielt ihn für Papier. Was lag auf dem Leim? Die gelbe Seite des Mondes. Gehört das Weiße zu Milas Faden? Ja. Wo ist das andere Ende? Am Mond hinter der Wand. Wie kam der Leim an den Rand? Vom kleinen Klecks am Loch.
+- Haken: Der Vorhang geht auf. „Da oben! Ein Käse!“
 
 **Fallkarte Kapitel 4: „Das wissen wir jetzt“**
 
