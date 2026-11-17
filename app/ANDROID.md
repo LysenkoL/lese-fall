@@ -10,11 +10,14 @@
 ## Каждый раз
 ```bash
 cd app
-npm run android          # данные главы + сборка веб-части + cap sync android
+npm run android          # данные + сборка веб-части + v8 как стартовая страница + cap sync android
 cd android
 ./gradlew assembleDebug  # APK для своего телефона: android/app/build/outputs/apk/debug/app-debug.apk
 ```
 Либо `npx cap open android` и в Android Studio: Run ▶ на подключённом телефоне.
+
+## Какая версия внутри
+В приложение попадает текущая версия **v8** (`v8.html`): `scripts/android-start.mjs` после сборки копирует `dist/v8.html` в `dist/index.html`. Кнопка «Назад» Android: закрывает окно → листает назад → выходит на титул (прогресс сохраняется) → на титуле закрывает приложение.
 
 ## Для Google Play
 - Подпись — как в Leseraupe (`docs/ANDROID.md` там): `android/key.properties` (не коммитить) и `./gradlew bundleRelease` → `.aab`.

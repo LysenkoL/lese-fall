@@ -11,7 +11,7 @@
     "test:e2e": "node scripts/e2e.mjs",
     "test:v8": "node scripts/e2e-v8.mjs 390 844 telefon && node scripts/e2e-v8.mjs 1280 800 rechner",
     "test:ui": "node scripts/ui-audit.mjs --name=pruefung",
-    "android": "npm run build && cap sync android"
+    "android": "npm run build && node scripts/android-start.mjs && cap sync android"
   },
   "devDependencies": {
     "@capacitor/cli": "^8.6.0",

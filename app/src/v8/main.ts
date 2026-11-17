@@ -18,6 +18,7 @@ import { bildUrl as img } from './bilder';
 import { staub } from './staub';
 import * as R from './raetsel';
 import { zeigeFinale } from './finale.ts';
+import { App } from '@capacitor/app';
 
 const D: any = structuredClone(DATA_);
 /** Texte der Daten einmal in HTML mit Silben verwandeln (gleiche Schlüssel wie in build-v8.ts) */
@@ -512,6 +513,20 @@ $('#bAa').onclick = () => {
 };
 let rz = 0;
 addEventListener('resize', () => { clearTimeout(rz); rz = window.setTimeout(() => { if (stand.view === 'spur' && steps(stand.spur)[stand.i] === 'lesen' && !ueber.innerHTML) zeige(); }, 200); });
-(window as any).__v8 = { stand, D, loese, zeige, steps };
+/** Android-Zurück: erst Fenster schließen, dann zurückblättern, sonst zum Titel (Stand bleibt), auf dem Titel App beenden */
+function zurueck() {
+  if (ueber.innerHTML.trim()) {
+    const bg = ueber.querySelector('.schl') as HTMLElement | null;
+    if (bg) bg.click(); else ueber.innerHTML = '';
+    if (ueber.innerHTML.trim()) ueber.innerHTML = '';
+    return;
+  }
+  const prev = fuss.querySelector('[data-a="prev"]:not([disabled])') as HTMLElement | null;
+  if (prev) { prev.click(); return; }
+  if (stand.view === 'titel') { App.exitApp().catch(() => {}); return; }
+  stand.view = 'titel'; zeige();
+}
+App.addListener('backButton', zurueck).catch(() => {});
+(window as any).__v8 = { stand, D, loese, zeige, steps, zurueck };
 stand.view = 'titel'; // beim Öffnen immer der Titel, dann „Weiter ermitteln“
 document.fonts.ready.then(zeige);
