@@ -2246,3 +2246,5 @@ wach
 be|suchst
 se|he
 schick
+# neu für v8 (ungeprüft)
+knus|per
