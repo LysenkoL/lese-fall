@@ -1,6 +1,6 @@
 # Lese-Fall · Buch 1 „Der verschwundene Mond“ · Text v9 (Entwurf, 17.11.2026)
 
-Собрано из итоговых версий брейншторма (Grok + GPT, Opus, Gemini) со всеми принятыми правками по главам 1–4. Экраны после чтения (загадки, карточки доски, вопросы, карточки глав, сейф) — в `V9_SPUREN.md` у Grok, сюда не входят.
+Финальная редакция после брейншторма (Grok + GPT, Opus, Gemini) и разбора писателя, педагога и сценариста: все принятые правки внесены. Экраны после чтения (загадки, карточки доски, вопросы, карточки глав, сейф) — в `V9_SPUREN.md`, картинки — в `V9_BILDER.md`.
 
 Пометки: `<!-- Blatt -->` — желательное место перелистывания, `<!-- Ermittlung -->` — абзац, который ведёт к загадке. В главах 2–4 их в присланных версиях не было, поэтому там они не расставлены.
 
@@ -26,7 +26,7 @@ Sie hält einen gelben Mond aus Pappe hoch. Oben im Rand ist ein kleines Loch. D
 
 Oskar sitzt auf der Bank am Fenster. Die Bank steht im Zimmer, direkt neben dem Tisch. Neben der Bank lehnt eine dünne weiße Pappwand.
 
-„Heute spiele ich zum ersten Mal mit“, sagt er leise. „Ich bin die Maus. Sie hält den Mond für einen Käse.“
+„Heute spiele ich zum ersten Mal mit“, sagt er leise. „Ich bin die Maus. Die Maus sagt: Der Mond ist ein Käse.“
 
 Er zeigt auf die Pappwand. „Das wird meine Kulissenwand. Da fehlt noch ein Mauseloch.“
 
@@ -44,13 +44,13 @@ Die Raupe schaut auf den Stern. Er ist klein und blau. Nur Mila und sie wissen d
 
 Ben holt die Flasche mit Bastelleim. Er legt den Mond auf den Tisch. Die gelbe Seite ist oben.
 
-Neben dem Loch drückt er einen dicken Tropfen Leim heraus. Dann wickelt er den Faden hinein. Der Leim glänzt. Er ist noch ganz nass.
+Neben dem Loch drückt er einen kleinen Klecks Leim heraus. Dann wickelt er den Faden hinein. Der Leim glänzt. Er ist noch ganz nass.
 
 „Jetzt muss er trocknen“, sagt Ben.
 
 <!-- Blatt -->
 
-Er schaut sich um. Am Rand vom Tisch steht das blaue Tablett. Vorsichtig legt er den Mond darauf. Die gelbe Seite bleibt oben.
+Er schaut sich um. Am Rand vom Tisch steht das blaue Tablett. Es ist ganz flach. Vorsichtig legt er den Mond darauf. Die gelbe Seite bleibt oben.
 
 „Fertige Sachen kommen in die grüne Kiste“, sagt Ben. „Papier kommt auf das blaue Tablett.“
 
@@ -112,7 +112,7 @@ Auf ihrem Blatt liegt ein kleines gelbes Stückchen. Halb im Schlaf knabbert sie
 
 <!-- Blatt -->
 
-Der rote Vorhang hängt da. Darüber ist der Himmel aus Pappe. Links über dem Vorhang ist ein leerer Platz.
+Der rote Vorhang hängt da. Darüber ist der Himmel aus Pappe. Links über dem Vorhang ist ein leerer Platz. Dort soll der Mond hängen.
 
 Neben dem Theater lehnt jetzt die weiße Pappwand. Unten hat sie ein kleines Mauseloch. Die Raupe schaut kurz hin. Dann schaut sie wieder nach oben.
 
@@ -178,7 +178,7 @@ Ben kommt hinterher. „Hier habe ich ihn hingelegt“, sagt er. „Gelb nach ob
 
 Oben auf der Pflanze verzieht die Raupe das Gesicht. Das gelbe Stückchen schmeckt scheußlich. Das ist kein Blatt. Das ist Papier!
 
-„Pfui!“, denkt sie und spuckt es aus.
+„Pfui! Papier zum Frühstück!“, denkt die Raupe und spuckt es aus.
 
 Das Stückchen segelt herunter. Es landet mitten auf dem Tablett. Mila hebt es auf. Sie dreht es um. Vorne ist es gelb. Hinten ist es auch gelb.
 
@@ -200,8 +200,6 @@ Noch vierzig Minuten.
 
 ### Spur 7 — Gelbe Finger
 
-Noch vierzig Minuten.
-
 Oskar sitzt auf der Bank am Fenster. Die Bank steht im Zimmer, neben dem Tisch. In seiner Hand ist die Schere. An seinen Fingern kleben gelbe Krümel.
 
 Mila bleibt vor ihm stehen. „Was schneidest du da?“
@@ -210,7 +208,9 @@ Oskar sagt nichts. Er wird rot. Den gelben Kreis hält er hinter dem Rücken.
 
 Ben beugt sich vor. „Das sind Schnipsel“, sagt er. „Ganz klein. Ganz gelb.“
 
-Die Raupe sitzt noch oben auf der Pflanze. Bis zur Bank ist es nicht weit. Für sie schon.
+Die Raupe sitzt noch oben auf der Pflanze.
+
+„Für Mila sind das drei Schritte“, denkt die Raupe. „Für mich ist der Weg lang.“
 
 Sie setzt ein Bein vor. Dann noch ein Bein.
 
@@ -302,7 +302,7 @@ Mila hat Angst um ihr Stück. Ihre Stimme zittert.
 
 „Oskar“, sagt sie. „Hast du meinen Mond zerschnitten? Für deinen Käse?“
 
-Oskar wird blass. „Ich habe keinen Mond gesehen!“
+Oskar wird blass. „Ich habe keinen Mond gesehen! Ehrlich!“
 
 Er stellt den Käse auf die Bank. „Nicht anfassen. Erst wenn er trocken ist.“
 
@@ -448,7 +448,7 @@ Ben schaut in den Schrank. Unter die Bank. In die grüne Kiste. Auch da ist kein
 
 Frau Sommer steht an der Tür. „Noch zwölf Minuten. Gleich kommen die Gäste.“
 
-Oskar hält die Maus an seine Wange. „Ohne den Mond kann ich den Satz nicht sagen.“
+Oskar hält die Maus an seine Wange. „Ohne den Mond kann die Maus nicht nach oben schauen.“
 
 „Nichts Kleines“, denkt die Raupe.
 
@@ -462,11 +462,11 @@ Der Käse liegt auf der Bank. Die Wand bleibt am Theater.
 
 Noch zehn Minuten.
 
-Unten am Rand der Wand glänzt ein kleiner Tropfen. Nicht das Klebeband. Ein runder Tropfen.
+Unten am Rand der Wand sitzt ein kleiner Tropfen. Er ist hart. Er ist rund. Klebeband sieht anders aus.
 
 Ben geht in die Hocke. Er kennt ihn.
 
-„Das ist mein Leim“, sagt er. „Aus der Flasche. So einen Tropfen macht ein Klebestift nicht.“
+„Auch das ist mein Leim“, sagt er. „Aus der Flasche. Ein Klebestift macht keine runden Tropfen.“
 
 Er schaut Oskar an. „Du hast meine Flasche genommen. Um die Wand festzukleben!“
 
@@ -500,13 +500,13 @@ Noch acht Minuten.
 
 ### Spur 21 — Das andere Ende
 
-Unter der Wand hängt jetzt ein weißes Ende. Länger als der Fussel von vorhin.
+Unter der Wand hängt jetzt ein weißes Ende. Die Raupe schubst es noch einmal an. Mehr von dem Faden rutscht hervor.
 
 Mila sieht es. Sie zieht ganz vorsichtig. Das Ende kommt nicht los.
 
 „Es hängt fest“, sagt sie. „Irgendwo.“
 
-Sie schaut nach oben zum Vorhang. Zur Gardine. In die grüne Kiste.
+Sie schaut zum Vorhang. Zur Gardine. Den Tisch entlang.
 
 Ben legt seine Hand auf ihre Hand. „Nicht ziehen. Sonst reißt er.“
 
@@ -519,6 +519,8 @@ Noch sechs Minuten.
 ### Spur 22 — Gleich
 
 Frau Sommer zieht die Gardine vor. Im Zimmer wird es dämmrig. Der Vorhang am Theater bleibt zu.
+
+Die Fühler der Raupe werden hell. Noch ganz schwach.
 
 „Die Gäste sind an der Tür“, sagt sie. „Noch nicht herein.“
 
@@ -572,6 +574,8 @@ Oskar sagt leise: „Ich dachte, da liegt nur Papier.“
 
 Ben zeigt auf das Loch. „Hier war mein Leim. Nass. Nur ein kleiner Klecks. Der hat die gelbe Seite festgehalten.“
 
+Er zeigt auf den Rand. „Ein bisschen Leim ist unten herausgedrückt worden. Das war der Tropfen am Rand.“
+
 Sie lösen den Mond langsam an dieser Stelle. Jetzt kommt das Gelb zum Vorschein. Das Papier reißt nicht.
 
 Mila hängt den Mond über das Theater. Die Wand kommt zurück an ihren Platz. Das Mauseloch auch.
@@ -588,8 +592,14 @@ Der Vorhang geht auf.
 
 ## Finale
 
-Das Stück ist vorbei. Der Mond hängt noch. Oskar hat seinen Satz gesagt. Der Käse liegt auf der Bank. Ihn hat niemand aufgehängt.
+Das Stück ist vorbei. Die Gäste klatschen. Der Mond hängt über dem Theater. Die weiße Wand ist wieder an ihrem Platz, mit dem Mauseloch. Oskar hält die Maus. Er hat seinen Satz gesagt.
 
-*(Экран сейфа: вопрос «Was hat den Mond festgehalten?». Буквы по главам E, M, L, I складываются в LEIM.)*
+Frau Sommer nickt ihm zu. „Das war deine erste Rolle.“
+
+Ben steht neben dem Tisch. Die Leimflasche bleibt bei ihm. Der Klebestift liegt bei Oskars Käse. Den Käse hat niemand aufgehängt.
+
+Die Lese-Raupe sitzt auf ihrem Blatt am Fenster. Draußen sind gelbe Blätter. Die Gardine ist offen. Der Vorhang am Theater ist wieder zu.
+
+*(Экран сейфа: «Was hat den Mond festgehalten?» Буквы по главам E, M, L, I складываются в LEIM. Штамп «FALL GELÖST».)*
 
 „Der Stern war auch für mich“, denkt die Raupe. „Gern geschehen. Hört eh keiner.“
