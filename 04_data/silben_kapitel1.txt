@@ -2202,3 +2202,5 @@ klu|ge
 spür|na|se
 # neu für v8 (ungeprüft)
 bunt
+# neu für v8 (ungeprüft)
+klärst
