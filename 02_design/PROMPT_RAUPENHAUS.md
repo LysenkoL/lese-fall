@@ -75,3 +75,20 @@ The caterpillar is happily munching: she holds a small round bitten green leaf w
 
 - `raupe/schlaeft.webp` — гусеничка спит, свернувшись калачиком, для эпилога «Ein stiller Abend» (сейчас там поза «müde»).
 - Отдельные картинки еды (яблоко, клубника, мороженое) не нужны: они нарисованы в коде и выглядят аккуратно.
+
+---
+
+## 4. Еда для домика (по желанию) — `essen/<имя>.webp`
+
+Сейчас печенье и сыр — готовые картинки из книги (`objekte/raetsel_keks`, `objekte/raetsel_kaese`), а листик, яблоко, клубника и мороженое нарисованы в коде. Если хочешь, чтобы вся еда была в одном рисованном стиле, сгенерируй её. Каждый предмет — отдельной картинкой, по этому шаблону, меняя только последнюю строку. Файлы: `assets/illustrationen/essen/blatt.webp`, `apfel.webp`, `erdbeere.webp`, `eis.webp` (и по желанию `keks.webp`, `kaese.webp`). Положил файл — приложение берёт его вместо рисунка, код менять не нужно.
+
+**Приложить:** `assets/illustrationen/objekte/raetsel_keks.webp` и `assets/illustrationen/garderobe/garderobe_blatt.webp` (образец стиля предметов).
+
+```text
+Use the attached object images as the exact style reference: the same soft painted children's-book style, the same light from the upper left, the same gentle soft shadow under the object. One single object, centred, filling about 80% of the picture, plain white background, nothing else. Square 1:1. No text, no letters, no numbers, no stars, no faces on the food.
+<ONE OF:>
+A fresh, juicy green leaf (like a lime-tree leaf) with fine veins, a tiny dewdrop on it and a short stem.
+A shiny red apple with a short brown stem and one green leaf, a soft white highlight on the left.
+A ripe red strawberry with small yellow seeds and a fresh green leafy cap.
+An ice-cream cone with one vanilla scoop and one pink strawberry scoop and a cherry on top, crisp waffle pattern on the cone.
+```
