@@ -27,6 +27,7 @@
 | `04_data/` | JSON сцен со слоговой разметкой, доказательствами и подсказками | пусто, следующий шаг |
 | `assets/fonts/` | Inter (OFL) — те же файлы, что в Leseraupe | ✅ |
 | `05_play_store/PLAY_STORE.md` | Подводные камни Google Play и чек-лист публикации | готово (исследование) |
+| `05_play_store/STORE_EINTRAG_DE.md`, `CONSOLE_ANTWORTEN.md`, `datenschutz/`, `screenshots/` | Тексты магазина, ответы Play Console, Datenschutz DE/EN, скриншоты 3 форматов, иконка 512 | готово 17.11.2026, проверить перед публикацией |
 
 ## Не использовать как источник
 
