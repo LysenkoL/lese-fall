@@ -374,35 +374,27 @@ function brett() {
     klick('weiter', () => { SP(nr).fragenWeg.forEach((id: string) => { if (!stand.geklaert.includes(id)) stand.geklaert.push(id); }); speichern(); weiter(); });
     };
     summ(25);
-    // Welche Frage ist jetzt geklärt? Das Kind entscheidet selbst.
+    // Geklärte Fragen bekommen von selbst den Stempel „geklärt“ (nacheinander), dann kommt „Weiter“
     const offen = () => [...sec.querySelectorAll<HTMLElement>('.zettel[data-ok]')].filter((z) => !z.querySelector('.stempel'));
     if (!offen().length) return zeigWeiter();
-    sec.classList.add('fragt');
-    fuss.innerHTML = `<div class="fz">${knopf('warte', UI.erstFrage, 'haupt', true)}</div>`;
-    $('.fragen', sec).insertAdjacentHTML('beforebegin', `<p class="fr-frage">${offen().length > 1 ? UI.welcheFragen : UI.welcheFrage}</p>`);
-    const ansage = $<HTMLElement>('.fr-frage', sec);
-    let fehl = 0;
+    fuss.innerHTML = `<div class="fz">${knopf('warte', UI.weiter, 'haupt', true)}</div>`;
     const klaere = (q: HTMLElement) => {
-      q.classList.remove('zeig');
+      if (q.querySelector('.stempel')) return;
       q.insertAdjacentHTML('beforeend', `<b class="stempel klein2">${UI.geklaert}</b>`);
       summ(30);
       if (!stand.geklaert.includes(q.dataset.q!)) stand.geklaert.push(q.dataset.q!);
       speichern();
-      setTimeout(() => q.classList.add('faellt'), 900);
-      setTimeout(() => q.remove(), 1500);
-      if (!offen().length) { fragePhase = null; hookStaub = null; sec.classList.remove('fragt'); ansage.remove(); zeigWeiter(); }
+      setTimeout(() => q.classList.add('faellt'), 1100);
+      setTimeout(() => q.remove(), 1700);
+      if (!offen().length) { hookStaub = null; setTimeout(() => sec.isConnected && zeigWeiter(), 1300); }
     };
-    fragePhase = (q) => {
-      if (q.querySelector('.stempel')) return;
-      if (q.dataset.ok) return klaere(q);
-      fehl++;
-      q.classList.remove('nein'); void q.offsetWidth; q.classList.add('nein');
-      ansage.innerHTML = fehl >= 2 ? UI.frageHilfe : UI.frageFalsch;
-      if (fehl >= 2) offen().forEach((z) => z.classList.add('zeig'));
-    };
+    offen().forEach((q, i) => setTimeout(() => {
+      if (!sec.isConnected) return;
+      q.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      setTimeout(() => sec.isConnected && klaere(q), 500);
+    }, 500 + i * 1300));
     hookStaub = () => offen().forEach(klaere);
   };
-  let fragePhase: ((q: HTMLElement) => void) | null = null;
   if (staubig) hookStaub = staub(karte, fertigWischen);
   else {
     // Neuer Fund: das Kind hängt die Karte selbst ans Brett
@@ -422,8 +414,6 @@ function brett() {
   }
   sec.addEventListener('click', (e) => {
     const t = e.target as HTMLElement;
-    const q = t.closest<HTMLElement>('.zettel.fr');
-    if (q && fragePhase) return fragePhase(q);
     if (t.closest('[data-a="code"]')) return tresorInfo(() => { ueber.innerHTML = ''; });
     const k = t.closest<HTMLElement>('.bkarte[data-k]');
     if (k && !k.classList.contains('neu')) karteGross(+k.dataset.k!);

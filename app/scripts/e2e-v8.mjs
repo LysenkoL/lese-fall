@@ -411,7 +411,7 @@ for (const kap of KAPITEL) {
         if (br.karten > 6 || br.fragen > 4) fehler.push(`Spur ${spur}: Brett hat ${br.karten} Karten, ${br.fragen} Fragen`);
         const eigene = D.spuren.filter((q) => q.kap === kap).map((q) => q.nr);
         if (br.nrs.some((x) => !eigene.includes(x))) fehler.push(`Spur ${spur}: Brett zeigt Karten fremder Kapitel: ${br.nrs}`);
-        if (await p.$('.zettel[data-ok]')) { await shot(`s${spur}_brett_frage`); const falsch = await p.$('.zettel.fr:not([data-ok])'); if (falsch) { await falsch.click({ force: true }); await sleep(300); if (await p.$('#fuss [data-a="weiter"]')) fehler.push(`Spur ${spur}: falsche Frage schaltet Weiter frei`); } for (const z of await p.$$('.zettel[data-ok]')) { await z.click({ force: true }); await sleep(300); } await shot(`s${spur}_brett_geklaert`); await sleep(1400); if (!(await p.$('#fuss [data-a="weiter"]'))) fehler.push(`Spur ${spur}: nach geklärter Frage fehlt Weiter`); }
+        if (await p.$('.zettel[data-ok]')) { await shot(`s${spur}_brett_frage`); const n = (await p.$$('.zettel[data-ok]')).length; await sleep(1200 + n * 1300); await shot(`s${spur}_brett_geklaert`); await sleep(1600); if (!(await p.$('#fuss [data-a="weiter"]'))) fehler.push(`Spur ${spur}: nach geklärter Frage fehlt Weiter`); }
         await weiter();
       } else if (s === 'tippFrage') {
         await S(`s${spur}_tippfrage`);
