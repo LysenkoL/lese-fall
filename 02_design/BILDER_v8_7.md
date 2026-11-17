@@ -65,3 +65,34 @@ Outside under the big tree in front of the open classroom window: right below th
 ## Не нужно
 - `baum_nest` (ключ на белой ленте в гнезде) — в новой версии нигде не показывается.
 - `k4_s20_spiel`, `k4_s22`, `k4_s23` — по сюжету подходят.
+
+---
+
+## Луна с серебряной звёздочкой — 4 картинки
+
+**Вариант А — правка** (если есть старая картинка): приложить её и вставить:
+```
+Edit the attached picture. Keep everything exactly as it is – composition, characters, colors, light, style. Change only one thing: on the round yellow cardboard moon (with three brown spots), glue a small shiny SILVER FOIL STAR at the top edge, right above the little hole where the thread is attached. The star is small (about one fifth of the moon's width), silver and slightly glittering. Nothing else changes. No text.
+```
+
+**Вариант Б — заново**: блок «Стиль» сверху + описание. Приложить лист детей, лист гусенички, k1_s1 (комната).
+
+### `k3_elster` — сорока уносит луну (конец главы 3)
+```
+Outside at the wooden bench under the big tree: on the bench lies the round yellow cardboard moon with three brown paper spots and a small silver foil star at the top; its long white thread hangs down over the edge of the bench. A black-and-white magpie with a very long tail has just grabbed the END OF THE THREAD with its beak and takes off – the moon lifts from the bench and dangles on the thread below the bird. Mila, Ben and Oskar jump up, shocked, arms reaching out. Oskar's little paper mouse stands on the bench: made of GREY paper, with two BIG ROUND ears, a red paper heart on its belly, a thin pink tail. On the windowsill above, the small green caterpillar watches. Autumn light, yellow leaves.
+```
+
+### `k4_s19` — уборка, Ben вешает луну (Spur 21)
+```
+Back in the classroom. Oskar (red-white striped hoodie) puts leftover paper scraps on the blue tray. Mila puts the hand puppets (fox, bear, king) into the green wooden box. Ben stands on a small stool at the puppet theater and hangs the round yellow moon with three brown dots and a small silver foil star at the top on its thread, to the LEFT of the white cloud above the red curtain. The small green caterpillar sits on her favorite leaf in the flowerpot, looking pleased.
+```
+
+### `k4_s22` — спектакль (Spur 22)
+```
+The puppet show. Seen from behind the audience (backs of children's heads in the foreground, some children giggle and hold up their own small grey paper mice). On the stage: the little grey paper mouse with the red heart jumps as high as it can toward the round yellow moon with three brown dots and a small sparkling silver foil star at the top; the moon dances on its thread with small motion lines. Mila holds the red curtain open at the side. At the window the small green caterpillar giggles silently.
+```
+
+### `k4_s23` — аплодисменты (Spur 23)
+```
+Big applause: the children on the carpet and Frau Sommer (red hair in a bun, round glasses, green cardigan) clap enthusiastically, some wave their little grey paper mice. Mila, Ben and Oskar have come out from behind the theater and take a bow; Oskar glows with happiness. The curtain is closed; the yellow moon with three brown spots and a small silver foil star hangs left of the white cloud. At the window the small green caterpillar claps quietly with her many little feet.
+```
