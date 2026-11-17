@@ -263,7 +263,7 @@ function lesen() {
   const zeig = () => {
     const s = seiten[stand.blatt], n = seiten.length, b = stand.blatt;
     buehne.innerHTML = `<div class="blatt${s.voll < 0.5 && b > 0 ? ' kurz' : ''}" data-art="lesen" data-r="${richtung}">${s.html}</div>`;
-    fuss.innerHTML = `<div class="fl"><button class="rund" data-a="prev" ${b === 0 && !hatVorher() ? 'disabled' : ''} aria-label="Zurück">${IC.zur}</button><div class="pkt">${[...Array(n)].map((_, k) => `<i class="${k === b ? 'an' : k < b ? 'war' : ''}"></i>`).join('')}</div>${b < n - 1 ? `<button class="rund gold" data-a="next" aria-label="Weiter">${IC.vor}</button>` : `<button class="kn haupt zugk" data-a="weiter">${IC.lupe}<span>${UI.raetsel}</span></button>`}</div>`;
+    fuss.innerHTML = `<div class="fl"><button class="rund" data-a="prev" ${b === 0 && !hatVorher() ? 'disabled' : ''} aria-label="Zurück">${IC.zur}</button>${n > 7 ? `<div class="pkt zahl" aria-label="Blatt ${b + 1} von ${n}"><b>${b + 1}</b> / ${n}</div>` : `<div class="pkt">${[...Array(n)].map((_, k) => `<i class="${k === b ? 'an' : k < b ? 'war' : ''}"></i>`).join('')}</div>`}${b < n - 1 ? `<button class="rund gold" data-a="next" aria-label="Weiter">${IC.vor}</button>` : `<button class="kn haupt zugk" data-a="weiter">${IC.lupe}<span>${UI.raetsel}</span></button>`}</div>`;
     richtung = '';
     speichern();
   };

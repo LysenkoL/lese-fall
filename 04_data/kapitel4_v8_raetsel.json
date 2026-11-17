@@ -224,8 +224,8 @@
   },
   {
    "spur": 20,
-   "bild": "k4_s20_spiel",
-   "haken": "Die Lese-Raupe lässt ein kleines Blättchen direkt auf Oskars Nacken segeln …",
+   "bild": "baum",
+   "haken": "„Oskar, halt deine Maus bereit!“",
    "karte": {
     "titel": "Der Schlüssel",
     "bild": "nest_nah",
@@ -238,83 +238,59 @@
     "text": "Im Nest lag Frau Sommers Schlüssel. Den Vogel locken Glitzer-Sterne an: am Schlüssel und am Mond.",
     "staub": false
    },
-   "fragenNeu": [
-    {
-     "id": "k4maus",
-     "text": "Wo ist Oskars Maus?"
-    }
-   ],
+   "fragenNeu": [],
    "fragenWeg": [
     "schluessel",
     "k3plan"
    ],
    "raetsel": {
     "art": "lupe",
-    "titel": "Wo ist die Maus?",
-    "text": "Etwas Rosafarbenes ist an einem der Kinder. Fahre mit der Lupe über die Kinder und finde den Mäuseschwanz.",
-    "bild": "objekte/kinder_hinten",
+    "titel": "Was blitzt im Nest?",
+    "text": "Frau Sommer sieht durch die dichten Blätter nichts. Fahre mit der Lupe über das Nest und finde ihren Schlüssel.",
+    "bild": "nest_nah",
     "ratio": 1.5,
-    "zoom": 3.2,
+    "zoom": 3.0,
     "ziel": {
-     "x": 76.9,
-     "y": 38.8,
-     "r": 6.5
+     "x": 31.5,
+     "y": 45,
+     "r": 7.5
     },
     "fehlFunde": [
      {
-      "x": 19.0,
-      "y": 40.0,
-      "r": 4.5,
-      "text": "Eine rosa Schleife an Milas Zopf. Die gehört zum Zopf. Das ist kein Mäuseschwanz."
+      "x": 33,
+      "y": 68,
+      "r": 5.5,
+      "text": "Ein goldenes Glöckchen. Es glänzt, aber es ist kein Schlüssel."
      },
      {
-      "x": 29.0,
-      "y": 40.0,
-      "r": 4.5,
-      "text": "Wieder eine rosa Schleife an Milas Zopf. Auch kein Mäuseschwanz."
+      "x": 50,
+      "y": 45,
+      "r": 6,
+      "text": "Ein silberner Kronkorken. Er glänzt, aber es ist kein Schlüssel."
      },
      {
-      "x": 42.4,
-      "y": 82.0,
+      "x": 70,
+      "y": 46,
+      "r": 6,
+      "text": "Ein buntes Glasscherbchen. Hübsch, aber kein Schlüssel."
+     },
+     {
+      "x": 66,
+      "y": 29,
       "r": 5,
-      "text": "Rosa Schnürsenkel an Bens Schuhen. Die stecken im Schuh. Das ist kein Mäuseschwanz."
-     },
-     {
-      "x": 57.1,
-      "y": 82.0,
-      "r": 5,
-      "text": "Wieder rosa Schnürsenkel an Bens Schuh. Auch kein Mäuseschwanz."
+      "text": "Eine Büroklammer aus Metall. Kein Schlüssel."
      }
     ],
-    "start": "Mit meiner Lupe sieht man Kleines groß. Etwas ist rosa. Aber nicht alles Rosa ist ein Mäuseschwanz!",
-    "tipp": "Ein Mäuseschwanz ist lang und dünn. Er hängt irgendwo heraus.",
-    "fund": "Ein langer, dünner, rosa Schwanz! Er hängt aus Oskars Kapuze.",
-    "schluss": {
-     "frage": "Was ist jetzt sicher?",
-     "optionen": [
-      {
-       "text": "Aus Oskars Kapuze hängt etwas Rosafarbenes, Langes und Dünnes.",
-       "sicher": true
-      },
-      {
-       "text": "Das ist der Schwanz von Oskars Maus.",
-       "sicher": false,
-       "tipp": "Das ist erst ein Verdacht. Wir haben nur den Schwanz gesehen. Die Maus selbst noch nicht."
-      },
-      {
-       "text": "Die Maus ist weggelaufen.",
-       "sicher": false,
-       "tipp": "Das ist erst ein Verdacht. Dafür gibt es keinen Beweis. Im Gegenteil: Etwas Rosafarbenes hängt aus der Kapuze."
-      }
-     ]
-    },
-    "erfolg": "Sicher ist nur, was wir gesehen haben. Alles andere müssen wir erst prüfen.",
+    "start": "Mit meiner Lupe sieht man Kleines groß. Hier glänzt vieles. Aber wo ist der Schlüssel?",
+    "tipp": "Der Schlüssel hängt an einem kleinen silbernen Glitzer-Stern.",
+    "fund": "Da ist er! Der Schlüssel mit dem silbernen Glitzer-Stern.",
+    "erfolg": "Gefunden! KLING! Frau Sommer holt ihren Schlüssel aus dem Nest.",
     "werkzeug": "lupe"
    }
   },
   {
    "spur": 21,
-   "bild": "k4_s19",
+   "bild": "k4_s20_spiel",
    "haken": "Die Tür geht weit auf, und die Kinder der Gruppe strömen herein!",
    "karte": {
     "titel": "Oskars Maus",
@@ -322,9 +298,7 @@
     "text": "Oskars Maus steckte in seiner Kapuze. Und jetzt hat jedes Ding seinen Platz: Papier aufs Tablett, Puppen in die Kiste, der Mond neben die Wolke.",
     "staub": false
    },
-   "fragenWeg": [
-    "k4maus"
-   ],
+   "fragenWeg": [],
    "raetsel": {
     "art": "unterschiede",
     "titel": "Alles an seinem Platz",

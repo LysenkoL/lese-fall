@@ -2950,9 +2950,9 @@
    "nr": 20,
    "kap": 4,
    "spur": 20,
-   "titel": "Wo ist die Maus?",
-   "bild": "k4_s20_spiel",
-   "haken": "Die Le|se-Rau|pe lässt ein klei|nes Blätt|chen di|rekt auf Os|kars Na|cken se|geln …",
+   "titel": "Ein Schatz im Nest",
+   "bild": "baum",
+   "haken": "„Os|kar, halt dei|ne Maus be|reit!“",
    "blocks": [
     {
      "id": "s20-p1",
@@ -3030,47 +3030,6 @@
       "Auf dem Zweig schaut die Le|se-Rau|pe vom sil|ber|nen Schlüs|sel-Stern zum Sil|ber|stern am Mond und kom|bi|niert: „Jetzt ist al|les klar!",
       "Der Vo|gel woll|te vor|hin gar nicht den Papp|mond fres|sen — er wur|de ein|fach von dem fun|keln|den Sil|ber|stern am Fa|den an|ge|lockt, ge|nau wie von Frau Som|mers sil|ber|nem Schlüs|sel-Stern!“"
      ]
-    },
-    {
-     "id": "s20-p10",
-     "typ": "p",
-     "s": [
-      "„So, mein Schlüs|sel ist ge|ret|tet, und jetzt fängt so|fort eu|re Vor|stel|lung an!“, ruft Frau Som|mer fröh|lich.",
-      "„Os|kar, halt dei|ne Maus be|reit!“"
-     ]
-    },
-    {
-     "id": "s20-p11",
-     "typ": "p",
-     "s": [
-      "Os|kar greift in sei|ne Ta|schen, tas|tet ü|ber den Tisch — und wird krei|de|bleich.",
-      "„Oh nein!",
-      "Mei|ne Maus ist weg!",
-      "E|ben drau|ßen un|term Baum hat|te ich sie doch noch!“"
-     ]
-    },
-    {
-     "id": "s20-p12",
-     "typ": "p",
-     "s": [
-      "Ben will ihn trös|ten: „Nimm doch ein|fach ei|ne von den an|de|ren Pa|pier|mäu|sen, die Kin|der ha|ben doch heu|te im Werk|un|ter|richt so vie|le ge|bas|telt!“"
-     ]
-    },
-    {
-     "id": "s20-p13",
-     "typ": "p",
-     "s": [
-      "Doch Os|kar schüt|telt ver|zwei|felt den Kopf: „Nein, nie|mals!",
-      "Das ist doch mei|ne Lieb|lings|maus, mein al|ler|bes|ter Freund!",
-      "Oh|ne sie kann ich nicht auf|tre|ten!“"
-     ]
-    },
-    {
-     "id": "s20-p14",
-     "typ": "p",
-     "s": [
-      "Wäh|rend al|le su|chen, bleibt nur die Le|se-Rau|pe ru|hig sit|zen und schaut durch ih|re Tau|trop|fen-Lu|pe: Da blitzt doch et|was Ro|sa|far|be|nes an ei|nem der Kin|der her|vor!"
-     ]
     }
    ],
    "karte": {
@@ -3085,12 +3044,7 @@
     "text": "Im Nest lag Frau Som|mers Schlüs|sel. Den Vo|gel lo|cken Glit|zer-Ster|ne an: am Schlüs|sel und am Mond.",
     "staub": false
    },
-   "fragenNeu": [
-    {
-     "id": "k4maus",
-     "text": "Wo ist Os|kars Maus?"
-    }
-   ],
+   "fragenNeu": [],
    "fragenWeg": [
     "schluessel",
     "k3plan"
@@ -3098,65 +3052,46 @@
    "tipp": null,
    "raetsel": {
     "art": "lupe",
-    "titel": "Wo ist die Maus?",
-    "text": "Et|was Ro|sa|far|be|nes ist an ei|nem der Kin|der. Fah|re mit der Lu|pe ü|ber die Kin|der und fin|de den Mäu|se|schwanz.",
-    "bild": "objekte/kinder_hinten",
+    "titel": "Was blitzt im Nest?",
+    "text": "Frau Som|mer sieht durch die dich|ten Blät|ter nichts. Fah|re mit der Lu|pe ü|ber das Nest und fin|de ih|ren Schlüs|sel.",
+    "bild": "nest_nah",
     "ratio": 1.5,
-    "zoom": 3.2,
+    "zoom": 3,
     "ziel": {
-     "x": 76.9,
-     "y": 38.8,
-     "r": 6.5
+     "x": 31.5,
+     "y": 45,
+     "r": 7.5
     },
     "fehlFunde": [
      {
-      "x": 19,
-      "y": 40,
-      "r": 4.5,
-      "text": "Ei|ne ro|sa Schlei|fe an Mi|las Zopf. Die ge|hört zum Zopf. Das ist kein Mäu|se|schwanz."
+      "x": 33,
+      "y": 68,
+      "r": 5.5,
+      "text": "Ein gol|de|nes Glöck|chen. Es glänzt, a|ber es ist kein Schlüs|sel."
      },
      {
-      "x": 29,
-      "y": 40,
-      "r": 4.5,
-      "text": "Wie|der ei|ne ro|sa Schlei|fe an Mi|las Zopf. Auch kein Mäu|se|schwanz."
+      "x": 50,
+      "y": 45,
+      "r": 6,
+      "text": "Ein sil|ber|ner Kron|kor|ken. Er glänzt, a|ber es ist kein Schlüs|sel."
      },
      {
-      "x": 42.4,
-      "y": 82,
+      "x": 70,
+      "y": 46,
+      "r": 6,
+      "text": "Ein bun|tes Glas|scherb|chen. Hübsch, a|ber kein Schlüs|sel."
+     },
+     {
+      "x": 66,
+      "y": 29,
       "r": 5,
-      "text": "Ro|sa Schnür|sen|kel an Bens Schu|hen. Die ste|cken im Schuh. Das ist kein Mäu|se|schwanz."
-     },
-     {
-      "x": 57.1,
-      "y": 82,
-      "r": 5,
-      "text": "Wie|der ro|sa Schnür|sen|kel an Bens Schuh. Auch kein Mäu|se|schwanz."
+      "text": "Ei|ne Bü|ro|klam|mer aus Me|tall. Kein Schlüs|sel."
      }
     ],
-    "start": "Mit mei|ner Lu|pe sieht man Klei|nes groß. Et|was ist ro|sa. A|ber nicht al|les Ro|sa ist ein Mäu|se|schwanz!",
-    "tipp": "Ein Mäu|se|schwanz ist lang und dünn. Er hängt ir|gend|wo he|raus.",
-    "fund": "Ein lan|ger, dün|ner, ro|sa Schwanz! Er hängt aus Os|kars Ka|pu|ze.",
-    "schluss": {
-     "frage": "Was ist jetzt si|cher?",
-     "optionen": [
-      {
-       "text": "Aus Os|kars Ka|pu|ze hängt et|was Ro|sa|far|be|nes, Lan|ges und Dün|nes.",
-       "sicher": true
-      },
-      {
-       "text": "Das ist der Schwanz von Os|kars Maus.",
-       "sicher": false,
-       "tipp": "Das ist erst ein Ver|dacht. Wir ha|ben nur den Schwanz ge|se|hen. Die Maus selbst noch nicht."
-      },
-      {
-       "text": "Die Maus ist weg|ge|lau|fen.",
-       "sicher": false,
-       "tipp": "Das ist erst ein Ver|dacht. Da|für gibt es kei|nen Be|weis. Im Ge|gen|teil: Et|was Ro|sa|far|be|nes hängt aus der Ka|pu|ze."
-      }
-     ]
-    },
-    "erfolg": "Si|cher ist nur, was wir ge|se|hen ha|ben. Al|les an|de|re müs|sen wir erst prü|fen.",
+    "start": "Mit mei|ner Lu|pe sieht man Klei|nes groß. Hier glänzt vie|les. A|ber wo ist der Schlüs|sel?",
+    "tipp": "Der Schlüs|sel hängt an ei|nem klei|nen sil|ber|nen Glit|zer-Stern.",
+    "fund": "Da ist er! Der Schlüs|sel mit dem sil|ber|nen Glit|zer-Stern.",
+    "erfolg": "Ge|fun|den! KLING! Frau Som|mer holt ih|ren Schlüs|sel aus dem Nest.",
     "werkzeug": "lupe"
    }
   },
@@ -3165,11 +3100,52 @@
    "kap": 4,
    "spur": 21,
    "titel": "Al|les an sei|nem Platz",
-   "bild": "k4_s19",
+   "bild": "k4_s20_spiel",
    "haken": "Die Tür geht weit auf, und die Kin|der der Grup|pe strö|men he|rein!",
    "blocks": [
     {
      "id": "s21-p1",
+     "typ": "p",
+     "s": [
+      "„So, mein Schlüs|sel ist ge|ret|tet, und jetzt fängt so|fort eu|re Vor|stel|lung an!“, ruft Frau Som|mer fröh|lich.",
+      "„Os|kar, halt dei|ne Maus be|reit!“"
+     ]
+    },
+    {
+     "id": "s21-p2",
+     "typ": "p",
+     "s": [
+      "Os|kar greift in sei|ne Ta|schen, tas|tet ü|ber den Tisch — und wird krei|de|bleich.",
+      "„Oh nein!",
+      "Mei|ne Maus ist weg!",
+      "E|ben drau|ßen un|term Baum hat|te ich sie doch noch!“"
+     ]
+    },
+    {
+     "id": "s21-p3",
+     "typ": "p",
+     "s": [
+      "Ben will ihn trös|ten: „Nimm doch ein|fach ei|ne von den an|de|ren Pa|pier|mäu|sen, die Kin|der ha|ben doch heu|te im Werk|un|ter|richt so vie|le ge|bas|telt!“"
+     ]
+    },
+    {
+     "id": "s21-p4",
+     "typ": "p",
+     "s": [
+      "Doch Os|kar schüt|telt ver|zwei|felt den Kopf: „Nein, nie|mals!",
+      "Das ist doch mei|ne Lieb|lings|maus, mein al|ler|bes|ter Freund!",
+      "Oh|ne sie kann ich nicht auf|tre|ten!“"
+     ]
+    },
+    {
+     "id": "s21-p5",
+     "typ": "p",
+     "s": [
+      "Wäh|rend al|le su|chen, bleibt nur die Le|se-Rau|pe ru|hig sit|zen und schaut durch ih|re Tau|trop|fen-Lu|pe: Da blitzt doch et|was Ro|sa|far|be|nes an ei|nem der Kin|der her|vor!"
+     ]
+    },
+    {
+     "id": "s21-p6",
      "typ": "p",
      "s": [
       "Die Le|se-Rau|pe lässt ein klei|nes Blätt|chen di|rekt auf Os|kars Na|cken se|geln.",
@@ -3178,7 +3154,7 @@
      ]
     },
     {
-     "id": "s21-p2",
+     "id": "s21-p7",
      "typ": "p",
      "s": [
       "„Na Gott sei Dank!“, lacht Frau Som|mer.",
@@ -3186,7 +3162,7 @@
      ]
     },
     {
-     "id": "s21-p3",
+     "id": "s21-p8",
      "typ": "p",
      "s": [
       "Dies|mal kommt je|des Ding an sei|nen Platz: Os|kar legt die Pa|pier|res|te aufs blau|e Tab|lett und steckt die Sche|re in den Stif|te|be|cher.",
@@ -3194,7 +3170,7 @@
      ]
     },
     {
-     "id": "s21-p4",
+     "id": "s21-p9",
      "typ": "p",
      "s": [
       "Nur zwei Din|ge räumt nie|mand weg: Die Kle|ber|fla|sche fällt vom Tisch auf den Bo|den, und der grü|ne Blei|stift rollt un|ter den Stuhl.",
@@ -3202,7 +3178,7 @@
      ]
     },
     {
-     "id": "s21-p5",
+     "id": "s21-p10",
      "typ": "p",
      "s": [
       "Beim Auf|räu|men hebt Frau Som|mer den glat|ten gel|ben Papp|kreis oh|ne Fa|den vom Zei|tungs|sta|pel auf und schlägt sich la|chend vor die Stirn: „Ach du grü|ne Neu|ne — was für ein ver|rück|ter Tag!",
@@ -3211,7 +3187,7 @@
      ]
     },
     {
-     "id": "s21-p6",
+     "id": "s21-p11",
      "typ": "p",
      "s": [
       "Die Le|se-Rau|pe schal|tet ih|ren Zeit|lu|pen-Blick ein: Vor|hin lag auf dem Tisch al|les dur|chei|nan|der — was ist jetzt an|ders?"
@@ -3225,9 +3201,7 @@
     "staub": false
    },
    "fragenNeu": [],
-   "fragenWeg": [
-    "k4maus"
-   ],
+   "fragenWeg": [],
    "tipp": null,
    "raetsel": {
     "art": "unterschiede",

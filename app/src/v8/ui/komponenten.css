@@ -91,6 +91,9 @@
 /* ---------- Seitenpunkte ---------- */
 .pkt { flex: 1; min-width: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: .4375rem; }
 .pkt.hell { flex: none; }
+/* viele Blätter (große Schrift): Zähler statt Perlenreihe, damit nichts umbricht */
+.pkt.zahl { align-items: center; font-weight: 800; font-size: var(--t-text); color: var(--leise); font-variant-numeric: tabular-nums; }
+.pkt.zahl b { color: var(--tinte); font-size: 1.25em; margin-right: .2em; }
 .pkt.hell i { background: rgba(255, 255, 255, .25); }
 .pkt.hell i.an { background: var(--senf); }
 .zug .pkt.hell { flex: none; justify-content: center; }

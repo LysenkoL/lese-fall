@@ -348,7 +348,7 @@ Oskar steckt seine kleine Papiermaus schnell hinten in seine Kapuze, damit er be
 
 Oben am Fenster richtet die Lese-Raupe ihre goldenen Leucht-Fühler auf die Baumkrone: Im Laub glimmen drei Buchstaben auf! Und warum stiehlt dieser Vogel überhaupt unsere Sachen?
 
-### Spur 20 — Wo ist die Maus?
+### Spur 20 — Ein Schatz im Nest
 
 Unter dem Baum verschränkt Ben schon die Hände zu einer Räuberleiter, um Oskar ein Stück am Stamm hochzuheben: „Komm, Oskar, versuch mal, ob du bis ins Nest schauen kannst!“
 
@@ -368,6 +368,8 @@ Lächelnd schaut sie auf den Kronkorken, das Glasscherbchen und das Bonbonpapier
 
 Auf dem Zweig schaut die Lese-Raupe vom silbernen Schlüssel-Stern zum Silberstern am Mond und kombiniert: „Jetzt ist alles klar! Der Vogel wollte vorhin gar nicht den Pappmond fressen — er wurde einfach von dem funkelnden Silberstern am Faden angelockt, genau wie von Frau Sommers silbernem Schlüssel-Stern!“
 
+### Spur 21 — Alles an seinem Platz
+
 „So, mein Schlüssel ist gerettet, und jetzt fängt sofort eure Vorstellung an!“, ruft Frau Sommer fröhlich. „Oskar, halt deine Maus bereit!“
 
 Oskar greift in seine Taschen, tastet über den Tisch — und wird kreidebleich. „Oh nein! Meine Maus ist weg! Eben draußen unterm Baum hatte ich sie doch noch!“
@@ -377,8 +379,6 @@ Ben will ihn trösten: „Nimm doch einfach eine von den anderen Papiermäusen, 
 Doch Oskar schüttelt verzweifelt den Kopf: „Nein, niemals! Das ist doch meine Lieblingsmaus, mein allerbester Freund! Ohne sie kann ich nicht auftreten!“
 
 Während alle suchen, bleibt nur die Lese-Raupe ruhig sitzen und schaut durch ihre Tautropfen-Lupe: Da blitzt doch etwas Rosafarbenes an einem der Kinder hervor!
-
-### Spur 21 — Alles an seinem Platz
 
 Die Lese-Raupe lässt ein kleines Blättchen direkt auf Oskars Nacken segeln. Oskar fasst sich an den Kragen — und zieht überglücklich seine kleine Maus aus der Kapuze! „Ach, da habe ich dich ja vorhin unterm Baum selbst hineingesteckt!“
 
