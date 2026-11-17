@@ -88,13 +88,18 @@ html :focus-visible:where(:not(.bkarte)) { box-shadow: 0 0 0 7px rgba(244, 194, 
 /* ---------- Kopf: erste Zeile Knöpfe und Titel, zweite Zeile der Weg der Raupe (eigene Zeile – verdeckt nie Text) ---------- */
 .kopf {
   grid-row: 1; position: relative; z-index: var(--z-kopf);
-  display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--a-2);
+  display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: start; column-gap: var(--a-2);
   padding: calc(var(--oben) + var(--a-2)) max(var(--rand), calc((100% - var(--mass-spiel-quer)) / 2)) var(--a-1);
   color: #fff;
   background: radial-gradient(120% 140% at 80% -40%, #34478A 0, transparent 60%), linear-gradient(var(--kopf-1), var(--kopf-2));
   box-shadow: 0 1px 0 rgba(244, 194, 67, .35), 0 8px 18px rgba(0, 0, 0, .28);
 }
-.kt { flex: 1; min-width: 0; display: flex; flex-direction: column; line-height: var(--zh-eng); padding-left: var(--a-1); }
+/* drei Zonen: links Brett + Mond, Mitte Spur/Kapitel, rechts Perlen + Schrift – die Mitte steht wirklich in der Mitte */
+.k-seite { display: flex; align-items: flex-start; gap: var(--a-2); min-width: 0; }
+.k-links { justify-self: start; }
+.k-rechts { justify-self: end; }
+.k-seite > .mondp, .k-seite > .perl { margin-top: calc((var(--kopf-knopf) - 1.875rem) / 2); }
+.kt { min-width: 0; display: flex; flex-direction: column; align-items: center; text-align: center; line-height: var(--zh-eng); padding-top: .25rem; }
 .kt b { font-weight: 800; font-size: var(--t-knopf); letter-spacing: .01em; white-space: nowrap; }
 .kt span { font-size: var(--t-fein); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--auf-nacht-leise); }
 .kt .s-b, .kt .s-r { color: inherit; }
@@ -109,11 +114,15 @@ html :focus-visible:where(:not(.bkarte)) { box-shadow: 0 0 0 7px rgba(244, 194, 
 .kb:active { transform: translateY(2px) scale(.985); }
 .kb.aa { font-weight: 800; font-size: var(--t-text); }
 .kopf .kb.aa { border-radius: 50%; background: rgba(255, 255, 255, .08); box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .28); }
+/* Brett und Schrift: gleiche runde Knöpfe, kleine Beschriftung darunter */
+.kopf .kb.brettb, .kopf .kb.aa { width: var(--kopf-knopf); min-width: 0; height: var(--kopf-knopf); padding: 0; border-radius: 50%; margin-bottom: 1rem; display: grid; place-items: center; }
+.kopf .kb.brettb > span, .kopf .kb.aa > span { position: absolute; top: calc(100% + .1875rem); left: 50%; translate: -50% 0; font-size: var(--t-etikett); font-weight: 700; line-height: 1; letter-spacing: .02em; white-space: nowrap; color: var(--auf-nacht-leise); }
+.kopf .kb.brettb > span { color: var(--senf-hell); }
 .kb.brettb { width: auto; min-width: var(--kopf-knopf); justify-content: center; padding: 0 var(--a-3) 0 .625rem; gap: .375rem; display: flex; align-items: center; font-weight: 800; font-size: var(--t-klein); }
 .kb.brettb svg { width: 1.375rem; height: 1.375rem; }
-.kopf .kb.brettb { background: rgba(255, 255, 255, .08); color: var(--senf-hell); border-radius: var(--a-3); box-shadow: inset 0 0 0 1.5px rgba(244, 194, 67, .6); }
+.kopf .kb.brettb { background: rgba(255, 255, 255, .08); color: var(--senf-hell); border-radius: 50%; box-shadow: inset 0 0 0 1.5px rgba(244, 194, 67, .6); }
 .kopf .kb.brettb:active { transform: translateY(1px); box-shadow: inset 0 0 0 1.5px rgba(244, 194, 67, .9); }
-@media (max-width: 359px) { .kb.brettb { padding: 0 var(--a-2); } .kb.brettb span { display: none; } }
+@media (max-width: 359px) { .k-seite { gap: var(--a-1); } }
 .perl {
   font-weight: 800; font-size: var(--t-klein); display: flex; align-items: center; gap: .3125rem; flex: none;
   background: rgba(0, 0, 0, .28); box-shadow: inset 0 0 0 1.5px rgba(244, 194, 67, .55); border-radius: var(--r-rund); padding: .3125rem .6875rem .3125rem .4375rem;
@@ -123,7 +132,7 @@ html :focus-visible:where(:not(.bkarte)) { box-shadow: 0 0 0 7px rgba(244, 194, 
 .mondp svg { width: 100%; height: 100%; display: block; }
 .mondp svg.voll { filter: drop-shadow(0 0 5px rgba(246, 211, 91, .9)); }
 /* Weg der Raupe: Schiene unten in der zweiten Zeile, die Raupe steht darauf */
-.kweg { --schiene: .4375rem; --schiene-u: .3125rem; order: 9; flex: 0 0 100%; position: relative; height: 1.875rem; }
+.kweg { --schiene: .4375rem; --schiene-u: .3125rem; grid-column: 1 / -1; position: relative; height: 1.875rem; margin-top: .125rem; }
 .kweg::before, .kweg::after, .kweg i { content: ''; position: absolute; left: 0; bottom: var(--schiene-u); height: var(--schiene); border-radius: 3px; }
 .kweg::before { right: 0; background: rgba(255, 255, 255, .13); }
 .kweg i { width: var(--weg, 0%); background: linear-gradient(90deg, #8FCB52, var(--senf)); transition: width .9s var(--gleiten); }

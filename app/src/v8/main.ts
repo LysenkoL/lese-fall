@@ -86,7 +86,7 @@ const IC = {
 
 /* ---------- Gerüst ---------- */
 const app = $('#app');
-app.innerHTML = `<header class="kopf"><button class="kb brettb" id="bBrett" aria-label="Brett">${IC.akte}<span>Brett</span></button><div class="kt"><b id="kT1"></b><span id="kT2"></span></div><span class="mondp" id="kMond" aria-hidden="true"></span><span class="perl" id="kPerl"></span><button class="kb aa" id="bAa" aria-label="Schrift">Aa</button><div class="kweg" aria-hidden="true"><i></i><img id="kWegR" alt=""></div></header><main id="buehne"></main><footer id="fuss"></footer><div id="ueber"></div>`;
+app.innerHTML = `<header class="kopf"><div class="k-seite k-links"><button class="kb brettb" id="bBrett" aria-label="Brett">${IC.akte}<span>Brett</span></button><span class="mondp" id="kMond" aria-hidden="true"></span></div><div class="kt"><b id="kT1"></b><span id="kT2"></span></div><div class="k-seite k-rechts"><span class="perl" id="kPerl"></span><button class="kb aa" id="bAa" aria-label="Schrift">Aa<span>Schrift</span></button></div><div class="kweg" aria-hidden="true"><i></i><img id="kWegR" alt=""></div></header><main id="buehne"></main><footer id="fuss"></footer><div id="ueber"></div>`;
 const buehne = $('#buehne'), fuss = $('#fuss'), ueber = $('#ueber');
 const modus = (m: string) => { app.dataset.m = m; buehne.ontouchstart = buehne.ontouchend = null; /* Blättern per Wisch gilt nur beim Lesen */ };
 /** Mond im Kopf: füllt sich mit jeder gelösten Spur, am Ende ist Vollmond */
