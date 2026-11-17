@@ -10,7 +10,7 @@ Wenn etwas Rätselhaftes passiert, leuchten ihre Fühler golden. Die Menschen k�
 
 Die Lese-Raupe hat keine Eile. Und genau darum sieht sie Dinge, an denen alle anderen einfach vorbeirennen. Wenn die Kinder einmal gar nicht weiterwissen, stupst sie heimlich eine Spur an!
 
-Die Lese-Raupe hat vier Detektiv-Kräfte. Und am Ende wartet ihr geheimer Tresor auf dich: Er öffnet sich nur mit dem Code-Wort aus den Kapiteln. Zusammen klärt ihr den Fall!
+Die Lese-Raupe hat vier Detektiv-Kräfte. Am Ende wartet der geheime Tresor der Lese-Raupe auf dich. Er öffnet sich nur mit dem Code-Wort aus den Kapiteln. Zusammen mit der Lese-Raupe klärst du den Fall!
 
 ## Kapitel 1 — Wo ist der Mond?
 
