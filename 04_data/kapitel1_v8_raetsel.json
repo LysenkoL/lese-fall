@@ -220,7 +220,7 @@
    "raetsel": {
     "art": "unterschiede",
     "titel": "Was ist anders?",
-    "text": "Vergleiche die beiden Bilder. Finde vier Unterschiede.",
+    "text": "Vergleiche die beiden Bilder. Was ist anders? Tippe die vier richtigen Karten an.",
     "basis": "spiel_theater_leer",
     "dinge": [
      {
@@ -231,27 +231,30 @@
       "w": 9,
       "vorhin": true,
       "jetzt": false,
-      "tipp": "Schau über den roten Vorhang."
+      "tipp": "Schau über den roten Vorhang.",
+      "name": "Mond"
      },
      {
       "id": "blatt",
       "bild": "objekte/blatt_papier",
       "x": 18,
       "y": 60,
-      "w": 6,
+      "w": 7.5,
       "vorhin": false,
       "jetzt": true,
-      "tipp": "Schau neben den Blumentopf."
+      "tipp": "Schau neben den Blumentopf.",
+      "name": "Grünes Blatt"
      },
      {
       "id": "kleber",
       "bild": "objekte/kleber",
       "x": 38,
       "y": 44,
-      "w": 3.5,
+      "w": 5.5,
       "vorhin": false,
       "jetzt": true,
-      "tipp": "Schau auf den Tisch."
+      "tipp": "Schau auf den Tisch.",
+      "name": "Kleber"
      },
      {
       "id": "stift",
@@ -261,11 +264,26 @@
       "w": 7,
       "vorhin": false,
       "jetzt": true,
-      "tipp": "Schau unter den Tisch."
+      "tipp": "Schau unter den Tisch.",
+      "name": "Bleistift"
      }
     ],
     "erfolg": "Vier Dinge sind anders. Und das Wichtigste fehlt: der Mond.",
-    "werkzeug": "zeit"
+    "werkzeug": "zeit",
+    "andere": [
+     {
+      "id": "wolke",
+      "bild": "objekte/wolke",
+      "name": "Wolke",
+      "nein": "Das ist auf beiden Bildern gleich. Schau noch einmal genau hin."
+     },
+     {
+      "id": "theater",
+      "bild": "objekte/theater",
+      "name": "Vorhang",
+      "nein": "Das ist auf beiden Bildern gleich. Schau noch einmal genau hin."
+     }
+    ]
    },
    "fragenWeg": []
   },

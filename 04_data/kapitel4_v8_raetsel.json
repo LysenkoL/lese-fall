@@ -328,7 +328,7 @@
    "raetsel": {
     "art": "unterschiede",
     "titel": "Alles an seinem Platz",
-    "text": "Das erste Bild zeigt den Raum vorhin, das zweite jetzt. Finde sechs Dinge, die ihren Platz gewechselt haben.",
+    "text": "Vorhin und jetzt: Was hat seinen Platz gewechselt? Tippe die sechs richtigen Karten an.",
     "basis": "objekte/raum_leer",
     "deko": [
      {
@@ -388,7 +388,8 @@
         "h": 9
        }
       ],
-      "tipp": "Wo ist der Mond? Vorhin lag er unten."
+      "tipp": "Wo ist der Mond? Vorhin lag er unten.",
+      "name": "Mond"
      },
      {
       "id": "papier",
@@ -420,7 +421,8 @@
         "h": 9
        }
       ],
-      "tipp": "Schau auf das blaue Tablett links."
+      "tipp": "Schau auf das blaue Tablett links.",
+      "name": "Papierreste"
      },
      {
       "id": "schere",
@@ -443,7 +445,8 @@
         "h": 9
        }
       ],
-      "tipp": "Vorhin lag etwas Rotes auf dem Boden."
+      "tipp": "Vorhin lag etwas Rotes auf dem Boden.",
+      "name": "Schere"
      },
      {
       "id": "puppen",
@@ -470,7 +473,9 @@
         "h": 13
        }
       ],
-      "tipp": "Schau unten rechts. Dort hat sich etwas verändert."
+      "tipp": "Schau unten rechts. Dort hat sich etwas verändert.",
+      "name": "Puppen",
+      "karte": "objekte/fuchs_puppe"
      },
      {
       "id": "kleber",
@@ -503,7 +508,8 @@
         "h": 9
        }
       ],
-      "tipp": "Wo steht die Kleberflasche? Vorhin stand sie aufrecht."
+      "tipp": "Wo steht die Kleberflasche? Vorhin stand sie aufrecht.",
+      "name": "Kleber"
      },
      {
       "id": "bleistift",
@@ -537,7 +543,8 @@
         "h": 9
        }
       ],
-      "tipp": "Wo liegt der grüne Bleistift? Vorhin lag er rechts."
+      "tipp": "Wo liegt der grüne Bleistift? Vorhin lag er rechts.",
+      "name": "Bleistift"
      }
     ],
     "sortieren": {
@@ -615,7 +622,27 @@
      ]
     },
     "erfolg": "Fast alles hat seinen Platz, und du weißt, wer es war. Jetzt können die Zuschauer kommen.",
-    "werkzeug": "zeit"
+    "werkzeug": "zeit",
+    "andere": [
+     {
+      "id": "theater",
+      "bild": "objekte/theater",
+      "name": "Theater",
+      "nein": "Das ist auf beiden Bildern gleich. Schau noch einmal genau hin."
+     },
+     {
+      "id": "tablett",
+      "bild": "objekte/tablett_leer",
+      "name": "Tablett",
+      "nein": "Das ist auf beiden Bildern gleich. Schau noch einmal genau hin."
+     },
+     {
+      "id": "becher",
+      "bild": "objekte/stiftebecher",
+      "name": "Stiftebecher",
+      "nein": "Das ist auf beiden Bildern gleich. Schau noch einmal genau hin."
+     }
+    ]
    },
    "fragenNeu": []
   },

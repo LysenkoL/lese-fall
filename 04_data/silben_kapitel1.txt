@@ -2209,3 +2209,6 @@ bä|ren
 fell
 # neu für v8 (ungeprüft)
 i|das
+# neu für v8 (ungeprüft)
+bil|dern
+span|ge

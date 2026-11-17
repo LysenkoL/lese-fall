@@ -93,11 +93,9 @@ async function raetsel(spur, z) {
       if (i < z.runden.length - 1) await weiter();
     }
   } else if (z.art === 'unterschiede') {
-    const r = await (await p.$('.ub-bild')).boundingBox();
-    await p.mouse.click(r.x + r.width * 0.05, r.y + r.height * 0.9); await sleep(200); await shot(n + '_daneben');
-    const d = z.dinge[1], bb = (await p.$$('.ub-bild'))[1];
-    const r2 = await bb.boundingBox(), zz = d.zonen?.[0] ?? d;
-    await p.mouse.click(r2.x + r2.width * zz.x / 100, r2.y + r2.height * zz.y / 100); await sleep(300); await S(n + '_ein_treffer');
+    if (z.andere?.length) { await klick(`.ub-k[data-k="${z.andere[0].id}"]`); await sleep(300); await shot(n + '_daneben'); }
+    await klick(`.ub-k[data-k="${z.dinge[1].id}"]`); await sleep(300); await S(n + '_ein_treffer');
+    if (!(await p.$(`.ub-k.da[data-k="${z.dinge[1].id}"]`))) fehler.push(`${n}: richtige Karte wird nicht als gefunden markiert`);
     await loese(); await sleep(700);
     if (z.sortieren) { // Schritt 2: wer hat das gemacht?
       await S(n + '_sortieren');

@@ -108,7 +108,7 @@
    "raetsel": {
     "art": "unterschiede",
     "titel": "Was ist anders?",
-    "text": "Die Lese-Raupe schaut zweimal hin. Im zweiten Bild sind sieben Dinge anders. Finde sie! Einige sind winzig.",
+    "text": "Die Lese-Raupe schaut zweimal hin. Im zweiten Bild sind vier Dinge anders. Tippe die richtigen Karten an.",
     "basis": "k3_s15",
     "dinge": [
      {
@@ -127,7 +127,8 @@
       ],
       "vorhin": false,
       "jetzt": true,
-      "tipp": "Schau auf Milas Haare."
+      "tipp": "Schau auf Milas Haare.",
+      "name": "Mond-Spange"
      },
      {
       "id": "herz",
@@ -145,7 +146,8 @@
       ],
       "vorhin": false,
       "jetzt": true,
-      "tipp": "Schau auf die Maus."
+      "tipp": "Schau auf die Maus.",
+      "name": "Herz der Maus"
      },
      {
       "id": "schere",
@@ -163,7 +165,8 @@
       ],
       "vorhin": false,
       "jetzt": true,
-      "tipp": "Schau auf die Schere."
+      "tipp": "Schau auf die Schere.",
+      "name": "Schere"
      },
      {
       "id": "fleck",
@@ -181,65 +184,26 @@
       ],
       "vorhin": false,
       "jetzt": true,
-      "tipp": "Zähle die braunen Flecken auf dem Käse."
-     },
-     {
-      "id": "loch",
-      "bild": "objekte/u15_loch",
-      "x": 61.52,
-      "y": 49.17,
-      "w": 6.51,
-      "zonen": [
-       {
-        "x": 61.5,
-        "y": 49.2,
-        "w": 9.5,
-        "h": 16.2
-       }
-      ],
-      "vorhin": false,
-      "jetzt": true,
-      "tipp": "Zähle die Löcher im braunen Papier."
-     },
-     {
-      "id": "umhang",
-      "bild": "objekte/u15_umhang",
-      "x": 80.08,
-      "y": 17.82,
-      "w": 5.86,
-      "zonen": [
-       {
-        "x": 80.1,
-        "y": 17.8,
-        "w": 8.9,
-        "h": 16.5
-       }
-      ],
-      "vorhin": false,
-      "jetzt": true,
-      "tipp": "Schau auf die Lese-Raupe am Fenster."
-     },
-     {
-      "id": "gummi",
-      "bild": "objekte/u15_gummi",
-      "x": 9.28,
-      "y": 65.67,
-      "w": 4.88,
-      "zonen": [
-       {
-        "x": 9.3,
-        "y": 65.7,
-        "w": 7.9,
-        "h": 13.5
-       }
-      ],
-      "vorhin": false,
-      "jetzt": true,
-      "tipp": "Schau auf Milas Zopf."
+      "tipp": "Zähle die braunen Flecken auf dem Käse.",
+      "name": "Fleck auf dem Käse"
      }
     ],
-    "erfolg": "Sieben Unterschiede! Du schaust genau hin. Und der Käse? Die braunen Flecken sind nur aufgeklebt. Der Kreis darunter ist ganz.",
-    "werkzeug": "zeit"
+    "erfolg": "Vier Unterschiede! Du schaust genau hin. Und der Käse? Die braunen Flecken sind nur aufgeklebt. Der Kreis darunter ist ganz.",
+    "werkzeug": "zeit",
+    "andere": [
+     {
+      "id": "seide",
+      "bild": "objekte/seidenpapier",
+      "name": "Seidenpapier",
+      "nein": "Das ist auf beiden Bildern gleich. Schau noch einmal genau hin."
+     },
+     {
+      "id": "teller",
+      "bild": "objekte/pappteller",
+      "name": "Teller",
+      "nein": "Das ist auf beiden Bildern gleich. Schau noch einmal genau hin."
+     }
+    ]
    },
    "fragenWeg": [
     "zerschnitten"

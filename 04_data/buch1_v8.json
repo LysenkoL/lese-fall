@@ -542,7 +542,7 @@
    "raetsel": {
     "art": "unterschiede",
     "titel": "Was ist an|ders?",
-    "text": "Ver|glei|che die bei|den Bil|der. Fin|de vier Un|ter|schie|de.",
+    "text": "Ver|glei|che die bei|den Bil|der. Was ist an|ders? Tip|pe die vier rich|ti|gen Kar|ten an.",
     "basis": "spiel_theater_leer",
     "dinge": [
      {
@@ -553,27 +553,30 @@
       "w": 9,
       "vorhin": true,
       "jetzt": false,
-      "tipp": "Schau ü|ber den ro|ten Vor|hang."
+      "tipp": "Schau ü|ber den ro|ten Vor|hang.",
+      "name": "Mond"
      },
      {
       "id": "blatt",
       "bild": "objekte/blatt_papier",
       "x": 18,
       "y": 60,
-      "w": 6,
+      "w": 7.5,
       "vorhin": false,
       "jetzt": true,
-      "tipp": "Schau ne|ben den Blu|men|topf."
+      "tipp": "Schau ne|ben den Blu|men|topf.",
+      "name": "Grü|nes Blatt"
      },
      {
       "id": "kleber",
       "bild": "objekte/kleber",
       "x": 38,
       "y": 44,
-      "w": 3.5,
+      "w": 5.5,
       "vorhin": false,
       "jetzt": true,
-      "tipp": "Schau auf den Tisch."
+      "tipp": "Schau auf den Tisch.",
+      "name": "Kle|ber"
      },
      {
       "id": "stift",
@@ -583,11 +586,26 @@
       "w": 7,
       "vorhin": false,
       "jetzt": true,
-      "tipp": "Schau un|ter den Tisch."
+      "tipp": "Schau un|ter den Tisch.",
+      "name": "Blei|stift"
      }
     ],
     "erfolg": "Vier Din|ge sind an|ders. Und das Wich|tigs|te fehlt: der Mond.",
-    "werkzeug": "zeit"
+    "werkzeug": "zeit",
+    "andere": [
+     {
+      "id": "wolke",
+      "bild": "objekte/wolke",
+      "name": "Wol|ke",
+      "nein": "Das ist auf bei|den Bil|dern gleich. Schau noch ein|mal ge|nau hin."
+     },
+     {
+      "id": "theater",
+      "bild": "objekte/theater",
+      "name": "Vor|hang",
+      "nein": "Das ist auf bei|den Bil|dern gleich. Schau noch ein|mal ge|nau hin."
+     }
+    ]
    }
   },
   {
@@ -2185,7 +2203,7 @@
    "raetsel": {
     "art": "unterschiede",
     "titel": "Was ist an|ders?",
-    "text": "Die Le|se-Rau|pe schaut zwei|mal hin. Im zwei|ten Bild sind sie|ben Din|ge an|ders. Fin|de sie! Ei|ni|ge sind win|zig.",
+    "text": "Die Le|se-Rau|pe schaut zwei|mal hin. Im zwei|ten Bild sind vier Din|ge an|ders. Tip|pe die rich|ti|gen Kar|ten an.",
     "basis": "k3_s15",
     "dinge": [
      {
@@ -2204,7 +2222,8 @@
       ],
       "vorhin": false,
       "jetzt": true,
-      "tipp": "Schau auf Mi|las Haa|re."
+      "tipp": "Schau auf Mi|las Haa|re.",
+      "name": "Mond-Span|ge"
      },
      {
       "id": "herz",
@@ -2222,7 +2241,8 @@
       ],
       "vorhin": false,
       "jetzt": true,
-      "tipp": "Schau auf die Maus."
+      "tipp": "Schau auf die Maus.",
+      "name": "Herz der Maus"
      },
      {
       "id": "schere",
@@ -2240,7 +2260,8 @@
       ],
       "vorhin": false,
       "jetzt": true,
-      "tipp": "Schau auf die Sche|re."
+      "tipp": "Schau auf die Sche|re.",
+      "name": "Sche|re"
      },
      {
       "id": "fleck",
@@ -2258,65 +2279,26 @@
       ],
       "vorhin": false,
       "jetzt": true,
-      "tipp": "Zäh|le die brau|nen Fle|cken auf dem Kä|se."
-     },
-     {
-      "id": "loch",
-      "bild": "objekte/u15_loch",
-      "x": 61.52,
-      "y": 49.17,
-      "w": 6.51,
-      "zonen": [
-       {
-        "x": 61.5,
-        "y": 49.2,
-        "w": 9.5,
-        "h": 16.2
-       }
-      ],
-      "vorhin": false,
-      "jetzt": true,
-      "tipp": "Zäh|le die Lö|cher im brau|nen Pa|pier."
-     },
-     {
-      "id": "umhang",
-      "bild": "objekte/u15_umhang",
-      "x": 80.08,
-      "y": 17.82,
-      "w": 5.86,
-      "zonen": [
-       {
-        "x": 80.1,
-        "y": 17.8,
-        "w": 8.9,
-        "h": 16.5
-       }
-      ],
-      "vorhin": false,
-      "jetzt": true,
-      "tipp": "Schau auf die Le|se-Rau|pe am Fens|ter."
-     },
-     {
-      "id": "gummi",
-      "bild": "objekte/u15_gummi",
-      "x": 9.28,
-      "y": 65.67,
-      "w": 4.88,
-      "zonen": [
-       {
-        "x": 9.3,
-        "y": 65.7,
-        "w": 7.9,
-        "h": 13.5
-       }
-      ],
-      "vorhin": false,
-      "jetzt": true,
-      "tipp": "Schau auf Mi|las Zopf."
+      "tipp": "Zäh|le die brau|nen Fle|cken auf dem Kä|se.",
+      "name": "Fleck auf dem Kä|se"
      }
     ],
-    "erfolg": "Sie|ben Un|ter|schie|de! Du schaust ge|nau hin. Und der Kä|se? Die brau|nen Fle|cken sind nur auf|ge|klebt. Der Kreis da|run|ter ist ganz.",
-    "werkzeug": "zeit"
+    "erfolg": "Vier Un|ter|schie|de! Du schaust ge|nau hin. Und der Kä|se? Die brau|nen Fle|cken sind nur auf|ge|klebt. Der Kreis da|run|ter ist ganz.",
+    "werkzeug": "zeit",
+    "andere": [
+     {
+      "id": "seide",
+      "bild": "objekte/seidenpapier",
+      "name": "Sei|den|pa|pier",
+      "nein": "Das ist auf bei|den Bil|dern gleich. Schau noch ein|mal ge|nau hin."
+     },
+     {
+      "id": "teller",
+      "bild": "objekte/pappteller",
+      "name": "Tel|ler",
+      "nein": "Das ist auf bei|den Bil|dern gleich. Schau noch ein|mal ge|nau hin."
+     }
+    ]
    }
   },
   {
@@ -3250,7 +3232,7 @@
    "raetsel": {
     "art": "unterschiede",
     "titel": "Al|les an sei|nem Platz",
-    "text": "Das er|ste Bild zeigt den Raum vor|hin, das zwei|te jetzt. Fin|de sechs Din|ge, die ih|ren Platz ge|wech|selt ha|ben.",
+    "text": "Vor|hin und jetzt: Was hat sei|nen Platz ge|wech|selt? Tip|pe die sechs rich|ti|gen Kar|ten an.",
     "basis": "objekte/raum_leer",
     "deko": [
      {
@@ -3310,7 +3292,8 @@
         "h": 9
        }
       ],
-      "tipp": "Wo ist der Mond? Vor|hin lag er un|ten."
+      "tipp": "Wo ist der Mond? Vor|hin lag er un|ten.",
+      "name": "Mond"
      },
      {
       "id": "papier",
@@ -3342,7 +3325,8 @@
         "h": 9
        }
       ],
-      "tipp": "Schau auf das blau|e Tab|lett links."
+      "tipp": "Schau auf das blau|e Tab|lett links.",
+      "name": "Pa|pier|res|te"
      },
      {
       "id": "schere",
@@ -3365,7 +3349,8 @@
         "h": 9
        }
       ],
-      "tipp": "Vor|hin lag et|was Ro|tes auf dem Bo|den."
+      "tipp": "Vor|hin lag et|was Ro|tes auf dem Bo|den.",
+      "name": "Sche|re"
      },
      {
       "id": "puppen",
@@ -3392,7 +3377,9 @@
         "h": 13
        }
       ],
-      "tipp": "Schau un|ten rechts. Dort hat sich et|was ver|än|dert."
+      "tipp": "Schau un|ten rechts. Dort hat sich et|was ver|än|dert.",
+      "name": "Pup|pen",
+      "karte": "objekte/fuchs_puppe"
      },
      {
       "id": "kleber",
@@ -3425,7 +3412,8 @@
         "h": 9
        }
       ],
-      "tipp": "Wo steht die Kle|ber|fla|sche? Vor|hin stand sie auf|recht."
+      "tipp": "Wo steht die Kle|ber|fla|sche? Vor|hin stand sie auf|recht.",
+      "name": "Kle|ber"
      },
      {
       "id": "bleistift",
@@ -3459,7 +3447,8 @@
         "h": 9
        }
       ],
-      "tipp": "Wo liegt der grü|ne Blei|stift? Vor|hin lag er rechts."
+      "tipp": "Wo liegt der grü|ne Blei|stift? Vor|hin lag er rechts.",
+      "name": "Blei|stift"
      }
     ],
     "sortieren": {
@@ -3537,7 +3526,27 @@
      ]
     },
     "erfolg": "Fast al|les hat sei|nen Platz, und du weißt, wer es war. Jetzt kön|nen die Zu|schau|er kom|men.",
-    "werkzeug": "zeit"
+    "werkzeug": "zeit",
+    "andere": [
+     {
+      "id": "theater",
+      "bild": "objekte/theater",
+      "name": "The|a|ter",
+      "nein": "Das ist auf bei|den Bil|dern gleich. Schau noch ein|mal ge|nau hin."
+     },
+     {
+      "id": "tablett",
+      "bild": "objekte/tablett_leer",
+      "name": "Tab|lett",
+      "nein": "Das ist auf bei|den Bil|dern gleich. Schau noch ein|mal ge|nau hin."
+     },
+     {
+      "id": "becher",
+      "bild": "objekte/stiftebecher",
+      "name": "Stif|te|be|cher",
+      "nein": "Das ist auf bei|den Bil|dern gleich. Schau noch ein|mal ge|nau hin."
+     }
+    ]
    }
   },
   {

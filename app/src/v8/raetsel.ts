@@ -169,23 +169,25 @@ export function unterschiede(r: HTMLElement, d: Daten, fertig: () => void) {
   const pos = (x: any, art: 'vorhin' | 'jetzt') => (x[art] && typeof x[art] === 'object' ? { ...x, ...x[art] } : x);
   const ding = (x: any, art: 'vorhin' | 'jetzt') => { const q = pos(x, art); return q.bild ? `<img class="ding" data-d="${x.id}" src="${K.img(q.bild)}" alt="" style="left:${q.x}%;top:${q.y}%;width:${q.w}%${q.rot ? `;transform:translate(-50%,-50%) rotate(${q.rot}deg)` : ''}">` : ''; };
   const pane = (art: 'vorhin' | 'jetzt') => `<figure class="ub" data-p="${art}"><span class="tab hell">${K.UI[art]}</span><div class="ub-bild" style="background-image:url(${K.img(d.basis)})">${(d.deko ?? []).filter((x: any) => x[art]).map((x: any) => `<img class="ding" src="${K.img(x.bild)}" alt="" style="left:${x.x}%;top:${x.y}%;width:${x.w}%${x.clip ? `;clip-path:${x.clip}` : ''}">`).join('')}${dinge.filter((x) => x[art]).map((x) => ding(x, art)).join('')}</div></figure>`;
-  zi.innerHTML = `<p class="ub-zaehl"></p><div class="ub-schalter"><button data-s="vorhin" class="an"><span>${K.UI.vorhin}</span></button><button data-s="jetzt"><span>${K.UI.jetzt}</span></button></div><div class="ub-paar" data-zeig="vorhin">${pane('vorhin')}${pane('jetzt')}<i class="ub-lid"></i></div><p class="ub-hin">${K.UI.ubSchalter}</p>`;
-  const schalte = (s: string) => {
-    const paar = $('.ub-paar', zi);
-    if (paar.dataset.zeig === s) return;
-    paar.classList.remove('blinzel'); void paar.offsetWidth; paar.classList.add('blinzel');
-    zi.querySelectorAll<HTMLElement>('.ub-schalter button').forEach((b) => b.classList.toggle('an', b.dataset.s === s));
-    setTimeout(() => { paar.dataset.zeig = s; }, 130);
-  };
+  // Beide Bilder stehen untereinander (kein Umschalten). Das Kind tippt große Karten an: Was ist anders?
+  const andere: any[] = d.andere ?? [];
+  const karten = K.mischen([...dinge.map((x) => x.id), ...andere.map((x) => x.id)]).map((id: string) => dinge.find((x) => x.id === id) ?? andere.find((x) => x.id === id));
+  const karteHtml = (x: any) => `<button class="ub-k" data-k="${x.id}"><img src="${K.img(x.karte ?? x.bild)}" alt="" draggable="false"><span>${x.name}</span></button>`;
+  zi.innerHTML = `<p class="ub-zaehl"></p><div class="ub-zwei">${pane('vorhin')}${pane('jetzt')}</div><div class="ub-karten">${karten.map(karteHtml).join('')}</div>`;
   const zaehl = () => { $('.ub-zaehl', zi).innerHTML = `<b>${gef.size} / ${dinge.length}</b> ${K.UI.gefunden}`; };
   zaehl();
-  const seite = (x: any) => { const e = zi.querySelector<HTMLImageElement>(`img[data-d="${x.id}"]`); return e && e.naturalWidth ? e.naturalHeight / e.naturalWidth : 1; };
   const finde = (x: any, blink = false) => {
     gef.add(x.id);
-    zi.querySelectorAll<HTMLElement>('.ub-bild').forEach((b) => { const q = pos(x, (b.closest('.ub') as HTMLElement).dataset.p as 'vorhin' | 'jetzt'); b.insertAdjacentHTML('beforeend', `<i class="ring da${blink ? ' blink' : ''}" style="left:${q.x}%;top:${q.y}%"></i>`); });
+    zi.querySelectorAll<HTMLElement>('.ub-bild').forEach((b) => {
+      const art = (b.closest('.ub') as HTMLElement).dataset.p as 'vorhin' | 'jetzt';
+      const flaechen: any[] = x.zonen ?? [pos(x, art)];
+      const q = x.zonen ? (flaechen.length > 1 && art === 'jetzt' ? flaechen[1] : flaechen[0]) : flaechen[0];
+      b.insertAdjacentHTML('beforeend', `<i class="ring da${blink ? ' blink' : ''}" style="left:${q.x}%;top:${q.y}%"></i>`);
+    });
+    zi.querySelector<HTMLElement>(`.ub-k[data-k="${x.id}"]`)?.classList.add('da');
     zaehl();
     K.summ(20);
-    if (gef.size === dinge.length && !fertigig) { fertigig = true; setTimeout(() => (d.sortieren ? zuordnen() : ende(r, d, fertig)), 450); }
+    if (gef.size === dinge.length && !fertigig) { fertigig = true; setTimeout(() => (d.sortieren ? zuordnen() : ende(r, d, fertig)), 900); }
   };
   /** Zweiter Schritt: die gefundenen Unterschiede nach Verursacher sortieren */
   const zuordnen = () => {
@@ -195,26 +197,16 @@ export function unterschiede(r: HTMLElement, d: Daten, fertig: () => void) {
     sortieren(r, { ...d.sortieren, erfolg: d.erfolg }, fertig);
   };
   zi.onclick = (e) => {
-    const sch = (e.target as HTMLElement).closest<HTMLElement>('.ub-schalter [data-s]');
-    if (sch) return schalte(sch.dataset.s!);
-    const b = (e.target as HTMLElement).closest<HTMLElement>('.ub-bild');
-    if (!b || fertigig) return;
-    const rc = b.getBoundingClientRect(), tx = (e.clientX - rc.left) / rc.width, ty = (e.clientY - rc.top) / rc.width; // beides in Bildbreiten
-    const treffer = dinge.find((x) => {
-      if (gef.has(x.id)) return false;
-      const flaechen: any[] = x.zonen ?? [x];
-      return flaechen.some((z) => {
-        const hw = z.w / 200 + 0.04, hh = !z.zonen && !x.zonen && x.bild ? (z.w / 100) * seite(x) / 2 + 0.04 : (z.h ?? z.w) / 200 + 0.04;
-        return Math.abs(tx - z.x / 100) <= hw && Math.abs(ty - (z.y / 100) * (2 / 3)) <= hh;
-      });
-    });
-    if (treffer) { fehl = 0; finde(treffer); sag(r, 'tipp', ''); return; }
-    b.insertAdjacentHTML('beforeend', `<i class="ring miss" style="left:${((e.clientX - rc.left) / rc.width) * 100}%;top:${((e.clientY - rc.top) / rc.height) * 100}%"></i>`);
-    setTimeout(() => b.querySelector('.ring.miss')?.remove(), 800);
+    const k = (e.target as HTMLElement).closest<HTMLElement>('.ub-k');
+    if (!k || fertigig || k.classList.contains('da')) return;
+    const x = dinge.find((q) => q.id === k.dataset.k);
+    if (x) { fehl = 0; sag(r, 'tipp', ''); return finde(x); }
+    const n = andere.find((q) => q.id === k.dataset.k);
+    k.classList.remove('nein'); void k.offsetWidth; k.classList.add('nein');
     fehl++;
-    const offen = dinge.filter((x) => !gef.has(x.id));
-    if (fehl === 3) sag(r, 'tipp', offen[0].tipp);
-    else if (fehl >= 6) { fehl = 0; sag(r, 'tipp', K.UI.hilfe); finde(offen[0], true); }
+    const offen = dinge.filter((q) => !gef.has(q.id));
+    if (fehl >= 3) { fehl = 0; sag(r, 'tipp', K.UI.hilfe); return finde(offen[0], true); }
+    sag(r, 'tipp', n?.nein ?? offen[0].tipp);
   };
   hook.loese = () => { dinge.filter((x) => !gef.has(x.id)).forEach((x) => finde(x)); };
   unten('');
