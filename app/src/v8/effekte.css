@@ -1,0 +1,174 @@
+/* Lese-Fall · v8 · Effekte: alle @keyframes, Werkzeug-Moment, Belohnung, Staub, Pinsel; ganz am Ende „weniger Bewegung“. */
+
+/* ---------- Keyframes ---------- */
+/* Bei doppelten Namen galt bisher die zuletzt geladene Definition; nur diese steht noch hier. */
+@keyframes blatt { from { opacity: 0; transform: translateX(14px); } }
+@keyframes lampe { from { opacity: 0; } }
+@keyframes stempelk { from { opacity: 0; transform: translate(-50%, 0) scale(2.4) rotate(-20deg); } }
+@keyframes wackel { 0%, 100% { translate: 0 0; rotate: 0deg; } 18% { translate: -5px 0; rotate: -.8deg; } 40% { translate: 4px 0; rotate: .6deg; } 62% { translate: -3px 0; rotate: -.3deg; } 82% { translate: 1.5px 0; } }
+@keyframes hoch { from { opacity: 0; transform: translateY(14px); } }
+@keyframes ein { from { opacity: 0; } }
+@keyframes stempel { from { opacity: 0; transform: scale(2.2) rotate(-14deg); } }
+@keyframes ring { from { opacity: 0; transform: scale(1.8); } }
+@keyframes abdruck { from { opacity: 0; transform: translate(-50%, -50%) scale(2.2) rotate(-20deg); } }
+@keyframes puls { 50% { transform: scale(1.07); box-shadow: 0 0 0 6px rgba(244, 194, 67, .5); } }
+@keyframes miss { from { opacity: 1; transform: scale(1.4); } to { opacity: 0; } }
+@keyframes dreh2 { from { transform: perspective(500px) rotateY(-90deg); } }
+@keyframes strich { from { stroke-dashoffset: 110; } }
+@keyframes waechst { from { transform: scale(.6); } }
+@keyframes leicht { 0%, 100% { transform: rotate(-1.5deg); } 50% { transform: rotate(1.8deg); } }
+@keyframes faellt { to { opacity: 0; transform: translateY(80px) rotate(12deg); } }
+@keyframes fallen { from { transform: translateY(-120px); opacity: 0; } 60% { opacity: 1; } }
+@keyframes einfall { from { opacity: 0; transform: translateY(-120px) rotate(-12deg); } }
+@keyframes nadel { from { opacity: 0; transform: scale(2); } }
+@keyframes knopfpuls { 0%, 100% { transform: scale(1); box-shadow: 0 3px 0 #D8CDB2, 0 0 0 0 rgba(244, 194, 67, .7); } 50% { transform: scale(1.05); box-shadow: 0 3px 0 #D8CDB2, 0 0 0 10px rgba(244, 194, 67, 0); } }
+@keyframes um-dreh2 { from { transform: translateX(-50%) perspective(500px) rotateY(-90deg); } }
+@keyframes kl-glanz { 50% { filter: brightness(1.18) saturate(1.2); } }
+@keyframes kr-wackel { 20% { margin-left: -6px; } 50% { margin-left: 5px; } 80% { margin-left: -3px; } }
+@keyframes kr-klapp { from { transform: translate(-50%, -50%) scaleX(.1); } }
+@keyframes krZeig { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.12); opacity: .55; } }
+@keyframes krFinger { 0%, 100% { transform: translate(-50%, 6px); } 50% { transform: translate(-50%, -4px); } }
+@keyframes fd-wipp { 25% { transform: translateX(-50%) rotate(14deg); } 75% { transform: translateX(-50%) rotate(-14deg); } }
+@keyframes fd-bereit { 0% { transform: translateX(calc(-50% - 3px)) scaleY(.82); } 50% { transform: translateX(calc(-50% + 3px)) scaleY(.82); } 100% { transform: translateX(calc(-50% - 3px)) scaleY(.82); } }
+@keyframes fd-sprung { 0% { transform: translateX(-50%) scaleY(.82); } 12% { transform: translateX(-50%) translateY(0) scaleY(1.1); } 45% { transform: translateX(-50%) translateY(-110%) scaleY(1); } 80% { transform: translateX(-50%) translateY(0); } 100% { transform: translateX(-50%) translateY(0); } }
+@keyframes fd-puls { to { transform: translateX(-50%) scale(1.08); } }
+@keyframes fd-pf { to { transform: translateY(8px); } }
+@keyframes fd-zieh { 40% { transform: translateY(26px); } }
+@keyframes tv-puls { 50% { transform: scale(1.08); opacity: .85; } }
+@keyframes blattV { from { opacity: 0; transform: translateX(26px) rotate(1.2deg); } }
+@keyframes blattZ { from { opacity: 0; transform: translateX(-26px) rotate(-1.2deg); } }
+@keyframes wechselEin { from { opacity: 0; transform: translateY(10px); } }
+@keyframes funkel { 0%, 100% { transform: translate(-50%, -50%) scale(.3) rotate(0); opacity: .2; } 50% { transform: translate(-50%, -50%) scale(1.2) rotate(40deg); opacity: 1; } }
+@keyframes schein { 0%, 100% { box-shadow: 0 0 22px 6px rgba(246, 211, 91, .3), 0 0 70px 26px rgba(246, 211, 91, .12); } 50% { box-shadow: 0 0 28px 9px rgba(246, 211, 91, .45), 0 0 84px 32px rgba(246, 211, 91, .2); } }
+@keyframes wipp { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg) translateY(-2px); } }
+@keyframes chipglut { 50% { transform: scale(1.1); } }
+@keyframes wzpop { from { opacity: 0; transform: scale(.4) rotate(-18deg); } }
+@keyframes schein2 { 50% { transform: scale(1.18); opacity: .7; } }
+@keyframes schimmer { 0% { opacity: 0; transform: translateX(0); } 15% { opacity: 1; } 100% { opacity: 0; transform: translateX(300%); } }
+@keyframes zeitlupe { 0% { opacity: 0; transform: translateX(0); } 20% { opacity: 1; } 100% { opacity: 0; transform: translateX(330%); } }
+@keyframes tau { 0% { opacity: 0; transform: scale(.6); } 35% { opacity: 1; transform: scale(1.1); } 100% { opacity: 0; transform: scale(1); } }
+@keyframes glanz { 0%, 55% { left: -60%; } 100% { left: 130%; } }
+@keyframes knall { 0% { opacity: 0; transform: translate(0, 0) scale(.2) rotate(0); } 12% { opacity: 1; } 62% { opacity: 1; } 100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(1) rotate(var(--dr)); } }
+@keyframes perlhupf { 40% { transform: translateY(-7px) scale(1.25); } }
+@keyframes mondpuls { 50% { transform: scale(1.5); filter: drop-shadow(0 0 9px rgba(246, 211, 91, .95)); } }
+@keyframes hupf { 40% { transform: translateY(-9px) rotate(-4deg); } }
+@keyframes sprech { from { opacity: 0; transform: translateY(10px) scale(.96); } }
+@keyframes ton { 25%, 65% { box-shadow: 0 0 0 4px rgba(238, 154, 85, .5), 0 0 16px rgba(238, 154, 85, .4); } }
+@keyframes pinnwipp { 0% { transform: rotate(calc(var(--n, 0deg) + 5deg)); } 50% { transform: rotate(calc(var(--n, 0deg) - 3deg)); } }
+@keyframes fundRein { from { opacity: 0; } }
+@keyframes fundWipp { 50% { transform: rotate(1.5deg) translateY(-5px); } }
+@keyframes frNein { 0%, 60% { background: #FFD9BF; } 15% { margin-left: -6px; } 35% { margin-left: 5px; } 50% { margin-left: -3px; } }
+@keyframes scRein { from { opacity: 0; transform: translateY(14px) scale(.9); } }
+@keyframes ubLid { 0% { opacity: 0; transform: scaleY(0); transform-origin: top; } 45%, 55% { opacity: 1; transform: scaleY(1); transform-origin: top; } 100% { opacity: 0; transform: scaleY(0); transform-origin: top; } }
+@keyframes perlAn { from { transform: scale(.4); } }
+
+/* ---------- Werkzeug-Moment ---------- */
+.wzm .s-b, .wzm .s-r { color: inherit; }
+.wzm {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: grid;
+  place-items: center;
+  padding: 1.125rem;
+  text-align: center;
+  color: #fff;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 38%, rgba(32, 50, 96, .97), rgba(11, 17, 40, .985));
+  animation: ein .22s both;
+}
+.wzm.geht { opacity: 0; transition: opacity .2s; }
+.wzm-k { display: flex; flex-direction: column; align-items: center; gap: .4375rem; max-width: 20.625rem; }
+.wzm-r {
+  height: min(5.75rem, 14cqh);
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 14px rgba(244, 194, 67, .4));
+  animation: hoch .45s both, wipp 3s .5s ease-in-out infinite;
+  transform-origin: 50% 100%;
+}
+.wzm-kopf { font-size: .9375rem; font-weight: 700; letter-spacing: .04em; color: #C9D3F0; margin-top: 2px; }
+.wzm-i { position: relative; }
+.wzm-i::before {
+  content: '';
+  position: absolute;
+  inset: -14%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(244, 194, 67, .4), transparent 68%);
+  animation: schein2 1.6s ease-in-out infinite;
+}
+.wzm-i svg {
+  position: relative;
+  width: min(7.5rem, 20cqh);
+  height: min(7.5rem, 20cqh);
+  filter: drop-shadow(0 0 16px rgba(244, 194, 67, .55));
+  animation: wzpop .55s .08s cubic-bezier(.2, 1.6, .4, 1) both;
+}
+.wzm-n { font-size: 1.75rem; font-weight: 800; line-height: 1.1; color: var(--senf); }
+.wzm-t { font-size: 1.125rem; line-height: 1.4; font-weight: 600; color: #EEF1FA; }
+#app .wzi-bild { filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .35)); }
+
+/* ---------- Werkzeug-Schimmer ---------- */
+.zug > .wzfx { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; }
+.wzfx::before, .wzfx::after { content: ''; position: absolute; top: 0; bottom: 0; left: -60%; width: 60%; opacity: 0; }
+.zug[data-wz="fuehler"] .wzfx::before {
+  background: linear-gradient(100deg, rgba(244, 194, 67, 0), rgba(244, 194, 67, .1) 25%, rgba(244, 194, 67, .26) 50%, rgba(244, 194, 67, .1) 75%, rgba(244, 194, 67, 0));
+  width: 34%;
+  filter: blur(8px);
+  animation: schimmer 1.5s 1.3s ease-in-out backwards;
+}
+.zug[data-wz="zeit"] .wzfx::before {
+  width: 40%;
+  background: linear-gradient(90deg, rgba(190, 210, 255, 0), rgba(190, 210, 255, .2), rgba(190, 210, 255, 0));
+  filter: blur(6px);
+  animation: zeitlupe 2.6s 1.3s cubic-bezier(.5, 0, .5, 1) backwards;
+}
+.zug[data-wz="zeit"] .wzfx::after {
+  width: 20%;
+  background: linear-gradient(90deg, rgba(190, 210, 255, 0), rgba(190, 210, 255, .12), rgba(190, 210, 255, 0));
+  filter: blur(10px);
+  animation: zeitlupe 2.6s 1.55s cubic-bezier(.5, 0, .5, 1) backwards;
+}
+.zug[data-wz="lupe"] .wzfx::before {
+  left: 0;
+  width: 100%;
+  background: radial-gradient(circle at 16% 9%, rgba(255, 255, 255, .85) 0 3px, transparent 4px), radial-gradient(circle at 84% 15%, rgba(190, 228, 255, .9) 0 2.500px, transparent 3.500px), radial-gradient(circle at 52% 5%, rgba(255, 255, 255, .8) 0 2px, transparent 3px);
+  animation: tau 2.4s 1.3s ease-out backwards;
+}
+
+/* ---------- Belohnung ---------- */
+.fx { position: fixed; inset: 0; z-index: 80; pointer-events: none; overflow: hidden; }
+.fxp { position: absolute; width: 1rem; height: 1rem; margin: -.5rem 0 0 -.5rem; }
+.fxp.stern svg { width: 100%; height: 100%; display: block; }
+.fxp.perle {
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #FFF4C8, var(--senf) 55%, var(--senf-dunkel));
+  box-shadow: 0 0 8px rgba(244, 194, 67, .7);
+  animation: knall .95s cubic-bezier(.2, .7, .3, 1) both;
+}
+.fxp.stern { width: 1.375rem; height: 1.375rem; margin: -.6875rem 0 0 -.6875rem; animation: knall .95s cubic-bezier(.2, .7, .3, 1) both; }
+.fxp.flug {
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #FFF4C8, var(--senf) 55%, var(--senf-dunkel));
+  box-shadow: 0 0 8px rgba(244, 194, 67, .7);
+  width: 1.125rem;
+  height: 1.125rem;
+  margin: -.5625rem 0 0 -.5625rem;
+  opacity: 0;
+}
+.perl.hupft { animation: perlhupf .6s cubic-bezier(.3, 1.6, .5, 1); }
+.perl.hupft::before { box-shadow: 0 0 12px 3px rgba(244, 194, 67, .9); }
+.mondp.puls { animation: mondpuls .9s ease-in-out 2; }
+
+/* ---------- Staub und Pinsel ---------- */
+canvas.staub { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: inherit; touch-action: none; cursor: crosshair; transition: opacity .6s; z-index: 2; }
+canvas.staub.weg { opacity: 0; pointer-events: none; }
+.staubig { touch-action: none; position: relative; }
+.brush { position: fixed; width: 2.75rem; height: 2.75rem; pointer-events: none; z-index: 50; transform: translate(-30%, -80%); }
+
+/* ---------- Weniger Bewegung ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .himmel .st { opacity: .6; }
+  .wzm-i::before { opacity: .6; }
+}

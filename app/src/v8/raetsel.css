@@ -1,0 +1,553 @@
+/* Lese-Fall · v8 · Rätselrahmen (.zug, .zi, .zr) und die Spiele der Kapitel 1–2, je Spiel ein Block mit allen Regeln. */
+
+/* ---------- Rätselrahmen ---------- */
+.zk h2 { font-weight: 800; font-size: 1.5625rem; line-height: 1.15; margin-top: .5rem; }
+.zk h2 .s-b, .zk h2 .s-r, .zt1 .s-b, .zt1 .s-r { color: inherit; }
+.zt1 { font-size: 1.125rem; line-height: 1.45; font-weight: 600; color: #EEF1FA; }
+.zt1.gross { font-size: 1.4375rem; font-weight: 800; color: #fff; text-align: center; }
+.zkr { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
+.zi:empty::before { display: none; }
+@media (min-width: 900px) {
+  .zug { gap: .4375rem; padding-top: .625rem; }
+  .zk h2 { margin-top: 3px; }
+  .zt1 { line-height: 1.35; }
+}
+.zi::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  inset: 0;
+  border-radius: 1.375rem;
+  background: radial-gradient(120% 90% at 50% 0, rgba(255, 255, 255, .13), transparent 60%), repeating-linear-gradient(45deg, rgba(255, 255, 255, .025) 0 2px, transparent 2px 5px), repeating-linear-gradient(-45deg, rgba(0, 0, 0, .05) 0 2px, transparent 2px 5px), linear-gradient(#2F7A66, #235E50);
+  box-shadow: inset 0 0 0 5px #6E4A24, inset 0 0 0 6.5px #C9A45C, inset 0 0 0 7.5px rgba(0, 0, 0, .25), inset 0 14px 28px rgba(0, 0, 0, .22), 0 0 0 1px rgba(0, 0, 0, .25), 0 14px 30px rgba(0, 0, 0, .35), 0 0 34px rgba(244, 194, 67, .12);
+}
+.zi::after { content: ''; position: absolute; inset: .8125rem; z-index: -1; border-radius: .8125rem; border: 1.5px dashed rgba(255, 255, 255, .22); pointer-events: none; }
+.zi:empty::after { display: none; }
+.zi { display: flex; flex-direction: column; color: var(--tinte); isolation: isolate; gap: .875rem; padding: 1rem .75rem 1.125rem; margin-top: .5rem; position: relative; }
+
+/* ---------- Spiel: Buchstaben-Salat ---------- */
+.bs-bild { align-self: center; height: 6rem; max-width: 60%; object-fit: contain; filter: drop-shadow(0 8px 14px rgba(0, 0, 0, .35)); }
+.bk.uebrig:not(.ok) { background: var(--senf-hell); }
+.bs-felder { display: flex; flex-wrap: wrap; justify-content: center; gap: .375rem; }
+.bsk img { width: 2.875rem; height: 3.5rem; object-fit: contain; }
+.bsk.wahl { border-color: var(--senf); }
+.bsk.nein { animation: wackel .4s; }
+.bsk .s-b, .bsk .s-r { color: inherit; }
+.bs-knoepfe { display: grid; gap: .625rem; grid-template-columns: minmax(0, 1fr); }
+.bs-lose { display: flex; flex-wrap: wrap; justify-content: center; gap: .375rem; min-height: 3.25rem; }
+.feld .bk { transform: none; transition: none; width: 100%; height: 100%; box-shadow: 0 2px 0 #D8CDB2; }
+.feld { width: 2.75rem; height: 3rem; border-radius: .5rem; border: 3px dashed rgba(255, 255, 255, .45); background: rgba(255, 255, 255, .08); padding: 0; display: block; }
+.feld.nein { animation: wackel .4s; }
+.bk {
+  width: 2.75rem;
+  height: 3rem;
+  border-radius: .5rem;
+  background: var(--papier);
+  color: var(--tinte);
+  font-weight: 800;
+  font-size: 1.625rem;
+  display: grid;
+  place-items: center;
+  transform: rotate(var(--r));
+  box-shadow: 0 3px 0 #D8CDB2, 0 8px 14px rgba(0, 0, 0, .3);
+  transition: transform .65s cubic-bezier(.3, 1.2, .4, 1);
+  position: relative;
+  z-index: 2;
+  touch-action: none;
+  cursor: grab;
+  user-select: none;
+}
+.bk.zieht { transition: none; z-index: 20; box-shadow: 0 14px 20px rgba(0, 0, 0, .45); }
+.bk.ok { outline: 4px solid var(--senf); outline-offset: -1px; background: #FFF6D6; }
+.bk.uebrig { outline: 3px dashed var(--senf); outline-offset: 1px; animation: none; }
+.feld.leer { border: 3px dashed var(--senf); animation: puls 1s 3; }
+.bs-knoepfe .bsk { width: fit-content; max-width: 100%; margin: .5rem auto 0; padding: .375rem 1.125rem; font-size: 1.0625rem; }
+.bs-knoepfe .bsk img { width: 2.375rem; height: 2.875rem; }
+.bs-knoepfe .bsk.puls { border-color: var(--senf); animation: knopfpuls 1.1s ease-in-out infinite; }
+.bsk {
+  display: flex;
+  align-items: center;
+  background: var(--papier);
+  border-radius: 1.125rem;
+  font-weight: 800;
+  font-size: 1rem;
+  line-height: 1.2;
+  text-align: center;
+  box-shadow: 0 3px 0 #D8CDB2, 0 10px 18px rgba(0, 0, 0, .25);
+  border: 3px solid transparent;
+  color: var(--tinte);
+  flex-direction: row;
+  justify-content: center;
+  gap: .625rem;
+  padding: .375rem .75rem;
+  transition: transform .12s ease, box-shadow .12s ease, filter .2s, opacity .2s;
+}
+.bsk:active:not(:disabled) { transform: translateY(2px) scale(.985); }
+.bsk:disabled { opacity: .4; filter: grayscale(.75); box-shadow: none; cursor: not-allowed; }
+
+/* ---------- Spiel: Was ist anders? ---------- */
+.ub-zaehl { text-align: center; font-size: 1.0625rem; font-weight: 700; color: #fff; }
+.ub-zaehl b { color: var(--senf); font-size: 1.375rem; }
+.ub-zaehl .s-b, .ub-zaehl .s-r { color: inherit; }
+.ub .tab { align-self: flex-start; }
+.ub .tab .s-b, .ub .tab .s-r { color: inherit; }
+.ub-bild {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  background-size: cover;
+  border-radius: .75rem;
+  border: 4px solid #fff;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, .35);
+  overflow: hidden;
+  cursor: crosshair;
+}
+.ub-bild .ding { position: absolute; transform: translate(-50%, -50%); max-width: none; height: auto; pointer-events: none; }
+.ub-bild .ring:not(.miss) { width: 2.75rem; height: 2.75rem; margin: -1.375rem 0 0 -1.375rem; border-width: 4px; }
+.ub { margin: 0; display: flex; flex-direction: column; gap: .25rem; width: min(100%, calc(var(--bild-h) * 1.5)); }
+.ub-paar { gap: .375rem; display: grid; grid-template-columns: minmax(0, 1fr); justify-items: center; position: relative; }
+.zug[data-art="unterschiede"] { --neben-spiel: 8rem; }
+.ub-paar > .ub { grid-area: 1 / 1; width: min(100%, calc(var(--bild-h) * 1.5)); }
+.ub-paar > .ub > .tab { display: none; }
+.ub-paar[data-zeig="vorhin"] > .ub[data-p="jetzt"], .ub-paar[data-zeig="jetzt"] > .ub[data-p="vorhin"] { visibility: hidden; pointer-events: none; }
+.ub-lid { grid-area: 1 / 1; width: min(100%, calc(var(--bild-h) * 1.5)); border-radius: .75rem; background: #1B2752; opacity: 0; pointer-events: none; z-index: 3; }
+.ub-paar.blinzel .ub-lid { animation: ubLid .28s ease-in-out; }
+.ub-schalter {
+  align-self: center;
+  display: inline-flex;
+  background: rgba(0, 0, 0, .28);
+  border-radius: var(--r-rund);
+  padding: .25rem;
+  gap: .25rem;
+  box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .25);
+}
+.ub-schalter button { border-radius: var(--r-rund); padding: .5rem 1.375rem; font-weight: 800; font-size: 1rem; color: #fff; background: transparent; min-width: 6.875rem; min-height: var(--tipp); }
+.ub-schalter button.an { background: linear-gradient(#FFD564, #F0B62E); color: #26221C; box-shadow: 0 3px 0 #B8851A; }
+.ub-schalter button span span { color: inherit; }
+.ub-hin { text-align: center; color: #fff; font-size: .875rem; font-weight: 600; opacity: .85; }
+.ub-hin .s-b, .ub-hin .s-r { color: inherit; }
+
+/* ---------- Spiel: Im Wasser versteckt ---------- */
+.vb-svg, .vb-svg svg { width: 100%; height: 100%; display: block; }
+.vb-cv { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; cursor: crosshair; }
+.vb-opts { display: grid; grid-template-columns: repeat(4, 1fr); gap: .5rem; }
+.vb-o.an { background: var(--senf); border-color: var(--senf-dunkel); }
+.vb-o.nein { animation: wackel .4s; }
+.vb-o {
+  height: 4rem;
+  border-radius: 1rem;
+  background: var(--papier);
+  color: var(--tinte);
+  font-weight: 800;
+  font-size: 2rem;
+  box-shadow: 0 3px 0 #D8CDB2, 0 8px 16px rgba(0, 0, 0, .25);
+  border: 3px solid transparent;
+  transition: transform .12s ease, box-shadow .12s ease, filter .2s, opacity .2s;
+}
+.vb-o:active { transform: translateY(2px) scale(.99); box-shadow: 0 1px 0 #D8CDB2, 0 4px 8px rgba(0, 0, 0, .2); }
+.vb {
+  position: relative;
+  width: min(100%, 18.75rem, 43cqh);
+  aspect-ratio: 1;
+  border-radius: 1.125rem;
+  box-shadow: 0 12px 26px rgba(0, 0, 0, .35);
+  overflow: hidden;
+  align-self: center;
+  max-width: min(100%, 36cqh);
+}
+
+/* ---------- Spiel: Merkmale ---------- */
+.mm-box {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  aspect-ratio: 4 / 3;
+  background: var(--papier);
+  border-radius: 1rem;
+  border: 4px solid #fff;
+  box-shadow: 0 12px 26px rgba(0, 0, 0, .35);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  touch-action: pan-y;
+  transition: transform .2s;
+}
+.mm-box.gross { flex: none; width: 100%; }
+.mm-box.dreh1 { transform: perspective(500px) rotateY(90deg); }
+.mm-box.dreh2 { animation: dreh2 .2s both; }
+.mm-ding { width: 78%; height: 78%; object-fit: contain; pointer-events: none; }
+.mm-kopf { display: flex; gap: .625rem; align-items: stretch; }
+.mm-dreh { flex: 0 0 7rem; flex-direction: column; padding: .5rem .375rem; }
+.mm-dreh svg { width: 1.875rem; height: 1.875rem; }
+.mm-dreh.puls { animation: puls .6s 4; border-color: var(--senf-dunkel); background: var(--senf-hell); }
+.mm-m { background: var(--papier); border-radius: 1rem; padding: .75rem; box-shadow: 0 8px 18px rgba(0, 0, 0, .25); display: flex; flex-direction: column; gap: .625rem; }
+.mm-m > p { font-size: 1.1875rem; font-weight: 800; text-align: center; }
+.mm-wahl { display: grid; grid-template-columns: 1fr 1fr 1.25fr; gap: .375rem; }
+.mm-wahl button.an { background: var(--senf); border-color: var(--senf-dunkel); color: var(--senf-tinte); }
+.mm-wahl button.nein { animation: wackel .4s; }
+.mm-m .s-b, .mm-m .s-r, .mm-wahl .s-b, .mm-wahl .s-r, .mm-erl .s-b, .mm-erl .s-r { color: inherit; }
+.mm-erl { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .375rem; }
+.mm-erl li {
+  display: flex;
+  justify-content: space-between;
+  gap: .625rem;
+  background: rgba(255, 255, 255, .12);
+  color: #fff;
+  border-radius: .625rem;
+  padding: .375rem .75rem;
+  font-size: .90625rem;
+  font-weight: 600;
+}
+.mm-erl li b { color: var(--senf); white-space: nowrap; }
+.mm-erl li > span { min-width: 0; }
+.mm-wahl button {
+  min-height: 3.25rem;
+  border-radius: .75rem;
+  border: 2px solid var(--linie);
+  background: #fff;
+  font-weight: 700;
+  font-size: .9375rem;
+  line-height: 1.15;
+  padding: .25rem;
+  transition: transform .12s ease, box-shadow .12s ease, filter .2s, opacity .2s;
+}
+
+/* ---------- Spiel: Stempel setzen ---------- */
+.stp-tool {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  touch-action: none;
+  cursor: grab;
+  position: relative;
+  z-index: 5;
+  transition: transform .25s;
+  user-select: none;
+}
+.stp-tool.zieht { transition: none; cursor: grabbing; filter: drop-shadow(0 14px 14px rgba(0, 0, 0, .4)); }
+.stp-tool .griff {
+  width: 2.875rem;
+  height: 2.875rem;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #FFD79A, #B8741E);
+  box-shadow: 0 3px 0 #7A4B10;
+  margin-bottom: -.5rem;
+  z-index: 1;
+}
+.stp-tool .basis {
+  background: var(--senf);
+  color: var(--senf-tinte);
+  border-radius: .75rem;
+  padding: .875rem 1.125rem .625rem;
+  font-weight: 800;
+  font-size: .8125rem;
+  letter-spacing: .06em;
+  text-align: center;
+  box-shadow: 0 4px 0 var(--senf-dunkel);
+  max-width: 15rem;
+}
+.stempelziel { position: relative; }
+
+/* ---------- Spiel: Was war zuerst? ---------- */
+.rh-plaetze, .rh-pool { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .5rem; }
+.rh-platz { position: relative; border-radius: .75rem; min-height: 7.375rem; border: 3px dashed rgba(255, 255, 255, .4); background: rgba(255, 255, 255, .08); }
+.rh-platz > i {
+  position: absolute;
+  top: -.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background: var(--senf);
+  color: var(--senf-tinte);
+  font: 800 .875rem/1.5rem 'Inter Schule', sans-serif;
+  font-style: normal;
+  text-align: center;
+  z-index: 2;
+}
+.rh-platz.voll { border-style: solid; border-color: transparent; }
+.rh-zelle { position: relative; border-radius: .75rem; min-height: 7.375rem; background: rgba(255, 255, 255, .05); }
+.rh-karte {
+  background: var(--papier);
+  border-radius: .625rem;
+  padding: .25rem;
+  box-shadow: 0 3px 0 #D8CDB2, 0 8px 14px rgba(0, 0, 0, .3);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  touch-action: none;
+  cursor: grab;
+  user-select: none;
+  height: 100%;
+  border: 3px solid transparent;
+  position: relative;
+}
+.rh-karte img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: .375rem; pointer-events: none; }
+.rh-karte span { font-size: .78125rem; line-height: 1.2; overflow-wrap: anywhere; font-weight: 700; text-align: center; color: var(--tinte); }
+.rh-karte .s-b, .rh-karte .s-r { color: inherit; }
+.rh-karte.sel { border-color: var(--senf); }
+.rh-karte.zieht { z-index: 20; transition: none; box-shadow: 0 16px 24px rgba(0, 0, 0, .45); }
+.rh-karte.nein { animation: wackel .4s; border-color: var(--senf); }
+#buehne .nein:not(.rh-karte) { animation: wackel .5s ease-in-out, ton .9s ease-out; }
+.rh-plaetze:has( > :nth-child(6)), .rh-pool:has( > :nth-child(6)) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.zi:has(.rh-plaetze > :nth-child(6)) .rh-karte img { aspect-ratio: 3 / 2; }
+.zi:has(.rh-plaetze > :nth-child(6)) .rh-platz, .zi:has(.rh-plaetze > :nth-child(6)) .rh-zelle { min-height: 5.75rem; }
+.zi:has(.rh-plaetze > :nth-child(6)) .rh-karte span { font-size: var(--t-etikett); }
+@media (min-width: 560px) {
+  .rh-plaetze:has( > :nth-child(6)), .rh-pool:has( > :nth-child(6)) { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .375rem; }
+}
+
+/* ---------- Spiel: Wessen Ärmel war es? ---------- */
+.as-hin { background: var(--senf); color: var(--senf-tinte); border-radius: .875rem; padding: .625rem .875rem; box-shadow: 0 6px 14px rgba(0, 0, 0, .3); }
+.as-z { font-size: .75rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; opacity: .8; }
+.as-hin p { font-size: 1.125rem; font-weight: 800; line-height: 1.3; margin-top: 2px; }
+.as-hin .s-b, .as-hin .s-r { color: inherit; }
+.as-raus { color: #fff; font-size: .96875rem; font-weight: 700; text-align: center; }
+.as-raus .s-b, .as-raus .s-r, .as-bleibt .s-b, .as-bleibt .s-r { color: inherit; }
+.as-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; }
+.as-k {
+  position: relative;
+  background: var(--papier);
+  border-radius: .875rem;
+  padding: .375rem .25rem .375rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  border: 4px solid transparent;
+  box-shadow: 0 3px 0 #D8CDB2, 0 8px 14px rgba(0, 0, 0, .3);
+  color: var(--tinte);
+  transition: opacity .5s, transform .5s;
+}
+.as-k svg { width: 100%; height: auto; max-height: 5.25rem; }
+.as-n { font-weight: 800; font-size: .9375rem; }
+.as-n .s-b, .as-n .s-r { color: inherit; }
+.as-k.an { border-color: var(--senf); background: #FFF6D6; }
+.as-k.nein { animation: wackel .4s; }
+.as-k .kreuz { position: absolute; inset: 10% 12%; width: 76%; height: 76%; max-height: none; }
+.as-k.weg { opacity: .38; transform: scale(.82); box-shadow: none; }
+.as-k.neu .kreuz path { stroke-dasharray: 110; animation: strich .5s both; }
+.as-eine { display: flex; flex-direction: column; align-items: center; gap: .75rem; }
+.as-gross { width: min(70%, 15rem); position: relative; animation: waechst .6s cubic-bezier(.2, 1.3, .4, 1) both; }
+.as-k.gross { width: 100%; opacity: 1; transform: none; }
+.as-k.gross svg { max-height: none; }
+.as-bleibt { color: #fff; font-size: 1.25rem; font-weight: 700; text-align: center; }
+.as-bleibt b { color: var(--senf); font-size: 1.5rem; }
+.as-schluss { width: 100%; display: flex; flex-direction: column; gap: .625rem; margin-top: .375rem; }
+.as-sf { margin: 0; color: #fff; font-size: 1.25rem; font-weight: 800; text-align: center; }
+.as-so.ja { border-color: var(--senf); }
+.as-so.offen { opacity: .75; box-shadow: none; }
+.as-so.offen em { display: block; margin-top: .25rem; font-style: normal; font-size: .8125rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: #B4472F; }
+.as-so.offen em .s-b, .as-so.offen em .s-r { color: inherit; }
+.as-so.nein { animation: wackel .4s; }
+.as-sf .s-b, .as-sf .s-r { color: inherit; }
+.as-k img { width: 100%; height: 4.75rem; object-fit: contain; pointer-events: none; }
+.as-k.gross img { height: auto; max-height: 13.75rem; }
+.as-crop .sc-v { width: 100%; height: 100%; }
+.as-k .as-crop { max-height: none; width: min(100%, 7.5rem); margin: 0 auto; }
+.as-so {
+  position: relative;
+  background: var(--papier);
+  color: #26221C;
+  border-radius: 1rem;
+  padding: .875rem 1rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: left;
+  border: 3px solid transparent;
+  box-shadow: 0 3px 0 #D8CDB2, 0 8px 14px rgba(0, 0, 0, .25);
+  transition: transform .12s ease, box-shadow .12s ease, filter .2s, opacity .2s;
+}
+.as-so:active { transform: translateY(2px) scale(.99); box-shadow: 0 1px 0 #D8CDB2, 0 4px 8px rgba(0, 0, 0, .2); }
+.as-cm { display: block; font-size: .82em; font-weight: 700; opacity: .7; }
+.as-crop { display: block; width: 100%; aspect-ratio: 1; transition: transform .3s; }
+#app .as-k > img { width: 100%; object-fit: contain; display: block; height: clamp(5.25rem, 17cqh, 8.75rem); aspect-ratio: auto; }
+
+/* ---------- Spiel: Zwei Kisten ---------- */
+.so-ziele { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .625rem; }
+.so-ziel {
+  color: #fff;
+  border: 3px dashed rgba(255, 255, 255, .45);
+  background: rgba(255, 255, 255, .08);
+  border-radius: 1rem;
+  padding: .5rem .375rem .625rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .375rem;
+  min-height: min(11rem, 40cqh);
+  transition: border-color .2s, background .2s;
+}
+.so-kopf { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1px; }
+.so-kopf img { height: 3.375rem; width: auto; max-width: 100%; object-fit: contain; }
+.so-kopf b { font-size: 1.03125rem; font-weight: 800; line-height: 1.15; }
+.so-kopf small { font-size: .8125rem; opacity: .85; font-weight: 600; }
+.so-kopf .s-b, .so-kopf .s-r { color: inherit; }
+.so-drin { display: flex; flex-wrap: wrap; justify-content: center; gap: .375rem; }
+.so-pool { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; }
+.so-ding {
+  background: var(--papier);
+  border-radius: .75rem;
+  padding: .375rem .25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  min-height: 6rem;
+  border: 3px solid transparent;
+  box-shadow: 0 3px 0 #D8CDB2, 0 8px 14px rgba(0, 0, 0, .3);
+  touch-action: none;
+  cursor: grab;
+  user-select: none;
+  color: var(--tinte);
+  position: relative;
+}
+.so-ding img { width: 100%; height: 3.75rem; object-fit: contain; pointer-events: none; }
+.so-ding .s-b, .so-ding .s-r { color: inherit; }
+.so-ding.sel { border-color: var(--senf); background: #FFF6D6; }
+.so-ding.zieht { z-index: 20; transition: none; box-shadow: 0 16px 24px rgba(0, 0, 0, .45); }
+.so-ding.klein img { height: 2.375rem; }
+.so-ziele.drei { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .375rem; }
+.so-ziele.drei .so-ziel { min-height: min(9.375rem, 36cqh); padding: .375rem 3px .5rem; gap: .25rem; }
+.so-ziele.drei .so-kopf b { font-size: .84375rem; }
+.so-ziele.drei .so-kopf img { height: 2.875rem; }
+.so-ziele.drei .so-drin { gap: .25rem; }
+.so-ziele.drei .so-ding.klein { width: 100%; max-width: 5.75rem; }
+.so-ziele.vier { gap: .375rem; }
+.so-ziele.vier .so-ziel { min-height: 5.75rem; padding: .3125rem 3px .375rem; gap: 3px; }
+.so-ziele.vier .so-kopf { flex-direction: row; gap: .375rem; }
+.so-ziele.vier .so-kopf img { height: 2.125rem; }
+.so-ziele.vier .so-kopf b { font-size: .875rem; text-align: left; }
+.so-ziele.vier .so-drin { gap: .25rem; display: flex; flex-wrap: wrap; justify-content: center; }
+.so-ziele.vier .so-ding.klein { width: 4rem; }
+.so-ding span { font-size: .84375rem; font-weight: 800; line-height: 1.15; text-align: center; overflow-wrap: normal; word-break: normal; hyphens: none; }
+.so-ding.klein { min-height: 0; padding: 3px; cursor: default; box-shadow: none; width: 5.75rem; }
+.so-ding.klein span { overflow-wrap: normal; word-break: normal; hyphens: none; font-size: var(--t-etikett); }
+.so-ziel.nein { animation: wackel .4s; border-color: var(--weich); background: var(--weich-bg); }
+.so-ding.nein { animation: wackel .4s; border-color: var(--weich); }
+
+/* ---------- Spiel: Wie lag der Mond? ---------- */
+.um-frage { color: #fff; font-size: 1.125rem; font-weight: 800; text-align: center; line-height: 1.3; }
+.um-tisch { position: relative; width: 100%; aspect-ratio: 5 / 4; max-height: 55cqh; margin: 0 auto; }
+.um-tablett { position: absolute; left: 0; bottom: 0; width: 100%; height: auto; filter: drop-shadow(0 10px 14px rgba(0, 0, 0, .35)); pointer-events: none; }
+.um-mond { position: absolute; left: 50%; bottom: 24%; height: 80%; transform: translateX(-50%); transition: bottom .4s, transform .2s; touch-action: pan-y; }
+.um-tisch.liegt .um-mond { bottom: 16%; height: 62%; }
+.um-mond > img { width: 100%; height: 100%; object-fit: contain; display: block; pointer-events: none; filter: drop-shadow(0 8px 10px rgba(0, 0, 0, .3)); }
+.um-mond.dreh1 { transform: translateX(-50%) perspective(500px) rotateY(90deg); }
+.um-mond.dreh2 { animation: um-dreh2 .2s both; }
+.um-mond.nein { animation: wackel .4s; }
+.um-kleber {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  border-radius: 48% 52% 46% 54% / 60% 58% 42% 40%;
+  background: linear-gradient(160deg, rgba(255, 255, 255, .98) 0 18%, rgba(200, 224, 250, .95) 22%, rgba(150, 190, 236, .9) 70%, rgba(118, 164, 222, .8) 100%);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, .7), 0 3px 6px rgba(20, 40, 90, .35);
+  pointer-events: none;
+}
+.um-fleck {
+  position: absolute;
+  left: 50%;
+  bottom: 20%;
+  width: 46%;
+  height: 11%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #fff 0 8%, rgba(190, 215, 245, .95) 12%, rgba(140, 180, 230, .85) 100%);
+  pointer-events: none;
+  animation: ein .2s both;
+}
+.um-zone { position: absolute; transform: translate(-50%, -50%); border-radius: .875rem; border: 3px dashed rgba(244, 194, 67, .0); cursor: pointer; }
+.um-zone::before { content: ''; position: absolute; inset: -.75rem; }
+.um-zone.puls { animation: puls .6s 3; border-color: var(--senf); }
+.um-dreh { align-self: center; flex-direction: column; padding: .5rem 1.125rem; min-width: 8.125rem; }
+.um-dreh svg { width: 1.75rem; height: 1.75rem; }
+.um-mond .ring { width: 3.375rem; height: 3.375rem; margin: -1.6875rem 0 0 -1.6875rem; }
+.um-frage .s-b, .um-frage .s-r { color: inherit; }
+
+/* ---------- Spiel: Was sieht die Raupe? ---------- */
+.sb-liste { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .375rem; justify-content: center; }
+.sb-liste li {
+  display: flex;
+  align-items: center;
+  gap: .375rem;
+  background: rgba(255, 255, 255, .13);
+  color: #fff;
+  border-radius: var(--r-rund);
+  padding: .375rem .75rem .375rem .5rem;
+  font-size: .90625rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.sb-liste li i { width: 1rem; height: 1rem; border-radius: 50%; border: 2.500px solid rgba(255, 255, 255, .6); flex: none; }
+.sb-liste li.da { background: var(--senf); color: var(--senf-tinte); }
+.sb-liste li.da i { background: var(--senf-tinte); border-color: var(--senf-tinte); box-shadow: inset 0 0 0 3px var(--senf); }
+.sb-liste .s-b, .sb-liste .s-r { color: inherit; }
+.sb-bild { position: relative; aspect-ratio: 3 / 2; border-radius: .75rem; border: 4px solid #fff; box-shadow: 0 10px 22px rgba(0, 0, 0, .35); overflow: hidden; cursor: crosshair; }
+.sb-bild img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
+.sb-bild .ring.miss { width: 2.75rem; height: 2.75rem; margin: -1.375rem 0 0 -1.375rem; border-width: 4px; }
+.sb-ring.blink { animation: ring .5s both, puls .7s .5s 3; }
+.sb-ring {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  animation: ring .5s both;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  background: var(--senf);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, .35);
+  width: 1.875rem !important;
+  height: 1.875rem !important;
+}
+.sb-ring::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: .4375rem;
+  height: .75rem;
+  border: solid var(--senf-tinte);
+  border-width: 0 3px 3px 0;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+/* ---------- Spiel: Geheimschrift ---------- */
+.sp-text { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.sp-text span {
+  display: block;
+  font-weight: 800;
+  font-size: clamp(2.125rem, 11vw, 2.875rem);
+  line-height: 1.1;
+  letter-spacing: .1em;
+  color: var(--tinte);
+  transform: scaleX(-1);
+  transition: transform .8s;
+}
+.sp-zettel.klar .sp-text span { transform: none; }
+.sp-opts { display: flex; flex-direction: column; gap: .5rem; }
+.sp-o.an { border-color: var(--senf); background: #FFF6D6; }
+.sp-o.nein { animation: wackel .4s; }
+.sp-o {
+  background: var(--papier);
+  color: var(--tinte);
+  border-radius: .875rem;
+  padding: .75rem 1rem;
+  font-weight: 800;
+  font-size: 1.3125rem;
+  letter-spacing: .06em;
+  border: 3px solid transparent;
+  box-shadow: 0 3px 0 #D8CDB2, 0 8px 14px rgba(0, 0, 0, .25);
+  transition: transform .12s ease, box-shadow .12s ease, filter .2s, opacity .2s;
+}
+.sp-o:active { transform: translateY(2px) scale(.99); box-shadow: 0 1px 0 #D8CDB2, 0 4px 8px rgba(0, 0, 0, .2); }
+.sp-zettel {
+  align-self: center;
+  width: min(100%, 20rem);
+  background: var(--papier-2);
+  padding: 1.125rem .75rem 1.25rem;
+  box-shadow: 0 4px 0 #D8CDB2, 0 14px 24px rgba(0, 0, 0, .35);
+  transform: rotate(-1.5deg);
+  border-radius: .5rem;
+}

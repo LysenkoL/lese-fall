@@ -1,0 +1,351 @@
+/* Lese-Fall · v8 · Ansichten: Titel, Vorgeschichte, Kapitelkarte, Lesen, Haken, Tipp-Frage, Brett, Fallkarte. */
+
+/* ---------- Titel ---------- */
+.tl { font-size: .8125rem; font-weight: 800; letter-spacing: .16em; color: var(--senf); }
+.titel h1 { font-size: 2.125rem; line-height: 1.1; font-weight: 800; }
+.titel h1 .s-b, .titel h1 .s-r, .tu .s-b, .tu .s-r { color: inherit; }
+.tu { font-size: 1.03125rem; font-weight: 600; color: #D5DCF0; }
+.titel .t-raupe {
+  position: absolute;
+  right: .75rem;
+  bottom: .25rem;
+  width: 3.125rem;
+  height: 5.125rem;
+  object-fit: contain;
+  transform-origin: 50% 100%;
+  animation: wipp 3.6s ease-in-out infinite;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, .35));
+  pointer-events: none;
+}
+.titel .foto.gross { box-shadow: 0 14px 30px rgba(0, 0, 0, .4), 0 0 46px rgba(246, 211, 91, .12); }
+
+/* ---------- Vorgeschichte, Kapitelkarte ---------- */
+.intro p, .kapk p { font-size: 1.3125rem; line-height: 1.45; font-weight: 600; color: #EEF1FA; animation: hoch .5s .15s both; }
+.intro p .s-b, .intro p .s-r, .kapk .s-b, .kapk .s-r { color: inherit; }
+.intro p.frage { font-weight: 800; color: var(--senf); font-size: 1.4375rem; }
+.ib { animation: hoch .5s both; }
+.ib.foto { width: min(88%, 22.5rem, calc(44cqh * 1.5)); margin: 0; transform: rotate(-1.5deg); }
+.ib.frei img { height: min(11.875rem, 30cqh); width: auto; filter: drop-shadow(0 0 26px rgba(244, 194, 67, .55)); }
+.kapk h1 { font-size: 2.125rem; line-height: 1.12; font-weight: 800; animation: hoch .5s both; }
+.vig {
+  width: min(78%, 20rem, 40cqh);
+  border-radius: 50%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  box-shadow: 0 0 0 6px rgba(255, 255, 255, .12), 0 18px 40px rgba(0, 0, 0, .4);
+  animation: hoch .6s .1s both;
+}
+.ib.tresor { margin: 0; animation: hoch .5s both; }
+.ib.tresor svg { display: block; width: 13.125rem; height: 13.125rem; filter: drop-shadow(0 0 26px rgba(244, 194, 67, .55)); }
+.kapk .vig { box-shadow: 0 14px 30px rgba(0, 0, 0, .4), 0 0 46px rgba(246, 211, 91, .12); }
+.ib.wzraster { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem 1.375rem; width: min(100%, 18.75rem); }
+.wzr { display: flex; flex-direction: column; align-items: center; gap: .3125rem; text-align: center; }
+.wzr b { font-size: 1rem; font-weight: 800; color: var(--senf-hell); line-height: 1.15; }
+.wzr b .s-b, .wzr b .s-r { color: inherit; }
+.wzr svg { width: min(4.75rem, 12cqh); height: min(4.75rem, 12cqh); filter: drop-shadow(0 0 14px rgba(244, 194, 67, .4)); animation: hoch .5s both; }
+.wzr:nth-child(2) svg { animation-delay: .08s; }
+.wzr:nth-child(3) svg { animation-delay: .16s; }
+.wzr:nth-child(4) svg { animation-delay: .24s; }
+
+/* ---------- Lesen ---------- */
+.blatt.kurz { display: flex; flex-direction: column; justify-content: center; padding-bottom: 12%; }
+.blatt.kurz::before { content: ''; width: 3.375rem; height: .3125rem; border-radius: 3px; background: var(--senf); margin-bottom: 1rem; }
+.blatt p { margin: 0 0 .62em; overflow-wrap: break-word; }
+.blatt > div > :last-child, .blatt > :last-child { margin-bottom: 0; }
+.skopf { margin-bottom: .625rem; }
+.skopf h2 { font-weight: 800; font-size: 1.24em; line-height: 1.2; margin-top: .375rem; color: var(--nacht-2); }
+.skopf h2 .s-b, .skopf h2 .s-r { color: inherit; }
+.blatt:not(.probe) { animation: blatt .28s both; }
+.satz { cursor: default; }
+.blatt[data-r="v"]:not(.probe) { animation: blattV .3s ease-out both; transform-origin: 0 60%; }
+.blatt[data-r="z"]:not(.probe) { animation: blattZ .3s ease-out both; transform-origin: 100% 60%; }
+
+/* ---------- Haken und Ausblick ---------- */
+.haken p { font-size: 1.625rem; line-height: 1.35; font-weight: 800; animation: hoch .6s .25s both; }
+.haken p .s-b, .haken p .s-r { color: inherit; }
+.forts { text-align: center; font-weight: 800; font-size: 1.125rem; color: var(--senf); margin: 0 0 .25rem; }
+.haken h2 { font-size: 1.875rem; font-weight: 800; animation: hoch .5s .2s both; }
+.haken h2 .s-b, .haken h2 .s-r { color: inherit; }
+.haken .forts { font-size: 1.25rem; color: var(--senf); }
+.forts .s-b, .forts .s-r { color: inherit; }
+.haken .hr {
+  height: min(9.375rem, 26cqh);
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 22px rgba(244, 194, 67, .5));
+  animation: hoch .5s both, wipp 4s 1s ease-in-out infinite;
+  transform-origin: 50% 100%;
+}
+.haken.mitbild .ab-bild { width: min(92%, 32.5rem, calc(50cqh * 1.5)); margin: 0 auto .375rem; transform: rotate(-1.5deg); }
+.haken.mitbild .ab-bild img { width: 100%; display: block; }
+
+/* ---------- Tipp-Frage ---------- */
+.zug.tipp .hr.klein { width: 3.375rem; height: 5.375rem; object-fit: contain; align-self: center; }
+.zug.tipp .opt { color: var(--tinte); }
+
+/* ---------- Brett ---------- */
+.zettel.fr:has(em.neu) { animation: hoch .5s .3s both; }
+.zettel.fr.weg { opacity: .7; text-decoration: line-through; text-decoration-thickness: 2px; }
+.brett.ueberl { position: relative; inset: auto; width: min(100%, var(--mass-spiel)); border-radius: var(--r-tafel) var(--r-tafel) 0 0; padding-bottom: calc(var(--unten) + .875rem); }
+@media (min-width: 600px) and (min-height: 600px) { .brett.ueberl { border-radius: var(--r-tafel); padding-bottom: .875rem; } }
+.brett h3 .s-b, .brett h3 .s-r, .brett .tab .s-b, .brett .tab .s-r, .wischz .s-b, .wischz .s-r { color: inherit; }
+.bkarte::before {
+  content: '';
+  position: absolute;
+  top: -.3125rem;
+  left: 50%;
+  width: .6875rem;
+  height: .6875rem;
+  margin-left: -.3125rem;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #FF9A8C, var(--faden) 60%);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, .3);
+  z-index: 3;
+}
+.bkarte.leer::before { display: none; }
+.bkarte.neu { overflow: hidden; }
+.ausschn { position: relative; width: 100%; overflow: hidden; }
+.ausschn img { position: absolute; max-width: none; }
+.bkarte p .s-b, .bkarte p .s-r { color: inherit; }
+.fragen { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; padding-top: 3px; }
+.zettel.fr span .s-b, .zettel.fr span .s-r { color: inherit; }
+.zettel.fr.versteckt { visibility: hidden; }
+.zettel.fr.frisch { animation: hoch .5s both; }
+.zettel.fr.faellt { animation: faellt .6s both; }
+.bkarte.fall { animation: einfall .7s cubic-bezier(.3, 1.3, .5, 1) both; }
+.bkarte.fall::before { animation: nadel .2s .6s both; }
+.brett h3 { letter-spacing: .1em; text-transform: uppercase; color: #FFF3DC; font-weight: 800; text-shadow: 0 1px 0 rgba(0, 0, 0, .25); margin-top: 2px; font-size: .875rem; }
+.brett .ak .tab { white-space: nowrap; font-size: .8125rem; padding: .3125rem .625rem; }
+.bkarte:not(.leer):hover { transform: rotate(0) scale(1.03); }
+.bk-bild { display: flex; align-items: center; justify-content: center; overflow: hidden; aspect-ratio: 4 / 3; border-radius: 3px; background: #F2EADA; }
+.bk-bild > img { width: 100%; height: 100%; object-fit: contain; padding: 5%; }
+.ausschn.voll { width: 100%; height: 100%; background-repeat: no-repeat; }
+.bkarte p { font-weight: 600; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; font-size: .78125rem; line-height: 1.28; }
+.zettel.fr .klaer .s-b, .zettel.fr .klaer .s-r { color: inherit; }
+.bkarte:nth-child(even) { transform: rotate(var(--n, 0deg)); }
+.bkarte {
+  position: relative;
+  background: var(--papier);
+  display: flex;
+  flex-direction: column;
+  color: var(--tinte);
+  cursor: pointer;
+  gap: 3px;
+  padding: .375rem .375rem .5rem;
+  border-radius: .5rem;
+  box-shadow: var(--sch-karte);
+  transform: rotate(var(--n, 0deg));
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+@media (hover: hover) {
+  .bkarte:not(.leer):hover { transform: translateY(-4px) rotate(0) scale(1.03); box-shadow: 0 2px 0 rgba(0, 0, 0, .06), 0 16px 26px rgba(40, 25, 0, .34); z-index: 2; }
+  .zettel.fr:not(.wackelt):hover { transform: translateY(-2px) rotate(0); }
+}
+.brett-raupe {
+  height: 2.5rem;
+  width: auto;
+  float: right;
+  margin: -1.375rem .5rem -3px 0;
+  position: relative;
+  transform-origin: 50% 100%;
+  animation: wipp 4s ease-in-out infinite;
+  filter: drop-shadow(0 3px 4px rgba(60, 30, 0, .35));
+}
+.wischz { text-align: center; font-weight: 800; color: #fff; text-shadow: 0 1px 2px rgba(0, 0, 0, .4); min-height: 0; font-size: .875rem; line-height: 1.3; }
+@media (min-width: 900px) {
+  .bkarte.leer { aspect-ratio: auto; }
+  .bk-bild { aspect-ratio: 2 / 1; }
+}
+.brett {
+  background: #C2813F;
+  background-image: radial-gradient(rgba(90, 50, 10, .22) 1.2px, transparent 1.6px), radial-gradient(rgba(255, 230, 180, .22) 1.2px, transparent 1.6px), radial-gradient(circle at 30% 10%, rgba(255, 220, 160, .4), transparent 60%);
+  background-size: 13px 13px, 17px 17px, 100% 100%;
+  background-position: 0 0, 6px 9px, 0 0;
+  box-shadow: inset 0 0 0 7px #8A5A2B, inset 0 0 0 9px #6E4520, inset 0 10px 26px rgba(60, 30, 0, .35);
+  background-color: #C98A47;
+}
+.bgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .625rem; }
+.bkarte.leer {
+  box-shadow: none;
+  cursor: default;
+  transform: none;
+  aspect-ratio: auto;
+  min-height: clamp(3.25rem, 13cqh, 6rem); /* leere Reihe wird auf niedrigen Bühnen flacher */
+  border: 2px dashed rgba(255, 243, 220, .5);
+  background: rgba(90, 50, 10, .1);
+  display: grid;
+  place-items: center;
+}
+.bkarte.leer::after { content: '?'; font-weight: 800; font-size: 1.625rem; color: rgba(255, 243, 220, .38); }
+#app .bkarte.wartet {
+  visibility: visible;
+  background: rgba(255, 233, 166, .16);
+  border: 2.5px dashed #FFE082;
+  box-shadow: 0 0 0 4px rgba(244, 194, 67, .18);
+  animation: puls 1s ease-in-out infinite;
+  transform: none;
+}
+#app .bkarte.wartet > *, #app .bkarte.wartet::before { visibility: hidden; }
+#app .bkarte.gepinnt::before { animation: nadel .25s both; }
+#app .bkarte.gepinnt { animation: pinnwipp .5s ease-out; }
+.fundov {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .875rem;
+  padding: 1.25rem;
+  background: rgba(19, 27, 60, .62);
+  backdrop-filter: blur(2px);
+  cursor: pointer;
+  transition: background .5s, backdrop-filter .5s;
+  animation: fundRein .3s ease-out;
+}
+.fund-t { font-weight: 800; font-size: 1.5rem; color: #FFE082; text-shadow: 0 2px 0 rgba(0, 0, 0, .35); }
+.fund-t .s-b, .fund-t .s-r, .fund-h .s-b, .fund-h .s-r { color: inherit; }
+.fund-h { font-weight: 700; font-size: 1.0625rem; color: #fff; text-align: center; max-width: 17.5rem; background: rgba(0, 0, 0, .3); border-radius: .875rem; padding: .5rem .875rem; }
+#app .fundov .fundk {
+  width: min(62%, 15.625rem, 40cqh);
+  padding: .5625rem .5625rem .75rem;
+  gap: .4375rem;
+  text-align: left;
+  transform: rotate(-2deg);
+  transform-origin: top left;
+  transition: transform .55s cubic-bezier(.3, 1.1, .5, 1);
+  box-shadow: 0 0 0 4px rgba(255, 224, 130, .5), 0 18px 36px rgba(0, 0, 0, .45);
+  animation: fundWipp 1.6s ease-in-out infinite;
+  border: 0;
+  font: inherit;
+}
+#app .fundov .fundk p { font-size: .9375rem; line-height: 1.3; -webkit-line-clamp: 5; }
+.fundov.fliegt { background: transparent; backdrop-filter: none; pointer-events: none; }
+.fundov.fliegt .fund-t, .fundov.fliegt .fund-h { opacity: 0; transition: opacity .2s; }
+#app .fundov.fliegt .fundk { animation: none; box-shadow: 0 8px 16px rgba(60, 30, 0, .32); }
+.fr-frage .s-b, .fr-frage .s-r { color: inherit; }
+.brett.fragt .zettel.fr { cursor: pointer; }
+.brett.fragt .zettel.fr:active { transform: scale(.97); }
+.zettel.fr .klaer {
+  font-style: normal;
+  font-size: .75rem;
+  font-weight: 800;
+  background: var(--senf);
+  color: var(--senf-tinte);
+  border-radius: var(--r-rund);
+  padding: 2px .625rem;
+  animation: puls 1s ease-in-out infinite;
+  display: none;
+}
+.zettel.fr.zeig { outline: 3px solid var(--senf); outline-offset: 1px; animation: leicht 1.2s infinite; }
+.zettel.fr.zeig .klaer { display: inline-block; }
+.zettel.fr.nein { animation: frNein .7s; }
+.zettel.fr::before {
+  top: -.4375rem;
+  left: 50%;
+  width: 2.875rem;
+  height: .875rem;
+  margin-left: -1.4375rem;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, .55);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .18);
+  transform: rotate(-3deg);
+}
+.zettel.fr {
+  line-height: 1.25;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  align-items: flex-start;
+  cursor: default;
+  font-size: .875rem;
+  transform: rotate(var(--n, 0deg));
+  transition: transform .18s ease, box-shadow .18s ease;
+  background: linear-gradient(160deg, #FFF3A6, #FFE56B);
+  border-radius: 2px 2px .875rem 2px;
+  box-shadow: 0 6px 10px rgba(60, 30, 0, .28), inset -10px -10px 14px -10px rgba(160, 120, 0, .35);
+  padding: .75rem .6875rem .625rem;
+  font-weight: 700;
+  min-height: 3.375rem;
+}
+.zettel.fr:nth-child(3n + 2) { background: linear-gradient(160deg, #D9F2B4, #BFE48A); box-shadow: 0 6px 10px rgba(60, 30, 0, .28), inset -10px -10px 14px -10px rgba(70, 120, 0, .35); }
+.zettel.fr:nth-child(3n) { background: linear-gradient(160deg, #FFD9E4, #FFBDD0); box-shadow: 0 6px 10px rgba(60, 30, 0, .28), inset -10px -10px 14px -10px rgba(160, 40, 80, .3); }
+.zettel.fr span::before { content: '? '; font-weight: 800; opacity: .45; }
+.zettel.fr span.s-b::before, .zettel.fr span.s-r::before, .zettel.fr span span::before { content: none; }
+.bk-bild .ausschn.voll { width: 90%; height: 90%; margin: 5%; border-radius: 3px; background-repeat: no-repeat; flex: none; }
+#app .brett.fragt .bkarte.gepinnt, #app .brett.fragt .bkarte.neu { box-shadow: 0 0 0 4px #FFE082, 0 0 22px rgba(255, 224, 130, .8); z-index: 2; }
+.fr-frage {
+  font-weight: 800;
+  line-height: 1.3;
+  color: #26221C;
+  background: linear-gradient(#FFE082, #F4C243);
+  border-radius: .75rem;
+  padding: .5rem .75rem;
+  box-shadow: 0 3px 0 #B8851A;
+  animation: hoch .4s both;
+  font-size: 1rem;
+}
+
+/* ---------- Fallkarte ---------- */
+.fk > .tab { align-self: flex-start; }
+.fk h2 .s-b, .fk h2 .s-r { color: inherit; }
+.fk li::before { content: ''; position: absolute; left: .25rem; top: .6875rem; width: .5rem; height: .5rem; border-radius: 50%; background: var(--senf-dunkel); }
+.fk li .s-b, .fk li .s-r, .fk-frage .s-b, .fk-frage .s-r { color: inherit; }
+.fk-frage { font-size: 1.1875rem; font-weight: 800; line-height: 1.35; background: var(--senf-hell); border-left: 6px solid var(--senf); border-radius: .25rem .75rem .75rem .25rem; padding: .625rem .75rem; }
+.fk .stempel.abdruck { font-size: 1.375rem; background: rgba(255, 252, 244, .9); top: 30%; }
+.fk {
+  background: var(--papier);
+  color: var(--tinte);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, .4);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-radius: .5rem;
+  padding: .75rem .875rem .875rem;
+  gap: .4375rem;
+}
+.fk h2 { font-weight: 800; color: var(--nacht-2); line-height: 1.2; font-size: 1.3125rem; }
+.fk .foto { margin: 2px auto; width: min(78%, calc(34cqh * 1.5)); } /* Bildhöhe höchstens ein Drittel der Bühne, nie beschnitten */
+.fk .foto img { width: 100%; object-fit: cover; }
+.fk li { font-weight: 600; padding-left: 1.25rem; position: relative; font-size: 1.03125rem; line-height: 1.35; }
+.fk ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: .3125rem; }
+.zug.fall { padding-bottom: .5rem; gap: .625rem; }
+
+/* ---------- Gedanken der Lese-Raupe: vier Formen im Wechsel ----------
+   g0 Denkwolke links · g1 Denkwolke rechts (gespiegelt) · g2 Notizzettel mit Klebestreifen · g3 Raupe guckt über den oberen Rand.
+   Gemeinsam: kursiv, Raupenbild, Text rückt nie unter das Bild. Die Pose wählt main.ts (blockHtml) nach dem Ton des Gedankens. */
+.ged { --ged-bg: #F1F8E6; --ged-bg2: #E3F0D1; --ged-kante: #CFE3B4;
+  position: relative; display: flex; align-items: center; gap: .75rem; font-style: italic;
+  margin: .5rem 0 1em; padding: .75rem 1rem .75rem .625rem; border-radius: 1.625rem;
+  background: linear-gradient(180deg, var(--ged-bg), var(--ged-bg2)); box-shadow: 0 2px 0 var(--ged-kante), 0 8px 18px rgba(80, 110, 40, .14); }
+.ged p { margin: 0; min-width: 0; overflow-wrap: break-word; }
+.ged img { flex: none; width: 2.5rem; height: 3.875rem; object-fit: contain; filter: drop-shadow(0 2px 3px rgba(0, 0, 0, .12)); }
+.ged::before, .ged::after { content: ''; position: absolute; border-radius: 50%; background: var(--ged-bg2); box-shadow: 0 2px 0 var(--ged-kante); }
+/* g0: Wolke, Bläschen links unten */
+.ged.g0 { margin-left: .875rem; margin-right: 8%; }
+.ged.g0::before { width: .875rem; height: .875rem; left: -.625rem; bottom: .25rem; }
+.ged.g0::after { width: .5rem; height: .5rem; left: -1.25rem; bottom: -.25rem; }
+/* g1: Wolke rechts, Raupe rechts und gespiegelt, wärmerer Ton */
+.ged.g1 { --ged-bg: #FFF8E1; --ged-bg2: #FDEDC0; --ged-kante: #EED9A0; flex-direction: row-reverse; margin-left: 10%; margin-right: .875rem; padding: .75rem .625rem .75rem 1.125rem; border-radius: 1.625rem 1.625rem .5rem 1.625rem; }
+.ged.g1 img { transform: scaleX(-1); }
+.ged.g1::before { width: .875rem; height: .875rem; right: -.625rem; bottom: .25rem; }
+.ged.g1::after { width: .5rem; height: .5rem; right: -1.25rem; bottom: -.25rem; }
+/* g2: Notizzettel, leicht schräg, mit Klebestreifen; Raupe sitzt unten links auf der Kante */
+.ged.g2 { --ged-bg: #FFFDF5; --ged-bg2: #FFF7DA; --ged-kante: #E6DCC4; border-radius: 3px 3px 1.125rem 3px; margin: 1rem 6% 1.1em 4%; padding: 1rem 1rem .875rem 3.5rem; rotate: -.8deg;
+  background: repeating-linear-gradient(transparent 0 1.5em, rgba(29, 63, 158, .08) 1.5em calc(1.5em + 1px)), linear-gradient(var(--ged-bg), var(--ged-bg2)); }
+.ged.g2 img { position: absolute; left: -.5rem; bottom: -.625rem; width: 3rem; height: 4.25rem; rotate: -6deg; }
+.ged.g2::before { width: 4.5rem; height: 1.125rem; border-radius: 2px; left: 50%; top: -.5rem; bottom: auto; translate: -50% 0; rotate: 3deg; background: rgba(244, 194, 67, .6); box-shadow: 0 1px 2px rgba(0, 0, 0, .1); }
+.ged.g2::after { display: none; }
+/* g3: Raupe guckt mittig über den oberen Rand der Wolke */
+.ged.g3 { --ged-bg: #EEF4FF; --ged-bg2: #DFE9FB; --ged-kante: #C3D3F0; margin: 2.125rem 4% 1.1em; padding: 1.25rem 1.125rem .875rem; text-align: center; justify-content: center; border-radius: 2rem; }
+.ged.g3 img { position: absolute; left: 50%; top: -2.25rem; translate: -50% 0; width: 2.25rem; height: 3.25rem; }
+.ged.g3::before { width: .75rem; height: .75rem; left: 18%; bottom: -.625rem; }
+.ged.g3::after { width: .4375rem; height: .4375rem; left: 14%; bottom: -1.125rem; }
+
+/* Neuer Fund: passt auch auf niedrige Bühnen (Telefon quer) und rollt notfalls selbst */
+.fundov { justify-content: safe center; overflow-y: auto; }
+/* Große Überschriften trennen lange Wörter statt über den Rand zu laufen (große Systemschrift) */
+.titel h1, .kapk h1, .haken h2, .zk h2, .fk h2 { overflow-wrap: anywhere; hyphens: auto; text-wrap: balance; }
+.titel h1 { font-size: min(2.125rem, 10.5cqw); }
+.kapk h1 { font-size: min(2.125rem, 10.5cqw); }

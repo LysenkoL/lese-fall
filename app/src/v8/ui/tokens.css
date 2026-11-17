@@ -1,0 +1,103 @@
+/* Lese-Fall · UI-System · 1 · Tokens
+   Einzige Quelle für Farben, Schrift, Abstände, Radien, Schatten, Maße, Ränder und Bewegung.
+   Hier stehen nur Werte, keine Regeln für Elemente. Alles Weitere liest diese Variablen.
+   Wie man damit arbeitet: app/UI-SYSTEM.md */
+
+:root {
+  /* ---------- Farben: Senf & Nachthimmel (Detektiv-Atelier, unverändert) ---------- */
+  --nacht-0: #0C1430;            /* tiefster Himmel (Rand auf großen Bildschirmen) */
+  --nacht-1: #141F3F;
+  --nacht-2: #1D2E57;
+  --nacht-3: #2C4176;
+  --nacht-hell: #22335F;         /* oberer Himmel der Ermittler-Ansichten */
+  --kopf-1: #1B2752; --kopf-2: #131B3C; /* Kopf- und Brett-Fußleiste */
+  --papier: #FFFCF4; --papier-2: #F6EFDE; --papier-foto: #F2EADA;
+  --linie: #E6DCC4;
+  --kante: #D8CDB2;              /* untere Kante heller Karten und Knöpfe */
+  --tinte: #26221C; --leise: #6F6858;
+  --senf: #F4C243; --senf-dunkel: #C9951A; --senf-tinte: #2A2210; --senf-hell: #FFE9A6;
+  --gold-1: #FFD564; --gold-2: #F0B62E; --gold-kante: #B8851A; --gold-licht: #FFE082;
+  --blau: #1D3F9E; --rot: #E8473A;   /* Silbenfarben wie in Leseraupe (A-03) – nie ändern */
+  --gedanke: #F1F7E6; --gedanke-rand: #CFE2B4;
+  --kork: #C98A47; --kork-rahmen: #8A5A2B; --kork-rahmen-2: #6E4520; --faden: #C8392B;
+  --filz-1: #2F7A66; --filz-2: #235E50; --filz-holz: #6E4A24; --filz-messing: #C9A45C;
+  --weich: #EE9A55; --weich-bg: rgba(238, 154, 85, .2);   /* Fehler: warm, nie rot */
+  --auf-nacht: #EEF1FA;          /* Fließtext auf Nacht */
+  --auf-nacht-leise: #C9D3F2;
+  --schleier: rgba(12, 18, 40, .62);                       /* hinter Überlagerungen */
+  --perle: radial-gradient(circle at 35% 30%, #FFF4C8, var(--senf) 55%, var(--senf-dunkel));
+  --nadel: radial-gradient(circle at 35% 30%, #FF9A8C, var(--faden) 60%);
+  --gold: linear-gradient(var(--gold-1), var(--gold-2));
+
+  /* ---------- Schrift ---------- */
+  --schrift: 'Inter Schule', system-ui, sans-serif;
+  --schrift-formen: 'cv05' 1, 'cv11' 1;                    /* Schulformen von a und l – nie entfernen */
+  /* Stufen der Oberfläche (rem: wachsen auf dem Tablet mit der Grundgröße in basis.css) */
+  --t-etikett: .75rem;      /* 12 · Etiketten in Großbuchstaben; kleinste erlaubte Schrift */
+  --t-fein: .8125rem;       /* 13 · Kartentext, Nebenangaben */
+  --t-klein: .875rem;       /* 14 · Hinweise, Zettel */
+  --t-text: 1rem;           /* 16 · Text in Sprechblasen und Dialogen */
+  --t-knopf: 1.125rem;      /* 18 · Knöpfe, Aufgabentext, Antworten */
+  --t-gross: 1.3125rem;     /* 21 · betonte Sätze */
+  --t-titel: 1.5625rem;     /* 25 · Rätseltitel, Haken */
+  --t-buehne: 1.875rem;     /* 30 · große Überschriften */
+  --t-cover: 2.125rem;      /* 34 · Titel und Kapitelkarte */
+  /* Lesetext: --fs stellt das Kind über „Aa“ ein (18–26 px, main.ts). --lese-skala hebt ihn auf dem Tablet an. */
+  --fs: 20px;
+  --lese-skala: 1;
+  --t-lesen: calc(var(--fs) * var(--lese-skala));
+  --zh-lesen: 1.58;
+  --zh-eng: 1.15; --zh-text: 1.4;
+
+  /* ---------- Abstände ---------- */
+  --a-1: .25rem; --a-2: .5rem; --a-3: .75rem; --a-4: 1rem; --a-5: 1.5rem; --a-6: 2rem;
+
+  /* ---------- Radien ---------- */
+  --r-papier: .3125rem;     /* 5 · Fotos, Zettel, Brettkarten */
+  --r-karte: .5rem;         /* 8 · Karten */
+  --r-feld: .875rem;        /* 14 · Antwortfelder, Bildrahmen */
+  --r-tafel: 1.375rem;      /* 22 · Spielfläche, Überlagerungen */
+  --r-rund: 999px;
+
+  /* ---------- Schatten und Rahmen ---------- */
+  --sch-karte: 0 2px 0 rgba(0, 0, 0, .06), 0 8px 16px rgba(40, 25, 0, .26);
+  --sch-knopf: 0 3px 0 var(--kante), 0 8px 14px rgba(0, 0, 0, .28);
+  --sch-gold: 0 4px 0 var(--senf-dunkel), 0 10px 22px rgba(120, 80, 0, .28), 0 0 22px rgba(244, 194, 67, .35);
+  --sch-bild: 0 10px 22px rgba(0, 0, 0, .35);
+  --sch-schwebe: 0 20px 50px rgba(0, 0, 0, .5);
+  --rahmen-bild: 4px solid #fff;
+  --rahmen-wahl: 3px solid transparent;                    /* wird bei Auswahl senffarben */
+
+  /* ---------- Maße ---------- */
+  --tipp: 2.75rem;          /* 44 · kleinste Tippfläche */
+  --knopf-h: 3.375rem;      /* 54 · Hauptknopf, runde Blätterknöpfe */
+  --knopf-h-still: 3rem;    /* 48 · Nebenknopf */
+  --kopf-knopf: 2.75rem;    /* 44 · Knöpfe im Kopf */
+  --stein: 2.75rem;         /* 44 · Buchstabenstein (Breite); wird in Spielen aus der Fläche berechnet */
+  /* größte Breiten: Lesespalte in Zeichen des Lesetexts, Spiel und Dialog in rem */
+  --mass-lesen: 30em;
+  --mass-spiel: 46rem;
+  --mass-spiel-quer: 68rem;
+  --mass-dialog: 30rem;
+  --mass-knopf: 26rem;
+  --mass-app: 80rem;        /* darüber liegt die App als Buch auf dem Nachthimmel */
+
+  /* ---------- Ränder ---------- */
+  --rand: clamp(.875rem, 4.4vw, 1.5rem);                   /* seitlicher Rand jeder Ansicht */
+  --luft: var(--a-3);                                      /* Abstand zwischen Blöcken einer Ansicht */
+  /* Systemränder: Capacitor (SystemBars, insetsHandling 'css') setzt --safe-area-inset-*; im Browser gilt env(). Nur hier lesen. */
+  --oben: var(--safe-area-inset-top, env(safe-area-inset-top, 0px));
+  --unten: var(--safe-area-inset-bottom, env(safe-area-inset-bottom, 0px));
+  --links: var(--safe-area-inset-left, env(safe-area-inset-left, 0px));
+  --rechts: var(--safe-area-inset-right, env(safe-area-inset-right, 0px));
+
+  /* ---------- Ebenen ---------- */
+  --z-fuss: 2; --z-kopf: 3; --z-moment: 4; --z-ueber: 5; --z-ueber-mitte: 6; --z-zieht: 20; --z-effekt: 80;
+
+  /* ---------- Bewegung ---------- */
+  --dauer-druck: .12s; --dauer: .25s; --dauer-lang: .5s;
+  --feder: cubic-bezier(.2, 1.6, .4, 1);
+  --gleiten: cubic-bezier(.3, 1, .4, 1);
+
+  color-scheme: light;
+}

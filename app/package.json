@@ -1,0 +1,27 @@
+{
+  "name": "lesefall",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "data": "node scripts/build-data.ts && node scripts/build-v7.ts && node scripts/build-v8.ts",
+    "dev": "npm run data && vite",
+    "build": "npm run data && tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test:e2e": "node scripts/e2e.mjs",
+    "test:v8": "node scripts/e2e-v8.mjs 390 844 telefon && node scripts/e2e-v8.mjs 1280 800 rechner",
+    "test:ui": "node scripts/ui-audit.mjs --name=pruefung",
+    "android": "npm run build && node scripts/android-start.mjs && cap sync android"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^8.6.0",
+    "@types/node": "^22.20.5",
+    "typescript": "5.9",
+    "vite": "^7.3.7"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.6.0",
+    "@capacitor/app": "^8.1.2",
+    "@capacitor/core": "^8.6.0"
+  }
+}

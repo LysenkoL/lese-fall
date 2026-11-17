@@ -1,0 +1,302 @@
+/* Lese-Fall · UI-System · 2 · Basis
+   Schrift, Grundregeln, Grundgröße je Gerät, Schale (Kopf · Bühne · Fuß · Überlagerung) und die
+   Rahmen der Ansichtsarten (Mitte, Lesen, Rätsel, Brett). Hier steht die Geometrie; das Aussehen
+   der Teile steht in komponenten.css, das der einzelnen Ansichten und Spiele in ihren Dateien.
+
+   Die vier Grundsätze (ausführlich in app/UI-SYSTEM.md):
+   1. Eine Grundgröße: alle Maße der Oberfläche sind rem. Tablet = größere Grundgröße, nicht andere Regeln.
+   2. Die Bühne kennt ihre Größe: #buehne ist ein Container. Was von der freien Höhe abhängt, rechnet
+      mit cqh/cqw der Bühne – nie mit dvh minus einer geschätzten Zahl.
+   3. Rollende Flächen stauchen nichts: Kinder einer rollenden Ansicht haben flex-shrink 0.
+      Passt etwas nicht, rollt die Ansicht – es überlappt nie.
+   4. Systemränder werden genau einmal gezählt: oben im Kopf (oder an der Bühne, wenn der Kopf fehlt),
+      unten im Fuß und in Überlagerungen, seitlich an #app. */
+
+/* ---------- Schrift ---------- */
+@font-face { font-family: 'Inter Schule'; src: url('../../../../assets/fonts/Inter-Medium.woff2') format('woff2'); font-weight: 400 500; font-display: block; }
+@font-face { font-family: 'Inter Schule'; src: url('../../../../assets/fonts/Inter-SemiBold.woff2') format('woff2'); font-weight: 600 700; font-display: block; }
+@font-face { font-family: 'Inter Schule'; src: url('../../../../assets/fonts/Inter-ExtraBold.woff2') format('woff2'); font-weight: 800 900; font-display: block; }
+
+/* ---------- Grundregeln ---------- */
+* { box-sizing: border-box; }
+button {
+  font-family: var(--schrift);
+  font-feature-settings: var(--schrift-formen);
+  font-size: inherit;
+  color: inherit;
+  border: 0;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+[hidden] { display: none !important; }
+img { -webkit-user-drag: none; user-select: none; max-width: 100%; }
+h1, h2, h3, h4, p { margin: 0; }
+svg { width: 1.5rem; height: 1.5rem; flex: none; }
+html { margin: 0; height: 100%; overflow: hidden; background: linear-gradient(var(--nacht-hell), var(--nacht-1) 70%) fixed; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--schrift);
+  font-feature-settings: var(--schrift-formen);
+  color: var(--tinte);
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+  background: linear-gradient(var(--nacht-hell), var(--nacht-1) 70%) fixed;
+}
+html :focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+html :focus-visible:where(:not(.bkarte)) { box-shadow: 0 0 0 7px rgba(244, 194, 67, .75); border-radius: inherit; }
+.zug:focus-visible, .blatt:focus-visible, input:focus-visible { box-shadow: none; outline-color: var(--senf); }
+
+/* ---------- Silbenfarben ---------- */
+.s-b { color: var(--blau); }
+.s-r { color: var(--rot); }
+.ohne-silben .s-b, .ohne-silben .s-r { color: inherit; }
+
+/* ---------- Grundgröße je Gerät (der einzige Ort für Geräte-Stufen) ---------- */
+@media (min-width: 600px) and (min-height: 700px) { :root { font-size: 112.5%; --lese-skala: 1.1; } }
+@media (min-width: 900px) and (min-height: 700px) { :root { font-size: 118.75%; --lese-skala: 1.15; } }
+@media (min-width: 1100px) and (min-height: 760px) { :root { font-size: 125%; --lese-skala: 1.2; } }
+/* wenig Höhe (kleines Telefon, Telefon quer, Tastatur offen): alles Senkrechte wird knapper */
+@media (max-height: 640px) { :root { --knopf-h: 3rem; --knopf-h-still: 2.75rem; --luft: var(--a-2); --kopf-knopf: 2.5rem; } }
+
+/* ---------- Schale ---------- */
+#app {
+  position: fixed; inset: 0; padding: 0 var(--rechts) 0 var(--links);
+  display: grid; grid-template: auto minmax(0, 1fr) auto / minmax(0, 1fr);
+  overflow: hidden; isolation: isolate; touch-action: manipulation; /* kein Doppeltipp-Zoom */
+  background: linear-gradient(var(--nacht-hell), var(--nacht-1) 70%);
+}
+#app[data-m="zug"], #app[data-m="haken"], #app[data-m="titel"] { color: #fff; }
+#app[data-m="zug"]::before, #app[data-m="haken"]::before, #app[data-m="titel"]::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .75;
+  background-image: radial-gradient(1.2px 1.2px at 12% 18%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 31% 9%, #fff 50%, transparent 51%), radial-gradient(1.6px 1.6px at 47% 24%, #FFE9A6 50%, transparent 51%), radial-gradient(1px 1px at 63% 12%, #fff 50%, transparent 51%), radial-gradient(1.3px 1.3px at 78% 21%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 91% 7%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 22% 33%, #fff 50%, transparent 51%), radial-gradient(1.4px 1.4px at 86% 36%, #FFE9A6 50%, transparent 51%), radial-gradient(1px 1px at 55% 40%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 6% 44%, #fff 50%, transparent 51%);
+  mask-image: linear-gradient(#000 0, transparent 62%);
+}
+#app[data-m="brett"] { background: var(--nacht-1); }
+#buehne { grid-row: 2; position: relative; min-width: 0; min-height: 0; overflow: hidden; container: buehne / size; }
+#buehne > .ein2:not(.probe) { animation: wechselEin .26s ease-out backwards; }
+/* Ansichten ohne Kopf (Titel, Vorgeschichte, Kapitelkarte, Fallkarte, Finale): die Bühne hält den oberen Systemrand frei */
+.kopf[hidden] ~ #buehne { margin-top: var(--oben); }
+
+/* ---------- Kopf: erste Zeile Knöpfe und Titel, zweite Zeile der Weg der Raupe (eigene Zeile – verdeckt nie Text) ---------- */
+.kopf {
+  grid-row: 1; position: relative; z-index: var(--z-kopf);
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--a-2);
+  padding: calc(var(--oben) + var(--a-2)) max(var(--rand), calc((100% - var(--mass-spiel-quer)) / 2)) var(--a-1);
+  color: #fff;
+  background: radial-gradient(120% 140% at 80% -40%, #34478A 0, transparent 60%), linear-gradient(var(--kopf-1), var(--kopf-2));
+  box-shadow: 0 1px 0 rgba(244, 194, 67, .35), 0 8px 18px rgba(0, 0, 0, .28);
+}
+.kt { flex: 1; min-width: 0; display: flex; flex-direction: column; line-height: var(--zh-eng); padding-left: var(--a-1); }
+.kt b { font-weight: 800; font-size: var(--t-knopf); letter-spacing: .01em; white-space: nowrap; }
+.kt span { font-size: var(--t-fein); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--auf-nacht-leise); }
+.kt .s-b, .kt .s-r { color: inherit; }
+/* schmale Kopfzeile: der Kapitelname fällt weg, „Kapitel n“ bleibt */
+@media (max-width: 479px) { .kt-titel { display: none; } .kt b, .kt span { white-space: normal; } } /* große Systemschrift: lieber umbrechen als überlappen */
+.kb {
+  width: var(--kopf-knopf); height: var(--kopf-knopf); border-radius: var(--r-feld);
+  display: grid; place-items: center; position: relative; flex: none;
+  background: rgba(255, 255, 255, .1); color: #fff;
+  transition: transform var(--dauer-druck) ease, box-shadow var(--dauer-druck) ease, filter .2s, opacity .2s;
+}
+.kb:active { transform: translateY(2px) scale(.985); }
+.kb.aa { font-weight: 800; font-size: var(--t-text); }
+.kopf .kb.aa { border-radius: 50%; background: rgba(255, 255, 255, .08); box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .28); }
+.kb.brettb { width: auto; min-width: var(--kopf-knopf); justify-content: center; padding: 0 var(--a-3) 0 .625rem; gap: .375rem; display: flex; align-items: center; font-weight: 800; font-size: var(--t-klein); }
+.kb.brettb svg { width: 1.375rem; height: 1.375rem; }
+.kopf .kb.brettb { background: rgba(255, 255, 255, .08); color: var(--senf-hell); border-radius: var(--a-3); box-shadow: inset 0 0 0 1.5px rgba(244, 194, 67, .6); }
+.kopf .kb.brettb:active { transform: translateY(1px); box-shadow: inset 0 0 0 1.5px rgba(244, 194, 67, .9); }
+@media (max-width: 359px) { .kb.brettb { padding: 0 var(--a-2); } .kb.brettb span { display: none; } }
+.perl {
+  font-weight: 800; font-size: var(--t-klein); display: flex; align-items: center; gap: .3125rem; flex: none;
+  background: rgba(0, 0, 0, .28); box-shadow: inset 0 0 0 1.5px rgba(244, 194, 67, .55); border-radius: var(--r-rund); padding: .3125rem .6875rem .3125rem .4375rem;
+}
+.perl::before { content: ''; width: 1rem; height: 1rem; border-radius: 50%; background: var(--perle); }
+.mondp { flex: none; display: block; width: 1.875rem; height: 1.875rem; filter: drop-shadow(0 0 6px rgba(246, 211, 91, .55)); }
+.mondp svg { width: 100%; height: 100%; display: block; }
+.mondp svg.voll { filter: drop-shadow(0 0 5px rgba(246, 211, 91, .9)); }
+/* Weg der Raupe: Schiene unten in der zweiten Zeile, die Raupe steht darauf */
+.kweg { --schiene: .4375rem; --schiene-u: .3125rem; order: 9; flex: 0 0 100%; position: relative; height: 1.875rem; }
+.kweg::before, .kweg::after, .kweg i { content: ''; position: absolute; left: 0; bottom: var(--schiene-u); height: var(--schiene); border-radius: 3px; }
+.kweg::before { right: 0; background: rgba(255, 255, 255, .13); }
+.kweg i { width: var(--weg, 0%); background: linear-gradient(90deg, #8FCB52, var(--senf)); transition: width .9s var(--gleiten); }
+.kweg::after { right: 0; background: repeating-linear-gradient(90deg, transparent 0 calc(100% / var(--teile, 6) - 3px), var(--kopf-2) calc(100% / var(--teile, 6) - 3px) calc(100% / var(--teile, 6))); }
+.kweg img {
+  position: absolute; z-index: 2; bottom: 1px; left: clamp(.8rem, var(--weg, 0%), calc(100% - .8rem));
+  width: 1.625rem; height: 1.625rem; object-fit: contain; transform: translateX(-50%);
+  transition: left .9s var(--gleiten); filter: drop-shadow(0 0 5px rgba(244, 194, 67, .8)) drop-shadow(0 2px 2px rgba(0, 0, 0, .5));
+}
+@media (max-height: 640px) { .kweg { height: 1.5rem; } .kweg img { width: 1.375rem; height: 1.375rem; } }
+
+/* ---------- Fuß: Knöpfe nie breiter als --mass-knopf, unten der Systemrand (genau einmal) ---------- */
+#fuss { grid-row: 3; position: relative; z-index: var(--z-fuss); padding: var(--a-2) var(--rand) calc(var(--unten) + var(--a-3)); }
+.fz { display: flex; flex-direction: column; gap: var(--a-2); width: min(100%, var(--mass-knopf)); margin-inline: auto; }
+.fl { display: flex; align-items: center; gap: .625rem; }
+#app[data-m="brett"] #fuss { background: linear-gradient(var(--kopf-1), var(--kopf-2)); box-shadow: 0 -1px 0 rgba(244, 194, 67, .3); padding-top: var(--a-3); }
+
+/* ---------- Ansichtsart „Mitte“: Titel, Vorgeschichte, Kapitelkarte, Haken, Ausblick, Schlusswort ---------- */
+.titel, .intro, .kapk, .haken, .fin.raupe-wort {
+  position: absolute; inset: 0; overflow: hidden auto;
+  display: flex; flex-direction: column; align-items: center; justify-content: safe center; gap: var(--a-4);
+  padding: var(--a-5) max(var(--rand), calc((100cqw - 40rem) / 2)) var(--a-3); text-align: center;
+}
+:where(.titel, .intro, .kapk, .haken, .fin.raupe-wort) > :where(:not(.lampe, .himmel)) { position: relative; flex-shrink: 0; }
+
+/* ---------- Ansichtsart „Lesen“: ein Blatt Papier; auf breiten Bildschirmen liegt es auf dem Nachthimmel ---------- */
+#app[data-m="lesen"] { --blatt-b: calc(var(--t-lesen) * 30 + 6rem); }
+#app[data-m="lesen"] #buehne, #app[data-m="lesen"] #fuss {
+  justify-self: center; background-color: var(--papier); color: var(--tinte);
+  /* volle Breite, solange neben dem Blatt nicht wenigstens 4rem Himmel je Seite bleiben */
+  width: min(100%, calc(var(--blatt-b) + clamp(0px, calc((var(--blatt-b) + 8rem - 100vw) * 999), 100vw)));
+}
+#app[data-m="lesen"] #buehne { background-image: radial-gradient(circle at 20% 0, #FFFFFF 0, transparent 55%); }
+#app[data-m="lesen"] #fuss { padding-top: var(--a-3); }
+#app[data-m="lesen"] #fuss::before { content: ''; position: absolute; left: 1.125rem; right: 1.125rem; top: 2px; height: 2px; background: repeating-linear-gradient(90deg, #E2D4B0 0 7px, transparent 7px 13px); }
+.blatt {
+  --rand-blatt: clamp(1.25rem, 5cqw, 3rem);
+  position: absolute; inset: 0; overflow: hidden auto;
+  padding: .875rem max(var(--rand-blatt), calc((100cqw - var(--mass-lesen)) / 2)) var(--a-1);
+  font-size: var(--t-lesen); line-height: var(--zh-lesen); font-weight: 500;
+}
+.blatt.probe { visibility: hidden; pointer-events: none; }
+.blatt.probe > div { display: flow-root; } /* misst auch ein umflossenes Bild mit */
+.blatt .foto { width: min(94%, calc(40cqh * 1.5)); }
+/* breite, niedrige Bühne (Tablet quer): das Bild steht links, der Text läuft daneben weiter */
+@container buehne (min-aspect-ratio: 5 / 4) and (min-width: 36rem) {
+  /* niedrig (Telefon quer): Titel + Bild müssen auf ein Blatt passen → Bildhöhe höchstens Bühne minus Titel und Ränder */
+  .blatt .foto { float: left; width: min(46%, calc(62cqh * 1.5), calc((100cqh - 7.5rem) * 1.5)); margin: .2em 1.1em .5em 0; }
+}
+
+/* ---------- Ansichtsart „Rätsel“: Kopf · Aufgabe · Spielfläche · Raupe ---------- */
+.zug, .fin {
+  /* Höhe, die das Hauptbild eines Spiels haben darf: Bühne minus Nebenhöhen.
+     --neben-kopf: Titel, Aufgabe, Ränder (hier). --neben-spiel: eigene Teile des Spiels (je Spiel an .zug[data-art]). */
+  --neben-kopf: 11rem; --neben-spiel: 0rem; --bild-min: 9rem;
+  --bild-h: max(var(--bild-min), calc(100cqh - var(--neben-kopf) - var(--neben-spiel)));
+}
+.zug {
+  position: absolute; inset: 0; overflow: hidden auto;
+  display: flex; flex-direction: column; gap: var(--luft);
+  padding: var(--a-4) max(var(--rand), calc((100cqw - var(--mass-spiel)) / 2)) var(--a-3);
+  animation: ein .3s both;
+}
+:where(.zug) > :where(:not(.lampe, .wzfx)) { position: relative; flex-shrink: 0; }
+.zr { margin-top: auto; min-height: var(--a-1); color: var(--tinte); }
+/* breite, niedrige Bühne (Tablet quer): Aufgabe und Raupe links, Spielfläche rechts in voller Höhe */
+@container buehne (min-aspect-ratio: 5 / 4) and (min-width: 46rem) {
+  .zug[data-art] {
+    --neben-kopf: 4.5rem;
+    display: grid; grid-template-columns: minmax(15rem, 32%) minmax(0, 1fr); grid-template-rows: auto auto 1fr;
+    column-gap: var(--a-5); align-content: start;
+    padding-inline: max(var(--rand), calc((100cqw - var(--mass-spiel-quer)) / 2));
+  }
+  .zug[data-art] > .zk { grid-area: 1 / 1; }
+  .zug[data-art] > .zt1 { grid-area: 2 / 1; }
+  .zug[data-art] > .zr { grid-area: 3 / 1; align-self: safe end; margin-top: 0; } /* safe: wenig Höhe → Raupe rutscht unter den Text, nie darüber */
+  .zug[data-art] > .zi { grid-area: 1 / 2 / -1 / 2; align-self: safe center; margin-top: 0; }
+}
+
+/* ---------- Ansichtsart „Brett“ ---------- */
+.brett {
+  position: absolute; inset: 0; overflow: hidden auto;
+  display: flex; flex-direction: column; gap: var(--luft);
+  padding: var(--a-4) max(var(--a-4), calc((100cqw - var(--mass-spiel)) / 2)) .875rem;
+}
+.brett > * { flex-shrink: 0; }
+.ak { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--a-2); }
+@container buehne (min-aspect-ratio: 5 / 4) and (min-width: 46rem) {
+  #buehne > .brett { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); column-gap: var(--a-5); align-content: start;
+    padding-inline: max(var(--a-4), calc((100cqw - var(--mass-spiel-quer)) / 2)); }
+  #buehne > .brett > .ak { grid-column: 1 / -1; }
+  #buehne > .brett > .wischz { grid-column: 1; grid-row: 2; }
+  #buehne > .brett > .bgrid { grid-column: 1; grid-row: 3 / span 8; }
+  #buehne > .brett > h3, #buehne > .brett > .fr-frage, #buehne > .brett > .fragen, #buehne > .brett > .codez { grid-column: 2; }
+}
+
+/* ---------- Überlagerungen: Blatt von unten (Telefon) oder Dialog in der Mitte (ab 600 px) ---------- */
+#ueber:empty { display: none; }
+.schl {
+  position: absolute; inset: 0; z-index: var(--z-ueber); display: flex; align-items: flex-end; justify-content: center;
+  padding: calc(var(--oben) + var(--a-4)) var(--rechts) 0 var(--links); background: var(--schleier); animation: ein .2s both;
+}
+.schl > * { max-height: 100%; overflow: hidden auto; }
+.schl.mitte { align-items: center; z-index: var(--z-ueber-mitte); padding-bottom: calc(var(--unten) + var(--a-4)); }
+@media (min-width: 600px) and (min-height: 600px) { .schl { align-items: center; padding-bottom: calc(var(--unten) + var(--a-4)); } }
+
+/* ---------- Himmel und Lampe ---------- */
+.lampe {
+  position: absolute;
+  top: -1.875rem;
+  height: 26.25rem;
+  pointer-events: none;
+  animation: lampe 1.1s both;
+  left: 0;
+  width: 100%;
+  transform: none;
+  background: radial-gradient(ellipse at 50% 0, rgba(160, 190, 255, .2), rgba(160, 190, 255, .06) 40%, transparent 66%);
+}
+#buehne .himmel { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.himmel .mondg {
+  position: absolute;
+  right: 8%;
+  top: 3%;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  background: radial-gradient(circle at 36% 34%, #FFF8D8 0 28%, #F6D35B 78%);
+  box-shadow: 0 0 22px 6px rgba(246, 211, 91, .35), 0 0 70px 26px rgba(246, 211, 91, .14);
+  animation: schein 7s ease-in-out infinite;
+}
+.himmel .mondg::after {
+  content: '';
+  position: absolute;
+  left: 52%;
+  top: 52%;
+  width: .5625rem;
+  height: .5625rem;
+  border-radius: 50%;
+  background: rgba(200, 160, 40, .25);
+  box-shadow: -14px -9px 0 -2px rgba(200, 160, 40, .2), 4px 12px 0 -3px rgba(200, 160, 40, .18);
+}
+.himmel .st {
+  position: absolute;
+  width: .25rem;
+  height: .25rem;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 6px 1px rgba(255, 255, 255, .7);
+  opacity: .15;
+  animation: funkel 5.5s ease-in-out infinite;
+}
+.himmel .s1 { left: 10%; top: 8%; }
+.himmel .s2 { left: 27%; top: 3%; width: 3px; height: 3px; animation-delay: 1.3s; }
+.himmel .s3 { left: 44%; top: 10%; animation-delay: 2.4s; background: #FFE9A6; }
+.himmel .s4 { left: 63%; top: 5%; width: 3px; height: 3px; animation-delay: .7s; }
+.himmel .s5 { left: 20%; top: 17%; width: 3px; height: 3px; animation-delay: 3.4s; }
+.himmel .s6 { left: 88%; top: 19%; animation-delay: 4.1s; background: #FFE9A6; }
+.himmel .s7 { left: 5%; top: 27%; width: 3px; height: 3px; animation-delay: 2s; }
+
+/* ---------- sehr großer Bildschirm (Rechner): die App liegt als Buch auf dem Nachthimmel ---------- */
+@media (min-width: 1440px) and (min-height: 800px) {
+  html, body { background: radial-gradient(circle at 80% 13%, rgba(246, 211, 91, .2), transparent 14%), radial-gradient(ellipse at 50% 115%, rgba(70, 100, 180, .38), transparent 62%), linear-gradient(var(--nacht-0), #18274E 62%, var(--nacht-1)) fixed; }
+  body { display: grid; place-items: center; position: relative; }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: .85;
+    background-image: radial-gradient(1.4px 1.4px at 8% 12%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 17% 41%, #fff 50%, transparent 51%), radial-gradient(1.6px 1.6px at 26% 22%, #FFE9A6 50%, transparent 51%), radial-gradient(1px 1px at 12% 74%, #fff 50%, transparent 51%), radial-gradient(1.3px 1.3px at 33% 88%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 5% 55%, #fff 50%, transparent 51%), radial-gradient(1.3px 1.3px at 66% 9%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 74% 31%, #fff 50%, transparent 51%), radial-gradient(1.6px 1.6px at 91% 44%, #FFE9A6 50%, transparent 51%), radial-gradient(1px 1px at 84% 68%, #fff 50%, transparent 51%), radial-gradient(1.3px 1.3px at 70% 91%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 95% 85%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 58% 4%, #fff 50%, transparent 51%);
+  }
+  #app {
+    position: relative; inset: auto; z-index: 1; width: min(100vw - 4rem, var(--mass-app)); height: min(100dvh - 3rem, 56rem); border-radius: 1.75rem;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, .1), 0 0 0 9px rgba(11, 17, 40, .5), 0 34px 90px rgba(0, 0, 0, .55), 0 0 140px rgba(244, 194, 67, .08);
+  }
+}

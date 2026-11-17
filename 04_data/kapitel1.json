@@ -1,0 +1,1386 @@
+{
+ "_info": "Generiert von app/scripts/build-data.ts – nicht von Hand ändern. Silben mit |, Text ohne | = v6.",
+ "fall": {
+  "titel": "Der ver|schwun|de|ne Mond",
+  "nr": 1
+ },
+ "kapitel": {
+  "nr": 1,
+  "titel": "Wo ist der Mond?"
+ },
+ "vorgeschichte": {
+  "titel": "Ei|ne Rau|pe und ein klei|nes Ge|heim|nis",
+  "blocks": [
+   {
+    "id": "v-p1",
+    "typ": "p",
+    "s": [
+     "In ei|nem hel|len Grup|pen|raum der Grund|schu|le steht am Fens|ter ei|ne gro|ße grü|ne Pflan|ze.",
+     "Auf ei|nem ih|rer Blät|ter lebt die klei|ne **Le|se-Rau|pe**."
+    ]
+   },
+   {
+    "id": "v-p2",
+    "typ": "p",
+    "s": [
+     "Sie liebt Ge|schich|ten, knab|bert gern an fri|schen Blät|tern und hat ei|nen gro|ßen Traum: Ei|nes Ta|ges möch|te sie ein wun|der|schö|ner Schmet|ter|ling sein.",
+     "Dann könn|te sie ü|ber die Schu|le flie|gen und die gan|ze Welt ent|de|cken."
+    ]
+   },
+   {
+    "id": "v-p3",
+    "typ": "p",
+    "s": [
+     "Doch die Le|se-Rau|pe hat schon jetzt ein Ge|heim|nis.",
+     "Wenn ir|gend|wo et|was Rät|sel|haf|tes pas|siert, be|gin|nen ih|re Füh|ler ganz lei|se gol|den zu leuch|ten.",
+     "Die Men|schen be|mer|ken das nicht.",
+     "Und ih|re Ge|dan|ken kön|nen sie auch nicht hö|ren."
+    ]
+   },
+   {
+    "id": "v-p4",
+    "typ": "p",
+    "s": [
+     "**Du a|ber kannst sie hö|ren!**",
+     "Denn die Leucht-Füh|ler ver|bin|den die Le|se-Rau|pe mit ih|rem ge|hei|men Er|mitt|ler|part|ner: dir."
+    ]
+   },
+   {
+    "id": "v-p5",
+    "typ": "p",
+    "s": [
+     "Un|ter ih|rem Lieb|lings|blatt be|wahrt sie ei|nen be|son|de|ren Schatz auf: ei|ne win|zi|ge **Tau|trop|fen-Lu|pe**.",
+     "Ein Trop|fen Mor|gen|tau sitzt in ei|nem Ring aus Gras und trock|net nie|mals aus.",
+     "Mit die|ser Lu|pe ent|deckt die Le|se-Rau|pe selbst win|zi|ge Spu|ren – a|ber nur, wenn sie die Spu|ren von ih|rem Platz aus wirk|lich se|hen kann.",
+     "Durch Wän|de o|der auf ver|bor|ge|ne Rück|sei|ten kann auch ei|ne Zau|ber|lu|pe nicht schau|en."
+    ]
+   },
+   {
+    "id": "v-p6",
+    "typ": "p",
+    "s": [
+     "Und noch et|was kann die Le|se-Rau|pe be|son|ders gut: Sie ist lang|sam.",
+     "Wäh|rend an|de|re schon wei|ter|lau|fen, bleibt sie ste|hen, schaut noch ein|mal hin und be|merkt manch|mal ge|nau das, was al|le ü|ber|se|hen.",
+     "Sie nennt das ih|ren **Zeit|lu|pen-Blick**.",
+     "Die Zeit bleibt da|bei nicht ste|hen.",
+     "Nur die Le|se-Rau|pe lässt sich Zeit."
+    ]
+   },
+   {
+    "id": "v-p7",
+    "typ": "p",
+    "s": [
+     "Wenn du mit ihr ein Rät|sel löst, sam|melt ihr klei|ne glit|zern|de **Schim|mer-Per|len**.",
+     "Spä|ter könnt ihr da|mit die Le|se-Rau|pe schmü|cken.",
+     "Ih|re Schmet|ter|lings|flü|gel muss sie al|ler|dings noch ganz von selbst be|kom|men."
+    ]
+   },
+   {
+    "id": "v-p8",
+    "typ": "th",
+    "s": [
+     "„Al|so gut“, denkt die Le|se-Rau|pe und rückt ih|re Lu|pe zu|recht.",
+     "„Du liest.",
+     "Ich schau|e ge|nau hin.",
+     "Und wenn wir uns ein|mal ir|ren, su|chen wir ge|mein|sam den Be|weis.“"
+    ]
+   },
+   {
+    "id": "v-p9",
+    "typ": "p",
+    "s": [
+     "**Bist du be|reit für un|se|ren ers|ten Le|se-Fall?**"
+    ]
+   }
+  ]
+ },
+ "spuren": [
+  {
+   "spur": 1,
+   "titel": "Ein The|a|ter für al|le",
+   "blocks": [
+    {
+     "id": "s1-p1",
+     "typ": "p",
+     "s": [
+      "Heu|te ist Frei|tag.",
+      "Im Grup|pen|raum der Schu|le geht es be|son|ders leb|haft zu."
+     ]
+    },
+    {
+     "id": "s1-p2",
+     "typ": "p",
+     "s": [
+      "Mi|la, Ben und Os|kar be|rei|ten ei|ne Ü|ber|ra|schung vor: Am Nach|mit|tag wol|len sie den an|de|ren Kin|dern ein klei|nes The|a|ter|stück zei|gen."
+     ]
+    },
+    {
+     "id": "s1-p3",
+     "typ": "p",
+     "s": [
+      "Ben hat das Pup|pen|the|a|ter schon auf den gro|ßen Tisch am Fens|ter ge|stellt.",
+      "Os|kar sitzt drau|ßen vor dem of|fe|nen Fens|ter auf der Bank.",
+      "Er trägt sei|nen rot-weiß ge|streif|ten Pul|li mit Ka|pu|ze und bas|telt an ei|ner klei|nen grau|en Pa|pier|maus."
+     ]
+    },
+    {
+     "id": "s1-p4",
+     "typ": "p",
+     "s": [
+      "„Un|ser The|a|ter braucht noch ei|nen Him|mel!“, sagt Mi|la."
+     ]
+    },
+    {
+     "id": "s1-p5",
+     "typ": "p",
+     "s": [
+      "Sie zeigt Ben ei|nen gro|ßen gel|ben Mond aus Pap|pe.",
+      "O|ben hängt ein lan|ger wei|ßer Fa|den da|ran.",
+      "Auf die wei|ße Rück|sei|te hat Mi|la ei|nen win|zi|gen blau|en Stern ge|malt."
+     ]
+    },
+    {
+     "id": "s1-p6",
+     "typ": "p",
+     "s": [
+      "„Da|mit ich mei|nen Mond im|mer wie|der|er|ken|ne“, er|klärt sie stolz."
+     ]
+    },
+    {
+     "id": "s1-p7",
+     "typ": "p",
+     "s": [
+      "Ü|ber dem ro|ten Vor|hang hängt schon ei|ne wei|ße Wol|ke.",
+      "Links da|ne|ben soll der Mond sei|nen Platz be|kom|men."
+     ]
+    },
+    {
+     "id": "s1-p8",
+     "typ": "p",
+     "s": [
+      "Vom Blu|men|topf am Fens|ter schaut die klei|ne Le|se-Rau|pe neu|gie|rig zu."
+     ]
+    },
+    {
+     "id": "s1-p9",
+     "typ": "th",
+     "s": [
+      "„Ein Mond mit|ten am Tag?“, denkt sie.",
+      "„Die|se Kin|der ha|ben wirk|lich selt|sa|me I|de|en.“"
+     ]
+    }
+   ],
+   "spiel": {
+    "spur": 1,
+    "spiel": "Hin da|mit!",
+    "motor": "zielfeld",
+    "bildVorher": "k1_s1",
+    "bildNachher": "k1_s1",
+    "fund": {
+     "bild": "objekte/mond_vorne",
+     "text": "Mi|las Mond",
+     "fazit": "Der Mond hing links ne|ben der Wol|ke.",
+     "beweis": [
+      "s1-p7-1"
+     ]
+    },
+    "kind": "mila/froh",
+    "sieg": "Du hast den Mond an die rich|ti|ge Stel|le ge|hängt: links ne|ben die wei|ße Wol|ke.",
+    "schritte": [
+     {
+      "intro": "Wo soll Mi|las Mond hän|gen? Zieh den Mond an sei|nen Platz am The|a|ter.",
+      "layout": "theater",
+      "hintergrund": "spiel_theater_leer",
+      "ausschnitt": {
+       "x": 0.4297,
+       "y": 0.0977,
+       "w": 0.3776,
+       "h": 0.4883,
+       "seite": 1.16
+      },
+      "zonen": [
+       {
+        "id": "links",
+        "label": "links ne|ben der Wol|ke",
+        "x": 34,
+        "y": 17,
+        "w": 15
+       },
+       {
+        "id": "rechts",
+        "label": "rechts ne|ben der Wol|ke",
+        "x": 72,
+        "y": 17,
+        "w": 15
+       },
+       {
+        "id": "unten",
+        "label": "un|ten vor dem Vor|hang",
+        "x": 50,
+        "y": 58,
+        "w": 20
+       }
+      ],
+      "dinge": [
+       {
+        "id": "mond",
+        "bild": "objekte/mond_vorne",
+        "label": "Mi|las Mond"
+       }
+      ],
+      "loesung": {
+       "mond": "links"
+      },
+      "beweis": [
+       "s1-p7-0",
+       "s1-p7-1"
+      ],
+      "ask": "Wo soll der Mond hän|gen? Tip|pe auf den Satz, der es ver|rät.",
+      "near": "Such dort, wo von der wei|ßen Wol|ke er|zählt wird.",
+      "help": "Lies ge|nau: Auf wel|cher Sei|te ne|ben der Wol|ke ist der Platz für den Mond?",
+      "explain": "Im Text steht: „Ü|ber dem ro|ten Vor|hang hängt schon ei|ne wei|ße Wol|ke. Links da|ne|ben soll der Mond sei|nen Platz be|kom|men.“ Da|ne|ben heißt hier: ne|ben der wei|ßen Wol|ke.",
+      "motor": "zielfeld"
+     }
+    ]
+   }
+  },
+  {
+   "spur": 2,
+   "titel": "Ein selt|sa|mes Früh|stück",
+   "blocks": [
+    {
+     "id": "s2-p1",
+     "typ": "p",
+     "s": [
+      "End|lich hängt der gel|be Mond an sei|nem Fa|den ü|ber dem Vor|hang."
+     ]
+    },
+    {
+     "id": "s2-p2",
+     "typ": "p",
+     "s": [
+      "„Wun|der|bar!“, sagt Mi|la.",
+      "„Jetzt feh|len nur noch un|se|re Pup|pen.“"
+     ]
+    },
+    {
+     "id": "s2-p3",
+     "typ": "p",
+     "s": [
+      "Sie läuft zum gro|ßen Schrank auf der an|de|ren Sei|te des Rau|mes.",
+      "Ben bleibt am The|a|ter und schaut sich den Mond ge|nau an."
+     ]
+    },
+    {
+     "id": "s2-p4",
+     "typ": "p",
+     "s": [
+      "Die Le|se-Rau|pe ent|deckt et|was an|de|res.",
+      "Di|rekt ne|ben ih|rem Blu|men|topf liegt ein klei|nes grü|nes Blatt.",
+      "E|ben war es noch nicht da."
+     ]
+    },
+    {
+     "id": "s2-p5",
+     "typ": "th",
+     "s": [
+      "„Oh“, denkt sie.",
+      "„Das sieht nach ei|nem köst|li|chen Früh|stück aus!“"
+     ]
+    },
+    {
+     "id": "s2-p6",
+     "typ": "p",
+     "s": [
+      "Sie beißt kräf|tig in die E|cke."
+     ]
+    },
+    {
+     "id": "s2-p7",
+     "typ": "p",
+     "s": [
+      "*KNURPS!*"
+     ]
+    },
+    {
+     "id": "s2-p8",
+     "typ": "p",
+     "s": [
+      "„Iiiiih!“"
+     ]
+    },
+    {
+     "id": "s2-p9",
+     "typ": "p",
+     "s": [
+      "Das Blatt ist gar kein Pflan|zen|blatt.",
+      "Es ist ein Schnip|sel aus Pa|pier."
+     ]
+    },
+    {
+     "id": "s2-p10",
+     "typ": "th",
+     "s": [
+      "„Wer legt denn Pa|pier zum Früh|stück hin?“, schimpft die Rau|pe in Ge|dan|ken."
+     ]
+    },
+    {
+     "id": "s2-p11",
+     "typ": "p",
+     "s": [
+      "Sie spuckt und spuckt.",
+      "Dann kriecht sie un|ter ihr größ|tes Blatt und wischt sich den Mund ab.",
+      "Das dau|ert ei|ne gan|ze Wei|le."
+     ]
+    },
+    {
+     "id": "s2-p12",
+     "typ": "p",
+     "s": [
+      "Durch ei|nen Spalt zwi|schen den Blät|tern sieht sie kurz ei|nen rot-weiß ge|streif|ten Är|mel.",
+      "Un|ten am Tisch greift er nach et|was.",
+      "Dann ist er weg."
+     ]
+    },
+    {
+     "id": "s2-p13",
+     "typ": "p",
+     "s": [
+      "End|lich krab|belt sie her|vor und schaut zum The|a|ter."
+     ]
+    },
+    {
+     "id": "s2-p14",
+     "typ": "p",
+     "s": [
+      "Der ro|te Vor|hang hängt noch da.",
+      "Die wei|ße Wol|ke auch."
+     ]
+    },
+    {
+     "id": "s2-p15",
+     "typ": "p",
+     "s": [
+      "A|ber der gel|be Mond ist ver|schwun|den!"
+     ]
+    },
+    {
+     "id": "s2-p16",
+     "typ": "th",
+     "s": [
+      "Ih|re Füh|ler|spit|zen leuch|ten gol|den.",
+      "„Das sieht ganz nach un|se|rem ers|ten Fall aus“, denkt sie."
+     ]
+    }
+   ],
+   "spiel": {
+    "spur": 2,
+    "spiel": "Nach|ge|baut!",
+    "motor": "slots",
+    "bildVorher": "k1_s2_vorher",
+    "bildNachher": "k1_s2_nachher",
+    "fund": {
+     "bild": "objekte/gras_papier",
+     "text": "das grü|ne Pa|pier",
+     "fazit": "Die Le|se-Rau|pe war ver|steckt. Sie hat nichts ge|se|hen.",
+     "beweis": [
+      "s2-p11-1"
+     ]
+    },
+    "kind": "ben/staunt",
+    "sieg": "Du hast ge|nau hin|ge|se|hen: Vor|hang und Wol|ke sind noch da, nur der Mond fehlt. Und die Le|se-Rau|pe war un|ter ih|rem größ|ten Blatt.",
+    "schritte": [
+     {
+      "intro": "Die Le|se-Rau|pe krab|belt wie|der her|vor. Was hängt jetzt noch am The|a|ter? Was ist nicht mehr da?",
+      "karten": [
+       {
+        "id": "vorhang",
+        "bild": "vorhang",
+        "label": "der ro|te Vor|hang"
+       },
+       {
+        "id": "wolke",
+        "bild": "objekte/wolke",
+        "label": "die wei|ße Wol|ke"
+       },
+       {
+        "id": "mond",
+        "bild": "objekte/mond_vorne",
+        "label": "der gel|be Mond"
+       },
+       {
+        "id": "puppen",
+        "bild": "objekte/kiste_gruen",
+        "label": "die Pup|pen"
+       }
+      ],
+      "loesung": {
+       "vorhang": "ziel",
+       "wolke": "ziel",
+       "mond": "weg",
+       "puppen": null
+      },
+      "beweis": [
+       "s2-p14-0",
+       "s2-p14-1",
+       "s2-p15-0"
+      ],
+      "ask": "Was hängt noch am The|a|ter? Tip|pe auf ei|nen Satz, der es ver|rät.",
+      "near": "Such dort, wo die Le|se-Rau|pe end|lich wie|der her|vor|krab|belt.",
+      "help": "Lies die kur|zen Sät|ze nach „End|lich krab|belt sie her|vor“ ganz ge|nau. Was ist noch da? Was fehlt?",
+      "explain": "Im Text steht: „Der ro|te Vor|hang hängt noch da. Die wei|ße Wol|ke auch. A|ber der gel|be Mond ist ver|schwun|den!“ Die Pup|pen holt Mi|la ge|ra|de aus dem Schrank.",
+      "koerbe": [
+       {
+        "id": "ziel",
+        "label": "Am The|a|ter"
+       },
+       {
+        "id": "weg",
+        "label": "Nicht mehr da"
+       }
+      ],
+      "zwischen": "Vor|hang und Wol|ke sind noch da.",
+      "motor": "slots"
+     },
+     {
+      "motor": "zielfeld",
+      "layout": "theater",
+      "intro": "Wo war die Le|se-Rau|pe, als der Mond ver|schwun|den ist? Leg sie an die rich|ti|ge Stel|le.",
+      "hintergrund": "spiel_fensterbank_leer",
+      "ausschnitt": {
+       "x": 0,
+       "y": 0,
+       "w": 1,
+       "h": 1,
+       "seite": 1.5
+      },
+      "zonen": [
+       {
+        "id": "blatt",
+        "label": "un|ter ih|rem größ|ten Blatt",
+        "x": 45,
+        "y": 60,
+        "w": 15
+       },
+       {
+        "id": "topf",
+        "label": "auf dem Blu|men|topf",
+        "x": 10,
+        "y": 64,
+        "w": 14
+       },
+       {
+        "id": "fenster",
+        "label": "am Fens|ter",
+        "x": 90,
+        "y": 32,
+        "w": 14
+       },
+       {
+        "id": "tisch",
+        "label": "auf dem Tisch",
+        "x": 90,
+        "y": 86,
+        "w": 13
+       }
+      ],
+      "dinge": [
+       {
+        "id": "raupe",
+        "bild": "frei/raupe_staunt",
+        "label": "die Le|se-Rau|pe"
+       }
+      ],
+      "loesung": {
+       "raupe": "blatt"
+      },
+      "beweis": [
+       "s2-p11-1",
+       "s2-p11-2"
+      ],
+      "ask": "Wo war die Le|se-Rau|pe, als der Mond ver|schwun|den ist? Tip|pe auf den Satz, der es ver|rät.",
+      "near": "Such dort, wo die Le|se-Rau|pe das Pa|pier aus|spuckt.",
+      "help": "Was macht die Le|se-Rau|pe gleich nach dem Spu|cken?",
+      "explain": "Im Text steht: „Dann kriecht sie un|ter ihr größ|tes Blatt und wischt sich den Mund ab. Das dau|ert ei|ne gan|ze Wei|le.“ Von dort konn|te sie das The|a|ter nicht se|hen."
+     }
+    ]
+   }
+  },
+  {
+   "spur": 3,
+   "titel": "Die Su|che be|ginnt",
+   "blocks": [
+    {
+     "id": "s3-p1",
+     "typ": "p",
+     "s": [
+      "Mi|la kommt mit den Pup|pen vom Schrank zu|rück."
+     ]
+    },
+    {
+     "id": "s3-p2",
+     "typ": "p",
+     "s": [
+      "„Ben!“, ruft sie er|schro|cken.",
+      "„Mein Mond hängt nicht mehr am The|a|ter!“"
+     ]
+    },
+    {
+     "id": "s3-p3",
+     "typ": "p",
+     "s": [
+      "Ben steht am Wasch|be|cken in der E|cke, mit dem Rü|cken zu ihr.",
+      "Das Was|ser rauscht laut.",
+      "Er schrubbt und schrubbt an sei|nen Fin|gern.",
+      "Ben hört nichts."
+     ]
+    },
+    {
+     "id": "s3-p4",
+     "typ": "p",
+     "s": [
+      "„Ben?“"
+     ]
+    },
+    {
+     "id": "s3-p5",
+     "typ": "p",
+     "s": [
+      "Kei|ne Ant|wort."
+     ]
+    },
+    {
+     "id": "s3-p6",
+     "typ": "p",
+     "s": [
+      "Mi|la war|tet nicht län|ger.",
+      "Sie schaut hin|ter den ro|ten Vor|hang des The|a|ters.",
+      "Nichts."
+     ]
+    },
+    {
+     "id": "s3-p7",
+     "typ": "p",
+     "s": [
+      "Un|ter dem gro|ßen Tisch liegt ein grü|ner Blei|stift.",
+      "Doch dort hat Mi|la noch gar nicht ge|sucht."
+     ]
+    },
+    {
+     "id": "s3-p8",
+     "typ": "p",
+     "s": [
+      "Die Le|se-Rau|pe streckt den Kopf zwi|schen zwei ech|ten Blät|tern her|vor."
+     ]
+    },
+    {
+     "id": "s3-p9",
+     "typ": "th",
+     "s": [
+      "„So vie|le Plät|ze“, denkt sie.",
+      "„A|ber wo sind die Kin|der ei|gent|lich ge|ra|de?",
+      "Wer schaut wo|hin?“"
+     ]
+    },
+    {
+     "id": "s3-p10",
+     "typ": "p",
+     "s": [
+      "Dann denkt sie an den ge|streif|ten Är|mel.",
+      "Rot-wei|ße Strei|fen …",
+      "Die hat sie heu|te schon ein|mal ge|se|hen.",
+      "A|ber wo?"
+     ]
+    },
+    {
+     "id": "s3-p11",
+     "typ": "th",
+     "s": [
+      "„Ich ha|be ei|nen Är|mel ge|se|hen“, denkt sie.",
+      "„A|ber kei|nen Mond.",
+      "Von ei|nem Är|mel al|lein weiß man noch nicht, was pas|siert ist.“"
+     ]
+    }
+   ],
+   "spiel": {
+    "spur": 3,
+    "spiel": "Spu|ren|fa|den",
+    "motor": "faden",
+    "bildVorher": "k1_s3",
+    "bildNachher": "k1_s3",
+    "fund": {
+     "bild": "objekte/bleistift_gruen",
+     "text": "der grü|ne Blei|stift",
+     "fazit": "Un|ter dem Tisch hat noch nie|mand ge|sucht.",
+     "beweis": [
+      "s3-p7-1"
+     ]
+    },
+    "kind": "mila/denkt",
+    "sieg": "Du hast je|de Fi|gur mit dem ver|bun|den, was sie im Text macht. Un|ter dem Tisch hat noch nie|mand ge|sucht.",
+    "schritte": [
+     {
+      "intro": "Wer macht was? Ver|bin|de je|de Fi|gur mit dem, was sie im Text macht. Ei|ne Kar|te bleibt ü|brig.",
+      "links": [
+       {
+        "id": "ben",
+        "bild": "ben/denkt",
+        "label": "Ben"
+       },
+       {
+        "id": "mila",
+        "bild": "mila/denkt",
+        "label": "Mi|la"
+       },
+       {
+        "id": "raupe",
+        "bild": "raupe/denkt",
+        "label": "die Le|se-Rau|pe"
+       }
+      ],
+      "rechts": [
+       {
+        "id": "wasser",
+        "label": "hört nichts, weil das Was|ser rauscht"
+       },
+       {
+        "id": "vorhang",
+        "label": "war|tet nicht län|ger und schaut hin|ter den Vor|hang"
+       },
+       {
+        "id": "aermel",
+        "label": "denkt an den ge|streif|ten Är|mel"
+       },
+       {
+        "id": "tisch",
+        "label": "hat un|ter dem Tisch ge|sucht"
+       }
+      ],
+      "loesung": {
+       "ben": "wasser",
+       "mila": "vorhang",
+       "raupe": "aermel"
+      },
+      "proDing": {
+       "ben": {
+        "beweis": [
+         "s3-p3-1",
+         "s3-p3-3"
+        ],
+        "ask": "Was macht Ben? Tip|pe auf den Satz, der es ver|rät.",
+        "near": "Such dort, wo Ben am Wasch|be|cken steht.",
+        "help": "Wa|rum ant|wor|tet Ben nicht, als Mi|la ruft?"
+       },
+       "mila": {
+        "beweis": [
+         "s3-p6-0",
+         "s3-p6-1"
+        ],
+        "ask": "Was macht Mi|la? Tip|pe auf den Satz, der es ver|rät.",
+        "near": "Such dort, wo Mi|la kei|ne Ant|wort be|kommt.",
+        "help": "Was macht Mi|la, als Ben nicht ant|wor|tet?"
+       },
+       "raupe": {
+        "beweis": [
+         "s3-p10-0"
+        ],
+        "ask": "Wo|ran denkt die Le|se-Rau|pe? Tip|pe auf den Satz, der es ver|rät.",
+        "near": "Such dort, wo die Le|se-Rau|pe zwi|schen zwei Blät|tern her|vor|schaut.",
+        "help": "Was hat die Le|se-Rau|pe heu|te schon ein|mal ge|se|hen?"
+       }
+      },
+      "beweis": [
+       "s3-p7-1"
+      ],
+      "explain": "Ben hört nichts, weil das Was|ser laut rauscht. Mi|la war|tet nicht län|ger und schaut hin|ter den Vor|hang. Die Le|se-Rau|pe denkt an den ge|streif|ten Är|mel. Un|ter dem Tisch hat noch nie|mand ge|sucht.",
+      "motor": "faden"
+     }
+    ]
+   }
+  },
+  {
+   "spur": 4,
+   "titel": "Ist das Mi|las Mond?",
+   "blocks": [
+    {
+     "id": "s4-p1",
+     "typ": "p",
+     "s": [
+      "Mi|la läuft um den Tisch he|rum.",
+      "Da!",
+      "Un|ter ei|nem Sta|pel Zei|tungs|pa|pier schaut et|was Gel|bes her|vor."
+     ]
+    },
+    {
+     "id": "s4-p2",
+     "typ": "p",
+     "s": [
+      "Sie zieht ei|nen gro|ßen gel|ben Kreis aus Pap|pe he|raus."
+     ]
+    },
+    {
+     "id": "s4-p3",
+     "typ": "p",
+     "s": [
+      "„Mein Mond?“, flüs|tert sie hoff|nungs|voll."
+     ]
+    },
+    {
+     "id": "s4-p4",
+     "typ": "p",
+     "s": [
+      "Auch die Le|se-Rau|pe reckt neu|gie|rig den Hals."
+     ]
+    },
+    {
+     "id": "s4-p5",
+     "typ": "th",
+     "s": [
+      "„Gelb?",
+      "Rund?",
+      "Aus Pap|pe?“, denkt sie.",
+      "„Der Fall ist ja schnel|ler ge|löst als ge|dacht!“"
+     ]
+    },
+    {
+     "id": "s4-p6",
+     "typ": "p",
+     "s": [
+      "A|ber dann nimmt sie sich Zeit für ih|ren Zeit|lu|pen-Blick.",
+      "Sie schaut noch ein|mal ganz lang|sam hin."
+     ]
+    },
+    {
+     "id": "s4-p7",
+     "typ": "th",
+     "s": [
+      "„Mo|ment“, denkt sie.",
+      "„An Mi|las Mond hing o|ben ein wei|ßer Fa|den.",
+      "An die|sem Kreis hängt kein Fa|den.“"
+     ]
+    },
+    {
+     "id": "s4-p8",
+     "typ": "p",
+     "s": [
+      "Auch Mi|la zö|gert."
+     ]
+    },
+    {
+     "id": "s4-p9",
+     "typ": "p",
+     "s": [
+      "„Wir müs|sen erst die Rück|sei|te an|se|hen“, sagt sie lei|se.",
+      "„Mein Mond hat dort ei|nen klei|nen blau|en Stern.“"
+     ]
+    },
+    {
+     "id": "s4-p10",
+     "typ": "p",
+     "s": [
+      "Sie dreht den gel|ben Kreis um."
+     ]
+    },
+    {
+     "id": "s4-p11",
+     "typ": "p",
+     "s": [
+      "Die Rück|sei|te ist schnee|weiß und leer.",
+      "Kein Stern.",
+      "Nicht ein|mal ein win|zi|ger blau|er Punkt."
+     ]
+    },
+    {
+     "id": "s4-p12",
+     "typ": "p",
+     "s": [
+      "„Scha|de“, seufzt Mi|la.",
+      "„Das ist nur ein ge|wöhn|li|cher Bas|tel|kreis.“"
+     ]
+    },
+    {
+     "id": "s4-p13",
+     "typ": "p",
+     "s": [
+      "Die Le|se-Rau|pe wa|ckelt mit den Füh|lern."
+     ]
+    },
+    {
+     "id": "s4-p14",
+     "typ": "th",
+     "s": [
+      "„A|ha“, denkt sie.",
+      "„Zwei Din|ge kön|nen von vor|ne gleich aus|se|hen und trotz|dem nicht das|sel|be sein.“"
+     ]
+    }
+   ],
+   "spiel": {
+    "spur": 4,
+    "spiel": "Steck|brief & Stem|pel",
+    "motor": "urteil",
+    "bildVorher": "k1_s4_vorher",
+    "bildNachher": "k1_s4_nachher",
+    "fund": {
+     "bild": "objekte/falscher_kreis_hinten",
+     "text": "der fal|sche Mond",
+     "fazit": "Kein Fa|den, kein Stern: nicht Mi|las Mond.",
+     "beweis": [
+      "s4-p7-2"
+     ]
+    },
+    "kind": "mila/staunt",
+    "sieg": "Du hast ge|nau ver|gli|chen. Die|ser Kreis ist nicht Mi|las Mond.",
+    "schritte": [
+     {
+      "art": "vergleich",
+      "intro": "Ver|glei|che! Links ist Mi|las Mond. Tip|pe auf den ge|fun|de|nen Kreis, dann dreht er sich um.",
+      "frage": "Was fehlt dem ge|fun|de|nen Kreis? Tip|pe al|les an, was fehlt.",
+      "muster": {
+       "bild": "objekte/mond_vorne",
+       "label": "Mi|las Mond",
+       "merkmale": [
+        "gelb",
+        "rund",
+        "ein weißer Faden oben",
+        "ein blauer Stern hinten"
+       ]
+      },
+      "drehen": {
+       "vorne": "objekte/falscher_kreis_vorne",
+       "hinten": "objekte/falscher_kreis_hinten",
+       "label": "der ge|fun|de|ne Kreis"
+      },
+      "zeilen": [
+       {
+        "id": "gelb",
+        "label": "gelb",
+        "fehlt": false
+       },
+       {
+        "id": "rund",
+        "label": "rund",
+        "fehlt": false
+       },
+       {
+        "id": "faden",
+        "label": "ein wei|ßer Fa|den o|ben",
+        "fehlt": true
+       },
+       {
+        "id": "stern",
+        "label": "ein blau|er Stern hin|ten",
+        "fehlt": true
+       }
+      ],
+      "stempelFrage": "Wel|chen Stem|pel be|kommt der Kreis?",
+      "stempel": [
+       {
+        "id": "mila",
+        "label": "Mi|las Mond"
+       },
+       {
+        "id": "nicht",
+        "label": "NICHT Mi|las Mond"
+       }
+      ],
+      "loesung": "nicht",
+      "beweis": [
+       "s4-p7-2",
+       "s4-p11-0",
+       "s4-p11-1"
+      ],
+      "ask": "Was fehlt dem ge|fun|de|nen Kreis? Tip|pe auf ei|nen Satz, der es ver|rät.",
+      "near": "Such dort, wo Mi|la den Kreis um|dreht.",
+      "help": "Was hat Mi|las Mond o|ben und hin|ten?",
+      "explain": "Im Text steht: „An die|sem Kreis hängt kein Fa|den.“ Und hin|ten: „Kein Stern.“ Da|rum ist der Kreis NICHT Mi|las Mond.",
+      "motor": "urteil"
+     }
+    ]
+   }
+  },
+  {
+   "spur": 5,
+   "titel": "Ver|rä|te|ri|sche Fin|ger",
+   "blocks": [
+    {
+     "id": "s5-p1",
+     "typ": "p",
+     "s": [
+      "Mi|la legt den fal|schen Kreis ent|täuscht zu|rück auf den Tisch."
+     ]
+    },
+    {
+     "id": "s5-p2",
+     "typ": "p",
+     "s": [
+      "End|lich dreht Ben das Was|ser zu.",
+      "Er kommt zu|rück.",
+      "An sei|nen Fin|gern glänzt noch ein bis|schen Kle|ber."
+     ]
+    },
+    {
+     "id": "s5-p3",
+     "typ": "p",
+     "s": [
+      "Mi|la schaut auf sei|ne Hän|de.",
+      "„Ben, du hast ja Kle|ber an den Fin|gern!“, ruft sie.",
+      "„Was hast du mit mei|nem Mond ge|macht?“"
+     ]
+    },
+    {
+     "id": "s5-p4",
+     "typ": "p",
+     "s": [
+      "Ben schaut zum The|a|ter.",
+      "Erst jetzt sieht er den lee|ren Platz und Mi|las er|schro|cke|nes Ge|sicht."
+     ]
+    },
+    {
+     "id": "s5-p5",
+     "typ": "p",
+     "s": [
+      "„Mo|ment mal.",
+      "Du weißt es noch gar nicht?“, fragt er.",
+      "„Ich ha|be dich doch ge|ru|fen.",
+      "A|ber du warst ganz tief im Schrank.“"
+     ]
+    },
+    {
+     "id": "s5-p6",
+     "typ": "p",
+     "s": [
+      "„Was weiß ich nicht?“"
+     ]
+    },
+    {
+     "id": "s5-p7",
+     "typ": "p",
+     "s": [
+      "„Der Fa|den an dei|nem Mond war ganz lo|cker“, er|klärt Ben.",
+      "„Der Mond wä|re fast he|run|ter|ge|fal|len.",
+      "Des|halb ha|be ich ihn ab|ge|nom|men.",
+      "Dann ha|be ich den Fa|den mit **Kle|ber** wie|der fest|ge|macht.",
+      "Da|nach ha|be ich den Mond zum Trock|nen auf das blau|e Tab|lett ge|legt.",
+      "Und erst dann ha|be ich mir die Hän|de ge|wa|schen.“"
+     ]
+    },
+    {
+     "id": "s5-p8",
+     "typ": "p",
+     "s": [
+      "Die Le|se-Rau|pe wippt auf ih|rem Blatt vor und zu|rück."
+     ]
+    },
+    {
+     "id": "s5-p9",
+     "typ": "th",
+     "s": [
+      "„Ben woll|te nur hel|fen“, denkt sie.",
+      "„A|ber Bens Pul|li ist blau.",
+      "Der ge|streif|te Är|mel ge|hört al|so je|mand an|de|rem.“"
+     ]
+    }
+   ],
+   "spiel": {
+    "spur": 5,
+    "spiel": "Be|weis-Mo|sa|ik",
+    "motor": "reihe",
+    "bildVorher": "k1_s5",
+    "bildNachher": "k1_s5",
+    "fund": {
+     "bild": "objekte/wasserhahn",
+     "text": "Glän|zen|de Fin|ger",
+     "fazit": "Ben hat den Mond re|pa|riert und aufs Tab|lett ge|legt.",
+     "beweis": [
+      "s5-p7-4"
+     ]
+    },
+    "kind": "ben/froh",
+    "sieg": "Du hast Bens vier Schrit|te in die rich|ti|ge Rei|hen|fol|ge ge|bracht.",
+    "schritte": [
+     {
+      "intro": "Was hat Ben ge|macht? Leg die Bil|der in die rich|ti|ge Rei|hen|fol|ge. Ein Bild passt nicht zum Text.",
+      "karten": [
+       {
+        "id": "ab",
+        "bild": "k1_s5_karten/karte_1",
+        "label": "Ben nimmt den Mond ab."
+       },
+       {
+        "id": "kleben",
+        "bild": "k1_s5_karten/karte_2",
+        "label": "Ben klebt den Fa|den fest."
+       },
+       {
+        "id": "tablett",
+        "bild": "k1_s5_karten/karte_3",
+        "label": "Ben legt den Mond auf das Tab|lett."
+       },
+       {
+        "id": "waschen",
+        "bild": "k1_s5_karten/karte_4",
+        "label": "Ben wäscht sich die Hän|de."
+       },
+       {
+        "id": "falsch",
+        "bild": "k1_s5_karten/karte_5_falsch",
+        "label": "Ben hängt den Mond wie|der ans The|a|ter."
+       }
+      ],
+      "loesung": [
+       "ab",
+       "kleben",
+       "tablett",
+       "waschen"
+      ],
+      "beweis": [
+       "s5-p7-2",
+       "s5-p7-3",
+       "s5-p7-4",
+       "s5-p7-5"
+      ],
+      "ask": "Was hat Ben nach|ein|an|der ge|macht? Tip|pe auf ei|nen Satz aus Bens Er|klä|rung.",
+      "near": "Such dort, wo Ben Mi|la al|les er|klärt.",
+      "help": "Ach|te auf die Wör|ter „Des|halb“, „Dann“, „Da|nach“ und „erst dann“.",
+      "explain": "Ben hat zu|erst den Mond ab|ge|nom|men. Dann hat er den Fa|den mit Kle|ber fest|ge|macht. Da|nach hat er den Mond auf das Tab|lett ge|legt. Und erst dann hat er sich die Hän|de ge|wa|schen.",
+      "motor": "reihe"
+     }
+    ]
+   }
+  },
+  {
+   "spur": 6,
+   "titel": "Das lee|re Tab|lett",
+   "blocks": [
+    {
+     "id": "s6-p1",
+     "typ": "p",
+     "s": [
+      "„Komm mit“, sagt Ben.",
+      "„Der Mond liegt auf dem Tab|lett.“"
+     ]
+    },
+    {
+     "id": "s6-p2",
+     "typ": "p",
+     "s": [
+      "Mi|la und Ben lau|fen zur Fens|ter|sei|te des Ti|sches.",
+      "Auch die Le|se-Rau|pe beugt sich weit ü|ber den Rand ih|res Blu|men|top|fes.",
+      "Das blau|e Tab|lett steht di|rekt un|ter ih|rem Fens|ter."
+     ]
+    },
+    {
+     "id": "s6-p3",
+     "typ": "p",
+     "s": [
+      "Doch als sie hi|nun|ter|schaut, traut sie ih|ren Au|gen kaum:"
+     ]
+    },
+    {
+     "id": "s6-p4",
+     "typ": "p",
+     "s": [
+      "Rechts ne|ben dem Tab|lett lie|gen ei|ne Sche|re und ei|ne Rol|le Kle|be|band."
+     ]
+    },
+    {
+     "id": "s6-p5",
+     "typ": "p",
+     "s": [
+      "Auf dem Tab|lett liegt nur noch ein schma|ler ro|ter Pa|pier|strei|fen."
+     ]
+    },
+    {
+     "id": "s6-p6",
+     "typ": "p",
+     "s": [
+      "Von dem gro|ßen Mond fehlt je|de Spur!"
+     ]
+    },
+    {
+     "id": "s6-p7",
+     "typ": "p",
+     "s": [
+      "„Hier ist er a|ber nicht!“, ruft Mi|la ver|zwei|felt."
+     ]
+    },
+    {
+     "id": "s6-p8",
+     "typ": "p",
+     "s": [
+      "Ben starrt er|schro|cken auf das fast lee|re Tab|lett.",
+      "„Ich bin mir ganz si|cher.",
+      "Ge|nau hier auf dem Tab|lett lag er vor|hin noch!“"
+     ]
+    },
+    {
+     "id": "s6-p9",
+     "typ": "p",
+     "s": [
+      "Die Le|se-Rau|pe nimmt ih|re Tau|trop|fen-Lu|pe.",
+      "Auch da|mit sieht sie auf dem Tab|lett nur den ro|ten Pa|pier|strei|fen."
+     ]
+    },
+    {
+     "id": "s6-p10",
+     "typ": "p",
+     "s": [
+      "Ihr Blick wan|dert vom Tab|lett zum of|fe|nen Fens|ter."
+     ]
+    },
+    {
+     "id": "s6-p11",
+     "typ": "th",
+     "s": [
+      "„Der ge|streif|te Är|mel“, denkt sie.",
+      "„Er war ge|nau hier un|ten.",
+      "Wenn Ben den Mond wirk|lich auf das Tab|lett ge|legt hat … wer hat ihn dann weg|ge|nom|men?“"
+     ]
+    }
+   ],
+   "spiel": {
+    "spur": 6,
+    "spiel": "Hin da|mit!",
+    "motor": "zielfeld",
+    "bildVorher": "k1_s6_vorher",
+    "bildNachher": "k1_s6_nachher",
+    "fund": {
+     "bild": "objekte/papierstreifen_rot",
+     "text": "der ro|te Pa|pier|strei|fen",
+     "fazit": "Jetzt ist der Mond nicht mehr auf dem Tab|lett.",
+     "beweis": [
+      "s6-p5-0"
+     ]
+    },
+    "kind": "mila/besorgt",
+    "sieg": "Du hast nur hin|ge|legt, was jetzt wirk|lich da ist. Ge|nau hier hat Ben den Mond hin|ge|legt. Jetzt ist er weg!",
+    "schritte": [
+     {
+      "intro": "Was liegt jetzt am Fens|ter? Leg al|les an sei|nen Platz. Was nicht mehr da ist, kommt zu „Nicht mehr da“.",
+      "layout": "tisch",
+      "zonen": [
+       {
+        "id": "links",
+        "label": "links ne|ben dem Tab|lett"
+       },
+       {
+        "id": "auf",
+        "label": "auf dem Tab|lett"
+       },
+       {
+        "id": "rechts",
+        "label": "rechts ne|ben dem Tab|lett"
+       },
+       {
+        "id": "weg",
+        "label": "Nicht mehr da"
+       }
+      ],
+      "dinge": [
+       {
+        "id": "schere",
+        "bild": "objekte/schere",
+        "label": "die Sche|re"
+       },
+       {
+        "id": "klebeband",
+        "bild": "objekte/klebeband",
+        "label": "das Kle|be|band"
+       },
+       {
+        "id": "streifen",
+        "bild": "objekte/papierstreifen_rot",
+        "label": "der ro|te Strei|fen"
+       },
+       {
+        "id": "mond",
+        "bild": "objekte/mond_hinten",
+        "label": "der Mond"
+       }
+      ],
+      "loesung": {
+       "schere": "rechts",
+       "klebeband": "rechts",
+       "streifen": "auf",
+       "mond": "weg"
+      },
+      "proDing": {
+       "schere": {
+        "beweis": [
+         "s6-p4-0"
+        ],
+        "ask": "Wo liegt die Sche|re? Tip|pe auf den Satz, der es ver|rät.",
+        "near": "Such dort, wo die Le|se-Rau|pe vom Blu|men|topf hi|nun|ter|schaut.",
+        "help": "Auf wel|cher Sei|te vom Tab|lett lie|gen Sche|re und Kle|be|band?"
+       },
+       "klebeband": {
+        "beweis": [
+         "s6-p4-0"
+        ],
+        "ask": "Wo liegt das Kle|be|band? Tip|pe auf den Satz, der es ver|rät.",
+        "near": "Such dort, wo die Le|se-Rau|pe vom Blu|men|topf hi|nun|ter|schaut.",
+        "help": "Auf wel|cher Sei|te vom Tab|lett lie|gen Sche|re und Kle|be|band?"
+       },
+       "streifen": {
+        "beweis": [
+         "s6-p5-0"
+        ],
+        "ask": "Wo liegt der ro|te Strei|fen? Tip|pe auf den Satz, der es ver|rät.",
+        "near": "Such dort, wo die Le|se-Rau|pe vom Blu|men|topf hi|nun|ter|schaut.",
+        "help": "Lies ge|nau: Wo liegt der schma|le ro|te Pa|pier|strei|fen?"
+       },
+       "mond": {
+        "beweis": [
+         "s6-p5-0",
+         "s6-p6-0"
+        ],
+        "ask": "Liegt der Mond jetzt am Fens|ter? Tip|pe auf den Satz, der es ver|rät.",
+        "near": "Such dort, wo die Le|se-Rau|pe vom Blu|men|topf hi|nun|ter|schaut.",
+        "help": "Was liegt jetzt noch auf dem Tab|lett – und was nicht?"
+       }
+      },
+      "explain": "Im Text steht: „Rechts ne|ben dem Tab|lett lie|gen ei|ne Sche|re und ei|ne Rol|le Kle|be|band. Auf dem Tab|lett liegt nur noch ein schma|ler ro|ter Pa|pier|strei|fen. Von dem gro|ßen Mond fehlt je|de Spur!“",
+      "motor": "zielfeld"
+     }
+    ]
+   }
+  }
+ ],
+ "geheimwort": {
+  "wort": "KLEBER",
+  "reihenfolge": [
+   {
+    "spur": 1,
+    "pos": 2
+   },
+   {
+    "spur": 2,
+    "pos": 5
+   },
+   {
+    "spur": 3,
+    "pos": 4
+   },
+   {
+    "spur": 4,
+    "pos": 1
+   },
+   {
+    "spur": 5,
+    "pos": 0
+   },
+   {
+    "spur": 6,
+    "pos": 3
+   }
+  ],
+  "frage": "Wo|mit hat Ben den Fa|den am Mond wie|der fest|ge|macht?",
+  "beweis": [
+   "s5-p7-3"
+  ],
+  "beweisSpur": 5,
+  "near": "Lies noch ein|mal, was Ben Mi|la in Spur 5 er|klärt.",
+  "offen": "Der Mond|tre|sor ist of|fen!",
+  "haken": "A|ber wer hat den Mond vom Tab|lett ge|nom|men? Das fin|dest du in Ka|pi|tel 2 he|raus.",
+  "innen": {
+   "frage": "Was wis|sen wir jetzt si|cher?",
+   "optionen": [
+    {
+     "id": "ja",
+     "label": "Ben hat den Mond re|pa|riert und aufs Tab|lett ge|legt. Jetzt ist er weg."
+    },
+    {
+     "id": "versteckt",
+     "label": "Ben hat den Mond ver|steckt."
+    },
+    {
+     "id": "kreis",
+     "label": "Der gel|be Kreis un|ter der Zei|tung ist Mi|las Mond."
+    }
+   ],
+   "loesung": "ja",
+   "falsch": "Lies die Spu|ren|wand noch ein|mal."
+  },
+  "zitat": [
+   "Dann ha|be ich den Fa|den mit **Kle|ber** wie|der fest|ge|macht."
+  ]
+ },
+ "ui": {
+  "falsch": [
+   "Hm. Zeig den Be|weis!",
+   "Mo|ment! Zeig den Be|weis!",
+   "Hm, schau|en wir noch ein|mal hin. Zeig den Be|weis!"
+  ],
+  "beweisNein": "Die|ser Satz ver|rät es noch nicht. Such wei|ter!",
+  "beweisJa": "Ge|fun|den! Das ist dein Be|weis.",
+  "nochmal": "Ver|such es jetzt noch ein|mal.",
+  "deinBeweis": "Dein Be|weis:",
+  "hilfe": "Tipp:",
+  "siegVoll": "Spur ent|deckt!",
+  "siegHalb": "Ge|schafft!",
+  "siegHalbText": "Du hast im Text nach|ge|se|hen und den Grund ge|fun|den.",
+  "pinseln": "Wisch den Staub mit dem Pin|sel weg!",
+  "buchstabe": "Ein Buch|sta|be für das Ge|heim|wort!",
+  "wand": "Dei|ne Spu|ren|wand",
+  "wandTipp": "Tip|pe auf ei|ne Spur, dann kannst du das Spiel noch ein|mal spie|len.",
+  "tresorTitel": "Der Mond|tre|sor",
+  "tresorTipp": "Tip|pe die Buch|sta|ben in der rich|ti|gen Rei|hen|fol|ge an.",
+  "tresorFalsch": "Hm, der Tre|sor bleibt zu. Lies die Fra|ge noch ein|mal.",
+  "geschafft": "Ka|pi|tel ge|schafft!",
+  "bereit": "Bist du be|reit?",
+  "bald": "Ka|pi|tel 2 kommt bald!"
+ },
+ "garderobe": {
+  "titel": "Gar|de|ro|be der Le|se-Rau|pe",
+  "ohne": "oh|ne Sa|chen",
+  "gekauft": "ge|kauft",
+  "traegt": "trägt sie",
+  "kaufen": "Für {n} Per|len kau|fen?",
+  "noch": "Noch {n} Per|len",
+  "tipp": "Tip|pe auf ei|ne Sa|che. Ge|kauf|te Sa|chen kann sie an- und aus|zie|hen.",
+  "dinge": [
+   {
+    "id": "fliege",
+    "label": "die Flie|ge",
+    "preis": 3
+   },
+   {
+    "id": "schal",
+    "label": "der Schal",
+    "preis": 4
+   },
+   {
+    "id": "brille",
+    "label": "die Bril|le",
+    "preis": 4
+   },
+   {
+    "id": "notizbuch",
+    "label": "das No|tiz|buch",
+    "preis": 5
+   },
+   {
+    "id": "taschenlampe",
+    "label": "die Ta|schen|lam|pe",
+    "preis": 5
+   },
+   {
+    "id": "hut",
+    "label": "der Hut",
+    "preis": 6
+   },
+   {
+    "id": "mondbrosche",
+    "label": "die Mond|bro|sche",
+    "preis": 6
+   },
+   {
+    "id": "tasche",
+    "label": "die Blatt-Ta|sche",
+    "preis": 7
+   }
+  ],
+  "noch1": "Noch {n} Per|le",
+  "kaufen1": "Für {n} Per|le kau|fen?"
+ }
+}

@@ -1,0 +1,332 @@
+{
+  "_info": "Züge zu Kapitel 4, Text v7. \"spur\" in den Zügen ist die Nummer der Szene im Buch (Kapitel 4 = 19–24).",
+  "bild": "kapitel_4",
+  "vorspann": "Der Mond fliegt davon. Und in fünf Minuten beginnt das Theaterstück.",
+  "schluss": "Du hast den ganzen Fall gelöst: den Mond, die Sonne, die Maus und den Schlüssel!",
+  "geheimwort": {
+    "wort": "ZUGABE",
+    "pos": { "1": 3, "2": 5, "3": 0, "4": 2, "5": 1, "6": 4 },
+    "frage": "Was rufen die Kinder am Ende?"
+  },
+  "spuren": [
+    {
+      "spur": 1,
+      "bild": "k2_s11_spiel",
+      "haken": "Nur das weiße Band baumelt weiter zwischen den Blättern.",
+      "mitte": [
+        {
+          "art": "wahl",
+          "titel": "Falsche Richtung",
+          "text": "Die Kinder suchen oben in der Baumkrone. Wo hängt der Mond wirklich?",
+          "optionen": [
+            { "id": "a", "text": "hoch oben in der Baumkrone" },
+            { "id": "b", "text": "auf dem Dach" },
+            { "id": "c", "text": "in der Astgabel unter dem Fenster" }
+          ],
+          "richtig": ["c"],
+          "beweis": [{ "spur": 19, "satz": "Er landet in der Astgabel unter dem Fenster." }],
+          "tipp": "Wo ist der Vogel gelandet?",
+          "erfolg": "Genau. Die Kinder schauen in die falsche Richtung."
+        },
+        {
+          "art": "blick",
+          "titel": "Tatort-Blick",
+          "text": "So sieht die Lese-Raupe vom Fensterbrett nach unten. Wo versteckt sich der Mond? Tippe auf die Stelle.",
+          "bild": "k2_s11_spiel",
+          "zone": { "x": 88, "y": 90, "r": 11 },
+          "tipp": "Der Mond hängt unter Blättern. Wo siehst du unter dem Fenster Blätter?",
+          "erfolg": "Dort, zwischen den Blättern, hängt er."
+        },
+        {
+          "art": "steckbrief",
+          "titel": "Steckbrief prüfen",
+          "text": "Ein weißer Kreis unter den Blättern. Ist das Milas Mond? Vergleiche ihn mit deinem Steckbrief.",
+          "bild": "objekte/mond_hinten",
+          "zeilen": [
+            { "text": "vorne gelb", "wert": "unklar" },
+            { "text": "oben ein weißer Faden", "wert": "passt" },
+            { "text": "hinten ein blauer Stern", "wert": "passt" }
+          ],
+          "werte": { "passt": "passt", "fehlt": "fehlt", "unklar": "sieht man noch nicht" },
+          "beweis": [{ "spur": 19, "satz": "Unten leuchtet ein winziger blauer Stern." }],
+          "tipp": "Welche Seite zeigt zur Lese-Raupe? Die andere Seite sieht sie nicht.",
+          "erfolg": "Faden und Stern: Das ist Milas Mond. Diesmal siehst du die Rückseite zuerst."
+        }
+      ],
+      "ende": [
+        {
+          "art": "zwei",
+          "titel": "Alte Spur, neue Spur",
+          "text": "Ein weißes Band baumelt zwischen den Blättern. Woher kennst du ein weißes Band? Such die Spur.",
+          "gegeben": { "spur": 19, "satz": "Daneben baumelt ein weißes Band." },
+          "suche": { "spur": 1, "satz": "Er hängt an einem weißen Band.", "tipp": "Wer hat ganz am Anfang etwas gesucht? Das steht in Kapitel 1, Spur 1." },
+          "schluss": "Frau Sommers Schlüssel hängt an einem weißen Band. Vielleicht hängt er hier im Baum!",
+          "erfolg": "Das weiß jetzt nur einer: du."
+        },
+        {
+          "art": "wahl",
+          "offen": true,
+          "merken": "s19",
+          "titel": "Dein Verdacht",
+          "text": "Papier, Faden, Band: Warum sammelt der Vogel lange weiße Dinge?",
+          "optionen": [
+            { "id": "a", "text": "Er baut ein Nest." },
+            { "id": "b", "text": "Er findet sie schön." },
+            { "id": "c", "text": "Er will sie fressen." }
+          ],
+          "erfolg": "Dein Verdacht steht jetzt in der Fallakte."
+        }
+      ],
+      "akte": {
+        "fragenWeg": ["wohin"],
+        "wegNeu": [{ "id": "ast", "text": "in der Astgabel" }]
+      }
+    },
+    {
+      "spur": 2,
+      "bild": "k4_s19",
+      "bildB": "k4_s20_nachher",
+      "haken": "Da klopft es dreimal an der Tür.",
+      "mitte": [
+        {
+          "art": "wahl",
+          "titel": "Wo ist die Maus?",
+          "text": "Alle suchen. Aber du kannst es wissen. Wo steckt die Maus?",
+          "optionen": [
+            { "id": "a", "text": "in der grünen Kiste", "bild": "objekte/kiste_gruen" },
+            { "id": "b", "text": "in Oskars Kapuze", "bild": "oskar/staunt" },
+            { "id": "c", "text": "auf dem blauen Tablett", "bild": "objekte/tablett_leer" }
+          ],
+          "richtig": ["b"],
+          "beweis": [{ "spur": 19, "satz": "Oskar steckt seine Maus in die Kapuze." }],
+          "tipp": "Was hat Oskar draußen am Baum mit seiner Maus gemacht? Das steht in Spur 1.",
+          "erfolg": "Richtig! Oskar hat es nur vergessen."
+        },
+        {
+          "art": "blick",
+          "titel": "Zeitlupen-Blick",
+          "text": "Schau Oskar ganz genau an. Was verrät die Maus? Tippe darauf.",
+          "bild": "k4_s20_spiel",
+          "ausschnitt": { "x": 45, "y": 12, "w": 55, "h": 62 },
+          "zone": { "x": 72, "y": 43, "r": 5 },
+          "tipp": "Schau auf Oskars Rücken.",
+          "erfolg": "Ein rosa Mäuseschwanz!"
+        }
+      ],
+      "ende": [
+        {
+          "art": "wahl",
+          "offen": true,
+          "merken": "s20",
+          "titel": "Dein Gefühl",
+          "text": "Es klopft dreimal an der Tür. Wer ist das?",
+          "optionen": [
+            { "id": "a", "text": "Frau Sommer" },
+            { "id": "b", "text": "die anderen Kinder" },
+            { "id": "c", "text": "der Vogel" }
+          ],
+          "erfolg": "Lies weiter. Gleich geht die Tür auf."
+        }
+      ],
+      "akte": {
+        "wegNeu": [{ "id": "theater2", "text": "wieder am Theater" }]
+      }
+    },
+    {
+      "spur": 3,
+      "bild": "k4_s21",
+      "haken": "Im Raum wird es ganz still.",
+      "mitte": [
+        {
+          "art": "wahl",
+          "titel": "Eine Frage weniger",
+          "text": "Schau in deine Fallakte. Welche offene Frage ist jetzt geklärt?",
+          "optionen": [
+            { "id": "a", "text": "Wo ist Frau Sommers Schlüssel?" },
+            { "id": "b", "text": "Wem gehört der gelbe Kreis?" },
+            { "id": "c", "text": "Was will der Vogel mit dem Papier?" }
+          ],
+          "richtig": ["b"],
+          "beweis": [{ "spur": 21, "satz": "Ach, da ist ja meine Sonne für die Pinnwand!" }],
+          "tipp": "Was hat Frau Sommer auf dem Tisch entdeckt?",
+          "erfolg": "Der falsche Mond war eine Sonne!"
+        }
+      ],
+      "ende": [
+        {
+          "art": "wahl",
+          "titel": "Wie geht es Oskar?",
+          "text": "Gleich beginnt das Stück. Wie fühlt sich Oskar?",
+          "optionen": [
+            { "id": "a", "text": "Er ist müde.", "bild": "oskar/traurig" },
+            { "id": "b", "text": "Er ist aufgeregt.", "bild": "oskar/besorgt" },
+            { "id": "c", "text": "Er ist fröhlich.", "bild": "oskar/lacht" }
+          ],
+          "richtig": ["b"],
+          "beweis": [{ "spur": 21, "satz": "Seine Hände zittern ein bisschen." }],
+          "tipp": "Schau auf Oskars Hände.",
+          "erfolg": "Ja. Aber seine Freunde machen ihm Mut."
+        },
+        {
+          "art": "wahl",
+          "offen": true,
+          "merken": "s21",
+          "titel": "Dein Gefühl",
+          "text": "Oskar spielt zum ersten Mal vor so vielen Kindern. Schafft er das?",
+          "optionen": [
+            { "id": "a", "text": "Ja, bestimmt!" },
+            { "id": "b", "text": "Er vergisst seinen Text." },
+            { "id": "c", "text": "Ich drücke ihm die Daumen." }
+          ],
+          "erfolg": "Vorhang auf!"
+        }
+      ],
+      "akte": {
+        "fragenWeg": ["kreis"]
+      }
+    },
+    {
+      "spur": 4,
+      "bild": "k4_s22",
+      "haken": "Jetzt lachen alle Kinder. Und am lautesten lacht Frau Sommer.",
+      "mitte": [
+        {
+          "art": "zwei",
+          "titel": "Hinter dem Vorhang",
+          "text": "Der Käse steigt immer höher. Wie geht das? Such die Spur, die es verrät.",
+          "gegeben": { "spur": 22, "satz": "steigt der Käse ein Stück höher" },
+          "suche": { "spur": 18, "satz": "Und ich ziehe den Käse am Faden nach oben.", "tipp": "Was hat Ben auf der Bank versprochen? Das steht in Kapitel 3, Spur 6." },
+          "schluss": "Ben zieht hinter dem Vorhang am Faden. Darum kommt die Maus nie an den Käse.",
+          "erfolg": "Du kennst den Trick. Die Zuschauer nicht."
+        }
+      ],
+      "ende": [
+        {
+          "art": "wahl",
+          "titel": "Genau gelesen",
+          "text": "Am Anfang war Oskar aufgeregt. Was hat sich verändert?",
+          "optionen": [
+            { "id": "a", "text": "Er hat seine Maus verloren." },
+            { "id": "b", "text": "Er will aufhören." },
+            { "id": "c", "text": "Seine Hände zittern nicht mehr." }
+          ],
+          "richtig": ["c"],
+          "beweis": [{ "spur": 22, "satz": "Oskars Hände zittern nicht mehr." }],
+          "tipp": "Was passiert, als die ersten Kinder kichern?",
+          "erfolg": "Er hat seine Angst vergessen – mitten im Stück."
+        },
+        {
+          "art": "markieren",
+          "frei": true,
+          "titel": "Dein Lieblingssatz",
+          "text": "Welcher Satz aus dem Theaterstück gefällt dir am besten? Tippe ihn an.",
+          "spur": 22,
+          "muss": [],
+          "darf": [],
+          "tipp": "Tippe auf einen Satz, der dir gefällt.",
+          "erfolg": "Ein schöner Satz für dein Notizbuch."
+        }
+      ],
+      "akte": {}
+    },
+    {
+      "spur": 5,
+      "bild": "k4_s23",
+      "haken": "Frau Sommers Schlüssel!",
+      "mitte": [
+        {
+          "art": "wahl",
+          "titel": "Was fehlt noch?",
+          "text": "Der Mond ist da. Die Sonne ist da. Die Maus ist da. Was fehlt immer noch?",
+          "optionen": [
+            { "id": "a", "text": "der rote Vorhang" },
+            { "id": "b", "text": "Frau Sommers Schlüssel" },
+            { "id": "c", "text": "Bens Kleber" }
+          ],
+          "richtig": ["b"],
+          "beweis": [{ "spur": 21, "satz": "Genau wie meinen Schlüssel." }],
+          "tipp": "Was sucht Frau Sommer seit heute Morgen? Das steht in Spur 3.",
+          "erfolg": "Genau. Und du weißt sogar schon, wo er ist."
+        }
+      ],
+      "ende": [
+        {
+          "art": "wahl",
+          "titel": "Ich löse den Fall",
+          "text": "Wo ist Frau Sommers Schlüssel?",
+          "optionen": [
+            { "id": "a", "text": "in der grünen Kiste" },
+            { "id": "b", "text": "in Oskars Kapuze" },
+            { "id": "c", "text": "in der Astgabel unter dem Fenster" }
+          ],
+          "richtig": ["c"],
+          "beweis": [{ "spur": 19, "satz": "Daneben baumelt ein weißes Band." }],
+          "tipp": "Wo hast du zuletzt ein weißes Band gesehen? Das steht in Spur 1.",
+          "erfolg": "Das ist deine Lösung. Jetzt deine Beweise!"
+        },
+        {
+          "art": "wahl",
+          "mehrere": true,
+          "titel": "Meine Beweise",
+          "text": "Welche zwei Spuren sprechen dafür?",
+          "optionen": [
+            { "id": "a", "text": "Der Schlüssel hängt an einem weißen Band." },
+            { "id": "b", "text": "Frau Sommer sucht auch ihre Sonne." },
+            { "id": "c", "text": "In der Astgabel baumelt ein weißes Band." }
+          ],
+          "richtig": ["a", "c"],
+          "beweis": [{ "spur": 1, "satz": "Er hängt an einem weißen Band." }],
+          "tipp": "Die Sonne lag auf dem Tisch. Sie hat mit dem Schlüssel nichts zu tun.",
+          "erfolg": "Zwei Spuren, ein Schluss. Ob Frau Sommer es auch merkt?"
+        }
+      ],
+      "akte": {}
+    },
+    {
+      "spur": 6,
+      "bild": "k4_s24",
+      "haken": "„Und morgen gibt es bestimmt kein Papier zum Frühstück.“",
+      "mitte": [
+        {
+          "art": "zwei",
+          "titel": "Die letzte Frage",
+          "text": "Was wollte der Vogel mit Papier, Faden und Band? Such die Spur, die es verrät.",
+          "gegeben": { "spur": 14, "satz": "Er zieht an einem langen weißen Papierstreifen." },
+          "suche": { "spur": 24, "satz": "Neben dem Band liegt ein kleines Nest aus weißen Papierstreifen.", "tipp": "Was liegt neben dem Band in der Astgabel?" },
+          "schluss": "Der Vogel baut ein Nest. Dafür sammelt er lange weiße Dinge: Papier, Faden und Band.",
+          "erfolg": "Die letzte offene Frage ist geklärt."
+        }
+      ],
+      "ende": [
+        {
+          "art": "sortieren",
+          "titel": "Sicher oder nur ein Verdacht?",
+          "text": "Ein letztes Mal: Was wissen wir? Und was vermuten wir nur?",
+          "karten": [
+            { "text": "Oskar hat den Mond aus Versehen genommen.", "stapel": "sicher", "warum": "Er sah nur einen weißen Kreis." },
+            { "text": "Der Vogel wollte die Kinder ärgern.", "stapel": "verdacht", "warum": "Er hat nur etwas für sein Nest gesucht." },
+            { "text": "Der Vogel hat den Faden für sein Nest geholt.", "stapel": "sicher", "warum": "Sein Nest besteht aus langen weißen Streifen." }
+          ],
+          "erfolg": "Alles sortiert. Jetzt fehlt nur noch dein Stempel."
+        },
+        {
+          "art": "wahl",
+          "titel": "Dein Urteil",
+          "text": "Mond, Sonne, Maus und Schlüssel sind wieder da. Wie lautet dein Urteil?",
+          "optionen": [
+            { "id": "a", "text": "Der Fall ist gelöst." },
+            { "id": "b", "text": "Der Fall ist noch offen." }
+          ],
+          "richtig": ["a"],
+          "stempel": "FALL GELÖST",
+          "beweis": [{ "spur": 24, "satz": "Mein Schlüssel!" }],
+          "tipp": "Fehlt noch etwas?",
+          "erfolg": "Gestempelt! Das war dein erster Lese-Fall."
+        }
+      ],
+      "akte": {
+        "fragenWeg": ["schluessel", "vogel"]
+      }
+    }
+  ]
+}

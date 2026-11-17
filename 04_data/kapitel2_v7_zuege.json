@@ -1,0 +1,351 @@
+{
+  "_info": "Züge zu Kapitel 2, Text v7. \"spur\" in den Zügen ist die Nummer der Szene im Buch (Kapitel 2 = 7–12); \"spur\" am Eintrag selbst ist die Spur im Kapitel (1–6).",
+  "bild": "kapitel_2",
+  "vorspann": "Draußen schneidet jemand Pappe. Und auf dem Tablett liegt nur noch ein roter Streifen.",
+  "schluss": "Kapitel 2 ist geschafft! Aber was liegt unter dem Seidenpapier? Das erfährst du in Kapitel 3.",
+  "geheimwort": {
+    "wort": "TELLER",
+    "pos": { "1": 1, "2": 3, "3": 0, "4": 5, "5": 2, "6": 4 },
+    "frage": "Was hat Oskar neben seine Maus auf die Bank gestellt?"
+  },
+  "spuren": [
+    {
+      "spur": 1,
+      "bild": "k2_s7",
+      "haken": "„Zum Basteln? Mit einer Schere?“",
+      "mitte": [
+        {
+          "art": "wahl",
+          "titel": "Der richtige Platz",
+          "text": "Milas Mond war fertig. Wohin gehört ein fertiger Mond?",
+          "optionen": [
+            { "id": "a", "text": "auf das blaue Tablett", "bild": "objekte/tablett_leer" },
+            { "id": "b", "text": "in die grüne Kiste", "bild": "objekte/kiste_gruen" },
+            { "id": "c", "text": "unter die Zeitungen", "bild": "objekte/zeitungen" }
+          ],
+          "richtig": ["b"],
+          "beweis": [{ "spur": 7, "satz": "kommen fertige Figuren und Theatersachen" }],
+          "tipp": "Wohin kommen fertige Sachen für das Theater?",
+          "erfolg": "Genau. In der grünen Kiste wäre der Mond sicher gewesen."
+        },
+        {
+          "art": "zwei",
+          "titel": "Zwei Spuren, ein Schluss",
+          "text": "Warum war das Tablett der falsche Platz? Such die Spur, die dazu passt.",
+          "gegeben": { "spur": 5, "satz": "Dann habe ich den Mond zum Trocknen auf das blaue Tablett gelegt." },
+          "suche": { "spur": 7, "satz": "Davon darf sich jedes Kind etwas nehmen.", "tipp": "Was dürfen die Kinder mit den Sachen vom Tablett machen?" },
+          "schluss": "Der Mond lag bei den Bastelsachen. Jedes Kind durfte ihn nehmen.",
+          "erfolg": "Das war kein Diebstahl. Das war ein Versehen."
+        }
+      ],
+      "ende": [
+        {
+          "art": "sortieren",
+          "titel": "Sicher oder nur ein Verdacht?",
+          "text": "Was wissen wir jetzt? Und was vermuten wir nur?",
+          "karten": [
+            { "text": "Der Mond lag am falschen Platz.", "stapel": "sicher", "warum": "Fertige Sachen gehören in die grüne Kiste." },
+            { "text": "Der Mond ist schon zerschnitten.", "stapel": "verdacht", "warum": "Wir haben nur eine Schere gehört." },
+            { "text": "Vom Tablett darf jedes Kind etwas nehmen.", "stapel": "sicher", "warum": "So lautet die Regel am Basteltisch." },
+            { "text": "Jemand wollte Mila ärgern.", "stapel": "verdacht", "warum": "Dafür gibt es keine einzige Spur." }
+          ],
+          "erfolg": "Gut getrennt! So denkt ein Detektiv."
+        },
+        {
+          "art": "wahl",
+          "offen": true,
+          "merken": "s7",
+          "titel": "Dein Verdacht",
+          "text": "Es ist plötzlich still. Was ist mit dem Mond passiert?",
+          "optionen": [
+            { "id": "a", "text": "Er ist zerschnitten.", "bild": "objekte/schere" },
+            { "id": "b", "text": "Er ist noch ganz.", "bild": "objekte/mond_vorne" },
+            { "id": "c", "text": "Ich weiß es noch nicht.", "bild": "raupe/denkt" }
+          ],
+          "erfolg": "Dein Verdacht steht jetzt in der Fallakte."
+        }
+      ],
+      "akte": {
+        "fragenNeu": [{ "id": "ganz", "text": "Ist der Mond noch ganz?" }]
+      }
+    },
+    {
+      "spur": 2,
+      "bild": null,
+      "bildB": "k2_s8",
+      "haken": "„Ich muss sehen, was dort draußen passiert.“",
+      "mitte": [
+        {
+          "art": "wahl",
+          "titel": "Dreh-Detektiv",
+          "text": "Der feuchte Kleber darf das Tablett nicht berühren. Welche Seite hat Ben nach oben gelegt?",
+          "optionen": [
+            { "id": "a", "text": "die gelbe Seite", "bild": "objekte/mond_vorne" },
+            { "id": "b", "text": "die weiße Seite", "bild": "objekte/mond_hinten" }
+          ],
+          "richtig": ["b"],
+          "beweis": [{ "spur": 8, "satz": "Also war der Kleber auf der weißen Seite." }],
+          "tipp": "Auf welcher Seite ist der Kleber? Diese Seite darf nicht unten liegen.",
+          "erfolg": "Richtig gedreht! Die Seite mit dem Kleber lag oben."
+        },
+        {
+          "art": "wahl",
+          "titel": "Von oben gesehen",
+          "text": "Jemand schaut nur kurz auf das Tablett. Was sieht er dort?",
+          "optionen": [
+            { "id": "a", "text": "einen gelben Mond" },
+            { "id": "b", "text": "einen weißen Kreis aus Pappe" },
+            { "id": "c", "text": "ein leeres Tablett" }
+          ],
+          "richtig": ["b"],
+          "beweis": [{ "spur": 1, "satz": "Die Rückseite ist weiß." }],
+          "tipp": "Welche Farbe hat die Rückseite von Milas Mond? Das steht in Kapitel 1, Spur 1.",
+          "erfolg": "Genau. Von oben war kein Mond zu erkennen."
+        }
+      ],
+      "ende": [
+        {
+          "art": "sortieren",
+          "titel": "Sicher oder nur ein Verdacht?",
+          "text": "Was wissen wir jetzt? Und was vermuten wir nur?",
+          "karten": [
+            { "text": "Der Mond lag mit der weißen Seite nach oben.", "stapel": "sicher", "warum": "Ben hat es selbst so hingelegt." },
+            { "text": "Der Ärmel wusste, dass der Kreis ein Mond ist.", "stapel": "verdacht", "warum": "Von oben sah man nur Weiß." },
+            { "text": "Den Stern auf der Rückseite sieht man kaum.", "stapel": "sicher", "warum": "Der Stern ist winzig." }
+          ],
+          "erfolg": "Gut getrennt!"
+        },
+        {
+          "art": "wahl",
+          "offen": true,
+          "merken": "s8",
+          "titel": "Dein Verdacht",
+          "text": "Der gestreifte Ärmel hat etwas vom Tablett genommen. Wusste er, dass es ein Mond ist?",
+          "optionen": [
+            { "id": "a", "text": "Ja, er wollte den Mond." },
+            { "id": "b", "text": "Nein, er sah nur weiße Pappe." },
+            { "id": "c", "text": "Ich weiß es noch nicht." }
+          ],
+          "erfolg": "Dein Verdacht steht jetzt in der Fallakte."
+        }
+      ],
+      "akte": {
+        "fragenNeu": [{ "id": "wusste", "text": "Wusste der Ärmel, dass es ein Mond ist?" }]
+      }
+    },
+    {
+      "spur": 3,
+      "bild": "k2_s9",
+      "haken": "Was liegt unter dem Seidenpapier?",
+      "mitte": [
+        {
+          "art": "zwei",
+          "titel": "Alte Spur, neue Spur",
+          "text": "Grünes Papier! Das kennst du doch. Such in deinem Notizbuch die alte Spur, die dazu passt.",
+          "gegeben": { "spur": 9, "satz": "Vor ihr liegt grünes Gras aus Papier." },
+          "suche": { "spur": 2, "satz": "Neben ihrem Blumentopf liegt ein kleines grünes Blatt.", "tipp": "Was hat die Lese-Raupe heute gefrühstückt? Das steht in Kapitel 1, Spur 2." },
+          "schluss": "Das grüne Blatt war Papiergras von Oskars Maus. Der Wind hat es durch das Fenster geweht.",
+          "erfolg": "Ein altes Rätsel ist gelöst."
+        },
+        {
+          "art": "zwei",
+          "titel": "Noch eine alte Spur",
+          "text": "Die Maus hat ein rotes Herz aus Papier. Wo hast du schon einmal rotes Papier gesehen?",
+          "gegeben": { "spur": 9, "satz": "ein rotes Herz aus Papier auf dem Bauch" },
+          "suche": { "spur": 6, "satz": "Auf dem Tablett liegt ein schmaler roter Papierstreifen.", "tipp": "Was lag auf dem leeren Tablett? Das steht in Kapitel 1, Spur 6." },
+          "schluss": "Der rote Streifen ist ein Rest vom Herz. Oskar hat am Tablett für seine Maus gebastelt.",
+          "erfolg": "Jetzt wissen wir, wer am Tablett war."
+        }
+      ],
+      "ende": [
+        {
+          "art": "blick",
+          "titel": "Tatort-Blick",
+          "text": "Von ihrem Platz kann die Lese-Raupe etwas nicht sehen. Tippe im Bild auf die Stelle, die ein Geheimnis versteckt.",
+          "bild": "k2_s9",
+          "ausschnitt": { "x": 28, "y": 22, "w": 72, "h": 62 },
+          "zone": { "x": 63, "y": 49, "r": 9 },
+          "tipp": "Worüber hat Oskar ein Papier gelegt?",
+          "erfolg": "Der Teller ist zugedeckt. Von der Seite sieht man nichts."
+        },
+        {
+          "art": "wahl",
+          "offen": true,
+          "merken": "s9",
+          "titel": "Dein Verdacht",
+          "text": "Ein Festessen für eine Maus aus Papier. Was liegt wohl auf dem Teller?",
+          "optionen": [
+            { "id": "a", "text": "Milas Mond" },
+            { "id": "b", "text": "etwas, das Oskar gebastelt hat" },
+            { "id": "c", "text": "ein echtes Stück Käse" }
+          ],
+          "erfolg": "Dein Verdacht steht jetzt in der Fallakte."
+        }
+      ],
+      "akte": {
+        "fragenWeg": ["blatt"],
+        "fragenNeu": [{ "id": "teller", "text": "Was liegt auf dem Teller?" }],
+        "hinweise": [{ "wer": "oskar", "text": "Er versteckt etwas unter Seidenpapier." }]
+      }
+    },
+    {
+      "spur": 4,
+      "bild": "k2_s10",
+      "haken": "Was hat Oskar aus dem weißen Kreis gebastelt?",
+      "mitte": [
+        {
+          "art": "zwei",
+          "titel": "Zwei Spuren, ein Schluss",
+          "text": "Oskar hat einen weißen Kreis genommen. Such die Spur, die dazu passt.",
+          "gegeben": { "spur": 10, "satz": "Ich habe vorhin nur einen weißen Kreis vom Tablett genommen." },
+          "suche": { "spur": 8, "satz": "Die weiße Seite lag oben", "tipp": "Wie lag der Mond auf dem Tablett? Das hat Ben in Spur 2 erklärt." },
+          "schluss": "Milas Mond lag weiß nach oben. Oskars weißer Kreis ist vielleicht der Mond.",
+          "erfolg": "Vielleicht! Bewiesen ist es noch nicht."
+        },
+        {
+          "art": "wahl",
+          "titel": "Dieb oder kein Dieb?",
+          "text": "Oskar hat den Kreis einfach genommen. Hat er etwas Verbotenes getan?",
+          "optionen": [
+            { "id": "a", "text": "Ja. Er hat den Mond gestohlen." },
+            { "id": "b", "text": "Ja. Er hat gelogen." },
+            { "id": "c", "text": "Nein. Vom Tablett darf jedes Kind etwas nehmen." }
+          ],
+          "richtig": ["c"],
+          "beweis": [{ "spur": 7, "satz": "Davon darf sich jedes Kind etwas nehmen." }],
+          "tipp": "Wie lautet die Regel am Basteltisch? Das steht in Spur 1.",
+          "erfolg": "Richtig. Oskar hat sich an die Regel gehalten."
+        }
+      ],
+      "ende": [
+        {
+          "art": "weg",
+          "titel": "Der Weg des Mondes",
+          "text": "Der Weg geht weiter. Tippe die Orte in der richtigen Reihenfolge an.",
+          "stationen": [
+            { "id": "bank", "text": "draußen bei der Maus", "bild": "objekte/teller_zugedeckt" },
+            { "id": "tablett", "text": "auf dem blauen Tablett", "bild": "objekte/mond_auf_tablett" },
+            { "id": "theater", "text": "am Theater", "bild": "objekte/theater" },
+            { "id": "ben", "text": "in Bens Händen", "bild": "objekte/kleber" }
+          ],
+          "reihenfolge": ["theater", "ben", "tablett", "bank"],
+          "beweis": [{ "spur": 10, "satz": "Draußen bei meiner Maus." }],
+          "tipp": "Wo ist der weiße Kreis jetzt? Das sagt Oskar selbst.",
+          "erfolg": "Vom Theater bis zur Bank: Du kennst den ganzen Weg."
+        },
+        {
+          "art": "wahl",
+          "offen": true,
+          "merken": "s10",
+          "titel": "Dein Verdacht",
+          "text": "Oskar hat aus dem Kreis eine Überraschung gebastelt. Was glaubst du?",
+          "optionen": [
+            { "id": "a", "text": "Er hat ihn zerschnitten." },
+            { "id": "b", "text": "Er hat etwas daraufgeklebt." },
+            { "id": "c", "text": "Er hat ihn angemalt." }
+          ],
+          "erfolg": "Dein Verdacht steht jetzt in der Fallakte."
+        }
+      ],
+      "akte": {
+        "fragenWeg": ["griff", "wusste"],
+        "hinweise": [{ "wer": "oskar", "text": "Er nahm einen weißen Kreis. Das durfte er." }],
+        "wegNeu": [{ "id": "bank", "text": "draußen bei der Maus" }]
+      }
+    },
+    {
+      "spur": 5,
+      "bild": "k2_s11",
+      "haken": "Neben dem Teller liegt etwas Gelbes. Viele kleine Stücke.",
+      "mitte": [
+        {
+          "art": "blick",
+          "titel": "Der beste Platz",
+          "text": "Wohin muss die Lese-Raupe kriechen, damit sie von oben auf den Teller schaut? Tippe die Stelle an.",
+          "bild": "k2_s11_spiel",
+          "zone": { "x": 50, "y": 63, "r": 10 },
+          "tipp": "Der äußere Rand ist dort, wo das Fensterbrett aufhört. Die Bank steht genau darunter.",
+          "erfolg": "Von dort oben sieht sie alles."
+        }
+      ],
+      "ende": [
+        {
+          "art": "zwei",
+          "titel": "Alte Spur, neue Spur",
+          "text": "Mila sagt, sie hat sich heute schon einmal geirrt. Weißt du noch, wann? Such die Spur.",
+          "gegeben": { "spur": 11, "satz": "Aber ich habe mich heute schon einmal geirrt." },
+          "suche": { "spur": 4, "satz": "Das ist nur ein Bastelkreis", "tipp": "Was hat Mila unter den Zeitungen gefunden? Das steht in Kapitel 1, Spur 4." },
+          "schluss": "Mila hat schon einmal einen falschen Kreis für ihren Mond gehalten. Jetzt will sie Beweise.",
+          "erfolg": "Gelb und rund reicht nicht. Das weißt du auch."
+        },
+        {
+          "art": "wahl",
+          "offen": true,
+          "merken": "s11",
+          "titel": "Dein Verdacht",
+          "text": "Viele kleine gelbe Stücke neben dem Teller. Was ist das?",
+          "optionen": [
+            { "id": "a", "text": "Das war einmal Milas Mond." },
+            { "id": "b", "text": "Das ist anderes gelbes Papier." },
+            { "id": "c", "text": "Ich weiß es noch nicht." }
+          ],
+          "erfolg": "Dein Verdacht steht jetzt in der Fallakte."
+        }
+      ],
+      "akte": {
+        "fragenNeu": [{ "id": "stuecke", "text": "Was sind die gelben Stücke?" }]
+      }
+    },
+    {
+      "spur": 6,
+      "bild": "k2_s12",
+      "haken": "„Drei … zwei … eins …“",
+      "mitte": [
+        {
+          "art": "wahl",
+          "titel": "Oskars Rätsel",
+          "text": "Gelb, rund und mit Löchern. Für eine Maus. Was hat Oskar gebastelt?",
+          "optionen": [
+            { "id": "a", "text": "eine Sonne" },
+            { "id": "b", "text": "einen Käse" },
+            { "id": "c", "text": "einen Pfannkuchen" }
+          ],
+          "richtig": ["b"],
+          "beweis": [{ "spur": 12, "satz": "Wie Löcher." }],
+          "tipp": "Was frisst eine Maus am liebsten? Und was hat Löcher?",
+          "erfolg": "Rätsel gelöst! Und das noch vor Mila und Ben."
+        },
+        {
+          "art": "sortieren",
+          "titel": "Genau hingehört",
+          "text": "Was hat Oskar wirklich gesagt? Und was ist nur Bens Angst?",
+          "karten": [
+            { "text": "Oskar hat den Kreis umgedreht.", "stapel": "sicher", "warum": "Das hat Oskar selbst gesagt." },
+            { "text": "Oskar hat den Kreis zerschnitten.", "stapel": "verdacht", "warum": "Vom Schneiden hat Oskar kein Wort gesagt." },
+            { "text": "Oskar hat braune Kreise aufgeklebt.", "stapel": "sicher", "warum": "Auch das hat Oskar selbst gesagt." }
+          ],
+          "erfolg": "Geklebt, nicht geschnitten. Das ist ein großer Unterschied!"
+        }
+      ],
+      "ende": [
+        {
+          "art": "wahl",
+          "offen": true,
+          "merken": "s12",
+          "titel": "Dein Verdacht",
+          "text": "Gleich zieht Oskar das Papier weg. Ist der Käse wirklich Milas Mond?",
+          "optionen": [
+            { "id": "a", "text": "Ja, ganz sicher." },
+            { "id": "b", "text": "Nein, das ist ein anderer Kreis." },
+            { "id": "c", "text": "Erst will ich die Rückseite sehen!" }
+          ],
+          "erfolg": "Dein Verdacht steht jetzt in der Fallakte."
+        }
+      ],
+      "akte": {
+        "fragenWeg": ["schere"],
+        "hinweise": [{ "wer": "oskar", "text": "Er hat geklebt. Vom Schneiden hat er nichts gesagt." }]
+      }
+    }
+  ]
+}
