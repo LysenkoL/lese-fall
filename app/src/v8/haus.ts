@@ -10,10 +10,15 @@ import { weniger } from './effekte.ts';
 /** Bilder, die die Besitzerin noch erzeugt (02_design/PROMPT_RAUPENHAUS.md). Fehlen sie, gilt der gezeichnete Ersatz. */
 const KOMMT = {
   ...import.meta.glob('../../../assets/illustrationen/raupenhaus.webp', { eager: true, query: '?url', import: 'default' }),
-  ...import.meta.glob('../gen/frei/raupe_isst.webp', { eager: true, query: '?url', import: 'default' }),
+  ...import.meta.glob('../gen/frei/raupe_{isst,schlaeft,lupe}.webp', { eager: true, query: '?url', import: 'default' }),
 } as Record<string, string>;
 const HAUS_BILD = KOMMT['../../../assets/illustrationen/raupenhaus.webp'];
 const ISST = KOMMT['../gen/frei/raupe_isst.webp'];
+const SCHLAEFT = KOMMT['../gen/frei/raupe_schlaeft.webp'];
+const MIT_LUPE = KOMMT['../gen/frei/raupe_lupe.webp'];
+/** Raupe schläft (Epilog) und Raupe hält die goldene Lupe – oder null, solange die Bilder fehlen */
+export const schlaeftBild = (): string | null => SCHLAEFT ?? null;
+export const mitLupeBild = (): string | null => MIT_LUPE ?? null;
 
 export const DINGE: { id: string; ab: number }[] = [
   { id: 'fliege', ab: 6 }, { id: 'schal', ab: 12 }, { id: 'brille', ab: 18 }, { id: 'notizbuch', ab: 24 },
@@ -58,7 +63,7 @@ export interface HausCtx {
 /** Bild der Raupe mit der Sache, die sie gerade trägt (Lupe: Lob-Bild + gezeichnete Lupe) */
 export function raupeMitSache(id: string, fig: (n: string) => string, pose = 'lacht'): string {
   if (id && id !== 'lupe' && DINGE.some((d) => d.id === id)) return `<span class="rms"><img src="${img('garderobe/raupe_' + id)}" alt=""></span>`;
-  if (id === 'lupe') return `<span class="rms mitlupe"><img src="${fig('raupe/lob')}" alt="">${LUPE_SVG}</span>`;
+  if (id === 'lupe') return MIT_LUPE ? `<span class="rms"><img src="${MIT_LUPE}" alt=""></span>` : `<span class="rms mitlupe"><img src="${fig('raupe/lob')}" alt="">${LUPE_SVG}</span>`;
   return `<span class="rms"><img src="${fig('raupe/' + pose)}" alt=""></span>`;
 }
 
