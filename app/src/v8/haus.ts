@@ -10,10 +10,11 @@ import { weniger } from './effekte.ts';
 /** Bilder, die die Besitzerin noch erzeugt (02_design/PROMPT_RAUPENHAUS.md). Fehlen sie, gilt der gezeichnete Ersatz. */
 const KOMMT = {
   ...import.meta.glob('../../../assets/illustrationen/raupenhaus.webp', { eager: true, query: '?url', import: 'default' }),
-  ...import.meta.glob('../gen/frei/raupe_{isst,schlaeft,lupe}.webp', { eager: true, query: '?url', import: 'default' }),
+  ...import.meta.glob('../gen/frei/raupe_{isst,schlaeft,lupe,brrr}.webp', { eager: true, query: '?url', import: 'default' }),
 } as Record<string, string>;
 const HAUS_BILD = KOMMT['../../../assets/illustrationen/raupenhaus.webp'];
 const ISST = KOMMT['../gen/frei/raupe_isst.webp'];
+const BRRR = KOMMT['../gen/frei/raupe_brrr.webp'];
 const SCHLAEFT = KOMMT['../gen/frei/raupe_schlaeft.webp'];
 const MIT_LUPE = KOMMT['../gen/frei/raupe_lupe.webp'];
 /** Raupe schläft (Epilog) und Raupe hält die goldene Lupe – oder null, solange die Bilder fehlen */
@@ -89,12 +90,22 @@ export function zeigeHaus(c: HausCtx): void {
 <h4>${UI.anziehen}</h4><div class="h-sachen">${sachen}</div></section></div>`;
   };
   const sag = (t: string) => { const b = ueber.querySelector<HTMLElement>('.h-blase'); if (!b) return; b.innerHTML = t; b.classList.remove('neu'); void b.offsetWidth; b.classList.add('neu'); };
-  const mampf = () => {
+  let zurueck = 0;
+  const mampf = (essen = '') => {
     const r = ueber.querySelector<HTMLElement>('.h-raupe');
     if (!r) return;
     const bild = r.querySelector<HTMLImageElement>('img');
-    if (ISST && bild && !c.traegt()) { const alt = bild.src; bild.src = ISST; setTimeout(() => { if (bild.isConnected) bild.src = alt; }, 1400); }
-    r.classList.remove('mampf'); void r.offsetWidth; r.classList.add('mampf');
+    // nach dem Eis: „Brrr, kalt!“ (zittert), sonst: kauen; ohne Sache, damit die Kleidung nicht verschwindet
+    const kalt = essen === 'eis' && BRRR;
+    const neu = kalt ? BRRR : ISST;
+    if (neu && bild && !c.traegt()) {
+      bild.dataset.vorher ??= bild.src;
+      bild.src = neu;
+      clearTimeout(zurueck);
+      zurueck = window.setTimeout(() => { if (bild.isConnected) { bild.src = bild.dataset.vorher!; delete bild.dataset.vorher; } }, kalt ? 1800 : 1400);
+    }
+    const kl = kalt ? 'brrr' : 'mampf';
+    r.classList.remove('mampf', 'brrr'); void r.offsetWidth; r.classList.add(kl);
   };
   malen(UI.hausHallo);
   ueber.onclick = (e) => {
@@ -113,8 +124,8 @@ export function zeigeHaus(c: HausCtx): void {
         document.body.appendChild(flug);
         const an = flug.animate([{ transform: 'translate(0,0) scale(1)', opacity: 1 }, { transform: `translate(${z.left + z.width / 2 - a.left - a.width / 2}px, ${z.top + z.height * 0.45 - a.top - a.height / 2}px) scale(.35)`, opacity: .2 }], { duration: 520, easing: 'cubic-bezier(.4,0,.6,1)' });
         an.onfinish = () => flug.remove();
-        setTimeout(() => { mampf(); herzchen(ziel); }, 420);
-      } else mampf();
+        setTimeout(() => { mampf(id); herzchen(ziel); }, 420);
+      } else mampf(id);
       c.summ(20);
       const erst = !gegessen.has(id);
       gegessen.add(id);

@@ -104,6 +104,7 @@ async function nachDemFall() {
   if (blase0 === blase1) fehler.push('Haus: Füttern ändert nichts');
   await klick('.h-essen[data-f="blatt"]'); await sleep(300);
   if ((await ev(() => document.querySelector('.h-blase').textContent)) === blase1) fehler.push('Haus: zweites Füttern sagt dasselbe');
+  await klick('.h-essen[data-f="eis"]'); await sleep(700); await shot('haus_eis'); await sleep(1600);
   const zu = await ev(() => document.querySelectorAll('.h-sache.zu').length);
   if (zu) fehler.push(`Haus: nach allen 24 Spuren sind noch ${zu} Sachen zu`);
   await klick('.h-sache[data-s="hut"]'); await sleep(300); await S('haus_hut');

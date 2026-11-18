@@ -165,3 +165,6 @@ button.perl:active { transform: translateY(1px); }
 .h-buehne.mitbild .h-blase { margin-bottom: 4rem; }
 .lg-raupe.gross { left: 0; right: 0; margin-inline: auto; height: 100%; }
 .ep-raupe.schlaeft { height: min(7rem, 18cqh); filter: brightness(.9) drop-shadow(0 0 22px rgba(246, 211, 91, .25)); }
+@keyframes brrr { 0%, 100% { translate: 0 0; } 10%, 30%, 50%, 70% { translate: -3px 0; } 20%, 40%, 60%, 80% { translate: 3px 0; } }
+.h-raupe.brrr { animation: brrr .9s linear; }
+@media (prefers-reduced-motion: reduce) { .h-raupe.brrr { animation: none !important; } }
