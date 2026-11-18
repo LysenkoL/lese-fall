@@ -24,7 +24,7 @@
 .fest-bild img { width: 100%; display: block; border-radius: .25rem; }
 .fest-t { font-size: 1.5rem; font-weight: 800; color: var(--senf); animation: hoch .5s .5s both; }
 .fest-t .s-b, .fest-t .s-r { color: inherit; }
-.fest-raupe { position: absolute !important; right: max(.25rem, calc(50% - 18rem)); bottom: 3.25rem; height: 6.5rem; z-index: 2; }
+.fest-raupe { position: absolute !important; right: max(1.25rem, calc(50% - 18rem)); bottom: 3.25rem; height: 6.5rem; z-index: 2; }
 .fest-raupe .rms { height: 100%; display: block; animation: tanz 1.2s .6s ease-in-out infinite; transform-origin: 50% 100%; filter: drop-shadow(0 6px 10px rgba(0, 0, 0, .4)); }
 
 /* ---------- Die Raupe schenkt die goldene Lupe ---------- */
@@ -163,4 +163,3 @@ button.perl:active { transform: translateY(1px); }
 .h-perl b { color: var(--tinte); }
 .h-buehne.mitbild { background-size: cover; background-position: center; min-height: 11rem; }
 .h-buehne.mitbild .h-blase { margin-bottom: 4rem; }
-.h-essen > img.e-keks { transform: scale(1.6); }
