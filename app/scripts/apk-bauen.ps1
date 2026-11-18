@@ -45,6 +45,8 @@ Write-Host "ANDROID_HOME = $sdk"
 
 # ---------- 2. Neuesten Stand holen ----------
 Schritt 'Neuesten Stand von main holen'
+# Diese Dateien erzeugt der Build selbst neu (npm run data) - lokale Kopien verwerfen, sonst blockieren sie git pull
+foreach ($gen in '04_data/buch1_v8.json', '04_data/buch1_v7.json', '04_data/kapitel1.json') { git checkout -- $gen 2>$null }
 $aenderungen = git status --porcelain
 if ($aenderungen) { Write-Host 'Achtung: lokale Aenderungen vorhanden - sie bleiben unberuehrt:' -ForegroundColor Yellow; $aenderungen | Select-Object -First 10 }
 git fetch origin main; if ($LASTEXITCODE) { Fehler 'git fetch fehlgeschlagen.' }
