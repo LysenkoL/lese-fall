@@ -163,3 +163,5 @@ button.perl:active { transform: translateY(1px); }
 .h-perl b { color: var(--tinte); }
 .h-buehne.mitbild { background-size: cover; background-position: center; min-height: 11rem; }
 .h-buehne.mitbild .h-blase { margin-bottom: 4rem; }
+.lg-raupe.gross { left: 0; right: 0; margin-inline: auto; height: 100%; }
+.ep-raupe.schlaeft { height: min(7rem, 18cqh); filter: brightness(.9) drop-shadow(0 0 22px rgba(246, 211, 91, .25)); }
