@@ -7,7 +7,14 @@
 1. Установить Android Studio (в нём есть Android SDK и JDK 21).
 2. `cd app && npm install`
 
-## Каждый раз
+## Каждый раз — одной командой (Windows, PowerShell)
+В папке проекта (где лежит README.md):
+```powershell
+powershell -ExecutionPolicy Bypass -File app\scripts\apk-bauen.ps1
+```
+Скрипт сам: проверит Node, Java (берёт из Android Studio) и Android SDK → подтянет свежий `main` → `npm install` → `npm run android` → `gradlew assembleDebug` → положит **`Lese-Fall-debug.apk` на рабочий стол**.
+
+## Каждый раз — вручную
 ```bash
 cd app
 npm run android          # данные + сборка веб-части + v8 как стартовая страница + cap sync android
