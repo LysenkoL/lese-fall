@@ -83,7 +83,7 @@ async function finale() {
   if (!(await p.$('.fin.fest .fest-bild'))) fehler.push('Finale: Bild aus dem Tresor wird nicht groß');
   await klick('#fuss [data-a="weiter"]');
   await sleep(600); await S('finale_lupe');
-  if (!(await p.$('.lupe-gabe .glupe, .lupe-gabe img[src*="goldlupe"]'))) fehler.push('Finale: goldene Lupe fehlt');
+  if (!(await p.$('.lupe-gabe .glupe, .lupe-gabe img[src*="goldlupe"], .lupe-gabe img[src*="raupe_lupe"]'))) fehler.push('Finale: goldene Lupe fehlt');
   await klick('#fuss [data-a="weiter"]');
   await p.fill('#dname', 'Mia'); await sleep(200); await S('finale_urkunde');
   if (!(await p.$('.dipl .dt'))) fehler.push('Finale: Urkunde fehlt');
@@ -110,7 +110,7 @@ async function nachDemFall() {
   await klick('.h-sache[data-s="hut"]'); await sleep(300); await S('haus_hut');
   if (!(await ev(() => document.querySelector('.h-raupe img').src.includes('raupe_hut')))) fehler.push('Haus: Hut wird nicht angezogen');
   await klick('.h-sache[data-s="lupe"]'); await sleep(300); await S('haus_lupe');
-  if (!(await p.$('.h-raupe .glupe, .h-raupe img[src*="goldlupe"]'))) fehler.push('Haus: Raupe hält die Lupe nicht');
+  if (!(await p.$('.h-raupe .glupe, .h-raupe img[src*="goldlupe"], .h-raupe img[src*="raupe_lupe"]'))) fehler.push('Haus: Raupe hält die Lupe nicht');
   await klick('.haus [data-a="zu"]');
   await klick('#fuss [data-a="album"]'); await S('album');
   if ((await ev(() => document.querySelectorAll('.al-karte').length)) !== 6) fehler.push('Album: nicht 6 Spuren je Kapitel');
