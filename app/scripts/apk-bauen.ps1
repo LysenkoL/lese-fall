@@ -2,7 +2,7 @@
 # Holt den neuesten Stand von main, baut die Web-Teile (v8), synchronisiert Android und baut die APK.
 # Die fertige APK liegt danach auf dem Desktop: Lese-Fall-debug.apk
 #
-# Aufruf im Projektordner (dort, wo README.md liegt):
+# Aufruf im Projektordner (dort, wo README.md liegt), vorher einmal: git pull origin main
 #   powershell -ExecutionPolicy Bypass -File app\scripts\apk-bauen.ps1
 #
 # Braucht: Git, Node.js (18+), Android Studio (bringt Android SDK und Java mit).
@@ -11,14 +11,14 @@ $ErrorActionPreference = 'Stop'
 function Schritt($t) { Write-Host "`n==> $t" -ForegroundColor Yellow }
 function Fehler($t) { Write-Host "`nFEHLER: $t" -ForegroundColor Red; exit 1 }
 
-# Projektordner = zwei Ebenen über diesem Skript
+# Projektordner = zwei Ebenen ueber diesem Skript
 $Root = Resolve-Path (Join-Path $PSScriptRoot '..\..')
 Set-Location $Root
 
-# ---------- 1. Werkzeuge prüfen ----------
-Schritt 'Werkzeuge prüfen'
+# ---------- 1. Werkzeuge pruefen ----------
+Schritt 'Werkzeuge pruefen'
 foreach ($cmd in 'git', 'node', 'npm') {
-  if (-not (Get-Command $cmd -ErrorAction SilentlyContinue)) { Fehler "$cmd nicht gefunden. Bitte installieren und PowerShell neu öffnen." }
+  if (-not (Get-Command $cmd -ErrorAction SilentlyContinue)) { Fehler "$cmd nicht gefunden. Bitte installieren und PowerShell neu oeffnen." }
 }
 Write-Host "node $(node -v)"
 
@@ -39,16 +39,16 @@ Write-Host "JAVA_HOME = $env:JAVA_HOME"
 $sdk = $env:ANDROID_HOME
 if (-not $sdk) { $sdk = $env:ANDROID_SDK_ROOT }
 if (-not $sdk) { $sdk = "$env:LOCALAPPDATA\Android\Sdk" }
-if (-not (Test-Path "$sdk\platforms")) { Fehler "Android SDK nicht gefunden ($sdk). In Android Studio einmal öffnen: More Actions > SDK Manager, Android 16 (API 36) installieren." }
+if (-not (Test-Path "$sdk\platforms")) { Fehler "Android SDK nicht gefunden ($sdk). In Android Studio einmal oeffnen: More Actions > SDK Manager, Android 16 (API 36) installieren." }
 $env:ANDROID_HOME = $sdk
 Write-Host "ANDROID_HOME = $sdk"
 
 # ---------- 2. Neuesten Stand holen ----------
 Schritt 'Neuesten Stand von main holen'
 $aenderungen = git status --porcelain
-if ($aenderungen) { Write-Host 'Achtung: lokale Änderungen vorhanden – sie bleiben unberührt:' -ForegroundColor Yellow; $aenderungen | Select-Object -First 10 }
+if ($aenderungen) { Write-Host 'Achtung: lokale Aenderungen vorhanden - sie bleiben unberuehrt:' -ForegroundColor Yellow; $aenderungen | Select-Object -First 10 }
 git fetch origin main; if ($LASTEXITCODE) { Fehler 'git fetch fehlgeschlagen.' }
-git checkout main; if ($LASTEXITCODE) { Fehler 'git checkout main fehlgeschlagen (lokale Änderungen? erst sichern).' }
+git checkout main; if ($LASTEXITCODE) { Fehler 'git checkout main fehlgeschlagen (lokale Aenderungen? erst sichern).' }
 git pull --ff-only origin main; if ($LASTEXITCODE) { Fehler 'git pull fehlgeschlagen.' }
 git log --oneline -1
 
@@ -64,7 +64,7 @@ $lp = "$Root\app\android\local.properties"
 "sdk.dir=$($sdk -replace '\\', '\\')" | Set-Content -Encoding ASCII $lp
 
 # ---------- 4. APK bauen ----------
-Schritt 'APK bauen (gradlew assembleDebug) – beim ersten Mal dauert das einige Minuten'
+Schritt 'APK bauen (gradlew assembleDebug) - beim ersten Mal dauert das einige Minuten'
 Set-Location "$Root\app\android"
 .\gradlew.bat assembleDebug; if ($LASTEXITCODE) { Fehler 'Gradle-Build fehlgeschlagen. Die Meldung oben zeigt den Grund.' }
 
@@ -76,6 +76,6 @@ Copy-Item $apk $ziel -Force
 
 Schritt 'Fertig'
 Write-Host "APK: $ziel" -ForegroundColor Green
-Write-Host 'Aufs Handy: per USB-Kabel kopieren oder an dich selbst schicken, dann antippen und „Aus unbekannten Quellen installieren“ erlauben.'
+Write-Host "Aufs Handy: per USB-Kabel kopieren oder an dich selbst schicken, dann antippen und 'Aus unbekannten Quellen installieren' erlauben."
 Write-Host ("Mit Kabel und USB-Debugging geht auch: adb install -r `"$ziel`"")
 Set-Location $Root
