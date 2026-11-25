@@ -94,7 +94,49 @@
      "Für den Schlüs|sel be|kam die Els|ter ei|nen Glit|zer-Schmuck."
     ],
     "frage": "Vier Buch|sta|ben sind ge|sam|melt. Was er|ge|ben sie?",
-    "stempel": "KAPITEL 4 GELÖST"
+    "stempel": "KAPITEL 4 GELÖST",
+    "flunker": {
+     "art": "flunker",
+     "werkzeug": "lesen",
+     "text": "Die Le|se-Rau|pe er|zählt den gan|zen Fall. Zwei|mal flun|kert sie! Tip|pe auf die fal|schen Sät|ze.",
+     "start": "Ich er|zäh|le dir den gan|zen Fall. A|ber pass auf: Zwei|mal flun|ke|re ich!",
+     "frage": "Und dann?",
+     "saetze": [
+      {
+       "text": "Mi|la hat ei|nen gel|ben Mond für das The|a|ter ge|bas|telt.",
+       "wahr": true
+      },
+      {
+       "text": "Os|kar dach|te: Das ist ein Kä|se für mei|ne Maus.",
+       "wahr": true
+      },
+      {
+       "text": "Er hat li|la Punk|te auf den Mond ge|malt.",
+       "wahr": false,
+       "aufloesung": "Er hat drei brau|ne Fle|cken auf|ge|klebt.",
+       "sagt": "Hi|hi, er|wischt! Li|la war gar nichts."
+      },
+      {
+       "text": "Ei|ne Els|ter hat Frau Som|mers Schlüs|sel in ihr Nest ge|holt.",
+       "wahr": true
+      },
+      {
+       "text": "Den Mond woll|te sie es|sen. Sie dach|te, er ist ein Kä|se!",
+       "wahr": false,
+       "aufloesung": "Sie woll|te den Mond we|gen des Sil|ber|sterns. Sie liebt al|les, was glänzt.",
+       "sagt": "Er|wischt! Els|tern es|sen kei|nen Mond aus Pap|pe."
+      },
+      {
+       "text": "Für den Schlüs|sel be|kam die Els|ter ei|nen Glit|zer-Schmuck.",
+       "wahr": true
+      }
+     ],
+     "nein": "Das stimmt doch! Lies noch ein|mal.",
+     "fund": "Er|wischt! Ein|mal ha|be ich noch ge|flun|kert.",
+     "warum": "Die Els|ter liebt al|les, was glänzt. Den Mond woll|te sie we|gen des Sil|ber|sterns.",
+     "stempel": "GEFLUNKERT!",
+     "erfolg": "Er|wischt! Du passt a|ber gut auf, Part|ner."
+    }
    },
    "ausblick": "Frau Som|mer hält ih|ren Schlüs|sel in der Hand. Drau|ßen fun|kelt der Nest-Schmuck der Els|ter. Jetzt fehlt nur noch eins: der Tre|sor der Le|se-Rau|pe!",
    "finale": {
@@ -2760,9 +2802,103 @@
    "tipp": null,
    "raetsel": {
     "art": "waage",
+    "werkzeug": "lesen",
     "titel": "Wel|che I|dee macht al|le froh?",
-    "text": "…",
-    "werkzeug": "lesen"
+    "text": "Je|der hat ei|nen Wunsch. Wel|che I|dee macht al|le drei froh?",
+    "start": "O|je, drei Wün|sche! Tipp ei|ne I|dee an. Wer freut sich?",
+    "kinder": [
+     {
+      "id": "mila",
+      "name": "Mi|la",
+      "text": "Der Mond soll am Him|mel hän|gen."
+     },
+     {
+      "id": "ben",
+      "name": "Ben",
+      "text": "Nichts soll ka|putt|ge|hen."
+     },
+     {
+      "id": "oskar",
+      "name": "Os|kar",
+      "text": "Mei|ne Maus soll ein Fest|es|sen ha|ben."
+     }
+    ],
+    "ideen": [
+     {
+      "id": "abziehen",
+      "text": "Wir zie|hen die Fle|cken ab.",
+      "mila": {
+       "froh": true,
+       "unter": "Dann ist er wie|der gelb!"
+      },
+      "ben": {
+       "froh": false,
+       "unter": "Nein! Dann reißt die Pap|pe.",
+       "bild": "besorgt"
+      },
+      "oskar": {
+       "froh": false,
+       "unter": "Und mei|ne Maus?"
+      },
+      "sagt": "O|je, Ben schaut ganz be|sorgt."
+     },
+     {
+      "id": "ohne",
+      "text": "Wir spie|len oh|ne Mond.",
+      "mila": {
+       "froh": false,
+       "unter": "Oh|ne Mond? Das geht nicht!"
+      },
+      "ben": {
+       "froh": true,
+       "unter": "Gut, dann reißt nichts."
+      },
+      "oskar": {
+       "froh": false,
+       "unter": "Dann gibt es kei|nen Kä|se."
+      },
+      "sagt": "Oh|ne Mond ist der Him|mel ja ganz leer!"
+     },
+     {
+      "id": "neu",
+      "text": "Wir bas|teln schnell ei|nen neu|en Mond.",
+      "mila": {
+       "froh": false,
+       "unter": "Das dau|ert viel zu lan|ge!",
+       "bild": "besorgt"
+      },
+      "ben": {
+       "froh": true,
+       "unter": "Gut, dann reißt nichts."
+      },
+      "oskar": {
+       "froh": false,
+       "unter": "Und mein Kä|se ist weg."
+      },
+      "sagt": "Hmm. Wie|der sind zwei trau|rig."
+     },
+     {
+      "id": "kaese",
+      "text": "Die Fle|cken blei|ben. Für die Maus ist der Mond ein Kä|se!",
+      "mila": {
+       "froh": true,
+       "unter": "Der Mond bleibt am Him|mel!"
+      },
+      "ben": {
+       "froh": true,
+       "unter": "Und nichts reißt!"
+      },
+      "oskar": {
+       "froh": true,
+       "unter": "Ein Rie|sen-Kä|se für mei|ne Maus!"
+      }
+     }
+    ],
+    "tipp": "Schau mal: Der ech|te Mond hat auch dun|kle Fle|cken.",
+    "warum": "Die Fle|cken blei|ben ein|fach dran. Für die Maus sieht der Mond aus wie ein Kä|se.",
+    "fund": "Al|le drei sind froh!",
+    "stempel": "ALLE FROH",
+    "erfolg": "Ge|nau das hat Ben ge|meint! Für die Maus ist der Mond ein Kä|se. Und al|le drei sind froh."
    }
   },
   {
@@ -2939,7 +3075,8 @@
       "Al|le schau|en nach o|ben.",
       "Der Vo|gel fliegt zu ei|ner Ast|ga|bel di|rekt un|ter dem Klas|sen|zim|mer|fens|ter.",
       "Dort sitzt sein run|des Nest, zwi|schen zwei Zwei|gen wie in ei|nem gro|ßen V.",
-      "Der Mond ist viel zu groß für das Nest.",
+      "Der Vo|gel ist fast so groß wie ei|ne Tau|be.",
+      "A|ber der Mond ist viel zu groß für das Nest.",
       "Trotz|dem zerrt und ru|ckelt der Vo|gel wie ver|rückt am Fa|den."
      ]
     },
@@ -3550,7 +3687,7 @@
      "typ": "p",
      "s": [
       "Da zeigt Mi|la zum Fens|ter.",
-      "Drau|ßen auf dem Zweig sitzt der gro|ße schwarz-wei|ße Vo|gel.",
+      "Drau|ßen auf dem Zweig sitzt der gro|ße schwarz-wei|ße Vo|gel mit dem lan|gen Schwanz.",
       "Er schaut sehn|süch|tig zum Sil|ber|stern am Mond."
      ]
     },
@@ -3592,9 +3729,93 @@
    "tipp": null,
    "raetsel": {
     "art": "lexikon",
+    "werkzeug": "lesen",
     "titel": "Das Vo|gel|buch",
-    "text": "…",
-    "werkzeug": "lesen"
+    "text": "Lies den Steck|brief. Such un|se|ren Vo|gel im Vo|gel|buch.",
+    "start": "Wie heißt der schlau|e Vo|gel noch mal? Ich glau|be, es ist Vo|gel 1!",
+    "steckbrief": {
+     "titel": "Steck|brief",
+     "saetze": [
+      "schwarz-weiß",
+      "lan|ger Schwanz",
+      "groß wie ei|ne Tau|be",
+      "mag al|les, was glänzt"
+     ]
+    },
+    "buch": {
+     "titel": "Mein Vo|gel|buch"
+    },
+    "ok": "Das ist un|ser Vo|gel!",
+    "irrtum": "amsel",
+    "voegel": [
+     {
+      "id": "amsel",
+      "titel": "Vo|gel 1",
+      "name": "Am|sel",
+      "crop": {
+       "bild": "objekte/voegel",
+       "n": 5,
+       "i": 3
+      },
+      "saetze": [
+       "Er ist ganz schwarz.",
+       "Er hat ei|nen gel|ben Schna|bel."
+      ],
+      "nicht": "Vo|gel 1 ist ganz schwarz. Un|ser Vo|gel ist schwarz-weiß.",
+      "merkmal": 0
+     },
+     {
+      "id": "bachstelze",
+      "titel": "Vo|gel 2",
+      "name": "Bach|stel|ze",
+      "crop": {
+       "bild": "objekte/voegel",
+       "n": 5,
+       "i": 1
+      },
+      "saetze": [
+       "Er ist schwarz-weiß und wippt mit dem lan|gen Schwanz.",
+       "Er ist klein, nur so groß wie ein Spatz."
+      ],
+      "nicht": "Vo|gel 2 ist klein. Un|ser Vo|gel ist groß wie ei|ne Tau|be.",
+      "merkmal": 2
+     },
+     {
+      "id": "elster",
+      "titel": "Vo|gel 3",
+      "name": "Els|ter",
+      "crop": {
+       "bild": "objekte/voegel",
+       "n": 5,
+       "i": 0
+      },
+      "saetze": [
+       "Er ist schwarz-weiß und so groß wie ei|ne Tau|be.",
+       "Er sam|melt gern Sa|chen, die glän|zen."
+      ]
+     },
+     {
+      "id": "meise",
+      "titel": "Vo|gel 4",
+      "name": "Kohl|mei|se",
+      "crop": {
+       "bild": "objekte/voegel",
+       "n": 5,
+       "i": 4
+      },
+      "saetze": [
+       "Er hat ei|nen gel|ben Bauch.",
+       "Er ist klein und frisst gern Kör|ner."
+      ],
+      "nicht": "Vo|gel 4 hat ei|nen gel|ben Bauch. Un|ser Vo|gel ist schwarz-weiß.",
+      "merkmal": 0
+     }
+    ],
+    "loesung": "elster",
+    "warum": "Vo|gel 3 ist groß wie ei|ne Tau|be. Und er sam|melt Sa|chen, die glän|zen.",
+    "fund": "Da steht sein Na|me! Jetzt noch der Stem|pel.",
+    "stempel": "DER VOGEL: ELSTER",
+    "erfolg": "Ei|ne Els|ter! Und ich dach|te, ei|ne Am|sel. Hi|hi, gut, dass du so ge|nau liest."
    }
   },
   {

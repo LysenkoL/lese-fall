@@ -18,7 +18,49 @@
    "Für den Schlüssel bekam die Elster einen Glitzer-Schmuck."
   ],
   "frage": "Vier Buchstaben sind gesammelt. Was ergeben sie?",
-  "stempel": "KAPITEL 4 GELÖST"
+  "stempel": "KAPITEL 4 GELÖST",
+  "flunker": {
+   "art": "flunker",
+   "werkzeug": "lesen",
+   "text": "Die Lese-Raupe erzählt den ganzen Fall. Zweimal flunkert sie! Tippe auf die falschen Sätze.",
+   "start": "Ich erzähle dir den ganzen Fall. Aber pass auf: Zweimal flunkere ich!",
+   "frage": "Und dann?",
+   "saetze": [
+    {
+     "text": "Mila hat einen gelben Mond für das Theater gebastelt.",
+     "wahr": true
+    },
+    {
+     "text": "Oskar dachte: Das ist ein Käse für meine Maus.",
+     "wahr": true
+    },
+    {
+     "text": "Er hat lila Punkte auf den Mond gemalt.",
+     "wahr": false,
+     "aufloesung": "Er hat drei braune Flecken aufgeklebt.",
+     "sagt": "Hihi, erwischt! Lila war gar nichts."
+    },
+    {
+     "text": "Eine Elster hat Frau Sommers Schlüssel in ihr Nest geholt.",
+     "wahr": true
+    },
+    {
+     "text": "Den Mond wollte sie essen. Sie dachte, er ist ein Käse!",
+     "wahr": false,
+     "aufloesung": "Sie wollte den Mond wegen des Silbersterns. Sie liebt alles, was glänzt.",
+     "sagt": "Erwischt! Elstern essen keinen Mond aus Pappe."
+    },
+    {
+     "text": "Für den Schlüssel bekam die Elster einen Glitzer-Schmuck.",
+     "wahr": true
+    }
+   ],
+   "nein": "Das stimmt doch! Lies noch einmal.",
+   "fund": "Erwischt! Einmal habe ich noch geflunkert.",
+   "warum": "Die Elster liebt alles, was glänzt. Den Mond wollte sie wegen des Silbersterns.",
+   "stempel": "GEFLUNKERT!",
+   "erfolg": "Erwischt! Du passt aber gut auf, Partner."
+  }
  },
  "ausblick": "Frau Sommer hält ihren Schlüssel in der Hand. Draußen funkelt der Nest-Schmuck der Elster. Jetzt fehlt nur noch eins: der Tresor der Lese-Raupe!",
  "ui": {
@@ -470,9 +512,93 @@
    ],
    "raetsel": {
     "art": "lexikon",
+    "werkzeug": "lesen",
     "titel": "Das Vogelbuch",
-    "text": "…",
-    "werkzeug": "lesen"
+    "text": "Lies den Steckbrief. Such unseren Vogel im Vogelbuch.",
+    "start": "Wie heißt der schlaue Vogel noch mal? Ich glaube, es ist Vogel 1!",
+    "steckbrief": {
+     "titel": "Steckbrief",
+     "saetze": [
+      "schwarz-weiß",
+      "langer Schwanz",
+      "groß wie eine Taube",
+      "mag alles, was glänzt"
+     ]
+    },
+    "buch": {
+     "titel": "Mein Vogelbuch"
+    },
+    "ok": "Das ist unser Vogel!",
+    "irrtum": "amsel",
+    "voegel": [
+     {
+      "id": "amsel",
+      "titel": "Vogel 1",
+      "name": "Amsel",
+      "crop": {
+       "bild": "objekte/voegel",
+       "n": 5,
+       "i": 3
+      },
+      "saetze": [
+       "Er ist ganz schwarz.",
+       "Er hat einen gelben Schnabel."
+      ],
+      "nicht": "Vogel 1 ist ganz schwarz. Unser Vogel ist schwarz-weiß.",
+      "merkmal": 0
+     },
+     {
+      "id": "bachstelze",
+      "titel": "Vogel 2",
+      "name": "Bachstelze",
+      "crop": {
+       "bild": "objekte/voegel",
+       "n": 5,
+       "i": 1
+      },
+      "saetze": [
+       "Er ist schwarz-weiß und wippt mit dem langen Schwanz.",
+       "Er ist klein, nur so groß wie ein Spatz."
+      ],
+      "nicht": "Vogel 2 ist klein. Unser Vogel ist groß wie eine Taube.",
+      "merkmal": 2
+     },
+     {
+      "id": "elster",
+      "titel": "Vogel 3",
+      "name": "Elster",
+      "crop": {
+       "bild": "objekte/voegel",
+       "n": 5,
+       "i": 0
+      },
+      "saetze": [
+       "Er ist schwarz-weiß und so groß wie eine Taube.",
+       "Er sammelt gern Sachen, die glänzen."
+      ]
+     },
+     {
+      "id": "meise",
+      "titel": "Vogel 4",
+      "name": "Kohlmeise",
+      "crop": {
+       "bild": "objekte/voegel",
+       "n": 5,
+       "i": 4
+      },
+      "saetze": [
+       "Er hat einen gelben Bauch.",
+       "Er ist klein und frisst gern Körner."
+      ],
+      "nicht": "Vogel 4 hat einen gelben Bauch. Unser Vogel ist schwarz-weiß.",
+      "merkmal": 0
+     }
+    ],
+    "loesung": "elster",
+    "warum": "Vogel 3 ist groß wie eine Taube. Und er sammelt Sachen, die glänzen.",
+    "fund": "Da steht sein Name! Jetzt noch der Stempel.",
+    "stempel": "DER VOGEL: ELSTER",
+    "erfolg": "Eine Elster! Und ich dachte, eine Amsel. Hihi, gut, dass du so genau liest."
    }
   },
   {

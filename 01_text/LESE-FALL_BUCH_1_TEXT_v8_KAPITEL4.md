@@ -12,7 +12,7 @@ Wusch! Der große schwarz-weiße Vogel schießt aus den Zweigen herab. Er schnap
 
 „Mein Mond!“, schreit Mila. „Der Vogel klaut unseren Himmelskäse!“
 
-Alle schauen nach oben. Der Vogel fliegt zu einer Astgabel direkt unter dem Klassenzimmerfenster. Dort sitzt sein rundes Nest, zwischen zwei Zweigen wie in einem großen V. Der Mond ist viel zu groß für das Nest. Trotzdem zerrt und ruckelt der Vogel wie verrückt am Faden.
+Alle schauen nach oben. Der Vogel fliegt zu einer Astgabel direkt unter dem Klassenzimmerfenster. Dort sitzt sein rundes Nest, zwischen zwei Zweigen wie in einem großen V. Der Vogel ist fast so groß wie eine Taube. Aber der Mond ist viel zu groß für das Nest. Trotzdem zerrt und ruckelt der Vogel wie verrückt am Faden.
 
 Mila, Ben und Oskar rennen unter den Baum. „Hey, du frecher Dieb!“, ruft Mila und winkt mit beiden Armen. „Gib den sofort wieder her!“
 
@@ -70,7 +70,7 @@ Am Ende rufen alle: „Zugabe! Zugabe!“ Oskar glüht vor Glück. „Ich habe m
 
 „Ich mich auch“, denkt die Lese-Raupe auf dem Fensterbrett und lächelt.
 
-Da zeigt Mila zum Fenster. Draußen auf dem Zweig sitzt der große schwarz-weiße Vogel. Er schaut sehnsüchtig zum Silberstern am Mond.
+Da zeigt Mila zum Fenster. Draußen auf dem Zweig sitzt der große schwarz-weiße Vogel mit dem langen Schwanz. Er schaut sehnsüchtig zum Silberstern am Mond.
 
 „Was für ein kluges Tier!“, sagt Frau Sommer. „Dieser Vogel erkennt sich sogar selbst im Spiegel. Und er liebt alles, was glänzt.“
 

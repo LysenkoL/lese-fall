@@ -335,9 +335,103 @@
    "fragenWeg": [],
    "raetsel": {
     "art": "waage",
+    "werkzeug": "lesen",
     "titel": "Welche Idee macht alle froh?",
-    "text": "…",
-    "werkzeug": "lesen"
+    "text": "Jeder hat einen Wunsch. Welche Idee macht alle drei froh?",
+    "start": "Oje, drei Wünsche! Tipp eine Idee an. Wer freut sich?",
+    "kinder": [
+     {
+      "id": "mila",
+      "name": "Mila",
+      "text": "Der Mond soll am Himmel hängen."
+     },
+     {
+      "id": "ben",
+      "name": "Ben",
+      "text": "Nichts soll kaputtgehen."
+     },
+     {
+      "id": "oskar",
+      "name": "Oskar",
+      "text": "Meine Maus soll ein Festessen haben."
+     }
+    ],
+    "ideen": [
+     {
+      "id": "abziehen",
+      "text": "Wir ziehen die Flecken ab.",
+      "mila": {
+       "froh": true,
+       "unter": "Dann ist er wieder gelb!"
+      },
+      "ben": {
+       "froh": false,
+       "unter": "Nein! Dann reißt die Pappe.",
+       "bild": "besorgt"
+      },
+      "oskar": {
+       "froh": false,
+       "unter": "Und meine Maus?"
+      },
+      "sagt": "Oje, Ben schaut ganz besorgt."
+     },
+     {
+      "id": "ohne",
+      "text": "Wir spielen ohne Mond.",
+      "mila": {
+       "froh": false,
+       "unter": "Ohne Mond? Das geht nicht!"
+      },
+      "ben": {
+       "froh": true,
+       "unter": "Gut, dann reißt nichts."
+      },
+      "oskar": {
+       "froh": false,
+       "unter": "Dann gibt es keinen Käse."
+      },
+      "sagt": "Ohne Mond ist der Himmel ja ganz leer!"
+     },
+     {
+      "id": "neu",
+      "text": "Wir basteln schnell einen neuen Mond.",
+      "mila": {
+       "froh": false,
+       "unter": "Das dauert viel zu lange!",
+       "bild": "besorgt"
+      },
+      "ben": {
+       "froh": true,
+       "unter": "Gut, dann reißt nichts."
+      },
+      "oskar": {
+       "froh": false,
+       "unter": "Und mein Käse ist weg."
+      },
+      "sagt": "Hmm. Wieder sind zwei traurig."
+     },
+     {
+      "id": "kaese",
+      "text": "Die Flecken bleiben. Für die Maus ist der Mond ein Käse!",
+      "mila": {
+       "froh": true,
+       "unter": "Der Mond bleibt am Himmel!"
+      },
+      "ben": {
+       "froh": true,
+       "unter": "Und nichts reißt!"
+      },
+      "oskar": {
+       "froh": true,
+       "unter": "Ein Riesen-Käse für meine Maus!"
+      }
+     }
+    ],
+    "tipp": "Schau mal: Der echte Mond hat auch dunkle Flecken.",
+    "warum": "Die Flecken bleiben einfach dran. Für die Maus sieht der Mond aus wie ein Käse.",
+    "fund": "Alle drei sind froh!",
+    "stempel": "ALLE FROH",
+    "erfolg": "Genau das hat Ben gemeint! Für die Maus ist der Mond ein Käse. Und alle drei sind froh."
    }
   },
   {

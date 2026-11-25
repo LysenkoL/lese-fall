@@ -20,7 +20,7 @@ import { staub } from './staub';
 import * as R from './raetsel';
 import { SPIELE_WEG } from './raetsel_weg.ts';
 import { SPIELE_LESEN } from './raetsel_lesen.ts';
-import { zeigeFinale, urkundeHtml } from './finale.ts';
+import { zeigeFinale, urkundeHtml, urkundeMitStand } from './finale.ts';
 import { zeigeHaus, neuHinweis, freiBei, raupeMitSache, konfetti, feuerwerk } from './haus.ts';
 import { App } from '@capacitor/app';
 
@@ -49,8 +49,8 @@ interface Stand {
   spur: number; i: number; blatt: number;
   fertig: number[]; tipps: Record<number, string>; tippPerle: number; geklaert: string[]; mix: string[];
   intro: boolean; fs: number; silben: boolean;
-  /** Finale: 0 Szene, 1 Code, 2 Tresor offen, 3 Urkunde; Name auf der Urkunde */
-  fin: number; name: string;
+  /** Finale (finale.ts, D-19): 0 Code, 1 Tresor offen mit Lupe, 2 Urkunde, 3 Epilog; Name und Titel (Detektiv/Detektivin) auf der Urkunde */
+  fin: number; name: string; titel?: 'detektiv' | 'detektivin'; finV?: number;
   /** weitester erreichter Schritt (pos()); alles davor darf man vor- und zurückblättern */
   weit: number;
   /** Fall gelöst (Epilog erreicht): „Weiter“ führt ab jetzt zur Seite „Fall gelöst“ */
@@ -66,6 +66,7 @@ const KEY = 'lesefall.v8';
 const START: Stand = { view: 'titel', weiter: 'intro', spur: 1, i: 0, blatt: 0, fertig: [], tipps: {}, tippPerle: 0, geklaert: [], mix: [], intro: false, fs: 20, silben: true, fin: 0, name: '', weit: 0, geloest: false, wieder: false, albumKap: 1, traegt: '', gesehen: null };
 const stand: Stand = (() => { try { const r = localStorage.getItem(KEY); if (r) return { ...structuredClone(START), ...JSON.parse(r) }; } catch { /* ohne Speichern weiter */ } return structuredClone(START); })();
 const speichern = () => { try { localStorage.setItem(KEY, JSON.stringify(stand)); } catch { /* egal */ } };
+urkundeMitStand(stand, speichern); // „Meine Urkunde“ liest und speichert Name und Titel direkt im Stand
 
 const SP = (n: number) => D.spuren[n - 1];
 const kapOf = (n: number) => D.kapitel[SP(n).kap - 1];
@@ -475,25 +476,34 @@ function haken() {
 function fallkarte() {
   modus('zug');
   const f = kap().fallkarte, c = kap().code;
-  buehne.innerHTML = `<section class="zug fall"><div class="lampe"></div><article class="fk"><span class="tab">${UI.kapitel} ${kap().nr}</span><h2>${f.titel}</h2><figure class="foto"><img src="${img(f.bild)}" alt=""></figure><ul>${f.saetze.map((s: string) => `<li>${s}</li>`).join('')}</ul><p class="fk-frage">${f.frage}</p></article><div class="codez hell" hidden><span>${UI.code}</span><div class="wort">${c.wort.split('').map((_: string, i: number) => `<i class="${i === c.pos ? 'fall' : ''}">${i === c.pos ? c.buchstabe : (D.kapitel.find((k: any) => k.code.pos === i && verdient(k.nr))?.code.buchstabe ?? '')}</i>`).join('')}</div></div></section>`;
+  const codeHtml = `<div class="codez hell" hidden><span>${UI.code}</span><div class="wort">${c.wort.split('').map((_: string, i: number) => `<i class="${i === c.pos ? 'fall' : ''}">${i === c.pos ? c.buchstabe : (D.kapitel.find((k: any) => k.code.pos === i && verdient(k.nr))?.code.buchstabe ?? '')}</i>`).join('')}</div></div>`;
+  // D-19: In Kapitel 4 erzählt die Raupe den Fall und flunkert zweimal (Flunker-Finder) – statt die Fallkarte nur zu lesen
+  if (f.flunker) {
+    buehne.innerHTML = `<section class="zug fall" data-art="flunker"><div class="lampe"></div><div class="zk"><div class="zkr"><span class="tab hell">${UI.kapitel} ${kap().nr}</span></div><h2>${f.titel}</h2></div><p class="zt1">${f.flunker.text}</p><div class="zi"></div><div class="zr"></div>${codeHtml}</section>`;
+    const sec = $('.fall');
+    SPIELE_LESEN.flunker(sec, f.flunker, () => nurKnopf('stempeln', knopf('stempeln', UI.stempeln), () => stempeltAuf(sec, $('.zi', sec), f)));
+    return;
+  }
+  buehne.innerHTML = `<section class="zug fall"><div class="lampe"></div><article class="fk"><span class="tab">${UI.kapitel} ${kap().nr}</span><h2>${f.titel}</h2><figure class="foto"><img src="${img(f.bild)}" alt=""></figure><ul>${f.saetze.map((s: string) => `<li>${s}</li>`).join('')}</ul><p class="fk-frage">${f.frage}</p></article>${codeHtml}</section>`;
   const sec = $('.fall'), fk = $('.fk', sec);
-  const stempelt = () => {
-    fk.classList.add('stempelziel');
-    fk.insertAdjacentHTML('beforeend', `<b class="stempel abdruck">${f.stempel}</b>`);
-    summ(40);
-    konfetti(sec);
-    const cz = $('.codez', sec);
-    cz.classList.add('zu');
-    cz.hidden = false;
-    cz.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-    fuss.innerHTML = '<div class="fz"><button class="kn haupt" style="visibility:hidden" tabindex="-1"><span>·</span></button></div>';
-    setTimeout(() => {
-      const feld = $('.wort i.fall', sec);
-      requestAnimationFrame(() => cz.classList.remove('zu'));
-      hookStaub = staub(feld, () => { hookStaub = null; nurKnopf('weiter', knopf('weiter', UI.weiter), () => { stand.view = D.kapitel[kap().nr] ? 'ausblick' : 'finale'; stand.fin = 0; zeige(); }); });
-    }, 700);
-  };
-  nurKnopf('stempeln', knopf('stempeln', UI.stempeln), stempelt);
+  nurKnopf('stempeln', knopf('stempeln', UI.stempeln), () => stempeltAuf(sec, fk, f));
+}
+/** Stempel „Kapitel gelöst“ auf die Fallkarte (oder die Spielfläche), dann erscheint der Code-Buchstabe unter Staub */
+function stempeltAuf(sec: HTMLElement, fk: HTMLElement, f: any) {
+  fk.classList.add('stempelziel');
+  fk.insertAdjacentHTML('beforeend', `<b class="stempel abdruck">${f.stempel}</b>`);
+  summ(40);
+  konfetti(sec);
+  const cz = $('.codez', sec);
+  cz.classList.add('zu');
+  cz.hidden = false;
+  cz.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  fuss.innerHTML = '<div class="fz"><button class="kn haupt" style="visibility:hidden" tabindex="-1"><span>·</span></button></div>';
+  setTimeout(() => {
+    const feld = $('.wort i.fall', sec);
+    requestAnimationFrame(() => cz.classList.remove('zu'));
+    hookStaub = staub(feld, () => { hookStaub = null; nurKnopf('weiter', knopf('weiter', UI.weiter), () => { stand.view = D.kapitel[kap().nr] ? 'ausblick' : 'finale'; stand.fin = 0; zeige(); }); });
+  }, 700);
 }
 function ausblick() {
   modus('haken');
@@ -505,7 +515,7 @@ function ausblick() {
     zeige();
   });
 }
-/** Finale nach dem letzten Kapitel: Szene, Tresor, Urkunde (siehe finale.ts) */
+/** Finale nach dem letzten Kapitel: Code, Tresor mit Lupe, Urkunde, Epilog (siehe finale.ts) */
 function finale() {
   const letzt = D.kapitel[D.kapitel.length - 1];
   zeigeFinale({ buehne, fuss, UI, img, fig, summ, fin: letzt.finale, wort: D.kapitel[0].code.wort, stand, speichern, perlen, modus, neuStart, hook: R.hook, knopf,
@@ -622,7 +632,7 @@ function vorSchritt() {
   if (stand.view === 'finale') { stand.fin++; return zeige(); }
 }
 /** Steht im Fuß gerade ein sichtbarer Haupt-Knopf, der weiterführt? Dann braucht es keinen Vor-Pfeil. */
-const hatWeiter = () => [...fuss.querySelectorAll<HTMLButtonElement>('.fz .kn.haupt')].some((k) => !k.disabled && k.style.visibility !== 'hidden' && k.dataset.a !== 'stempeln' && k.dataset.a !== 'warte');
+const hatWeiter = () => [...fuss.querySelectorAll<HTMLButtonElement>('.fz .kn.haupt')].some((k) => !k.disabled && k.style.visibility !== 'hidden' && k.dataset.a !== 'stempeln' && k.dataset.a !== 'warte' && k.dataset.a !== 'mehr'); // „mehr“ = „Und dann?“ im Flunker-Finder, führt nicht weiter
 /** Pfeile links und rechts vom Haupt-Knopf; beim Lesen gibt es sie schon im Fuß (‹ ›) */
 function nav() {
   const lesen = app.dataset.m === 'lesen';
