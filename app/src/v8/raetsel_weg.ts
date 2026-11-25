@@ -148,6 +148,7 @@ SPIELE_WEG.raupenweg = (r, d, fertig) => {
     clearTimeout(posT); lauf?.cancel(); lauf = null;
     figur.classList.remove('kriecht', 'unter');
     wahlen.innerHTML = '';
+    if (P.length) { $('.rw-nr', hinweis).textContent = String(P.length); $('p', hinweis).innerHTML = P[P.length - 1].text ?? ''; } // auch nach loese(): der letzte Hinweis
     hinweis.classList.add('fertig');
     pose('staunt');
     figur.classList.add('leuchtet');
@@ -375,6 +376,7 @@ SPIELE_WEG.passtgenau = (r, d, fertig) => {
   zi.addEventListener('pointerup', ablegen); zi.addEventListener('pointercancel', ablegen);
   zi.addEventListener('click', (e) => {
     if (performance.now() - nachZug < 400) return; // Klick nach dem Ziehen nicht noch einmal zählen
+    if (demo && (e.target as HTMLElement).closest('.pg')) spielen(); // Tastatur: Enter beendet die Vorführung
     if (sperre || fertigig) return;
     const f = (e.target as HTMLElement).closest<HTMLElement>('.pg-fleck:not(.drin):not(.geist)');
     if (f) {

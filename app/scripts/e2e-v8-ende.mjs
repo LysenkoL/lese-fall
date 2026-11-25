@@ -120,10 +120,12 @@ async function finale() {
   }
   await sleep(300); await shot('finale_code_richtig');
   // Tresor öffnet sich: erst Tür und Licht, dann liegt die goldene Lupe drin und die Raupe schenkt sie
-  await sleep(2400); await S('finale_tresor_auf_start');
+  for (let t = 0; t < 40 && (await wo()).f !== 1; t++) await sleep(100);
   if ((await wo()).f !== 1) fehler.push('Finale: nach dem Code nicht beim offenen Tresor');
   if (await p.$('#fuss [data-a="weiter"]')) fehler.push('Tresor: „Danke!“ steht schon vor dem Öffnen da');
-  await sleep(2600); await S('finale_tresor_lupe');
+  await sleep(1000); await shot('finale_tresor_auf_start'); // Tür offen, Licht, Konfetti; Lupe erscheint
+  await p.waitForSelector('#fuss [data-a="weiter"]', { timeout: 5000 }).catch(() => fehler.push('Tresor: „Danke!“ erscheint nicht'));
+  await sleep(700); await S('finale_tresor_lupe');
   if (!(await p.$('.tresor-auf .tv.auf .tv-lupe img[src*="goldene_lupe"]'))) fehler.push('Tresor: goldene Lupe liegt nicht im offenen Tresor');
   if (await p.$('#buehne img[src*="finale_bild"]')) fehler.push('Tresor: altes Bild finale_bild wird noch gezeigt');
   if (!(await p.$('.tresor-auf .zr:not(.wartet) .rp'))) fehler.push('Tresor: Sprechblase der Raupe fehlt');
@@ -252,13 +254,17 @@ await finale();
 await zurueckUndVor();
 await nachDemFall();
 await alterStand();
-// Mitten im Buch: Stand nach Spur 2 (4 Perlen)
-await ev(() => localStorage.setItem('lesefall.v8', JSON.stringify({ spur: 3, i: 0, fertig: [1, 2], weiter: 'spur', intro: true, geklaert: [] })));
+// Mitten im Buch: zwei Spuren gelöst (4 Perlen), dann eine Spur mit einem länger bestehenden Rätsel
+// (neue Rätsel in Arbeit, z. B. Spur 3 „wort“, lassen sich mit __v8.loese() vielleicht noch nicht lösen)
+const STABIL = ['merkmale', 'reihe', 'ausschluss', 'unterschiede', 'sortieren', 'buchstaben'];
+const MITTE = D.spuren.find((s) => s.nr >= 3 && STABIL.includes(s.raetsel?.art))?.nr ?? 3;
+await ev((n) => localStorage.setItem('lesefall.v8', JSON.stringify({ spur: n, i: 0, fertig: [1, 2], weiter: 'spur', intro: true, geklaert: [] })), MITTE);
 await p.reload(); await sleep(900);
 await klick('[data-a="start"]'); await sleep(600);
-// Haus während des Lesens: neue Sache wird angekündigt (Spur 3 macht 6 Perlen voll), Tippen öffnet das Haus
-await ev(() => { window.__v8.stand.i = window.__v8.steps(3).indexOf('raetsel'); window.__v8.zeige(); }); await sleep(500);
-await loese(); await sleep(2200);
+// Haus während des Lesens: neue Sache wird angekündigt (die dritte gelöste Spur macht 6 Perlen voll), Tippen öffnet das Haus
+await ev((n) => { window.__v8.stand.i = window.__v8.steps(n).indexOf('raetsel'); window.__v8.zeige(); }, MITTE); await sleep(500);
+for (let k = 0; k < 8 && !(await ev((n) => window.__v8.stand.fertig.includes(n), MITTE)); k++) { await loese(); await sleep(500); } // Rätsel mit mehreren Phasen
+await sleep(2200);
 if (!(await p.$('.neuhaus'))) fehler.push('Haus: neue Sache bei 6 Perlen nicht angekündigt');
 else { await shot('neu_im_haus'); await klick('.neuhaus'); await sleep(400); await S('haus_waehrend_buch');
   if (await ev(() => document.querySelector('.h-sache[data-s="fliege"]') === null)) fehler.push('Haus: Fliege bei 6 Perlen nicht frei');

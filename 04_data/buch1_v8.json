@@ -2339,9 +2339,60 @@
    "tipp": null,
    "raetsel": {
     "art": "passtgenau",
-    "titel": "Passt ge|nau",
-    "text": "…",
-    "werkzeug": "zeit"
+    "titel": "Passt ge|nau?",
+    "text": "Os|kar sagt: Die Fle|cken sind aus dem brau|nen Bo|gen. Leg je|den Fleck in sein Loch.",
+    "werkzeug": "zeit",
+    "flecken": [
+     {
+      "id": "klein",
+      "groesse": 20,
+      "x": 30,
+      "y": 36,
+      "name": "klei|ner Fleck"
+     },
+     {
+      "id": "mittel",
+      "groesse": 29,
+      "x": 68,
+      "y": 40,
+      "name": "mitt|le|rer Fleck"
+     },
+     {
+      "id": "gross",
+      "groesse": 40,
+      "x": 46,
+      "y": 72,
+      "name": "gro|ßer Fleck"
+     }
+    ],
+    "loecher": [
+     {
+      "fleck": "gross",
+      "x": 21,
+      "y": 50,
+      "name": "gro|ßes Loch"
+     },
+     {
+      "fleck": "klein",
+      "x": 52,
+      "y": 30,
+      "name": "klei|nes Loch"
+     },
+     {
+      "fleck": "mittel",
+      "x": 80,
+      "y": 60,
+      "name": "mitt|le|res Loch"
+     }
+    ],
+    "demo": "Schau mal! Der klei|ne Fleck im gro|ßen Loch? Er wa|ckelt. Passt nicht.",
+    "start": "Jetzt du! Zieh je|den Fleck in sein Loch. O|der tip|pe erst den Fleck an und dann das Loch.",
+    "nicht": "Zu klein! Der Fleck wa|ckelt im Loch.",
+    "nein": "Zu groß! Der Fleck passt nicht hi|nein.",
+    "ok": "Passt ge|nau!",
+    "warum": "Klei|ner Fleck, klei|nes Loch. Gro|ßer Fleck, gro|ßes Loch.",
+    "stempel": "PASST GENAU",
+    "erfolg": "Al|le drei Fle|cken pas|sen ge|nau. Os|kar hat sie aus dem brau|nen Bo|gen ge|schnit|ten. Mi|las Mond ist heil!"
    }
   },
   {
@@ -3173,8 +3224,127 @@
    "raetsel": {
     "art": "raupenweg",
     "titel": "Der Weg zum Nest",
-    "text": "…",
-    "werkzeug": "fuehler"
+    "text": "Hilf der Le|se-Rau|pe ü|ber die Äs|te. Lies den Hin|weis. Dann tip|pe auf den rich|ti|gen Pfeil.",
+    "werkzeug": "fuehler",
+    "bild": "raupenweg",
+    "ratio": 1.5,
+    "start": "Lies den Hin|weis. Dann zeig mir den Weg!",
+    "anfang": {
+     "x": 15.6,
+     "y": 66.7
+    },
+    "punkte": [
+     {
+      "text": "Kriech un|ter dem gro|ßen Blatt durch.",
+      "ok": "Un|ter dem Blatt sieht mich kei|ner.",
+      "warum": "Das gro|ße Blatt liegt auf dem lan|gen Ast. Da krie|chen wir drun|ter durch.",
+      "wege": [
+       {
+        "x": 28.2,
+        "y": 44.7,
+        "name": "Nach o|ben",
+        "nicht": "Hui, der Zweig wa|ckelt! Da sind nur klei|ne Blät|ter."
+       },
+       {
+        "x": 32.8,
+        "y": 68.3,
+        "name": "Ge|ra|de|aus",
+        "richtig": true,
+        "weg": [
+         {
+          "x": 37.2,
+          "y": 68,
+          "unter": true
+         },
+         {
+          "x": 42,
+          "y": 67,
+          "unter": true
+         },
+         {
+          "x": 47.8,
+          "y": 66.3
+         }
+        ]
+       },
+       {
+        "x": 27.1,
+        "y": 90.8,
+        "name": "Nach un|ten",
+        "nicht": "Hui, der Zweig schau|kelt! Da un|ten ist gar kein Blatt."
+       }
+      ]
+     },
+     {
+      "text": "Nicht zum Vo|gel|haus!",
+      "ok": "Gut. Weg vom Vo|gel|haus.",
+      "warum": "Der un|te|re Zweig führt zum Vo|gel|haus. Wir neh|men den o|be|ren.",
+      "wege": [
+       {
+        "x": 56.7,
+        "y": 81.7,
+        "name": "Nach un|ten",
+        "nicht": "Oh nein, da hängt das Vo|gel|haus! Da will ich nicht hin."
+       },
+       {
+        "x": 62.8,
+        "y": 60.3,
+        "name": "Nach o|ben",
+        "richtig": true,
+        "weg": [
+         {
+          "x": 67.8,
+          "y": 59.3
+         },
+         {
+          "x": 72.8,
+          "y": 58.3
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "text": "Nimm den dün|nen Zweig. Er sieht aus wie ein V.",
+      "ok": "Ein V! Hier ist es.",
+      "warum": "Nur die|ser dün|ne Zweig teilt sich wie ein V.",
+      "wege": [
+       {
+        "x": 61.8,
+        "y": 35.3,
+        "name": "Nach links o|ben",
+        "nicht": "Der Zweig ist dünn. A|ber er ist ganz ge|ra|de."
+       },
+       {
+        "x": 83.6,
+        "y": 40,
+        "name": "Nach rechts o|ben",
+        "richtig": true,
+        "weg": [
+         {
+          "x": 84.7,
+          "y": 38.7
+         },
+         {
+          "x": 83.1,
+          "y": 33
+         },
+         {
+          "x": 82,
+          "y": 28.7
+         }
+        ]
+       },
+       {
+        "x": 93.3,
+        "y": 57,
+        "name": "Nach rechts",
+        "nicht": "Das ist der di|cke Ast. Der sieht nicht aus wie ein V."
+       }
+      ]
+     }
+    ],
+    "erfolg": "Ich bin am Nest! Pst … Da blitzt et|was. Ist das die Spit|ze von ei|nem Stern?"
    }
   },
   {

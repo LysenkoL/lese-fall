@@ -156,10 +156,10 @@ SPIELE_LESEN.waage = (r, d, fertig) => {
   const ordnung = K.mischen(ideen.map((i) => i.id));
   const probiert = new Set<string>();
   let aktiv: string | null = null, fehl = 0, zu = false;
-  /** Gesicht: vor dem Probieren `start` (nachdenklich), sonst froh/traurig oder das Bild aus der Reaktion */
+  /** Gesicht: vor dem Probieren `gesicht` (sonst nachdenklich), sonst froh/traurig oder das Bild aus der Reaktion */
   const gesicht = (k: any, idee: any, jubel = false) => {
     const basis = k.bild ?? k.id, re = idee?.[k.id] ?? {};
-    const art = jubel ? (k.jubel ?? 'lacht') : !idee ? (k.start ?? 'denkt') : (re.bild ?? (re.froh ? 'froh' : 'traurig'));
+    const art = jubel ? (k.jubel ?? 'lacht') : !idee ? (k.gesicht ?? 'denkt') : (re.bild ?? (re.froh ? 'froh' : 'traurig'));
     return K.fig(`${basis}/${art}`);
   };
   vorladen(kinder.flatMap((k) => [gesicht(k, null, true), ...ideen.map((i) => gesicht(k, i))]));
@@ -189,7 +189,7 @@ SPIELE_LESEN.waage = (r, d, fertig) => {
   const geschafft = (mitHilfe: boolean) => {
     zu = true; hook.loese = null;
     const karte = $(`.ww-idee[data-i="${richtige.id}"]`, zi);
-    if (!mitHilfe) sag(r, 'klatscht', d.fund ?? '');
+    if (!mitHilfe && d.fund) sag(r, 'klatscht', d.fund);
     spaeter(zi, 700, () => {
       kinder.forEach((k) => { $<HTMLImageElement>(`.ww-kind[data-k="${k.id}"] img`, zi).src = gesicht(k, richtige, true); });
       $('.ww', zi).classList.add('fertig');
@@ -210,6 +210,7 @@ SPIELE_LESEN.waage = (r, d, fertig) => {
     if (fehl === 1) return sag(r, 'staunt', idee.sagt ?? K.UI.nochmal);
     if (fehl === 2) return sag(r, 'tipp', d.tipp ?? idee.sagt ?? K.UI.nochmal);
     // dritte unpassende Idee: die Raupe probiert die richtige selbst
+    if (!richtige) return sag(r, 'tipp', d.tipp ?? K.UI.nochmal);
     zu = true;
     sag(r, 'tipp', [K.UI.hilfe, d.warum ?? ''].join(' '));
     spaeter(zi, 1300, () => { zeigen(richtige); geschafft(true); });
@@ -234,7 +235,7 @@ SPIELE_LESEN.flunker = (r, d, fertig) => {
   let sicht = d.alle ? S.length : Math.min(S.length, Math.max(1, d.zuerst ?? 1));
   let fehl = 0, zu = false;
   const wahrheit = (x: any) => x.aufloesung ?? (typeof x.richtig === 'string' ? x.richtig : '');
-  const zeile = (x: any, i: number) => `<li class="fl-z" data-i="${i}"><button class="fl-s"><i class="fl-nr" aria-hidden="true">${i + 1}</i><span class="fl-t">${x.text ?? ''}</span></button></li>`;
+  const zeile = (x: any, i: number) => `<li class="fl-z" data-i="${i}"><button class="fl-s"><i class="fl-nr" aria-hidden="true">${i + 1}</i><span class="fl-t"><span class="fl-satz">${x.text ?? ''}</span></span></button></li>`;
   zi.innerHTML = `<div class="fl"><ol class="fl-heft">${S.slice(0, sicht).map(zeile).join('')}</ol></div>`;
   const heft = $('.fl-heft', zi);
 
@@ -252,9 +253,12 @@ SPIELE_LESEN.flunker = (r, d, fertig) => {
   const markiere = (i: number) => {
     const el = $(`.fl-z[data-i="${i}"]`, heft);
     if (!el || el.classList.contains('gef')) return;
+    el.classList.remove('zeig');
     el.classList.add('gef');
     $('.fl-s', el).setAttribute('aria-disabled', 'true');
-    el.insertAdjacentHTML('beforeend', `<b class="fl-stempel">${d.stempel ?? ''}</b>${wahrheit(S[i]) ? `<p class="fl-auf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h12M12 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>${wahrheit(S[i])}</span></p>` : ''}`);
+    // Stempel gleich hinter dem Satz (fließt mit, verdeckt nichts), darunter wie es wirklich war
+    $('.fl-t', el).insertAdjacentHTML('beforeend', ` <b class="fl-stempel">${d.stempel ?? ''}</b>`);
+    el.insertAdjacentHTML('beforeend', `${wahrheit(S[i]) ? `<p class="fl-auf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h12M12 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>${wahrheit(S[i])}</span></p>` : ''}`);
   };
   const finde = (i: number, mitHilfe: boolean) => {
     gef.add(i); fehl = 0;
@@ -266,7 +270,8 @@ SPIELE_LESEN.flunker = (r, d, fertig) => {
       unten('');
       return spaeter(zi, mitHilfe ? 900 : 600, () => ende(r, d, fertig));
     }
-    if (!mitHilfe) sag(r, 'lacht', S[i].sagt ?? d.fund ?? '');
+    const t = S[i].sagt ?? d.fund;
+    if (!mitHilfe && t) sag(r, 'lacht', t);
     zu = false; fuss();
   };
   zi.onclick = (e) => {
@@ -278,7 +283,8 @@ SPIELE_LESEN.flunker = (r, d, fertig) => {
     wackel(z);
     if (++fehl === 1) return sag(r, 'tipp', S[i].nein ?? d.nein ?? K.UI.nochmal);
     // 2. Fehler: die Raupe gibt den nächsten Flunker zu
-    const ziel = falsch.find((x) => !gef.has(x))!;
+    const ziel = falsch.find((x) => !gef.has(x));
+    if (ziel === undefined) return sag(r, 'tipp', S[i].nein ?? d.nein ?? K.UI.nochmal);
     zu = true;
     mehr(ziel + 1);
     unten('');

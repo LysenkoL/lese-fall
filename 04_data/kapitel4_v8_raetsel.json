@@ -274,8 +274,127 @@
    "raetsel": {
     "art": "raupenweg",
     "titel": "Der Weg zum Nest",
-    "text": "…",
-    "werkzeug": "fuehler"
+    "text": "Hilf der Lese-Raupe über die Äste. Lies den Hinweis. Dann tippe auf den richtigen Pfeil.",
+    "werkzeug": "fuehler",
+    "bild": "raupenweg",
+    "ratio": 1.5,
+    "start": "Lies den Hinweis. Dann zeig mir den Weg!",
+    "anfang": {
+     "x": 15.6,
+     "y": 66.7
+    },
+    "punkte": [
+     {
+      "text": "Kriech unter dem großen Blatt durch.",
+      "ok": "Unter dem Blatt sieht mich keiner.",
+      "warum": "Das große Blatt liegt auf dem langen Ast. Da kriechen wir drunter durch.",
+      "wege": [
+       {
+        "x": 28.2,
+        "y": 44.7,
+        "name": "Nach oben",
+        "nicht": "Hui, der Zweig wackelt! Da sind nur kleine Blätter."
+       },
+       {
+        "x": 32.8,
+        "y": 68.3,
+        "name": "Geradeaus",
+        "richtig": true,
+        "weg": [
+         {
+          "x": 37.2,
+          "y": 68.0,
+          "unter": true
+         },
+         {
+          "x": 42.0,
+          "y": 67.0,
+          "unter": true
+         },
+         {
+          "x": 47.8,
+          "y": 66.3
+         }
+        ]
+       },
+       {
+        "x": 27.1,
+        "y": 90.8,
+        "name": "Nach unten",
+        "nicht": "Hui, der Zweig schaukelt! Da unten ist gar kein Blatt."
+       }
+      ]
+     },
+     {
+      "text": "Nicht zum Vogelhaus!",
+      "ok": "Gut. Weg vom Vogelhaus.",
+      "warum": "Der untere Zweig führt zum Vogelhaus. Wir nehmen den oberen.",
+      "wege": [
+       {
+        "x": 56.7,
+        "y": 81.7,
+        "name": "Nach unten",
+        "nicht": "Oh nein, da hängt das Vogelhaus! Da will ich nicht hin."
+       },
+       {
+        "x": 62.8,
+        "y": 60.3,
+        "name": "Nach oben",
+        "richtig": true,
+        "weg": [
+         {
+          "x": 67.8,
+          "y": 59.3
+         },
+         {
+          "x": 72.8,
+          "y": 58.3
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "text": "Nimm den dünnen Zweig. Er sieht aus wie ein V.",
+      "ok": "Ein V! Hier ist es.",
+      "warum": "Nur dieser dünne Zweig teilt sich wie ein V.",
+      "wege": [
+       {
+        "x": 61.8,
+        "y": 35.3,
+        "name": "Nach links oben",
+        "nicht": "Der Zweig ist dünn. Aber er ist ganz gerade."
+       },
+       {
+        "x": 83.6,
+        "y": 40.0,
+        "name": "Nach rechts oben",
+        "richtig": true,
+        "weg": [
+         {
+          "x": 84.7,
+          "y": 38.7
+         },
+         {
+          "x": 83.1,
+          "y": 33.0
+         },
+         {
+          "x": 82.0,
+          "y": 28.7
+         }
+        ]
+       },
+       {
+        "x": 93.3,
+        "y": 57.0,
+        "name": "Nach rechts",
+        "nicht": "Das ist der dicke Ast. Der sieht nicht aus wie ein V."
+       }
+      ]
+     }
+    ],
+    "erfolg": "Ich bin am Nest! Pst … Da blitzt etwas. Ist das die Spitze von einem Stern?"
    }
   },
   {

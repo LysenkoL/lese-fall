@@ -77,9 +77,9 @@
 }
 
 /* ============================ Wunsch-Waage ============================ */
-.ww { container-type: inline-size; display: flex; flex-direction: column; gap: var(--a-3); }
+.ww { container-type: inline-size; display: flex; flex-direction: column; gap: .625rem; }
 /* Telefon: ein Kind je Zeile (Gesicht links, Name + Wunsch, darunter seine Antwort) */
-.ww-kinder { display: flex; flex-direction: column; gap: .375rem; }
+.ww-kinder { display: flex; flex-direction: column; gap: .3125rem; }
 .ww-kind { display: flex; align-items: flex-start; gap: .625rem; }
 .ww-rahmen { flex: none; display: block; width: 3.25rem; height: 3.25rem; border-radius: 50%; overflow: hidden; border: 3px solid #fff; background: radial-gradient(circle at 50% 30%, #FFFFFF, var(--gedanke)); box-shadow: 0 4px 10px rgba(0, 0, 0, .3); transition: border-color var(--dauer); }
 .ww-rahmen img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 15%; display: block; }
@@ -88,17 +88,17 @@
 .ww-wunsch .s-b, .ww-wunsch .s-r { color: inherit; }
 .ww-name { color: var(--senf); font-weight: 800; }
 .ww-name::after { content: ':'; }
-.ww-re { position: relative; margin: 0; background: var(--papier); color: var(--tinte); border: 2px solid var(--linie); border-radius: .25rem 1rem 1rem 1rem; padding: .25rem .625rem; font-size: var(--t-text); font-weight: 700; line-height: 1.3; box-shadow: 0 3px 8px rgba(0, 0, 0, .22); }
+.ww-re { position: relative; margin: 0; background: var(--papier); color: var(--tinte); border: 2px solid var(--linie); border-radius: .25rem 1rem 1rem 1rem; padding: .1875rem .625rem; font-size: var(--t-text); font-weight: 700; line-height: 1.3; box-shadow: 0 3px 8px rgba(0, 0, 0, .22); }
 .ww-kind[data-st="froh"] .ww-rahmen { border-color: var(--senf); }
 .ww-kind[data-st="froh"] .ww-re { border-color: var(--senf); background: #FFFBEC; }
 .ww-kind.neu .ww-re { animation: sprech .3s cubic-bezier(.2, 1.4, .4, 1) both; }
 .ww-kind.neu[data-st="froh"] .ww-rahmen { animation: hupf .6s cubic-bezier(.3, 1.6, .5, 1) both; }
 .ww-kind.neu[data-st="traurig"] .ww-rahmen { animation: ww-sinkt .6s ease both; }
 @keyframes ww-sinkt { 40% { transform: translateY(4px) rotate(3deg); } }
-.ww-ideen { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--a-2); }
+.ww-ideen { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .4375rem; }
 .ww-idee {
   position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .25rem;
-  min-height: 3.5rem; padding: .4375rem .5rem; border-radius: var(--r-feld); border: 3px solid transparent;
+  min-height: 3.25rem; padding: .375rem .5rem; border-radius: var(--r-feld); border: 3px solid transparent;
   background: var(--papier); color: var(--tinte); font-size: var(--t-text); font-weight: 700; line-height: 1.25; text-align: center;
   box-shadow: 0 3px 0 var(--kante), 0 8px 14px rgba(0, 0, 0, .28); transition: transform var(--dauer-druck) ease, box-shadow var(--dauer-druck) ease;
 }
@@ -139,13 +139,16 @@
 .fl-s:active:not([aria-disabled="true"]) { background: var(--papier-2); }
 .fl-nr { flex: none; width: 1.5rem; height: 1.5rem; margin-top: .125rem; border-radius: 50%; display: grid; place-items: center; background: var(--nacht-2); color: #fff; font-style: normal; font-size: var(--t-fein); font-weight: 800; }
 .fl-t { min-width: 0; }
-.fl-z.gef .fl-s { cursor: default; padding-right: 7rem; }
-.fl-z.gef .fl-t { text-decoration: line-through; text-decoration-color: var(--nacht-2); text-decoration-thickness: 2px; opacity: .6; }
-.fl-stempel { position: absolute; right: .5rem; top: .5rem; transform: rotate(-9deg); pointer-events: none; font-size: var(--t-fein); font-weight: 800; letter-spacing: .05em; line-height: 1.2; color: var(--nacht-2); border: 3px solid var(--nacht-2); border-radius: .5rem; padding: .125rem .375rem; background: rgba(255, 252, 244, .75); animation: stempel .35s cubic-bezier(.2, 1.6, .4, 1) both; }
+.fl-z.gef .fl-s { cursor: default; }
+.fl-z.gef .fl-satz { text-decoration: line-through; text-decoration-color: var(--nacht-2); text-decoration-thickness: 2px; opacity: .6; }
+.fl-stempel { display: inline-block; margin: .125rem 0 0 .25rem; vertical-align: .0625rem; transform: rotate(-7deg); pointer-events: none; font-size: var(--t-fein); font-weight: 800; letter-spacing: .05em; line-height: 1.2; white-space: nowrap; color: var(--nacht-2); border: 3px solid var(--nacht-2); border-radius: .5rem; padding: 0 .375rem; background: rgba(255, 252, 244, .85); animation: stempel .35s cubic-bezier(.2, 1.6, .4, 1) both; }
 .fl-stempel .s-b, .fl-stempel .s-r { color: inherit; }
 .fl-auf { display: flex; align-items: flex-start; gap: .375rem; margin: -.125rem .625rem .625rem 2.75rem; padding: .375rem .625rem; border-radius: .5rem; background: var(--senf-hell); font-size: var(--t-knopf); font-weight: 700; line-height: 1.35; animation: hoch .4s .25s both; }
 .fl-auf svg { flex: none; width: 1.25rem; height: 1.25rem; margin-top: .1875rem; color: var(--senf-dunkel); }
-@container (max-width: 22rem) {
+@container (max-width: 30rem) {
+  .fl-s { padding-block: .5rem; }
+  .fl-stempel { font-size: var(--t-etikett); border-width: 2.5px; }
+}
+@container (max-width: 20rem) {
   .fl-s, .fl-auf { font-size: var(--t-text); }
-  .fl-z.gef .fl-s { padding-right: 6rem; }
 }
