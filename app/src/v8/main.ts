@@ -94,6 +94,7 @@ const IC = {
   lupe: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.500" cy="10.500" r="6" fill="none" stroke="currentColor" stroke-width="2.400"/><path d="M15 15l5.500 5.500" stroke="currentColor" stroke-width="2.800" stroke-linecap="round"/></svg>',
   vor: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>',
   zur: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  runter: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>',
   zu: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.600" stroke-linecap="round"/></svg>',
 };
 
@@ -156,7 +157,8 @@ function zeigeRaw() {
   return haken();
 }
 /** sanftes Hineingleiten der neuen Ansicht (höchstens 300 ms, bei „weniger Bewegung“ aus) */
-function wechsel() { buehne.firstElementChild?.classList.add('ein2'); }
+/** Hineingleiten der neuen Ansicht; Effekt-Ebenen (Konfetti, Feuerwerk, Pfeil „mehr unten“) zählen nicht als Ansicht */
+function wechsel() { buehne.querySelector(':scope > :not(.konfetti, .feuerwerk, .mehr)')?.classList.add('ein2'); }
 function weiter() {
   const n = steps(stand.spur).length;
   stand.blatt = 0;
@@ -638,6 +640,43 @@ fuss.addEventListener('click', (e) => {
   if (a === 'zback') { e.stopPropagation(); zurueckSchritt(); }
   else if (a === 'zvor') { e.stopPropagation(); vorSchritt(); }
 }, true);
+/**
+ * Mehr unten: Passt ein Rätsel (oder die Fallkarte) nicht ganz auf den Bildschirm, liegen Karten unter dem Rand.
+ * Damit das Kind das merkt: unten ein dunkler Verlauf und ein runder Pfeil; Antippen rollt ein Stück weiter.
+ * Ganz unten verschwindet beides. Neu gebunden, sobald eine neue .zug auf der Bühne steht.
+ */
+let mehrZug: HTMLElement | null = null, mehrAus: (() => void) | null = null;
+function mehrPfeil() {
+  const z = buehne.querySelector<HTMLElement>(':scope > .zug');
+  if (z === mehrZug) return;
+  mehrAus?.(); mehrAus = null; mehrZug = z;
+  buehne.querySelector(':scope > .mehr')?.remove();
+  if (!z) return;
+  const m = document.createElement('div');
+  m.className = 'mehr'; m.hidden = true;
+  m.innerHTML = `<button class="rund" aria-label="Weiter unten">${IC.runter}</button>`;
+  m.querySelector('button')!.onclick = () => z.scrollBy({ top: Math.round(z.clientHeight * 0.6), behavior: 'smooth' });
+  let raf = 0;
+  const ro = new ResizeObserver(() => pruef());
+  const pruef = () => {
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(() => {
+      if (!z.isConnected) return;
+      for (const k of z.children) ro.observe(k);
+      m.hidden = z.scrollHeight - z.clientHeight - z.scrollTop <= 8;
+    });
+  };
+  z.addEventListener('scroll', pruef, { passive: true });
+  z.addEventListener('load', pruef, true); // Bilder laden nach und machen die Fläche höher
+  const mo = new MutationObserver(pruef);
+  mo.observe(z, { childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'hidden', 'style'] });
+  ro.observe(z);
+  buehne.appendChild(m);
+  pruef();
+  mehrAus = () => { mo.disconnect(); ro.disconnect(); cancelAnimationFrame(raf); };
+}
+new MutationObserver(mehrPfeil).observe(buehne, { childList: true });
+
 /** Android-Zurück: erst Fenster schließen, dann zurückblättern, sonst zum Titel (Stand bleibt), auf dem Titel App beenden */
 function zurueck() {
   if (ueber.innerHTML.trim()) {
