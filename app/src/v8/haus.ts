@@ -210,9 +210,8 @@ export function zeigeHaus(c: HausCtx): void {
   };
   /** Schluckauf: kleiner Hüpfer, „Hicks!“ steigt links über dem Kopf auf (nicht über der Sprechblase) */
   const hicksen = () => { const { x, y } = beiRaupe(.05, .02); effekt('hicks', x, y, `<b>${UI.hicks}</b>`, 1100); bewege('hicks'); c.summ(8); };
-  /** Taschenlampe: kurz Licht aus, ein Lichtkegel sucht im Haus herum */
+  /** Taschenlampe: kurz Licht aus, ein Lichtkegel sucht im Haus herum (bei „weniger Bewegung“ steht der Lichtkreis still) */
   const lampe = () => {
-    if (weniger()) return;
     buehne.classList.remove('dunkel'); void buehne.offsetWidth; buehne.classList.add('dunkel');
     spaeter(() => buehne.classList.remove('dunkel'), 2600);
   };
@@ -389,7 +388,6 @@ export function zeigeHaus(c: HausCtx): void {
   wunschPlanen(ZEIT.wunschStart);
 }
 
-/** kleiner Hinweis „Neu im Haus der Lese-Raupe: …“ – blockiert nichts, verschwindet von selbst; Tippen öffnet das Haus */
 /**
  * „Neu im Haus der Lese-Raupe“: kleines Kärtchen direkt UNTER dem Haus-Knopf (Perlen) im Kopf, mit Spitze zum Knopf.
  * Es liegt über dem oberen Rand der Bühne (Titel, Text) – nie über Knöpfen im Fuß. Ohne sichtbaren Kopf: oben in der Mitte.

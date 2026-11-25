@@ -310,22 +310,23 @@
 
 /* ---------- Buchstaben-Beutel (main.ts, beutelHtml): die Buchstaben für den Tresor liegen lose darin, ohne Plätze im Wort ---------- */
 .beutel {
-  display: flex; align-items: center; gap: .75rem;
-  background: var(--nacht-2); color: #fff; border-radius: .875rem; padding: .5rem .875rem .5rem .5rem;
+  display: flex; align-items: center; gap: .625rem;
+  background: var(--nacht-2); color: #fff; border-radius: .875rem; padding: .375rem .75rem .375rem .4375rem;
   box-shadow: inset 0 0 0 1.5px rgba(244, 194, 67, .35), 0 6px 14px rgba(40, 20, 0, .3);
 }
 .beutel[data-a] { cursor: pointer; }
 .beutel[data-a]:focus-visible { outline: 3px solid var(--senf); outline-offset: 3px; }
-.bt-sack { width: 3.25rem; height: 3.25rem; flex: none; display: block; filter: drop-shadow(0 2px 3px rgba(0, 0, 0, .3)); transform-origin: 50% 92%; }
+.bt-sack { width: 2.75rem; height: 2.75rem; flex: none; display: block; filter: drop-shadow(0 2px 3px rgba(0, 0, 0, .3)); transform-origin: 50% 92%; }
 .bt-sack.wackelt { animation: sackWackel .6s ease-in-out; }
-.bt-in { display: flex; flex-direction: column; gap: .375rem; min-width: 0; flex: 1; }
-.bt-t { font-weight: 800; letter-spacing: .06em; text-transform: uppercase; font-size: .78125rem; line-height: 1.2; }
+/* Beschriftung und Buchstaben in einer Zeile, wenn Platz ist (breites Brett), sonst darunter – das Brett soll nicht unnötig hoch werden */
+.bt-in { display: flex; flex-wrap: wrap; align-items: center; gap: .25rem .75rem; min-width: 0; flex: 1; }
+.bt-t { font-weight: 800; letter-spacing: .04em; text-transform: uppercase; font-size: var(--t-etikett); line-height: 1.2; }
 .bt-t .s-b, .bt-t .s-r { color: inherit; }
-.bt-reihe { display: flex; flex-wrap: wrap; align-items: center; gap: .4375rem; min-height: 2.125rem; padding-left: 2px; }
+.bt-reihe { display: flex; flex-wrap: wrap; align-items: center; gap: .375rem; min-height: 1.875rem; padding-left: 2px; }
 .bt-reihe:empty { display: none; } /* noch kein Buchstabe: nur Beutel und Beschriftung, keine leeren Plätze */
 .bt-k {
-  flex: none; width: 2rem; height: 2rem; display: grid; place-items: center;
-  font-style: normal; font-weight: 800; font-size: 1.25rem; line-height: 1; color: var(--senf-tinte);
+  flex: none; width: 1.75rem; height: 1.75rem; display: grid; place-items: center;
+  font-style: normal; font-weight: 800; font-size: 1.125rem; line-height: 1; color: var(--senf-tinte);
   background: linear-gradient(#FFE38C, var(--senf)); border-radius: .4375rem;
   box-shadow: 0 3px 0 var(--senf-dunkel), 0 5px 8px rgba(0, 0, 0, .3);
   rotate: var(--r, 0deg);

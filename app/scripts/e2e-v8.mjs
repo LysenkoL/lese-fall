@@ -83,15 +83,15 @@ const spurenVon = (kap) => D.spuren.filter((s) => s.kap === kap).map((s) => s.nr
 /** erwartete Buchstaben im Beutel (lose, in der Reihenfolge der Kapitel – ohne Plätze im Wort), wenn die Kapitel bis `bis` gelöst sind */
 const codeSoll = (bis) => D.kapitel.filter((q) => q.nr <= bis).map((q) => q.code.buchstabe).join('');
 
-async function lesen(spur) {
+async function lesen(spur, wo = 'lesen') {
   for (let k = 0; k < 20; k++) {
-    await messen(`Spur ${spur} Blatt ${k + 1}`);
-    if (k === 0 || spur === 1) await shot(`s${spur}_lesen_${k + 1}`);
+    await messen(`Spur ${spur}${wo === 'lesen' ? '' : ' ' + wo} Blatt ${k + 1}`);
+    if (k === 0 || spur === 1 || wo !== 'lesen') await shot(`s${spur}_${wo}_${k + 1}`);
     if (k === 0 && spur === 3) await kopfKnoepfe();
     if (await knopfDa('weiter')) break;
     await klick('#fuss [data-a="next"]');
   }
-  await shot(`s${spur}_lesen_letztes`);
+  await shot(`s${spur}_${wo}_letztes`);
   await weiter();
 }
 
@@ -256,6 +256,7 @@ for (const kap of KAPITEL) {
       const ist = await wo();
       if (ist.view !== 'spur' || ist.spur !== spur || ist.i !== k) throw new Error(`Ablauf verrutscht: erwartet Spur ${spur} Schritt ${k} (${s}), ist ${JSON.stringify(ist)}`);
       if (s === 'lesen') await lesen(spur);
+      else if (s === 'ausklang') await lesen(spur, 'ausklang'); // Schlussszene des Kapitels: Leseblätter wie eine Spur, dann die Fallkarte
       else if (s === 'raetsel') await raetsel(spur, sp.raetsel);
       else if (s === 'brett') await brett(spur, kap);
       else if (s === 'tippFrage') {

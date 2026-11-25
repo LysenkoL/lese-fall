@@ -160,7 +160,7 @@ button.h-sache:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--li
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .haus, .h-raupe, .h-raupe .rms, .h-blase.neu, .h-wunsch, .h-dunkel { animation: none !important; transition: none !important; }
+  .haus, .h-raupe, .h-raupe .rms, .h-blase.neu, .h-wunsch, .h-dunkel, .h-dunkel i { animation: none !important; transition: none !important; }
   .h-raupe.dick .rms { transform: none; }
   .h-fx { display: none; }
 }

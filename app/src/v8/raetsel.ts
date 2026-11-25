@@ -1492,11 +1492,11 @@ export function faden(r: HTMLElement, d: Daten, fertig: () => void) {
  *  3) Frau Sommer hält ihren Zeigestock aus dem Fenster (er ragt von oben rechts ins Bild). Das Kind zieht den Schlüssel
  *     an der weißen Schlaufe zur Spitze → „Klick!“, die Schlaufe hängt am Stock, der Stock fährt mit dem Schlüssel nach oben.
  * Der Schlüssel ist ein Ausschnitt des gemalten Bildes (Maske SCHLUESSEL_MASKE, Pixel von nest_nah 1536 × 1024),
- * damit er genau so aussieht wie im Bild; an seiner Stelle bleibt eine dunkle Mulde.
+ * damit er genau so aussieht wie im Bild; darunter wird nest_sammlung (`ohne`, dasselbe Bild ohne Schlüssel) gezeigt.
  * Hilfe: nach zwei Fehlgriffen beim Suchen zeigt die Raupe den Schlüssel; tippt das Kind beim Stock nur (zieht nicht)
  * oder lässt zweimal zu früh los, hängt die Raupe die Schlaufe selbst an (ui.hilfe).
  * Daten: bild, ratio, zone (Laub), start, nachLaub, frage, beschreibung {titel, saetze[]}, tipp,
- *        ziele[0] {id, x, y, r, ok, zonen?[]}, andere[] {id, x, y, r, nein}, schluessel {box {x,y,w,h}, haken {x,y}},
+ *        ziele[0] {id, x, y, r, ok, zonen?[]}, andere[] {id, x, y, r, nein}, ohne (Bild ohne Schlüssel), schluessel {box {x,y,w,h}, haken {x,y}},
  *        stock {x, y, winkel}, jetzt (Stock-Aufgabe), knapp (zu früh losgelassen), erfolg.
  */
 /** Umriss von Schlüssel, Ring, Stern und Schlaufe in nest_nah (Pixel); Ausschnitt-Kasten 330/128, 338 × 471 */
@@ -1515,6 +1515,7 @@ export function nest(r: HTMLElement, d: Daten, fertig: () => void) {
   zi.innerHTML = `${B ? `<div class="nt-karte"><span class="nt-kt">${SCHLUESSEL_ICON}<b>${B.titel ?? ''}</b></span><p>${(B.saetze ?? []).join(' ')}</p></div>` : ''}<p class="nt-frage"></p><div class="nt-bild" style="aspect-ratio:${d.ratio}"><div class="nt-zoom"><img src="${K.img(d.bild)}" alt="" draggable="false"></div></div>`;
   unten('');
   const box = $('.nt-bild', zi), nah = $('.nt-zoom', zi);
+  if (d.ohne) new Image().src = K.img(d.ohne); // vorladen: Nest ohne Schlüssel
   sag(r, 'tipp', d.start);
   const Z: any[] = d.ziele, X: any[] = d.andere ?? [], erklaert = new Set<string>();
   let fehl = 0, phase: 'laub' | 'suchen' | 'stock' | 'aus' = 'laub';
@@ -1574,7 +1575,9 @@ export function nest(r: HTMLElement, d: Daten, fertig: () => void) {
   const stockKommt = () => {
     nah.querySelectorAll('.ring').forEach((q) => q.remove());
     frage('');
-    const mulde = ausschnitt('nt-mulde'); nah.appendChild(mulde);
+    // Der Schlüssel wird ein eigenes Teil; darunter liegt dasselbe Bild ohne Schlüssel (`ohne`, pixelgleich), sonst eine dunkle Mulde
+    if (d.ohne) { const ohne = new Image(); ohne.onload = () => { if (zi.isConnected) $<HTMLImageElement>('img', nah).src = ohne.src; }; ohne.src = K.img(d.ohne); }
+    else nah.appendChild(ausschnitt('nt-mulde'));
     schl = ausschnitt('nt-schluessel'); schl.setAttribute('role', 'button'); schl.setAttribute('aria-label', klarText(d.frage2 ?? 'Schlüssel'));
     nah.appendChild(schl);
     stock = document.createElement('div'); stock.className = 'nt-stock';
@@ -1584,7 +1587,7 @@ export function nest(r: HTMLElement, d: Daten, fertig: () => void) {
     // Führungslinie: von der Schlaufe zur Spitze (gestrichelt, pulsiert)
     const h = S.haken;
     fuehrung = document.createElement('div'); fuehrung.className = 'nt-fuehrung';
-    fuehrung.innerHTML = `<svg viewBox="0 0 150 100" preserveAspectRatio="none" aria-hidden="true"><path d="M${h.x * 1.5} ${h.y}Q${(h.x + st.x) * 0.75} ${Math.min(h.y, st.y) - 12} ${st.x * 1.5} ${st.y}" fill="none" stroke="#FFE9A6" stroke-width="1.2" stroke-dasharray="2.4 2.4" vector-effect="non-scaling-stroke"/></svg>`;
+    fuehrung.innerHTML = `<svg viewBox="0 0 150 100" preserveAspectRatio="none" aria-hidden="true"><path d="M${h.x * 1.5} ${h.y}Q${(h.x + st.x) * 0.75} ${Math.min(h.y, st.y) - 12} ${st.x * 1.5} ${st.y}" fill="none" stroke="#FFE9A6" stroke-width="3.5" stroke-dasharray="7 7" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>`;
     nah.appendChild(fuehrung);
     sag(r, 'tipp', d.jetzt ?? '');
     hook.loese = () => anhaengen(false);
