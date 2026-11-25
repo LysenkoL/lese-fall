@@ -1,6 +1,6 @@
-# LESE-FALL — DER VERSCHWUNDENE MOND · Text v8.7 · Kapitel 2
+# LESE-FALL — DER VERSCHWUNDENE MOND · Text v8.8 · Kapitel 2
 
-**Статус:** финальный текст автора от 17.11.2026 (`06_review/brainstorm/BUCH1_v8_7_FINAL.md`). Текст не менять здесь — сначала в файле автора. Разбивку на листы делает приложение.
+**Статус:** текст автора v8.8 от 25.11.2026 (`06_review/brainstorm/BUCH1_v8_8.md`, решение D-19). Текст не менять здесь — сначала в файле автора. Разбивку на листы делает приложение.
 
 ---
 
@@ -79,6 +79,14 @@ Oskar lächelt geheimnisvoll. „Draußen auf der Bank bei meiner Maus! Ich habe
 Oskar zieht stolz einen Zettel aus der Hosentasche und reicht ihn durchs Fenster. „Schaut mal, das ist die Festtags-Einladung für meine Maus. Ich schreibe jetzt nämlich in Geheimagenten-Spiegelschrift! Könnt ihr sie entziffern?“
 
 „Jetzt sofort?“, stöhnt Ben, aber Mila stupst ihn an: „Na klar lesen wir sie! Dann zeigt uns Oskar bestimmt sofort seine Überraschung auf der Bank!“
+
+Mila legt den Zettel auf das Fensterbrett und dreht ihn hin und her. „Das ist ja Kauderwelsch!“
+
+Der Zettel liegt jetzt direkt neben der Lese-Raupe. Sie sieht: In der offenen Fensterscheibe spiegelt sich die Schrift! Ganz leise schiebt sie den Zettel mit dem Kopf ein Stück näher an die Scheibe.
+
+„Guck mal!“, ruft Ben. „In der Scheibe sieht die Schrift ganz normal aus!“
+
+Wer den Zettel geschoben hat, merkt niemand. „Psst“, denkt die Raupe und lächelt.
 
 ### Spur 11 — Keine Rennmaus
 

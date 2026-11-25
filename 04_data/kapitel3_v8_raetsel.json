@@ -1,5 +1,5 @@
 {
- "_info": "Rätsel, Ermittlungsbrett und Fallkarte zu Kapitel 3 (Spuren 13–18), Konzept v8 (02_design/KONZEPT_v8.md). Texte ohne Silben; app/scripts/build-v8.ts setzt Silben. Positionen in Prozent der Bildbreite/-höhe. Bildnamen unter objekte/, die es noch nicht gibt (voegel, gelbe_kreise_vorne/hinten, plakat, vogelschatten, tisch_leer), ersetzt app/src/v8/bilder.ts.",
+ "_info": "Rätsel, Ermittlungsbrett und Fallkarte zu Kapitel 3 (Spuren 13–19), Konzept v8 (02_design/KONZEPT_v8.md). Texte ohne Silben; app/scripts/build-v8.ts setzt Silben. Positionen in Prozent der Bildbreite/-höhe. Bildnamen unter objekte/, die es noch nicht gibt (voegel, gelbe_kreise_vorne/hinten, plakat, vogelschatten, tisch_leer), ersetzt app/src/v8/bilder.ts.",
  "kapitel": 3,
  "bild": "kapitel_3",
  "vorspann": "Ein gelber Kreis mit drei braunen Flecken. Und ein Schatten mit Flügeln.",
@@ -15,7 +15,7 @@
    "Der Käse mit den drei braunen Flecken ist Milas Mond. Hinten hat er den blauen Stern und den aufgerollten Faden.",
    "Oskar hat ihn nicht zerschnitten. Er hat nur Flecken aufgeklebt.",
    "Es war ein Missverständnis. Niemand wollte den Mond stehlen.",
-   "Ein großer Vogel mit langem Schwanz schaut aus dem Baum herunter."
+   "Ein großer Vogel mit langem Schwanz starrt auf den Silberstern am Mond."
   ],
   "frage": "Aber was will der Vogel bei uns auf dem Hof?",
   "stempel": "KAPITEL 3 GELÖST"
@@ -106,104 +106,61 @@
    },
    "fragenNeu": [],
    "raetsel": {
-    "art": "unterschiede",
-    "titel": "Was ist anders?",
-    "text": "Die Lese-Raupe schaut zweimal hin. Im zweiten Bild sind vier Dinge anders. Tippe die richtigen Karten an.",
-    "basis": "k3_s15",
-    "dinge": [
+    "art": "passtgenau",
+    "titel": "Passt genau?",
+    "text": "Oskar sagt: Die Flecken sind aus dem braunen Bogen. Leg jeden Fleck in sein Loch.",
+    "werkzeug": "zeit",
+    "flecken": [
      {
-      "id": "spange",
-      "bild": "objekte/u15_spange",
-      "x": 15.14,
-      "y": 40.53,
-      "w": 6.84,
-      "zonen": [
-       {
-        "x": 15.1,
-        "y": 40.5,
-        "w": 9.8,
-        "h": 17.8
-       }
-      ],
-      "vorhin": false,
-      "jetzt": true,
-      "tipp": "Schau auf Milas Haare.",
-      "name": "Mond-Spange"
+      "id": "klein",
+      "groesse": 20,
+      "x": 30,
+      "y": 36,
+      "name": "kleiner Fleck"
      },
      {
-      "id": "herz",
-      "bild": "objekte/u15_herz",
-      "x": 63.31,
-      "y": 83.01,
-      "w": 7.49,
-      "zonen": [
-       {
-        "x": 63.3,
-        "y": 83.0,
-        "w": 10.5,
-        "h": 18.6
-       }
-      ],
-      "vorhin": false,
-      "jetzt": true,
-      "tipp": "Schau auf die Maus.",
-      "name": "Herz der Maus"
+      "id": "mittel",
+      "groesse": 29,
+      "x": 68,
+      "y": 40,
+      "name": "mittlerer Fleck"
      },
      {
-      "id": "schere",
-      "bild": "objekte/u15_schere",
-      "x": 83.01,
-      "y": 88.62,
-      "w": 12.37,
-      "zonen": [
-       {
-        "x": 83.0,
-        "y": 88.6,
-        "w": 15.4,
-        "h": 20.8
-       }
-      ],
-      "vorhin": false,
-      "jetzt": true,
-      "tipp": "Schau auf die Schere.",
-      "name": "Schere"
-     },
-     {
-      "id": "fleck",
-      "bild": "objekte/u15_fleck",
-      "x": 45.08,
-      "y": 88.77,
-      "w": 6.84,
-      "zonen": [
-       {
-        "x": 45.1,
-        "y": 88.8,
-        "w": 9.8,
-        "h": 16.0
-       }
-      ],
-      "vorhin": false,
-      "jetzt": true,
-      "tipp": "Zähle die braunen Flecken auf dem Käse.",
-      "name": "Fleck auf dem Käse"
+      "id": "gross",
+      "groesse": 40,
+      "x": 46,
+      "y": 72,
+      "name": "großer Fleck"
      }
     ],
-    "erfolg": "Vier Unterschiede! Du schaust genau hin. Und der Käse? Die braunen Flecken sind nur aufgeklebt. Der Kreis darunter ist ganz.",
-    "werkzeug": "zeit",
-    "andere": [
+    "loecher": [
      {
-      "id": "seide",
-      "bild": "objekte/seidenpapier",
-      "name": "Seidenpapier",
-      "nein": "Das ist auf beiden Bildern gleich. Schau noch einmal genau hin."
+      "fleck": "gross",
+      "x": 21,
+      "y": 50,
+      "name": "großes Loch"
      },
      {
-      "id": "teller",
-      "bild": "objekte/pappteller",
-      "name": "Teller",
-      "nein": "Das ist auf beiden Bildern gleich. Schau noch einmal genau hin."
+      "fleck": "klein",
+      "x": 52,
+      "y": 30,
+      "name": "kleines Loch"
+     },
+     {
+      "fleck": "mittel",
+      "x": 80,
+      "y": 60,
+      "name": "mittleres Loch"
      }
-    ]
+    ],
+    "demo": "Schau mal! Der kleine Fleck im großen Loch? Er wackelt. Passt nicht.",
+    "start": "Jetzt du! Zieh jeden Fleck in sein Loch. Oder tippe erst den Fleck an und dann das Loch.",
+    "nicht": "Zu klein! Der Fleck wackelt im Loch.",
+    "nein": "Zu groß! Der Fleck passt nicht hinein.",
+    "ok": "Passt genau!",
+    "warum": "Kleiner Fleck, kleines Loch. Großer Fleck, großes Loch.",
+    "stempel": "PASST GENAU",
+    "erfolg": "Alle drei Flecken passen genau. Oskar hat sie aus dem braunen Bogen geschnitten. Milas Mond ist heil!"
    },
    "fragenWeg": [
     "zerschnitten"
@@ -367,7 +324,126 @@
   {
    "spur": 18,
    "bild": "k3_s18",
-   "haken": "Oben in der Astgabel legt der schwarz-weiße Vogel den Kopf schief. Er schaut auf den langen weißen Faden.",
+   "haken": "„Wartet mal! Ich habe eine Idee!“",
+   "karte": {
+    "titel": "Bens Idee",
+    "bild": "k3_s18",
+    "text": "Ein Mond mit Kratern. Für die Maus ist er ein Käse. So sind alle drei froh.",
+    "staub": false,
+    "ausschnitt": {
+     "x": 20,
+     "y": 10,
+     "w": 60,
+     "h": 80
+    }
+   },
+   "fragenNeu": [],
+   "fragenWeg": [],
+   "raetsel": {
+    "art": "waage",
+    "werkzeug": "lesen",
+    "titel": "Welche Idee macht alle froh?",
+    "text": "Jeder hat einen Wunsch. Welche Idee macht alle drei froh?",
+    "start": "Oje, drei Wünsche! Tipp eine Idee an. Wer freut sich?",
+    "kinder": [
+     {
+      "id": "mila",
+      "name": "Mila",
+      "text": "Der Mond soll am Himmel hängen."
+     },
+     {
+      "id": "ben",
+      "name": "Ben",
+      "text": "Nichts soll kaputtgehen."
+     },
+     {
+      "id": "oskar",
+      "name": "Oskar",
+      "text": "Meine Maus soll ein Festessen haben."
+     }
+    ],
+    "ideen": [
+     {
+      "id": "abziehen",
+      "text": "Wir ziehen die Flecken ab.",
+      "mila": {
+       "froh": true,
+       "unter": "Dann ist er wieder gelb!"
+      },
+      "ben": {
+       "froh": false,
+       "unter": "Nein! Dann reißt die Pappe.",
+       "bild": "besorgt"
+      },
+      "oskar": {
+       "froh": false,
+       "unter": "Und meine Maus?"
+      },
+      "sagt": "Oje, Ben schaut ganz besorgt."
+     },
+     {
+      "id": "ohne",
+      "text": "Wir spielen ohne Mond.",
+      "mila": {
+       "froh": false,
+       "unter": "Ohne Mond? Das geht nicht!"
+      },
+      "ben": {
+       "froh": true,
+       "unter": "Gut, dann reißt nichts."
+      },
+      "oskar": {
+       "froh": false,
+       "unter": "Dann gibt es keinen Käse."
+      },
+      "sagt": "Ohne Mond ist der Himmel ja ganz leer!"
+     },
+     {
+      "id": "neu",
+      "text": "Wir basteln schnell einen neuen Mond.",
+      "mila": {
+       "froh": false,
+       "unter": "Das dauert viel zu lange!",
+       "bild": "besorgt"
+      },
+      "ben": {
+       "froh": true,
+       "unter": "Gut, dann reißt nichts."
+      },
+      "oskar": {
+       "froh": false,
+       "unter": "Und mein Käse ist weg."
+      },
+      "sagt": "Hmm. Wieder sind zwei traurig."
+     },
+     {
+      "id": "kaese",
+      "text": "Die Flecken bleiben. Für die Maus ist der Mond ein Käse!",
+      "mila": {
+       "froh": true,
+       "unter": "Der Mond bleibt am Himmel!"
+      },
+      "ben": {
+       "froh": true,
+       "unter": "Und nichts reißt!"
+      },
+      "oskar": {
+       "froh": true,
+       "unter": "Ein Riesen-Käse für meine Maus!"
+      }
+     }
+    ],
+    "tipp": "Schau mal: Der echte Mond hat auch dunkle Flecken.",
+    "warum": "Die Flecken bleiben einfach dran. Für die Maus sieht der Mond aus wie ein Käse.",
+    "fund": "Alle drei sind froh!",
+    "stempel": "ALLE FROH",
+    "erfolg": "Genau das hat Ben gemeint! Für die Maus ist der Mond ein Käse. Und alle drei sind froh."
+   }
+  },
+  {
+   "spur": 19,
+   "bild": "k3_s19",
+   "haken": "Oben im Baum legt der schwarz-weiße Vogel den Kopf schief. Er starrt auf den funkelnden Silberstern.",
    "karte": {
     "titel": "Ein neues Stück",
     "bild": "objekte/plakat",

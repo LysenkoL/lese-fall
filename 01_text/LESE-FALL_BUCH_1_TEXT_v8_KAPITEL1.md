@@ -1,6 +1,6 @@
-# LESE-FALL — DER VERSCHWUNDENE MOND · Text v8.7 · Kapitel 1
+# LESE-FALL — DER VERSCHWUNDENE MOND · Text v8.8 · Kapitel 1
 
-**Статус:** финальный текст автора от 17.11.2026 (`06_review/brainstorm/BUCH1_v8_7_FINAL.md`). Текст не менять здесь — сначала в файле автора. Разбивку на листы делает приложение.
+**Статус:** текст автора v8.8 от 25.11.2026 (`06_review/brainstorm/BUCH1_v8_8.md`, решение D-19). Текст не менять здесь — сначала в файле автора. Разбивку на листы делает приложение.
 
 ---
 
@@ -46,7 +46,7 @@ KNURPS!
 
 Die Sonne scheint durch das Fenster warm auf ihr Blatt. Es ist gemütlich, und ihre Augen werden schwer. „Nur kurz die Augen zu“, denkt sie. „Nur eine Sekunde von dem Papp-Schreck erholen …“
 
-Als sie wieder blinzelt, sieht sie durch einen Spalt zwischen den Blättern gerade noch einen Ärmel mit roten und weißen Streifen. Unten am Tisch greift er nach etwas — und schwupp, ist er weg!
+Als sie wieder blinzelt, sieht sie durch einen Spalt zwischen den Blättern gerade noch einen Ärmel mit roten und weißen Streifen. Die Streifen laufen rund um den Arm. Knöpfe sieht sie keine. Unten am Tisch greift er nach etwas — und schwupp, ist er weg!
 
 Erschrocken krabbelt die Raupe hervor und schaut zum Theater: Der rote Vorhang und die weiße Wolke sind noch da. Aber links neben der Wolke ist der Platz leer — der Mond ist weg!
 
@@ -54,7 +54,7 @@ Sofort leuchten ihre Fühler golden auf. Zeit für ihren Zeitlupen-Blick!
 
 ### Spur 3 — Am Waschbecken
 
-Mila kommt gut gelaunt mit dem Bären und dem Fuchs vom Schrank zurück. Sie setzt die beiden Puppen auf die Bühne, klopft ihnen den Staub vom Fell und sagt: „So, ihr zwei, schaut mal nach oben, wie schön unser Nachthimmel aussieht!“
+Mila kommt gut gelaunt mit dem Bären, dem Fuchs und dem König vom Schrank zurück. Sie setzt die drei Puppen auf die Bühne, klopft ihnen den Staub vom Fell und sagt: „So, ihr drei, schaut mal nach oben, wie schön unser Nachthimmel aussieht!“
 
 Sie hebt selbst den Kopf — und erstarrt. Am Nachthimmel über dem Vorhang hängt nur noch die einsame weiße Wolke!
 
@@ -69,6 +69,8 @@ Die Lese-Raupe schaut gespannt zum Waschbecken hinüber: Ben stand schließlich 
 Endlich ruft Ben über die Schulter gegen das rauschende Wasser an: „Ich komme gleich, Mila! Dieses klebrige Zeug geht einfach nicht von meinen Fingern ab! Dein Mond wäre fast abgestürzt — ich habe den Faden frisch festgeklebt! Er liegt drüben auf dem großen Tisch zum Trocknen!“
 
 Die Raupe richtet ihre Leucht-Fühler auf das Waschbecken: Was wäscht Ben sich da nur so lange von den Händen?
+
+Im rauschenden Wasser glimmen Buchstaben auf. Drei Buchstaben kann die Raupe schon lesen. Die anderen drei findest du!
 
 ### Spur 4 — Gelb und rund
 

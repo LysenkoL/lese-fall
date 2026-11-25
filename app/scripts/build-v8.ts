@@ -44,7 +44,7 @@ const isThought = (line: string) =>
 
 /* ---------- Text und Rätsel je Kapitel ---------- */
 interface Block { id: string; typ: 'p' | 'th'; s: string[]; umbruch?: boolean }
-const TEXT = new Set(['raupeSagt', 'nein', 'nachLaub', 'liste', 'zuViel', 'nochMehr', 'falsch', 'ok', 'fund', 'knapp', 'frueh', 'hilfe', 'wortText', 'plakatFertig', 'start', 'regel', 'frageRaus', 'unklar', 'suche', 'nass', 'frage1', 'tipp1', 'hinweisText', 'beispiel', 'regel', 'botschaft', 'nachricht', 'text', 'titel', 'haken', 'frage', 'aufloesung', 'warum', 'warum2', 'tipp', 'erfolg', 'unklarTipp', 'vorspann', 'ausblick', 'name', 'saetze', 'unter', 'sagt', 'klebt', 'frage2', 'nicht', 'nachsehen', 'absatz', 'demo', 'jetzt', 'bedeutung']);
+const TEXT = new Set(['raupeSagt', 'raupeKurz', 'nein', 'nachLaub', 'liste', 'zuViel', 'nochMehr', 'falsch', 'ok', 'fund', 'knapp', 'frueh', 'hilfe', 'wortText', 'plakatFertig', 'start', 'regel', 'frageRaus', 'unklar', 'suche', 'nass', 'frage1', 'tipp1', 'hinweisText', 'beispiel', 'regel', 'botschaft', 'nachricht', 'text', 'titel', 'haken', 'frage', 'aufloesung', 'warum', 'warum2', 'tipp', 'erfolg', 'unklarTipp', 'vorspann', 'ausblick', 'name', 'saetze', 'unter', 'sagt', 'klebt', 'frage2', 'nicht', 'nachsehen', 'absatz', 'demo', 'jetzt', 'bedeutung']);
 function tree(v: any, key = ''): any {
   if (typeof v === 'string') return TEXT.has(key) ? mark(v) : v;
   if (Array.isArray(v)) return v.map((x) => tree(x, key));
@@ -80,8 +80,10 @@ for (const kn of nummern) {
     }
     texte.push({ spur: +m[1], titel: m[2], blocks });
   }
-  if (texte.length !== 6) throw new Error(`Kapitel ${kn}: 6 Spuren erwartet, gefunden: ${texte.length}`);
   const rz = JSON.parse(readFileSync(P(`04_data/kapitel${kn}_v8_raetsel.json`), 'utf8'));
+  // D-19: Kapitel 3 hat 7 Spuren, Kapitel 4 hat 5 (zusammen weiter 24)
+  if (!texte.length) throw new Error(`Kapitel ${kn}: keine Spur gefunden`);
+  if (rz.spuren.length !== texte.length) throw new Error(`Kapitel ${kn}: ${texte.length} Spuren im Text, ${rz.spuren.length} in den Rätseldaten`);
   if (rz.kapitel !== kn) throw new Error(`kapitel${kn}_v8_raetsel.json: Feld "kapitel" ist ${rz.kapitel}`);
   for (const t of texte) {
     const z = rz.spuren.find((s: any) => s.spur === t.spur);
