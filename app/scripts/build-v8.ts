@@ -9,6 +9,7 @@ import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseAusnahmen, silbiereBuch } from '../src/core/silben.ts';
+import { TEXT_SCHLUESSEL } from '../src/v8/textschluessel.ts';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const P = (p: string) => resolve(ROOT, p);
@@ -99,7 +100,7 @@ function abschnitt(all: string[], ab: number, wo: string, idVor: string, bildNam
 }
 
 /* ---------- Text und Rätsel je Kapitel ---------- */
-const TEXT = new Set(['raupeSagt', 'raupeKurz', 'nein', 'nachLaub', 'liste', 'zuViel', 'nochMehr', 'falsch', 'ok', 'fund', 'knapp', 'frueh', 'hilfe', 'wortText', 'plakatFertig', 'start', 'regel', 'frageRaus', 'unklar', 'suche', 'nass', 'frage1', 'tipp1', 'hinweisText', 'beispiel', 'regel', 'botschaft', 'nachricht', 'text', 'titel', 'haken', 'frage', 'aufloesung', 'warum', 'warum2', 'tipp', 'erfolg', 'unklarTipp', 'vorspann', 'ausblick', 'name', 'saetze', 'unter', 'sagt', 'klebt', 'frage2', 'nicht', 'nachsehen', 'absatz', 'demo', 'jetzt', 'bedeutung']);
+const TEXT = new Set(TEXT_SCHLUESSEL); // gleiche Liste wie in main.ts (app/src/v8/textschluessel.ts)
 function tree(v: any, key = ''): any {
   if (typeof v === 'string') return TEXT.has(key) ? mark(v) : v;
   if (Array.isArray(v)) return v.map((x) => tree(x, key));

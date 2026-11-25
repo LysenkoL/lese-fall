@@ -194,6 +194,11 @@
   display: grid;
   place-items: center;
 }
+/* Kapitel mit 7 Spuren (drei Reihen) auf schmalen Bildschirmen: Bilder flacher, leere Plätze niedriger – das Brett passt ohne Rollen */
+@media (max-width: 899px) {
+  .bgrid:has(> :nth-child(7)) .bk-bild { aspect-ratio: 3 / 2; }
+  .bgrid:has(> :nth-child(7)) .bkarte.leer { min-height: clamp(2.75rem, 9cqh, 4.5rem); }
+}
 .bkarte.leer::after { content: '?'; font-weight: 800; font-size: 1.625rem; color: rgba(255, 243, 220, .38); }
 #app .bkarte.wartet {
   visibility: visible;
