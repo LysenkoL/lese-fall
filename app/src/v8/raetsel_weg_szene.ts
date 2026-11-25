@@ -106,9 +106,9 @@ export function szeneHinten(): string {
   </defs>`;
   const himmel = `<rect width="900" height="600" fill="url(#rwHimmel)"/><g fill="#fff" opacity=".8"><ellipse cx="420" cy="232" rx="56" ry="13"/><ellipse cx="452" cy="222" rx="30" ry="12"/><ellipse cx="610" cy="470" rx="62" ry="12"/><ellipse cx="640" cy="462" rx="28" ry="10"/></g>`;
   // ferne Baumkronen unten (blass) – wir sind im ersten Stock
-  const fern = laub(430, 600, 260, 70, 70, 11, ['#A9CF8E', '#B7D79A', '#C4DFA8'], '#A3CA88') + laub(700, 590, 200, 60, 50, 12, ['#A9CF8E', '#B7D79A', '#C4DFA8'], '#A3CA88');
+  const fern = laub(430, 600, 260, 70, 70, 11, ['#A9CF8E', '#B7D79A', '#C4DFA8'], '#A3CA88') + laub(660, 590, 190, 60, 50, 12, ['#A9CF8E', '#B7D79A', '#C4DFA8'], '#A3CA88');
   // Laub hinten (kühler, heller) für Tiefe
-  const hinten = laub(520, 70, 300, 110, 120, 21, ['#6FAE57', '#7DB862', '#8DC36F', '#9ECD7E'], '#6CA853') + laub(860, 250, 120, 150, 70, 22, ['#6FAE57', '#7DB862', '#8DC36F'], '#6CA853');
+  const hinten = laub(520, 70, 300, 110, 120, 21, ['#6FAE57', '#7DB862', '#8DC36F', '#9ECD7E'], '#6CA853') + laub(800, 240, 52, 140, 60, 22, ['#6FAE57', '#7DB862', '#8DC36F'], '#6CA853');
   // Stamm rechts, mit Rinde und Astloch
   const stamm = `<path d="M786 600C792 520 800 440 796 380C792 330 800 260 796 190C792 120 808 60 800 0H900V600Z" fill="url(#rwStamm)"/>`
     + `<g fill="none" stroke="#4A2C10" stroke-opacity=".45" stroke-width="2.4" stroke-linecap="round"><path d="M818 40C814 90 822 130 816 180"/><path d="M842 120C838 170 846 210 840 260"/><path d="M826 300C822 350 830 390 824 440"/><path d="M856 380C852 430 860 470 854 530"/><path d="M812 470C808 510 816 550 812 600"/><path d="M870 30C866 70 874 110 868 150"/></g>`
@@ -137,11 +137,11 @@ export function szeneHinten(): string {
     + `<g transform="translate(600 488)"><path d="M-34 8L0 -14L34 8Z" fill="#D2503E" stroke="#8E2A1E" stroke-width="2" stroke-linejoin="round"/><rect x="-26" y="8" width="52" height="50" rx="3" fill="#DDA45F" stroke="#8A5A2B" stroke-width="2"/><circle cx="0" cy="30" r="9" fill="#3A2210"/><rect x="-2" y="44" width="4" height="12" fill="#8A5A2B"/><path d="M-26 20H26" stroke="#B9824A" stroke-width="1.2"/></g>`
     + zweigBlaetter([[528, 400, 120], [582, 452, -30]], 33));
   // gerader dünner Zweig (links oben) – kein V
-  const zGerade = zweig('gerade', [598, 358], ast([[598, 358, 8], [572, 320, 5.2], [546, 280, 3.6], [522, 240, 2.4], [506, 212, 1.4]])
-    + zweigBlaetter([[566, 308, 150], [536, 262, -40], [514, 226, 220], [506, 212, -60]], 34));
+  const zGerade = zweig('gerade', [628, 356], ast([[628, 356, 8], [596, 322, 5.2], [562, 290, 3.6], [530, 260, 2.4], [504, 232, 1.4]])
+    + zweigBlaetter([[584, 310, 150], [548, 276, -40], [516, 246, 220], [504, 232, -60]], 34));
   // V-Zweig mit dem Nest
   // V: kurzer Stiel, Gabel gut sichtbar unter dem Nest, die Arme halten das Nest links und rechts
-  const vStiel = ast([[700, 349, 10], [716, 322, 8], [733, 300, 7]]);
+  const vStiel = ast([[690, 350, 10], [712, 326, 8], [733, 300, 7]]);
   const vArme = ast([[733, 300, 6.5], [716, 262, 4.6], [702, 222, 3], [694, 186, 1.6]]) + ast([[733, 300, 6.5], [756, 262, 4.6], [782, 224, 3], [800, 190, 1.6]])
     + zweigBlaetter([[694, 190, 230], [800, 194, -50], [708, 206, 160], [790, 210, 20]], 36);
   const nest = `<g id="rw-nest" transform="translate(744 238) scale(.88) translate(-742 -228)"><ellipse cx="742" cy="240" rx="56" ry="10" fill="#2A1A08" opacity=".2"/>`
@@ -153,17 +153,17 @@ export function szeneHinten(): string {
   const langerAst = ast([[812, 352, 36], [740, 349, 27], [660, 351, 20], [580, 362, 15], [505, 382, 11.5], [440, 395, 9], [370, 402, 7], [300, 404, 5], [240, 401, 3], [206, 398, 1.6]], 'rw-ast');
   const spitzeBlaetter = zweigBlaetter([[230, 398, 150], [214, 396, 200], [250, 404, 40], [268, 400, 140], [676, 360, 95], [724, 345, -85], [764, 364, 110], [470, 396, 120]], 35, ['#73B652', '#8CC65E', '#5FA444']);
   // Laub um den Stamm und oben (vor dem oberen Ast), unten rechts ein Busch
-  const krone = laub(690, 60, 190, 90, 110, 41) + laub(400, 40, 170, 70, 80, 42) + laub(870, 120, 90, 120, 60, 43) + laub(880, 560, 120, 70, 50, 44) + laub(640, 160, 70, 40, 30, 45);
+  const krone = laub(690, 60, 160, 90, 110, 41) + laub(400, 40, 170, 70, 80, 42) + laub(806, 120, 46, 110, 52, 43) + laub(800, 560, 52, 60, 46, 44) + laub(640, 160, 70, 40, 30, 45);
   // Laub hinter dem Nest (die Arme verschwinden darin)
   const nestLaub = laub(748, 150, 76, 30, 34, 46);
   return `<svg class="rw-szene" viewBox="0 0 900 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${defs}${himmel}${fern}${hinten}${obenAst}${stamm}${krone}${nestLaub}${wand}${vArme}${nest}${zOben}${zUnten}${zHaus}${zGerade}${vStiel}${langerAst}${spitzeBlaetter}</svg>`;
 }
-/** Vordere Ebene: das große Blatt über dem langen Ast und Laub vor dem Nest (geht am Ende auf) */
+/** Vordere Ebene: das große Blatt über dem langen Ast und etwas Laub am Nestrand (geht am Ende auf); die V-Gabel bleibt frei */
 export function szeneVorne(): string {
   const grossesBlatt = `<g id="rw-blatt" transform="translate(66 -4)"><path d="M428 390C410 368 372 362 338 372C312 380 298 396 294 412C318 422 352 426 382 418C408 411 424 402 428 390Z" fill="#7BBE4E" stroke="#3F7A2A" stroke-width="2"/>`
     + `<path d="M426 391C392 396 340 404 298 411" fill="none" stroke="#3F7A2A" stroke-width="2"/><g fill="none" stroke="#3F7A2A" stroke-width="1.3" opacity=".8"><path d="M400 394L392 376M374 398L362 378M348 402L336 384M400 394L392 410M374 398L364 416M348 402L338 418"/></g>`
     + `<path d="M330 380C350 372 380 372 402 380" fill="none" stroke="#C3E88E" stroke-width="3" stroke-linecap="round" opacity=".7"/><path d="M428 390L440 382" stroke="#3F7A2A" stroke-width="3" stroke-linecap="round"/></g>`;
-  const vorNest = `<g class="rw-vornest">${laub(712, 236, 26, 16, 16, 51, ['#5FA444', '#73B652', '#8CC65E'], '#56983E')}${laub(786, 232, 22, 14, 14, 52, ['#5FA444', '#73B652', '#8CC65E'], '#56983E')}</g>`;
-  const rand = laub(900, 600, 110, 70, 30, 53) + laub(0, 600, 40, 30, 8, 54);
+  const vorNest = `<g class="rw-vornest">${laub(700, 206, 20, 12, 12, 51, ['#5FA444', '#73B652', '#8CC65E'], '#56983E')}${laub(792, 204, 18, 11, 11, 52, ['#5FA444', '#73B652', '#8CC65E'], '#56983E')}</g>`;
+  const rand = laub(810, 590, 42, 40, 26, 53); // Blätter ganz vorn (bleiben im Bild: keine Form ragt über den Rand)
   return `<svg class="rw-vorne" viewBox="0 0 900 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${grossesBlatt}${vorNest}${rand}</svg>`;
 }

@@ -137,7 +137,7 @@
 .zettel.fr .klaer .s-b, .zettel.fr .klaer .s-r { color: inherit; }
 /* Brettkarte wie ein Foto: schmaler Papierrand oben (dort sitzt die Nadel), breiterer unten mit dem Titel */
 .bkarte {
-  --pin: .875rem; --pin-y: .5rem;
+  --pin: .875rem; --pin-y: .375rem;
   position: relative;
   background: var(--papier);
   display: flex;
@@ -182,7 +182,7 @@
   background-color: #C98A47;
 }
 /* Karten nie in die Höhe gezogen (auch nicht neben einer langen Fragen-Spalte): Reihen nur so hoch wie die Karten */
-.bgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .875rem .625rem; align-content: start; align-self: start; padding-top: 2px; }
+.bgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .625rem; align-content: start; align-self: start; }
 .bkarte.leer {
   box-shadow: none;
   cursor: default;
@@ -320,7 +320,10 @@
 .bt-sack.wackelt { animation: sackWackel .6s ease-in-out; }
 /* Beschriftung und Buchstaben in einer Zeile, wenn Platz ist (breites Brett), sonst darunter – das Brett soll nicht unnötig hoch werden */
 .bt-in { display: flex; flex-wrap: wrap; align-items: center; gap: .25rem .75rem; min-width: 0; flex: 1; }
-.bt-t { font-weight: 800; letter-spacing: .04em; text-transform: uppercase; font-size: var(--t-etikett); line-height: 1.2; }
+.bt-t { flex: 1 1 8rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; font-size: var(--t-etikett); line-height: 1.2; }
+/* am Brett knapp (nicht höher als die frühere Code-Leiste): das Brett soll auf dem Telefon nicht rollen */
+.brett .beutel { padding-block: .25rem; }
+.brett .bt-sack { width: 2.25rem; height: 2.25rem; }
 .bt-t .s-b, .bt-t .s-r { color: inherit; }
 .bt-reihe { display: flex; flex-wrap: wrap; align-items: center; gap: .375rem; min-height: 1.875rem; padding-left: 2px; }
 .bt-reihe:empty { display: none; } /* noch kein Buchstabe: nur Beutel und Beschriftung, keine leeren Plätze */
@@ -401,7 +404,9 @@
 .ged.g1 > p::before { width: .75rem; height: .75rem; right: -.6875rem; bottom: min(calc(var(--kopf) - .125rem), calc(100% - 1.25rem)); box-shadow: 0 1.5px 0 var(--ged-kante); }
 .ged.g1 > p::after { width: .4375rem; height: .4375rem; right: -1.125rem; bottom: min(calc(var(--kopf) - .4375rem), calc(100% - 1.625rem)); box-shadow: 0 1px 0 var(--ged-kante), .4375rem .3125rem 0 -.09rem var(--ged-bg2); }
 /* g2: Notizzettel mit Linien und Klebestreifen, leicht schräg; Raupe links daneben */
-.ged.g2 { --ged-bg: #FFFDF5; --ged-bg2: #FFF7DA; --ged-kante: #E6DCC4; margin: 1.125rem 5% 1.1em 0; }
+/* Ränder je Form nur oben und seitlich: den unteren Rand setzt .ged allein, damit „.blatt > :last-child“ ihn am Blattende
+   wirklich wegnimmt – sonst rechnet blaetter() (Probe) ohne ihn und das Blatt läuft um ~22 px über */
+.ged.g2 { --ged-bg: #FFFDF5; --ged-bg2: #FFF7DA; --ged-kante: #E6DCC4; margin-top: 1.125rem; margin-right: 5%; }
 .ged.g2 > p { border-radius: 3px 3px 1.125rem 3px; padding: 1rem 1rem .875rem; rotate: -.8deg; transform-origin: 0 100%;
   background: repeating-linear-gradient(transparent 0 1.5em, rgba(29, 63, 158, .08) 1.5em calc(1.5em + 1px)), linear-gradient(var(--ged-bg), var(--ged-bg2));
   box-shadow: 0 2px 0 var(--ged-kante), 0 8px 18px rgba(90, 70, 20, .14); }
@@ -411,7 +416,7 @@
 .ged.g2 > p::after { box-shadow: 0 1px 0 var(--ged-kante), -.4375rem .3125rem 0 -.09rem var(--ged-bg); }
 /* g3: blaue Wolke oben über die ganze Breite, Raupe darunter links; die Bläschen fallen von der Wolke zu ihrem Kopf */
 .ged.g3 { --ged-bg: #EEF4FF; --ged-bg2: #DFE9FB; --ged-kante: #C3D3F0; --fig-b: 2.25rem; --fig-h: 3.5rem;
-  flex-direction: column-reverse; align-items: flex-start; gap: 1.0625rem; margin: .625rem 3% 1em; } /* im HTML steht das Bild vorn: umgedreht, damit die Raupe unten steht */
+  flex-direction: column-reverse; align-items: flex-start; gap: 1.0625rem; margin-inline: 3%; } /* im HTML steht das Bild vorn: umgedreht, damit die Raupe unten steht */
 .ged.g3 > p { align-self: stretch; text-align: center; padding: .875rem 1.125rem; border-radius: 2rem; }
 .ged.g3 > img { margin-left: 1.5rem; }
 .ged.g3 > p::before { width: .75rem; height: .75rem; left: calc(1.5rem + var(--fig-b) + .375rem); bottom: -.6875rem; box-shadow: 0 1.5px 0 var(--ged-kante); }

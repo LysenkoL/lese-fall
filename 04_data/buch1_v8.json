@@ -3678,12 +3678,14 @@
         "y": 55,
         "name": "Nach o|ben",
         "zweig": "oben",
+        "dreh": -62,
         "nicht": "Hui, der Zweig wa|ckelt! Da ist kein gro|ßes Blatt."
        },
        {
         "x": 38.4,
         "y": 67.2,
         "name": "Ge|ra|de|aus",
+        "dreh": 0,
         "richtig": true,
         "weg": [
          {
@@ -3707,6 +3709,7 @@
         "y": 78.3,
         "name": "Nach un|ten",
         "zweig": "unten",
+        "dreh": 62,
         "nicht": "Hui, der Zweig schau|kelt! Da un|ten ist kein gro|ßes Blatt."
        }
       ]
@@ -3730,8 +3733,8 @@
         "richtig": true,
         "weg": [
          {
-          "x": 71.7,
-          "y": 58.7
+          "x": 68.9,
+          "y": 59.2
          }
         ]
        }
@@ -3743,28 +3746,29 @@
       "warum": "Nur die|ser dün|ne Zweig teilt sich wie ein V.",
       "wege": [
        {
-        "x": 61.1,
-        "y": 47.7,
+        "x": 58.9,
+        "y": 43.7,
         "name": "Nach links o|ben",
         "zweig": "gerade",
         "nicht": "Der Zweig ist dünn. A|ber er ist ganz ge|ra|de. Er teilt sich nicht."
        },
        {
-        "x": 81.4,
-        "y": 50,
+        "x": 79.1,
+        "y": 54.7,
         "name": "Nach rechts o|ben",
+        "dreh": -50,
         "richtig": true,
         "vor": [
          {
-          "x": 77.8,
-          "y": 58.2
-         },
-         {
-          "x": 79.6,
-          "y": 53.7
+          "x": 76.7,
+          "y": 58.3
          }
         ],
         "weg": [
+         {
+          "x": 81.4,
+          "y": 50
+         },
          {
           "x": 82.2,
           "y": 43.7

@@ -26,7 +26,7 @@ const PFEIL = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h12M12 
  * Daten: szene ("baum" = gezeichnete Szene aus raetsel_weg_szene.ts, sonst Bild `bild`), ratio, anfang {x,y} (Prozent), punkte[3] = Gabeln:
  *   { text (Hinweis), ok (Raupe nach richtiger Wahl), warum (Erklärung bei Hilfe),
  *     wege[2–3]: { x, y (Tipp-Ziel auf dem Ast), richtig?, vor?/weg?: [{x,y,unter?}] (Punkte vor dem Ziel bzw. weiter bis zur nächsten Gabel), nicht (Raupe bei falscher Wahl),
- *                  zweig? (data-z des Zweigs in der Szene, der bei falscher Wahl wackelt), name? (nur für aria) } }
+ *                  zweig? (data-z des Zweigs in der Szene, der bei falscher Wahl wackelt), dreh? (Pfeilrichtung in Grad), name? (nur für aria) } }
  * Der letzte Punkt des richtigen Weges der letzten Gabel ist der Nestrand. Die Leuchtspur ist eine goldene Linie, die mitwächst.
  */
 SPIELE_WEG.raupenweg = (r, d, fertig) => {
@@ -80,7 +80,7 @@ SPIELE_WEG.raupenweg = (r, d, fertig) => {
     $('p', hinweis).innerHTML = g.text ?? '';
     pose(k === 0 ? 'brrr' : 'denkt');
     wahlen.innerHTML = g.wege.map((w: any, i: number) => {
-      const winkel = Math.atan2((w.y - pos.y) / ratio, w.x - pos.x) * 180 / Math.PI;
+      const winkel = typeof w.dreh === 'number' ? w.dreh : Math.atan2((w.y - pos.y) / ratio, w.x - pos.x) * 180 / Math.PI; // `dreh`: Pfeil längs des Zweigs
       const name = klar(w.name) || `Weg ${i + 1}`; // Ersatz-Beschriftung nur für Vorlese-Programme
       return `<button class="rw-wahl" data-i="${i}" style="${lagen(w.x, w.y)};--dreh:${winkel.toFixed(1)}deg;animation-delay:${i * 90}ms" aria-label="${name}">${PFEIL}</button>`;
     }).join('');
