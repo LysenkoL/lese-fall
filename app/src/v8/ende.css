@@ -79,46 +79,8 @@ button.perl { border: 0; color: inherit; font-family: inherit; cursor: pointer; 
 .kopf button.perl { color: #fff; }
 button.perl:active { transform: translateY(1px); }
 
-/* ---------- Haus der Lese-Raupe ---------- */
-.haus { width: min(100%, var(--mass-dialog)); background: var(--papier); color: var(--tinte); border-radius: 1.375rem 1.375rem 0 0; padding: 0 1rem calc(var(--unten) + 1rem); display: flex; flex-direction: column; gap: .5rem; animation: hoch .25s both; }
-.schl.mitte .haus { border-radius: 1.375rem; padding-bottom: 1rem; }
-.haus header { display: flex; align-items: center; justify-content: space-between; padding: .75rem 0 .25rem; position: sticky; top: 0; background: var(--papier); z-index: 1; }
-.haus header b { font-size: 1.1875rem; font-weight: 800; }
-.haus header .kb { background: rgba(38, 34, 28, .08); color: var(--tinte); }
-.haus h4 { font-size: var(--t-klein); font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--leise); margin-top: .25rem; }
-.haus :is(header, h4, .h-perl, .h-sache) :is(.s-b, .s-r) { color: inherit; }
-.h-buehne { display: flex; align-items: flex-end; gap: .625rem; padding: .5rem .25rem .25rem; background: radial-gradient(ellipse at 30% 100%, #E9F3D8, transparent 70%); border-radius: 1rem; }
-.h-raupe { height: min(8.5rem, 22cqh); flex: none; transform-origin: 50% 100%; }
-.h-raupe .rms { height: 100%; display: block; }
-.h-raupe.mampf { animation: mampf .7s ease-in-out; }
-.h-raupe.zieht { animation: ploepp .35s cubic-bezier(.3, 1.6, .5, 1); }
-.h-blase { flex: 1; position: relative; background: #fff; border: 2.5px solid var(--senf); border-radius: 1.125rem; padding: .625rem .875rem; font-size: 1.0625rem; line-height: 1.4; font-weight: 700; margin-bottom: 2.25rem; box-shadow: 0 6px 14px rgba(70, 50, 10, .12); }
-.h-blase::before { content: ''; position: absolute; left: -.6875rem; bottom: .875rem; width: 1rem; height: 1rem; background: #fff; border-left: 2.5px solid var(--senf); border-bottom: 2.5px solid var(--senf); transform: rotate(45deg); }
-.h-blase.neu { animation: blase .3s both; }
-.h-perl { display: flex; align-items: center; gap: .4375rem; font-size: var(--t-klein); font-weight: 700; color: var(--leise); }
-.h-perl .perle, .neuhaus .perle { width: 1rem; height: 1rem; border-radius: 50%; background: var(--perle); flex: none; }
-.h-futter { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; }
-@media (min-width: 600px) { .h-futter { grid-template-columns: repeat(6, 1fr); } }
-.h-essen { height: 4.5rem; border-radius: 1rem; border: 2px solid var(--linie); background: radial-gradient(circle at 50% 40%, #FFFFFF, #FFF7E2); box-shadow: 0 3px 0 var(--linie); display: grid; place-items: center; padding: .375rem; }
-.h-essen > svg, .h-essen > img { width: 3.375rem; height: 3.375rem; object-fit: contain; display: block; filter: drop-shadow(0 2px 2px rgba(70, 50, 10, .15)); }
-.h-essen:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--linie); }
-.h-sachen { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; }
-.h-sache { display: flex; flex-direction: column; align-items: center; gap: .25rem; padding: .5rem .25rem; border-radius: .875rem; border: 2px solid var(--linie); background: #fff; font: inherit; color: var(--tinte); min-height: 2.75rem; box-shadow: 0 3px 0 var(--linie); }
-.h-sache b { font-size: var(--t-fein); font-weight: 700; line-height: 1.2; text-align: center; }
-.h-bild { width: 3rem; height: 3rem; display: block; overflow: hidden; }
-.h-bild img, .h-bild svg { width: 100%; height: 100%; object-fit: contain; display: block; }
-.h-ohne { border: 2.5px dashed var(--kante); border-radius: 50%; width: 2.5rem; height: 2.5rem; }
-.h-sache.an { border-color: var(--senf-dunkel); background: var(--senf-hell); box-shadow: 0 3px 0 var(--senf-dunkel); }
-.h-sache.gold { background: linear-gradient(#FFFBEA, #FFF1C2); }
-.h-sache.gold.an { background: var(--senf-hell); }
-.h-sache.zu { box-shadow: none; background: transparent; border-style: dashed; color: var(--leise); }
-.h-sache.zu img { filter: grayscale(1) brightness(1.1); opacity: .4; }
-.h-flug { position: fixed; z-index: var(--z-effekt); pointer-events: none; }
-
-/* Raupe mit Sache */
-.rms { position: relative; display: inline-block; height: 100%; }
-.rms img { height: 100%; width: auto; display: block; object-fit: contain; }
-.rms.mitlupe .glupe { position: absolute; right: -22%; bottom: 6%; width: 50%; height: auto; transform: rotate(-18deg); filter: drop-shadow(0 0 8px rgba(255, 210, 90, .8)); }
+/* Haus der Lese-Raupe (Dialog) und Raupe mit Sachen: haus.css */
+.neuhaus .perle { width: 1rem; height: 1rem; border-radius: 50%; background: var(--perle); flex: none; }
 
 /* Hinweis „Neu im Haus“ (haus.ts, neuHinweis): oben unter dem Kopf, mit Spitze zum Haus-Knopf (Perlen) – nie über den Knöpfen im Fuß.
    Ohne Kopf (Titel, Fallkarte …) oben in der Mitte. */
@@ -139,7 +101,7 @@ button.perl:active { transform: translateY(1px); }
 .perl.neu-da { animation: perlhupf .55s ease-in-out 3; box-shadow: inset 0 0 0 2px var(--senf), 0 0 14px rgba(244, 194, 67, .7); }
 
 @media (prefers-reduced-motion: reduce) {
-  .ep-raupe, .ep-text p, .fg-stempel, .fg-raupe .rms, .al-karte, .h-raupe.mampf, .h-raupe.zieht, .h-blase.neu, .neuhaus, .perl.neu-da { animation: none !important; }
+  .ep-raupe, .ep-text p, .fg-stempel, .fg-raupe .rms, .al-karte, .neuhaus, .perl.neu-da { animation: none !important; }
 }
 
 /* ---------- Feuerwerk und Herzchen ---------- */
@@ -153,13 +115,6 @@ button.perl:active { transform: translateY(1px); }
 .herzchen { position: absolute; left: 50%; top: 10%; width: 0; height: 0; pointer-events: none; z-index: 3; }
 .herzchen i { position: absolute; left: -.75rem; top: 0; width: 1.5rem; height: 1.5rem; animation: herz 1.2s var(--v) ease-out both; }
 .herzchen svg { width: 100%; height: 100%; display: block; }
-.h-raupe { position: relative; }
 
 #app[data-m="album"] #fuss { color: var(--auf-nacht); }
-.h-perl b { color: var(--tinte); }
-.h-buehne.mitbild { background-size: cover; background-position: center; min-height: 11rem; }
-.h-buehne.mitbild .h-blase { margin-bottom: 4rem; }
 .ep-raupe.schlaeft { height: min(7rem, 18cqh); filter: brightness(.9) drop-shadow(0 0 22px rgba(246, 211, 91, .25)); }
-@keyframes brrr { 0%, 100% { translate: 0 0; } 10%, 30%, 50%, 70% { translate: -3px 0; } 20%, 40%, 60%, 80% { translate: 3px 0; } }
-.h-raupe.brrr { animation: brrr .9s linear; }
-@media (prefers-reduced-motion: reduce) { .h-raupe.brrr { animation: none !important; } }

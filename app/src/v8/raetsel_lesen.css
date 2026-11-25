@@ -216,3 +216,5 @@
   .fl-kopf { font-size: var(--t-text); }
   .fl-stempel { font-size: var(--t-etikett); border-width: 2.5px; }
 }
+/* Stempel „Kapitel gelöst“ (main.ts setzt ihn mitten auf die Fläche): oben auf die Überschrift des Berichts, die Sätze bleiben lesbar */
+.zug[data-art="flunker"] .zi > .stempel.abdruck { top: 6.25rem; font-size: var(--t-knopf); }

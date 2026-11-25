@@ -56,6 +56,13 @@
 .skopf h2 { font-weight: 800; font-size: 1.24em; line-height: 1.2; margin-top: .375rem; color: var(--nacht-2); }
 .skopf h2 .s-b, .skopf h2 .s-r { color: inherit; }
 .blatt:not(.probe) { animation: blatt .28s both; }
+/* Bild mitten im Text (<!-- Bild --> in der Kapitel-Datei): oben Platz für die Klebestreifen, andersherum gedreht als das Bild am Anfang */
+.blatt .foto.im-text { margin-top: 1.125rem; transform: rotate(1deg); }
+@container buehne (min-aspect-ratio: 5 / 4) and (min-width: 36rem) {
+  .blatt .foto.im-text { float: right; margin: .5em 0 .5em 1.1em; }
+}
+/* Ausklang (Schlussszene nach der letzten Spur): Titel ohne Spur-Etikett (keine Sterne als Schmuck: Sterne sind im Buch Indizien) */
+.skopf.ausklang h2 { margin-top: 0; }
 .satz { cursor: default; }
 .blatt[data-r="v"]:not(.probe) { animation: blattV .3s ease-out both; transform-origin: 0 60%; }
 .blatt[data-r="z"]:not(.probe) { animation: blattZ .3s ease-out both; transform-origin: 100% 60%; }
@@ -311,6 +318,7 @@
 .bt-t { font-weight: 800; letter-spacing: .06em; text-transform: uppercase; font-size: .78125rem; line-height: 1.2; }
 .bt-t .s-b, .bt-t .s-r { color: inherit; }
 .bt-reihe { display: flex; flex-wrap: wrap; align-items: center; gap: .4375rem; min-height: 2.125rem; padding-left: 2px; }
+.bt-reihe:empty { display: none; } /* noch kein Buchstabe: nur Beutel und Beschriftung, keine leeren Plätze */
 .bt-k {
   flex: none; width: 2rem; height: 2rem; display: grid; place-items: center;
   font-style: normal; font-weight: 800; font-size: 1.25rem; line-height: 1; color: var(--senf-tinte);
@@ -335,7 +343,8 @@
 /* ---------- Fallkarte ---------- */
 .fk > .tab { align-self: flex-start; }
 .fk h2 .s-b, .fk h2 .s-r { color: inherit; }
-.fk li::before { content: ''; position: absolute; left: .25rem; top: .6875rem; width: .5rem; height: .5rem; border-radius: 50%; background: var(--senf-dunkel); }
+/* Punkt genau auf der Mitte der ersten Zeile (in em: wächst mit der Schrift), umbrochene Zeilen beginnen bündig unter dem Text */
+.fk li::before { content: ''; position: absolute; left: .125em; top: calc(.675em - .21em); width: .42em; height: .42em; border-radius: 50%; background: var(--senf-dunkel); box-shadow: 0 0 0 .14em rgba(201, 149, 26, .18); }
 .fk li .s-b, .fk li .s-r, .fk-frage .s-b, .fk-frage .s-r { color: inherit; }
 .fk-frage { font-size: 1.1875rem; font-weight: 800; line-height: 1.35; background: var(--senf-hell); border-left: 6px solid var(--senf); border-radius: .25rem .75rem .75rem .25rem; padding: .625rem .75rem; }
 .fk .stempel.abdruck { font-size: 1.375rem; background: rgba(255, 252, 244, .9); top: 30%; }
@@ -353,40 +362,55 @@
 .fk h2 { font-weight: 800; color: var(--nacht-2); line-height: 1.2; font-size: 1.3125rem; }
 .fk .foto { margin: 2px auto; width: min(78%, calc(34cqh * 1.5)); } /* Bildhöhe höchstens ein Drittel der Bühne, nie beschnitten */
 .fk .foto img { width: 100%; object-fit: cover; }
-.fk li { font-weight: 600; padding-left: 1.25rem; position: relative; font-size: 1.03125rem; line-height: 1.35; }
-.fk ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: .3125rem; }
+.fk li { font-weight: 600; padding-left: 1.2em; position: relative; font-size: 1.03125rem; line-height: 1.35; text-wrap: pretty; }
+.fk ul { margin: .375rem 0 .25rem; padding: 0; list-style: none; display: flex; flex-direction: column; gap: .5rem; }
 .zug.fall { padding-bottom: .5rem; gap: .625rem; }
 
 /* ---------- Gedanken der Lese-Raupe: vier Formen im Wechsel ----------
-   g0 Denkwolke links · g1 Denkwolke rechts (gespiegelt) · g2 Notizzettel mit Klebestreifen · g3 Raupe guckt über den oberen Rand.
-   Gemeinsam: kursiv, Raupenbild, Text rückt nie unter das Bild. Die Pose wählt main.ts (blockHtml) nach dem Ton des Gedankens. */
+   Die Raupe steht immer NEBEN oder UNTER ihrer Blase (nie darin), und eine Spur aus drei Bläschen – groß an der Blase,
+   winzig am Kopf – führt von der Blase zu ihrem Kopf. So ist klar, wer da denkt.
+   g0 Wolke rechts, Raupe links · g1 Wolke links, Raupe rechts (gespiegelt) · g2 Notizzettel mit Klebestreifen, Raupe links ·
+   g3 Wolke oben über die ganze Breite, Raupe darunter.
+   Die Pose: <!-- Raupe: … --> im Text (build-v8.ts → b.pose), sonst rät main.ts (blockHtml) nach dem Ton des Gedankens.
+   Bläschen: ::before (groß, an der Blase) und ::after (mittel) mit einem Schatten-Kreis als drittem, kleinstem Bläschen.
+   --kopf: Höhe der Kopfmitte über dem unteren Rand der Figur (Bilder raupe_*.webp: Kopf im oberen Drittel). */
 .ged { --ged-bg: #F1F8E6; --ged-bg2: #E3F0D1; --ged-kante: #CFE3B4;
-  position: relative; display: flex; align-items: center; gap: .75rem; font-style: italic;
-  margin: .5rem 0 1em; padding: .75rem 1rem .75rem .625rem; border-radius: 1.625rem;
-  background: linear-gradient(180deg, var(--ged-bg), var(--ged-bg2)); box-shadow: 0 2px 0 var(--ged-kante), 0 8px 18px rgba(80, 110, 40, .14); }
-.ged p { margin: 0; min-width: 0; overflow-wrap: break-word; }
-.ged img { flex: none; width: 2.5rem; height: 3.875rem; object-fit: contain; filter: drop-shadow(0 2px 3px rgba(0, 0, 0, .12)); }
-.ged::before, .ged::after { content: ''; position: absolute; border-radius: 50%; background: var(--ged-bg2); box-shadow: 0 2px 0 var(--ged-kante); }
-/* g0: Wolke, Bläschen links unten */
-.ged.g0 { margin-left: .875rem; margin-right: 8%; }
-.ged.g0::before { width: .875rem; height: .875rem; left: -.625rem; bottom: .25rem; }
-.ged.g0::after { width: .5rem; height: .5rem; left: -1.25rem; bottom: -.25rem; }
-/* g1: Wolke rechts, Raupe rechts und gespiegelt, wärmerer Ton */
-.ged.g1 { --ged-bg: #FFF8E1; --ged-bg2: #FDEDC0; --ged-kante: #EED9A0; flex-direction: row-reverse; margin-left: 10%; margin-right: .875rem; padding: .75rem .625rem .75rem 1.125rem; border-radius: 1.625rem 1.625rem .5rem 1.625rem; }
-.ged.g1 img { transform: scaleX(-1); }
-.ged.g1::before { width: .875rem; height: .875rem; right: -.625rem; bottom: .25rem; }
-.ged.g1::after { width: .5rem; height: .5rem; right: -1.25rem; bottom: -.25rem; }
-/* g2: Notizzettel, leicht schräg, mit Klebestreifen; Raupe sitzt unten links auf der Kante */
-.ged.g2 { --ged-bg: #FFFDF5; --ged-bg2: #FFF7DA; --ged-kante: #E6DCC4; border-radius: 3px 3px 1.125rem 3px; margin: 1rem 6% 1.1em 4%; padding: 1rem 1rem .875rem 3.5rem; rotate: -.8deg;
-  background: repeating-linear-gradient(transparent 0 1.5em, rgba(29, 63, 158, .08) 1.5em calc(1.5em + 1px)), linear-gradient(var(--ged-bg), var(--ged-bg2)); }
-.ged.g2 img { position: absolute; left: -.5rem; bottom: -.625rem; width: 3rem; height: 4.25rem; rotate: -6deg; }
-.ged.g2::before { width: 4.5rem; height: 1.125rem; border-radius: 2px; left: 50%; top: -.5rem; bottom: auto; translate: -50% 0; rotate: 3deg; background: rgba(244, 194, 67, .6); box-shadow: 0 1px 2px rgba(0, 0, 0, .1); }
-.ged.g2::after { display: none; }
-/* g3: Raupe guckt mittig über den oberen Rand der Wolke */
-.ged.g3 { --ged-bg: #EEF4FF; --ged-bg2: #DFE9FB; --ged-kante: #C3D3F0; margin: 2.125rem 4% 1.1em; padding: 1.25rem 1.125rem .875rem; text-align: center; justify-content: center; border-radius: 2rem; }
-.ged.g3 img { position: absolute; left: 50%; top: -2.25rem; translate: -50% 0; width: 2.25rem; height: 3.25rem; }
-.ged.g3::before { width: .75rem; height: .75rem; left: 18%; bottom: -.625rem; }
-.ged.g3::after { width: .4375rem; height: .4375rem; left: 14%; bottom: -1.125rem; }
+  --fig-b: 2.5rem; --fig-h: 4rem; --spalt: 1.5rem; --kopf: 2.75rem;
+  position: relative; display: flex; align-items: flex-end; gap: var(--spalt); font-style: italic; margin: .625rem 0 1em; }
+.ged > img { flex: none; width: var(--fig-b); height: var(--fig-h); object-fit: contain; object-position: 50% 100%; filter: drop-shadow(0 2px 3px rgba(0, 0, 0, .14)); }
+.ged > p {
+  position: relative; flex: 1; min-width: 0; margin: 0; overflow-wrap: break-word;
+  padding: .75rem 1.0625rem; border-radius: 1.625rem;
+  background: linear-gradient(180deg, var(--ged-bg), var(--ged-bg2));
+  box-shadow: 0 2px 0 var(--ged-kante), 0 8px 18px rgba(80, 110, 40, .14);
+}
+.ged > p::before, .ged > p::after { content: ''; position: absolute; border-radius: 50%; background: var(--ged-bg2); pointer-events: none; }
+/* Raupe links (g0, g2): die Bläschen sitzen links an der Blase auf Kopfhöhe (bei einer niedrigen Blase so hoch wie möglich) */
+.ged.g0 > p::before, .ged.g2 > p::before { width: .75rem; height: .75rem; left: -.6875rem; bottom: min(calc(var(--kopf) - .125rem), calc(100% - 1.25rem)); box-shadow: 0 1.5px 0 var(--ged-kante); }
+.ged.g0 > p::after, .ged.g2 > p::after { width: .4375rem; height: .4375rem; left: -1.125rem; bottom: min(calc(var(--kopf) - .4375rem), calc(100% - 1.625rem)); box-shadow: 0 1px 0 var(--ged-kante), -.4375rem .3125rem 0 -.09rem var(--ged-bg2); }
+/* g0: grüne Wolke, Raupe links */
+.ged.g0 { margin-right: 6%; }
+/* g1: warme Wolke, Raupe rechts und gespiegelt, Bläschen rechts */
+.ged.g1 { --ged-bg: #FFF8E1; --ged-bg2: #FDEDC0; --ged-kante: #EED9A0; flex-direction: row-reverse; margin-left: 6%; }
+.ged.g1 > img { transform: scaleX(-1); }
+.ged.g1 > p::before { width: .75rem; height: .75rem; right: -.6875rem; bottom: min(calc(var(--kopf) - .125rem), calc(100% - 1.25rem)); box-shadow: 0 1.5px 0 var(--ged-kante); }
+.ged.g1 > p::after { width: .4375rem; height: .4375rem; right: -1.125rem; bottom: min(calc(var(--kopf) - .4375rem), calc(100% - 1.625rem)); box-shadow: 0 1px 0 var(--ged-kante), .4375rem .3125rem 0 -.09rem var(--ged-bg2); }
+/* g2: Notizzettel mit Linien und Klebestreifen, leicht schräg; Raupe links daneben */
+.ged.g2 { --ged-bg: #FFFDF5; --ged-bg2: #FFF7DA; --ged-kante: #E6DCC4; margin: 1.125rem 5% 1.1em 0; }
+.ged.g2 > p { border-radius: 3px 3px 1.125rem 3px; padding: 1rem 1rem .875rem; rotate: -.8deg; transform-origin: 0 100%;
+  background: repeating-linear-gradient(transparent 0 1.5em, rgba(29, 63, 158, .08) 1.5em calc(1.5em + 1px)), linear-gradient(var(--ged-bg), var(--ged-bg2));
+  box-shadow: 0 2px 0 var(--ged-kante), 0 8px 18px rgba(90, 70, 20, .14); }
+.ged.g2::before { content: ''; position: absolute; z-index: 1; width: 4.5rem; height: 1.125rem; border-radius: 2px; top: -.5rem;
+  left: calc(var(--fig-b) + var(--spalt) + (100% - var(--fig-b) - var(--spalt)) / 2); translate: -50% 0; rotate: 3deg; background: rgba(244, 194, 67, .6); box-shadow: 0 1px 2px rgba(0, 0, 0, .1); }
+.ged.g2 > p::before, .ged.g2 > p::after { background: var(--ged-bg); }
+.ged.g2 > p::after { box-shadow: 0 1px 0 var(--ged-kante), -.4375rem .3125rem 0 -.09rem var(--ged-bg); }
+/* g3: blaue Wolke oben über die ganze Breite, Raupe darunter links; die Bläschen fallen von der Wolke zu ihrem Kopf */
+.ged.g3 { --ged-bg: #EEF4FF; --ged-bg2: #DFE9FB; --ged-kante: #C3D3F0; --fig-b: 2.25rem; --fig-h: 3.5rem;
+  flex-direction: column; align-items: flex-start; gap: 1.0625rem; margin: .625rem 3% 1em; }
+.ged.g3 > p { align-self: stretch; text-align: center; padding: .875rem 1.125rem; border-radius: 2rem; }
+.ged.g3 > img { margin-left: 1.5rem; }
+.ged.g3 > p::before { width: .75rem; height: .75rem; left: calc(1.5rem + var(--fig-b) + .375rem); bottom: -.6875rem; box-shadow: 0 1.5px 0 var(--ged-kante); }
+.ged.g3 > p::after { width: .4375rem; height: .4375rem; left: calc(1.5rem + var(--fig-b)); bottom: -1.0625rem; box-shadow: 0 1px 0 var(--ged-kante), -.3125rem .375rem 0 -.09rem var(--ged-bg2); }
 
 /* Neuer Fund: passt auch auf niedrige Bühnen (Telefon quer) und rollt notfalls selbst */
 .fundov { justify-content: safe center; overflow-y: auto; }

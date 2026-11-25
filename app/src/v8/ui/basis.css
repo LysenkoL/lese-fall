@@ -148,6 +148,8 @@ html :focus-visible:where(:not(.bkarte)) { box-shadow: 0 0 0 7px rgba(244, 194, 
 #fuss { grid-row: 3; position: relative; z-index: var(--z-fuss); padding: var(--a-2) var(--rand) calc(var(--unten) + var(--a-3)); }
 .fz { display: flex; flex-direction: column; gap: var(--a-2); width: min(100%, var(--mass-knopf)); margin-inline: auto; }
 .fl { display: flex; align-items: center; gap: .625rem; }
+/* Fuß beim Lesen (‹ Punkte ›) immer in einer Reihe – auch wenn ein Spiel eine eigene Klasse .fl mitbringt */
+#fuss > .fl { flex-direction: row; container-type: normal; }
 #app[data-m="brett"] #fuss { background: linear-gradient(var(--kopf-1), var(--kopf-2)); box-shadow: 0 -1px 0 rgba(244, 194, 67, .3); padding-top: var(--a-3); }
 
 /* ---------- Ansichtsart „Mitte“: Titel, Vorgeschichte, Kapitelkarte, Haken, Ausblick, Schlusswort ---------- */
@@ -171,7 +173,8 @@ html :focus-visible:where(:not(.bkarte)) { box-shadow: 0 0 0 7px rgba(244, 194, 
 .blatt {
   --rand-blatt: clamp(1.25rem, 5cqw, 3rem);
   position: absolute; inset: 0; overflow: hidden auto;
-  padding: .875rem max(var(--rand-blatt), calc((100cqw - var(--mass-lesen)) / 2)) var(--a-1);
+  /* oben genug Luft unter dem Kopf (wächst mit der Bühnenhöhe), unten wenig: dort folgt der Fuß mit der gestrichelten Linie */
+  padding: clamp(1.375rem, 4.2cqh, 2.5rem) max(var(--rand-blatt), calc((100cqw - var(--mass-lesen)) / 2)) var(--a-2);
   font-size: var(--t-lesen); line-height: var(--zh-lesen); font-weight: 500;
 }
 .blatt.probe { visibility: hidden; pointer-events: none; }

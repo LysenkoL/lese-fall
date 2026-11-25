@@ -122,7 +122,43 @@
   "abWort": "ab",
   "perlenWort": "Perlen",
   "iss_keks": "Ein Keks! Knusper, knusper. Mmh!",
-  "iss_kaese": "Käse! Wie der große Käse-Mond im Theater. Hihi!"
+  "iss_kaese": "Käse! Wie der große Käse-Mond im Theater. Hihi!",
+  "iss_blatt2": "Knabber, knabber! Blätter sind die besten.",
+  "iss_apfel2": "Ich mache ein Loch in den Apfel. Hihi!",
+  "iss_erdbeere2": "Süß und saftig! Noch eine, bitte!",
+  "iss_keks2": "Oh, Krümel! Die sind für die Vögel.",
+  "iss_kaese2": "Ist das etwa der Mond? Ach nein, nur Käse!",
+  "iss_eis2": "Brrr! Mein Bauch ist ganz kalt.",
+  "eisSchal": "Mit Schal ist mir gar nicht kalt!",
+  "satt": "Uff! Ich bin pappsatt. Hicks!",
+  "sattNein": "Kein Platz mehr im Bauch! Hicks!",
+  "sattWeg": "So, der Hicks ist weg.",
+  "hicks": "Hicks!",
+  "kitzel1": "Hihi, das kitzelt!",
+  "kitzel2": "Nicht am Bauch! Hihi!",
+  "kitzel3": "Hör auf, ich muss so lachen!",
+  "purzel": "Huiii! Ein Purzelbaum!",
+  "gaehnt": "Uaaah … Ich bin so müde.",
+  "schlaeft": "Zzz …",
+  "wach1": "Huch! Ich habe nur kurz geträumt.",
+  "wach2": "Ich habe vom Mond geträumt. Hihi!",
+  "wachEssen": "Essen? Da bin ich sofort wach!",
+  "wunsch": "Hm … Ich denke an etwas Leckeres.",
+  "wunschJa": "Genau das wollte ich! Danke!",
+  "zieh_fliege": "Sehr fein! Wie bei einem Fest.",
+  "zieh_schal": "Schön warm und weich!",
+  "zieh_brille": "Mit Brille sehe ich alles ganz genau.",
+  "zieh_notizbuch": "Ich schreibe alle Spuren auf.",
+  "zieh_taschenlampe": "Licht aus! Mit der Lampe finde ich alles.",
+  "zieh_hut": "Ein Detektiv-Hut! Jetzt sehe ich klug aus.",
+  "zieh_mondbrosche": "Mein kleiner Mond! Er leuchtet so schön.",
+  "zieh_tasche": "Da passen viele Blätter rein!",
+  "ausziehen": "Und wieder ab!",
+  "kombiMeister": "Hut und Lupe! Ich bin Meister-Detektivin.",
+  "kombiLehrerin": "Brille und Buch! Ich sehe aus wie eine Lehrerin.",
+  "kombiWinter": "Hut und Schal! Jetzt kann der Winter kommen.",
+  "kombiTheater": "Hut und Fliege! Ich gehe ins Theater.",
+  "kombiViel": "So viele Sachen! Ich bin die schickste Raupe der Welt."
  },
  "finale": {
   "code": {
@@ -232,7 +268,7 @@
      }
     ],
     "wort": "AST",
-    "wortText": "AST! Das ist der Hinweis. Das Nest sitzt an einem Ast, genauer: in einer Astgabel. Aber der Baum hat fünf davon.",
+    "wortText": "AST! Das Nest sitzt in einer Astgabel. Aber der Baum hat fünf Astgabeln. Welche ist es?",
     "bild": "baum",
     "ratio": 1.5,
     "gabeln": [
@@ -278,15 +314,20 @@
      }
     ],
     "richtig": "g3",
-    "frage": "Wo sitzt das Nest? Tippe im Baum auf den richtigen Ast.",
+    "frage": "Das Nest ist im Laub versteckt. Wo ist die Astgabel wie ein V?",
+    "nest": {
+     "x": 67.6,
+     "y": 59,
+     "w": 12
+    },
     "erinnerung": {
      "text": "Das stand im Text:",
-     "absatz": "Der Vogel fliegt direkt in die Astgabel unter dem Klassenzimmerfenster, wo zwischen zwei Zweigen wie in einem großen V sein rundes Nest sitzt!"
+     "absatz": "Der Vogel fliegt zu einer Astgabel direkt unter dem Klassenzimmerfenster. Dort sitzt sein rundes Nest, zwischen zwei Zweigen wie in einem großen V."
     },
-    "warum": "Nur diese Astgabel liegt unter dem Fenster. Und nur hier stehen zwei Zweige wie ein V.",
+    "warum": "Nur diese Astgabel ist direkt unter dem Fenster. Und nur hier stehen zwei Zweige wie ein V.",
     "stempel": "HIER SITZT DAS NEST",
-    "erfolg": "Hier sitzt das Nest! Unter dem Fenster, zwischen den zwei Zweigen.",
-    "start": "Der Baum hat viele Äste. Tippe dahin, wo du das Nest vermutest.",
+    "erfolg": "Da schaut das Nest aus dem Laub! Unter dem Fenster, zwischen zwei Zweigen wie ein V.",
+    "start": "Meine Fühler leuchten! Sie zeigen fünf Astgabeln. Tippe auf die Astgabel wie ein V.",
     "nachsehen": "Im Text nachsehen",
     "werkzeug": "fuehler"
    },

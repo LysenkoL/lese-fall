@@ -1,11 +1,12 @@
 /**
- * Neue Rätsel mit Weg und Formen (D-19): Raupenweg (Spur 21), Passt genau (Spur 15).
+ * Neue Rätsel mit Weg und Formen (D-19): Raupenweg (Spur 21), Passt genau (Spur 15), Laub-Spur (Spur 11).
  * Vertrag wie in raetsel.ts: (rahmen, daten, fertig). Hilfen: import { kontext, sag, unten, … } from './raetsel.ts'.
  * Regel wie überall: 1. Fehler Wackeln + Hinweis der Raupe, 2. Fehler zeigt die Raupe die Lösung (ui.hilfe + Erklärung).
  * Kein Verlieren, keine Uhr. `hook.loese` löst sofort (für Tests). Deutsche Sätze kommen nur aus den Daten.
  */
 import './raetsel_weg.css';
 import { kontext, sag, unten, wackel, ende, stempeln, hook } from './raetsel.ts';
+import { laub as _laub } from './staub.ts';
 
 type Spiel = (r: HTMLElement, d: any, fertig: () => void) => void;
 export const SPIELE_WEG: Record<string, Spiel> = {};
@@ -408,3 +409,108 @@ SPIELE_WEG.passtgenau = (r, d, fertig) => {
   const warteAufBuehne = () => { if (!demo) return; if (document.querySelector('#buehne .wzm') && geduld-- > 0) return void nach(zi, 120, warteAufBuehne); nach(zi, 350, vormachen); };
   requestAnimationFrame(warteAufBuehne);
 };
+
+/* ============================ Laub-Spur (Spur 11): vier Laubhaufen, vier Buchstaben, ein Wort ============================ */
+/**
+ * Die Leucht-Fühler zeigen den Weg: oben vier Laubhaufen (= vier Felder des Wortes), der aktuelle glimmt.
+ * Je Runde: 1) Blätter mit dem Finger wegwischen (Laub aus staub.ts), darunter leuchtet ein Buchstabe auf dem Weg,
+ * 2) unter ähnlichen Buchstaben den richtigen antippen, 3) er fliegt in sein Feld. Nach vier Runden steht das Wort da.
+ * Anders als Spur 20 (AST im Tarnmuster + Astgabel wählen): hier wird gewischt, und das Wort ist das Ziel der Spur.
+ * Daten: wort, start (1. Haufen), jetzt (weitere Haufen), nachLaub, frage (über den Knöpfen), runden[] {buchstabe, optionen[], ok?, tipp?}, erfolg.
+ * Fehler je Runde: 1. → Wackeln + `tipp` (wie sieht der Buchstabe aus?), 2. → die Raupe zeigt ihn (ui.hilfe).
+ */
+SPIELE_WEG.laubspur = (r, d, fertig) => {
+  const K = kontext();
+  const zi = $('.zi', r);
+  const R: any[] = d.runden ?? [];
+  const wort: string = d.wort ?? R.map((q) => q.buchstabe).join('');
+  const gef: string[] = [];
+  let k = 0, fehl = 0, zu = true;
+  const feldHtml = () => [...wort].map((c, i) => `<i class="ls-f${i < gef.length ? ' da' : i === k ? ' jetzt' : ''}">${i < gef.length ? gef[i] : HAUFEN}</i>`).join('');
+  zi.innerHTML = `<div class="ls"><div class="ls-wort" aria-live="polite">${feldHtml()}<span class="ls-ziel" aria-hidden="true">${BANK_SVG}</span></div><div class="ls-buehne"></div><p class="ls-frage"></p><div class="ls-opts"></div></div>`;
+  const ls = $('.ls', zi), buehne = $('.ls-buehne', zi), opts = $('.ls-opts', zi), frage = $('.ls-frage', zi), felder = $('.ls-wort', zi);
+  unten('');
+  const malFelder = () => { felder.querySelectorAll('.ls-f').forEach((x) => x.remove()); felder.insertAdjacentHTML('afterbegin', feldHtml()); };
+
+  /** Eine Runde: Laubhaufen über dem leuchtenden Buchstaben */
+  const runde = () => {
+    const q = R[k];
+    fehl = 0; zu = true;
+    malFelder();
+    opts.innerHTML = ''; frage.innerHTML = '';
+    const dreh = [-8, 6, -4, 9][k % 4];
+    buehne.innerHTML = `<div class="ls-feld"><div class="ls-boden" aria-hidden="true">${KIESEL}</div><b class="ls-b" style="--dreh:${dreh}deg">${q.buchstabe}</b></div>`;
+    const feld = $('.ls-feld', buehne);
+    feld.classList.add('neu');
+    sag(r, 'tipp', k === 0 ? d.start ?? '' : d.jetzt ?? d.start ?? '');
+    // erst wischen: der Buchstabe in der Mitte muss frei sein
+    hook.loese = _laub(feld, () => { feld.classList.add('frei'); waehlen(); }, { x: 50, y: 50, r: 22 });
+  };
+  /** Buchstabe frei: ähnliche Buchstaben zur Wahl */
+  const waehlen = () => {
+    const q = R[k];
+    zu = false;
+    frage.innerHTML = d.frage ?? '';
+    opts.innerHTML = K.mischen([...q.optionen]).map((o: string) => `<button class="ls-o" data-o="${o}">${o}</button>`).join('');
+    if (d.nachLaub && k === 0) sag(r, 'staunt', d.nachLaub); else sag(r, 'tipp', '');
+    hook.loese = () => wahl(q.buchstabe, opts.querySelector(`[data-o="${q.buchstabe}"]`));
+    requestAnimationFrame(() => opts.scrollIntoView({ block: 'center', behavior: 'smooth' }));
+  };
+  const richtig = (mitHilfe: boolean) => {
+    const q = R[k];
+    zu = true; hook.loese = null;
+    opts.querySelector(`[data-o="${q.buchstabe}"]`)?.classList.add('an');
+    opts.querySelectorAll<HTMLButtonElement>('.ls-o').forEach((b) => { b.disabled = true; });
+    // der Buchstabe fliegt vom Weg in sein Feld
+    const von = $('.ls-b', buehne), ziel = felder.querySelectorAll<HTMLElement>('.ls-f')[k];
+    const a = von.getBoundingClientRect(), b = ziel.getBoundingClientRect();
+    const flug = document.createElement('b');
+    flug.className = 'ls-flug'; flug.textContent = q.buchstabe;
+    Object.assign(flug.style, { left: a.left + a.width / 2 + 'px', top: a.top + a.height / 2 + 'px' });
+    document.body.appendChild(flug);
+    von.classList.add('weg');
+    K.summ(20);
+    if (!mitHilfe) sag(r, 'lob', q.ok ?? K.UI.stimmt, 'gut'); // mit Hilfe bleibt die Erklärung der Raupe stehen
+    const dx = b.left + b.width / 2 - (a.left + a.width / 2), dy = b.top + b.height / 2 - (a.top + a.height / 2);
+    const dauer = ruhig() ? 0 : 650;
+    flug.animate([{ transform: 'translate(-50%, -50%) scale(1)' }, { transform: `translate(calc(-50% + ${dx * 0.5}px), calc(-50% + ${dy * 0.5 - 40}px)) scale(1.15)`, offset: 0.5 }, { transform: `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(.7)` }], { duration: dauer, easing: 'ease-in-out', fill: 'forwards' });
+    setTimeout(() => {
+      flug.remove();
+      if (!zi.isConnected) return;
+      gef.push(q.buchstabe); k++;
+      malFelder();
+      felder.querySelectorAll('.ls-f')[k - 1]?.classList.add('rein');
+      if (k < R.length) return void nach(zi, mitHilfe ? 1400 : 900, runde);
+      wortFertig();
+    }, dauer + 20);
+  };
+  const wahl = (o: string, btn: Element | null) => {
+    if (zu) return;
+    const q = R[k];
+    if (o === q.buchstabe) return richtig(false);
+    wackel(btn); btn?.classList.add('aus'); (btn as HTMLButtonElement | null)?.setAttribute('disabled', '');
+    K.summ(15);
+    if (++fehl === 1) return sag(r, 'tipp', [K.UI.nochmal, q.tipp ?? ''].join(' '));
+    zu = true;
+    sag(r, 'tipp', [K.UI.hilfe, q.tipp ?? '', q.ok ?? ''].join(' '));
+    opts.querySelector(`[data-o="${q.buchstabe}"]`)?.classList.add('zeig');
+    nach(zi, 1100, () => richtig(true));
+  };
+  const wortFertig = () => {
+    zu = true; hook.loese = null;
+    opts.innerHTML = ''; frage.innerHTML = '';
+    buehne.innerHTML = '';
+    ls.classList.add('fertig');
+    K.summ([20, 40, 60]);
+    nach(zi, 500, () => ende(r, d, fertig));
+  };
+  opts.addEventListener('click', (e) => { const b = (e.target as HTMLElement).closest<HTMLButtonElement>('.ls-o'); if (b && !b.disabled) wahl(b.dataset.o!, b); });
+  if (!R.length) return ende(r, d, fertig);
+  runde();
+};
+/** kleiner Laubhaufen als Platzhalter im Wort-Feld */
+const HAUFEN = '<svg class="ls-haufen" viewBox="0 0 48 40" aria-hidden="true"><path d="M4 34c4-14 36-14 40 0z" fill="#6E4A24" opacity=".35"/><path d="M6 30c2-9 12-14 18-8-4 7-11 10-18 8z" fill="#D9822B"/><path d="M42 30c-2-9-12-14-18-8 4 7 11 10 18 8z" fill="#E8B23A"/><path d="M14 22c3-10 14-13 18-5-5 6-12 8-18 5z" fill="#C2542A"/><path d="M18 33c4-7 13-8 16-2-5 4-11 5-16 2z" fill="#8DB13E"/><path d="M8 29c6-2 11-5 15-7M40 29c-6-2-11-5-15-7M15 21c6-1 11-3 16-4" stroke="#7A3E16" stroke-width="1" fill="none" opacity=".6"/></svg>';
+/** Steinchen und Erdkrümel auf dem Weg unter dem Laub */
+const KIESEL = '<svg viewBox="0 0 140 100" preserveAspectRatio="none" aria-hidden="true"><g fill="#B99870"><ellipse cx="14" cy="18" rx="5" ry="3.4"/><ellipse cx="122" cy="14" rx="4" ry="3"/><ellipse cx="128" cy="80" rx="6" ry="4"/><ellipse cx="20" cy="84" rx="4.5" ry="3"/><ellipse cx="70" cy="92" rx="3.5" ry="2.4"/></g><g fill="#7A5A38" opacity=".55"><circle cx="34" cy="10" r="1.6"/><circle cx="104" cy="30" r="1.4"/><circle cx="110" cy="64" r="1.8"/><circle cx="30" cy="62" r="1.4"/><circle cx="52" cy="78" r="1.2"/><circle cx="92" cy="88" r="1.5"/></g><g fill="#C76A2A" opacity=".85"><path d="M8 46c6-6 14-4 16 2-6 6-12 4-16-2z"/><path d="M118 46c4-7 12-7 15-1-5 6-12 6-15 1z"/></g><g fill="#E0A33A" opacity=".9"><path d="M100 6c5-3 11-1 12 4-5 3-10 2-12-4z"/><path d="M36 92c4-5 11-5 13 0-5 4-10 4-13 0z"/></g></svg>';
+/** kleine Holzbank: erscheint am Ende neben dem Wort (Ziel der Spur) */
+const BANK_SVG = '<svg viewBox="0 0 64 44" aria-hidden="true"><rect x="6" y="8" width="52" height="7" rx="2.5" fill="#B9773A" stroke="#7A4A1E" stroke-width="1.5"/><rect x="6" y="18" width="52" height="7" rx="2.5" fill="#C98544" stroke="#7A4A1E" stroke-width="1.5"/><rect x="4" y="27" width="56" height="6" rx="2.5" fill="#A8692F" stroke="#7A4A1E" stroke-width="1.5"/><path d="M12 33v9M52 33v9M14 8v-4M50 8v-4" stroke="#5A3816" stroke-width="3.2" stroke-linecap="round"/></svg>';

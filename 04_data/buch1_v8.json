@@ -407,7 +407,43 @@
   "abWort": "ab",
   "perlenWort": "Per|len",
   "iss_keks": "Ein Keks! Knus|per, knus|per. Mmh!",
-  "iss_kaese": "Kä|se! Wie der gro|ße Kä|se-Mond im The|a|ter. Hi|hi!"
+  "iss_kaese": "Kä|se! Wie der gro|ße Kä|se-Mond im The|a|ter. Hi|hi!",
+  "iss_blatt2": "Knab|ber, knab|ber! Blät|ter sind die bes|ten.",
+  "iss_apfel2": "Ich ma|che ein Loch in den Ap|fel. Hi|hi!",
+  "iss_erdbeere2": "Süß und saf|tig! Noch ei|ne, bit|te!",
+  "iss_keks2": "Oh, Krü|mel! Die sind für die Vö|gel.",
+  "iss_kaese2": "Ist das et|wa der Mond? Ach nein, nur Kä|se!",
+  "iss_eis2": "Brrr! Mein Bauch ist ganz kalt.",
+  "eisSchal": "Mit Schal ist mir gar nicht kalt!",
+  "satt": "Uff! Ich bin papp|satt. Hicks!",
+  "sattNein": "Kein Platz mehr im Bauch! Hicks!",
+  "sattWeg": "So, der Hicks ist weg.",
+  "hicks": "Hicks!",
+  "kitzel1": "Hi|hi, das kit|zelt!",
+  "kitzel2": "Nicht am Bauch! Hi|hi!",
+  "kitzel3": "Hör auf, ich muss so la|chen!",
+  "purzel": "Huiii! Ein Pur|zel|baum!",
+  "gaehnt": "Uaaah … Ich bin so mü|de.",
+  "schlaeft": "Zzz …",
+  "wach1": "Huch! Ich ha|be nur kurz ge|träumt.",
+  "wach2": "Ich ha|be vom Mond ge|träumt. Hi|hi!",
+  "wachEssen": "Es|sen? Da bin ich so|fort wach!",
+  "wunsch": "Hm … Ich den|ke an et|was Le|cke|res.",
+  "wunschJa": "Ge|nau das woll|te ich! Dan|ke!",
+  "zieh_fliege": "Sehr fein! Wie bei ei|nem Fest.",
+  "zieh_schal": "Schön warm und weich!",
+  "zieh_brille": "Mit Bril|le se|he ich al|les ganz ge|nau.",
+  "zieh_notizbuch": "Ich schrei|be al|le Spu|ren auf.",
+  "zieh_taschenlampe": "Licht aus! Mit der Lam|pe fin|de ich al|les.",
+  "zieh_hut": "Ein De|tek|tiv-Hut! Jetzt se|he ich klug aus.",
+  "zieh_mondbrosche": "Mein klei|ner Mond! Er leuch|tet so schön.",
+  "zieh_tasche": "Da pas|sen vie|le Blät|ter rein!",
+  "ausziehen": "Und wie|der ab!",
+  "kombiMeister": "Hut und Lu|pe! Ich bin Meis|ter-De|tek|ti|vin.",
+  "kombiLehrerin": "Bril|le und Buch! Ich se|he aus wie ei|ne Leh|re|rin.",
+  "kombiWinter": "Hut und Schal! Jetzt kann der Win|ter kom|men.",
+  "kombiTheater": "Hut und Flie|ge! Ich ge|he ins The|a|ter.",
+  "kombiViel": "So vie|le Sa|chen! Ich bin die schicks|te Rau|pe der Welt."
  },
  "spuren": [
   {
@@ -2035,21 +2071,61 @@
    ],
    "tipp": null,
    "raetsel": {
-    "art": "versteckt",
-    "titel": "Im Laub ver|steckt",
-    "text": "Das Laub ra|schelt und ra|schelt. Zwi|schen den Blät|tern ver|steckt sich ein Buch|sta|be. Wel|cher?",
-    "buchstabe": "B",
-    "optionen": [
-     "B",
-     "R",
-     "P",
-     "D"
+    "art": "laubspur",
+    "titel": "Wo|hin führt die Spur?",
+    "text": "In je|dem Laub|hau|fen steckt ein Buch|sta|be. Zu|sam|men er|ge|ben sie ein Wort.",
+    "start": "Mei|ne Füh|ler leuch|ten! Hier ist der er|ste Laub|hau|fen. Wisch die Blät|ter weg!",
+    "jetzt": "Der nächs|te Laub|hau|fen! Wisch die Blät|ter weg.",
+    "nachLaub": "Da leuch|tet ein Buch|sta|be! Wel|cher ist es?",
+    "frage": "Wel|cher Buch|sta|be ist das?",
+    "wort": "BANK",
+    "runden": [
+     {
+      "buchstabe": "B",
+      "optionen": [
+       "B",
+       "D",
+       "P",
+       "R"
+      ],
+      "ok": "Ein B!",
+      "tipp": "Das B hat o|ben und un|ten ei|nen Bauch."
+     },
+     {
+      "buchstabe": "A",
+      "optionen": [
+       "A",
+       "H",
+       "V",
+       "R"
+      ],
+      "ok": "Ein A!",
+      "tipp": "Das A sieht aus wie ein Dach mit ei|nem Strich."
+     },
+     {
+      "buchstabe": "N",
+      "optionen": [
+       "N",
+       "M",
+       "U",
+       "H"
+      ],
+      "ok": "Ein N!",
+      "tipp": "Das N hat drei Stri|che: hoch, schräg, hoch."
+     },
+     {
+      "buchstabe": "K",
+      "optionen": [
+       "K",
+       "X",
+       "R",
+       "H"
+      ],
+      "ok": "Ein K!",
+      "tipp": "Das K hat ei|nen lan|gen Strich und zwei kur|ze Ar|me."
+     }
     ],
-    "winkel": 45,
-    "farbe": "#3E7B2A",
-    "muster": "laub",
-    "erfolg": "B wie Baum!",
-    "stoerer": 4,
+    "erfolg": "BANK! Die Spur führt zu Os|kars Bank.",
     "werkzeug": "fuehler"
    }
   },
@@ -3375,7 +3451,7 @@
      }
     ],
     "wort": "AST",
-    "wortText": "AST! Das ist der Hin|weis. Das Nest sitzt an ei|nem Ast, ge|nau|er: in ei|ner Ast|ga|bel. A|ber der Baum hat fünf da|von.",
+    "wortText": "AST! Das Nest sitzt in ei|ner Ast|ga|bel. A|ber der Baum hat fünf Ast|ga|beln. Wel|che ist es?",
     "bild": "baum",
     "ratio": 1.5,
     "gabeln": [
@@ -3421,15 +3497,20 @@
      }
     ],
     "richtig": "g3",
-    "frage": "Wo sitzt das Nest? Tip|pe im Baum auf den rich|ti|gen Ast.",
+    "frage": "Das Nest ist im Laub ver|steckt. Wo ist die Ast|ga|bel wie ein V?",
+    "nest": {
+     "x": 67.6,
+     "y": 59,
+     "w": 12
+    },
     "erinnerung": {
      "text": "Das stand im Text:",
-     "absatz": "Der Vo|gel fliegt di|rekt in die Ast|ga|bel un|ter dem Klas|sen|zim|mer|fens|ter, wo zwi|schen zwei Zwei|gen wie in ei|nem gro|ßen V sein run|des Nest sitzt!"
+     "absatz": "Der Vo|gel fliegt zu ei|ner Ast|ga|bel di|rekt un|ter dem Klas|sen|zim|mer|fens|ter. Dort sitzt sein run|des Nest, zwi|schen zwei Zwei|gen wie in ei|nem gro|ßen V."
     },
-    "warum": "Nur die|se Ast|ga|bel liegt un|ter dem Fens|ter. Und nur hier ste|hen zwei Zwei|ge wie ein V.",
+    "warum": "Nur die|se Ast|ga|bel ist di|rekt un|ter dem Fens|ter. Und nur hier ste|hen zwei Zwei|ge wie ein V.",
     "stempel": "HIER SITZT DAS NEST",
-    "erfolg": "Hier sitzt das Nest! Un|ter dem Fens|ter, zwi|schen den zwei Zwei|gen.",
-    "start": "Der Baum hat vie|le Äs|te. Tip|pe da|hin, wo du das Nest ver|mu|test.",
+    "erfolg": "Da schaut das Nest aus dem Laub! Un|ter dem Fens|ter, zwi|schen zwei Zwei|gen wie ein V.",
+    "start": "Mei|ne Füh|ler leuch|ten! Sie zei|gen fünf Ast|ga|beln. Tip|pe auf die Ast|ga|bel wie ein V.",
     "nachsehen": "Im Text nach|se|hen",
     "werkzeug": "fuehler"
    },

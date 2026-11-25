@@ -196,3 +196,63 @@
 .zug[data-art="passtgenau"] .stp-tool .basis { max-width: 6.5rem; padding: .75rem .75rem .5rem; }
 @container buehne (min-aspect-ratio: 5 / 4) and (min-width: 46rem) { .zug[data-art="passtgenau"] .zi > .stp-tool { position: relative; top: auto; right: auto; } }
 .pg-bogen .stempel.abdruck { font-size: clamp(.875rem, calc(var(--k) * .1), 1.25rem); }
+
+/* ---------- Laub-Spur (Spur 11): vier Laubhaufen → vier Buchstaben → BANK ---------- */
+.zug[data-art="laubspur"] { --neben-spiel: 11rem; }
+.ls { container-type: inline-size; display: flex; flex-direction: column; align-items: center; gap: .75rem; }
+/* Felder des Wortes: erst kleine Laubhaufen, der aktuelle glimmt (Leucht-Fühler), gefundene Buchstaben auf Senf */
+.ls-wort { display: flex; align-items: center; justify-content: center; gap: .5rem; }
+.ls-f {
+  position: relative; width: 3.25rem; height: 3.5rem; border-radius: .75rem; display: grid; place-items: center;
+  font-style: normal; font-weight: 800; font-size: 2rem; color: var(--senf-tinte);
+  background: rgba(255, 255, 255, .08);
+  border: 3px dashed rgba(255, 255, 255, .35);
+}
+.ls-haufen { width: 84%; height: auto; }
+.ls-f.jetzt { border-style: solid; border-color: var(--gold-licht, #FFE29A); box-shadow: 0 0 0 4px rgba(255, 226, 120, .25), 0 0 18px rgba(255, 213, 100, .55); animation: ls-glimm 1.8s ease-in-out infinite; }
+.ls-f.da { border: 0; background: var(--senf); box-shadow: 0 3px 0 var(--senf-dunkel); }
+.ls-f.rein { animation: hupf .5s cubic-bezier(.3, 1.6, .5, 1) both; }
+@keyframes ls-glimm { 50% { box-shadow: 0 0 0 6px rgba(255, 226, 120, .35), 0 0 26px rgba(255, 213, 100, .8); } }
+.ls-ziel { width: 0; overflow: hidden; opacity: 0; transition: width .4s, opacity .4s; }
+.ls-ziel svg { display: block; width: 3.5rem; height: auto; }
+.ls.fertig .ls-ziel { width: 3.5rem; margin-left: .25rem; opacity: 1; animation: hupf .6s .3s cubic-bezier(.3, 1.6, .5, 1) both; }
+.ls.fertig .ls-f { animation: hupf .6s cubic-bezier(.3, 1.6, .5, 1) both; }
+.ls.fertig .ls-f:nth-child(2) { animation-delay: .08s; } .ls.fertig .ls-f:nth-child(3) { animation-delay: .16s; } .ls.fertig .ls-f:nth-child(4) { animation-delay: .24s; }
+/* Der Laubhaufen auf dem Weg: Erde mit Steinchen, darin leuchtet der Buchstabe */
+.ls-buehne { width: 100%; display: flex; justify-content: center; }
+.ls-buehne:empty { display: none; }
+.ls-feld {
+  position: relative; width: min(100%, 24rem, calc(var(--bild-h, 16rem) * 1.4)); min-width: 12rem; aspect-ratio: 1.4;
+  max-height: 34cqh; border-radius: 1.25rem; overflow: hidden;
+  border: 4px solid #fff; box-shadow: 0 10px 22px rgba(0, 0, 0, .35);
+  background: radial-gradient(ellipse at 50% 45%, #D2B48A, #B8946A 60%, #9C7A52);
+  user-select: none; -webkit-user-select: none; -webkit-touch-callout: none;
+}
+.ls-feld.neu { animation: hoch .4s both; }
+.ls-boden { position: absolute; inset: 0; }
+.ls-boden svg { width: 100%; height: 100%; display: block; }
+.ls-b {
+  position: absolute; left: 50%; top: 50%; translate: -50% -50%; rotate: var(--dreh, 0deg);
+  font-size: min(9rem, 40cqw); font-weight: 800; line-height: 1; color: #FFE9A6;
+  -webkit-text-stroke: .1875rem #C9951A; paint-order: stroke fill;
+  text-shadow: 0 0 .75rem rgba(255, 224, 120, .9), 0 0 2rem rgba(255, 205, 80, .6);
+  transition: opacity .3s;
+}
+.ls-feld.frei .ls-b { animation: ls-leucht 1.6s ease-in-out infinite; }
+.ls-b.weg { opacity: 0; animation: none; }
+@keyframes ls-leucht { 50% { text-shadow: 0 0 1.25rem rgba(255, 234, 140, 1), 0 0 2.75rem rgba(255, 205, 80, .85); } }
+.ls-frage { margin: 0; color: #fff; font-weight: 800; font-size: var(--t-knopf); text-align: center; min-height: 0; }
+.ls-frage:empty { display: none; }
+.ls-frage .s-b, .ls-frage .s-r { color: inherit; }
+.ls-opts { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem; }
+.ls-opts:empty { display: none; }
+.ls-o {
+  width: 3.75rem; height: 4rem; border-radius: .875rem; background: var(--papier); color: var(--tinte);
+  font-size: 2.25rem; font-weight: 800; box-shadow: 0 3px 0 var(--kante), 0 8px 14px rgba(0, 0, 0, .3); animation: hoch .3s both;
+}
+.ls-o:nth-child(2) { animation-delay: .05s; } .ls-o:nth-child(3) { animation-delay: .1s; } .ls-o:nth-child(4) { animation-delay: .15s; }
+.ls-o:active:not(:disabled) { transform: translateY(2px); box-shadow: 0 1px 0 var(--kante); }
+.ls-o.an { background: var(--senf); color: var(--senf-tinte); }
+.ls-o.aus { opacity: .45; }
+.ls-o.zeig { background: var(--senf-hell); animation: puls .6s 3; }
+.ls-flug { position: fixed; z-index: 60; translate: none; pointer-events: none; font-size: 3.5rem; font-weight: 800; line-height: 1; color: #FFE9A6; -webkit-text-stroke: .125rem #C9951A; paint-order: stroke fill; text-shadow: 0 0 1rem rgba(255, 220, 110, .95); transform: translate(-50%, -50%); }

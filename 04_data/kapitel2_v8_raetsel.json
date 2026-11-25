@@ -279,21 +279,61 @@
     "staub": false
    },
    "raetsel": {
-    "art": "versteckt",
-    "titel": "Im Laub versteckt",
-    "text": "Das Laub raschelt und raschelt. Zwischen den Blättern versteckt sich ein Buchstabe. Welcher?",
-    "buchstabe": "B",
-    "optionen": [
-     "B",
-     "R",
-     "P",
-     "D"
+    "art": "laubspur",
+    "titel": "Wohin führt die Spur?",
+    "text": "In jedem Laubhaufen steckt ein Buchstabe. Zusammen ergeben sie ein Wort.",
+    "start": "Meine Fühler leuchten! Hier ist der erste Laubhaufen. Wisch die Blätter weg!",
+    "jetzt": "Der nächste Laubhaufen! Wisch die Blätter weg.",
+    "nachLaub": "Da leuchtet ein Buchstabe! Welcher ist es?",
+    "frage": "Welcher Buchstabe ist das?",
+    "wort": "BANK",
+    "runden": [
+     {
+      "buchstabe": "B",
+      "optionen": [
+       "B",
+       "D",
+       "P",
+       "R"
+      ],
+      "ok": "Ein B!",
+      "tipp": "Das B hat oben und unten einen Bauch."
+     },
+     {
+      "buchstabe": "A",
+      "optionen": [
+       "A",
+       "H",
+       "V",
+       "R"
+      ],
+      "ok": "Ein A!",
+      "tipp": "Das A sieht aus wie ein Dach mit einem Strich."
+     },
+     {
+      "buchstabe": "N",
+      "optionen": [
+       "N",
+       "M",
+       "U",
+       "H"
+      ],
+      "ok": "Ein N!",
+      "tipp": "Das N hat drei Striche: hoch, schräg, hoch."
+     },
+     {
+      "buchstabe": "K",
+      "optionen": [
+       "K",
+       "X",
+       "R",
+       "H"
+      ],
+      "ok": "Ein K!",
+      "tipp": "Das K hat einen langen Strich und zwei kurze Arme."
+     }
     ],
-    "winkel": 45,
-    "farbe": "#3E7B2A",
-    "muster": "laub",
-    "erfolg": "B wie Baum!",
-    "stoerer": 4,
+    "erfolg": "BANK! Die Spur führt zu Oskars Bank.",
     "werkzeug": "fuehler"
    },
    "fragenNeu": [],

@@ -1292,6 +1292,18 @@ export function plakat(r: HTMLElement, d: Daten, fertig: () => void) {
 }
 
 
+/** Kleines Nest (gezeichnet), das nach der richtigen Wahl aus dem Laub der V-Gabel schaut: Zweige, Mulde, ein Glitzern, Blätter davor */
+const NEST_SVG = `<svg viewBox="0 0 120 86" aria-hidden="true"><defs><radialGradient id="abNs" cx="50%" cy="15%" r="85%"><stop offset="0" stop-color="#C08C50"/><stop offset=".6" stop-color="#83552A"/><stop offset="1" stop-color="#583514"/></radialGradient><linearGradient id="abNb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E4EE7A"/><stop offset=".55" stop-color="#A9CF3E"/><stop offset="1" stop-color="#6FA22E"/></linearGradient></defs>`
+  + `<ellipse cx="60" cy="74" rx="40" ry="6" fill="#2A1A08" opacity=".2"/>`
+  + `<path d="M10 28C11 56 30 74 60 74S109 56 110 28Z" fill="url(#abNs)"/>`
+  + `<g fill="none" stroke-linecap="round" stroke-width="2.2"><path d="M13 36C32 48 72 52 107 36" stroke="#D3A468"/><path d="M15 45C38 58 84 58 105 44" stroke="#9A6A36"/><path d="M20 54C42 66 80 66 100 53" stroke="#D3A468"/><path d="M28 63C46 71 76 71 92 62" stroke="#9A6A36"/><path d="M14 33C34 46 56 66 88 66" stroke="#6B4320"/><path d="M106 33C86 48 62 64 30 64" stroke="#6B4320"/><path d="M6 27L18 35M114 26L102 34M38 70L42 79M80 70L77 80M24 60L14 66M96 60L106 65" stroke="#8A5A2B"/></g>`
+  + `<ellipse cx="60" cy="28" rx="50" ry="10" fill="#7A4E26"/><ellipse cx="60" cy="28" rx="50" ry="10" fill="none" stroke="#D3A468" stroke-width="2.2" stroke-dasharray="6 4"/>`
+  + `<ellipse cx="60" cy="29" rx="39" ry="6" fill="#3B230E"/>`
+  + `<path d="M40 27c4-1.6 9-1.6 13 0" stroke="#DDE1E6" stroke-width="2.4" fill="none" stroke-linecap="round"/>`
+  + `<g class="ab-glanz" transform="translate(52 25)"><path d="M0-9L1.8-1.8L9 0L1.8 1.8L0 9L-1.8 1.8L-9 0L-1.8-1.8Z" fill="#fff"/><circle r="2.2" fill="#fff"/></g>`
+  + `<g stroke="#5E8F26" stroke-width="1.2" fill="url(#abNb)"><path d="M2 80C8 66 24 62 34 70C26 80 12 84 2 80Z"/><path d="M118 78C112 64 96 62 86 70C94 80 108 84 118 78Z"/></g>`
+  + `<g stroke="#6B9A2C" stroke-width="1" fill="none"><path d="M4 79C14 73 24 70 32 70"/><path d="M116 77C106 72 96 70 88 70"/></g></svg>`;
+
 /* ============================ 7.1 Das Wort im Baum (astgabel, Schlüsselmoment 3) ============================ */
 /** Drei versteckte Buchstaben (Laub, Rinde) ergeben AST; dann wählt das Kind unter fünf Astgabeln die, die zum Text passt. */
 export function astgabel(r: HTMLElement, d: Daten, fertig: () => void) {
@@ -1353,7 +1365,9 @@ export function astgabel(r: HTMLElement, d: Daten, fertig: () => void) {
   const baum = () => {
     $('.zt1', r).innerHTML = d.frage;
     sag(r, 'tipp', d.start);
-    zi.innerHTML = `<div class="ab-bild" style="aspect-ratio:${d.ratio}"><img src="${K.img(d.bild)}" alt="" draggable="false"></div>`;
+    // Die Leucht-Fühler zeigen die fünf Astgabeln (leises Glimmen = hier darf man tippen); das Nest ist im Laub versteckt
+    // und schaut erst nach der richtigen Wahl aus der V-Gabel hervor (`nest`: Mitte x/y und Breite w in Prozent des Bildes).
+    zi.innerHTML = `<div class="ab-bild" style="aspect-ratio:${d.ratio}"><img src="${K.img(d.bild)}" alt="" draggable="false">${d.gabeln.map((g: any, i: number) => `<i class="ab-glimm" data-g="${g.id}" style="left:${g.x}%;top:${g.y}%;--i:${i}" aria-hidden="true"></i>`).join('')}</div>`;
     const box = $('.ab-bild', zi);
     let fehl = 0, zu = false, hinOffen = false;
     const ring = (g: any, kl: string) => box.insertAdjacentHTML('beforeend', `<i class="ring ${kl}" style="left:${g.x}%;top:${g.y}%;width:${g.r * 2}%;height:auto;aspect-ratio:1;margin:0;transform:translate(-50%,-50%)"></i>`);
@@ -1362,13 +1376,15 @@ export function astgabel(r: HTMLElement, d: Daten, fertig: () => void) {
     const loesen = (hilfe: boolean) => {
       zu = true; hook.loese = null; unten('');
       zi.querySelector('.ab-hin')?.remove();
+      box.classList.add('gewaehlt');
       ring(richtigG(), hilfe ? 'da blink' : 'da');
+      if (d.nest) box.insertAdjacentHTML('beforeend', `<div class="ab-nest" style="left:${d.nest.x}%;top:${d.nest.y}%;width:${d.nest.w}%">${NEST_SVG}</div>`);
       sag(r, hilfe ? 'tipp' : 'lob', hilfe ? K.UI.hilfe + ' ' + d.warum : d.warum, hilfe ? '' : 'gut');
       setTimeout(() => {
         if (!zi.isConnected) return;
-        const g = richtigG();
-        hook.loese = stempeln(zi, box, d.stempel, () => { hook.loese = null; ende(r, d, fertig); }, { x: g.x, y: g.y });
-      }, hilfe ? 1800 : 900);
+        // Stempel unten auf das Fensterbrett, damit das Nest frei bleibt
+        hook.loese = stempeln(zi, box, d.stempel, () => { hook.loese = null; ende(r, d, fertig); }, d.stempelPos ?? { x: 36, y: 86 });
+      }, hilfe ? 1800 : 1100);
     };
     const nachsehen = () => {
       if (hinOffen) return;
@@ -1383,6 +1399,7 @@ export function astgabel(r: HTMLElement, d: Daten, fertig: () => void) {
       for (const g of d.gabeln) { const dd = Math.hypot(px - g.x / 100 * rc.width, py - g.y / 100 * rc.height); if (dd <= g.r / 100 * rc.width && dd < bd) { bd = dd; beste = g; } }
       if (!beste) return; // daneben: zählt nicht
       if (beste.id === d.richtig) return loesen(false);
+      box.querySelector(`.ab-glimm[data-g="${beste.id}"]`)?.classList.add('aus');
       box.querySelectorAll('.ring.miss').forEach((q) => q.remove());
       box.insertAdjacentHTML('beforeend', `<i class="ring miss" style="left:${px / rc.width * 100}%;top:${py / rc.height * 100}%"></i>`);
       setTimeout(() => box.querySelector('.ring.miss')?.remove(), 900);
