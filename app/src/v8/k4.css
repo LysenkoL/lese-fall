@@ -194,7 +194,7 @@
 }
 
 /* ---------- Finale (finale.ts): 0 Code, 1 Tresor offen mit goldener Lupe, 2 Urkunde, 3 Epilog (ende.css) ---------- */
-.fin-tresor { position: relative; container-type: inline-size; width: min(62%, 15.625rem); margin: 0 auto; }
+.fin-tresor { position: relative; container-type: inline-size; width: min(62%, 15.625rem, max(10rem, calc(100cqh - 30rem))); margin: 0 auto; }
 .fin-tresor .fin-felder { position: absolute; left: 28.7%; width: 42.6%; top: 65%; height: 8.6%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 4.3%; }
 .fin-tresor .fin-f { width: 100%; height: 100%; border-radius: 2.6cqw; font-size: 7cqw; border-width: .6cqw; }
 .fin-felder { display: flex; justify-content: center; gap: .625rem; }
@@ -334,7 +334,11 @@
   height: 49%;
 }
 /* Finale 1: im offenen Tresor liegt die goldene Lupe; sie wächst aus dem Licht und schwebt dann sacht */
-.tresor-auf .tv { width: min(78%, 20rem, calc(100cqh - 23rem)); }
+/* Tresor wächst mit der Bühnenhöhe; Tresor, Text und Sprechblase stehen zusammen mittig unter der Überschrift.
+   Der Platz der Sprechblase ist von Anfang an reserviert (unsichtbar), damit beim Erscheinen nichts springt. */
+.tresor-auf .tv { width: min(88%, 28rem, calc(100cqh - 24.5rem)); margin-top: auto; }
+.tresor-auf .zr { margin-top: 0; margin-bottom: auto; }
+.tresor-auf .zr.wartet { visibility: hidden; }
 .tv-lupe img { position: absolute; inset: 7% 10%; width: 80%; height: 86%; object-fit: contain; opacity: 0; transform: scale(.5) rotate(-14deg); transition: opacity .5s 1.3s, transform .9s 1.3s cubic-bezier(.2, 1.4, .4, 1); filter: drop-shadow(0 0 8px rgba(255, 214, 100, .95)); }
 .tv.auf .tv-lupe img { opacity: 1; transform: none; }
 .tv.lupe-da .tv-lupe img { animation: fin-lupe 3.4s .6s ease-in-out infinite; }
@@ -367,7 +371,7 @@
 .team .s-b, .team .s-r { color: inherit; }
 .fin-f.nein { animation: wackel .4s; background: #FFD9B0; }
 .fin.urk { --dipl-b: min(100%, 27.5rem, calc((100cqh - 11.5rem) * .75)); }
-.fin.urk.mit-rk { --dipl-b: min(100%, 27.5rem, calc((100cqh - 16.5rem) * .75)); }
+.fin.urk.mit-rk { --dipl-b: min(100%, 27.5rem, calc((100cqh - 14rem) * .75)); }
 .fin.urk .dipl { width: var(--dipl-b); }
 .team {
   display: flex;
@@ -386,7 +390,7 @@
 }
 .team img { height: 2.25rem; width: auto; flex: none; }
 /* Urkunde im Finale: ein Satz der Raupe als Sprechblase über der Zeile „Detektiv-Team“ (der Zipfel zeigt auf die Raupe darin) */
-.urk-team { display: flex; flex-direction: column; align-items: flex-start; gap: .6875rem; width: var(--dipl-b, 100%); max-width: 100%; }
+.urk-team { display: flex; flex-direction: column; align-items: flex-start; gap: .6875rem; width: max(var(--dipl-b, 100%), min(100%, 23rem)); max-width: 100%; }
 .rk-blase {
   position: relative;
   margin: 0;
