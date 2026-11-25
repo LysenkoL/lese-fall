@@ -60,6 +60,8 @@
 .blatt .foto.im-text { margin-top: 1.125rem; transform: rotate(1deg); }
 @container buehne (min-aspect-ratio: 5 / 4) and (min-width: 36rem) {
   .blatt .foto.im-text { float: right; margin: .5em 0 .5em 1.1em; }
+  /* folgt ein Gedanke der Raupe, steht das Bild frei in der Mitte (neben einem Bild wäre die Denkblase zu schmal) */
+  .blatt .foto.im-text:has(+ .ged) { float: none; width: min(60%, calc(44cqh * 1.5)); margin: 1.125rem auto .75rem; }
 }
 /* Ausklang (Schlussszene nach der letzten Spur): Titel ohne Spur-Etikett (keine Sterne als Schmuck: Sterne sind im Buch Indizien) */
 .skopf.ausklang h2 { margin-top: 0; }
@@ -164,6 +166,8 @@
   animation: wipp 4s ease-in-out infinite;
   filter: drop-shadow(0 3px 4px rgba(60, 30, 0, .35));
 }
+/* breites Brett: rechts steht über den Fragen schon „+2 Perlen“ – die Raupe rutscht nicht hinein */
+@container buehne (min-aspect-ratio: 5 / 4) and (min-width: 46rem) { #buehne > .brett > h3 .brett-raupe { margin-top: -.625rem; } }
 .wischz { text-align: center; font-weight: 800; color: #fff; text-shadow: 0 1px 2px rgba(0, 0, 0, .4); min-height: 0; font-size: .875rem; line-height: 1.3; }
 @media (min-width: 900px) {
   .bkarte.leer { aspect-ratio: auto; }
@@ -406,7 +410,7 @@
 .ged.g2 > p::after { box-shadow: 0 1px 0 var(--ged-kante), -.4375rem .3125rem 0 -.09rem var(--ged-bg); }
 /* g3: blaue Wolke oben über die ganze Breite, Raupe darunter links; die Bläschen fallen von der Wolke zu ihrem Kopf */
 .ged.g3 { --ged-bg: #EEF4FF; --ged-bg2: #DFE9FB; --ged-kante: #C3D3F0; --fig-b: 2.25rem; --fig-h: 3.5rem;
-  flex-direction: column; align-items: flex-start; gap: 1.0625rem; margin: .625rem 3% 1em; }
+  flex-direction: column-reverse; align-items: flex-start; gap: 1.0625rem; margin: .625rem 3% 1em; } /* im HTML steht das Bild vorn: umgedreht, damit die Raupe unten steht */
 .ged.g3 > p { align-self: stretch; text-align: center; padding: .875rem 1.125rem; border-radius: 2rem; }
 .ged.g3 > img { margin-left: 1.5rem; }
 .ged.g3 > p::before { width: .75rem; height: .75rem; left: calc(1.5rem + var(--fig-b) + .375rem); bottom: -.6875rem; box-shadow: 0 1.5px 0 var(--ged-kante); }

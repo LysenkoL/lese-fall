@@ -80,8 +80,8 @@ const D = await (async () => { await p.goto(`${BASE}/v8.html`); await sleep(900)
 const spurSchritt = (spur) => ev((n) => window.__v8.steps(n), spur);
 const KAPITEL = [...new Set(D.spuren.map((s) => s.kap))];
 const spurenVon = (kap) => D.spuren.filter((s) => s.kap === kap).map((s) => s.nr);
-/** erwartete Code-Buchstaben (nach Position), wenn die Kapitel bis `bis` gelöst sind */
-const codeSoll = (bis) => [...D.kapitel[0].code.wort].map((_, i) => D.kapitel.find((q) => q.code.pos === i && q.nr <= bis)?.code.buchstabe ?? '').join('');
+/** erwartete Buchstaben im Beutel (lose, in der Reihenfolge der Kapitel – ohne Plätze im Wort), wenn die Kapitel bis `bis` gelöst sind */
+const codeSoll = (bis) => D.kapitel.filter((q) => q.nr <= bis).map((q) => q.code.buchstabe).join('');
 
 async function lesen(spur) {
   for (let k = 0; k < 20; k++) {
@@ -205,10 +205,11 @@ async function brett(spur, kap) {
   if (br.fragen > 4) fehler.push(`Spur ${spur}: Brett hat ${br.fragen} offene Fragen (mehr als 4)`);
   if (br.nrs.some((x) => !eigene.includes(x))) fehler.push(`Spur ${spur}: Brett zeigt Karten fremder Kapitel: ${br.nrs}`);
   if (!br.nrs.includes(spur)) fehler.push(`Spur ${spur}: neue Karte fehlt auf dem Brett`);
-  if (spur === eigene[0]) { // Code: alle bisher verdienten Buchstaben stehen schon drin
-    await klick('.brett .codez[data-a="code"]'); await S(`s${spur}_brett_tresor`);
-    const buch = await ev(() => [...document.querySelectorAll('.tresorinfo .wort i')].map((i) => i.textContent.trim()).join(''));
-    if (buch !== codeSoll(kap - 1)) fehler.push(`Spur ${spur}: Code zeigt „${buch}“, erwartet „${codeSoll(kap - 1)}“`);
+  if (spur === eigene[0]) { // Buchstaben-Beutel: alle bisher verdienten Buchstaben liegen schon drin (keine Felder, keine leeren Plätze)
+    if (await p.$('.brett .codez, .brett .wort i')) fehler.push(`Spur ${spur}: Brett zeigt noch Code-Felder statt des Beutels`);
+    await klick('.brett .beutel[data-a="code"]'); await S(`s${spur}_brett_tresor`);
+    const buch = await ev(() => [...document.querySelectorAll('.tresorinfo .bt-k')].map((i) => i.textContent.trim()).join(''));
+    if (buch !== codeSoll(kap - 1)) fehler.push(`Spur ${spur}: Beutel zeigt „${buch}“, erwartet „${codeSoll(kap - 1)}“`);
     await klick('.tresorinfo [data-a="zu"]');
   }
   await weiter();
@@ -231,8 +232,9 @@ async function fallkarte(kap) {
   await klick('#fuss [data-a="stempeln"]'); await sleep(1200); await S(n + '_gestempelt');
   for (let k = 0; k < 6 && !(await knopfDa('weiter')); k++) { await loese(); await sleep(700); }
   await S(n + '_code');
-  const code = await ev(() => [...document.querySelectorAll('.fall .codez .wort i')].map((i) => i.textContent.trim()).join(''));
-  if (code !== codeSoll(kap)) fehler.push(`Fallkarte ${kap}: Code zeigt „${code}“, erwartet „${codeSoll(kap)}“`);
+  await sleep(1500); // der Buchstabe hüpft in den Beutel
+  const code = await ev(() => [...document.querySelectorAll('.fall .beutel .bt-k:not(.platz)')].map((i) => i.textContent.trim()).join(''));
+  if (code !== codeSoll(kap)) fehler.push(`Fallkarte ${kap}: Beutel zeigt „${code}“, erwartet „${codeSoll(kap)}“`);
   await weiter();
 }
 

@@ -549,7 +549,13 @@ function springInBeutel(aus: HTMLElement, neu: HTMLElement, fertig: () => void) 
   const v = neu.getBoundingClientRect(), z = platz.getBoundingClientRect();
   const dx = z.left + z.width / 2 - (v.left + v.width / 2), dy = z.top + z.height / 2 - (v.top + v.height / 2), sk = z.width / v.width;
   const hoch = Math.min(dy, 0) - Math.max(60, Math.abs(dx) * 0.35);
-  const ankommen = () => { platz.classList.remove('platz'); platz.classList.add('rein'); neu.closest('.bt-neu')?.remove(); sack.classList.add('wackelt'); summ([20, 30]); fertig(); };
+  const ankommen = () => {
+    platz.classList.remove('platz'); platz.classList.add('rein'); sack.classList.add('wackelt'); summ([20, 30]);
+    // der leere Platz oben klappt weich zu (der Beutel rutscht nach, statt zu springen)
+    const leer = neu.closest<HTMLElement>('.bt-neu');
+    if (leer) { neu.style.visibility = 'hidden'; if (weniger()) leer.remove(); else leer.animate([{ height: leer.offsetHeight + 'px' }, { height: '0px', marginBottom: '-.875rem' }], { duration: 260, easing: 'ease-in', fill: 'forwards' }).onfinish = () => leer.remove(); }
+    fertig();
+  };
   if (weniger()) return ankommen();
   // im Bogen: hoch, über den Beutel, hinein zu den anderen Buchstaben (ein bisschen kleiner, wie die anderen)
   const a = neu.animate([

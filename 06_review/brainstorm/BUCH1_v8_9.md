@@ -26,11 +26,11 @@ Sie hält einen großen gelben Mond aus Pappe dicht vor das Blatt der Lese-Raupe
 
 „Daran erkenne ich meinen Mond immer wieder“, flüstert Mila. „Und der Stern ist natürlich für dich, Raupe! Unsere kleine Geheimsprache.“
 
-Die Lese-Raupe freut sich riesig. Immer wenn Mila etwas für das Theater bastelt, malt sie auf die Rückseite ein winziges Geheimzeichen nur für die Raupe: Letzte Woche war es ein Marienkäfer hinter einem Pappbaum, davor eine Mini-Krone auf einer Ritterburg — und heute dieser wunderschöne blaue Stern!
+Die Lese-Raupe freut sich riesig. Immer wenn Mila etwas für das Theater bastelt, malt sie hinten ein winziges Geheimzeichen nur für die Raupe. Letzte Woche war es ein Marienkäfer. Davor war es eine Mini-Krone. Und heute ist es dieser wunderschöne blaue Stern!
 
 Draußen vor dem offenen Fenster sitzt Oskar auf der Bank im Hof. Im Werkunterricht haben heute alle Kinder kleine graue Mäuse aus Papier gebastelt. Oskar streichelt seine Maus stolz und murmelt: „Du bist die allerbeste Maus der Welt.“
 
-Plötzlich kommt Frau Sommer herein und fächelt sich Luft zu: „Kinder, habt ihr meinen Schlüssel gesehen? Er hängt an einem funkelnden silbernen Glitzer-Stern! Normalerweise schließe ich ihn immer in meiner Schublade ein. Aber ich weiß noch ganz genau, wie ich ihn vorhin im Lehrerzimmer auf den Tisch geworfen habe. Weil es dort drinnen so stickig war, bin ich sofort ans Fenster gelaufen, habe es weit aufgerissen und den Schlüssel auf dem Tisch glatt vergessen! Jetzt habe ich schon alles abgesucht, aber er ist nirgends zu finden. Wenn der wegbleibt, muss ich heute Nacht wohl hier auf dem Klassenteppich übernachten — oder unser Hausmeister bekommt einen Wutanfall!“
+Plötzlich kommt Frau Sommer herein und fächelt sich Luft zu: „Kinder, habt ihr meinen Schlüssel gesehen? Er hängt an einem weißen Band mit einem funkelnden silbernen Glitzer-Stern! Vorhin habe ich ihn im Lehrerzimmer auf den Tisch gelegt. Dort war es so stickig. Da habe ich das Fenster weit aufgemacht. Und jetzt ist der Schlüssel weg! Ich habe schon überall gesucht. Wenn er wegbleibt, muss ich heute Nacht wohl hier auf dem Klassenteppich schlafen — oder unser Hausmeister bekommt einen Wutanfall!“
 
 Niemand hat den Schlüssel gesehen. Auf ihrem Blatt hebt die Lese-Raupe überrascht den Kopf.
 
@@ -39,7 +39,7 @@ Niemand hat den Schlüssel gesehen. Auf ihrem Blatt hebt die Lese-Raupe überras
 
 ### Spur 2 — Ein seltsames Frühstück
 
-Mila hängt den gelben Mond links neben die Wolke an den Theater-Himmel. Er wackelt ein ziemliches Stück an seinem lockeren Faden.
+Mila hängt den gelben Mond links neben die Wolke an den Theater-Himmel. Er wackelt ziemlich an seinem lockeren Faden.
 
 „Wunderbar!“, ruft Mila. „Jetzt hole ich nur noch schnell die Puppen für unser Stück!“ Sie flitzt zum großen Schrank am anderen Ende des Raumes.
 
@@ -58,7 +58,7 @@ KNURPS!
 <!-- Raupe: muede -->
 Die Sonne scheint durch das Fenster warm auf ihr Blatt. Es ist gemütlich, und ihre Augen werden schwer. „Nur kurz die Augen zu“, denkt sie. „Nur eine Sekunde von dem Papp-Schreck erholen …“
 
-Als sie wieder blinzelt, sieht sie durch einen Spalt zwischen den Blättern gerade noch einen Ärmel mit roten und weißen Streifen. Die Streifen laufen rund um den Arm. Knöpfe sieht sie keine. Unten am Tisch greift er nach etwas — und schwupp, ist er weg!
+Als sie wieder blinzelt, sieht sie durch einen Spalt zwischen den Blättern gerade noch einen Ärmel mit roten und weißen Streifen. Die Streifen laufen rund um den Arm. Knöpfe sieht sie keine. Der Ärmel kommt von draußen durch das offene Fenster. Er greift nach etwas auf dem Tisch — und schwupp, ist er weg!
 
 Erschrocken krabbelt die Raupe hervor und schaut zum Theater: Der rote Vorhang und die weiße Wolke sind noch da. Aber links neben der Wolke ist der Platz leer — der Mond ist weg!
 
@@ -92,7 +92,7 @@ Vorne an der Tischkante liegt ein dicker Stapel alter Zeitungen, den Frau Sommer
 
 Schnell kriecht die Raupe hin und stupst die Zeitung mit der Nase an, sodass sie raschelt.
 
-Mila sieht es sofort und zieht einen großen gelben Pappkreis unter den Zeitungen hervor. „Da bist du ja, mein Mond!“, freut sie sich.
+Mila hört das Rascheln und zieht einen großen gelben Pappkreis unter den Zeitungen hervor. „Da bist du ja, mein Mond!“, freut sie sich.
 
 <!-- Raupe: denkt -->
 Die Lese-Raupe stutzt. „Warum sollte Ben einen frisch geklebten Mond unter alte Zeitungen schieben?“, wundert sie sich und schaltet ihren Zeitlupen-Blick ein: Oben am Rand ist dieser Kreis völlig glatt.
@@ -137,7 +137,7 @@ Schnell kriecht die Lese-Raupe aufs Tablett, nimmt ihre Tautropfen-Lupe und schu
 „Schau mal, Mila, hier klebt noch ein frischer Klecks aus meiner Kleberflasche!“, ruft Ben. „Hier hat dein Mond wirklich gelegen!“
 
 <!-- Raupe: lupe -->
-Die Raupe mustert erst Bens nasse, dunkelblaue Pulloverärmel und schaut dann hinauf zum offenen Fenster. „Ben sagt die Wahrheit — sein Pulli ist dunkelblau ohne einen einzigen Streifen“, kombiniert die Raupe. „Aber gleich nachdem Ben zum Waschbecken gegangen ist, hat der rot-weiß gestreifte Ärmel von draußen durchs Fenster zugegriffen!“
+Die Raupe mustert erst Bens nasse, dunkelblaue Pulloverärmel und schaut dann hinauf zum offenen Fenster. „Ben sagt die Wahrheit — sein Pulli ist dunkelblau ohne einen einzigen Streifen“, kombiniert die Raupe. „Aber gleich nachdem Ben zum Waschbecken gegangen ist, hat der rot-weiß gestreifte Ärmel von draußen durchs Fenster zugegriffen! Draußen im Hof spielen viele Kinder. Wer von ihnen war es?“
 
 ## Kapitel 2 — Ein Tablett für alle
 
@@ -177,21 +177,21 @@ Die Lese-Raupe hält ihre Tautropfen-Lupe vors Auge und staunt: „Ein gelber Mo
 
 „Ist denn vorhin jemand hier ins Klassenzimmer reingekommen?“, fragt Mila.
 
-Ben schüttelt den Kopf. „Nein, ganz sicher nicht! Denk doch nur an die seltsame Geschichte mit Frau Sommers verschwundenem Schlüssel heute Morgen — schon deshalb habe ich die Tür zum Flur extra zugemacht, damit vor der Aufführung niemand heimlich reinkommt oder spickt!“
+Ben schüttelt den Kopf. „Nein, ganz sicher nicht! Heute ist doch schon Frau Sommers Schlüssel verschwunden. Darum habe ich die Tür zum Flur extra zugemacht.“
 
 <!-- Raupe: tipp -->
 Auf dem Tisch spitzt die Lese-Raupe die Fühler: „Drinnen im Raum habe ich schon alles abgesucht, und die Tür war geschlossen. Dann führt die Spur für eine echte Detektivin direkt durch das offene Fenster!“
 
-<!-- Raupe: muede -->
+<!-- Raupe: lacht -->
 Eifrig kriecht die Raupe los — ein Füßchen nach dem anderen den Fensterrahmen hinauf. „Für Mila sind das zwei Schritte“, schnauft sie. „Für mich ist der Aufstieg aufs Fensterbrett eine halbe Weltreise!“
 
 <!-- Bild -->
 Oben auf dem inneren Fensterbrett angekommen, hebt sie ihre Tautropfen-Lupe und schaut hinaus in den Hof: Direkt unter dem Fenster steht die Holzbank — und dort sitzt Oskar! Sein Pulli hat leuchtend rote und weiße Streifen.
 
 <!-- Raupe: lupe -->
-„Da ist unser gestreifter Ärmel!“, denkt die Raupe.
+„Da sitzt Oskar mit dem gestreiften Ärmel!“, denkt die Raupe.
 
-Neben Oskar sitzt seine graue Papiermaus aus dem Werkunterricht mit großen runden Ohren und einem gemalten roten Herz auf dem Bauch. Vor ihr liegt grünes Gras aus gezacktem Papier.
+Neben Oskar sitzt seine graue Papiermaus aus dem Werkunterricht mit großen runden Ohren, einem rosa Schwanz und einem gemalten roten Herz auf dem Bauch. Vor ihr liegt grünes Gras aus gezacktem Papier.
 
 <!-- Raupe: lacht -->
 „Aha!“, schmunzelt die Raupe. „Von Oskars Papier-Wiese ist vorhin also ein Halm durchs Fenster geweht und wurde mein scheußliches Frühstück!“
@@ -202,13 +202,13 @@ Die Fühler der Raupe leuchten golden: Was versteckt Oskar unter dem Seidenpapie
 
 ### Spur 10 — Ein weißer Kreis
 
-In diesem Moment steht Oskar draußen von der Bank auf, tritt von außen an das offene Klassenzimmerfenster und stützt seine rot-weiß gestreiften Arme auf das Fensterbrett.
+In diesem Moment klettert Oskar draußen auf die Bank unter dem Fenster. Er stützt seine rot-weiß gestreiften Arme von außen auf das Fensterbrett.
 
 „Hallo, ihr zwei!“, ruft Oskar fröhlich durchs Fenster herein. Dann sieht er Milas besorgtes Gesicht. „Nanu, was ist denn mit euch los?“
 
 „Mein gelber Mond für das Theater ist verschwunden“, sagt Mila traurig. „Er lag direkt hier auf dem blauen Tablett!“
 
-Oskar zieht überrascht die Stirn kraus. „Einen gelben Mond? Nein, einen Mond habe ich nicht genommen! Ich sitze doch die ganze Zeit draußen auf der Bank und beschäftige mich mit meiner kleinen Maus. Ich habe mir vorhin durchs Fenster nur einen weißen Pappkreis vom blauen Bastel-Tablett geholt.“
+Oskar zieht überrascht die Stirn kraus. „Einen gelben Mond? Nein, einen Mond habe ich nicht genommen! Ich sitze doch die ganze Zeit draußen auf der Bank und beschäftige mich mit meiner kleinen Maus. Ich habe mich vorhin nur kurz auf die Bank gestellt. Da habe ich mir durchs Fenster einen weißen Pappkreis vom blauen Bastel-Tablett geholt.“
 
 Mila und Ben schauen sich mit großen Augen an. „Einen weißen Pappkreis vom blauen Tablett …“, flüstert Ben.
 
@@ -240,7 +240,7 @@ Unterwegs flüstert Ben Mila zu: „Glaubst du, auf der Bank liegt wirklich dein
 „Ich hoffe es!“, flüstert Mila zurück. „Aber vorhin, als ich den Tisch abgesucht habe, lag unter den Zeitungen ja auch nur ein fremder gelber Kreis. Diesmal müssen wir ganz genau hinschauen!“
 
 <!-- Raupe: lacht -->
-Oben sitzt die Lese-Raupe schon auf dem inneren Fensterbrett. Um auf die Bank hinunterzuschauen, muss sie nur noch über das breite Außenbrett bis zur Kante kriechen. „Puh, immer diese Hektik!“, schnauft sie vergnügt. „Ich bin eine gemütliche Lese-Raupe und keine Rennmaus!“
+Oben sitzt die Lese-Raupe schon auf dem inneren Fensterbrett. Um den Teller ganz genau zu sehen, kriecht sie über das breite Außenbrett bis vorne an die Kante. „Puh, immer diese Hektik!“, schnauft sie vergnügt. „Ich bin eine gemütliche Lese-Raupe und keine Rennmaus!“
 
 Unten im Hof raschelt das bunte Herbstlaub. Auf der Wiese sitzen Ida und Nele mit einer Schere und blauem Tonpapier. Schnipp, schnapp!
 
@@ -248,7 +248,7 @@ Unten im Hof raschelt das bunte Herbstlaub. Auf der Wiese sitzen Ida und Nele mi
 
 „Na klar, heute ist doch unser großer Bastel- und Theatertag!“, lacht Ida und hält eine blaue Papierkrone hoch. Dann winkt sie Oskar zu: „Und du hast vorhin auf der Bank doch auch so eifrig geschnitten, Oskar, oder? Was hast du denn Tolles für deine Maus gebastelt?“
 
-„Kommt her zur Bank, ich zeige es euch!“, ruft Oskar stolz und winkt — genau in dem Moment, als die Lese-Raupe oben ihren Kopf über die äußere Fensterkante schiebt und ihre Leucht-Fühler zu glimmen beginnen.
+„Kommt her zur Bank, ich zeige es euch!“, ruft Oskar stolz und winkt. Genau in diesem Moment schiebt die Lese-Raupe oben ihren Kopf über die Fensterkante. Ihre Leucht-Fühler beginnen zu glimmen.
 
 ### Spur 12 — Oskars Rätsel
 
@@ -260,10 +260,10 @@ Ben wird blass und stupst Mila an: „Oje, Mila, sieh dir die gelben Schnipsel a
 
 Mila schluckt schwer.
 
-Oskar merkt von ihrer Sorge überhaupt nichts. Er strahlt über das ganze Gesicht: „Eigentlich wollte ich aus der weißen Pappe vom Tablett zuerst nur eine kleine Wand mit einem Mauseloch basteln. Aber als ich den weißen Kreis hier draußen umgedreht habe, war die andere Seite plötzlich leuchtend gelb! Da musste ich sofort an das Lieblingsessen von Mäusen denken und hatte die allerbeste Idee, womit ich meiner Lieblingsmaus heute eine riesige Freude machen kann! Drei kleine braune Kreise habe ich auch noch draufgeklebt. Na, erratet ihr, was es ist?“
+Oskar merkt von ihrer Sorge überhaupt nichts. Er strahlt über das ganze Gesicht: „Erst wollte ich aus der weißen Pappe eine Wand mit einem Mauseloch basteln. Aber dann habe ich den Kreis hier draußen umgedreht. Die andere Seite war leuchtend gelb! Da musste ich sofort an das Lieblingsessen von Mäusen denken. Drei kleine braune Kreise habe ich auch noch draufgeklebt. Na, erratet ihr, was es ist?“
 
 <!-- Raupe: staunt -->
-Oben am Fensterrand reißt die Lese-Raupe die Augen auf: „Leuchtend gelb, kugelrund und mit Löchern — für eine kleine Maus?!“
+Oben am Fensterrand reißt die Lese-Raupe die Augen auf: „Leuchtend gelb, kreisrund und mit Löchern — für eine kleine Maus?!“
 
 Feierlich legt Oskar die Hand auf das weiße Seidenpapier: „Drei … zwei … eins …“
 
@@ -291,11 +291,11 @@ Mila beugt sich tief über den Teller auf der Bank. „Oskar, dein Käse ist ja 
 
 „Und er hat genau dasselbe leuchtende Gelb!“, ruft Ben und zeigt auf den oberen Rand. „Und schau mal, da guckt ein Stück weißer Faden heraus!“
 
-Oskar schaut verwirrt von Mila zu Ben. „Wie, euer Mond? Das ist doch mein Mäusekäse! Und ich dachte, der Faden hing halt noch vom Basteln dran.“
+Oskar schaut verwirrt von Mila zu Ben. „Wie, euer Mond? Das ist doch mein Mäusekäse! Und ich dachte, der Faden hing halt noch vom Basteln dran.“ Schnell stopft er das Fadenende hinter den Käse.
 
 Mila holt tief Luft. „Gelb und rund allein ist noch kein Beweis. Das habe ich heute schon beim Kreis unter den Zeitungen gelernt.“ Dann schaut sie auf die drei braunen Löcher und wird ganz blass. „Und wenn das doch mein Mond ist … dann hat er jetzt Löcher!“
 
-In diesem Augenblick blitzt Oskars silberne Bastelschere im Sonnenlicht auf — und plötzlich huscht ein großer Schatten mit zwei ausgebreiteten Flügeln dicht über die Bank!
+In diesem Augenblick blitzt Oskars silberne Bastelschere im Sonnenlicht auf — und plötzlich huscht ein großer Schatten dicht über die Bank: zwei breite Flügel, ein spitzer Schnabel und ein langer Schwanz!
 
 Die Lese-Raupe schaut blitzschnell mit ihrem Zeitlupen-Blick in die Baumkrone hinauf: Zwischen den Zweigen sitzt ein großer Vogel mit spitzem Schnabel und langem Schwanz und äugt neugierig nach unten.
 
@@ -306,7 +306,7 @@ Schnell zieht die Raupe den Kopf ein. „Oh je, ein großer Vogel!“, denkt sie
 
 Ben deutet vorsichtig auf die drei braunen Käselöcher und die gelben Schnipsel: „Oskar, sag mal … Hast du für die Löcher und die Krümel etwa in den großen gelben Kreis hineingeschnitten?“
 
-Oskar lacht laut los. „Quatsch! Die dicke Pappe wäre doch viel zu schwer zu schneiden! Die drei braunen Punkte habe ich nur oben draufgeklebt.“
+Oskar lacht laut los. „Quatsch! Ich habe nichts hineingeschnitten. Die drei braunen Punkte habe ich nur oben draufgeklebt.“
 
 Zum Beweis hält er zwei dünne Bastelblätter hoch: ein braunes Papierblatt, in dem drei kreisrunde Stücke fehlen, und ein dünnes gelbes Blatt mit vielen kleinen Zacken.
 
@@ -319,30 +319,30 @@ Oben am Fenster schmunzelt die Lese-Raupe: „Ein Mond im Käse-Kostüm mit drei
 
 ### Spur 16 — Die Rückseite
 
-Da kommen Ida, Nele, Tom und Emil fröhlich über den Hof zur Bank gerannt. Jedes Kind hält stolz seine graue Papiermaus aus dem Werkunterricht und einen eigenen gelben Pappkreis in der Hand!
+Da kommen Ida, Nele, Tom und Emil fröhlich über den Hof zur Bank gerannt. Jedes Kind hält stolz seine graue Papiermaus und einen gelben Pappkreis in der Hand!
 
-„Wir haben vom Hof aus gesehen, wie Oskar seinen Festtagskäse ausgepackt hat. Da hatten wir sofort eine super Idee!“, ruft Ida begeistert. „Wir haben für unsere Mäuse ganz schnell auch gelbe Käse mit drei braunen Flecken gebastelt, damit alle Mäuse nach eurem Theaterstück zusammen eine große Käse-Party feiern können!“
+„Wir haben vom Hof aus gesehen, wie Oskar seinen Käse ausgepackt hat!“, ruft Ida begeistert. „Frau Sommer hatte noch einen Stapel gelbe Pappkreise. Da haben wir ganz schnell auch Käse für unsere Mäuse gebastelt. Nach eurem Theaterstück feiern alle Mäuse zusammen eine große Käse-Party!“
 
-Lachend legen die Kinder ihre Kreise neben Oskars Käse auf die Bank. Jetzt liegen dort fünf gelbe Käse-Kreise nebeneinander — und von vorne sehen alle fünf haargenau gleich aus!
+Lachend legen die Kinder ihre Käse neben Oskars Käse auf die Bank. „Käse-Party!“, ruft Emil und schiebt alle fünf wild durcheinander. Jetzt sehen alle fünf von vorne haargenau gleich aus!
 
 „Ach du liebe Zeit!“, japst Mila. „Welcher von den fünf Kreisen ist denn jetzt mein Mond?!“
 
-Ida kichert: „Und weißt du was, Mila? Als du mir heute Morgen auf dem Schulweg deinen Mond mit dem kleinen blauen Stern auf der Rückseite gezeigt hast, fand ich das so schlau! Da habe ich vorhin beim Basteln allen vorgeschlagen: Statt langweilig unseren Namen draufzuschreiben, malt jeder hinten ein kleines Geheimzeichen auf seinen Käse — und ich habe mir auch einen blauen Stern gemalt!“
+Ida kichert: „Und hinten hat jeder ein Geheimzeichen gemalt, statt seinen Namen. Das war meine Idee! Ich habe einen blauen Stern genommen. Blau ist meine Lieblingsfarbe!“
 
-Mila schaut zu Ben: „Dann reicht der blaue Stern allein nicht mehr! Aber an meinem echten Mond ist hinten ja noch das kleine Loch, wo Ben den weißen Faden aufgerollt und festgeklebt hat!“
+„Auch ein blauer Stern …“, flüstert Mila erschrocken. Dann sagt sie laut: „Mein Mond hat hinten ein kleines Loch. Und da klebt Bens aufgerollter Faden!“
 
 <!-- Raupe: lupe -->
 Oben am Fensterbrett macht die Lese-Raupe einen langen Hals: „Jetzt wird umgedreht! Welche Rückseite verrät uns den echten Mond?“
 
 ### Spur 17 — Ein Missverständnis
 
-Als sie die Kreise umdrehen, ist alles klar: Unter Oskars Käse leuchtet nicht nur der kleine blaue Stern für die Raupe, sondern genau am Rand klebt auch Bens aufgerollter weißer Faden!
+Sie drehen alle fünf Käse um. Zwei haben hinten einen blauen Stern. Aber nur einer hat auch das kleine Loch und Bens aufgerollten weißen Faden. Es ist Oskars Käse!
 
 Oskar wird ganz blass um die Nase. „Oh weh … Es war wirklich dein Theater-Mond, Mila!“, flüstert er erschrocken. „Und ich habe einfach drei braune Käseflecken vorne draufgeklebt!“
 
 Er ist so verlegen, dass er schnell einen kleinen leeren Notizzettel und einen kurzen Bleistiftstummel aus seiner Hosentasche zieht. Auf seinem Knie kritzelt er eilig ein paar Wörter darauf und reicht den Zettel Mila: „Ich schreibe meine Entschuldigung lieber als Geheimagenten-Botschaft auf. Ein echter Agent bringt so etwas kaum laut über die Lippen.“
 
-Mila liest den Zettel und legt Oskar sofort tröstend den Arm um die Schulter. „Ach Oskar, du konntest es doch gar nicht wissen! Du saßt ja schon draußen auf der Bank, als ich den Mond drinnen gezeigt habe.“
+Mila liest den Zettel und legt Oskar sofort tröstend den Arm um die Schulter. „Ach Oskar, du konntest es doch gar nicht wissen! Du warst ja draußen auf der Bank. Du hast meinen Mond nie gesehen.“
 
 Ben kratzt sich grinsend am Kopf: „Eigentlich war ich schuld, weil ich den Mond mit der weißen Seite nach oben auf das Bastel-Tablett für alle gelegt habe!“
 
@@ -353,15 +353,15 @@ Ben kratzt sich grinsend am Kopf: „Eigentlich war ich schuld, weil ich den Mon
 „Mein Stern!“, denkt die Lese-Raupe glücklich. „Den hat Mila nur für mich gemalt.“
 
 <!-- Raupe: lob -->
-Dann atmet die Raupe zufrieden auf: „Kein böser Dieb — nur drei gute Ideen, die sich lustig in die Quere gekommen sind!“
+Dann atmet die Raupe zufrieden auf: „Kein böser Dieb! Nur ein lustiges Durcheinander.“
 
 ### Spur 18 — Die rettende Idee
 
+Ida und die anderen Kinder laufen mit ihren Käsen zurück auf die Wiese. Nur Mila, Ben und Oskar bleiben an der Bank.
+
 Oskar stupst vorsichtig an einen der braunen Papierflecken auf dem Mond, aber Ben ruft sofort: „Lieber nicht abziehen, Oskar! Dein Kleber hält so gut, dass sonst die gelbe Pappe vom Mond zerreißt.“
 
-Mila hält ihren gepunkteten Mond ratlos hoch. „Aber was machen wir denn jetzt mit unserem Theaterstück?“
-
-„Ohne Mond gibt es keinen Nachthimmel“, sagt sie. „Und ohne Nachthimmel gibt es kein Stück.“
+Mila hält ihren gepunkteten Mond ratlos hoch. „Aber was machen wir denn jetzt mit unserem Theaterstück? Mit den braunen Flecken sieht er aus wie ein Käse. So kann ich ihn doch nicht an den Nachthimmel hängen!“
 
 Oskar schaut traurig auf seine kleine graue Maus. „Und meine Maus wollte doch so gern ein Festessen haben …“
 
@@ -391,7 +391,7 @@ Oskar zuckt erschrocken zusammen und wird rot. „Wa-was? Ich soll selbst mit me
 
 Da strahlt Oskar über das ganze Gesicht: „Na gut! Dann hat meine kleine Maus heute nicht nur ein Festessen, sondern auch noch ihre allererste Rolle im Theater!“
 
-Mila wickelt den weißen Faden wieder ab, damit der Mond gleich wieder am Theater hängen kann. „Und damit unser Mond besonders magisch aussieht, kriegt er noch einen Glitzerstern!“, ruft sie. Sie klebt einen funkelnden Stern aus Silberfolie direkt über das Fadenloch.
+Mila zupft das Fadenende vorsichtig los, damit der Mond gleich wieder am Theater hängen kann. „Und damit unser Mond besonders magisch aussieht, kriegt er noch einen Glitzerstern!“, ruft sie. Aus ihrer Jackentasche zieht sie einen kleinen Stern aus Silberfolie. Den hatte sie eigentlich für die Krone vom König gebastelt. Sie klebt ihn direkt über das Fadenloch.
 
 Dann ruft Mila zu Ida und den anderen Kindern auf dem Hof: „Hey, bringt zur Aufführung alle eure Mäuse mit! Wir haben eine Riesen-Überraschung für euch!“
 
@@ -413,9 +413,9 @@ Wusch! Der große schwarz-weiße Vogel schießt aus den Zweigen herab. Er schnap
 
 „Mein Mond!“, schreit Mila. „Der Vogel klaut unseren Himmelskäse!“
 
-Alle schauen nach oben. Der Vogel fliegt zu einer Astgabel direkt unter dem Klassenzimmerfenster. Dort sitzt sein rundes Nest, zwischen zwei Zweigen wie in einem großen V. Der Vogel ist fast so groß wie eine Taube. Aber der Mond ist viel zu groß für das Nest. Trotzdem zerrt und ruckelt der Vogel wie verrückt am Faden.
+Alle schauen nach oben. Der Vogel fliegt zu einer Astgabel direkt unter dem Klassenzimmerfenster. Dort sitzt sein rundes Nest, zwischen zwei Zweigen wie in einem großen V. Der Vogel ist so groß wie eine Taube. Aber der Mond ist viel zu groß für das Nest. Trotzdem zerrt und ruckelt der Vogel wie verrückt am Faden.
 
-Mila, Ben und Oskar rennen unter den Baum. „Hey, du frecher Dieb!“, ruft Mila und winkt mit beiden Armen. „Gib den sofort wieder her!“
+Mila, Ben und Oskar rennen zum Baumstamm. „Hey, du frecher Dieb!“, ruft Mila und winkt mit beiden Armen. „Gib den sofort wieder her!“
 
 „Schack-schack! Kräääh!“, krächzt der Vogel. Er öffnet den Schnabel — und der Mond segelt herunter, direkt in Milas Arme!
 
@@ -473,10 +473,11 @@ Oskar steht ganz nah am Fensterbrett. Da zupft die Lese-Raupe ein kleines Blatt 
 
 Oskar fasst sich an den Nacken — und spürt etwas in seiner Kapuze. Er zieht seine Maus heraus! „Da bist du ja! Dich habe ich doch selbst hineingesteckt, als ich auf den Baum klettern wollte!“ Woher das Blatt kam, merkt niemand.
 
-Schnell räumen alle den Tisch auf. Dabei findet Frau Sommer im Zeitungsstapel einen gelben Pappkreis ohne Faden. „Meine Bastelsonne für die Pinnwand!“, lacht sie. „Die habe ich heute Morgen gesucht.“
+Schnell räumen alle den Tisch auf. Dabei findet Frau Sommer auf dem Tisch den gelben Pappkreis ohne Faden. „Meine Bastelsonne für die Pinnwand!“, lacht sie. „Die habe ich heute Morgen gesucht.“
 
 Dann geht die Tür auf. Die Kinder der Gruppe strömen herein, jedes mit seiner Papiermaus in der Hand.
 
+<!-- Bild -->
 Mila zieht den roten Vorhang auf. Oskars Maus hüpft auf die Bühne und piepst: „Oh weh, mein Bauch ist so leer!“ Die Kinder kichern. Oskars Hände zittern nicht mehr.
 
 Die Maus schaut hoch zum Mond mit den drei braunen Flecken. „Juhu! Da oben hängt der größte Käse der Welt!“ Immer wenn sie hochspringt, zieht Ben den Mond am Faden ein Stück höher. Und alle Kinder lassen ihre Mäuse im Takt mithüpfen!
@@ -513,7 +514,7 @@ Das ist der große Einsatz für die Lese-Raupe! Diesmal klopft ihr Herz nur noch
 
 Ganz langsam zieht Frau Sommer den Zeigestock zurück ins Klassenzimmer. Am Ende baumelt ein weißes Band. Und am Band hängt ein Schlüssel mit einem silbernen Glitzer-Stern!
 
-„Mein Schlüssel!“, ruft Frau Sommer. „Dann muss ich heute Nacht ja doch nicht auf dem Klassenteppich schlafen!“ Alle lachen.
+„Mein Schlüssel!“, ruft Frau Sommer. „Ich hatte im Lehrerzimmer das Fenster weit offen. Da hat ihn sich die Elster geholt!“ Dann lacht sie. „Heute Nacht muss ich also doch nicht auf dem Klassenteppich schlafen!“ Alle lachen mit.
 
 „Und der Hausmeister bekommt auch keinen Wutanfall“, kichert Mila.
 
@@ -534,6 +535,6 @@ Draußen kommt die Elster zurück zu ihrem Nest. Stolz setzt sie sich neben ihre
 
 **Der Tresor ist offen!** Die Tür schwingt auf. Goldenes Licht strömt heraus. Ganz hinten liegt etwas, das funkelt: eine goldene Tautropfen-Lupe! „Die ist für dich, Partner. Nur echte Detektive bekommen sie.“
 
-**Urkunde.** „Psst! Mila, Ben und Oskar denken, alles ging wie von selbst. Aber wir zwei wissen es besser, Partner!“
+**Urkunde.** „Psst! Ben und Oskar denken, alles ging wie von selbst. Mila lächelt nur. Aber wir zwei wissen es genau, Partner!“
 
 **Ein stiller Abend.** Draußen putzt die Elster ihre Federn. Ihr neuer Glitzer-Schmuck funkelt. Die Lese-Raupe schaut zu ihr hinüber. Sie hat keine Angst mehr. Dann gähnt sie und schläft unter dem Mond ein.

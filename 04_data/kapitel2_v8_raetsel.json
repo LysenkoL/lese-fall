@@ -19,7 +19,7 @@
   "frage": "Aber war es Milas Mond? Und was liegt unter dem Seidenpapier?",
   "stempel": "KAPITEL 2 GELÖST"
  },
- "ausblick": "Oskar zieht das Seidenpapier weg. Auf dem Teller liegt etwas Gelbes mit drei braunen Löchern.",
+ "ausblick": "Drei … zwei … eins … Gleich zieht Oskar das Seidenpapier weg!",
  "ui": {
   "legen": "Aufs Tablett legen",
   "ausDinge": "Was passt nicht? Tippe es an.",
@@ -113,7 +113,7 @@
   {
    "spur": 8,
    "bild": "k2_s8",
-   "haken": "„Ein weißer Kreis auf dem Tablett … Wer hat ihn sich wohl geholt?“",
+   "haken": "„Mila und Ben wissen noch nichts vom gestreiften Ärmel. Ich muss nachsehen, was Oskar draußen macht!“",
    "karte": {
     "titel": "Weiße Seite oben",
     "bild": "objekte/mond_hinten_feucht",
@@ -156,7 +156,7 @@
     "gruende": [
      {
       "id": "stern",
-      "text": "Damit man den blauen Stern nicht sieht."
+      "text": "Weil die weiße Seite schöner aussieht."
      },
      {
       "id": "kleber",
@@ -179,7 +179,7 @@
   {
    "spur": 9,
    "bild": "k2_s9",
-   "haken": "„Ein Festessen unter Seidenpapier? Da muss ich genauer hinschauen!“",
+   "haken": "„Huch! Oskar steht auf. Er kommt zu unserem Fenster!“",
    "karte": {
     "titel": "Der zugedeckte Teller",
     "bild": "objekte/teller_zugedeckt",

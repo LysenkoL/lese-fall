@@ -20,7 +20,7 @@
   "frage": "Aber was will der Vogel bei uns auf dem Hof?",
   "stempel": "KAPITEL 3 GELÖST"
  },
- "ausblick": "Oben im Baum spreizt der große Vogel die Flügel. Seine Augen funkeln. Er starrt genau auf den Silberstern …",
+ "ausblick": "Oben im Baum wird es ganz still. Nur zwei Augen funkeln … Dann spreizt der große Vogel die Flügel!",
  "ui": {
   "lupeStart": "Schiebe die Lupe über den Käse.",
   "anLupe": "Lupe"
@@ -29,7 +29,7 @@
   {
    "spur": 13,
    "bild": "k3_s13",
-   "haken": "Ein Faden am Käse? Milas Mond hat auch einen.",
+   "haken": "„Ob Mila und Ben den Faden auch entdecken?“",
    "karte": {
     "titel": "Ein Faden am Käse",
     "bild": "objekte/kaese_auf_teller",
@@ -160,7 +160,7 @@
     "ok": "Passt genau!",
     "warum": "Kleiner Fleck, kleines Loch. Großer Fleck, großes Loch.",
     "stempel": "PASST GENAU",
-    "erfolg": "Alle drei Flecken passen genau. Oskar hat sie aus dem braunen Bogen geschnitten. Milas Mond ist heil!"
+    "erfolg": "Alle drei Flecken passen genau. Oskar hat sie aus dem braunen Bogen geschnitten. Der gelbe Kreis darunter ist heil!"
    },
    "fragenWeg": [
     "zerschnitten"
@@ -169,7 +169,7 @@
   {
    "spur": 16,
    "bild": "k3_s16_vorher",
-   "haken": "„Stern, Loch und Faden: Das ist Milas Mond! Aber was sagt Oskar jetzt?“",
+   "haken": "„Armer Oskar! Er wollte seiner Maus doch nur eine Freude machen.“",
    "karte": {
     "titel": "Das ist Milas Mond",
     "bild": "objekte/mond_hinten_faden",
@@ -220,7 +220,7 @@
      ],
      "tipp": "Mila hat etwas hinten aufgemalt. Ben hat oben etwas festgeklebt. Und der Faden geht durch etwas hindurch.",
      "erfolg": "Richtig! Stern hinten, Faden aufgerollt, Loch oben. Das sind die drei Merkmale.",
-     "warum": "Mila hat hinten einen blauen Stern gemalt. Ben hat den Faden oben aufgerollt und festgeklebt. Und der Faden geht durch ein kleines Loch. Herz, Name und gelbe Rückseite kommen in der Geschichte nicht vor."
+     "warum": "Mila hat hinten einen blauen Stern gemalt. Ben hat den Faden oben aufgerollt und festgeklebt. Und der Faden geht durch ein kleines Loch. Ein rotes Herz, einen Namen oder eine gelbe Rückseite hat Milas Mond nicht."
     },
     "vorne": "objekte/gelbe_kreise_vorne",
     "hinten": "objekte/gelbe_kreise_hinten",
@@ -325,11 +325,11 @@
   {
    "spur": 18,
    "bild": "k3_s18",
-   "haken": "„Jetzt muss nur noch einer von den dreien auf die Idee kommen!“",
+   "haken": "„Ben schaut so komisch auf den Mond. Hat er etwa auch eine Idee?“",
    "karte": {
     "titel": "Die rettende Idee",
     "bild": "k3_s18",
-    "text": "Die Flecken bleiben dran. Für die Menschen ist es ein Mond mit Kratern. Für die Maus ist er ein Käse.",
+    "text": "Die Flecken bleiben dran. Für die Maus ist der Mond ein Käse. So sind alle drei froh.",
     "staub": false,
     "ausschnitt": {
      "x": 20,
@@ -473,7 +473,7 @@
       {
        "text": "Der Vogel mit dem langen Schwanz ist derselbe, der den Schatten geworfen hat.",
        "sicher": false,
-       "tipp": "Das ist erst ein Verdacht. Vom Schatten kennen wir nur die Form. Und vom Vogel in der Astgabel nur die Farben."
+       "tipp": "Das ist erst ein Verdacht. Wir haben einen Schatten und einen Vogel im Baum gesehen. Ob es derselbe war, hat niemand gesehen."
       },
       {
        "text": "Der Vogel will unseren Mond haben.",

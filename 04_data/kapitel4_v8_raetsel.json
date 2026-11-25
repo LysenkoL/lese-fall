@@ -180,7 +180,7 @@
   "urkunde": {
    "titel": "Die Urkunde"
   },
-  "raupeKurz": "„Psst! Mila, Ben und Oskar denken, alles ging wie von selbst. Aber wir zwei wissen es besser, Partner!“",
+  "raupeKurz": "„Psst! Ben und Oskar denken, alles ging wie von selbst. Mila lächelt nur. Aber wir zwei wissen es genau, Partner!“",
   "epilog": {
    "titel": "Ein stiller Abend",
    "saetze": [
@@ -194,7 +194,7 @@
    "spur": 20,
    "bild": "k4_s19_elster",
    "schluessel": true,
-   "haken": "„Etwas Silbernes im Nest … Ob das Frau Sommers Schlüssel ist?“",
+   "haken": "„Hoffentlich will jetzt keiner zu dem Vogel hinaufklettern …“",
    "karte": {
     "titel": "Das Nest",
     "bild": "baum",
@@ -338,15 +338,15 @@
    "bild": "k4_s21_raupe",
    "haken": "„Pst! Ganz leise jetzt. Was liegt da alles im Nest?“",
    "karte": {
-    "titel": "Am Nest",
-    "bild": "nest_sammlung",
+    "titel": "Der lange Zweig",
+    "bild": "k4_s21_raupe",
     "ausschnitt": {
      "x": 22,
      "y": 18,
      "w": 26,
      "h": 36
     },
-    "text": "Im Nest blitzt eine ganze Sammlung. Ganz unten guckt eine silberne Sternspitze hervor.",
+    "text": "Vom Fensterbrett führt ein langer Zweig hinunter zum Nest. Die Raupe hat Angst. Aber sie kriecht los.",
     "staub": false
    },
    "fragenNeu": [
@@ -489,7 +489,7 @@
    "karte": {
     "titel": "Oskars Maus",
     "bild": "objekte/maus_seite",
-    "text": "Die Maus steckte in Oskars Kapuze. Ein Blatt von der Raupe hat Oskar am Nacken gekitzelt.",
+    "text": "Oskars Maus steckt in seiner Kapuze. Er hat sie selbst hineingesteckt.",
     "staub": false
    },
    "fragenNeu": [],
@@ -497,7 +497,7 @@
    "raetsel": {
     "art": "lupe",
     "titel": "Wo ist die Maus?",
-    "text": "Alle suchen Oskars Maus. Fahre mit der Lupe über das Bild. Wo blitzt etwas Rosafarbenes?",
+    "text": "Alle suchen Oskars Maus. Fahre mit der Lupe über das Bild. Wo siehst du etwas Rosafarbenes?",
     "bild": "k4_s20_spiel",
     "ratio": 1.5,
     "zoom": 2.6,
@@ -542,7 +542,7 @@
   {
    "spur": 23,
    "bild": "k4_s22",
-   "haken": "Was schenkt man einem Vogel, der alles liebt, was glänzt?",
+   "haken": "„Ein Tausch mit einer Elster? Ob das klappt?“",
    "karte": {
     "titel": "Eine Elster",
     "bild": "objekte/elster",
@@ -557,8 +557,8 @@
     "art": "lexikon",
     "werkzeug": "lesen",
     "titel": "Das Vogelbuch",
-    "text": "Lies den Steckbrief. Such unseren Vogel im Vogelbuch.",
-    "start": "Wie heißt der schlaue Vogel noch mal? Ich glaube, es ist Vogel 1!",
+    "text": "Lies den Steckbrief. Dann lies im Vogelbuch. Welcher Vogel passt zu allen vier Punkten?",
+    "start": "Schwarz-weiß, langer Schwanz … Wie heißt der Vogel? Lies jede Seite genau!",
     "steckbrief": {
      "titel": "Steckbrief",
      "saetze": [
@@ -572,76 +572,125 @@
      "titel": "Mein Vogelbuch"
     },
     "ok": "Das ist unser Vogel!",
-    "irrtum": "amsel",
     "voegel": [
      {
       "id": "amsel",
       "titel": "Vogel 1",
-      "name": "Amsel",
+      "name": "die Amsel",
       "crop": {
        "bild": "objekte/voegel",
        "n": 5,
        "i": 3
       },
       "saetze": [
-       "Er ist ganz schwarz.",
-       "Er hat einen gelben Schnabel."
+       {
+        "text": "Er ist ganz schwarz.",
+        "m": 0,
+        "ja": false
+       },
+       {
+        "text": "Er hat einen gelben Schnabel."
+       },
+       {
+        "text": "Er singt am Abend sehr schön."
+       }
       ],
-      "nicht": "Vogel 1 ist ganz schwarz. Unser Vogel ist schwarz-weiß.",
+      "nicht": "Hier steht: Er ist ganz schwarz. Unser Vogel ist aber schwarz-weiß.",
       "merkmal": 0
      },
      {
       "id": "bachstelze",
       "titel": "Vogel 2",
-      "name": "Bachstelze",
+      "name": "die Bachstelze",
       "crop": {
        "bild": "objekte/voegel",
        "n": 5,
        "i": 1
       },
       "saetze": [
-       "Er ist schwarz-weiß und wippt mit dem langen Schwanz.",
-       "Er ist klein, nur so groß wie ein Spatz."
+       {
+        "text": "Er ist schwarz-weiß.",
+        "m": 0,
+        "ja": true
+       },
+       {
+        "text": "Er hat einen langen Schwanz. Damit wippt er.",
+        "m": 1,
+        "ja": true
+       },
+       {
+        "text": "Er ist klein, nur so groß wie ein Spatz.",
+        "m": 2,
+        "ja": false
+       }
       ],
-      "nicht": "Vogel 2 ist klein. Unser Vogel ist groß wie eine Taube.",
+      "nicht": "Hier steht: Er ist nur so groß wie ein Spatz. Unser Vogel ist aber groß wie eine Taube.",
       "merkmal": 2
      },
      {
-      "id": "elster",
+      "id": "specht",
       "titel": "Vogel 3",
-      "name": "Elster",
+      "name": "der Buntspecht",
+      "crop": {
+       "bild": "objekte/voegel",
+       "n": 5,
+       "i": 2
+      },
+      "saetze": [
+       {
+        "text": "Er ist schwarz-weiß und hat rote Federn.",
+        "m": 0,
+        "ja": true
+       },
+       {
+        "text": "Sein Schwanz ist kurz.",
+        "m": 1,
+        "ja": false
+       },
+       {
+        "text": "Er klopft mit dem Schnabel an die Bäume."
+       }
+      ],
+      "nicht": "Hier steht: Sein Schwanz ist kurz. Unser Vogel hat aber einen langen Schwanz.",
+      "merkmal": 1
+     },
+     {
+      "id": "elster",
+      "titel": "Vogel 4",
+      "name": "die Elster",
       "crop": {
        "bild": "objekte/voegel",
        "n": 5,
        "i": 0
       },
       "saetze": [
-       "Er ist schwarz-weiß und so groß wie eine Taube.",
-       "Er sammelt gern Sachen, die glänzen."
+       {
+        "text": "Er ist schwarz-weiß.",
+        "m": 0,
+        "ja": true
+       },
+       {
+        "text": "Er hat einen langen Schwanz.",
+        "m": 1,
+        "ja": true
+       },
+       {
+        "text": "Er ist so groß wie eine Taube.",
+        "m": 2,
+        "ja": true
+       },
+       {
+        "text": "Er sammelt gern Sachen, die glänzen.",
+        "m": 3,
+        "ja": true
+       }
       ]
-     },
-     {
-      "id": "meise",
-      "titel": "Vogel 4",
-      "name": "Kohlmeise",
-      "crop": {
-       "bild": "objekte/voegel",
-       "n": 5,
-       "i": 4
-      },
-      "saetze": [
-       "Er hat einen gelben Bauch.",
-       "Er ist klein und frisst gern Körner."
-      ],
-      "nicht": "Vogel 4 hat einen gelben Bauch. Unser Vogel ist schwarz-weiß.",
-      "merkmal": 0
      }
     ],
     "loesung": "elster",
-    "warum": "Vogel 3 ist groß wie eine Taube. Und er sammelt Sachen, die glänzen.",
-    "fund": "Da steht sein Name! Jetzt noch der Stempel.",
-    "stempel": "DER VOGEL: ELSTER",
-    "erfolg": "Eine Elster! Und ich dachte, eine Amsel. Hihi, gut, dass du so genau liest."
+    "warum": "Schau hier: Bei diesem Vogel passen alle vier Punkte.",
+    "fund": "Alle vier Punkte passen!",
+    "erfolg": "Eine Elster! Alle vier Punkte passen. Gut gelesen, Partner!"
    }
   },
   {
@@ -669,7 +718,7 @@
    "raetsel": {
     "art": "nest",
     "titel": "Wo ist der Schlüssel?",
-    "text": "Der Wind hat Blätter vor das Nest geweht. Wisch sie weg. Dann finde im Nest den Schlüssel mit dem silbernen Glitzer-Stern.",
+    "text": "Wisch die Blätter weg. Lies, wie Frau Sommers Schlüssel aussieht. Dann hilf ihr, ihn zu holen.",
     "bild": "nest_nah",
     "ratio": 1.5,
     "zone": {
@@ -677,50 +726,120 @@
      "y": 47,
      "r": 34
     },
-    "start": "Erst wischst du die Blätter weg. Dann siehst du in das Nest.",
-    "nachLaub": "Da ist das Nest! Hier glänzt vieles. Aber wo ist der Schlüssel mit dem Silberstern?",
-    "frage": "Finde den Schlüssel.",
-    "tipp": "Der Schlüssel hängt an einem kleinen silbernen Glitzer-Stern.",
+    "start": "Der Wind hat Blätter vor das Nest geweht. Wisch sie weg!",
+    "nachLaub": "Da ist das Nest! Hier glänzt so vieles. Lies genau: Wie sieht der Schlüssel aus?",
+    "beschreibung": {
+     "titel": "Frau Sommer sagt:",
+     "saetze": [
+      "Mein Schlüssel ist aus Silber.",
+      "Er hängt an einem weißen Band.",
+      "Daran funkelt ein kleiner Silberstern."
+     ]
+    },
+    "frage": "Tippe auf Frau Sommers Schlüssel.",
+    "tipp": "Lies noch mal: Silber, ein weißes Band und ein kleiner Stern.",
     "ziele": [
      {
       "id": "schluessel",
       "x": 31.5,
       "y": 45,
       "r": 7.5,
-      "ok": "Da ist er! Der Schlüssel mit dem silbernen Glitzer-Stern."
+      "zonen": [
+       {
+        "x": 30.6,
+        "y": 39,
+        "r": 4.6
+       },
+       {
+        "x": 35,
+        "y": 51,
+        "r": 4
+       },
+       {
+        "x": 25,
+        "y": 45.5,
+        "r": 3.4
+       },
+       {
+        "x": 32.5,
+        "y": 22,
+        "r": 6.5
+       }
+      ],
+      "ok": "Da ist er! Aus Silber, mit weißem Band und einem kleinen Stern."
      }
     ],
     "andere": [
      {
       "id": "gloeckchen",
-      "x": 33,
-      "y": 68,
+      "x": 32.5,
+      "y": 67,
       "r": 5.5,
-      "nein": "Ein goldenes Glöckchen. Es glänzt, aber es ist kein Schlüssel."
+      "nein": "Ein Glöckchen. Es ist aus Gold, nicht aus Silber."
      },
      {
       "id": "deckel",
       "x": 50,
-      "y": 45,
-      "r": 6,
-      "nein": "Ein silberner Kronkorken. Er glänzt, aber es ist kein Schlüssel."
+      "y": 47,
+      "r": 6.5,
+      "nein": "Ein Kronkorken. Er ist aus Silber. Aber er hat kein weißes Band."
      },
      {
       "id": "glas",
-      "x": 70,
-      "y": 46,
+      "x": 69,
+      "y": 47,
       "r": 6,
-      "nein": "Ein buntes Glasscherbchen. Hübsch, aber kein Schlüssel."
+      "nein": "Eine Glasscherbe. Sie ist blau, nicht silbern."
      },
      {
       "id": "klammer",
       "x": 66,
       "y": 29,
       "r": 5,
-      "nein": "Eine Büroklammer aus Metall. Kein Schlüssel."
+      "nein": "Eine Büroklammer. Sie ist silbern. Aber an ihr ist kein Stern."
+     },
+     {
+      "id": "knopf",
+      "x": 50.5,
+      "y": 25.5,
+      "r": 6,
+      "nein": "Ein Knopf. Er ist rot, nicht silbern."
+     },
+     {
+      "id": "bonbon",
+      "x": 49,
+      "y": 67,
+      "r": 6,
+      "nein": "Ein Bonbonpapier. Es ist bunt und hat kein weißes Band."
+     },
+     {
+      "id": "dreieck",
+      "x": 65,
+      "y": 67,
+      "r": 5.5,
+      "nein": "Ein Dreieck aus Pappe. Es ist gelb, nicht silbern."
      }
     ],
-    "erfolg": "Ich stupse den Schlüssel über den Nestrand. KLING! Er rutscht den Zweig hinunter, direkt in Frau Sommers Hand!",
+    "schluessel": {
+     "box": {
+      "x": 21.5,
+      "y": 12.5,
+      "w": 22,
+      "h": 46
+     },
+     "haken": {
+      "x": 34.2,
+      "y": 17.1
+     }
+    },
+    "stock": {
+     "x": 63,
+     "y": 13,
+     "winkel": -27
+    },
+    "jetzt": "Frau Sommer hält ihren Zeigestock aus dem Fenster. Zieh den Schlüssel am weißen Band bis zur Spitze!",
+    "knapp": "Noch ein Stück! Das weiße Band muss an die Spitze.",
+    "erfolg": "Klick! Das weiße Band hängt an der Spitze vom Zeigestock. Frau Sommer zieht den Schlüssel hoch. Geschafft! Psst … sie denkt, das ging von selbst.",
     "werkzeug": "lupe"
    }
   }

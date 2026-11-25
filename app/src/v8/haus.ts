@@ -95,8 +95,8 @@ export function raupeMitSache(traegt: string, fig: (n: string) => string, pose =
   const grund = dinge.find((d) => !AUFLAGEN.includes(d)) ?? dinge[0];
   const auf = AUFLAGEN.filter((d) => d !== grund && dinge.includes(d));
   const grundBild = `<img src="${img('garderobe/raupe_' + grund)}" alt="">`;
-  if (!auf.length && !lupe) return `<span class="rms">${grundBild}</span>`;
-  return `<span class="rms kombi">${grundBild}${auf.map((d) => `<img class="auf" src="${img('garderobe/auflage_' + d)}" alt="">`).join('')}${lupe ? `<img class="auf glupe" src="${img('objekte/goldene_lupe')}" alt="">` : ''}</span>`;
+  if (!auf.length && !lupe) return `<span class="rms gard">${grundBild}</span>`;
+  return `<span class="rms gard kombi">${grundBild}${auf.map((d) => `<img class="auf" src="${img('garderobe/auflage_' + d)}" alt="">`).join('')}${lupe ? `<img class="auf glupe" src="${img('objekte/goldene_lupe')}" alt="">` : ''}</span>`;
 }
 
 /** Zeiten im Haus (ms) */
@@ -140,7 +140,7 @@ export function zeigeHaus(c: HausCtx): void {
       : `<div class="h-sache zu" aria-label="${d.id}"><span class="h-bild"><img src="${img('garderobe/' + d.id)}" alt=""></span><b>${UI.abWort} ${d.ab} ${UI.perlenWort}</b></div>`),
   ].join('');
   ueber.innerHTML = `<div class="schl mitte"><section class="haus" role="dialog" aria-label="Haus der Lese-Raupe"><div class="h-oben"><header><b>${UI.haus}</b><button class="kb" data-a="zu" aria-label="Schließen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.600" stroke-linecap="round"/></svg></button></header>
-<div class="h-buehne${HAUS_BILD ? ' mitbild' : ''}"${HAUS_BILD ? ` style="background-image:url(${HAUS_BILD})"` : ''}><div class="h-dunkel" aria-hidden="true"><i></i></div><button class="h-raupe" type="button" aria-label="Lese-Raupe kitzeln"></button><div class="h-rede"><p class="h-blase" aria-live="polite"></p><span class="h-wunsch" aria-hidden="true" hidden></span></div></div></div>
+<div class="h-buehne${HAUS_BILD ? ' mitbild' : ''}"${HAUS_BILD ? ` style="background-image:url(${HAUS_BILD})"` : ''}><div class="h-dunkel" aria-hidden="true"><i></i></div><button class="h-raupe" type="button" aria-label="Lese-Raupe kitzeln"></button><div class="h-rede"><p class="h-blase" aria-live="polite"></p></div><span class="h-wunsch" aria-hidden="true" hidden></span></div></div>
 <div class="h-unten"><p class="h-perl"><span class="perle" aria-hidden="true"></span><span>${UI.duHast} <b>${p}</b> ${UI.perlen}</span></p>
 <h4>${UI.futter}</h4><div class="h-futter">${FUTTER_IDS.map((f) => `<button class="h-essen" data-f="${f}" aria-label="${f}">${FUTTER[f]}</button>`).join('')}</div>
 <h4>${UI.anziehen}</h4><div class="h-sachen">${sachen}</div></div></section></div>`;
@@ -150,7 +150,7 @@ export function zeigeHaus(c: HausCtx): void {
   /** wach, pappsatt (Schluckauf, isst gerade nichts), müde (gähnt) oder schläft */
   let zustand: 'wach' | 'satt' | 'muede' | 'schlaeft' = 'wach';
   const gegessen = new Map<string, number>(), angezogen = new Map<string, number>();
-  let happen: number[] = [], stupser: number[] = [], kitzelNr = 0, wachNr = 0, gesagt = 0;
+  let happen: number[] = [], stupser: number[] = [], kitzelNr = 0, wachNr = 0, gesagt = 0, vielGesagt = false;
   let wunsch = '', letzterWunsch = '';
 
   // Uhren laufen nur, solange das Haus offen ist (auch wenn es von außen geschlossen wird)
@@ -208,7 +208,8 @@ export function zeigeHaus(c: HausCtx): void {
     herzchen(ort);
     spaeter(() => ort.remove(), 1700);
   };
-  const hicksen = () => { const { x, y } = beiRaupe(.72, .28); effekt('hicks', x, y, `<b>${UI.hicks}</b>`, 1100); bewege('hicks'); c.summ(8); };
+  /** Schluckauf: kleiner Hüpfer, „Hicks!“ steigt links über dem Kopf auf (nicht über der Sprechblase) */
+  const hicksen = () => { const { x, y } = beiRaupe(.05, .02); effekt('hicks', x, y, `<b>${UI.hicks}</b>`, 1100); bewege('hicks'); c.summ(8); };
   /** Taschenlampe: kurz Licht aus, ein Lichtkegel sucht im Haus herum */
   const lampe = () => {
     if (weniger()) return;
@@ -351,7 +352,9 @@ export function zeigeHaus(c: HausCtx): void {
     else {
       ids = ids.filter((d) => !PLATZ[d].some((pl) => PLATZ[id].includes(pl)));
       ids.push(id);
-      kombi = ids.length >= 4 ? 'kombiViel' : KOMBIS.find(([paar]) => paar.includes(id) && paar.every((d) => ids.includes(d)))?.[1];
+      // eigenes Paar zuerst; „So viele Sachen!“ nur einmal je Besuch, sonst hätte jede weitere Sache denselben Satz
+      kombi = KOMBIS.find(([paar]) => paar.includes(id) && paar.every((d) => ids.includes(d)))?.[1];
+      if (!kombi && ids.length >= 4 && !vielGesagt && !['taschenlampe', 'mondbrosche'].includes(id)) { kombi = 'kombiViel'; vielGesagt = true; } // Lampe und Brosche: ihr eigener Satz passt zum Effekt
       const n = angezogen.get(id) ?? 0;
       angezogen.set(id, n + 1);
       satz = (kombi && UI[kombi]) || (id === 'lupe' ? UI.ziehLupe : [UI['zieh_' + id], UI.zieh1, UI.zieh2][n % 3] || UI.zieh1);

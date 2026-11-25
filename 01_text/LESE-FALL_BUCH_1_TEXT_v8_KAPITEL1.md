@@ -18,11 +18,11 @@ Sie hält einen großen gelben Mond aus Pappe dicht vor das Blatt der Lese-Raupe
 
 „Daran erkenne ich meinen Mond immer wieder“, flüstert Mila. „Und der Stern ist natürlich für dich, Raupe! Unsere kleine Geheimsprache.“
 
-Die Lese-Raupe freut sich riesig. Immer wenn Mila etwas für das Theater bastelt, malt sie auf die Rückseite ein winziges Geheimzeichen nur für die Raupe: Letzte Woche war es ein Marienkäfer hinter einem Pappbaum, davor eine Mini-Krone auf einer Ritterburg — und heute dieser wunderschöne blaue Stern!
+Die Lese-Raupe freut sich riesig. Immer wenn Mila etwas für das Theater bastelt, malt sie hinten ein winziges Geheimzeichen nur für die Raupe. Letzte Woche war es ein Marienkäfer. Davor war es eine Mini-Krone. Und heute ist es dieser wunderschöne blaue Stern!
 
 Draußen vor dem offenen Fenster sitzt Oskar auf der Bank im Hof. Im Werkunterricht haben heute alle Kinder kleine graue Mäuse aus Papier gebastelt. Oskar streichelt seine Maus stolz und murmelt: „Du bist die allerbeste Maus der Welt.“
 
-Plötzlich kommt Frau Sommer herein und fächelt sich Luft zu: „Kinder, habt ihr meinen Schlüssel gesehen? Er hängt an einem funkelnden silbernen Glitzer-Stern! Normalerweise schließe ich ihn immer in meiner Schublade ein. Aber ich weiß noch ganz genau, wie ich ihn vorhin im Lehrerzimmer auf den Tisch geworfen habe. Weil es dort drinnen so stickig war, bin ich sofort ans Fenster gelaufen, habe es weit aufgerissen und den Schlüssel auf dem Tisch glatt vergessen! Jetzt habe ich schon alles abgesucht, aber er ist nirgends zu finden. Wenn der wegbleibt, muss ich heute Nacht wohl hier auf dem Klassenteppich übernachten — oder unser Hausmeister bekommt einen Wutanfall!“
+Plötzlich kommt Frau Sommer herein und fächelt sich Luft zu: „Kinder, habt ihr meinen Schlüssel gesehen? Er hängt an einem weißen Band mit einem funkelnden silbernen Glitzer-Stern! Vorhin habe ich ihn im Lehrerzimmer auf den Tisch gelegt. Dort war es so stickig. Da habe ich das Fenster weit aufgemacht. Und jetzt ist der Schlüssel weg! Ich habe schon überall gesucht. Wenn er wegbleibt, muss ich heute Nacht wohl hier auf dem Klassenteppich schlafen — oder unser Hausmeister bekommt einen Wutanfall!“
 
 Niemand hat den Schlüssel gesehen. Auf ihrem Blatt hebt die Lese-Raupe überrascht den Kopf.
 
@@ -31,7 +31,7 @@ Niemand hat den Schlüssel gesehen. Auf ihrem Blatt hebt die Lese-Raupe überras
 
 ### Spur 2 — Ein seltsames Frühstück
 
-Mila hängt den gelben Mond links neben die Wolke an den Theater-Himmel. Er wackelt ein ziemliches Stück an seinem lockeren Faden.
+Mila hängt den gelben Mond links neben die Wolke an den Theater-Himmel. Er wackelt ziemlich an seinem lockeren Faden.
 
 „Wunderbar!“, ruft Mila. „Jetzt hole ich nur noch schnell die Puppen für unser Stück!“ Sie flitzt zum großen Schrank am anderen Ende des Raumes.
 
@@ -50,7 +50,7 @@ KNURPS!
 <!-- Raupe: muede -->
 Die Sonne scheint durch das Fenster warm auf ihr Blatt. Es ist gemütlich, und ihre Augen werden schwer. „Nur kurz die Augen zu“, denkt sie. „Nur eine Sekunde von dem Papp-Schreck erholen …“
 
-Als sie wieder blinzelt, sieht sie durch einen Spalt zwischen den Blättern gerade noch einen Ärmel mit roten und weißen Streifen. Die Streifen laufen rund um den Arm. Knöpfe sieht sie keine. Unten am Tisch greift er nach etwas — und schwupp, ist er weg!
+Als sie wieder blinzelt, sieht sie durch einen Spalt zwischen den Blättern gerade noch einen Ärmel mit roten und weißen Streifen. Die Streifen laufen rund um den Arm. Knöpfe sieht sie keine. Der Ärmel kommt von draußen durch das offene Fenster. Er greift nach etwas auf dem Tisch — und schwupp, ist er weg!
 
 Erschrocken krabbelt die Raupe hervor und schaut zum Theater: Der rote Vorhang und die weiße Wolke sind noch da. Aber links neben der Wolke ist der Platz leer — der Mond ist weg!
 
@@ -84,7 +84,7 @@ Vorne an der Tischkante liegt ein dicker Stapel alter Zeitungen, den Frau Sommer
 
 Schnell kriecht die Raupe hin und stupst die Zeitung mit der Nase an, sodass sie raschelt.
 
-Mila sieht es sofort und zieht einen großen gelben Pappkreis unter den Zeitungen hervor. „Da bist du ja, mein Mond!“, freut sie sich.
+Mila hört das Rascheln und zieht einen großen gelben Pappkreis unter den Zeitungen hervor. „Da bist du ja, mein Mond!“, freut sie sich.
 
 <!-- Raupe: denkt -->
 Die Lese-Raupe stutzt. „Warum sollte Ben einen frisch geklebten Mond unter alte Zeitungen schieben?“, wundert sie sich und schaltet ihren Zeitlupen-Blick ein: Oben am Rand ist dieser Kreis völlig glatt.
@@ -129,4 +129,4 @@ Schnell kriecht die Lese-Raupe aufs Tablett, nimmt ihre Tautropfen-Lupe und schu
 „Schau mal, Mila, hier klebt noch ein frischer Klecks aus meiner Kleberflasche!“, ruft Ben. „Hier hat dein Mond wirklich gelegen!“
 
 <!-- Raupe: lupe -->
-Die Raupe mustert erst Bens nasse, dunkelblaue Pulloverärmel und schaut dann hinauf zum offenen Fenster. „Ben sagt die Wahrheit — sein Pulli ist dunkelblau ohne einen einzigen Streifen“, kombiniert die Raupe. „Aber gleich nachdem Ben zum Waschbecken gegangen ist, hat der rot-weiß gestreifte Ärmel von draußen durchs Fenster zugegriffen!“
+Die Raupe mustert erst Bens nasse, dunkelblaue Pulloverärmel und schaut dann hinauf zum offenen Fenster. „Ben sagt die Wahrheit — sein Pulli ist dunkelblau ohne einen einzigen Streifen“, kombiniert die Raupe. „Aber gleich nachdem Ben zum Waschbecken gegangen ist, hat der rot-weiß gestreifte Ärmel von draußen durchs Fenster zugegriffen! Draußen im Hof spielen viele Kinder. Wer von ihnen war es?“

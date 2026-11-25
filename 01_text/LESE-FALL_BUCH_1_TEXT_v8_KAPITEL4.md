@@ -12,9 +12,9 @@ Wusch! Der große schwarz-weiße Vogel schießt aus den Zweigen herab. Er schnap
 
 „Mein Mond!“, schreit Mila. „Der Vogel klaut unseren Himmelskäse!“
 
-Alle schauen nach oben. Der Vogel fliegt zu einer Astgabel direkt unter dem Klassenzimmerfenster. Dort sitzt sein rundes Nest, zwischen zwei Zweigen wie in einem großen V. Der Vogel ist fast so groß wie eine Taube. Aber der Mond ist viel zu groß für das Nest. Trotzdem zerrt und ruckelt der Vogel wie verrückt am Faden.
+Alle schauen nach oben. Der Vogel fliegt zu einer Astgabel direkt unter dem Klassenzimmerfenster. Dort sitzt sein rundes Nest, zwischen zwei Zweigen wie in einem großen V. Der Vogel ist so groß wie eine Taube. Aber der Mond ist viel zu groß für das Nest. Trotzdem zerrt und ruckelt der Vogel wie verrückt am Faden.
 
-Mila, Ben und Oskar rennen unter den Baum. „Hey, du frecher Dieb!“, ruft Mila und winkt mit beiden Armen. „Gib den sofort wieder her!“
+Mila, Ben und Oskar rennen zum Baumstamm. „Hey, du frecher Dieb!“, ruft Mila und winkt mit beiden Armen. „Gib den sofort wieder her!“
 
 „Schack-schack! Kräääh!“, krächzt der Vogel. Er öffnet den Schnabel — und der Mond segelt herunter, direkt in Milas Arme!
 
@@ -72,10 +72,11 @@ Oskar steht ganz nah am Fensterbrett. Da zupft die Lese-Raupe ein kleines Blatt 
 
 Oskar fasst sich an den Nacken — und spürt etwas in seiner Kapuze. Er zieht seine Maus heraus! „Da bist du ja! Dich habe ich doch selbst hineingesteckt, als ich auf den Baum klettern wollte!“ Woher das Blatt kam, merkt niemand.
 
-Schnell räumen alle den Tisch auf. Dabei findet Frau Sommer im Zeitungsstapel einen gelben Pappkreis ohne Faden. „Meine Bastelsonne für die Pinnwand!“, lacht sie. „Die habe ich heute Morgen gesucht.“
+Schnell räumen alle den Tisch auf. Dabei findet Frau Sommer auf dem Tisch den gelben Pappkreis ohne Faden. „Meine Bastelsonne für die Pinnwand!“, lacht sie. „Die habe ich heute Morgen gesucht.“
 
 Dann geht die Tür auf. Die Kinder der Gruppe strömen herein, jedes mit seiner Papiermaus in der Hand.
 
+<!-- Bild -->
 Mila zieht den roten Vorhang auf. Oskars Maus hüpft auf die Bühne und piepst: „Oh weh, mein Bauch ist so leer!“ Die Kinder kichern. Oskars Hände zittern nicht mehr.
 
 Die Maus schaut hoch zum Mond mit den drei braunen Flecken. „Juhu! Da oben hängt der größte Käse der Welt!“ Immer wenn sie hochspringt, zieht Ben den Mond am Faden ein Stück höher. Und alle Kinder lassen ihre Mäuse im Takt mithüpfen!
@@ -112,7 +113,7 @@ Das ist der große Einsatz für die Lese-Raupe! Diesmal klopft ihr Herz nur noch
 
 Ganz langsam zieht Frau Sommer den Zeigestock zurück ins Klassenzimmer. Am Ende baumelt ein weißes Band. Und am Band hängt ein Schlüssel mit einem silbernen Glitzer-Stern!
 
-„Mein Schlüssel!“, ruft Frau Sommer. „Dann muss ich heute Nacht ja doch nicht auf dem Klassenteppich schlafen!“ Alle lachen.
+„Mein Schlüssel!“, ruft Frau Sommer. „Ich hatte im Lehrerzimmer das Fenster weit offen. Da hat ihn sich die Elster geholt!“ Dann lacht sie. „Heute Nacht muss ich also doch nicht auf dem Klassenteppich schlafen!“ Alle lachen mit.
 
 „Und der Hausmeister bekommt auch keinen Wutanfall“, kichert Mila.
 

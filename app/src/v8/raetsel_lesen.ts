@@ -24,10 +24,16 @@ const vorladen = (urls: string[]) => urls.forEach((u) => { if (u) { const i = ne
 const stempelZeigen = (zi: HTMLElement) => requestAnimationFrame(() => zi.querySelector('.stp-tool')?.scrollIntoView({ block: 'center', behavior: 'smooth' }));
 
 /* ============================ Vogel-Lexikon (Spur 23) ============================
- * Oben der Steckbrief (was wir aus dem Text wissen), darunter das Vogelbuch der Raupe: eine Seite je Vogel,
- * Bild + zwei Sätze, der Name ist mit Klebeband verdeckt. Blättern: Reiter 1…n, Pfeile, Wischen.
- * „Das ist unser Vogel!“ (unten) wählt die offene Seite. Richtig → Klebeband fliegt weg, Name erscheint, Stempel.
- * Die Raupe darf sich anfangs irren: `irrtum` = Seite, auf der ihr Lesezeichen steckt (dort schlägt sie das Buch auf).
+ * Links der Steckbrief (vier Punkte aus dem Text), rechts das Vogelbuch: je Seite ein Vogel als Schattenbild,
+ * der Name mit Klebeband verdeckt, darunter drei, vier kurze Sätze. Das Kind blättert (Reiter 1…n, Pfeile, Wischen),
+ * liest und vergleicht. „Das ist unser Vogel!“ wählt die offene Seite.
+ *  - falsch: der Satz auf der Seite, der nicht passt, wird markiert, der Punkt im Steckbrief bekommt ✗, die Raupe sagt warum (`nicht`);
+ *  - richtig: die Punkte im Steckbrief bekommen nacheinander ✓ (dazu leuchtet der passende Satz), das Klebeband fliegt weg,
+ *    der Name erscheint als Stempel, das Schattenbild wird bunt, die Raupe freut sich (`erfolg`).
+ * Das Bild verrät die Antwort nicht (Schattenbild): Farbe, Größe und „mag, was glänzt“ stehen nur im Text.
+ * Die Raupe nennt keine Nummer. 2. Fehler: die Raupe blättert zur richtigen Seite und zeigt die Punkte (ui.hilfe + `warum`).
+ * Daten: steckbrief {titel, saetze[]}, buch {titel}, ok (Knopf), voegel[] {id, titel, name, crop|bild, saetze[] {text, m?, ja?}, nicht, merkmal},
+ *        loesung, start, warum, erfolg. `m` = Punkt im Steckbrief, den der Satz bestätigt (ja: true) oder widerlegt (ja: false).
  */
 SPIELE_LESEN.lexikon = (r, d, fertig) => {
   const K = kontext();
@@ -35,64 +41,91 @@ SPIELE_LESEN.lexikon = (r, d, fertig) => {
   const V: any[] = d.voegel ?? [];
   const merk: string[] = d.steckbrief?.saetze ?? [];
   const li = Math.max(0, V.findIndex((v) => v.id === d.loesung));
-  let s = Math.max(0, V.findIndex((v) => v.id === d.irrtum));
-  let fehl = 0, zu = false, geloest = false;
+  let s = 0, fehl = 0, zu = false, geloest = false;
   const nein = new Set<string>();
+  const HAKEN = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const KREUZ = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg>';
+  const satz = (x: any) => (typeof x === 'string' ? { text: x } : x ?? {});
 
-  const bild = (v: any) => {
+  const bild = (v: any, bunt: boolean) => {
     const c = v.crop;
     const inhalt = c
       ? `<span class="lx-crop" style="background-image:url(${K.img(c.bild)});background-size:${c.n * 100}% 100%;background-position:${c.n > 1 ? (c.i / (c.n - 1)) * 100 : 0}% 0"></span>`
       : v.bild ? `<img src="${K.img(v.bild)}" alt="" draggable="false">` : '';
-    return `<figure class="lx-bild${d.schatten ? ' schatten' : ''}">${inhalt}</figure>`;
+    return `<figure class="lx-bild${bunt ? ' bunt' : ' schatten'}">${inhalt}</figure>`;
   };
   const seiteHtml = (v: any, auf: boolean) => `<article class="lx-seite${auf ? ' auf' : ''}" data-s="${V.indexOf(v)}">
       ${d.buch?.titel ? `<span class="lx-kt">${d.buch.titel}</span>` : ''}
-      <div class="lx-kopf">${bild(v)}<div class="lx-nb"><h3 class="lx-t">${v.titel ?? ''}</h3><span class="lx-name">${auf ? `<b>${v.name ?? ''}</b>` : ''}<i class="lx-band${auf ? ' ab' : ''}" aria-hidden="true">?</i></span></div></div>
-      <div class="lx-text">${(v.saetze ?? []).map((t: string) => `<p>${t}</p>`).join('')}</div>
+      <div class="lx-kopf">${bild(v, auf)}<div class="lx-nb"><h3 class="lx-t">${v.titel ?? ''}</h3><span class="lx-name">${auf ? `<b class="lx-stempelname">${v.name ?? ''}</b>` : ''}<i class="lx-band${auf ? ' ab' : ''}" aria-hidden="true">?</i></span></div></div>
+      <ul class="lx-text">${(v.saetze ?? []).map((t: any, j: number) => `<li data-j="${j}">${satz(t).text ?? ''}</li>`).join('')}</ul>
     </article>`;
-  const reiter = () => V.map((v, i) => `<button class="lx-tab${i === s ? ' an' : ''}${nein.has(v.id) ? ' nein-weg' : ''}" data-s="${i}" aria-label="${attr(klar(v.titel) || String(i + 1))}" aria-current="${i === s ? 'page' : 'false'}"><span>${i + 1}</span>${v.id === d.irrtum ? `<img class="lx-zeichen" src="${K.fig('raupe/tipp')}" alt="">` : ''}</button>`).join('');
+  const reiter = () => V.map((v, i) => `<button class="lx-tab${i === s ? ' an' : ''}${nein.has(v.id) ? ' nein-weg' : ''}" data-s="${i}" aria-label="${attr(klar(v.titel) || String(i + 1))}" aria-current="${i === s ? 'page' : 'false'}"><span>${i + 1}</span>${nein.has(v.id) ? `<i class="lx-tx">${KREUZ}</i>` : ''}</button>`).join('');
 
   zi.innerHTML = `<div class="lx">
-    ${merk.length ? `<section class="lx-steck">${d.steckbrief?.titel ? `<span class="lx-st">${d.steckbrief.titel}</span>` : ''}<ul>${merk.map((m, i) => `<li data-m="${i}">${m}</li>`).join('')}</ul></section>` : ''}
+    ${merk.length ? `<section class="lx-steck">${d.steckbrief?.titel ? `<span class="lx-st">${d.steckbrief.titel}</span>` : ''}<ul>${merk.map((m, i) => `<li data-m="${i}"><i class="lx-ck" aria-hidden="true"></i><span>${m}</span></li>`).join('')}</ul></section>` : ''}
     <div class="lx-buch">
       <div class="lx-reiter"><button class="lx-pf" data-pf="-1">${PFEIL(false)}</button><div class="lx-tabs">${reiter()}</div><button class="lx-pf" data-pf="1">${PFEIL(true)}</button></div>
       <div class="lx-blatt">${seiteHtml(V[s], false)}</div>
     </div>
   </div>`;
   const blatt = $('.lx-blatt', zi);
+  const punkt = (i: number) => zi.querySelector<HTMLElement>(`.lx-steck li[data-m="${i}"]`);
+  const steckZurueck = () => zi.querySelectorAll<HTMLElement>('.lx-steck li').forEach((x) => { x.classList.remove('nein', 'zeig'); const c = x.querySelector('.lx-ck'); if (c && !x.classList.contains('ja')) c.innerHTML = ''; });
 
   const knoepfe = () => {
     $('.lx-tabs', zi).innerHTML = reiter();
     zi.querySelectorAll<HTMLButtonElement>('.lx-pf').forEach((b) => {
       const n = s + +b.dataset.pf!;
-      b.disabled = n < 0 || n >= V.length;
+      b.disabled = n < 0 || n >= V.length || zu;
       b.setAttribute('aria-label', n >= 0 && n < V.length ? klar(V[n].titel) || String(n + 1) : '');
     });
   };
-  const fuss = () => { if (!geloest) unten(knopf('waehle', d.ok ?? K.UI.fertig, zu), (a) => { if (a === 'waehle') waehle(); }); };
+  const fuss = () => { if (!geloest) unten(knopf('waehle', d.ok ?? K.UI.fertig, zu), (a) => { if (a === 'waehle') waehle(); }); else unten(''); };
   const blaettern = (n: number) => {
     if (n < 0 || n >= V.length || n === s) return;
     const vor = n > s;
     s = n;
     blatt.innerHTML = seiteHtml(V[s], geloest && V[s].id === d.loesung);
     $('.lx-seite', blatt).classList.add(vor ? 'vor' : 'zur');
+    steckZurueck();
     knoepfe();
     K.summ(8);
   };
 
+  /** Richtig: Punkt für Punkt ✓, dazu leuchtet der Satz auf der Seite; dann Name als Stempel und Farbe */
   const treffer = (mitHilfe: boolean) => {
     zu = true; geloest = true; hook.loese = null;
     s = li;
-    blatt.innerHTML = seiteHtml(V[li], true);
+    const v = V[li];
+    blatt.innerHTML = seiteHtml(v, false);
+    steckZurueck();
+    knoepfe();
+    unten('');
     const seite = $('.lx-seite', blatt);
     seite.classList.add('treffer');
-    knoepfe();
-    K.summ(30);
-    if (!mitHilfe && d.fund) sag(r, 'staunt', d.fund);
-    // Stempel oben rechts in die Ecke der Seite: Bild, Name und Sätze bleiben frei
-    hook.loese = stempeln(zi, seite, d.stempel ?? '', () => ende(r, d, fertig), { x: 78, y: 12 });
-    stempelZeigen(zi);
+    if (!mitHilfe) sag(r, 'staunt', d.fund ?? '');
+    const S: any[] = (v.saetze ?? []).map(satz);
+    const schritt = (i: number) => {
+      if (!zi.isConnected) return;
+      if (i < merk.length) {
+        const p = punkt(i);
+        p?.classList.add('ja');
+        const c = p?.querySelector('.lx-ck'); if (c) c.innerHTML = HAKEN;
+        const j = S.findIndex((x) => x.m === i && x.ja !== false);
+        seite.querySelectorAll('.lx-text li.leuchtet').forEach((x) => x.classList.remove('leuchtet'));
+        if (j >= 0) seite.querySelector(`.lx-text li[data-j="${j}"]`)?.classList.add('leuchtet', 'ja');
+        K.summ(12);
+        return void spaeter(zi, 520, () => schritt(i + 1));
+      }
+      seite.querySelectorAll('.lx-text li.leuchtet').forEach((x) => x.classList.remove('leuchtet'));
+      // Name als Stempel, Klebeband weg, Bild wird bunt
+      $('.lx-name', seite).insertAdjacentHTML('afterbegin', `<b class="lx-stempelname">${v.name ?? ''}</b>`);
+      $('.lx-band', seite).classList.add('ab');
+      $('.lx-bild', seite).classList.replace('schatten', 'bunt');
+      K.summ([20, 40, 60]);
+      spaeter(zi, 900, () => ende(r, d, fertig, mitHilfe ? K.UI.hilfe : ''));
+    };
+    spaeter(zi, 350, () => schritt(0));
   };
   const waehle = () => {
     if (zu || geloest) return;
@@ -102,23 +135,27 @@ SPIELE_LESEN.lexikon = (r, d, fertig) => {
     wackel(seite);
     nein.add(v.id);
     fehl++;
-    if (fehl === 1) {
-      sag(r, 'tipp', v.nicht ?? K.UI.nochmal);
-      knoepfe();
-      const m = zi.querySelector<HTMLElement>(`.lx-steck li[data-m="${v.merkmal}"]`);
-      if (m) { m.classList.remove('zeig'); void m.offsetWidth; m.classList.add('zeig'); }
-      return;
-    }
+    // der Satz, der nicht passt, und der Punkt im Steckbrief
+    const S: any[] = (v.saetze ?? []).map(satz);
+    const m = v.merkmal ?? S.find((x) => x.ja === false)?.m;
+    const j = S.findIndex((x) => x.m === m && x.ja === false);
+    steckZurueck();
+    seite.querySelectorAll('.lx-text li.gegen').forEach((x) => x.classList.remove('gegen'));
+    if (j >= 0) seite.querySelector(`.lx-text li[data-j="${j}"]`)?.classList.add('gegen');
+    const p = m === undefined ? null : punkt(m);
+    if (p) { p.classList.add('nein'); const c = p.querySelector('.lx-ck'); if (c) c.innerHTML = KREUZ; }
+    knoepfe();
+    if (fehl === 1) return sag(r, 'tipp', v.nicht ?? K.UI.nochmal);
     // 2. Fehler: die Raupe blättert zur richtigen Seite und zeigt, warum
-    zu = true; fuss();
-    sag(r, 'tipp', [K.UI.hilfe, d.warum ?? ''].join(' '));
-    spaeter(zi, 700, () => { blaettern(li); $('.lx-seite', blatt).classList.add('zeig'); spaeter(zi, 1100, () => treffer(true)); });
+    zu = true; fuss(); knoepfe();
+    sag(r, 'tipp', [v.nicht ?? '', K.UI.hilfe, d.warum ?? ''].join(' ').trim());
+    spaeter(zi, 1800, () => { zu = false; blaettern(li); zu = true; $('.lx-seite', blatt).classList.add('zeig'); spaeter(zi, 900, () => treffer(true)); });
   };
 
   // Eingaben: Reiter, Pfeile, Wischen auf der Seite
   zi.onclick = (e) => {
     const t = e.target as HTMLElement;
-    if (zu) return; // während die Raupe hilft und nach dem Treffer bleibt das Buch auf der Seite (Stempelziel)
+    if (zu) return;
     const tab = t.closest<HTMLElement>('.lx-tab');
     if (tab) return blaettern(+tab.dataset.s!);
     const pf = t.closest<HTMLButtonElement>('.lx-pf');
@@ -136,7 +173,7 @@ SPIELE_LESEN.lexikon = (r, d, fertig) => {
 
   knoepfe();
   fuss();
-  sag(r, d.irrtum ? 'tipp' : 'denkt', d.start ?? '');
+  sag(r, 'denkt', d.start ?? '');
   hook.loese = () => { if (!zu) treffer(false); };
 };
 
@@ -252,24 +289,24 @@ SPIELE_LESEN.flunker = (r, d, fertig) => {
   let fehl = 0, zu = false;
   const wahrheit = (x: any) => x.aufloesung ?? (typeof x.richtig === 'string' ? x.richtig : '');
   const PF = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h12M12 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-  const zaehler = () => `<span class="fl-zahl" aria-live="polite">${falsch.map((_, i) => `<i class="${i < gef.size ? 'an' : ''}"></i>`).join('')}<b>${gef.size} / ${falsch.length}</b></span>`;
-  zi.innerHTML = `<div class="fl">
-    ${d.frage ? `<p class="fl-ziel"><span>${d.frage}</span>${zaehler()}</p>` : ''}
-    <div class="fl-blatt"><i class="fl-band" aria-hidden="true"></i>${d.liste ? `<h3 class="fl-kopf">${d.liste}</h3>` : ''}
-      <ol class="fl-heft">${S.map((x, i) => `<li class="fl-z" data-i="${i}"><button class="fl-s"><i class="fl-nr" aria-hidden="true">${i + 1}</i><span class="fl-t"><span class="fl-satz">${x.text ?? ''}</span></span></button></li>`).join('')}</ol>
+  const zaehler = () => `<span class="flk-zahl" aria-live="polite">${falsch.map((_, i) => `<i class="${i < gef.size ? 'an' : ''}"></i>`).join('')}<b>${gef.size} / ${falsch.length}</b></span>`;
+  zi.innerHTML = `<div class="flk">
+    ${d.frage ? `<p class="flk-ziel"><span>${d.frage}</span>${zaehler()}</p>` : ''}
+    <div class="flk-blatt"><i class="flk-band" aria-hidden="true"></i>${d.liste ? `<h3 class="flk-kopf">${d.liste}</h3>` : ''}
+      <ol class="flk-heft">${S.map((x, i) => `<li class="flk-z" data-i="${i}"><button class="flk-s"><i class="flk-nr" aria-hidden="true">${i + 1}</i><span class="flk-t"><span class="flk-satz">${x.text ?? ''}</span></span></button></li>`).join('')}</ol>
     </div>
   </div>`;
-  const heft = $('.fl-heft', zi);
-  const zaehlen = () => { const z = zi.querySelector('.fl-zahl'); if (z) z.outerHTML = zaehler(); };
+  const heft = $('.flk-heft', zi);
+  const zaehlen = () => { const z = zi.querySelector('.flk-zahl'); if (z) z.outerHTML = zaehler(); };
 
   const markiere = (i: number) => {
-    const el = $(`.fl-z[data-i="${i}"]`, heft);
+    const el = $(`.flk-z[data-i="${i}"]`, heft);
     if (!el || el.classList.contains('gef')) return;
     el.classList.remove('zeig', 'stimmt');
     el.classList.add('gef');
-    $('.fl-s', el).setAttribute('aria-disabled', 'true');
-    $('.fl-t', el).insertAdjacentHTML('beforeend', ` <b class="fl-stempel">${d.stempel ?? ''}</b>`);
-    if (wahrheit(S[i])) el.insertAdjacentHTML('beforeend', `<p class="fl-auf">${PF}<span>${wahrheit(S[i])}</span></p>`);
+    $('.flk-s', el).setAttribute('aria-disabled', 'true');
+    $('.flk-t', el).insertAdjacentHTML('beforeend', ` <b class="flk-stempel">${d.stempel ?? ''}</b>`);
+    if (wahrheit(S[i])) el.insertAdjacentHTML('beforeend', `<p class="flk-auf">${PF}<span>${wahrheit(S[i])}</span></p>`);
   };
   const finde = (i: number, mitHilfe: boolean) => {
     gef.add(i); fehl = 0;
@@ -278,7 +315,7 @@ SPIELE_LESEN.flunker = (r, d, fertig) => {
     K.summ(30);
     if (gef.size >= falsch.length) {
       zu = true; hook.loese = null;
-      $('.fl', zi).classList.add('fertig');
+      $('.flk', zi).classList.add('fertig');
       unten('');
       return spaeter(zi, mitHilfe ? 900 : 700, () => ende(r, d, fertig));
     }
@@ -287,9 +324,9 @@ SPIELE_LESEN.flunker = (r, d, fertig) => {
     zu = false;
   };
   zi.onclick = (e) => {
-    const b = (e.target as HTMLElement).closest<HTMLElement>('.fl-s');
+    const b = (e.target as HTMLElement).closest<HTMLElement>('.flk-s');
     if (!b || zu) return;
-    const z = b.closest<HTMLElement>('.fl-z')!, i = +z.dataset.i!;
+    const z = b.closest<HTMLElement>('.flk-z')!, i = +z.dataset.i!;
     if (gef.has(i)) return;
     if (S[i].wahr === false) return finde(i, false);
     // wahrer Satz: freundlich „stimmt“, kein Durchstreichen
@@ -302,12 +339,12 @@ SPIELE_LESEN.flunker = (r, d, fertig) => {
     if (ziel === undefined) return sag(r, 'tipp', S[i].nein ?? d.nein ?? K.UI.nochmal);
     zu = true;
     sag(r, 'tipp', [K.UI.hilfe, S[ziel].warum ?? d.warum ?? ''].join(' '));
-    const zz = $(`.fl-z[data-i="${ziel}"]`, heft);
+    const zz = $(`.flk-z[data-i="${ziel}"]`, heft);
     zz.classList.add('zeig');
     requestAnimationFrame(() => zz.scrollIntoView({ block: 'nearest', behavior: 'smooth' }));
     spaeter(zi, 1400, () => finde(ziel, true));
   };
   unten('');
   sag(r, 'lacht', d.start ?? '');
-  hook.loese = () => { if (zu) return; falsch.forEach((i) => { if (!gef.has(i)) { gef.add(i); markiere(i); } }); zaehlen(); zu = true; $('.fl', zi).classList.add('fertig'); unten(''); ende(r, d, fertig); };
+  hook.loese = () => { if (zu) return; falsch.forEach((i) => { if (!gef.has(i)) { gef.add(i); markiere(i); } }); zaehlen(); zu = true; $('.flk', zi).classList.add('fertig'); unten(''); ende(r, d, fertig); };
 };

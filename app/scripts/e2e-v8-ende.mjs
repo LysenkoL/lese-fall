@@ -65,7 +65,7 @@ const S = async (name) => { await shot(name); await messen(name); };
 const weiter = () => klick('#fuss [data-a="weiter"]');
 const loese = async () => { await ev(() => window.__v8.loese()); await sleep(300); };
 const wo = () => ev(() => ({ v: window.__v8.stand.view, f: window.__v8.stand.fin }));
-/** Urkunde: sichtbare Überschrift, Wahl, Knöpfe ≥ 44 px, nichts in der Urkunde abgeschnitten */
+/** Urkunde: sichtbare Überschrift (seit 25.11. ohne Wahl „Detektiv / Detektivin“), keine Wahl-Knöpfe, nichts in der Urkunde abgeschnitten */
 const urkunde = (sel) => ev((sel) => {
   const u = document.querySelector(sel);
   if (!u) return null;
@@ -73,7 +73,8 @@ const urkunde = (sel) => ev((sel) => {
   const di = u.querySelector('.dipl-in'), R = di.getBoundingClientRect();
   return {
     wahl: u.dataset.wahl, titel: [...u.querySelectorAll('.dt > span')].filter(sichtbar).map((e) => e.textContent).join(''),
-    knoepfe: [...u.querySelectorAll('.dw-b')].map((k) => ({ w: k.dataset.wahl, an: k.getAttribute('aria-pressed'), h: k.getBoundingClientRect().height, voll: k.scrollWidth > k.clientWidth + 1 })),
+    knoepfe: u.querySelectorAll('.dw-b, .dw').length,
+    luecken: (() => { const k = [...di.children].filter(sichtbar).map((c) => c.getBoundingClientRect()); return k.slice(1).map((r, i) => Math.round(r.top - k[i].bottom)); })(),
     ab: [...di.children].filter((c) => { const r = c.getBoundingClientRect(); return r.bottom > R.bottom + .5 || r.top < R.top - .5 || r.right > R.right + .5 || r.left < R.left - .5; }).map((c) => c.className || c.tagName),
     dtBreit: u.querySelector('.dt').scrollWidth > u.querySelector('.dt').clientWidth + 1,
   };
@@ -82,12 +83,9 @@ const pruefeUrkunde = (u, wo, wahl) => {
   if (!u) return fehler.push(`${wo}: Urkunde fehlt`);
   if (u.wahl !== wahl) fehler.push(`${wo}: Wahl ist „${u.wahl}“, erwartet „${wahl}“`);
   if (!u.titel.replace(/\|/g, '').endsWith(wahl === 'detektivin' ? 'Detektivin' : 'Detektiv')) fehler.push(`${wo}: Überschrift „${u.titel}“ passt nicht zu „${wahl}“`);
-  if (u.knoepfe.length !== 2) fehler.push(`${wo}: nicht zwei Knöpfe Detektiv/Detektivin`);
-  for (const k of u.knoepfe) {
-    if (k.h < 44) fehler.push(`${wo}: Knopf ${k.w} nur ${Math.round(k.h)} px hoch`);
-    if (k.voll) fehler.push(`${wo}: Text im Knopf ${k.w} passt nicht`);
-    if ((k.an === 'true') !== (k.w === wahl)) fehler.push(`${wo}: Knopf ${k.w} zeigt die Wahl falsch an`);
-  }
+  if (u.knoepfe) fehler.push(`${wo}: Wahl-Knöpfe Detektiv/Detektivin sind noch da`);
+  // gleichmäßige Abstände (justify-content: space-evenly): keine Lücke mehr als doppelt so groß wie die kleinste
+  if (u.luecken.length && Math.max(...u.luecken) > 2 * Math.max(4, Math.min(...u.luecken)) + 6) fehler.push(`${wo}: Abstände in der Urkunde ungleich (${u.luecken.join('/')} px)`);
   if (u.ab.length) fehler.push(`${wo}: in der Urkunde abgeschnitten: ${u.ab.join(', ')}`);
   if (u.dtBreit) fehler.push(`${wo}: Überschrift der Urkunde zu breit`);
 };
@@ -101,9 +99,15 @@ async function finale() {
   await S('finale_code_start');
   if (!(await p.$('.fin[data-art="tresorcode"] .fin-karten .fin-k'))) fehler.push('Finale: Tresor-Code fehlt');
   const karten = async () => ev(() => [...document.querySelectorAll('.fin-k:not(.weg)')].map((e) => ({ k: +e.dataset.k, c: e.textContent.trim() })));
-  // 1. Versuch: Kärtchen in der angezeigten Reihenfolge antippen (ist nie die richtige)
+  // Kärtchen kommen aus dem Buchstaben-Beutel: in der Reihenfolge der Kapitel (E T N S), nie schon richtig
+  const reihe = (await karten()).map((k) => k.c).join(''), soll = D.kapitel.map((k) => k.code.buchstabe).join('');
+  if (reihe === wort) fehler.push('Finale: Kärtchen liegen schon in der richtigen Reihenfolge');
+  if (soll !== wort && reihe !== soll) fehler.push(`Finale: Kärtchen „${reihe}“ nicht in der Reihenfolge aus dem Beutel („${soll}“)`);
+  // 1. Versuch: Kärtchen in der angezeigten Reihenfolge antippen (ist nie die richtige) → einfacher Tipp der Raupe
   for (const k of await karten()) { await p.click(`.fin-k[data-k="${k.k}"]`); await sleep(80); }
   await sleep(300); await S('finale_code_falsch'); await sleep(1200);
+  const tipp = await ev(() => document.querySelector('.fin .zr .rp p')?.textContent ?? '');
+  if (D.ui.tresorTipp && tipp.replace(/\|/g, '') !== D.ui.tresorTipp.replace(/\|/g, '')) fehler.push(`Finale: nach dem 1. Fehler nicht der Tipp „${D.ui.tresorTipp}“`);
   // danach: fehlende Felder von links nach rechts füllen, das erste Kärtchen mit der Maus ziehen
   let gezogen = false;
   for (let i = 0; i < wort.length; i++) {
@@ -132,13 +136,11 @@ async function finale() {
   if (await ev(() => [...document.querySelectorAll('#buehne > .konfetti, #buehne > .feuerwerk')].some((k) => !k.classList.contains('hinten')))) fehler.push('Tresor: Konfetti liegt nicht hinter dem Text');
   if (await ev(() => { const z = document.querySelector('.tresor-auf'); return z.scrollHeight > z.clientHeight + 2; })) fehler.push('Tresor: passt nicht auf den Bildschirm');
   await klick('#fuss [data-a="weiter"]'); // „Danke!“
-  // Urkunde: Name, Wahl „Detektiv / Detektivin“, Satz der Raupe
+  // Urkunde: Name, Überschrift „Meister-Detektiv“ (ohne Wahl), Satz der Raupe
   await p.fill('#dname', 'Mia'); await sleep(200); await S('finale_urkunde');
   if ((await wo()).f !== 2) fehler.push('Finale: nach „Danke!“ nicht bei der Urkunde');
   pruefeUrkunde(await urkunde('#buehne .urk'), 'Urkunde', 'detektiv');
-  await klick('#buehne .dw-b[data-wahl="detektivin"]'); await S('finale_urkunde_detektivin');
-  pruefeUrkunde(await urkunde('#buehne .urk'), 'Urkunde (Detektivin)', 'detektivin');
-  if ((await ev(() => JSON.parse(localStorage.getItem('lesefall.v8')).titel)) !== 'detektivin') fehler.push('Urkunde: Wahl „Detektivin“ nicht gespeichert');
+  if ((await ev(() => JSON.parse(localStorage.getItem('lesefall.v8')).name)) !== 'Mia') fehler.push('Urkunde: Name nicht gespeichert');
   if (F.raupeKurz && !(await p.$('#buehne .urk .rk-blase'))) fehler.push('Urkunde: Satz der Raupe (raupeKurz) fehlt');
   if (await ev(() => { const u = document.querySelector('#buehne > .urk'); return u.scrollHeight > u.clientHeight + 2; })) fehler.push('Urkunde: passt nicht auf den Bildschirm');
   await weiter(); await sleep(1800); await S('finale_epilog');
@@ -154,7 +156,7 @@ async function zurueckUndVor() {
   await ev(() => window.__v8.zurueck()); await sleep(400); // Android-Zurück
   let w = await wo();
   if (w.v !== 'finale' || w.f !== 2) fehler.push(`Zurück vom Epilog: nicht die Urkunde (${JSON.stringify(w)})`);
-  pruefeUrkunde(await urkunde('#buehne .urk'), 'Urkunde nach Zurück', 'detektivin');
+  pruefeUrkunde(await urkunde('#buehne .urk'), 'Urkunde nach Zurück', 'detektiv');
   if ((await ev(() => document.getElementById('dname').value)) !== 'Mia') fehler.push('Urkunde nach Zurück: Name fehlt');
   await klick('#fuss [data-a="zback"]'); await sleep(300); w = await wo();
   if (w.v !== 'finale' || w.f !== 1) fehler.push(`Zurück von der Urkunde: nicht der Tresor (${JSON.stringify(w)})`);
@@ -189,6 +191,7 @@ async function nachDemFall() {
   if (!(await ev(() => document.querySelector('.h-raupe img').src.includes('raupe_hut')))) fehler.push('Haus: Hut wird nicht angezogen');
   await klick('.h-sache[data-s="lupe"]'); await sleep(300); await S('haus_lupe');
   if (!(await p.$('.h-raupe .glupe, .h-raupe img[src*="goldlupe"], .h-raupe img[src*="raupe_lupe"]'))) fehler.push('Haus: Raupe hält die Lupe nicht');
+  if (!(await ev(() => document.querySelector('.h-raupe img').src.includes('raupe_hut')))) fehler.push('Haus: mit der Lupe ist der Hut wieder weg (Sachen sollen sich kombinieren)');
   await klick('.haus [data-a="zu"]');
   await klick('#fuss [data-a="album"]'); await S('album');
   const kap1 = D.spuren.filter((x) => x.kap === 1).length;
@@ -208,25 +211,28 @@ async function nachDemFall() {
   if ((await ev(() => window.__v8.stand.view)) !== 'album') fehler.push('Album: nach der Spur nicht zurück im Album');
   await klick('#fuss [data-a="zback"]'); await S('fall_geloest');
   if ((await ev(() => window.__v8.stand.view)) !== 'fertig') fehler.push('Zurück aus dem Album führt nicht zu „Fall gelöst“');
-  // „Meine Urkunde“: gleiche Urkunde, die Wahl aus dem Finale ist zu sehen und lässt sich ändern
+  // „Meine Urkunde“: gleiche Urkunde mit dem Namen aus dem Finale; der Name lässt sich ändern
   await klick('.fg-urk'); await S('fall_geloest_urkunde');
-  pruefeUrkunde(await urkunde('.urk-box .urk'), 'Meine Urkunde', 'detektivin');
+  pruefeUrkunde(await urkunde('.urk-box .urk'), 'Meine Urkunde', 'detektiv');
   if ((await ev(() => document.querySelector('.urk-box #dname').value)) !== 'Mia') fehler.push('Meine Urkunde: Name fehlt');
-  await klick('.urk-box .dw-b[data-wahl="detektiv"]'); await S('fall_geloest_urkunde_detektiv');
-  pruefeUrkunde(await urkunde('.urk-box .urk'), 'Meine Urkunde (Detektiv)', 'detektiv');
-  if ((await ev(() => JSON.parse(localStorage.getItem('lesefall.v8')).titel)) !== 'detektiv') fehler.push('Meine Urkunde: Wahl nicht gespeichert');
+  await p.fill('.urk-box #dname', 'Mia Sophie'); await sleep(200);
+  if ((await ev(() => JSON.parse(localStorage.getItem('lesefall.v8')).name)) !== 'Mia Sophie') fehler.push('Meine Urkunde: geänderter Name nicht gespeichert');
   await klick('.urk-box [data-a="zu"]');
   await p.reload(); await sleep(900); await S('titel_geloest');
   await klick('[data-a="start"]'); await sleep(400);
   if ((await ev(() => window.__v8.stand.view)) !== 'fertig') fehler.push('Nach Neustart: „Weiter“ führt nicht zu „Fall gelöst“');
-  if ((await ev(() => window.__v8.stand.traegt)) !== 'lupe') fehler.push('Nach Neustart: Raupe trägt die Lupe nicht mehr');
-  // nach dem Neustart (ohne Finale in dieser Sitzung): Wahl bleibt und lässt sich wieder ändern
+  // Sachen lassen sich kombinieren: Hut und Lupe von oben bleiben beide an
+  if ((await ev(() => window.__v8.stand.traegt)) !== 'hut,lupe') fehler.push('Nach Neustart: Raupe trägt Hut und Lupe nicht mehr');
+  // nach dem Neustart (ohne Finale in dieser Sitzung): Name bleibt; ein alter Stand mit titel 'detektivin' behält „Meister-Detektivin“
   await klick('.fg-urk'); await sleep(300);
   pruefeUrkunde(await urkunde('.urk-box .urk'), 'Meine Urkunde nach Neustart', 'detektiv');
-  await klick('.urk-box .dw-b[data-wahl="detektivin"]');
-  pruefeUrkunde(await urkunde('.urk-box .urk'), 'Meine Urkunde nach Neustart (Detektivin)', 'detektivin');
-  if ((await ev(() => JSON.parse(localStorage.getItem('lesefall.v8')).titel)) !== 'detektivin') fehler.push('Meine Urkunde nach Neustart: Wahl nicht gespeichert');
+  if ((await ev(() => document.querySelector('.urk-box #dname').value)) !== 'Mia Sophie') fehler.push('Meine Urkunde nach Neustart: Name fehlt');
   await klick('.urk-box [data-a="zu"]');
+  await ev(() => { window.__v8.stand.titel = 'detektivin'; });
+  await klick('.fg-urk'); await sleep(300);
+  pruefeUrkunde(await urkunde('.urk-box .urk'), 'Meine Urkunde (alter Stand Detektivin)', 'detektivin');
+  await klick('.urk-box [data-a="zu"]');
+  await ev(() => { delete window.__v8.stand.titel; });
 }
 
 /** Alter Spielstand mit sieben Finale-Schritten (bis 25.11.2026) → vier Schritte; danach bleibt `fin`, wie es ist */
@@ -266,7 +272,12 @@ await ev((n) => { window.__v8.stand.i = window.__v8.steps(n).indexOf('raetsel');
 for (let k = 0; k < 8 && !(await ev((n) => window.__v8.stand.fertig.includes(n), MITTE)); k++) { await loese(); await sleep(500); } // Rätsel mit mehreren Phasen
 await sleep(2200);
 if (!(await p.$('.neuhaus'))) fehler.push('Haus: neue Sache bei 6 Perlen nicht angekündigt');
-else { await shot('neu_im_haus'); await klick('.neuhaus'); await sleep(400); await S('haus_waehrend_buch');
+else {
+  // Hinweis liegt oben unter dem Kopf (Spitze zum Haus-Knopf) und nie über den Knöpfen im Fuß
+  const lage = await ev(() => { const t = document.querySelector('.neuhaus').getBoundingClientRect(); return { ueber: [...document.querySelectorAll('#fuss button, .kopf button')].filter((k) => { const r = k.getBoundingClientRect(); return r.width && r.left < t.right && r.right > t.left && r.top < t.bottom && r.bottom > t.top; }).map((k) => k.dataset.a || k.id || k.className), unterKopf: t.top >= document.querySelector('.kopf').getBoundingClientRect().bottom - 1 }; });
+  if (lage.ueber.length) fehler.push(`Haus: Hinweis „Neu im Haus“ liegt über Knöpfen: ${lage.ueber.join(', ')}`);
+  if (!lage.unterKopf) fehler.push('Haus: Hinweis „Neu im Haus“ steht nicht unter dem Kopf');
+  await shot('neu_im_haus'); await klick('.neuhaus'); await sleep(400); await S('haus_waehrend_buch');
   if (await ev(() => document.querySelector('.h-sache[data-s="fliege"]') === null)) fehler.push('Haus: Fliege bei 6 Perlen nicht frei');
   if (await p.$('.h-sache[data-s="lupe"]')) fehler.push('Haus: Lupe schon vor dem Ende da'); await klick('.haus [data-a="zu"]'); }
 await klick('#kPerl'); await sleep(300); if (!(await p.$('.haus'))) fehler.push('Haus: Perlen im Kopf öffnen das Haus nicht'); else await klick('.haus [data-a="zu"]');

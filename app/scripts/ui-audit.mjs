@@ -387,7 +387,7 @@ async function laufViewport(browser, vp, cfg) {
       const overlay = async (name, basis, schritt) => { try { await L.sprung(basis); await schritt(); await L.zustand(name, 400); } catch (e) { L.nicht(name, String(e.message ?? e).split('\n')[0].slice(0, 140)); } };
       await overlay('ueber_brett_k1', basis1, () => L.klick('#bBrett', 300));
       await overlay('ueber_karte_gross', basis1, async () => { await L.klick('#bBrett', 300); await L.klick('.ueberl .bkarte[data-k]', 300); });
-      await overlay('ueber_tresorinfo', basis1, async () => { await L.klick('#bBrett', 300); await L.klick('.ueberl .codez[data-a="code"]', 300); });
+      await overlay('ueber_tresorinfo', basis1, async () => { await L.klick('#bBrett', 300); await L.klick('.ueberl .beutel[data-a="code"]', 300); });
       await overlay('ueber_brett_k3', basis3, () => L.klick('#bBrett', 300));
       await overlay('ueber_aa', stand(3, 0, false), () => L.klick('#bAa', 300));
       await overlay('ueber_neustart', stand(3, 0, false), async () => { await L.klick('#bAa', 300); await L.klick('.einst [data-a="neu"]', 300); });

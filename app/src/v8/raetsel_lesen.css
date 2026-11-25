@@ -1,4 +1,4 @@
-/* Lese-Fall · v8 · Lese-Rätsel aus raetsel_lesen.ts (D-19): Vogel-Lexikon (lx-), Wunsch-Waage (ww-), Flunker-Finder (fl-).
+/* Lese-Fall · v8 · Lese-Rätsel aus raetsel_lesen.ts (D-19): Vogel-Lexikon (lx-), Wunsch-Waage (ww-), Flunker-Finder (flk-).
    Nur Klassen mit eigenem Vorsatz, Werte aus ui/tokens.css. „Weniger Bewegung“ schaltet effekte.css für alles ab;
    Endzustände stehen deshalb immer in der Regel selbst, die Animation läuft nur davor. */
 
@@ -6,15 +6,18 @@
 .lx { container-type: inline-size; display: flex; flex-direction: column; gap: var(--a-2); }
 .zi:has(> .lx), .zi:has(> .ww) { padding-top: .75rem; padding-bottom: .875rem; }
 
-/* Steckbrief: Zettel in Senf, wie die Hinweise in „Wessen Ärmel?“ */
+/* Steckbrief: Zettel in Senf; jeder Punkt hat einen Kreis für ✓ (passt) oder ✗ (passt nicht) */
 .lx-steck { background: var(--senf); color: var(--senf-tinte); border-radius: var(--r-feld); padding: .375rem var(--a-3) .5rem; box-shadow: 0 6px 14px rgba(0, 0, 0, .3); }
 .lx-steck .s-b, .lx-steck .s-r { color: inherit; }
 .lx-st { display: block; font-size: var(--t-etikett); font-weight: 800; letter-spacing: .08em; text-transform: uppercase; opacity: .85; }
-.lx-steck ul { list-style: none; margin: .25rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .1875rem var(--a-3); }
-.lx-steck li { position: relative; padding: 1px .25rem 1px 1rem; font-size: var(--t-text); font-weight: 800; line-height: 1.25; border-radius: .375rem; }
-.lx-steck li::before { content: ''; position: absolute; left: .1875rem; top: .5em; width: .4375rem; height: .4375rem; border-radius: 50%; background: currentColor; opacity: .55; }
-.lx-steck li.zeig { background: var(--senf-hell); box-shadow: 0 0 0 3px var(--senf-hell); animation: lx-merk .5s 3; }
-@keyframes lx-merk { 50% { background: #fff; box-shadow: 0 0 0 5px #fff; } }
+.lx-steck ul { list-style: none; margin: .25rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .25rem var(--a-3); }
+.lx-steck li { display: flex; align-items: flex-start; gap: .375rem; padding: .125rem .25rem; font-size: var(--t-text); font-weight: 800; line-height: 1.25; border-radius: .375rem; transition: background-color var(--dauer); }
+.lx-ck { flex: none; width: 1.25rem; height: 1.25rem; margin-top: .0625rem; border-radius: 50%; display: grid; place-items: center; border: 2.5px solid rgba(38, 34, 28, .45); color: #fff; }
+.lx-ck svg { width: 78%; height: 78%; }
+.lx-steck li.ja { background: rgba(255, 255, 255, .45); }
+.lx-steck li.ja .lx-ck { background: #3E9B57; border-color: #3E9B57; animation: stempel .35s cubic-bezier(.2, 1.6, .4, 1) both; }
+.lx-steck li.nein { background: rgba(255, 255, 255, .35); animation: wackel .4s; }
+.lx-steck li.nein .lx-ck { background: var(--weich); border-color: var(--weich); }
 
 /* Das Buch: brauner Einband, Reiter oben, eine Papierseite */
 .lx-buch { background: linear-gradient(#7A4E26, #5E3A1A); border-radius: 1rem; padding: .25rem .375rem .375rem; box-shadow: 0 10px 22px rgba(0, 0, 0, .35), inset 0 0 0 1.5px rgba(255, 255, 255, .1); }
@@ -23,8 +26,9 @@
 .lx-tab { position: relative; min-width: var(--tipp); height: var(--tipp); margin-top: .3125rem; border-radius: .625rem .625rem 0 0; background: var(--papier-2); color: var(--tinte); font-weight: 800; font-size: var(--t-knopf); box-shadow: inset 0 -4px 0 rgba(0, 0, 0, .1); transition: height var(--dauer); }
 .lx-tab.an { height: calc(var(--tipp) + .3125rem); margin-top: 0; background: var(--papier); box-shadow: none; }
 .lx-tab.nein-weg > span { opacity: .4; }
+.lx-tx { position: absolute; top: -.375rem; right: -.375rem; width: 1.125rem; height: 1.125rem; border-radius: 50%; display: grid; place-items: center; background: var(--weich); color: #fff; box-shadow: 0 1px 3px rgba(0, 0, 0, .3); }
+.lx-tx svg { width: 76%; height: 76%; }
 .lx-tab:focus-visible { outline: 3px solid var(--senf); outline-offset: -3px; }
-.lx-zeichen { position: absolute; top: -.375rem; right: -.625rem; width: 1.375rem; height: 1.875rem; object-fit: contain; filter: drop-shadow(0 2px 2px rgba(0, 0, 0, .35)); pointer-events: none; }
 .lx-pf { flex: none; align-self: center; width: var(--tipp); height: var(--tipp); border-radius: 50%; display: grid; place-items: center; color: var(--senf); background: rgba(0, 0, 0, .22); }
 .lx-pf svg { width: 1.5rem; height: 1.5rem; }
 .lx-pf:disabled { opacity: .25; }
@@ -40,15 +44,18 @@
 .lx-kt { display: none; margin-bottom: .25rem; font-size: var(--t-etikett); font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--leise); }
 .lx-kt .s-b, .lx-kt .s-r { color: inherit; }
 .lx-kopf { display: flex; align-items: center; gap: var(--a-3); }
-.lx-bild { flex: none; width: 4.625rem; aspect-ratio: 1; margin: 0; border: 3px solid #fff; border-radius: var(--r-papier); background: var(--papier-2); box-shadow: 0 4px 10px rgba(60, 40, 0, .22); transform: rotate(-2.5deg); overflow: hidden; }
+/* Bild: erst ein Schattenbild (verrät die Farbe nicht), nach dem Treffer bunt */
+.lx-bild { flex: none; width: 4.625rem; aspect-ratio: 1; margin: 0; border: 3px solid #fff; border-radius: var(--r-papier); background: #DCEBF4; box-shadow: 0 4px 10px rgba(60, 40, 0, .22); transform: rotate(-2.5deg); overflow: hidden; }
 .lx-bild img { width: 100%; height: 100%; object-fit: contain; display: block; }
-.lx-crop { display: block; width: 100%; height: 100%; background-repeat: no-repeat; }
-.lx-bild.schatten .lx-crop, .lx-bild.schatten img { filter: brightness(0); opacity: .8; }
+.lx-crop { display: block; width: 100%; height: 100%; background-repeat: no-repeat; transition: filter .9s ease, opacity .9s ease; }
+.lx-bild.schatten .lx-crop, .lx-bild.schatten img { filter: brightness(0); opacity: .78; }
+.lx-bild.bunt { animation: hupf .6s cubic-bezier(.3, 1.6, .5, 1) both; }
 .lx-nb { min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: .375rem; }
 .lx-t { margin: 0; font-size: var(--t-gross); font-weight: 800; line-height: 1.1; }
 .lx-name { position: relative; display: inline-flex; align-items: center; min-width: 7.5rem; min-height: 2.125rem; }
-.lx-name b { font-size: 1.5rem; font-weight: 800; line-height: 1.1; padding: 0 .25rem; background: linear-gradient(transparent 58%, var(--senf-hell) 58%); animation: lx-name .45s .3s both; }
-@keyframes lx-name { from { opacity: 0; transform: scale(.7); } }
+/* Name als Stempel auf dem Streifen */
+.lx-stempelname { display: inline-block; font-size: 1.375rem; font-weight: 800; line-height: 1.15; letter-spacing: .02em; color: var(--nacht-2); border: 3px solid var(--nacht-2); border-radius: .5rem; padding: .0625rem .5rem; background: rgba(255, 252, 244, .9); transform: rotate(-4deg); animation: stempel .4s .25s cubic-bezier(.2, 1.6, .4, 1) both; }
+.lx-stempelname .s-b, .lx-stempelname .s-r { color: inherit; }
 /* Klebeband über dem Namen: zackige Enden, leicht durchscheinend */
 .lx-band {
   position: absolute; left: -.25rem; top: 0; width: 8rem; height: 2.125rem;
@@ -59,21 +66,23 @@
 }
 .lx-band.ab { opacity: 0; transform: translate(4rem, -2rem) rotate(28deg); animation: lx-ab .7s cubic-bezier(.4, 0, .6, 1) both; pointer-events: none; }
 @keyframes lx-ab { from { opacity: 1; transform: rotate(-3deg); } 30% { opacity: 1; transform: translate(.375rem, -.25rem) rotate(4deg); } }
-.lx-text { margin-top: .5rem; display: flex; flex-direction: column; gap: .3125rem; }
-.lx-text p { margin: 0; font-size: var(--t-knopf); line-height: 1.4; font-weight: 600; }
-/* Stempel in der Ecke rechts oben (Lage aus stempeln(…, {x: 78, y: 12})), klein genug für Name und Bild daneben */
-.lx-seite .stempel.abdruck { width: max-content; max-width: 40%; font-size: var(--t-klein); padding: .25rem .5rem; transform: translate(-50%, -25%) rotate(-10deg); }
+/* Sätze: zum Lesen groß; der Satz, der nicht passt, wird orange markiert, passende leuchten grün */
+.lx-text { list-style: none; margin: .625rem 0 0; padding: 0; display: flex; flex-direction: column; gap: .25rem; }
+.lx-text li { position: relative; padding: .125rem .375rem .125rem 1.125rem; border-radius: .375rem; font-size: var(--t-knopf); line-height: 1.4; font-weight: 600; transition: background-color var(--dauer), box-shadow var(--dauer); }
+.lx-text li::before { content: ''; position: absolute; left: .3125rem; top: .65em; width: .375rem; height: .375rem; border-radius: 50%; background: var(--leise); }
+.lx-text li.gegen { background: #FFE7D3; box-shadow: inset 0 -3px 0 var(--weich); }
+.lx-text li.ja { background: #E6F6E4; }
+.lx-text li.leuchtet { box-shadow: inset 0 0 0 2px #3E9B57; }
 /* breite Fläche (Tablet, Rechner quer): Steckbrief links, Buch rechts, größeres Bild */
 @container (min-width: 34rem) {
   .lx { flex-direction: row; align-items: flex-start; }
-  .lx-steck { flex: 0 0 13.5rem; transform: rotate(-1.5deg); margin-top: 1rem; }
+  .lx-steck { flex: 0 0 14rem; transform: rotate(-1.5deg); margin-top: 1rem; }
   .lx-steck ul { grid-template-columns: minmax(0, 1fr); gap: .375rem; }
   .lx-steck li { font-size: var(--t-knopf); }
   .lx-buch { flex: 1; min-width: 0; }
   .lx-kt { display: block; }
-  .lx-bild { width: 8rem; }
-  .lx-seite { padding: .875rem 1.125rem 1.125rem; min-height: 15rem; }
-  .lx-seite .stempel.abdruck { max-width: 34%; transform: translate(-28%, -30%) rotate(-10deg); }
+  .lx-bild { width: 7rem; }
+  .lx-seite { padding: .875rem 1.125rem 1.125rem; min-height: 16rem; }
 }
 
 /* ============================ Die rettende Idee (Wunsch-Waage) ============================ */
@@ -164,19 +173,19 @@
 }
 
 /* ============================ Flunker-Finder ============================ */
-.fl { container-type: inline-size; display: flex; flex-direction: column; gap: .75rem; }
+.flk { container-type: inline-size; display: flex; flex-direction: column; gap: .75rem; }
 /* Ziel mit Zähler: zwei Kreise füllen sich */
-.fl-ziel { align-self: center; display: flex; align-items: center; gap: .625rem; margin: 0; padding: .375rem .5rem .375rem .875rem; border-radius: var(--r-rund); background: var(--senf); color: var(--senf-tinte); font-size: var(--t-text); font-weight: 800; line-height: 1.25; box-shadow: 0 3px 0 var(--senf-dunkel), 0 8px 14px rgba(0, 0, 0, .25); }
-.fl-ziel .s-b, .fl-ziel .s-r { color: inherit; }
-.fl-zahl { flex: none; display: flex; align-items: center; gap: .25rem; padding: .1875rem .5rem .1875rem .3125rem; border-radius: var(--r-rund); background: rgba(255, 255, 255, .55); }
-.fl-zahl i { width: 1rem; height: 1rem; border-radius: 50%; border: 2.5px solid var(--senf-tinte); opacity: .55; }
-.fl-zahl i.an { background: var(--nacht-2); border-color: var(--nacht-2); opacity: 1; animation: stempel .35s cubic-bezier(.2, 1.6, .4, 1) both; }
-.fl-zahl b { font-size: var(--t-klein); white-space: nowrap; }
-.fl.fertig .fl-ziel { background: #3E9B57; color: #fff; box-shadow: 0 3px 0 #2B7440, 0 8px 14px rgba(0, 0, 0, .25); }
-.fl.fertig .fl-zahl { background: rgba(255, 255, 255, .25); }
-.fl.fertig .fl-zahl i { border-color: #fff; }
+.flk-ziel { align-self: center; display: flex; align-items: center; gap: .625rem; margin: 0; padding: .375rem .5rem .375rem .875rem; border-radius: var(--r-rund); background: var(--senf); color: var(--senf-tinte); font-size: var(--t-text); font-weight: 800; line-height: 1.25; box-shadow: 0 3px 0 var(--senf-dunkel), 0 8px 14px rgba(0, 0, 0, .25); }
+.flk-ziel .s-b, .flk-ziel .s-r { color: inherit; }
+.flk-zahl { flex: none; display: flex; align-items: center; gap: .25rem; padding: .1875rem .5rem .1875rem .3125rem; border-radius: var(--r-rund); background: rgba(255, 255, 255, .55); }
+.flk-zahl i { width: 1rem; height: 1rem; border-radius: 50%; border: 2.5px solid var(--senf-tinte); opacity: .55; }
+.flk-zahl i.an { background: var(--nacht-2); border-color: var(--nacht-2); opacity: 1; animation: stempel .35s cubic-bezier(.2, 1.6, .4, 1) both; }
+.flk-zahl b { font-size: var(--t-klein); white-space: nowrap; }
+.flk.fertig .flk-ziel { background: #3E9B57; color: #fff; box-shadow: 0 3px 0 #2B7440, 0 8px 14px rgba(0, 0, 0, .25); }
+.flk.fertig .flk-zahl { background: rgba(255, 255, 255, .25); }
+.flk.fertig .flk-zahl i { border-color: #fff; }
 /* Der Bericht: kariertes Heftpapier mit rotem Rand und Klebestreifen */
-.fl-blatt {
+.flk-blatt {
   position: relative; margin: .5rem .125rem 0; padding: .875rem .375rem .5rem 0; color: var(--tinte); border-radius: .25rem .25rem .625rem .625rem;
   background:
     linear-gradient(90deg, transparent 2.375rem, rgba(232, 71, 58, .5) 2.375rem, rgba(232, 71, 58, .5) calc(2.375rem + 2px), transparent calc(2.375rem + 2px)),
@@ -186,35 +195,35 @@
   box-shadow: 0 2px 0 #E2D7BD, 0 12px 24px rgba(0, 0, 0, .35);
   rotate: -.4deg;
 }
-.fl-band { position: absolute; left: 50%; top: -.625rem; width: 6.5rem; height: 1.375rem; translate: -50% 0; rotate: 2deg; background: rgba(240, 226, 170, .85); box-shadow: 0 1px 2px rgba(0, 0, 0, .15); clip-path: polygon(0 10%, 4% 0, 96% 0, 100% 10%, 100% 90%, 96% 100%, 4% 100%, 0 90%); }
-.fl-kopf { margin: 0 .5rem .25rem 3rem; font-size: var(--t-knopf); font-weight: 800; line-height: 1.25; color: var(--nacht-2); }
-.fl-kopf .s-b, .fl-kopf .s-r { color: inherit; }
-.fl-heft { list-style: none; margin: 0; padding: 0; }
-.fl-z { position: relative; }
-.fl-z.nein { animation: wackel .4s; }
-.fl-z.zeig .fl-s { background: var(--senf-hell); }
-.fl-s { width: 100%; min-height: var(--tipp); display: flex; align-items: flex-start; gap: .875rem; padding: .5rem .5rem .5rem .5rem; border-radius: .5rem; text-align: left; color: inherit; font-size: var(--t-knopf); font-weight: 600; line-height: 1.4; transition: background-color var(--dauer); }
-.fl-s:active:not([aria-disabled="true"]) { background: rgba(244, 194, 67, .25); }
-.fl-s:focus-visible { outline: 3px solid var(--senf); outline-offset: -3px; }
-.fl-nr { flex: none; width: 1.5rem; height: 1.5rem; margin-top: .125rem; border-radius: 50%; display: grid; place-items: center; background: var(--nacht-2); color: #fff; font-style: normal; font-size: var(--t-fein); font-weight: 800; }
-.fl-t { min-width: 0; }
+.flk-band { position: absolute; left: 50%; top: -.625rem; width: 6.5rem; height: 1.375rem; translate: -50% 0; rotate: 2deg; background: rgba(240, 226, 170, .85); box-shadow: 0 1px 2px rgba(0, 0, 0, .15); clip-path: polygon(0 10%, 4% 0, 96% 0, 100% 10%, 100% 90%, 96% 100%, 4% 100%, 0 90%); }
+.flk-kopf { margin: 0 .5rem .25rem 3rem; font-size: var(--t-knopf); font-weight: 800; line-height: 1.25; color: var(--nacht-2); }
+.flk-kopf .s-b, .flk-kopf .s-r { color: inherit; }
+.flk-heft { list-style: none; margin: 0; padding: 0; }
+.flk-z { position: relative; }
+.flk-z.nein { animation: wackel .4s; }
+.flk-z.zeig .flk-s { background: var(--senf-hell); }
+.flk-s { width: 100%; min-height: var(--tipp); display: flex; align-items: flex-start; gap: .875rem; padding: .5rem .5rem .5rem .5rem; border-radius: .5rem; text-align: left; color: inherit; font-size: var(--t-knopf); font-weight: 600; line-height: 1.4; transition: background-color var(--dauer); }
+.flk-s:active:not([aria-disabled="true"]) { background: rgba(244, 194, 67, .25); }
+.flk-s:focus-visible { outline: 3px solid var(--senf); outline-offset: -3px; }
+.flk-nr { flex: none; width: 1.5rem; height: 1.5rem; margin-top: .125rem; border-radius: 50%; display: grid; place-items: center; background: var(--nacht-2); color: #fff; font-style: normal; font-size: var(--t-fein); font-weight: 800; }
+.flk-t { min-width: 0; }
 /* wahrer Satz angetippt: kurz ein grünes „stimmt“-Häkchen an der Nummer */
-.fl-z.stimmt .fl-nr { position: relative; background: #3E9B57; color: transparent; }
-.fl-z.stimmt .fl-nr::after { content: '✓'; position: absolute; inset: 0; display: grid; place-items: center; color: #fff; font-size: var(--t-text); }
+.flk-z.stimmt .flk-nr { position: relative; background: #3E9B57; color: transparent; }
+.flk-z.stimmt .flk-nr::after { content: '✓'; position: absolute; inset: 0; display: grid; place-items: center; color: #fff; font-size: var(--t-text); }
 /* Flunker gefunden: blau durchgestrichen, Stempel, darunter wie es wirklich war */
-.fl-z.gef .fl-s { cursor: default; }
-.fl-z.gef .fl-nr { background: var(--rot); }
-.fl-z.gef .fl-satz { text-decoration: line-through; text-decoration-color: var(--nacht-2); text-decoration-thickness: 3px; opacity: .6; }
-.fl-stempel { display: inline-block; margin: .125rem 0 0 .25rem; vertical-align: .0625rem; transform: rotate(-7deg); pointer-events: none; font-size: var(--t-fein); font-weight: 800; letter-spacing: .05em; line-height: 1.2; white-space: nowrap; color: var(--rot); border: 3px solid var(--rot); border-radius: .5rem; padding: 0 .375rem; background: rgba(255, 252, 244, .9); animation: stempel .35s cubic-bezier(.2, 1.6, .4, 1) both; }
-.fl-stempel .s-b, .fl-stempel .s-r { color: inherit; }
-.fl-auf { display: flex; align-items: flex-start; gap: .375rem; margin: -.125rem .5rem .5rem 2.875rem; padding: .375rem .625rem; border-radius: .5rem; background: #E6F6E4; border: 2px solid #8BCB8E; font-size: var(--t-knopf); font-weight: 700; line-height: 1.35; animation: hoch .4s .25s both; }
-.fl-auf svg { flex: none; width: 1.25rem; height: 1.25rem; margin-top: .1875rem; color: #3E9B57; }
+.flk-z.gef .flk-s { cursor: default; }
+.flk-z.gef .flk-nr { background: var(--rot); }
+.flk-z.gef .flk-satz { text-decoration: line-through; text-decoration-color: var(--nacht-2); text-decoration-thickness: 3px; opacity: .6; }
+.flk-stempel { display: inline-block; margin: .125rem 0 0 .25rem; vertical-align: .0625rem; transform: rotate(-7deg); pointer-events: none; font-size: var(--t-fein); font-weight: 800; letter-spacing: .05em; line-height: 1.2; white-space: nowrap; color: var(--rot); border: 3px solid var(--rot); border-radius: .5rem; padding: 0 .375rem; background: rgba(255, 252, 244, .9); animation: stempel .35s cubic-bezier(.2, 1.6, .4, 1) both; }
+.flk-stempel .s-b, .flk-stempel .s-r { color: inherit; }
+.flk-auf { display: flex; align-items: flex-start; gap: .375rem; margin: -.125rem .5rem .5rem 2.875rem; padding: .375rem .625rem; border-radius: .5rem; background: #E6F6E4; border: 2px solid #8BCB8E; font-size: var(--t-knopf); font-weight: 700; line-height: 1.35; animation: hoch .4s .25s both; }
+.flk-auf svg { flex: none; width: 1.25rem; height: 1.25rem; margin-top: .1875rem; color: #3E9B57; }
 @container (max-width: 30rem) {
-  .fl-ziel { font-size: var(--t-klein); padding-left: .625rem; }
-  .fl-s { padding-block: .375rem; font-size: var(--t-text); gap: .75rem; }
-  .fl-auf { font-size: var(--t-text); }
-  .fl-kopf { font-size: var(--t-text); }
-  .fl-stempel { font-size: var(--t-etikett); border-width: 2.5px; }
+  .flk-ziel { font-size: var(--t-klein); padding-left: .625rem; }
+  .flk-s { padding-block: .375rem; font-size: var(--t-text); gap: .75rem; }
+  .flk-auf { font-size: var(--t-text); }
+  .flk-kopf { font-size: var(--t-text); }
+  .flk-stempel { font-size: var(--t-etikett); border-width: 2.5px; }
 }
 /* Stempel „Kapitel gelöst“ (main.ts setzt ihn mitten auf die Fläche): oben auf die Überschrift des Berichts, die Sätze bleiben lesbar */
 .zug[data-art="flunker"] .zi > .stempel.abdruck { top: 6.25rem; font-size: var(--t-knopf); }

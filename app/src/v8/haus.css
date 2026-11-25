@@ -44,6 +44,8 @@
 .h-raupe { position: relative; z-index: 1; height: var(--rh); flex: none; padding: 0; border: 0; background: none; font: inherit; color: inherit; cursor: pointer; transform-origin: 50% 100%; -webkit-tap-highlight-color: transparent; transition: height .35s var(--gleiten); }
 .h-raupe:focus-visible { outline: 3px solid var(--senf-dunkel); outline-offset: 2px; border-radius: 1rem; }
 .h-raupe .rms { height: 100%; display: block; transform-origin: 50% 100%; transition: transform .45s var(--feder), filter .45s; }
+/* Garderoben-Bilder sind quadratisch mit viel Rand: im Haus etwas größer, damit die Raupe mit Sachen so groß wirkt wie ohne */
+.h-raupe .rms.gard { height: 114%; margin: 0 calc(var(--rh) * -.2) 0 calc(var(--rh) * -.1); }
 .h-raupe.mampf { animation: h-kau .7s ease-in-out; }
 .h-raupe.zieht { animation: h-ploepp .35s cubic-bezier(.3, 1.6, .5, 1); }
 .h-raupe.brrr { animation: h-zittern .9s linear; }
@@ -66,7 +68,7 @@
 .h-blase.neu { animation: h-blase .3s both; }
 
 /* Wunsch-Wolke: ein Bild, kein Text – die Raupe denkt an etwas Leckeres (Gedanken-Farben wie im Buch) */
-.h-wunsch { position: absolute; right: .25rem; top: calc(100% + .5rem); width: 3.5rem; height: 3rem; display: grid; place-items: center; background: var(--gedanke); border: 2.5px solid var(--gedanke-rand); border-radius: 1.75rem 1.5rem 1.625rem 1.375rem; box-shadow: 0 4px 10px rgba(70, 50, 10, .14); animation: h-wolke .45s var(--feder) both; }
+.h-wunsch { position: absolute; z-index: 1; right: .75rem; bottom: .5rem; width: 3.5rem; height: 3rem; display: grid; place-items: center; background: var(--gedanke); border: 2.5px solid var(--gedanke-rand); border-radius: 1.75rem 1.5rem 1.625rem 1.375rem; box-shadow: 0 4px 10px rgba(70, 50, 10, .14); animation: h-wolke .45s var(--feder) both; }
 .h-wunsch[hidden] { display: none; }
 .h-wunsch::before, .h-wunsch::after { content: ''; position: absolute; border-radius: 50%; background: var(--gedanke); border: 2px solid var(--gedanke-rand); }
 .h-wunsch::before { width: .625rem; height: .625rem; left: -.75rem; top: .125rem; }
@@ -78,9 +80,9 @@
 .h-fx { position: absolute; z-index: 2; width: 0; height: 0; pointer-events: none; }
 .h-herzort { position: absolute; z-index: 2; pointer-events: none; }
 .h-fx i { position: absolute; left: -.1875rem; top: -.1875rem; width: .375rem; height: .375rem; border-radius: 2px; animation: h-fallen 1.1s var(--v, 0s) cubic-bezier(.3, .1, .7, 1) both; }
-.h-fx.kruemel i { background: #B97A3C; border-radius: 40%; }
-.h-fx.apfel i { background: #F4E3B2; border: 1px solid #D9B86A; border-radius: 35%; }
-.h-fx.blatt i { width: .5rem; height: .3125rem; background: #7FC24E; border-radius: 0 70% 0 70%; }
+.h-fx.kruemel i, .h-fx.apfel i { width: .5rem; height: .4375rem; border-radius: 40%; background: #B97A3C; box-shadow: 0 0 0 1.5px rgba(255, 252, 244, .9); }
+.h-fx.apfel i { background: #F6E7B8; box-shadow: 0 0 0 1.5px #C9A24E; }
+.h-fx.blatt i { width: .6875rem; height: .4375rem; background: #6DB33F; border-radius: 0 70% 0 70%; box-shadow: 0 0 0 1.5px rgba(255, 252, 244, .9); }
 .h-fx.kalt i { width: .5rem; height: 1.125rem; border: 2.5px solid transparent; border-left-color: #7FB6E6; border-radius: 50%; animation: h-bibbern .9s var(--v, 0s) ease-in-out both; }
 .h-fx.kalt i.r { border-left-color: transparent; border-right-color: #7FB6E6; }
 .h-fx.mond { z-index: 0; }
@@ -93,7 +95,7 @@
 
 /* Taschenlampe: im Haus wird es kurz dunkel, ein Lichtkegel sucht herum. Raupe und Sprechblase bleiben hell. */
 .h-dunkel { position: absolute; inset: 0; z-index: 0; border-radius: inherit; overflow: hidden; pointer-events: none; opacity: 0; transition: opacity .4s; }
-.h-dunkel i { position: absolute; left: 70%; top: 30%; width: 5.5rem; height: 5.5rem; translate: -50% -50%; border-radius: 50%; background: radial-gradient(circle, rgba(255, 236, 170, .4), rgba(255, 236, 170, 0) 70%); box-shadow: 0 0 0 100vmax rgba(14, 18, 38, .74), inset 0 0 1rem .375rem rgba(14, 18, 38, .45); }
+.h-dunkel i { position: absolute; left: 70%; top: 30%; width: 5.5rem; height: 5.5rem; translate: -50% -50%; border-radius: 50%; background: radial-gradient(circle, rgba(255, 236, 170, .4), rgba(255, 236, 170, 0) 70%); box-shadow: 0 0 0 100vmax rgba(14, 18, 38, .8), inset 0 0 1rem .375rem rgba(14, 18, 38, .45); }
 .h-buehne.dunkel .h-dunkel { opacity: 1; }
 .h-buehne.dunkel .h-dunkel i { animation: h-suchen 2.4s ease-in-out both; }
 
@@ -128,6 +130,13 @@ button.h-sache:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--li
 /* goldene Lupe genau über der grünen Lupe der Garderoben-Raupe */
 .rms.kombi img.glupe { left: 45.6%; top: 43.7%; width: 21.9%; height: auto; filter: drop-shadow(0 0 3px rgba(255, 210, 90, .8)); }
 
+/* ---------- Tablet hochkant: alles passt ohne Blättern, also darf die Raupe größer sein ---------- */
+@media (min-width: 700px) and (min-height: 1000px) and (orientation: portrait) {
+  .schl.mitte .haus { --rh: min(12rem, 19svh); width: min(100%, 36rem); }
+  .h-buehne.mitbild { min-height: 15rem; }
+  .h-blase { font-size: 1.125rem; }
+}
+
 /* ---------- Breite Bildschirme quer (Tablet, Laptop): Bühne links groß, Futter und Sachen rechts ---------- */
 @media (min-width: 900px) and (min-height: 560px) and (orientation: landscape) {
   .schl.mitte .haus { --rh: min(15rem, 38svh); width: min(100%, 54rem); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr); column-gap: 1.25rem; row-gap: .5rem; align-content: start; }
@@ -140,6 +149,11 @@ button.h-sache:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--li
   .h-rede, .h-buehne.mitbild .h-rede { position: absolute; left: .75rem; right: .75rem; top: .75rem; margin: 0; }
   .h-blase { font-size: 1.125rem; }
   .h-blase::before { left: 2.5rem; bottom: -.6875rem; border-left: 0; border-right: 2.5px solid var(--senf); }
+  /* Wunsch-Wolke rechts über dem Kopf, die kleinen Kreise führen nach unten zur Raupe */
+  .h-wunsch { right: auto; left: calc(.75rem + var(--rh) * .8); bottom: calc(var(--rh) * .8); width: 4.25rem; height: 3.625rem; }
+  .h-wunsch > svg, .h-wunsch > img { width: 2.75rem; height: 2.75rem; }
+  .h-wunsch::before { top: auto; bottom: -.125rem; left: -.625rem; }
+  .h-wunsch::after { top: auto; bottom: -.75rem; left: -1.125rem; }
   .h-unten { grid-column: 2; grid-row: 2; }
   .h-futter { grid-template-columns: repeat(3, 1fr); }
   .h-sachen { grid-template-columns: repeat(4, 1fr); }

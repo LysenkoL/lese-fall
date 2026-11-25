@@ -18,7 +18,7 @@
   "frage": "Aber wusste Oskar, dass es der Mond war?",
   "stempel": "KAPITEL 1 GELÖST"
  },
- "ausblick": "Schnipp. Schnapp. Draußen schneidet jemand Pappe.",
+ "ausblick": "Schnipp. Schnapp. Draußen schneidet jemand mit einer Schere.",
  "ui": {
   "start": "Fall öffnen",
   "weiterFall": "Weiter ermitteln",
@@ -196,7 +196,7 @@
   {
    "spur": 2,
    "bild": "k1_s2_vorher",
-   "haken": "Der Mond ist weg!",
+   "haken": "„Gleich kommt Mila mit den Puppen zurück. Oje … was sagt sie zum leeren Himmel?“",
    "karte": {
     "titel": "Der Mond ist weg",
     "bild": "k1_s2_nachher",
@@ -292,7 +292,7 @@
   {
    "spur": 3,
    "bild": "k1_s3",
-   "haken": "„Kleber! Ben hat den Mond also wirklich geklebt. Aber wo liegt er jetzt?“",
+   "haken": "„Auf dem Tisch soll der Mond liegen? Aber da hat doch vorhin der gestreifte Ärmel zugegriffen …“",
    "karte": {
     "titel": "Ben am Waschbecken",
     "bild": "objekte/wasserhahn",
@@ -349,7 +349,7 @@
       "erfolg": "Ein R!"
      }
     ],
-    "erfolg": "KLEBER! Ben wäscht Kleber von seinen Fingern. Aber was hat er wohl geklebt?",
+    "erfolg": "KLEBER! Damit hat Ben den Faden am Mond festgeklebt.",
     "werkzeug": "fuehler"
    },
    "fragenNeu": [],
@@ -358,7 +358,7 @@
   {
    "spur": 4,
    "bild": "k1_s4_vorher",
-   "haken": "„Ein Kreis ohne Faden und ohne Stern … Wo ist dann der echte Mond?“",
+   "haken": "„Kein Faden, kein Stern … Gleich sagt Ben hoffentlich, wo der echte Mond liegt!“",
    "karte": {
     "titel": "Ein fremder Kreis",
     "bild": "objekte/falscher_kreis_hinten",

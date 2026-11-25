@@ -24,7 +24,7 @@
     "frage": "A|ber wuss|te Os|kar, dass es der Mond war?",
     "stempel": "KAPITEL 1 GELÖST"
    },
-   "ausblick": "Schnipp. Schnapp. Drau|ßen schnei|det je|mand Pap|pe."
+   "ausblick": "Schnipp. Schnapp. Drau|ßen schnei|det je|mand mit ei|ner Sche|re."
   },
   {
    "nr": 2,
@@ -47,7 +47,7 @@
     "frage": "A|ber war es Mi|las Mond? Und was liegt un|ter dem Sei|den|pa|pier?",
     "stempel": "KAPITEL 2 GELÖST"
    },
-   "ausblick": "Os|kar zieht das Sei|den|pa|pier weg. Auf dem Tel|ler liegt et|was Gel|bes mit drei brau|nen Lö|chern."
+   "ausblick": "Drei … zwei … eins … Gleich zieht Os|kar das Sei|den|pa|pier weg!"
   },
   {
    "nr": 3,
@@ -71,7 +71,7 @@
     "frage": "A|ber was will der Vo|gel bei uns auf dem Hof?",
     "stempel": "KAPITEL 3 GELÖST"
    },
-   "ausblick": "O|ben im Baum spreizt der gro|ße Vo|gel die Flü|gel. Sei|ne Au|gen fun|keln. Er starrt ge|nau auf den Sil|ber|stern …"
+   "ausblick": "O|ben im Baum wird es ganz still. Nur zwei Au|gen fun|keln … Dann spreizt der gro|ße Vo|gel die Flü|gel!"
   },
   {
    "nr": 4,
@@ -157,8 +157,11 @@
       "typ": "p",
       "s": [
        "„Mein Schlüs|sel!“, ruft Frau Som|mer.",
-       "„Dann muss ich heu|te Nacht ja doch nicht auf dem Klas|sen|tep|pich schla|fen!“",
-       "Al|le la|chen."
+       "„Ich hat|te im Leh|rer|zim|mer das Fens|ter weit of|fen.",
+       "Da hat ihn sich die Els|ter ge|holt!“",
+       "Dann lacht sie.",
+       "„Heu|te Nacht muss ich al|so doch nicht auf dem Klas|sen|tep|pich schla|fen!“",
+       "Al|le la|chen mit."
       ]
      },
      {
@@ -234,7 +237,7 @@
     "urkunde": {
      "titel": "Die Ur|kun|de"
     },
-    "raupeKurz": "„Psst! Mi|la, Ben und Os|kar den|ken, al|les ging wie von selbst. A|ber wir zwei wis|sen es bes|ser, Part|ner!“",
+    "raupeKurz": "„Psst! Ben und Os|kar den|ken, al|les ging wie von selbst. Mi|la lä|chelt nur. A|ber wir zwei wis|sen es ge|nau, Part|ner!“",
     "epilog": {
      "titel": "Ein stil|ler A|bend",
      "saetze": [
@@ -502,7 +505,10 @@
      "typ": "p",
      "s": [
       "Die Le|se-Rau|pe freut sich rie|sig.",
-      "Im|mer wenn Mi|la et|was für das The|a|ter bas|telt, malt sie auf die Rück|sei|te ein win|zi|ges Ge|heim|zei|chen nur für die Rau|pe: Letz|te Wo|che war es ein Ma|ri|en|kä|fer hin|ter ei|nem Papp|baum, da|vor ei|ne Mi|ni-Kro|ne auf ei|ner Rit|ter|burg — und heu|te die|ser wun|der|schö|ne blau|e Stern!"
+      "Im|mer wenn Mi|la et|was für das The|a|ter bas|telt, malt sie hin|ten ein win|zi|ges Ge|heim|zei|chen nur für die Rau|pe.",
+      "Letz|te Wo|che war es ein Ma|ri|en|kä|fer.",
+      "Da|vor war es ei|ne Mi|ni-Kro|ne.",
+      "Und heu|te ist es die|ser wun|der|schö|ne blau|e Stern!"
      ]
     },
     {
@@ -519,12 +525,13 @@
      "typ": "p",
      "s": [
       "Plötz|lich kommt Frau Som|mer he|rein und fä|chelt sich Luft zu: „Kin|der, habt ihr mei|nen Schlüs|sel ge|se|hen?",
-      "Er hängt an ei|nem fun|keln|den sil|ber|nen Glit|zer-Stern!",
-      "Nor|ma|ler|wei|se schlie|ße ich ihn im|mer in mei|ner Schu|bla|de ein.",
-      "A|ber ich weiß noch ganz ge|nau, wie ich ihn vor|hin im Leh|rer|zim|mer auf den Tisch ge|wor|fen ha|be.",
-      "Weil es dort drin|nen so sti|ckig war, bin ich so|fort ans Fens|ter ge|lau|fen, ha|be es weit auf|ge|ris|sen und den Schlüs|sel auf dem Tisch glatt ver|ges|sen!",
-      "Jetzt ha|be ich schon al|les ab|ge|sucht, a|ber er ist nir|gends zu fin|den.",
-      "Wenn der weg|bleibt, muss ich heu|te Nacht wohl hier auf dem Klas|sen|tep|pich ü|ber|nach|ten — o|der un|ser Haus|meis|ter be|kommt ei|nen Wut|an|fall!“"
+      "Er hängt an ei|nem wei|ßen Band mit ei|nem fun|keln|den sil|ber|nen Glit|zer-Stern!",
+      "Vor|hin ha|be ich ihn im Leh|rer|zim|mer auf den Tisch ge|legt.",
+      "Dort war es so sti|ckig.",
+      "Da ha|be ich das Fens|ter weit auf|ge|macht.",
+      "Und jetzt ist der Schlüs|sel weg!",
+      "Ich ha|be schon ü|ber|all ge|sucht.",
+      "Wenn er weg|bleibt, muss ich heu|te Nacht wohl hier auf dem Klas|sen|tep|pich schla|fen — o|der un|ser Haus|meis|ter be|kommt ei|nen Wut|an|fall!“"
      ]
     },
     {
@@ -620,14 +627,14 @@
    "spur": 2,
    "titel": "Ein selt|sa|mes Früh|stück",
    "bild": "k1_s2_vorher",
-   "haken": "Der Mond ist weg!",
+   "haken": "„Gleich kommt Mi|la mit den Pup|pen zu|rück. O|je … was sagt sie zum lee|ren Him|mel?“",
    "blocks": [
     {
      "id": "s2-p1",
      "typ": "p",
      "s": [
       "Mi|la hängt den gel|ben Mond links ne|ben die Wol|ke an den The|a|ter-Him|mel.",
-      "Er wa|ckelt ein ziem|li|ches Stück an sei|nem lo|cke|ren Fa|den."
+      "Er wa|ckelt ziem|lich an sei|nem lo|cke|ren Fa|den."
      ]
     },
     {
@@ -704,7 +711,8 @@
       "Als sie wie|der blin|zelt, sieht sie durch ei|nen Spalt zwi|schen den Blät|tern ge|ra|de noch ei|nen Är|mel mit ro|ten und wei|ßen Strei|fen.",
       "Die Strei|fen lau|fen rund um den Arm.",
       "Knöp|fe sieht sie kei|ne.",
-      "Un|ten am Tisch greift er nach et|was — und schwupp, ist er weg!"
+      "Der Är|mel kommt von drau|ßen durch das of|fe|ne Fens|ter.",
+      "Er greift nach et|was auf dem Tisch — und schwupp, ist er weg!"
      ]
     },
     {
@@ -823,7 +831,7 @@
    "spur": 3,
    "titel": "Am Wasch|be|cken",
    "bild": "k1_s3",
-   "haken": "„Kle|ber! Ben hat den Mond al|so wirk|lich ge|klebt. A|ber wo liegt er jetzt?“",
+   "haken": "„Auf dem Tisch soll der Mond lie|gen? A|ber da hat doch vor|hin der ge|streif|te Är|mel zu|ge|grif|fen …“",
    "blocks": [
     {
      "id": "s3-p1",
@@ -962,7 +970,7 @@
       "erfolg": "Ein R!"
      }
     ],
-    "erfolg": "KLE|BER! Ben wäscht Kle|ber von sei|nen Fin|gern. A|ber was hat er wohl ge|klebt?",
+    "erfolg": "KLE|BER! Da|mit hat Ben den Fa|den am Mond fest|ge|klebt.",
     "werkzeug": "fuehler"
    }
   },
@@ -972,7 +980,7 @@
    "spur": 4,
    "titel": "Gelb und rund",
    "bild": "k1_s4_vorher",
-   "haken": "„Ein Kreis oh|ne Fa|den und oh|ne Stern … Wo ist dann der ech|te Mond?“",
+   "haken": "„Kein Fa|den, kein Stern … Gleich sagt Ben hof|fent|lich, wo der ech|te Mond liegt!“",
    "blocks": [
     {
      "id": "s4-p1",
@@ -1000,7 +1008,7 @@
      "id": "s4-p4",
      "typ": "p",
      "s": [
-      "Mi|la sieht es so|fort und zieht ei|nen gro|ßen gel|ben Papp|kreis un|ter den Zei|tun|gen her|vor.",
+      "Mi|la hört das Ra|scheln und zieht ei|nen gro|ßen gel|ben Papp|kreis un|ter den Zei|tun|gen her|vor.",
       "„Da bist du ja, mein Mond!“, freut sie sich."
      ]
     },
@@ -1260,7 +1268,9 @@
      "s": [
       "Die Rau|pe mus|tert erst Bens nas|se, dun|kel|blau|e Pul|lo|ver|är|mel und schaut dann hi|nauf zum of|fe|nen Fens|ter.",
       "„Ben sagt die Wahr|heit — sein Pul|li ist dun|kel|blau oh|ne ei|nen ein|zi|gen Strei|fen“, kom|bi|niert die Rau|pe.",
-      "„A|ber gleich nach|dem Ben zum Wasch|be|cken ge|gan|gen ist, hat der rot-weiß ge|streif|te Är|mel von drau|ßen durchs Fens|ter zu|ge|grif|fen!“"
+      "„A|ber gleich nach|dem Ben zum Wasch|be|cken ge|gan|gen ist, hat der rot-weiß ge|streif|te Är|mel von drau|ßen durchs Fens|ter zu|ge|grif|fen!",
+      "Drau|ßen im Hof spie|len vie|le Kin|der.",
+      "Wer von ih|nen war es?“"
      ],
      "pose": "lupe"
     }
@@ -1559,7 +1569,7 @@
    "spur": 8,
    "titel": "Ein Mond, der sich tarnt",
    "bild": "k2_s8",
-   "haken": "„Ein wei|ßer Kreis auf dem Tab|lett … Wer hat ihn sich wohl ge|holt?“",
+   "haken": "„Mi|la und Ben wis|sen noch nichts vom ge|streif|ten Är|mel. Ich muss nach|se|hen, was Os|kar drau|ßen macht!“",
    "blocks": [
     {
      "id": "s8-p1",
@@ -1658,7 +1668,7 @@
     "gruende": [
      {
       "id": "stern",
-      "text": "Da|mit man den blau|en Stern nicht sieht."
+      "text": "Weil die wei|ße Sei|te schö|ner aus|sieht."
      },
      {
       "id": "kleber",
@@ -1683,7 +1693,7 @@
    "titel": "Die Maus auf der Bank",
    "bild": "k2_s9",
    "bildImText": true,
-   "haken": "„Ein Fest|es|sen un|ter Sei|den|pa|pier? Da muss ich ge|nau|er hin|schau|en!“",
+   "haken": "„Huch! Os|kar steht auf. Er kommt zu un|se|rem Fens|ter!“",
    "blocks": [
     {
      "id": "s9-p1",
@@ -1698,7 +1708,8 @@
      "s": [
       "Ben schüt|telt den Kopf.",
       "„Nein, ganz si|cher nicht!",
-      "Denk doch nur an die selt|sa|me Ge|schich|te mit Frau Som|mers ver|schwun|de|nem Schlüs|sel heu|te Mor|gen — schon des|halb ha|be ich die Tür zum Flur ex|tra zu|ge|macht, da|mit vor der Auf|füh|rung nie|mand heim|lich rein|kommt o|der spickt!“"
+      "Heu|te ist doch schon Frau Som|mers Schlüs|sel ver|schwun|den.",
+      "Da|rum ha|be ich die Tür zum Flur ex|tra zu|ge|macht.“"
      ]
     },
     {
@@ -1718,7 +1729,7 @@
       "„Für Mi|la sind das zwei Schrit|te“, schnauft sie.",
       "„Für mich ist der Auf|stieg aufs Fens|ter|brett ei|ne hal|be Welt|rei|se!“"
      ],
-     "pose": "muede"
+     "pose": "lacht"
     },
     {
      "id": "s9-p5",
@@ -1733,7 +1744,7 @@
      "id": "s9-p6",
      "typ": "th",
      "s": [
-      "„Da ist un|ser ge|streif|ter Är|mel!“, denkt die Rau|pe."
+      "„Da sitzt Os|kar mit dem ge|streif|ten Är|mel!“, denkt die Rau|pe."
      ],
      "pose": "lupe"
     },
@@ -1741,7 +1752,7 @@
      "id": "s9-p7",
      "typ": "p",
      "s": [
-      "Ne|ben Os|kar sitzt sei|ne grau|e Pa|pier|maus aus dem Werk|un|ter|richt mit gro|ßen run|den Oh|ren und ei|nem ge|mal|ten ro|ten Herz auf dem Bauch.",
+      "Ne|ben Os|kar sitzt sei|ne grau|e Pa|pier|maus aus dem Werk|un|ter|richt mit gro|ßen run|den Oh|ren, ei|nem ro|sa Schwanz und ei|nem ge|mal|ten ro|ten Herz auf dem Bauch.",
       "Vor ihr liegt grü|nes Gras aus ge|zack|tem Pa|pier."
      ]
     },
@@ -1843,7 +1854,8 @@
      "id": "s10-p1",
      "typ": "p",
      "s": [
-      "In die|sem Mo|ment steht Os|kar drau|ßen von der Bank auf, tritt von au|ßen an das of|fe|ne Klas|sen|zim|mer|fens|ter und stützt sei|ne rot-weiß ge|streif|ten Ar|me auf das Fens|ter|brett."
+      "In die|sem Mo|ment klet|tert Os|kar drau|ßen auf die Bank un|ter dem Fens|ter.",
+      "Er stützt sei|ne rot-weiß ge|streif|ten Ar|me von au|ßen auf das Fens|ter|brett."
      ]
     },
     {
@@ -1871,7 +1883,8 @@
       "„Ei|nen gel|ben Mond?",
       "Nein, ei|nen Mond ha|be ich nicht ge|nom|men!",
       "Ich sit|ze doch die gan|ze Zeit drau|ßen auf der Bank und be|schäf|ti|ge mich mit mei|ner klei|nen Maus.",
-      "Ich ha|be mir vor|hin durchs Fens|ter nur ei|nen wei|ßen Papp|kreis vom blau|en Bas|tel-Tab|lett ge|holt.“"
+      "Ich ha|be mich vor|hin nur kurz auf die Bank ge|stellt.",
+      "Da ha|be ich mir durchs Fens|ter ei|nen wei|ßen Papp|kreis vom blau|en Bas|tel-Tab|lett ge|holt.“"
      ]
     },
     {
@@ -2020,7 +2033,7 @@
      "typ": "th",
      "s": [
       "O|ben sitzt die Le|se-Rau|pe schon auf dem in|ne|ren Fens|ter|brett.",
-      "Um auf die Bank hi|nun|ter|zu|schau|en, muss sie nur noch ü|ber das brei|te Au|ßen|brett bis zur Kan|te krie|chen.",
+      "Um den Tel|ler ganz ge|nau zu se|hen, kriecht sie ü|ber das brei|te Au|ßen|brett bis vor|ne an die Kan|te.",
       "„Puh, im|mer die|se Hek|tik!“, schnauft sie ver|gnügt.",
       "„Ich bin ei|ne ge|müt|li|che Le|se-Rau|pe und kei|ne Renn|maus!“"
      ],
@@ -2055,7 +2068,9 @@
      "id": "s11-p8",
      "typ": "p",
      "s": [
-      "„Kommt her zur Bank, ich zei|ge es euch!“, ruft Os|kar stolz und winkt — ge|nau in dem Mo|ment, als die Le|se-Rau|pe o|ben ih|ren Kopf ü|ber die äu|ße|re Fens|ter|kan|te schiebt und ih|re Leucht-Füh|ler zu glim|men be|gin|nen."
+      "„Kommt her zur Bank, ich zei|ge es euch!“, ruft Os|kar stolz und winkt.",
+      "Ge|nau in die|sem Mo|ment schiebt die Le|se-Rau|pe o|ben ih|ren Kopf ü|ber die Fens|ter|kan|te.",
+      "Ih|re Leucht-Füh|ler be|gin|nen zu glim|men."
      ]
     }
    ],
@@ -2173,9 +2188,10 @@
      "typ": "p",
      "s": [
       "Os|kar merkt von ih|rer Sor|ge ü|ber|haupt nichts.",
-      "Er strahlt ü|ber das gan|ze Ge|sicht: „Ei|gent|lich woll|te ich aus der wei|ßen Pap|pe vom Tab|lett zu|erst nur ei|ne klei|ne Wand mit ei|nem Mau|se|loch bas|teln.",
-      "A|ber als ich den wei|ßen Kreis hier drau|ßen um|ge|dreht ha|be, war die an|de|re Sei|te plötz|lich leuch|tend gelb!",
-      "Da muss|te ich so|fort an das Lieb|lings|es|sen von Mäu|sen den|ken und hat|te die al|ler|bes|te I|dee, wo|mit ich mei|ner Lieb|lings|maus heu|te ei|ne rie|si|ge Freu|de ma|chen kann!",
+      "Er strahlt ü|ber das gan|ze Ge|sicht: „Erst woll|te ich aus der wei|ßen Pap|pe ei|ne Wand mit ei|nem Mau|se|loch bas|teln.",
+      "A|ber dann ha|be ich den Kreis hier drau|ßen um|ge|dreht.",
+      "Die an|de|re Sei|te war leuch|tend gelb!",
+      "Da muss|te ich so|fort an das Lieb|lings|es|sen von Mäu|sen den|ken.",
       "Drei klei|ne brau|ne Krei|se ha|be ich auch noch drauf|ge|klebt.",
       "Na, er|ra|tet ihr, was es ist?“"
      ]
@@ -2184,7 +2200,7 @@
      "id": "s12-p6",
      "typ": "th",
      "s": [
-      "O|ben am Fens|ter|rand reißt die Le|se-Rau|pe die Au|gen auf: „Leuch|tend gelb, ku|gel|rund und mit Lö|chern — für ei|ne klei|ne Maus?!“"
+      "O|ben am Fens|ter|rand reißt die Le|se-Rau|pe die Au|gen auf: „Leuch|tend gelb, kreis|rund und mit Lö|chern — für ei|ne klei|ne Maus?!“"
      ],
      "pose": "staunt"
     },
@@ -2302,7 +2318,7 @@
    "spur": 13,
    "titel": "Ta|daa!",
    "bild": "k3_s13",
-   "haken": "Ein Fa|den am Kä|se? Mi|las Mond hat auch ei|nen.",
+   "haken": "„Ob Mi|la und Ben den Fa|den auch ent|de|cken?“",
    "blocks": [
     {
      "id": "s13-p1",
@@ -2417,7 +2433,8 @@
       "Os|kar schaut ver|wirrt von Mi|la zu Ben.",
       "„Wie, eu|er Mond?",
       "Das ist doch mein Mäu|se|kä|se!",
-      "Und ich dach|te, der Fa|den hing halt noch vom Bas|teln dran.“"
+      "Und ich dach|te, der Fa|den hing halt noch vom Bas|teln dran.“",
+      "Schnell stopft er das Fa|den|en|de hin|ter den Kä|se."
      ]
     },
     {
@@ -2435,7 +2452,7 @@
      "id": "s14-p5",
      "typ": "p",
      "s": [
-      "In die|sem Au|gen|blick blitzt Os|kars sil|ber|ne Bas|tel|sche|re im Son|nen|licht auf — und plötz|lich huscht ein gro|ßer Schat|ten mit zwei aus|ge|brei|te|ten Flü|geln dicht ü|ber die Bank!"
+      "In die|sem Au|gen|blick blitzt Os|kars sil|ber|ne Bas|tel|sche|re im Son|nen|licht auf — und plötz|lich huscht ein gro|ßer Schat|ten dicht ü|ber die Bank: zwei brei|te Flü|gel, ein spit|zer Schna|bel und ein lan|ger Schwanz!"
      ]
     },
     {
@@ -2505,7 +2522,7 @@
      "s": [
       "Os|kar lacht laut los.",
       "„Quatsch!",
-      "Die di|cke Pap|pe wä|re doch viel zu schwer zu schnei|den!",
+      "Ich ha|be nichts hi|nein|ge|schnit|ten.",
       "Die drei brau|nen Punk|te ha|be ich nur o|ben drauf|ge|klebt.“"
      ]
     },
@@ -2613,7 +2630,7 @@
     "ok": "Passt ge|nau!",
     "warum": "Klei|ner Fleck, klei|nes Loch. Gro|ßer Fleck, gro|ßes Loch.",
     "stempel": "PASST GENAU",
-    "erfolg": "Al|le drei Fle|cken pas|sen ge|nau. Os|kar hat sie aus dem brau|nen Bo|gen ge|schnit|ten. Mi|las Mond ist heil!"
+    "erfolg": "Al|le drei Fle|cken pas|sen ge|nau. Os|kar hat sie aus dem brau|nen Bo|gen ge|schnit|ten. Der gel|be Kreis da|run|ter ist heil!"
    }
   },
   {
@@ -2622,31 +2639,33 @@
    "spur": 16,
    "titel": "Die Rück|sei|te",
    "bild": "k3_s16_vorher",
-   "haken": "„Stern, Loch und Fa|den: Das ist Mi|las Mond! A|ber was sagt Os|kar jetzt?“",
+   "haken": "„Ar|mer Os|kar! Er woll|te sei|ner Maus doch nur ei|ne Freu|de ma|chen.“",
    "blocks": [
     {
      "id": "s16-p1",
      "typ": "p",
      "s": [
       "Da kom|men I|da, Ne|le, Tom und E|mil fröh|lich ü|ber den Hof zur Bank ge|rannt.",
-      "Je|des Kind hält stolz sei|ne grau|e Pa|pier|maus aus dem Werk|un|ter|richt und ei|nen ei|ge|nen gel|ben Papp|kreis in der Hand!"
+      "Je|des Kind hält stolz sei|ne grau|e Pa|pier|maus und ei|nen gel|ben Papp|kreis in der Hand!"
      ]
     },
     {
      "id": "s16-p2",
      "typ": "p",
      "s": [
-      "„Wir ha|ben vom Hof aus ge|se|hen, wie Os|kar sei|nen Fest|tags|kä|se aus|ge|packt hat.",
-      "Da hat|ten wir so|fort ei|ne su|per I|dee!“, ruft I|da be|geis|tert.",
-      "„Wir ha|ben für un|se|re Mäu|se ganz schnell auch gel|be Kä|se mit drei brau|nen Fle|cken ge|bas|telt, da|mit al|le Mäu|se nach eu|rem The|a|ter|stück zu|sam|men ei|ne gro|ße Kä|se-Par|ty fei|ern kön|nen!“"
+      "„Wir ha|ben vom Hof aus ge|se|hen, wie Os|kar sei|nen Kä|se aus|ge|packt hat!“, ruft I|da be|geis|tert.",
+      "„Frau Som|mer hat|te noch ei|nen Sta|pel gel|be Papp|krei|se.",
+      "Da ha|ben wir ganz schnell auch Kä|se für un|se|re Mäu|se ge|bas|telt.",
+      "Nach eu|rem The|a|ter|stück fei|ern al|le Mäu|se zu|sam|men ei|ne gro|ße Kä|se-Par|ty!“"
      ]
     },
     {
      "id": "s16-p3",
      "typ": "p",
      "s": [
-      "La|chend le|gen die Kin|der ih|re Krei|se ne|ben Os|kars Kä|se auf die Bank.",
-      "Jetzt lie|gen dort fünf gel|be Kä|se-Krei|se ne|ben|ei|nan|der — und von vor|ne se|hen al|le fünf haar|ge|nau gleich aus!"
+      "La|chend le|gen die Kin|der ih|re Kä|se ne|ben Os|kars Kä|se auf die Bank.",
+      "„Kä|se-Par|ty!“, ruft E|mil und schiebt al|le fünf wild dur|chei|nan|der.",
+      "Jetzt se|hen al|le fünf von vor|ne haar|ge|nau gleich aus!"
      ]
     },
     {
@@ -2661,17 +2680,19 @@
      "id": "s16-p5",
      "typ": "p",
      "s": [
-      "I|da ki|chert: „Und weißt du was, Mi|la?",
-      "Als du mir heu|te Mor|gen auf dem Schul|weg dei|nen Mond mit dem klei|nen blau|en Stern auf der Rück|sei|te ge|zeigt hast, fand ich das so schlau!",
-      "Da ha|be ich vor|hin beim Bas|teln al|len vor|ge|schla|gen: Statt lang|wei|lig un|se|ren Na|men drauf|zu|schrei|ben, malt je|der hin|ten ein klei|nes Ge|heim|zei|chen auf sei|nen Kä|se — und ich ha|be mir auch ei|nen blau|en Stern ge|malt!“"
+      "I|da ki|chert: „Und hin|ten hat je|der ein Ge|heim|zei|chen ge|malt, statt sei|nen Na|men.",
+      "Das war mei|ne I|dee!",
+      "Ich ha|be ei|nen blau|en Stern ge|nom|men.",
+      "Blau ist mei|ne Lieb|lings|far|be!“"
      ]
     },
     {
      "id": "s16-p6",
      "typ": "p",
      "s": [
-      "Mi|la schaut zu Ben: „Dann reicht der blau|e Stern al|lein nicht mehr!",
-      "A|ber an mei|nem ech|ten Mond ist hin|ten ja noch das klei|ne Loch, wo Ben den wei|ßen Fa|den auf|ge|rollt und fest|ge|klebt hat!“"
+      "„Auch ein blau|er Stern …“, flüs|tert Mi|la er|schro|cken.",
+      "Dann sagt sie laut: „Mein Mond hat hin|ten ein klei|nes Loch.",
+      "Und da klebt Bens auf|ge|roll|ter Fa|den!“"
      ]
     },
     {
@@ -2736,7 +2757,7 @@
      ],
      "tipp": "Mi|la hat et|was hin|ten auf|ge|malt. Ben hat o|ben et|was fest|ge|klebt. Und der Fa|den geht durch et|was hin|durch.",
      "erfolg": "Rich|tig! Stern hin|ten, Fa|den auf|ge|rollt, Loch o|ben. Das sind die drei Merk|ma|le.",
-     "warum": "Mi|la hat hin|ten ei|nen blau|en Stern ge|malt. Ben hat den Fa|den o|ben auf|ge|rollt und fest|ge|klebt. Und der Fa|den geht durch ein klei|nes Loch. Herz, Na|me und gel|be Rück|sei|te kom|men in der Ge|schich|te nicht vor."
+     "warum": "Mi|la hat hin|ten ei|nen blau|en Stern ge|malt. Ben hat den Fa|den o|ben auf|ge|rollt und fest|ge|klebt. Und der Fa|den geht durch ein klei|nes Loch. Ein ro|tes Herz, ei|nen Na|men o|der ei|ne gel|be Rück|sei|te hat Mi|las Mond nicht."
     },
     "vorne": "objekte/gelbe_kreise_vorne",
     "hinten": "objekte/gelbe_kreise_hinten",
@@ -2807,7 +2828,10 @@
      "id": "s17-p1",
      "typ": "p",
      "s": [
-      "Als sie die Krei|se um|dre|hen, ist al|les klar: Un|ter Os|kars Kä|se leuch|tet nicht nur der klei|ne blau|e Stern für die Rau|pe, son|dern ge|nau am Rand klebt auch Bens auf|ge|roll|ter wei|ßer Fa|den!"
+      "Sie dre|hen al|le fünf Kä|se um.",
+      "Zwei ha|ben hin|ten ei|nen blau|en Stern.",
+      "A|ber nur ei|ner hat auch das klei|ne Loch und Bens auf|ge|roll|ten wei|ßen Fa|den.",
+      "Es ist Os|kars Kä|se!"
      ]
     },
     {
@@ -2835,7 +2859,8 @@
      "s": [
       "Mi|la liest den Zet|tel und legt Os|kar so|fort trös|tend den Arm um die Schul|ter.",
       "„Ach Os|kar, du konn|test es doch gar nicht wis|sen!",
-      "Du saßt ja schon drau|ßen auf der Bank, als ich den Mond drin|nen ge|zeigt ha|be.“"
+      "Du warst ja drau|ßen auf der Bank.",
+      "Du hast mei|nen Mond nie ge|se|hen.“"
      ]
     },
     {
@@ -2866,7 +2891,8 @@
      "id": "s17-p8",
      "typ": "th",
      "s": [
-      "Dann at|met die Rau|pe zu|frie|den auf: „Kein bö|ser Dieb — nur drei gu|te I|de|en, die sich lus|tig in die Que|re ge|kom|men sind!“"
+      "Dann at|met die Rau|pe zu|frie|den auf: „Kein bö|ser Dieb!",
+      "Nur ein lus|ti|ges Dur|chei|nan|der.“"
      ],
      "pose": "lob"
     }
@@ -2922,10 +2948,18 @@
    "spur": 18,
    "titel": "Die ret|ten|de I|dee",
    "bild": "k3_s18",
-   "haken": "„Jetzt muss nur noch ei|ner von den drei|en auf die I|dee kom|men!“",
+   "haken": "„Ben schaut so ko|misch auf den Mond. Hat er et|wa auch ei|ne I|dee?“",
    "blocks": [
     {
      "id": "s18-p1",
+     "typ": "p",
+     "s": [
+      "I|da und die an|de|ren Kin|der lau|fen mit ih|ren Kä|sen zu|rück auf die Wie|se.",
+      "Nur Mi|la, Ben und Os|kar blei|ben an der Bank."
+     ]
+    },
+    {
+     "id": "s18-p2",
      "typ": "p",
      "s": [
       "Os|kar stupst vor|sich|tig an ei|nen der brau|nen Pa|pier|fle|cken auf dem Mond, a|ber Ben ruft so|fort: „Lie|ber nicht ab|zie|hen, Os|kar!",
@@ -2933,19 +2967,13 @@
      ]
     },
     {
-     "id": "s18-p2",
-     "typ": "p",
-     "s": [
-      "Mi|la hält ih|ren ge|punk|te|ten Mond rat|los hoch.",
-      "„A|ber was ma|chen wir denn jetzt mit un|se|rem The|a|ter|stück?“"
-     ]
-    },
-    {
      "id": "s18-p3",
      "typ": "p",
      "s": [
-      "„Oh|ne Mond gibt es kei|nen Nacht|him|mel“, sagt sie.",
-      "„Und oh|ne Nacht|him|mel gibt es kein Stück.“"
+      "Mi|la hält ih|ren ge|punk|te|ten Mond rat|los hoch.",
+      "„A|ber was ma|chen wir denn jetzt mit un|se|rem The|a|ter|stück?",
+      "Mit den brau|nen Fle|cken sieht er aus wie ein Kä|se.",
+      "So kann ich ihn doch nicht an den Nacht|him|mel hän|gen!“"
      ]
     },
     {
@@ -2996,7 +3024,7 @@
    "karte": {
     "titel": "Die ret|ten|de I|dee",
     "bild": "k3_s18",
-    "text": "Die Fle|cken blei|ben dran. Für die Men|schen ist es ein Mond mit Kra|tern. Für die Maus ist er ein Kä|se.",
+    "text": "Die Fle|cken blei|ben dran. Für die Maus ist der Mond ein Kä|se. So sind al|le drei froh.",
     "staub": false,
     "ausschnitt": {
      "x": 20,
@@ -3183,9 +3211,11 @@
      "id": "s19-p8",
      "typ": "p",
      "s": [
-      "Mi|la wi|ckelt den wei|ßen Fa|den wie|der ab, da|mit der Mond gleich wie|der am The|a|ter hän|gen kann.",
+      "Mi|la zupft das Fa|den|en|de vor|sich|tig los, da|mit der Mond gleich wie|der am The|a|ter hän|gen kann.",
       "„Und da|mit un|ser Mond be|son|ders ma|gisch aus|sieht, kriegt er noch ei|nen Glit|zer|stern!“, ruft sie.",
-      "Sie klebt ei|nen fun|keln|den Stern aus Sil|ber|fo|lie di|rekt ü|ber das Fa|den|loch."
+      "Aus ih|rer Ja|cken|ta|sche zieht sie ei|nen klei|nen Stern aus Sil|ber|fo|lie.",
+      "Den hat|te sie ei|gent|lich für die Kro|ne vom Kö|nig ge|bas|telt.",
+      "Sie klebt ihn di|rekt ü|ber das Fa|den|loch."
      ]
     },
     {
@@ -3289,7 +3319,7 @@
    "spur": 20,
    "titel": "Der Mond im Baum",
    "bild": "k4_s19_elster",
-   "haken": "„Et|was Sil|ber|nes im Nest … Ob das Frau Som|mers Schlüs|sel ist?“",
+   "haken": "„Hof|fent|lich will jetzt kei|ner zu dem Vo|gel hi|nauf|klet|tern …“",
    "blocks": [
     {
      "id": "s20-p1",
@@ -3315,7 +3345,7 @@
       "Al|le schau|en nach o|ben.",
       "Der Vo|gel fliegt zu ei|ner Ast|ga|bel di|rekt un|ter dem Klas|sen|zim|mer|fens|ter.",
       "Dort sitzt sein run|des Nest, zwi|schen zwei Zwei|gen wie in ei|nem gro|ßen V.",
-      "Der Vo|gel ist fast so groß wie ei|ne Tau|be.",
+      "Der Vo|gel ist so groß wie ei|ne Tau|be.",
       "A|ber der Mond ist viel zu groß für das Nest.",
       "Trotz|dem zerrt und ru|ckelt der Vo|gel wie ver|rückt am Fa|den."
      ]
@@ -3324,7 +3354,7 @@
      "id": "s20-p4",
      "typ": "p",
      "s": [
-      "Mi|la, Ben und Os|kar ren|nen un|ter den Baum.",
+      "Mi|la, Ben und Os|kar ren|nen zum Baum|stamm.",
       "„Hey, du fre|cher Dieb!“, ruft Mi|la und winkt mit bei|den Ar|men.",
       "„Gib den so|fort wie|der her!“"
      ]
@@ -3605,15 +3635,15 @@
     }
    ],
    "karte": {
-    "titel": "Am Nest",
-    "bild": "nest_sammlung",
+    "titel": "Der lan|ge Zweig",
+    "bild": "k4_s21_raupe",
     "ausschnitt": {
      "x": 22,
      "y": 18,
      "w": 26,
      "h": 36
     },
-    "text": "Im Nest blitzt ei|ne gan|ze Samm|lung. Ganz un|ten guckt ei|ne sil|ber|ne Stern|spit|ze her|vor.",
+    "text": "Vom Fens|ter|brett führt ein lan|ger Zweig hi|nun|ter zum Nest. Die Rau|pe hat Angst. A|ber sie kriecht los.",
     "staub": false
    },
    "fragenNeu": [
@@ -3849,7 +3879,7 @@
    "karte": {
     "titel": "Os|kars Maus",
     "bild": "objekte/maus_seite",
-    "text": "Die Maus steck|te in Os|kars Ka|pu|ze. Ein Blatt von der Rau|pe hat Os|kar am Na|cken ge|kit|zelt.",
+    "text": "Os|kars Maus steckt in sei|ner Ka|pu|ze. Er hat sie selbst hi|nein|ge|steckt.",
     "staub": false
    },
    "fragenNeu": [],
@@ -3858,7 +3888,7 @@
    "raetsel": {
     "art": "lupe",
     "titel": "Wo ist die Maus?",
-    "text": "Al|le su|chen Os|kars Maus. Fah|re mit der Lu|pe ü|ber das Bild. Wo blitzt et|was Ro|sa|far|be|nes?",
+    "text": "Al|le su|chen Os|kars Maus. Fah|re mit der Lu|pe ü|ber das Bild. Wo siehst du et|was Ro|sa|far|be|nes?",
     "bild": "k4_s20_spiel",
     "ratio": 1.5,
     "zoom": 2.6,
@@ -3906,7 +3936,8 @@
    "spur": 23,
    "titel": "Der größ|te Kä|se der Welt",
    "bild": "k4_s22",
-   "haken": "Was schenkt man ei|nem Vo|gel, der al|les liebt, was glänzt?",
+   "bildImText": true,
+   "haken": "„Ein Tausch mit ei|ner Els|ter? Ob das klappt?“",
    "blocks": [
     {
      "id": "s23-p1",
@@ -3934,7 +3965,7 @@
      "typ": "p",
      "s": [
       "Schnell räu|men al|le den Tisch auf.",
-      "Da|bei fin|det Frau Som|mer im Zei|tungs|sta|pel ei|nen gel|ben Papp|kreis oh|ne Fa|den.",
+      "Da|bei fin|det Frau Som|mer auf dem Tisch den gel|ben Papp|kreis oh|ne Fa|den.",
       "„Mei|ne Bas|tel|son|ne für die Pinn|wand!“, lacht sie.",
       "„Die ha|be ich heu|te Mor|gen ge|sucht.“"
      ]
@@ -3955,7 +3986,8 @@
       "Os|kars Maus hüpft auf die Büh|ne und piepst: „Oh weh, mein Bauch ist so leer!“",
       "Die Kin|der ki|chern.",
       "Os|kars Hän|de zit|tern nicht mehr."
-     ]
+     ],
+     "bild": "k4_s22"
     },
     {
      "id": "s23-p6",
@@ -4036,8 +4068,8 @@
     "art": "lexikon",
     "werkzeug": "lesen",
     "titel": "Das Vo|gel|buch",
-    "text": "Lies den Steck|brief. Such un|se|ren Vo|gel im Vo|gel|buch.",
-    "start": "Wie heißt der schlau|e Vo|gel noch mal? Ich glau|be, es ist Vo|gel 1!",
+    "text": "Lies den Steck|brief. Dann lies im Vo|gel|buch. Wel|cher Vo|gel passt zu al|len vier Punk|ten?",
+    "start": "Schwarz-weiß, lan|ger Schwanz … Wie heißt der Vo|gel? Lies je|de Sei|te ge|nau!",
     "steckbrief": {
      "titel": "Steck|brief",
      "saetze": [
@@ -4051,76 +4083,125 @@
      "titel": "Mein Vo|gel|buch"
     },
     "ok": "Das ist un|ser Vo|gel!",
-    "irrtum": "amsel",
     "voegel": [
      {
       "id": "amsel",
       "titel": "Vo|gel 1",
-      "name": "Am|sel",
+      "name": "die Am|sel",
       "crop": {
        "bild": "objekte/voegel",
        "n": 5,
        "i": 3
       },
       "saetze": [
-       "Er ist ganz schwarz.",
-       "Er hat ei|nen gel|ben Schna|bel."
+       {
+        "text": "Er ist ganz schwarz.",
+        "m": 0,
+        "ja": false
+       },
+       {
+        "text": "Er hat ei|nen gel|ben Schna|bel."
+       },
+       {
+        "text": "Er singt am A|bend sehr schön."
+       }
       ],
-      "nicht": "Vo|gel 1 ist ganz schwarz. Un|ser Vo|gel ist schwarz-weiß.",
+      "nicht": "Hier steht: Er ist ganz schwarz. Un|ser Vo|gel ist a|ber schwarz-weiß.",
       "merkmal": 0
      },
      {
       "id": "bachstelze",
       "titel": "Vo|gel 2",
-      "name": "Bach|stel|ze",
+      "name": "die Bach|stel|ze",
       "crop": {
        "bild": "objekte/voegel",
        "n": 5,
        "i": 1
       },
       "saetze": [
-       "Er ist schwarz-weiß und wippt mit dem lan|gen Schwanz.",
-       "Er ist klein, nur so groß wie ein Spatz."
+       {
+        "text": "Er ist schwarz-weiß.",
+        "m": 0,
+        "ja": true
+       },
+       {
+        "text": "Er hat ei|nen lan|gen Schwanz. Da|mit wippt er.",
+        "m": 1,
+        "ja": true
+       },
+       {
+        "text": "Er ist klein, nur so groß wie ein Spatz.",
+        "m": 2,
+        "ja": false
+       }
       ],
-      "nicht": "Vo|gel 2 ist klein. Un|ser Vo|gel ist groß wie ei|ne Tau|be.",
+      "nicht": "Hier steht: Er ist nur so groß wie ein Spatz. Un|ser Vo|gel ist a|ber groß wie ei|ne Tau|be.",
       "merkmal": 2
      },
      {
-      "id": "elster",
+      "id": "specht",
       "titel": "Vo|gel 3",
-      "name": "Els|ter",
+      "name": "der Bunt|specht",
+      "crop": {
+       "bild": "objekte/voegel",
+       "n": 5,
+       "i": 2
+      },
+      "saetze": [
+       {
+        "text": "Er ist schwarz-weiß und hat ro|te Fe|dern.",
+        "m": 0,
+        "ja": true
+       },
+       {
+        "text": "Sein Schwanz ist kurz.",
+        "m": 1,
+        "ja": false
+       },
+       {
+        "text": "Er klopft mit dem Schna|bel an die Bäu|me."
+       }
+      ],
+      "nicht": "Hier steht: Sein Schwanz ist kurz. Un|ser Vo|gel hat a|ber ei|nen lan|gen Schwanz.",
+      "merkmal": 1
+     },
+     {
+      "id": "elster",
+      "titel": "Vo|gel 4",
+      "name": "die Els|ter",
       "crop": {
        "bild": "objekte/voegel",
        "n": 5,
        "i": 0
       },
       "saetze": [
-       "Er ist schwarz-weiß und so groß wie ei|ne Tau|be.",
-       "Er sam|melt gern Sa|chen, die glän|zen."
+       {
+        "text": "Er ist schwarz-weiß.",
+        "m": 0,
+        "ja": true
+       },
+       {
+        "text": "Er hat ei|nen lan|gen Schwanz.",
+        "m": 1,
+        "ja": true
+       },
+       {
+        "text": "Er ist so groß wie ei|ne Tau|be.",
+        "m": 2,
+        "ja": true
+       },
+       {
+        "text": "Er sam|melt gern Sa|chen, die glän|zen.",
+        "m": 3,
+        "ja": true
+       }
       ]
-     },
-     {
-      "id": "meise",
-      "titel": "Vo|gel 4",
-      "name": "Kohl|mei|se",
-      "crop": {
-       "bild": "objekte/voegel",
-       "n": 5,
-       "i": 4
-      },
-      "saetze": [
-       "Er hat ei|nen gel|ben Bauch.",
-       "Er ist klein und frisst gern Kör|ner."
-      ],
-      "nicht": "Vo|gel 4 hat ei|nen gel|ben Bauch. Un|ser Vo|gel ist schwarz-weiß.",
-      "merkmal": 0
      }
     ],
     "loesung": "elster",
-    "warum": "Vo|gel 3 ist groß wie ei|ne Tau|be. Und er sam|melt Sa|chen, die glän|zen.",
-    "fund": "Da steht sein Na|me! Jetzt noch der Stem|pel.",
-    "stempel": "DER VOGEL: ELSTER",
-    "erfolg": "Ei|ne Els|ter! Und ich dach|te, ei|ne Am|sel. Hi|hi, gut, dass du so ge|nau liest."
+    "warum": "Schau hier: Bei die|sem Vo|gel pas|sen al|le vier Punk|te.",
+    "fund": "Al|le vier Punk|te pas|sen!",
+    "erfolg": "Ei|ne Els|ter! Al|le vier Punk|te pas|sen. Gut ge|le|sen, Part|ner!"
    }
   },
   {

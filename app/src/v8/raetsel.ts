@@ -1483,52 +1483,194 @@ export function faden(r: HTMLElement, d: Daten, fertig: () => void) {
   requestAnimationFrame(takt);
 }
 
-/* ============================ 7.3 Was blitzt da? (nest) ============================ */
+/* ============================ 7.3 Wo ist der Schlüssel? (nest, Finale des Buches) ============================ */
+/**
+ * Drei Schritte auf dem Nest-Bild (nest_nah):
+ *  1) Laub wegwischen (Finger/Maus, staub.ts),
+ *  2) lesen und finden: Frau Sommer beschreibt ihren Schlüssel (`beschreibung.saetze`); andere Glitzersachen → die Raupe
+ *     sagt mit dem Text, warum es nicht passt (`andere[].nein`),
+ *  3) Frau Sommer hält ihren Zeigestock aus dem Fenster (er ragt von oben rechts ins Bild). Das Kind zieht den Schlüssel
+ *     an der weißen Schlaufe zur Spitze → „Klick!“, die Schlaufe hängt am Stock, der Stock fährt mit dem Schlüssel nach oben.
+ * Der Schlüssel ist ein Ausschnitt des gemalten Bildes (Maske SCHLUESSEL_MASKE, Pixel von nest_nah 1536 × 1024),
+ * damit er genau so aussieht wie im Bild; an seiner Stelle bleibt eine dunkle Mulde.
+ * Hilfe: nach zwei Fehlgriffen beim Suchen zeigt die Raupe den Schlüssel; tippt das Kind beim Stock nur (zieht nicht)
+ * oder lässt zweimal zu früh los, hängt die Raupe die Schlaufe selbst an (ui.hilfe).
+ * Daten: bild, ratio, zone (Laub), start, nachLaub, frage, beschreibung {titel, saetze[]}, tipp,
+ *        ziele[0] {id, x, y, r, ok, zonen?[]}, andere[] {id, x, y, r, nein}, schluessel {box {x,y,w,h}, haken {x,y}},
+ *        stock {x, y, winkel}, jetzt (Stock-Aufgabe), knapp (zu früh losgelassen), erfolg.
+ */
+/** Umriss von Schlüssel, Ring, Stern und Schlaufe in nest_nah (Pixel); Ausschnitt-Kasten 330/128, 338 × 471 */
+const SCHLUESSEL_MASKE = (vb: string) => `<svg xmlns='http://www.w3.org/2000/svg' viewBox='${vb}' preserveAspectRatio='none'><g fill='#fff' stroke='#fff' stroke-linecap='round' stroke-linejoin='round'>`
+  + `<path d='M452 372C440 340 418 300 404 262C398 230 405 200 432 178C468 152 520 150 562 160C600 168 626 190 628 214C630 244 604 262 574 276C540 292 508 318 490 348' fill='none' stroke-width='42'/>`
+  + `<ellipse cx='471' cy='402' rx='68' ry='58' stroke='none'/>`
+  + `<path d='M492 446L548 578' fill='none' stroke-width='50'/>`
+  + `<path d='M536 492H604V570H536Z' stroke-width='6'/>`
+  + `<circle cx='384' cy='466' r='47' stroke='none'/><circle cx='405' cy='414' r='24' stroke='none'/></g></svg>`;
+const STOCK_SVG = `<svg viewBox="0 0 400 24" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="ntSt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E9C48A"/><stop offset=".45" stop-color="#C8914E"/><stop offset="1" stop-color="#8A5A2B"/></linearGradient><linearGradient id="ntGu" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E2564A"/><stop offset="1" stop-color="#8E2018"/></linearGradient></defs>`
+  + `<rect x="18" y="4" width="390" height="16" rx="3" fill="url(#ntSt)" stroke="#6E4520" stroke-width="1.2"/><path d="M60 9H400M120 15H400" stroke="#B07A3E" stroke-width="1" opacity=".6"/>`
+  + `<path d="M22 3.5C10 3.5 2 7 2 12S10 20.5 22 20.5Z" fill="url(#ntGu)" stroke="#6A140E" stroke-width="1.2"/><ellipse cx="11" cy="8.5" rx="5" ry="2" fill="#fff" opacity=".4"/></svg>`;
 export function nest(r: HTMLElement, d: Daten, fertig: () => void) {
   const zi = $('.zi', r);
-  zi.innerHTML = `<p class="nt-frage"></p><div class="nt-bild" style="aspect-ratio:${d.ratio}"><div class="nt-zoom"><img src="${K.img(d.bild)}" alt="" draggable="false"></div></div>`;
+  const B = d.beschreibung;
+  zi.innerHTML = `${B ? `<div class="nt-karte"><span class="nt-kt">${SCHLUESSEL_ICON}<b>${B.titel ?? ''}</b></span><p>${(B.saetze ?? []).join(' ')}</p></div>` : ''}<p class="nt-frage"></p><div class="nt-bild" style="aspect-ratio:${d.ratio}"><div class="nt-zoom"><img src="${K.img(d.bild)}" alt="" draggable="false"></div></div>`;
   unten('');
   const box = $('.nt-bild', zi), nah = $('.nt-zoom', zi);
   sag(r, 'tipp', d.start);
-  /** ziele: was die Elster geholt hat (glänzt); andere: liegt auch im Nest, glänzt aber nicht */
-  const Z: any[] = d.ziele, X: any[] = d.andere ?? [], gef = new Set<string>(), erklaert = new Set<string>();
-  let fehl = 0, zu = false;
-  const frage = () => { $('.nt-frage', zi).innerHTML = zu ? '' : `${d.frage} <b class="nt-z">${gef.size} / ${Z.length}</b>`; };
+  const Z: any[] = d.ziele, X: any[] = d.andere ?? [], erklaert = new Set<string>();
+  let fehl = 0, phase: 'laub' | 'suchen' | 'stock' | 'aus' = 'laub';
+  const frage = (t = '') => { $('.nt-frage', zi).innerHTML = t; };
   const ring = (z: any, kl: string) => nah.insertAdjacentHTML('beforeend', `<i class="ring ${kl}" style="left:${z.x}%;top:${z.y}%;width:${z.r * 2.1}%;height:auto;aspect-ratio:1;margin:0;transform:translate(-50%,-50%)"></i>`);
-  const fund = (z: any, hilfe: boolean) => {
-    gef.add(z.id); fehl = 0;
+  const S = d.schluessel ?? { box: { x: 21.5, y: 12.5, w: 22, h: 46 }, haken: { x: 34.2, y: 17.1 } }, kb = S.box;
+  const vb = `${(kb.x / 100) * 1536} ${(kb.y / 100) * 1024} ${(kb.w / 100) * 1536} ${(kb.h / 100) * 1024}`;
+  const maske = `url("data:image/svg+xml;utf8,${encodeURIComponent(SCHLUESSEL_MASKE(vb))}")`;
+  /** Ausschnitt des gemalten Schlüssels als eigenes Element (gleiches Bild, gleiche Lage) */
+  const ausschnitt = (kl: string) => {
+    const el = document.createElement('div');
+    el.className = kl;
+    Object.assign(el.style, { left: kb.x + '%', top: kb.y + '%', width: kb.w + '%', height: kb.h + '%', backgroundImage: `url(${K.img(d.bild)})`, backgroundSize: `${10000 / kb.w}% ${10000 / kb.h}%`, backgroundPosition: `${(kb.x / (100 - kb.w)) * 100}% ${(kb.y / (100 - kb.h)) * 100}%`, webkitMaskImage: maske, maskImage: maske });
+    el.style.setProperty('-webkit-mask-size', '100% 100%'); el.style.setProperty('mask-size', '100% 100%');
+    return el;
+  };
+  const trifft = (q: any, px: number, py: number, rc: DOMRect) => (q.zonen ?? [q]).some((z: any) => Math.hypot(px - z.x / 100 * rc.width, py - z.y / 100 * rc.height) <= (z.r / 100) * rc.width * 1.15);
+
+  /* ---- 2) Lesen und finden ---- */
+  const suche = () => {
+    phase = 'suchen';
+    zi.querySelector('.nt-karte')?.classList.add('an');
+    frage(d.frage ?? '');
+    sag(r, 'tipp', d.nachLaub ?? '');
+    hook.loese = () => gefunden(false);
+  };
+  const gefunden = (hilfe: boolean) => {
+    if (phase !== 'suchen') return;
+    phase = 'stock'; fehl = 0;
+    const z = Z[0];
     ring(z, hilfe ? 'da blink' : 'da');
-    K.summ(z.id === 'schluessel' ? 40 : 20);
-    sag(r, 'lob', (hilfe ? K.UI.hilfe + ' ' : '') + z.ok, 'gut');
-    frage();
-    if (gef.size >= Z.length) {
-      zu = true; hook.loese = null; frage();
-      setTimeout(() => zi.isConnected && ende(r, d, fertig), 2600);
-    }
+    K.summ(30);
+    sag(r, 'lob', (hilfe ? K.UI.hilfe + ' ' : '') + (z.ok ?? ''), 'gut');
+    setTimeout(() => { if (zi.isConnected) stockKommt(); }, 1700);
   };
   const nein = (x: any) => {
     const el = document.createElement('i'); el.className = 'ring nicht'; el.style.cssText = `left:${x.x}%;top:${x.y}%;width:${x.r * 2.1}%`; nah.appendChild(el);
     setTimeout(() => el.remove(), 1200);
     fehl++;
-    if (!erklaert.has(x.id)) { erklaert.add(x.id); return sag(r, 'tipp', x.nein); }
-    if (fehl >= 2) return fund(Z.find((q) => !gef.has(q.id)), true);
-    sag(r, 'tipp', d.tipp);
+    if (!erklaert.has(x.id)) { erklaert.add(x.id); if (fehl < 3) return sag(r, 'tipp', x.nein); }
+    if (fehl >= 3) return gefunden(true);
+    sag(r, 'tipp', [x.nein, d.tipp ?? ''].join(' '));
   };
-  const suche = () => {
-    hook.loese = () => { zu = true; Z.forEach((z) => { if (!gef.has(z.id)) { gef.add(z.id); ring(z, 'da'); } }); frage(); ende(r, d, fertig); };
-    frage();
-    box.onclick = (e) => {
-      if (zu) return;
-      const rc = nah.getBoundingClientRect();
-      const px = e.clientX - rc.left, py = e.clientY - rc.top;
-      const dist = (q: any) => Math.hypot(px - q.x / 100 * rc.width, py - q.y / 100 * rc.height) / ((q.r / 100) * rc.width * 1.15);
-      const z = [...Z.filter((q) => !gef.has(q.id)), ...X].filter((q) => dist(q) <= 1).sort((a, b) => dist(a) - dist(b))[0];
-      if (z && Z.includes(z)) return fund(z, false);
-      if (z) return nein(z);
-      if (Z.some((q) => gef.has(q.id) && dist(q) <= 1)) return; // schon gefunden: nichts tun
-      nah.insertAdjacentHTML('beforeend', `<i class="ring miss" style="left:${px / rc.width * 100}%;top:${py / rc.height * 100}%"></i>`);
-      setTimeout(() => box.querySelector('.ring.miss')?.remove(), 800);
+  box.addEventListener('click', (e) => {
+    if (phase !== 'suchen') return;
+    const rc = nah.getBoundingClientRect(), px = e.clientX - rc.left, py = e.clientY - rc.top;
+    if (Z.some((q) => trifft(q, px, py, rc))) return gefunden(false);
+    const x = X.filter((q) => trifft(q, px, py, rc)).sort((a, b) => Math.hypot(px - a.x / 100 * rc.width, py - a.y / 100 * rc.height) - Math.hypot(px - b.x / 100 * rc.width, py - b.y / 100 * rc.height))[0];
+    if (x) return nein(x);
+    nah.insertAdjacentHTML('beforeend', `<i class="ring miss" style="left:${px / rc.width * 100}%;top:${py / rc.height * 100}%"></i>`);
+    setTimeout(() => box.querySelector('.ring.miss')?.remove(), 800);
+  });
+
+  /* ---- 3) Der Zeigestock: Schlaufe an die Spitze ziehen ---- */
+  const st = d.stock ?? { x: 64, y: 24, winkel: -30 };
+  let schl: HTMLElement, stock: HTMLElement, fuehrung: HTMLElement, zuFrueh = 0, tipps = 0;
+  const stockKommt = () => {
+    nah.querySelectorAll('.ring').forEach((q) => q.remove());
+    frage('');
+    const mulde = ausschnitt('nt-mulde'); nah.appendChild(mulde);
+    schl = ausschnitt('nt-schluessel'); schl.setAttribute('role', 'button'); schl.setAttribute('aria-label', klarText(d.frage2 ?? 'Schlüssel'));
+    nah.appendChild(schl);
+    stock = document.createElement('div'); stock.className = 'nt-stock';
+    Object.assign(stock.style, { left: st.x + '%', top: st.y + '%', rotate: `${st.winkel}deg` });
+    stock.innerHTML = `<span class="nt-stab">${STOCK_SVG}</span><i class="nt-spitze"></i>`;
+    nah.appendChild(stock);
+    // Führungslinie: von der Schlaufe zur Spitze (gestrichelt, pulsiert)
+    const h = S.haken;
+    fuehrung = document.createElement('div'); fuehrung.className = 'nt-fuehrung';
+    fuehrung.innerHTML = `<svg viewBox="0 0 150 100" preserveAspectRatio="none" aria-hidden="true"><path d="M${h.x * 1.5} ${h.y}Q${(h.x + st.x) * 0.75} ${Math.min(h.y, st.y) - 12} ${st.x * 1.5} ${st.y}" fill="none" stroke="#FFE9A6" stroke-width="1.2" stroke-dasharray="2.4 2.4" vector-effect="non-scaling-stroke"/></svg>`;
+    nah.appendChild(fuehrung);
+    sag(r, 'tipp', d.jetzt ?? '');
+    hook.loese = () => anhaengen(false);
+    ziehen();
+  };
+  /** Lage des Hakens (Schlaufe oben) in Prozent des Bildes, wenn der Schlüssel um dx/dy Pixel verschoben ist */
+  const hakenBei = (dx: number, dy: number) => { const rc = nah.getBoundingClientRect(); return { x: S.haken.x + (dx / rc.width) * 100, y: S.haken.y + (dy / rc.height) * 100 }; };
+  const nahDran = (p: { x: number; y: number }) => Math.hypot((p.x - st.x) * 1.5, p.y - st.y) < 9;
+  const ziehen = () => {
+    let zug: { id: number; x0: number; y0: number; dx: number; dy: number; bewegt: boolean } | null = null;
+    const bewegen = (e: PointerEvent) => {
+      if (!zug || e.pointerId !== zug.id || phase !== 'stock') return;
+      zug.dx = e.clientX - zug.x0; zug.dy = e.clientY - zug.y0;
+      if (!zug.bewegt && Math.hypot(zug.dx, zug.dy) > 6) { zug.bewegt = true; schl.classList.add('zieht'); fuehrung.classList.add('weg'); }
+      if (!zug.bewegt) return;
+      e.preventDefault();
+      schl.style.translate = `${zug.dx}px ${zug.dy}px`;
+      const n = nahDran(hakenBei(zug.dx, zug.dy));
+      stock.classList.toggle('bereit', n);
+      if (n) { const q = zug; zug = null; aus(); anhaengen(true, q.dx, q.dy); }
     };
+    const aus = () => { removeEventListener('pointermove', bewegen); removeEventListener('pointerup', los); removeEventListener('pointercancel', los); };
+    const los = (e: PointerEvent) => {
+      if (!zug || e.pointerId !== zug.id) return;
+      const q = zug; zug = null; aus();
+      schl.classList.remove('zieht');
+      if (phase !== 'stock') return;
+      if (!q.bewegt) { // nur getippt: zeigen, was zu tun ist
+        tipps++; fuehrung.classList.remove('weg'); fuehrung.classList.add('zeig');
+        if (tipps >= 3) return anhaengen(false, 0, 0, true);
+        return sag(r, 'tipp', d.jetzt ?? '');
+      }
+      // zu früh losgelassen: Schlüssel rutscht zurück ins Nest
+      schl.animate([{ translate: `${q.dx}px ${q.dy}px` }, { translate: '0px 0px' }], { duration: 300, easing: 'ease-out' });
+      schl.style.translate = '';
+      stock.classList.remove('bereit'); fuehrung.classList.remove('weg');
+      if (++zuFrueh >= 2) return anhaengen(false, 0, 0, true);
+      sag(r, 'tipp', d.knapp ?? K.UI.nochmal);
+    };
+    schl.addEventListener('pointerdown', (e) => {
+      if (zug || phase !== 'stock' || (e.pointerType === 'mouse' && e.button !== 0)) return;
+      e.preventDefault();
+      zug = { id: e.pointerId, x0: e.clientX, y0: e.clientY, dx: 0, dy: 0, bewegt: false };
+      try { schl.setPointerCapture(e.pointerId); } catch { /* egal */ }
+      addEventListener('pointermove', bewegen, { passive: false }); addEventListener('pointerup', los); addEventListener('pointercancel', los);
+    });
+    schl.addEventListener('contextmenu', (e) => e.preventDefault());
   };
-  hook.loese = _laub(box, () => { sag(r, 'tipp', d.nachLaub ?? ''); suche(); }, d.zone);
+  /** Klick! Die Schlaufe hängt an der Spitze; der Stock fährt mit dem Schlüssel nach oben aus dem Bild */
+  const anhaengen = (vomKind: boolean, dx0 = 0, dy0 = 0, hilfe = false) => {
+    if (phase !== 'stock') return;
+    phase = 'aus'; hook.loese = null;
+    const rc = nah.getBoundingClientRect();
+    const zx = ((st.x - S.haken.x) / 100) * rc.width, zy = ((st.y - S.haken.y) / 100) * rc.height;
+    fuehrung.remove();
+    if (hilfe) sag(r, 'tipp', K.UI.hilfe);
+    const still = (() => { try { return matchMedia('(prefers-reduced-motion: reduce)').matches; } catch { return false; } })();
+    const dauerHin = vomKind ? 180 : hilfe ? 1100 : 500;
+    schl.classList.remove('zieht');
+    schl.style.transformOrigin = `${((S.haken.x - kb.x) / kb.w) * 100}% ${((S.haken.y - kb.y) / kb.h) * 100}%`;
+    const hin = still ? null : schl.animate([{ translate: `${dx0}px ${dy0}px` }, { translate: `${zx}px ${zy}px` }], { duration: dauerHin, easing: 'ease-in-out', fill: 'forwards' });
+    schl.style.translate = `${zx}px ${zy}px`;
+    const dann = () => {
+      if (!zi.isConnected) return;
+      hin?.cancel();
+      stock.classList.add('klick'); schl.classList.add('haengt');
+      box.insertAdjacentHTML('beforeend', `<b class="nt-klick" style="left:${st.x}%;top:${st.y}%">${d.klick ?? 'Klick!'}</b>`);
+      K.summ([30, 40, 30]);
+      // Stock und Schlüssel fahren gemeinsam nach oben rechts hinaus
+      const weg = `${rc.width * 0.35}px calc(-50% - ${rc.height * 1.1}px)`;
+      setTimeout(() => {
+        if (!zi.isConnected) return;
+        if (!still) {
+          schl.animate([{ translate: `${zx}px ${zy}px` }, { translate: `calc(${zx}px + ${rc.width * 0.35}px) calc(${zy}px - ${rc.height * 1.1}px)` }], { duration: 1400, easing: 'cubic-bezier(.5,0,.6,1)', fill: 'forwards' });
+          stock.animate([{ translate: '0 -50%' }, { translate: weg }], { duration: 1400, easing: 'cubic-bezier(.5,0,.6,1)', fill: 'forwards' });
+        } else { schl.style.opacity = '0'; stock.style.opacity = '0'; }
+        box.classList.add('geschafft');
+        setTimeout(() => zi.isConnected && ende(r, d, fertig, hilfe ? K.UI.hilfe : ''), still ? 200 : 1300);
+      }, still ? 0 : 900);
+    };
+    if (still) dann(); else setTimeout(dann, dauerHin);
+  };
+
+  // 1) Laub
+  hook.loese = _laub(box, () => suche(), d.zone);
 }
+/** kleiner Schlüssel für die Karte „Frau Sommer sagt:“ */
+const SCHLUESSEL_ICON = '<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M13 6c3-3 9-2 9 2s-5 6-7 9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/><circle cx="14" cy="17" r="5" fill="none" stroke="#C9D3E0" stroke-width="3"/><path d="M17.5 20.5l7 7M21 24l2.5-2.5M23.5 26.5l2-2" stroke="#C9D3E0" stroke-width="3" stroke-linecap="round"/><path d="M8 22l1 2 2 .3-1.5 1.4.4 2.1L8 26.8l-1.9 1 .4-2.1L5 24.3l2-.3z" fill="#E9EEF5"/></svg>';
+const klarText = (h: string) => String(h).replace(/<[^>]*>/g, '').trim();

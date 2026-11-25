@@ -222,8 +222,9 @@
 .fin-k:not(.zieht) { rotate: var(--r, 0deg); }
 /* nach dem 2. Fehler: der gesuchte Buchstabe (Kärtchen) und sein Feld leuchten */
 .fin-k.zeig { border-color: var(--senf); box-shadow: 0 3px 0 #D8CDB2, 0 0 0 4px rgba(244, 194, 67, .6), 0 0 22px rgba(255, 224, 130, .9); animation: puls 1s ease-in-out infinite; }
-.fin-f.zeig { border: 3px solid #FFE082; background: rgba(255, 224, 130, .25); box-shadow: 0 0 0 3px rgba(255, 224, 130, .45), 0 0 16px rgba(255, 224, 130, .8); }
-@media (prefers-reduced-motion: reduce) { .fin-k.zeig { animation: none; } }
+.fin-f.zeig { border-style: solid; border-color: #FFF3C4; background: rgba(255, 224, 130, .75); box-shadow: 0 0 0 2px rgba(255, 255, 255, .5), 0 0 14px 5px rgba(255, 224, 130, .95); animation: finZeig 1s ease-in-out infinite; }
+@keyframes finZeig { 50% { box-shadow: 0 0 0 2px rgba(255, 255, 255, .3), 0 0 6px 2px rgba(255, 224, 130, .5); } }
+@media (prefers-reduced-motion: reduce) { .fin-k.zeig, .fin-f.zeig { animation: none; } }
 .fin-k.weg { opacity: .22; box-shadow: none; }
 .fin-k.zieht { z-index: 20; transition: none; box-shadow: 0 16px 24px rgba(0, 0, 0, .45); }
 .tv { position: relative; width: min(78%, 20rem); aspect-ratio: 1; margin: .375rem auto; }
