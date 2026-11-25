@@ -229,8 +229,10 @@
   pointer-events: none;
 }
 .tv.auf .tv-licht { opacity: 1; transform: scale(1); animation: tv-puls 2.4s 1.6s ease-in-out infinite; }
-.tv-zu { z-index: 1; transition: opacity .5s .2s; }
-.tv-auf { z-index: 1; opacity: 0; transform: scale(.96); transition: opacity .6s .3s, transform 1s .3s cubic-bezier(.2, 1.3, .4, 1); }
+.tv-zu { z-index: 1; transition: opacity 0s .3s; }
+/* Kein Überblenden: sonst steht das Rad der geschlossenen Tür kurz IM offenen Tresor (Fehler der Besitzerin, 25.11.).
+   Die Bilder wechseln in einem Moment; das Aufgehen zeigen Federn (scale) und das goldene Licht. */
+.tv-auf { z-index: 1; opacity: 0; transform: scale(.92); transition: opacity 0s .3s, transform .9s .3s cubic-bezier(.2, 1.4, .4, 1); }
 .tv.auf .tv-zu { opacity: 0; }
 .tv.auf .tv-innen { opacity: 1; }
 .tv-innen img { width: 100%; height: 100%; object-fit: contain; display: block; }
