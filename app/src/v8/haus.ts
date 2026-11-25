@@ -156,6 +156,16 @@ export function neuHinweis(app: HTMLElement, UI: Record<string, string>, id: str
   setTimeout(weg, 4500);
 }
 
+/**
+ * Konfetti und Feuerwerk liegen HINTER Text und Karten: als Kind der Bühne mit z-index -1
+ * (die Bühne ist ein Container und damit eine eigene Ebene). So fällt nichts über Buchstaben, die das Kind gerade liest,
+ * und beim nächsten Bildschirm verschwindet der Effekt mit der Bühne. Ohne Bühne (Haus der Lese-Raupe): wie bisher über allem.
+ */
+function effektHinten(host: HTMLElement, fx: HTMLElement): void {
+  const b = host?.closest<HTMLElement>('#buehne');
+  if (b) { fx.classList.add('hinten'); b.appendChild(fx); } else document.body.appendChild(fx);
+}
+
 /** Konfetti aus Perlen und Goldpapier (keine Sterne: Sterne sind im Buch Indizien) */
 export function konfetti(host: HTMLElement): void {
   if (weniger()) return;
@@ -167,7 +177,7 @@ export function konfetti(host: HTMLElement): void {
     const x = (i * 37) % 100, d = 1.6 + ((i * 13) % 10) / 10, v = (i % 7) * 0.09, rund = i % 3 === 0;
     return `<i style="left:${x}%;background:${rund ? 'var(--perle)' : farben[i % farben.length]};--d:${d}s;--v:${v}s;--r:${(i * 61) % 360}deg;--x:${((i * 29) % 60) - 30}px" class="${rund ? 'rund' : ''}"></i>`;
   }).join('');
-  void host; document.body.appendChild(fx);
+  effektHinten(host, fx);
   setTimeout(() => fx.remove(), 3600);
 }
 
@@ -189,7 +199,7 @@ export function feuerwerk(host: HTMLElement, n = 6, oben = 0.45): void {
     html += '</span>';
   }
   fx.innerHTML = html;
-  void host; document.body.appendChild(fx);
+  effektHinten(host, fx);
   setTimeout(() => fx.remove(), (n * 0.42 + 2) * 1000);
 }
 

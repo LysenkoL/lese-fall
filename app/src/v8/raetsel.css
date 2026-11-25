@@ -321,7 +321,7 @@
   color: var(--tinte);
   transition: opacity .5s, transform .5s;
 }
-.as-k svg { width: 100%; height: auto; max-height: 5.25rem; }
+.as-k svg { width: 100%; height: auto; max-height: min(5.25rem, 9cqh); } /* cqh: auf niedrigen Telefonen passen beide Kartenreihen */
 .as-n { font-weight: 800; font-size: .9375rem; }
 .as-n .s-b, .as-n .s-r { color: inherit; }
 .as-k.an { border-color: var(--senf); background: #FFF6D6; }
@@ -364,7 +364,7 @@
 .as-so:active { transform: translateY(2px) scale(.99); box-shadow: 0 1px 0 #D8CDB2, 0 4px 8px rgba(0, 0, 0, .2); }
 .as-cm { display: block; font-size: .82em; font-weight: 700; opacity: .7; }
 .as-crop { display: block; width: 100%; aspect-ratio: 1; transition: transform .3s; }
-#app .as-k > img { width: 100%; object-fit: contain; display: block; height: clamp(5.25rem, 17cqh, 8.75rem); aspect-ratio: auto; }
+#app .as-k > img { width: 100%; object-fit: contain; display: block; height: clamp(5.25rem, 13cqh, 8.75rem); aspect-ratio: auto; } /* 13cqh: auf 390×844 passen beide Reihen (vorher 17cqh) */
 
 /* ---------- Spiel: Zwei Kisten ---------- */
 .so-ziele { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .625rem; }
@@ -378,7 +378,7 @@
   flex-direction: column;
   align-items: center;
   gap: .375rem;
-  min-height: min(11rem, 40cqh);
+  min-height: min(11rem, 23cqh);
   transition: border-color .2s, background .2s;
 }
 .so-kopf { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1px; }
@@ -405,7 +405,7 @@
   color: var(--tinte);
   position: relative;
 }
-.so-ding img { width: 100%; height: 3.75rem; object-fit: contain; pointer-events: none; }
+.so-ding img { width: 100%; height: min(3.75rem, 7.5cqh); object-fit: contain; pointer-events: none; }
 .so-ding .s-b, .so-ding .s-r { color: inherit; }
 .so-ding.sel { border-color: var(--senf); background: #FFF6D6; }
 .so-ding.zieht { z-index: 20; transition: none; box-shadow: 0 16px 24px rgba(0, 0, 0, .45); }
@@ -554,8 +554,10 @@
 
 /* „Was ist anders?“ ohne Umschalten: beide Bilder untereinander (quer: nebeneinander), darunter große Karten */
 .zug[data-art="unterschiede"] { --neben-spiel: 12rem; }
-.ub-zwei { display: grid; grid-template-columns: minmax(0, 1fr); gap: .375rem; justify-items: center; width: 100%; }
-.ub-zwei > .ub { width: min(100%, calc((var(--bild-h) - 3.5rem) / 2 * 1.5)); }
+/* Vorhin und Jetzt nebeneinander, auch hochkant: das Auge vergleicht waagerecht, und die Karten passen darunter noch aufs Telefon.
+   Untereinander waren die Bilder kaum größer, schoben aber die Hälfte der Karten unter den Rand. */
+.ub-zwei { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: .5rem; justify-items: center; width: 100%; }
+.ub-zwei > .ub { width: min(100%, calc(var(--bild-h) * 1.5)); }
 .ub-zwei > .ub > .tab { font-size: var(--t-etikett); padding: .125rem .625rem; }
 .ub-karten { display: grid; grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr)); gap: .5rem; width: min(100%, var(--mass-spiel)); margin-top: .25rem; }
 .ub-k { display: flex; flex-direction: column; align-items: center; gap: .125rem; min-height: var(--tipp); padding: .375rem .25rem .375rem; border-radius: var(--r-feld); background: var(--papier); color: var(--tinte); box-shadow: var(--sch-knopf); font-weight: 700; font-size: var(--t-etikett); line-height: 1.15; text-align: center; border: 3px solid transparent; }

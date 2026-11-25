@@ -197,6 +197,16 @@ html :focus-visible:where(:not(.bkarte)) { box-shadow: 0 0 0 7px rgba(244, 194, 
   animation: ein .3s both;
 }
 :where(.zug) > :where(:not(.lampe, .wzfx)) { position: relative; flex-shrink: 0; }
+/* Mehr unten (mehrPfeil() in main.ts): solange unter dem Rand noch Karten liegen, ein dunkler Verlauf und ein runder Pfeil */
+#buehne > .mehr {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; height: 4.75rem;
+  display: flex; align-items: flex-end; justify-content: center; padding-bottom: var(--a-2);
+  background: linear-gradient(rgba(12, 20, 48, 0), rgba(12, 20, 48, .82) 70%); pointer-events: none;
+}
+#buehne > .mehr[hidden] { display: none; }
+#buehne > .mehr .rund { width: var(--tipp); height: var(--tipp); pointer-events: auto; background: var(--senf); color: var(--senf-tinte); box-shadow: 0 3px 0 var(--senf-dunkel), 0 8px 16px rgba(0, 0, 0, .35); animation: mehrHuepf 1.8s ease-in-out infinite; }
+#buehne > .mehr .rund svg { width: 1.5rem; height: 1.5rem; }
+@keyframes mehrHuepf { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(.25rem); } }
 .zr { margin-top: auto; min-height: var(--a-1); color: var(--tinte); }
 /* breite, niedrige Bühne (Tablet quer): Aufgabe und Raupe links, Spielfläche rechts in voller Höhe */
 @container buehne (min-aspect-ratio: 5 / 4) and (min-width: 46rem) {

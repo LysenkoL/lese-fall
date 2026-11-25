@@ -35,7 +35,9 @@ function sag(r: HTMLElement, b: string, t: string, kl = '') {
   const z = $('.zr', r);
   z.innerHTML = t ? rp(b, t, kl) : '';
   if (t && K.UI.hilfe && t.includes(K.UI.hilfe)) chipLeuchtet(r); // die Raupe hilft: ihr Werkzeug leuchtet auf
-  if (t) requestAnimationFrame(() => z.scrollIntoView({ block: 'nearest', behavior: 'smooth' }));
+  // Der erste Satz der Raupe kommt mit dem Rätsel: dann NICHT nach unten rollen, sonst sind Titel und Aufgabe abgeschnitten.
+  // Ab dem zweiten Satz (Hinweis nach einem Fehler) rollt die Sprechblase ins Bild.
+  if (t) { if (r.dataset.gesagt) requestAnimationFrame(() => z.scrollIntoView({ block: 'nearest', behavior: 'smooth' })); r.dataset.gesagt = '1'; }
 }
 const knopf = (a: string, t: string, dis = false) => `<button class="kn haupt" data-a="${a}" ${dis ? 'disabled' : ''}><span>${t}</span></button>`;
 /** Knopf unten; ohne Inhalt bleibt ein unsichtbarer Platzhalter, damit nichts springt */

@@ -14,6 +14,12 @@
 
 /* ---------- Konfetti (Perlen und Goldpapier, keine Sterne) ---------- */
 .konfetti { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: var(--z-effekt); }
+.konfetti.hinten, .feuerwerk.hinten { position: absolute; z-index: -1; } /* hinter Text und Karten, siehe effektHinten() in haus.ts */
+/* Text direkt auf dem Himmel, hinter dem das Konfetti fällt: eine weiche Nachtplatte in Himmelsfarbe,
+   damit keine Schnipsel zwischen den Buchstaben stehen (das Kind liest gerade). Ohne Konfetti fällt sie nicht auf. */
+.zug.fin > :is(.zk, .zt1), .fest-t, .lg-text, .fin.urk .forts {
+  background: rgba(24, 37, 74, .88); border-radius: .75rem; box-shadow: 0 0 1.25rem .75rem rgba(24, 37, 74, .88);
+}
 .konfetti i { position: absolute; top: 0; width: .5rem; height: .75rem; border-radius: 2px; animation: ko-fall var(--d) var(--v) cubic-bezier(.3, .2, .6, 1) both; }
 .konfetti i.rund { width: .625rem; height: .625rem; border-radius: 50%; }
 

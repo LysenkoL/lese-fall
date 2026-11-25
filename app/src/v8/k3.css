@@ -210,7 +210,8 @@
 .sc-k.an { border-color: #288CFF; box-shadow: 0 0 0 4px rgba(40, 140, 255, .3), 0 8px 14px rgba(0, 0, 0, .3); }
 .sc-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .375rem; }
 @media (max-width: 460px) {
-  .sc-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .sc-grid { gap: .25rem; }
+  .sc-k { padding: .1875rem; border-radius: .625rem; }
   .sc-licht { width: min(100%, 15.625rem); }
 }
 
@@ -409,7 +410,7 @@
 .pk-st.zieht { z-index: 20; transition: none; box-shadow: 0 16px 24px rgba(0, 0, 0, .45); }
 .pk-st.nein { animation: wackel .4s; border-color: var(--rot); }
 .pk-zelle { aspect-ratio: 1 / 1; background: rgba(255, 255, 255, .06); border-radius: .5rem; transform: rotate(var(--w)); }
-.pk-pool { padding: .25rem; box-sizing: border-box; display: grid; align-self: center; grid-template-columns: repeat(3, minmax(0, 1fr)); width: min(100%, 16.875rem, 43cqh); gap: .375rem; }
+.pk-pool { padding: .25rem; box-sizing: border-box; display: grid; align-self: center; grid-template-columns: repeat(3, minmax(0, 1fr)); width: min(100%, 16.875rem, 36cqh); gap: .375rem; }
 #buehne .pk-st.nein { border-color: var(--weich); }
 .pk-platz { position: relative; border: 3px dashed rgba(255, 255, 255, .4); border-radius: .375rem; min-height: 0; aspect-ratio: var(--pr, 1); }
 .pk-pool .pk-zelle { aspect-ratio: var(--pr, 1); }
@@ -422,7 +423,7 @@
   padding: .375rem;
   background: rgba(255, 255, 255, .1);
   border-radius: .75rem;
-  width: min(100%, 18.75rem, calc(46cqh * .75));
+  width: min(100%, 18.75rem, calc(38cqh * .75));
   height: auto;
 }
 
