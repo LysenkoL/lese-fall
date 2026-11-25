@@ -45,6 +45,10 @@ function unten(html: string, onA?: (a: string) => void) {
   K.fuss.innerHTML = `<div class="fz">${html || '<button class="kn haupt" style="visibility:hidden" tabindex="-1" aria-hidden="true"><span>·</span></button>'}</div>`;
   K.fuss.onclick = (e) => { const a = (e.target as HTMLElement).closest<HTMLElement>('[data-a]'); if (a && !(a as HTMLButtonElement).disabled) onA?.(a.dataset.a!); };
 }
+/** Für neue Spiel-Dateien (raetsel_weg.ts, raetsel_lesen.ts): dieselben Hilfen wie hier */
+export const kontext = () => K;
+export { sag, unten, knopf, wackel, warte };
+export { ende };
 function ende(r: HTMLElement, d: Daten, fertig: () => void, vor = '') {
   hook.loese = null;
   sag(r, 'lob', (vor ? vor + ' ' : '') + (d.erfolg ?? ''), 'gut');
@@ -1219,17 +1223,18 @@ export function plakat(r: HTMLElement, d: Daten, fertig: () => void) {
 /** Drei versteckte Buchstaben (Laub, Rinde) ergeben AST; dann wählt das Kind unter fünf Astgabeln die, die zum Text passt. */
 export function astgabel(r: HTMLElement, d: Daten, fertig: () => void) {
   const zi = $('.zi', r);
-  const runden: any[] = d.runden, gef: string[] = [];
+  // `vorgabe`: Buchstaben, die die Raupe schon sieht (z. B. "K_E_E_"), `runden[].pos`: Stelle im Wort (sonst der Reihe nach)
+  const runden: any[] = d.runden, gef: string[] = [...(d.vorgabe ?? '')].map((c: string) => (c === '_' ? undefined : c)) as string[];
   const reihe = document.createElement('div');
   reihe.className = 'ab-wort';
-  const felder = () => (d.wort as string).split('').map((c, i) => `<i class="${gef[i] ? 'da' : ''}">${gef[i] ?? ''}</i>`).join('');
+  const felder = () => (d.wort as string).split('').map((c, i) => `<i class="${gef[i] ? 'da' : ''}${gef[i] && (d.vorgabe ?? '')[i] === c ? ' vor' : ''}">${gef[i] ?? ''}</i>`).join('');
   reihe.innerHTML = felder();
   r.insertBefore(reihe, zi);
   let k = 0;
   const runde = () => {
     const q = runden[k];
     versteckt(r, q, () => {
-      gef[k] = q.buchstabe; reihe.innerHTML = felder(); K.summ(20); k++;
+      gef[q.pos ?? k] = q.buchstabe; reihe.innerHTML = felder(); K.summ(20); k++;
       if (k < runden.length) setTimeout(() => zi.isConnected && runde(), 1500);
       else setTimeout(() => zi.isConnected && wort(), 1200);
     });
@@ -1237,9 +1242,12 @@ export function astgabel(r: HTMLElement, d: Daten, fertig: () => void) {
   /** Das Wort steht da: die Raupe liest es vor, dann geht es zum Baum */
   const wort = () => {
     reihe.classList.add('fertig');
+    // Nur ein Wort (Spur 3: KLEBER), kein Baum: das Wort ist die Lösung
+    if (!d.gabeln) return ende(r, d, fertig);
     sag(r, 'lob', d.wortText, 'gut');
     K.summ([20, 40, 60]);
-    const los = () => { hook.loese = null; gabeln(); };
+    // Erinnerungskarten nur, wenn es sie in den Daten gibt (D-19: in Spur 20 entfallen sie)
+    const los = () => { hook.loese = null; if (d.erinnern) gabeln(); else baum(); };
     unten(knopf('weiter', K.UI.weiter), los);
     hook.loese = los;
   };

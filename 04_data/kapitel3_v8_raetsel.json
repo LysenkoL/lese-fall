@@ -1,5 +1,5 @@
 {
- "_info": "Rätsel, Ermittlungsbrett und Fallkarte zu Kapitel 3 (Spuren 13–18), Konzept v8 (02_design/KONZEPT_v8.md). Texte ohne Silben; app/scripts/build-v8.ts setzt Silben. Positionen in Prozent der Bildbreite/-höhe. Bildnamen unter objekte/, die es noch nicht gibt (voegel, gelbe_kreise_vorne/hinten, plakat, vogelschatten, tisch_leer), ersetzt app/src/v8/bilder.ts.",
+ "_info": "Rätsel, Ermittlungsbrett und Fallkarte zu Kapitel 3 (Spuren 13–19), Konzept v8 (02_design/KONZEPT_v8.md). Texte ohne Silben; app/scripts/build-v8.ts setzt Silben. Positionen in Prozent der Bildbreite/-höhe. Bildnamen unter objekte/, die es noch nicht gibt (voegel, gelbe_kreise_vorne/hinten, plakat, vogelschatten, tisch_leer), ersetzt app/src/v8/bilder.ts.",
  "kapitel": 3,
  "bild": "kapitel_3",
  "vorspann": "Ein gelber Kreis mit drei braunen Flecken. Und ein Schatten mit Flügeln.",
@@ -15,7 +15,7 @@
    "Der Käse mit den drei braunen Flecken ist Milas Mond. Hinten hat er den blauen Stern und den aufgerollten Faden.",
    "Oskar hat ihn nicht zerschnitten. Er hat nur Flecken aufgeklebt.",
    "Es war ein Missverständnis. Niemand wollte den Mond stehlen.",
-   "Ein großer Vogel mit langem Schwanz schaut aus dem Baum herunter."
+   "Ein großer Vogel mit langem Schwanz starrt auf den Silberstern am Mond."
   ],
   "frage": "Aber was will der Vogel bei uns auf dem Hof?",
   "stempel": "KAPITEL 3 GELÖST"
@@ -106,6 +106,15 @@
    },
    "fragenNeu": [],
    "raetsel": {
+    "art": "passtgenau",
+    "titel": "Passt genau",
+    "text": "…",
+    "werkzeug": "zeit"
+   },
+   "fragenWeg": [
+    "zerschnitten"
+   ],
+   "raetsel_alt": {
     "art": "unterschiede",
     "titel": "Was ist anders?",
     "text": "Die Lese-Raupe schaut zweimal hin. Im zweiten Bild sind vier Dinge anders. Tippe die richtigen Karten an.",
@@ -204,10 +213,7 @@
       "nein": "Das ist auf beiden Bildern gleich. Schau noch einmal genau hin."
      }
     ]
-   },
-   "fragenWeg": [
-    "zerschnitten"
-   ]
+   }
   },
   {
    "spur": 16,
@@ -367,7 +373,26 @@
   {
    "spur": 18,
    "bild": "k3_s18",
-   "haken": "Oben in der Astgabel legt der schwarz-weiße Vogel den Kopf schief. Er schaut auf den langen weißen Faden.",
+   "haken": "„Wartet mal! Ich habe eine Idee!“",
+   "karte": {
+    "titel": "Bens Idee",
+    "bild": "objekte/plakat",
+    "text": "Ein Mond mit Kratern. Für die Maus ist er ein Käse. So sind alle drei froh.",
+    "staub": false
+   },
+   "fragenNeu": [],
+   "fragenWeg": [],
+   "raetsel": {
+    "art": "waage",
+    "titel": "Welche Idee macht alle froh?",
+    "text": "…",
+    "werkzeug": "lesen"
+   }
+  },
+  {
+   "spur": 19,
+   "bild": "k3_s19",
+   "haken": "Oben im Baum legt der schwarz-weiße Vogel den Kopf schief. Er starrt auf den funkelnden Silberstern.",
    "karte": {
     "titel": "Ein neues Stück",
     "bild": "objekte/plakat",

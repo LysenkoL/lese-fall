@@ -1,6 +1,6 @@
-# LESE-FALL — DER VERSCHWUNDENE MOND · Text v8.7 · Kapitel 3
+# LESE-FALL — DER VERSCHWUNDENE MOND · Text v8.8 · Kapitel 3
 
-**Статус:** финальный текст автора от 17.11.2026 (`06_review/brainstorm/BUCH1_v8_7_FINAL.md`). Текст не менять здесь — сначала в файле автора. Разбивку на листы делает приложение.
+**Статус:** текст автора v8.8 от 25.11.2026 (`06_review/brainstorm/BUCH1_v8_8.md`, решение D-19). Текст не менять здесь — сначала в файле автора. Разбивку на листы делает приложение.
 
 ---
 
@@ -34,6 +34,8 @@ In diesem Augenblick blitzt Oskars silberne Bastelschere im Sonnenlicht auf — 
 
 Die Lese-Raupe schaut blitzschnell mit ihrem Zeitlupen-Blick in die Baumkrone hinauf: Zwischen den Zweigen sitzt ein großer Vogel mit spitzem Schnabel und langem Schwanz und äugt neugierig nach unten.
 
+Schnell zieht die Raupe den Kopf ein. „Oh je, ein großer Vogel!“, denkt sie. „Vögel mögen Raupen … zum Frühstück!“
+
 ### Spur 15 — Drei braune Flecken
 
 Ben deutet vorsichtig auf die drei braunen Käselöcher und die gelben Schnipsel: „Oskar, sag mal … Hast du für die Löcher und die Krümel etwa in den großen gelben Kreis hineingeschnitten?“
@@ -52,7 +54,7 @@ Oben am Fenster schmunzelt die Lese-Raupe: „Ein Mond im Käse-Kostüm mit drei
 
 Da kommen Ida, Nele, Tom und Emil fröhlich über den Hof zur Bank gerannt. Jedes Kind hält stolz seine graue Papiermaus aus dem Werkunterricht und einen eigenen gelben Pappkreis in der Hand!
 
-„Als wir gesehen haben, dass Oskar seiner Maus einen Festtagskäse bastelt, hatten wir eine super Idee!“, ruft Ida begeistert. „Wir haben für unsere Mäuse auch gelbe Käse mit drei braunen Flecken gebastelt, damit alle Mäuse nach eurem Theaterstück zusammen eine große Käse-Party feiern können!“
+„Wir haben vom Hof aus gesehen, wie Oskar seinen Festtagskäse ausgepackt hat. Da hatten wir sofort eine super Idee!“, ruft Ida begeistert. „Wir haben für unsere Mäuse ganz schnell auch gelbe Käse mit drei braunen Flecken gebastelt, damit alle Mäuse nach eurem Theaterstück zusammen eine große Käse-Party feiern können!“
 
 Lachend legen die Kinder ihre Kreise neben Oskars Käse auf die Bank. Jetzt liegen dort fünf gelbe Käse-Kreise nebeneinander — und von vorne sehen alle fünf haargenau gleich aus!
 
@@ -78,7 +80,9 @@ Ben kratzt sich grinsend am Kopf: „Eigentlich war ich schuld, weil ich den Mon
 
 „Und ich war so tief im Schrank verschwunden, dass ich nichts gemerkt habe!“, lacht Mila.
 
-Auf ihrem Fensterbrett atmet die Lese-Raupe zufrieden auf: „Kein böser Dieb — nur drei gute Ideen, die sich lustig in die Quere gekommen sind!“
+„Mein Stern!“, denkt die Lese-Raupe glücklich. „Den hat Mila nur für mich gemalt.“
+
+Dann atmet die Raupe zufrieden auf: „Kein böser Dieb — nur drei gute Ideen, die sich lustig in die Quere gekommen sind!“
 
 ### Spur 18 — Die rettende Idee
 
@@ -86,7 +90,21 @@ Oskar stupst vorsichtig an einen der braunen Papierflecken auf dem Mond, aber Be
 
 Mila hält ihren gepunkteten Mond ratlos hoch. „Aber was machen wir denn jetzt mit unserem Theaterstück?“
 
-Da schaut Ben erst auf den gefleckten Mond und dann auf Oskars kleine graue Papiermaus. Plötzlich schnippt er begeistert mit den Fingern: „Wartet mal! Der echte Mond am Himmel hat doch auch dunkle Krater! Eigentlich sieht unser Mond mit den drei braunen Flecken jetzt noch viel echter aus! Für die Menschen ist es ein Mond mit Kratern — aber für eine hungrige kleine Maus sieht er natürlich aus wie der größte Käse der Welt! Oskar, wir spielen einfach ein neues Stück, und du führst deine Maus auf der Bühne!“
+„Ohne Mond gibt es keinen Nachthimmel“, sagt sie. „Und ohne Nachthimmel gibt es kein Stück.“
+
+Oskar schaut traurig auf seine kleine graue Maus. „Und meine Maus wollte doch so gern ein Festessen haben …“
+
+„Einen neuen Mond schaffen wir nicht mehr“, seufzt Ben. „Bald geht das Theater los.“
+
+Da schaut Ben erst auf den gefleckten Mond und dann auf Oskars kleine graue Papiermaus. Plötzlich schnippt er mit den Fingern: „Wartet mal! Ich habe eine Idee!“
+
+„Welche Idee macht alle drei froh?“, überlegt die Lese-Raupe gespannt.
+
+### Spur 19 — Ein Mond mit Kratern
+
+„Der echte Mond am Himmel hat doch auch dunkle Krater!“, ruft Ben. „Mit den drei braunen Flecken sieht unser Mond jetzt noch viel echter aus! Für die Menschen ist es ein Mond mit Kratern. Aber für eine hungrige kleine Maus sieht er aus wie der größte Käse der Welt!“
+
+„Oskar, wir spielen einfach ein neues Stück“, sagt Ben. „Und du führst deine Maus auf der Bühne!“
 
 Oskar zuckt erschrocken zusammen und wird rot. „Wa-was? Ich soll selbst mit meiner Maus im Theater mitspielen? Vor allen Kindern?“
 
@@ -94,8 +112,12 @@ Oskar zuckt erschrocken zusammen und wird rot. „Wa-was? Ich soll selbst mit me
 
 Da strahlt Oskar über das ganze Gesicht: „Na gut! Dann hat meine kleine Maus heute nicht nur ein Festessen, sondern auch noch ihre allererste Rolle im Theater!“
 
-„Und damit unser Mond am Theaterhimmel besonders magisch aussieht, kriegt er oben am Faden noch einen Glitzerstern!“, ruft Mila und klebt einen funkelnden Stern aus Silberfolie direkt über das Fadenloch. Dann ruft sie Ida und den anderen Kindern auf dem Hof zu: „Hey, bringt zur Aufführung unbedingt alle eure gebastelten Mäuse mit — wir haben eine Riesen-Überraschung für euch!“
+Mila wickelt den weißen Faden wieder ab, damit der Mond gleich wieder am Theater hängen kann. „Und damit unser Mond besonders magisch aussieht, kriegt er noch einen Glitzerstern!“, ruft sie. Sie klebt einen funkelnden Stern aus Silberfolie direkt über das Fadenloch.
 
-„Au ja, wir kommen alle!“, rufen Ida und die anderen Kinder begeistert zurück. „Wir warten schon voller Ungeduld!“
+Dann ruft Mila zu Ida und den anderen Kindern auf dem Hof: „Hey, bringt zur Aufführung alle eure Mäuse mit! Wir haben eine Riesen-Überraschung für euch!“
 
-Schnell holt Ben das Theaterplakat und Stifte aus dem Klassenzimmer. Mila, Ben und Oskar beugen sich mitten auf der Bank eifrig über das Plakat: Sie müssen gar nicht viel ändern — Oskar malt unten schnell eine kleine graue Maus dazu, und Mila tupft drei braune Punkte auf den gemalten Mond. Während die drei ganz in ihre Zeichnung vertieft sind, liegt der echte Mond mit dem abgewickelten weißen Faden und dem funkelnden Silberstern ganz außen am Bankrand ohne Aufsicht in der Sonne …
+„Au ja, wir kommen alle!“, rufen die Kinder begeistert zurück.
+
+Schnell holt Ben das Theaterplakat und Stifte aus dem Klassenzimmer. Oskar malt unten eine kleine graue Maus dazu, und Mila tupft drei braune Punkte auf den gemalten Mond. Alle drei sind ganz in ihre Zeichnung vertieft. Der echte Mond liegt ganz außen am Bankrand in der Sonne. Sein Silberstern funkelt.
+
+Oben am Fenster erschrickt die Lese-Raupe: Im Baum sitzt wieder der große Vogel. Er starrt genau auf den funkelnden Silberstern! „Passt auf euren Mond auf!“, ruft die Raupe. Doch die Menschen können sie ja nicht hören …

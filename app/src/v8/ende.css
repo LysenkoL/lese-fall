@@ -1,4 +1,5 @@
-/* Lese-Fall · v8 · Nach dem Fall: festlicher Tresor, goldene Lupe, Epilog, Seite „Fall gelöst“, Fall-Album, Haus der Lese-Raupe. */
+/* Lese-Fall · v8 · Nach dem Fall: Konfetti, Urkunde in „Meine Urkunde“, Epilog, Seite „Fall gelöst“, Fall-Album, Haus der Lese-Raupe.
+   Tresor mit goldener Lupe und Urkunde des Finales: k4.css (Abschnitt Finale). */
 
 @keyframes ko-fall { from { transform: translate(0, -2rem) rotate(0); opacity: 1; } 85% { opacity: 1; } to { transform: translate(var(--x), 105vh) rotate(var(--r)); opacity: 0; } }
 @keyframes gross-auf { from { transform: scale(.45) rotate(-4deg); opacity: 0; } 70% { transform: scale(1.03) rotate(.6deg); opacity: 1; } to { transform: scale(1) rotate(-1deg); } }
@@ -17,33 +18,13 @@
 .konfetti.hinten, .feuerwerk.hinten { position: absolute; z-index: -1; } /* hinter Text und Karten, siehe effektHinten() in haus.ts */
 /* Text direkt auf dem Himmel, hinter dem das Konfetti fällt: eine weiche Nachtplatte in Himmelsfarbe,
    damit keine Schnipsel zwischen den Buchstaben stehen (das Kind liest gerade). Ohne Konfetti fällt sie nicht auf. */
-.zug.fin > :is(.zk, .zt1), .fest-t, .lg-text, .fin.urk .forts {
+.zug.fin > :is(.zk, .zt1) {
   background: rgba(24, 37, 74, .88); border-radius: .75rem; box-shadow: 0 0 1.25rem .75rem rgba(24, 37, 74, .88);
 }
 .konfetti i { position: absolute; top: 0; width: .5rem; height: .75rem; border-radius: 2px; animation: ko-fall var(--d) var(--v) cubic-bezier(.3, .2, .6, 1) both; }
 .konfetti i.rund { width: .625rem; height: .625rem; border-radius: 50%; }
 
-/* ---------- Tresor offen: das Bild wird groß, die Raupe tanzt ---------- */
-.fin.fest { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: safe center; gap: var(--a-3); padding: var(--a-4) var(--rand); overflow: hidden auto; text-align: center; }
-.fin.fest > :not(.lampe, .konfetti) { position: relative; flex-shrink: 0; }
-.fest-bild { margin: 0; width: min(100%, 34rem, calc((100cqh - 9rem) * 1.5)); background: #fff; padding: .5rem; border-radius: .375rem; box-shadow: 0 0 0 3px var(--senf), 0 0 60px rgba(244, 194, 67, .55), 0 18px 40px rgba(0, 0, 0, .45); animation: gross-auf .9s cubic-bezier(.2, 1.2, .4, 1) both; transform: rotate(-1deg); }
-.fest-bild img { width: 100%; display: block; border-radius: .25rem; }
-.fest-t { font-size: 1.5rem; font-weight: 800; color: var(--senf); animation: hoch .5s .5s both; }
-.fest-t .s-b, .fest-t .s-r { color: inherit; }
-.fest-raupe { position: absolute !important; right: max(1.25rem, calc(50% - 18rem)); bottom: 3.25rem; height: 6.5rem; z-index: 2; }
-.fest-raupe .rms { height: 100%; display: block; animation: tanz 1.2s .6s ease-in-out infinite; transform-origin: 50% 100%; filter: drop-shadow(0 6px 10px rgba(0, 0, 0, .4)); }
-
-/* ---------- Die Raupe schenkt die goldene Lupe ---------- */
-.lupe-gabe { gap: var(--a-3); }
-.lg-buehne { width: min(16rem, 70cqw); height: min(11rem, 28cqh); }
-.lg-licht { position: absolute; inset: -12%; border-radius: 50%; background: radial-gradient(circle, rgba(255, 224, 130, .75), rgba(244, 194, 67, .25) 45%, transparent 70%); animation: glanz 2.4s ease-in-out infinite; }
-.lg-lupe { position: absolute; left: 4%; top: 6%; width: 48%; height: 70%; animation: gross-auf .8s .2s both, schweb 3.2s 1s ease-in-out infinite; }
-.lg-lupe .glupe { width: 100%; height: 100%; object-fit: contain; display: block; filter: drop-shadow(0 0 14px rgba(255, 210, 90, .9)); }
-.lg-raupe { position: absolute; right: 2%; bottom: 0; height: 92%; width: auto; object-fit: contain; animation: hoch .5s both; filter: drop-shadow(0 4px 10px rgba(0, 0, 0, .35)); }
-.lg-text { font-size: 1.1875rem; line-height: 1.45; font-weight: 700; color: var(--auf-nacht); max-width: 28rem; animation: hoch .5s .3s both; }
-.lg-text .s-b, .lg-text .s-r { color: inherit; }
-
-/* ---------- Urkunde: goldene Lupe als Siegel ---------- */
+/* ---------- Urkunde aus „Meine Urkunde“ (gleiches HTML wie im Finale, urkundeHtml in finale.ts) ---------- */
 
 .urk-box { width: min(100%, 27.5rem); display: flex; flex-direction: column; gap: var(--a-3); padding: var(--a-3) 0; }
 .urk-box .fin.urk { min-height: 0; padding: 0; }
@@ -149,7 +130,7 @@ button.perl:active { transform: translateY(1px); }
 .neuhaus.weg { opacity: 0; transform: translate(-50%, .75rem); }
 
 @media (prefers-reduced-motion: reduce) {
-  .fest-bild, .fest-raupe .rms, .lg-lupe, .lg-licht, .ep-raupe, .ep-text p, .fg-stempel, .fg-raupe .rms, .al-karte, .h-raupe.mampf, .h-raupe.zieht, .h-blase.neu, .neuhaus { animation: none !important; }
+  .ep-raupe, .ep-text p, .fg-stempel, .fg-raupe .rms, .al-karte, .h-raupe.mampf, .h-raupe.zieht, .h-blase.neu, .neuhaus { animation: none !important; }
 }
 
 /* ---------- Feuerwerk und Herzchen ---------- */
@@ -169,7 +150,6 @@ button.perl:active { transform: translateY(1px); }
 .h-perl b { color: var(--tinte); }
 .h-buehne.mitbild { background-size: cover; background-position: center; min-height: 11rem; }
 .h-buehne.mitbild .h-blase { margin-bottom: 4rem; }
-.lg-raupe.gross { left: 0; right: 0; margin-inline: auto; height: 100%; }
 .ep-raupe.schlaeft { height: min(7rem, 18cqh); filter: brightness(.9) drop-shadow(0 0 22px rgba(246, 211, 91, .25)); }
 @keyframes brrr { 0%, 100% { translate: 0 0; } 10%, 30%, 50%, 70% { translate: -3px 0; } 20%, 40%, 60%, 80% { translate: 3px 0; } }
 .h-raupe.brrr { animation: brrr .9s linear; }

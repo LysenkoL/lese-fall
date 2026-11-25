@@ -18,13 +18,15 @@ import { T } from '../text';
 import { bildUrl as img } from './bilder';
 import { staub } from './staub';
 import * as R from './raetsel';
+import { SPIELE_WEG } from './raetsel_weg.ts';
+import { SPIELE_LESEN } from './raetsel_lesen.ts';
 import { zeigeFinale, urkundeHtml } from './finale.ts';
 import { zeigeHaus, neuHinweis, freiBei, raupeMitSache, konfetti, feuerwerk } from './haus.ts';
 import { App } from '@capacitor/app';
 
 const D: any = structuredClone(DATA_);
 /** Texte der Daten einmal in HTML mit Silben verwandeln (gleiche Schlüssel wie in build-v8.ts) */
-const TEXT = new Set(['raupeSagt', 'nein', 'nachLaub', 'text', 'titel', 'haken', 'frage', 'aufloesung', 'warum', 'tipp', 'erfolg', 'unklarTipp', 'vorspann', 'ausblick', 'name', 'saetze', 'warum2', 'unter', 'sagt', 'klebt', 'frage2', 'suche', 'nass', 'frage1', 'tipp1', 'unklar', 'frageRaus', 'regel', 'plakatFertig', 'start', 'liste', 'zuViel', 'nochMehr', 'falsch', 'ok', 'fund', 'knapp', 'frueh', 'hilfe', 'wortText', 'nicht', 'nachsehen', 'absatz', 'demo', 'jetzt', 'bedeutung']);
+const TEXT = new Set(['raupeSagt', 'raupeKurz', 'nein', 'nachLaub', 'text', 'titel', 'haken', 'frage', 'aufloesung', 'warum', 'tipp', 'erfolg', 'unklarTipp', 'vorspann', 'ausblick', 'name', 'saetze', 'warum2', 'unter', 'sagt', 'klebt', 'frage2', 'suche', 'nass', 'frage1', 'tipp1', 'unklar', 'frageRaus', 'regel', 'plakatFertig', 'start', 'liste', 'zuViel', 'nochMehr', 'falsch', 'ok', 'fund', 'knapp', 'frueh', 'hilfe', 'wortText', 'nicht', 'nachsehen', 'absatz', 'demo', 'jetzt', 'bedeutung']);
 function html(v: any, key = ''): any {
   if (typeof v === 'string') return TEXT.has(key) ? T(v) : v;
   if (Array.isArray(v)) return v.map((x) => html(x, key));
@@ -323,7 +325,7 @@ function tippAufl() {
 }
 
 /* ---------- Rätsel ---------- */
-const RAETSEL: Record<string, (r: HTMLElement, d: any, f: () => void) => void> = { buchstaben: R.buchstaben, unterschiede: R.unterschiede, versteckt: R.versteckt, merkmale: R.merkmale, reihe: R.reihe, ausschluss: R.ausschluss, sortieren: R.sortieren, umdrehen: R.umdrehen, klebstoff: R.klebstoff, lupe: R.lupe, schatten: R.schatten, kreise: R.kreise, agentencode: R.agentencode, plakat: R.plakat, suchbild: R.suchbild, spiegel: R.spiegel, astgabel: R.astgabel, faden: R.faden, nest: R.nest };
+const RAETSEL: Record<string, (r: HTMLElement, d: any, f: () => void) => void> = { buchstaben: R.buchstaben, unterschiede: R.unterschiede, versteckt: R.versteckt, merkmale: R.merkmale, reihe: R.reihe, ausschluss: R.ausschluss, sortieren: R.sortieren, umdrehen: R.umdrehen, klebstoff: R.klebstoff, lupe: R.lupe, schatten: R.schatten, kreise: R.kreise, agentencode: R.agentencode, plakat: R.plakat, suchbild: R.suchbild, spiegel: R.spiegel, astgabel: R.astgabel, wort: R.astgabel, faden: R.faden, nest: R.nest, ...SPIELE_WEG, ...SPIELE_LESEN };
 function raetsel() {
   modus('zug');
   const z = SP(stand.spur).raetsel;

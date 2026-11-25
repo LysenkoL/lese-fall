@@ -12,7 +12,7 @@ const ECHT = {
   ...import.meta.glob('../gen/{objekte,kinder}/*.webp', { eager: true, query: '?url', import: 'default' }),
   ...import.meta.glob('../../../assets/illustrationen/kinder/*.webp', { eager: true, query: '?url', import: 'default' }),
   ...import.meta.glob('../../../assets/illustrationen/objekte/*.webp', { eager: true, query: '?url', import: 'default' }),
-  ...import.meta.glob('../../../assets/illustrationen/{baum,baum_nest,nest_finale,nest_nah,nest_sammlung,tresor_zu,tresor_auf,k3_elster,k4_s19_elster,k4_s24_fenster}.webp', { eager: true, query: '?url', import: 'default' }),
+  ...import.meta.glob('../../../assets/illustrationen/{baum,baum_nest,nest_finale,nest_nah,nest_sammlung,tresor_zu,tresor_auf,k3_elster,k4_s19_elster,k4_s24_fenster,k3_s19,k4_s21_raupe}.webp', { eager: true, query: '?url', import: 'default' }),
 } as Record<string, string>;
 const SVGS = import.meta.glob('./ersatz/*.svg', { eager: true, query: '?url', import: 'default' }) as Record<string, string>;
 
@@ -48,6 +48,9 @@ export const ERSATZ: Record<string, string> = {
   'nest_finale': 'k4_s24',
   'objekte/kinder_hinten': 'ersatz/kinder_hinten',
   'objekte/raum_leer': 'ersatz/raum_leer',
+  // D-19: neue Szenenbilder (Prompts für die Besitzerin), bis dahin ein passendes vorhandenes Bild
+  'k3_s19': 'k3_elster',
+  'k4_s21_raupe': 'baum',
   'kinder/lina': 'kind/lina', 'kinder/tom': 'kind/tom', 'kinder/ida': 'kind/ida', 'kinder/emil': 'kind/emil', 'kinder/nele': 'kind/nele',
 };
 /** Pullis der Kinder (wie in Kapitel 1) für die gezeichneten Platzhalter */
@@ -72,7 +75,7 @@ export function bildUrl(n: string): string {
   if (z) {
     if (z.startsWith('kind/')) return kindSvg(z.slice(5));
     if (z.startsWith('ersatz/')) return SVGS[`./${z}.svg`] ?? '';
-    return img(z);
+    return echt(z) ?? img(z); // Ersatz kann auch ein Bild aus der Liste oben sein (z. B. k3_elster)
   }
   return img(n);
 }

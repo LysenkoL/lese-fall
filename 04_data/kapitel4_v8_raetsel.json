@@ -1,5 +1,5 @@
 {
- "_info": "Rätsel, Ermittlungsbrett, Fallkarte und Finale zu Kapitel 4 (Spuren 19–24), Konzept v8. Texte ohne Silben; app/scripts/build-v8.ts setzt Silben. Positionen in Prozent. Bilder, die es noch nicht gibt (baum, baum_nest, nest_finale, voegel, kinder_hinten, raum_leer, …), ersetzt app/src/v8/bilder.ts.",
+ "_info": "Rätsel, Ermittlungsbrett, Fallkarte und Finale zu Kapitel 4 (Spuren 20–24), Konzept v8. Texte ohne Silben; app/scripts/build-v8.ts setzt Silben. Positionen in Prozent. Bilder, die es noch nicht gibt (baum, baum_nest, nest_finale, voegel, kinder_hinten, raum_leer, …), ersetzt app/src/v8/bilder.ts.",
  "kapitel": 4,
  "bild": "kapitel_4",
  "vorspann": "Ein Vogel mit einem langen Schwanz. Ein Nest in der Astgabel. Und etwas, das darin blitzt.",
@@ -12,19 +12,22 @@
   "bild": "k4_s24",
   "titel": "Das wissen wir jetzt",
   "saetze": [
-   "Der Vogel war eine Elster. Sie liebt alles, was glitzert.",
-   "Den Schlüssel mit dem Glitzer-Stern hat sie in ihr Nest geholt. Und den Mond wollte sie wegen des Silbersterns.",
-   "Mond, Sonne und Maus sind wieder da.",
-   "Zum Trost bekommt die Elster einen Glitzer-Schmuck für ihr Nest."
+   "Der Vogel ist eine Elster. Sie liebt alles, was glänzt.",
+   "Den Schlüssel mit dem Silberstern hat sie in ihr Nest geholt. Den Mond wollte sie wegen des Silbersterns am Faden.",
+   "Schlüssel und Mond sind wieder da.",
+   "Für den Schlüssel bekam die Elster einen Glitzer-Schmuck."
   ],
   "frage": "Vier Buchstaben sind gesammelt. Was ergeben sie?",
   "stempel": "KAPITEL 4 GELÖST"
  },
- "ausblick": "Alle vier Buchstaben sind gesammelt. Jetzt geht es zum Tresor der Lese-Raupe!",
+ "ausblick": "Frau Sommer hält ihren Schlüssel in der Hand. Draußen funkelt der Nest-Schmuck der Elster. Jetzt fehlt nur noch eins: der Tresor der Lese-Raupe!",
  "ui": {
   "faden": "Faden ziehen",
   "tresorAuf": "Der Tresor ist offen!",
   "meister": "Meister-Detektiv",
+  "meisterin": "Meister-Detektivin",
+  "wahlDetektiv": "Detektiv",
+  "wahlDetektivin": "Detektivin",
   "hatGeloest": "hat den Fall gelöst:",
   "fallName": "Der verschwundene Mond",
   "urkLob": "Alle Rätsel sind gelöst. Danke für deine Hilfe!",
@@ -78,19 +81,9 @@
   "iss_kaese": "Käse! Wie der große Käse-Mond im Theater. Hihi!"
  },
  "finale": {
-  "szene": {
-   "bild": "nest_finale",
-   "titel": "Das königliche Glitzer-Nest",
-   "saetze": [
-    "Vorsichtig lehnen sich Frau Sommer, Mila, Ben und Oskar aus dem Fenster und flechten ihre gebastelten Glitzer-Sterne und die kleine Silberkrone fest in die Zweige rund um das Nest ein, sodass kein Windstoß sie jemals wegwehen kann.",
-    "Kaum treten die vier einen Schritt vom Fenster zurück, segelt die schwarz-weiße Elster aus der Baumkrone herab. Sie hüpft auf den Ast, legt stolz den Kopf schief und bestaunt ihr neues Zuhause, das in der Abendsonne wie ein echtes kleines Königsschloss funkelt!",
-    "„Jetzt hat unsere Schulhof-Elster das prächtigste Königliche Glitzer-Nest der ganzen Stadt!“, freut sich Mila, während drinnen der Käse-Mond im Theater, Frau Sommers Sonne an der Pinnwand und die kleine Maus in Oskars Hand um die Wette strahlen.",
-    "Alle sind glücklich — nur eine einzige Sache ist noch verschlossen: der geheime Tresor der Lese-Raupe!"
-   ]
-  },
   "code": {
    "titel": "Der Tresor der Lese-Raupe",
-   "text": "Für jedes gelöste Kapitel hast du dir einen Buchstaben verdient. Wenn du die vier Buchstaben in der richtigen Reihenfolge am Tresor einstellst, verraten sie dir das Lösungswort!",
+   "text": "Frau Sommer hat ihren Schlüssel wieder, und die Elster hat ihren Schmuck. Jetzt fehlt nur noch eins: der Tresor der Lese-Raupe! Leg die vier Buchstaben in die Felder.",
    "start": "Tippe einen Buchstaben an. Er springt in das nächste freie Feld. Du kannst ihn auch ziehen.",
    "tipp": "Das Wort sagt, wo der Schlüssel lag. Er lag in der Astgabel in einem …",
    "hilfe": "Die Lese-Raupe legt das Wort für dich: NEST. Dort lag der Schlüssel.",
@@ -98,30 +91,27 @@
   },
   "auf": {
    "titel": "Der Tresor ist offen!",
-   "text": "Die Tresortür schwingt auf, goldenes Licht strömt heraus — und drinnen leuchtet ein wunderschönes Meister-Gemälde vom Super-Königlichen Glitzer-Nest mit der stolzen Elster!"
+   "text": "Die Tür schwingt auf. Goldenes Licht strömt heraus. Ganz hinten liegt etwas, das funkelt: eine goldene Tautropfen-Lupe!"
+  },
+  "lupe": {
+   "titel": "Ein Geschenk für dich",
+   "sagt": "„Die ist für dich, Partner. Nur echte Detektive bekommen sie.“"
   },
   "urkunde": {
    "titel": "Die Urkunde"
   },
-  "raupeSagt": "„Mila, Ben und Oskar glauben bestimmt, sie hätten das Rätsel ganz allein gelöst“, kichert die Raupe. „Dabei habe ich ihnen überall heimlich die Spuren vor die Nase geschubst! Aber psst — dass ich die eigentliche Chef-Detektivin war, bleibt unser kleines Geheimnis. Denn die Menschen hören mich ja nicht — nur du! Ohne deine kluge Spürnase hätte ich es nie geschafft. Bis zum nächsten Fall, mein Partner!“",
-  "lupe": {
-   "titel": "Ein Geschenk für dich",
-   "text": "Ganz hinten im Tresor glänzt noch etwas. Die Lese-Raupe holt es heraus. Es ist eine goldene Tautropfen-Lupe!",
-   "sagt": "„Die ist für dich, Partner. Nur echte Detektive bekommen sie.“"
-  },
+  "raupeKurz": "„Psst! Mila, Ben und Oskar denken, sie waren ganz allein. Aber wir zwei wissen es besser, Partner!“",
   "epilog": {
    "titel": "Ein stiller Abend",
    "saetze": [
-    "Es wird Abend. Das Klassenzimmer ist still und leer.",
-    "Draußen sitzt die Elster in ihrem Glitzer-Nest und putzt ihre Federn.",
-    "Im Theater hängt der Mond. Sein Silberstern funkelt im letzten Licht.",
-    "Die Lese-Raupe kuschelt sich unter den Mond. Sie gähnt und schläft ein."
+    "Draußen putzt die Elster ihre Federn. Ihr neuer Glitzer-Schmuck funkelt.",
+    "Die Lese-Raupe schaut zu ihr hinüber. Sie hat keine Angst mehr. Dann gähnt sie und schläft unter dem Mond ein."
    ]
   }
  },
  "spuren": [
   {
-   "spur": 19,
+   "spur": 20,
    "bild": "k4_s19_elster",
    "schluessel": true,
    "haken": "„Was, wenn der Vogel auch Frau Sommers Schlüssel dort hochgeschleppt hat?!“",
@@ -253,37 +243,123 @@
     "stempel": "HIER SITZT DAS NEST",
     "erfolg": "Hier sitzt das Nest! Unter dem Fenster, zwischen den zwei Zweigen.",
     "start": "Der Baum hat viele Äste. Tippe dahin, wo du das Nest vermutest.",
-    "erinnern": {
-     "frage": "Welcher Ast? Was weißt du noch?",
-     "start": "Das Wort AST reicht nicht. Wähle die zwei Karten, die zum Text passen.",
-     "karten": [
-      {
-       "text": "Unter dem Fenster",
-       "ok": true
-      },
-      {
-       "text": "Zwei Zweige wie ein V",
-       "ok": true
-      },
-      {
-       "text": "Ganz oben im Baum"
-      },
-      {
-       "text": "Beim Vogelhaus"
-      }
-     ],
-     "nein": "Das stand nicht im Text. Denk an den Vogel und das Fenster.",
-     "ok": "Genau! Der Ast liegt unter dem Fenster, und dort stehen zwei Zweige wie ein V. Jetzt such ihn im Baum."
-    },
     "nachsehen": "Im Text nachsehen",
     "werkzeug": "fuehler"
    },
    "fragenWeg": []
   },
   {
-   "spur": 20,
-   "bild": "baum",
-   "haken": "„Oskar, halt deine Maus bereit!“",
+   "spur": 21,
+   "bild": "k4_s21_raupe",
+   "haken": "Am Nest blitzt etwas Silbernes. Ist das der Schlüssel?",
+   "karte": {
+    "titel": "Am Nest",
+    "bild": "nest_nah",
+    "ausschnitt": {
+     "x": 22,
+     "y": 18,
+     "w": 26,
+     "h": 36
+    },
+    "text": "Im Nest blitzt eine ganze Sammlung. Ganz unten guckt eine silberne Sternspitze hervor.",
+    "staub": false
+   },
+   "fragenNeu": [
+    {
+     "id": "k4nest",
+     "text": "Liegt Frau Sommers Schlüssel im Nest?"
+    }
+   ],
+   "fragenWeg": [],
+   "raetsel": {
+    "art": "raupenweg",
+    "titel": "Der Weg zum Nest",
+    "text": "…",
+    "werkzeug": "fuehler"
+   }
+  },
+  {
+   "spur": 22,
+   "bild": "k4_s20_vorher",
+   "haken": "Gleich geht der Vorhang auf!",
+   "karte": {
+    "titel": "Oskars Maus",
+    "bild": "objekte/maus_seite",
+    "text": "Oskars Maus steckte in seiner Kapuze. Die Raupe hat ihm mit einem Blatt geholfen.",
+    "staub": false
+   },
+   "fragenNeu": [],
+   "fragenWeg": [],
+   "raetsel": {
+    "art": "lupe",
+    "titel": "Wo ist die Maus?",
+    "text": "Alle suchen Oskars Maus. Fahre mit der Lupe über das Bild. Wo blitzt etwas Rosafarbenes?",
+    "bild": "k4_s20_spiel",
+    "ratio": 1.5,
+    "zoom": 2.6,
+    "ziel": {
+     "x": 72,
+     "y": 43,
+     "r": 5.5
+    },
+    "fehlFunde": [
+     {
+      "x": 84,
+      "y": 42,
+      "r": 6,
+      "text": "Die grüne Kiste. Da sucht Oskar schon. Keine Maus."
+     },
+     {
+      "x": 40,
+      "y": 54,
+      "r": 6,
+      "text": "Das blaue Tablett. Da liegt nur Papier."
+     },
+     {
+      "x": 13,
+      "y": 52,
+      "r": 6,
+      "text": "Das bin ja ich! Mich suchen sie aber nicht."
+     },
+     {
+      "x": 52,
+      "y": 72,
+      "r": 6,
+      "text": "Mila sucht unter dem Tisch. Da ist keine Maus."
+     }
+    ],
+    "start": "Mit meiner Lupe sieht man Kleines groß. Wo ist etwas Rosafarbenes?",
+    "tipp": "Schau auf Oskars Rücken. Was hat er unter dem Baum gemacht?",
+    "fund": "Da! Ein rosa Mäuseschwanz in Oskars Kapuze!",
+    "erfolg": "Ich lasse ein Blatt auf Oskars Nacken segeln. Psst!",
+    "werkzeug": "lupe"
+   }
+  },
+  {
+   "spur": 23,
+   "bild": "k4_s22",
+   "haken": "„Eine Elster! Wir basteln ihr ein Geschenk!“",
+   "karte": {
+    "titel": "Eine Elster",
+    "bild": "objekte/elster",
+    "text": "Der Vogel ist eine Elster: schwarz-weiß, mit langem Schwanz, groß wie eine Taube. Sie liebt alles, was glänzt.",
+    "staub": false
+   },
+   "fragenNeu": [],
+   "fragenWeg": [
+    "k3vogel"
+   ],
+   "raetsel": {
+    "art": "lexikon",
+    "titel": "Das Vogelbuch",
+    "text": "…",
+    "werkzeug": "lesen"
+   }
+  },
+  {
+   "spur": 24,
+   "bild": "k4_s24_fenster",
+   "haken": "Das Nest! Und was liegt darin?",
    "karte": {
     "titel": "Der Schlüssel",
     "bild": "nest_nah",
@@ -293,577 +369,20 @@
      "w": 26,
      "h": 36
     },
-    "text": "Im Nest lag Frau Sommers Schlüssel. Den Vogel locken Glitzer-Sterne an: am Schlüssel und am Mond.",
+    "text": "Der Schlüssel lag im Nest. Die Elster liebt alles, was glänzt: den Silberstern am Schlüssel und am Mond.",
     "staub": false
    },
    "fragenNeu": [],
    "fragenWeg": [
     "schluessel",
-    "k3plan"
+    "k3plan",
+    "k4nest"
    ],
-   "raetsel": {
-    "art": "lupe",
-    "titel": "Was blitzt im Nest?",
-    "text": "Frau Sommer sieht durch die dichten Blätter nichts. Fahre mit der Lupe über das Nest und finde ihren Schlüssel.",
-    "bild": "nest_nah",
-    "ratio": 1.5,
-    "zoom": 3.0,
-    "ziel": {
-     "x": 31.5,
-     "y": 45,
-     "r": 7.5
-    },
-    "fehlFunde": [
-     {
-      "x": 33,
-      "y": 68,
-      "r": 5.5,
-      "text": "Ein goldenes Glöckchen. Es glänzt, aber es ist kein Schlüssel."
-     },
-     {
-      "x": 50,
-      "y": 45,
-      "r": 6,
-      "text": "Ein silberner Kronkorken. Er glänzt, aber es ist kein Schlüssel."
-     },
-     {
-      "x": 70,
-      "y": 46,
-      "r": 6,
-      "text": "Ein buntes Glasscherbchen. Hübsch, aber kein Schlüssel."
-     },
-     {
-      "x": 66,
-      "y": 29,
-      "r": 5,
-      "text": "Eine Büroklammer aus Metall. Kein Schlüssel."
-     }
-    ],
-    "start": "Mit meiner Lupe sieht man Kleines groß. Hier glänzt vieles. Aber wo ist der Schlüssel?",
-    "tipp": "Der Schlüssel hängt an einem kleinen silbernen Glitzer-Stern.",
-    "fund": "Da ist er! Der Schlüssel mit dem silbernen Glitzer-Stern.",
-    "erfolg": "Gefunden! KLING! Frau Sommer holt ihren Schlüssel aus dem Nest.",
-    "werkzeug": "lupe"
-   }
-  },
-  {
-   "spur": 21,
-   "bild": "k4_s20_spiel",
-   "haken": "Die Tür geht weit auf, und die Kinder der Gruppe strömen herein!",
-   "karte": {
-    "titel": "Oskars Maus",
-    "bild": "objekte/maus_seite",
-    "text": "Oskars Maus steckte in seiner Kapuze. Und jetzt hat jedes Ding seinen Platz: Papier aufs Tablett, Puppen in die Kiste, der Mond neben die Wolke.",
-    "staub": false
-   },
-   "fragenWeg": [],
-   "raetsel": {
-    "art": "unterschiede",
-    "titel": "Alles an seinem Platz",
-    "text": "Vorhin und jetzt: Was hat seinen Platz gewechselt? Tippe die sechs richtigen Karten an.",
-    "basis": "objekte/raum_leer",
-    "deko": [
-     {
-      "bild": "objekte/theater",
-      "x": 50,
-      "y": 52,
-      "w": 36,
-      "vorhin": true,
-      "jetzt": true
-     },
-     {
-      "bild": "objekte/tablett_leer",
-      "x": 20,
-      "y": 78,
-      "w": 21,
-      "vorhin": true,
-      "jetzt": true
-     },
-     {
-      "bild": "objekte/stiftebecher",
-      "x": 92,
-      "y": 70,
-      "w": 6,
-      "vorhin": true,
-      "jetzt": true
-     }
-    ],
-    "dinge": [
-     {
-      "id": "mond",
-      "bild": "objekte/mond_vorne",
-      "x": 40,
-      "y": 30,
-      "w": 5,
-      "vorhin": {
-       "x": 60,
-       "y": 88,
-       "w": 5.5,
-       "rot": 25
-      },
-      "jetzt": {
-       "x": 33,
-       "y": 38,
-       "w": 5
-      },
-      "zonen": [
-       {
-        "x": 60,
-        "y": 88,
-        "w": 9,
-        "h": 9
-       },
-       {
-        "x": 33,
-        "y": 38,
-        "w": 9,
-        "h": 9
-       }
-      ],
-      "tipp": "Wo ist der Mond? Vorhin lag er unten.",
-      "name": "Mond"
-     },
-     {
-      "id": "papier",
-      "bild": "objekte/papierreste",
-      "x": 20,
-      "y": 76,
-      "w": 7,
-      "vorhin": {
-       "x": 46,
-       "y": 82,
-       "w": 8
-      },
-      "jetzt": {
-       "x": 20,
-       "y": 76,
-       "w": 7
-      },
-      "zonen": [
-       {
-        "x": 46,
-        "y": 82,
-        "w": 9,
-        "h": 9
-       },
-       {
-        "x": 20,
-        "y": 76,
-        "w": 9,
-        "h": 9
-       }
-      ],
-      "tipp": "Schau auf das blaue Tablett links.",
-      "name": "Papierreste"
-     },
-     {
-      "id": "schere",
-      "bild": "objekte/schere",
-      "x": 33,
-      "y": 91,
-      "w": 6,
-      "vorhin": {
-       "x": 33,
-       "y": 91,
-       "w": 6,
-       "rot": -20
-      },
-      "jetzt": false,
-      "zonen": [
-       {
-        "x": 33,
-        "y": 91,
-        "w": 9,
-        "h": 9
-       }
-      ],
-      "tipp": "Vorhin lag etwas Rotes auf dem Boden.",
-      "name": "Schere"
-     },
-     {
-      "id": "puppen",
-      "bild": "objekte/kiste_gruen",
-      "x": 78,
-      "y": 82,
-      "w": 12,
-      "vorhin": {
-       "bild": "objekte/fuchs_puppe",
-       "x": 72,
-       "y": 88,
-       "w": 6.5
-      },
-      "jetzt": {
-       "x": 78,
-       "y": 82,
-       "w": 12
-      },
-      "zonen": [
-       {
-        "x": 74,
-        "y": 85,
-        "w": 14,
-        "h": 13
-       }
-      ],
-      "tipp": "Schau unten rechts. Dort hat sich etwas verändert.",
-      "name": "Puppen",
-      "karte": "objekte/fuchs_puppe"
-     },
-     {
-      "id": "kleber",
-      "bild": "objekte/kleber",
-      "x": 57,
-      "y": 78,
-      "w": 4.5,
-      "vorhin": {
-       "x": 57,
-       "y": 78,
-       "w": 4.5
-      },
-      "jetzt": {
-       "x": 50,
-       "y": 96,
-       "w": 4.5,
-       "rot": 80
-      },
-      "zonen": [
-       {
-        "x": 57,
-        "y": 78,
-        "w": 9,
-        "h": 9
-       },
-       {
-        "x": 50,
-        "y": 96,
-        "w": 9,
-        "h": 9
-       }
-      ],
-      "tipp": "Wo steht die Kleberflasche? Vorhin stand sie aufrecht.",
-      "name": "Kleber"
-     },
-     {
-      "id": "bleistift",
-      "bild": "objekte/bleistift_gruen",
-      "x": 84,
-      "y": 80,
-      "w": 7,
-      "vorhin": {
-       "x": 84,
-       "y": 80,
-       "w": 7,
-       "rot": -20
-      },
-      "jetzt": {
-       "x": 64,
-       "y": 96,
-       "w": 7,
-       "rot": 70
-      },
-      "zonen": [
-       {
-        "x": 84,
-        "y": 80,
-        "w": 9,
-        "h": 9
-       },
-       {
-        "x": 64,
-        "y": 96,
-        "w": 9,
-        "h": 9
-       }
-      ],
-      "tipp": "Wo liegt der grüne Bleistift? Vorhin lag er rechts.",
-      "name": "Bleistift"
-     }
-    ],
-    "sortieren": {
-     "text": "Wer hat das getan? Ziehe jede Karte zu dem Kind. Zwei Dinge hat niemand getan.",
-     "start": "Gut gesucht! Und jetzt: Wer hat beim Aufräumen was getan? Das steht in der Geschichte.",
-     "ziele": [
-      {
-       "id": "oskar",
-       "name": "Das war Oskar",
-       "unter": "",
-       "bild": "frei/oskar_froh"
-      },
-      {
-       "id": "mila",
-       "name": "Das war Mila",
-       "unter": "",
-       "bild": "frei/mila_froh"
-      },
-      {
-       "id": "ben",
-       "name": "Das war Ben",
-       "unter": "",
-       "bild": "frei/ben_froh"
-      },
-      {
-       "id": "liegt",
-       "name": "Das war niemand",
-       "unter": "",
-       "bild": "objekte/u_zufall"
-      }
-     ],
-     "dinge": [
-      {
-       "id": "papier",
-       "name": "Papier aufs Tablett gelegt",
-       "bild": "objekte/papierreste",
-       "ziel": "oskar",
-       "warum": "Oskar hat die Papierreste auf das blaue Tablett gelegt."
-      },
-      {
-       "id": "schere",
-       "name": "Schere in den Becher gesteckt",
-       "bild": "objekte/schere",
-       "ziel": "oskar",
-       "warum": "Oskar hat die Schere in den Stiftebecher gesteckt."
-      },
-      {
-       "id": "puppen",
-       "name": "Puppen in die Kiste gelegt",
-       "bild": "objekte/kiste_gruen",
-       "ziel": "mila",
-       "warum": "Mila hat die Puppen in die grüne Kiste gelegt."
-      },
-      {
-       "id": "mond",
-       "name": "Mond an die Bühne gehängt",
-       "bild": "objekte/mond_vorne",
-       "ziel": "ben",
-       "warum": "Ben hat den Mond neben die Wolke gehängt."
-      },
-      {
-       "id": "kleber",
-       "name": "Kleber aufgehoben",
-       "bild": "objekte/kleber",
-       "ziel": "liegt",
-       "warum": "Die Kleberflasche ist vom Tisch gefallen. Niemand hat sie weggeräumt."
-      },
-      {
-       "id": "bleistift",
-       "name": "Bleistift aufgehoben",
-       "bild": "objekte/bleistift_gruen",
-       "ziel": "liegt",
-       "warum": "Der Bleistift ist unter den Stuhl gerollt. Niemand hat ihn weggeräumt."
-      }
-     ]
-    },
-    "erfolg": "Fast alles hat seinen Platz, und du weißt, wer es war. Jetzt können die Zuschauer kommen.",
-    "werkzeug": "zeit",
-    "andere": [
-     {
-      "id": "theater",
-      "bild": "objekte/theater",
-      "name": "Theater",
-      "nein": "Das ist auf beiden Bildern gleich. Schau noch einmal genau hin."
-     },
-     {
-      "id": "tablett",
-      "bild": "objekte/tablett_leer",
-      "name": "Tablett",
-      "nein": "Das ist auf beiden Bildern gleich. Schau noch einmal genau hin."
-     },
-     {
-      "id": "becher",
-      "bild": "objekte/stiftebecher",
-      "name": "Stiftebecher",
-      "nein": "Das ist auf beiden Bildern gleich. Schau noch einmal genau hin."
-     }
-    ]
-   },
-   "fragenNeu": []
-  },
-  {
-   "spur": 22,
-   "bild": "k4_s22",
-   "haken": "Der Vorhang fällt. Einen Moment lang ist es ganz still.",
-   "karte": {
-    "titel": "Das Theaterstück",
-    "bild": "k4_s22",
-    "text": "Immer wenn die Maus springt, zieht Ben den Käse höher. Das Publikum lacht.",
-    "staub": false,
-    "ausschnitt": {
-     "x": 32,
-     "y": 4,
-     "w": 42,
-     "h": 42
-    }
-   },
-   "fragenNeu": [],
-   "raetsel": {
-    "art": "reihe",
-    "titel": "Wie kam der Mond auf die Bühne?",
-    "text": "Die Lese-Raupe erinnert sich an den ganzen Tag. Bring die sechs Bilder in die richtige Reihenfolge.",
-    "karten": [
-     {
-      "id": "3",
-      "bild": "k2_s9",
-      "text": "Oskar bastelt heimlich"
-     },
-     {
-      "id": "6",
-      "bild": "k4_s19",
-      "text": "Ben hängt den Mond wieder auf"
-     },
-     {
-      "id": "1",
-      "bild": "k1_s1",
-      "text": "Mila zeigt ihren Mond"
-     },
-     {
-      "id": "5",
-      "bild": "k3_elster",
-      "text": "Der Vogel schnappt den Mond"
-     },
-     {
-      "id": "2",
-      "bild": "k1_s2_nachher",
-      "text": "Der Mond ist weg"
-     },
-     {
-      "id": "4",
-      "bild": "k3_s15",
-      "text": "Aus dem Mond wird ein Käse"
-     }
-    ],
-    "reihenfolge": [
-     "1",
-     "2",
-     "3",
-     "4",
-     "5",
-     "6"
-    ],
-    "erfolg": "Genau so war es. Was für eine Reise für einen einzigen Mond!",
-    "werkzeug": "zeit"
-   },
-   "fragenWeg": []
-  },
-  {
-   "spur": 23,
-   "bild": "k4_s23",
-   "haken": "„Wollen wir der Elster ein Glitzer-Kunstwerk für ihr Nest basteln?“ – „Jaaa!“",
-   "karte": {
-    "titel": "Eine Elster",
-    "bild": "objekte/elster",
-    "text": "Der Vogel ist eine Elster: schwarz-weiß, mit sehr langem Schwanz, groß wie eine Taube. Sie schmückt ihr Nest mit Glitzer.",
-    "staub": false
-   },
-   "fragenWeg": [
-    "k3vogel"
-   ],
-   "raetsel": {
-    "art": "ausschluss",
-    "titel": "Welcher Vogel war es?",
-    "text": "Schwarz-weiß, langer Schwanz, groß wie eine Taube. Lies jeden Hinweis und tippe alle Vögel an, die nicht passen.",
-    "rausText": "raus",
-    "kandidaten": [
-     {
-      "id": "elster",
-      "name": "Elster",
-      "crop": {
-       "bild": "objekte/voegel",
-       "n": 5,
-       "i": 0
-      },
-      "cm": 46,
-      "skala": 1.0
-     },
-     {
-      "id": "bachstelze",
-      "name": "Bachstelze",
-      "crop": {
-       "bild": "objekte/voegel",
-       "n": 5,
-       "i": 1
-      },
-      "cm": 18,
-      "skala": 0.63
-     },
-     {
-      "id": "specht",
-      "name": "Buntspecht",
-      "crop": {
-       "bild": "objekte/voegel",
-       "n": 5,
-       "i": 2
-      },
-      "cm": 23,
-      "skala": 0.7
-     },
-     {
-      "id": "amsel",
-      "name": "Amsel",
-      "crop": {
-       "bild": "objekte/voegel",
-       "n": 5,
-       "i": 3
-      },
-      "cm": 25,
-      "skala": 0.72
-     },
-     {
-      "id": "meise",
-      "name": "Kohlmeise",
-      "crop": {
-       "bild": "objekte/voegel",
-       "n": 5,
-       "i": 4
-      },
-      "cm": 14,
-      "skala": 0.58
-     }
-    ],
-    "hinweise": [
-     {
-      "text": "Er ist schwarz und weiß.",
-      "raus": [
-       "amsel",
-       "meise"
-      ]
-     },
-     {
-      "text": "Sein Schwanz ist sehr lang.",
-      "raus": [
-       "specht"
-      ]
-     },
-     {
-      "text": "Er ist groß, so groß wie eine Taube. Das sind mehr als 30 cm.",
-      "raus": [
-       "bachstelze"
-      ]
-     }
-    ],
-    "loesung": "elster",
-    "stempel": "DER VOGEL: ELSTER",
-    "erfolg": "Es war eine Elster! Elstern gehören zu den Rabenvögeln und sind sehr schlau. Sie erkennen sich sogar selbst im Spiegel.",
-    "werkzeug": "lesen"
-   },
-   "fragenNeu": []
-  },
-  {
-   "spur": 24,
-   "bild": "k4_s24_fenster",
-   "haken": "Das Nest! Und was hängt daran?",
-   "karte": {
-    "titel": "Die Glitzer-Sammlung",
-    "bild": "nest_sammlung",
-    "text": "Da ist das Nest der Elster mit ihrer Glitzer-Sammlung vom Hof. Hier kommt der Schmuck hin.",
-    "staub": false
-   },
-   "fragenWeg": [],
-   "schluessel": false,
    "raetsel": {
     "art": "nest",
-    "titel": "Wo sitzt das Nest?",
-    "text": "Der Wind hat Blätter vor die Astgabel geweht. Wisch sie weg. Dann zeigt die Lupe die Sammlung der Elster.",
-    "bild": "nest_sammlung",
+    "titel": "Wo ist der Schlüssel?",
+    "text": "Der Wind hat Blätter vor das Nest geweht. Wisch sie weg. Dann finde im Nest den Schlüssel mit dem silbernen Glitzer-Stern.",
+    "bild": "nest_nah",
     "ratio": 1.5,
     "zone": {
      "x": 50,
@@ -871,66 +390,51 @@
      "r": 34
     },
     "start": "Erst wischst du die Blätter weg. Dann siehst du in das Nest.",
-    "nachLaub": "Da ist das Nest! Was gehört zur Glitzer-Sammlung der Elster? Tippe nur an, was glänzt.",
-    "frage": "Tippe alles an, was glänzt.",
-    "tipp": "Glänzt das wirklich? Schau, was aus Metall, Glas oder Glitzerfolie ist.",
+    "nachLaub": "Da ist das Nest! Hier glänzt vieles. Aber wo ist der Schlüssel mit dem Silberstern?",
+    "frage": "Finde den Schlüssel.",
+    "tipp": "Der Schlüssel hängt an einem kleinen silbernen Glitzer-Stern.",
     "ziele": [
      {
-      "id": "klammer",
-      "x": 66,
-      "y": 29,
-      "r": 6.5,
-      "ok": "Eine Büroklammer aus Metall. Sie glänzt silbern."
-     },
-     {
-      "id": "deckel",
-      "x": 50,
-      "y": 44,
-      "r": 7,
-      "ok": "Ein silberner Kronkorken. Er glänzt in der Sonne."
-     },
-     {
-      "id": "murmel",
-      "x": 70,
-      "y": 46,
-      "r": 6,
-      "ok": "Ein buntes Glasscherbchen. Es funkelt in der Sonne."
-     },
-     {
-      "id": "gloeckchen",
-      "x": 33,
-      "y": 68,
-      "r": 6,
-      "ok": "Ein Glöckchen aus Metall. Es glänzt golden."
-     },
-     {
-      "id": "folie",
-      "x": 49,
-      "y": 72,
-      "r": 6.5,
-      "ok": "Ein glitzerndes Bonbonpapier. Silbern und bunt."
+      "id": "schluessel",
+      "x": 31.5,
+      "y": 45,
+      "r": 7.5,
+      "ok": "Da ist er! Der Schlüssel mit dem silbernen Glitzer-Stern."
      }
     ],
     "andere": [
      {
-      "id": "knopf",
-      "x": 51,
-      "y": 21,
-      "r": 6.5,
-      "nein": "Ein roter Knopf. Er glänzt nicht. Den hat wohl der Wind hergeweht."
+      "id": "gloeckchen",
+      "x": 33,
+      "y": 68,
+      "r": 5.5,
+      "nein": "Ein goldenes Glöckchen. Es glänzt, aber es ist kein Schlüssel."
      },
      {
-      "id": "papier",
-      "x": 65,
-      "y": 67,
+      "id": "deckel",
+      "x": 50,
+      "y": 45,
       "r": 6,
-      "nein": "Ein gelbes Dreieck aus Papier. Das ist ein Krümel von Oskars Käse! Er glänzt nicht. Der Wind hat ihn hergeweht."
+      "nein": "Ein silberner Kronkorken. Er glänzt, aber es ist kein Schlüssel."
+     },
+     {
+      "id": "glas",
+      "x": 70,
+      "y": 46,
+      "r": 6,
+      "nein": "Ein buntes Glasscherbchen. Hübsch, aber kein Schlüssel."
+     },
+     {
+      "id": "klammer",
+      "x": 66,
+      "y": 29,
+      "r": 5,
+      "nein": "Eine Büroklammer aus Metall. Kein Schlüssel."
      }
     ],
-    "erfolg": "Da ist das Nest mit der Glitzer-Sammlung der Elster! Jetzt kann der Glitzer-Schmuck dazu.",
+    "erfolg": "Ich stupse den Schlüssel über den Nestrand. KLING! Er rutscht den Zweig hinunter, direkt in Frau Sommers Hand!",
     "werkzeug": "lupe"
-   },
-   "fragenNeu": []
+   }
   }
  ]
 }

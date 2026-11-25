@@ -298,20 +298,56 @@
     "staub": false
    },
    "raetsel": {
-    "art": "versteckt",
+    "art": "wort",
     "titel": "Im Wasser versteckt",
-    "text": "Das Wasser rauscht und rauscht. In den Wasserlinien versteckt sich ein Buchstabe. Welcher?",
-    "buchstabe": "W",
-    "optionen": [
-     "M",
-     "W",
-     "V",
-     "N"
+    "text": "Drei Buchstaben sieht die Raupe schon. Drei weitere verstecken sich in den Wasserlinien. Finde sie! Zusammen ergeben sie ein Wort.",
+    "wort": "KLEBER",
+    "vorgabe": "K_E_E_",
+    "runden": [
+     {
+      "pos": 1,
+      "buchstabe": "L",
+      "optionen": [
+       "L",
+       "I",
+       "T",
+       "J"
+      ],
+      "winkel": 10,
+      "farbe": "#2F6FB8",
+      "stoerer": 4,
+      "erfolg": "Ein L!"
+     },
+     {
+      "pos": 3,
+      "buchstabe": "B",
+      "optionen": [
+       "B",
+       "P",
+       "D",
+       "H"
+      ],
+      "winkel": -12,
+      "farbe": "#2F6FB8",
+      "stoerer": 4,
+      "erfolg": "Ein B!"
+     },
+     {
+      "pos": 5,
+      "buchstabe": "R",
+      "optionen": [
+       "R",
+       "K",
+       "A",
+       "N"
+      ],
+      "winkel": 14,
+      "farbe": "#2F6FB8",
+      "stoerer": 4,
+      "erfolg": "Ein R!"
+     }
     ],
-    "winkel": 10,
-    "farbe": "#2F6FB8",
-    "erfolg": "W wie Wasser!",
-    "stoerer": 4,
+    "erfolg": "KLEBER! Ben wäscht Kleber von seinen Fingern. Aber was hat er wohl geklebt?",
     "werkzeug": "fuehler"
    },
    "fragenNeu": [],
