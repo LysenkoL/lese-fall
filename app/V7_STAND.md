@@ -75,6 +75,8 @@ Alle Zusatz-Stile stehen in `app/src/v8/runde3.css` (wird nach `politur.css` gel
 
 ## Ссылки
 
+- **Артефакт v8.8 (D-19), вся книга:** https://claude.ai/artifact/LpyyxbsacqFDjQ83NgpxVu — 313 файлов, публикуется в два захода (лимит 255 файлов за раз): `npm run build && node scripts/artifact-v8.mjs`, затем Artifact с `file_path` = `app/dist/artifact_v8.html`, `root` = `app`, `files` из `dist/artifact_v8.json` (первые 250, потом остальные с тем же `url`).
+
 - Артефакт v8, Глава 1: https://claude.ai/artifact/NejzAvfd2FxeZJJYRJUpc9
 
 - Артефакт превью v7: https://claude.ai/artifact/6q5UsxszhqaLAGEQ3qw2rC
