@@ -3299,7 +3299,7 @@
       {
        "text": "Der Vo|gel mit dem lan|gen Schwanz ist der|sel|be, der den Schat|ten ge|wor|fen hat.",
        "sicher": false,
-       "tipp": "Das ist erst ein Ver|dacht. Vom Schat|ten ken|nen wir nur die Form. Und vom Vo|gel in der Ast|ga|bel nur die Far|ben."
+       "tipp": "Das ist erst ein Ver|dacht. Wir ha|ben ei|nen Schat|ten und ei|nen Vo|gel im Baum ge|se|hen. Ob es der|sel|be war, hat nie|mand ge|se|hen."
       },
       {
        "text": "Der Vo|gel will un|se|ren Mond ha|ben.",
@@ -4292,7 +4292,7 @@
    "raetsel": {
     "art": "nest",
     "titel": "Wo ist der Schlüs|sel?",
-    "text": "Der Wind hat Blät|ter vor das Nest ge|weht. Wisch sie weg. Dann fin|de im Nest den Schlüs|sel mit dem sil|ber|nen Glit|zer-Stern.",
+    "text": "Wisch die Blät|ter weg. Lies, wie Frau Som|mers Schlüs|sel aus|sieht. Dann hilf ihr, ihn zu ho|len.",
     "bild": "nest_nah",
     "ratio": 1.5,
     "zone": {
@@ -4300,50 +4300,120 @@
      "y": 47,
      "r": 34
     },
-    "start": "Erst wischst du die Blät|ter weg. Dann siehst du in das Nest.",
-    "nachLaub": "Da ist das Nest! Hier glänzt vie|les. A|ber wo ist der Schlüs|sel mit dem Sil|ber|stern?",
-    "frage": "Fin|de den Schlüs|sel.",
-    "tipp": "Der Schlüs|sel hängt an ei|nem klei|nen sil|ber|nen Glit|zer-Stern.",
+    "start": "Der Wind hat Blät|ter vor das Nest ge|weht. Wisch sie weg!",
+    "nachLaub": "Da ist das Nest! Hier glänzt so vie|les. Lies ge|nau: Wie sieht der Schlüs|sel aus?",
+    "beschreibung": {
+     "titel": "Frau Som|mer sagt:",
+     "saetze": [
+      "Mein Schlüs|sel ist aus Sil|ber.",
+      "Er hängt an ei|nem wei|ßen Band.",
+      "Da|ran fun|kelt ein klei|ner Sil|ber|stern."
+     ]
+    },
+    "frage": "Tip|pe auf Frau Som|mers Schlüs|sel.",
+    "tipp": "Lies noch mal: Sil|ber, ein wei|ßes Band und ein klei|ner Stern.",
     "ziele": [
      {
       "id": "schluessel",
       "x": 31.5,
       "y": 45,
       "r": 7.5,
-      "ok": "Da ist er! Der Schlüs|sel mit dem sil|ber|nen Glit|zer-Stern."
+      "zonen": [
+       {
+        "x": 30.6,
+        "y": 39,
+        "r": 4.6
+       },
+       {
+        "x": 35,
+        "y": 51,
+        "r": 4
+       },
+       {
+        "x": 25,
+        "y": 45.5,
+        "r": 3.4
+       },
+       {
+        "x": 32.5,
+        "y": 22,
+        "r": 6.5
+       }
+      ],
+      "ok": "Da ist er! Aus Sil|ber, mit wei|ßem Band und ei|nem klei|nen Stern."
      }
     ],
     "andere": [
      {
       "id": "gloeckchen",
-      "x": 33,
-      "y": 68,
+      "x": 32.5,
+      "y": 67,
       "r": 5.5,
-      "nein": "Ein gol|de|nes Glöck|chen. Es glänzt, a|ber es ist kein Schlüs|sel."
+      "nein": "Ein Glöck|chen. Es ist aus Gold, nicht aus Sil|ber."
      },
      {
       "id": "deckel",
       "x": 50,
-      "y": 45,
-      "r": 6,
-      "nein": "Ein sil|ber|ner Kron|kor|ken. Er glänzt, a|ber es ist kein Schlüs|sel."
+      "y": 47,
+      "r": 6.5,
+      "nein": "Ein Kron|kor|ken. Er ist aus Sil|ber. A|ber er hat kein wei|ßes Band."
      },
      {
       "id": "glas",
-      "x": 70,
-      "y": 46,
+      "x": 69,
+      "y": 47,
       "r": 6,
-      "nein": "Ein bun|tes Glas|scherb|chen. Hübsch, a|ber kein Schlüs|sel."
+      "nein": "Ei|ne Glas|scher|be. Sie ist blau, nicht sil|bern."
      },
      {
       "id": "klammer",
       "x": 66,
       "y": 29,
       "r": 5,
-      "nein": "Ei|ne Bü|ro|klam|mer aus Me|tall. Kein Schlüs|sel."
+      "nein": "Ei|ne Bü|ro|klam|mer. Sie ist sil|bern. A|ber an ihr ist kein Stern."
+     },
+     {
+      "id": "knopf",
+      "x": 50.5,
+      "y": 25.5,
+      "r": 6,
+      "nein": "Ein Knopf. Er ist rot, nicht sil|bern."
+     },
+     {
+      "id": "bonbon",
+      "x": 49,
+      "y": 67,
+      "r": 6,
+      "nein": "Ein Bon|bon|pa|pier. Es ist bunt und hat kein wei|ßes Band."
+     },
+     {
+      "id": "dreieck",
+      "x": 65,
+      "y": 67,
+      "r": 5.5,
+      "nein": "Ein Drei|eck aus Pap|pe. Es ist gelb, nicht sil|bern."
      }
     ],
-    "erfolg": "Ich stup|se den Schlüs|sel ü|ber den Nest|rand. KLING! Er rutscht den Zweig hi|nun|ter, di|rekt in Frau Som|mers Hand!",
+    "schluessel": {
+     "box": {
+      "x": 21.5,
+      "y": 12.5,
+      "w": 22,
+      "h": 46
+     },
+     "haken": {
+      "x": 34.2,
+      "y": 17.1
+     }
+    },
+    "stock": {
+     "x": 63,
+     "y": 13,
+     "winkel": -27
+    },
+    "jetzt": "Frau Som|mer hält ih|ren Zei|ge|stock aus dem Fens|ter. Zieh den Schlüs|sel am wei|ßen Band bis zur Spit|ze!",
+    "knapp": "Noch ein Stück! Das wei|ße Band muss an die Spit|ze.",
+    "erfolg": "Klick! Das wei|ße Band hängt an der Spit|ze vom Zei|ge|stock. Frau Som|mer zieht den Schlüs|sel hoch. Ge|schafft! Psst … sie denkt, das ging von selbst.",
     "werkzeug": "lupe"
    }
   }

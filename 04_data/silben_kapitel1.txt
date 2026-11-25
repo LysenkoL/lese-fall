@@ -2398,3 +2398,6 @@ ar|mer
 ko|misch
 baum|stamm
 hi|nauf|klet|tern
+sil|ber
+gold
+glas|scher|be
