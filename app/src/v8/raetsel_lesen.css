@@ -76,79 +76,143 @@
   .lx-seite .stempel.abdruck { max-width: 34%; transform: translate(-28%, -30%) rotate(-10deg); }
 }
 
-/* ============================ Wunsch-Waage ============================ */
+/* ============================ Die rettende Idee (Wunsch-Waage) ============================ */
 .ww { container-type: inline-size; display: flex; flex-direction: column; gap: .625rem; }
-/* Telefon: ein Kind je Zeile (Gesicht links, Name + Wunsch, darunter seine Antwort) */
-.ww-kinder { display: flex; flex-direction: column; gap: .3125rem; }
-.ww-kind { display: flex; align-items: flex-start; gap: .625rem; }
-.ww-rahmen { flex: none; display: block; width: 3.25rem; height: 3.25rem; border-radius: 50%; overflow: hidden; border: 3px solid #fff; background: radial-gradient(circle at 50% 30%, #FFFFFF, var(--gedanke)); box-shadow: 0 4px 10px rgba(0, 0, 0, .3); transition: border-color var(--dauer); }
-.ww-rahmen img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 15%; display: block; }
-.ww-txt { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: .1875rem; padding-top: .125rem; }
-.ww-wunsch { margin: 0; color: var(--auf-nacht); font-size: var(--t-text); font-weight: 700; line-height: 1.3; }
-.ww-wunsch .s-b, .ww-wunsch .s-r { color: inherit; }
-.ww-name { color: var(--senf); font-weight: 800; }
-.ww-name::after { content: ':'; }
-.ww-re { position: relative; margin: 0; background: var(--papier); color: var(--tinte); border: 2px solid var(--linie); border-radius: .25rem 1rem 1rem 1rem; padding: .1875rem .625rem; font-size: var(--t-text); font-weight: 700; line-height: 1.3; box-shadow: 0 3px 8px rgba(0, 0, 0, .22); }
-.ww-kind[data-st="froh"] .ww-rahmen { border-color: var(--senf); }
-.ww-kind[data-st="froh"] .ww-re { border-color: var(--senf); background: #FFFBEC; }
-.ww-kind.neu .ww-re { animation: sprech .3s cubic-bezier(.2, 1.4, .4, 1) both; }
-.ww-kind.neu[data-st="froh"] .ww-rahmen { animation: hupf .6s cubic-bezier(.3, 1.6, .5, 1) both; }
-.ww-kind.neu[data-st="traurig"] .ww-rahmen { animation: ww-sinkt .6s ease both; }
-@keyframes ww-sinkt { 40% { transform: translateY(4px) rotate(3deg); } }
-.ww-ideen { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .4375rem; }
-.ww-idee {
-  position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .25rem;
-  min-height: 3.25rem; padding: .375rem .5rem; border-radius: var(--r-feld); border: 3px solid transparent;
-  background: var(--papier); color: var(--tinte); font-size: var(--t-text); font-weight: 700; line-height: 1.25; text-align: center;
-  box-shadow: 0 3px 0 var(--kante), 0 8px 14px rgba(0, 0, 0, .28); transition: transform var(--dauer-druck) ease, box-shadow var(--dauer-druck) ease;
+/* Ziel: ein Satz auf Senf, davor drei Haken = „alle drei“ */
+.ww-ziel { align-self: center; display: flex; align-items: center; gap: .5rem; margin: 0; padding: .375rem .875rem .375rem .5rem; border-radius: var(--r-rund, 999px); background: var(--senf); color: var(--senf-tinte); font-size: var(--t-text); font-weight: 800; line-height: 1.25; box-shadow: 0 3px 0 var(--senf-dunkel), 0 8px 14px rgba(0, 0, 0, .25); }
+.ww-ziel .s-b, .ww-ziel .s-r { color: inherit; }
+.ww-drei { flex: none; display: flex; }
+.ww-drei i { width: 1.375rem; height: 1.375rem; margin-left: -.25rem; border-radius: 50%; display: grid; place-items: center; background: #3E9B57; color: #fff; box-shadow: 0 0 0 2px var(--senf); }
+.ww-drei i:first-child { margin-left: 0; }
+.ww-drei svg { width: 72%; height: 72%; }
+/* Drei Kinder nebeneinander (auch am Telefon), Gesicht mit ✓/✗, Name, Wunsch, darunter seine Antwort.
+   Am Telefon bleiben sie beim Rollen oben stehen: so sieht man nach dem Tippen auf eine Idee sofort, wer lacht. */
+.ww-kinder { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .3125rem; }
+@container buehne (min-height: 34rem) and (max-width: 40rem) {
+  .ww-kinder { position: sticky; top: -.25rem; z-index: 3; margin: 0 -.25rem; padding: .3125rem; border-radius: var(--r-feld); background: linear-gradient(#2B7262, #255F52); box-shadow: 0 8px 14px -6px rgba(0, 0, 0, .45); }
 }
-.ww-idee img { height: 2.5rem; width: auto; max-width: 100%; object-fit: contain; pointer-events: none; }
+.ww-kind { display: flex; flex-direction: column; align-items: center; text-align: center; gap: .1875rem; min-width: 0; padding: .375rem .1875rem .4375rem; border-radius: var(--r-feld); background: rgba(255, 255, 255, .07); transition: background-color var(--dauer); }
+.ww-kind[data-st="ja"] { background: rgba(62, 155, 87, .26); }
+.ww-kind[data-st="nein"] { background: rgba(238, 154, 85, .15); }
+.ww-rahmen { position: relative; flex: none; display: block; width: 3.25rem; height: 3.25rem; border-radius: 50%; border: 3px solid #fff; background: radial-gradient(circle at 50% 30%, #FFFFFF, var(--gedanke)); box-shadow: 0 4px 10px rgba(0, 0, 0, .3); transition: border-color var(--dauer); }
+.ww-rahmen img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; object-position: 50% 15%; display: block; }
+.ww-mark { position: absolute; right: -.5rem; bottom: -.3125rem; width: 1.5rem; height: 1.5rem; border-radius: 50%; display: none; place-items: center; color: #fff; border: 2px solid #fff; box-shadow: 0 2px 6px rgba(0, 0, 0, .35); }
+.ww-mark svg { width: 72%; height: 72%; }
+.ww-kind[data-st="ja"] .ww-rahmen { border-color: #7CD08F; }
+.ww-kind[data-st="ja"] .ww-mark { display: grid; background: #3E9B57; }
+.ww-kind[data-st="nein"] .ww-mark { display: grid; background: var(--weich); }
+.ww-txt { flex: 1; min-width: 0; width: 100%; display: flex; flex-direction: column; align-items: center; gap: .125rem; }
+.ww-name { color: var(--senf); font-weight: 800; font-size: .9375rem; line-height: 1.2; }
+.ww-name .s-b, .ww-name .s-r { color: inherit; }
+.ww-wunsch { margin: 0; color: var(--auf-nacht); font-size: .9375rem; font-weight: 700; line-height: 1.25; hyphens: none; }
+.ww-wunsch .s-b, .ww-wunsch .s-r { color: inherit; }
+/* Antwort des Kindes: Sprechblase; vor dem ersten Probieren ein leises „?“ */
+.ww-re { position: relative; margin: .375rem 0 0; padding: .1875rem .375rem; border-radius: .75rem; background: var(--papier); color: var(--tinte); border: 2px solid var(--linie); font-size: .9375rem; font-weight: 700; line-height: 1.25; box-shadow: 0 3px 8px rgba(0, 0, 0, .22); max-width: 100%; }
+.ww-re::before { content: ''; position: absolute; left: 50%; top: -.4375rem; width: .625rem; height: .625rem; margin-left: -.3125rem; background: inherit; border-left: inherit; border-top: inherit; transform: rotate(45deg); }
+.ww-re.leer { background: transparent; border: 2px dashed rgba(255, 255, 255, .28); color: rgba(255, 255, 255, .45); box-shadow: none; min-width: 2.25rem; text-align: center; }
+.ww-re.leer::before { display: none; }
+.ww-kind[data-st="ja"] .ww-re { border-color: #7CD08F; background: #F3FFF2; }
+.ww-kind[data-st="nein"] .ww-re { border-color: var(--weich); background: #FFF6EE; }
+.ww-kind.neu .ww-re { animation: sprech .3s calc(var(--n, 0) * 110ms) cubic-bezier(.2, 1.4, .4, 1) both; }
+.ww-kind.neu .ww-mark { animation: stempel .35s calc(var(--n, 0) * 110ms + 80ms) cubic-bezier(.2, 1.6, .4, 1) both; }
+.ww-kind.neu[data-st="ja"] .ww-rahmen { animation: hupf .6s calc(var(--n, 0) * 110ms) cubic-bezier(.3, 1.6, .5, 1) both; }
+.ww-kind.neu[data-st="nein"] .ww-rahmen { animation: ww-sinkt .6s calc(var(--n, 0) * 110ms) ease both; }
+@keyframes ww-sinkt { 40% { transform: translateY(4px) rotate(3deg); } }
+/* Ideen-Karten: Lampe, Text, nach dem Probieren drei kleine Zeichen (✓/✗ je Kind) */
+.ww-ideen { display: grid; grid-template-columns: minmax(0, 1fr); gap: .4375rem; }
+.ww-idee {
+  position: relative; display: flex; align-items: center; gap: .5rem; min-height: 3.25rem; padding: .4375rem .625rem .4375rem .5rem;
+  border-radius: var(--r-feld); border: 3px solid transparent; background: var(--papier); color: var(--tinte);
+  font-size: var(--t-text); font-weight: 700; line-height: 1.3; text-align: left;
+  box-shadow: 0 3px 0 var(--kante), 0 8px 14px rgba(0, 0, 0, .28); transition: transform var(--dauer-druck) ease, box-shadow var(--dauer-druck) ease, opacity var(--dauer);
+}
+.ww-lampe { flex: none; width: 1.875rem; height: 1.875rem; display: grid; place-items: center; border-radius: 50%; background: var(--papier-2); }
+.ww-lampe svg { width: 80%; height: 80%; }
+.ww-it { flex: 1; min-width: 0; }
+.ww-erg { flex: none; display: flex; gap: 2px; }
+.ww-erg:empty { display: none; }
+.ww-erg i { width: 1.125rem; height: 1.125rem; border-radius: 50%; display: grid; place-items: center; color: #fff; }
+.ww-erg i.ja { background: #3E9B57; }
+.ww-erg i.nein { background: var(--weich); }
+.ww-erg svg { width: 74%; height: 74%; }
 .ww-idee:active:not(:disabled) { transform: translateY(2px) scale(.99); box-shadow: 0 1px 0 var(--kante), 0 4px 8px rgba(0, 0, 0, .2); }
-.ww-idee.probiert:not(.an) { background: var(--papier-2); box-shadow: 0 2px 0 var(--kante); }
+.ww-idee:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+.ww-idee.probiert:not(.an) { background: var(--papier-2); }
 .ww-idee.an { border-color: var(--senf); background: #FFF6D6; }
-.ww-idee.nein { animation: wackel .4s; }
-.ww-idee:disabled { opacity: 1; cursor: default; }
-.ww.fertig .ww-idee:not(.sieger) { display: none; }
-.ww-idee.sieger { grid-column: 1 / -1; min-height: 5rem; padding: .75rem 40% .75rem 1rem; align-items: flex-start; text-align: left; font-size: var(--t-knopf); animation: waechst .5s cubic-bezier(.2, 1.3, .4, 1) both; }
-.ww-idee.sieger .stempel.abdruck { width: max-content; max-width: 36%; font-size: var(--t-klein); padding: .25rem .5rem; }
-/* breite Fläche: drei Kinder nebeneinander, Name über dem Wunsch, Antwort als Sprechblase darunter */
+.ww-idee.zeig { border-color: var(--senf); animation: puls .8s 4; }
+.ww-idee:disabled { cursor: default; }
+.ww.fertig .ww-idee:not(.sieger) { opacity: .4; }
+.ww-idee.sieger { border-color: var(--senf); background: #FFF1C2; padding-top: 1.125rem; box-shadow: 0 3px 0 var(--senf-dunkel), 0 0 0 4px rgba(244, 194, 67, .35), 0 10px 22px rgba(0, 0, 0, .35); animation: waechst .5s cubic-bezier(.2, 1.3, .4, 1) both; }
+.ww-band { position: absolute; left: .5rem; top: -.75rem; padding: .125rem .625rem; border-radius: .375rem; background: var(--senf); color: var(--senf-tinte); font-size: var(--t-klein); font-weight: 800; letter-spacing: .02em; box-shadow: 0 2px 0 var(--senf-dunkel); transform: rotate(-2deg); animation: stempel .4s .15s cubic-bezier(.2, 1.6, .4, 1) both; }
+.ww-band .s-b, .ww-band .s-r { color: inherit; }
+.ww.fertig .ww-ziel { background: #3E9B57; color: #fff; box-shadow: 0 3px 0 #2B7440, 0 8px 14px rgba(0, 0, 0, .25); }
+.ww.fertig .ww-drei i { animation: hupf .6s cubic-bezier(.3, 1.6, .5, 1) both; }
+.ww.fertig .ww-drei i:nth-child(2) { animation-delay: .1s; }
+.ww.fertig .ww-drei i:nth-child(3) { animation-delay: .2s; }
+/* breite Fläche: Gesichter groß, Schrift größer; Ideen 2 × 2 */
 @container (min-width: 34rem) {
-  .ww-kinder { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--a-3); }
-  .ww-kind { flex-direction: column; align-items: center; text-align: center; gap: .375rem; }
-  .ww-rahmen { width: 5.5rem; height: 5.5rem; }
-  .ww-txt { align-items: center; width: 100%; padding-top: 0; }
-  .ww-name { display: block; font-size: var(--t-knopf); }
-  .ww-name::after { content: none; }
-  .ww-re { border-radius: 1rem; }
+  .ww-ziel { font-size: var(--t-knopf); }
+  .ww-kinder { gap: var(--a-3); }
+  .ww-kind { gap: .375rem; padding: .5rem .5rem .625rem; }
+  .ww-rahmen { width: 5.25rem; height: 5.25rem; }
+  .ww-mark { width: 2rem; height: 2rem; right: -.25rem; }
+  .ww-name { font-size: var(--t-knopf); }
+  .ww-wunsch, .ww-re { font-size: var(--t-text); line-height: 1.3; }
+  .ww-re { padding: .1875rem .625rem; border-radius: .875rem; }
+  .ww-ideen { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem .625rem; }
   .ww-idee { min-height: 4rem; font-size: var(--t-knopf); }
 }
 
 /* ============================ Flunker-Finder ============================ */
-.fl { container-type: inline-size; }
-.fl-heft {
-  list-style: none; margin: 0; padding: .25rem .25rem .25rem 0; color: var(--tinte);
-  border-radius: var(--r-feld); box-shadow: var(--sch-karte);
-  background: linear-gradient(90deg, transparent 2.5rem, rgba(201, 149, 26, .45) 2.5rem, rgba(201, 149, 26, .45) calc(2.5rem + 2px), transparent calc(2.5rem + 2px)), var(--papier);
+.fl { container-type: inline-size; display: flex; flex-direction: column; gap: .75rem; }
+/* Ziel mit Zähler: zwei Kreise füllen sich */
+.fl-ziel { align-self: center; display: flex; align-items: center; gap: .625rem; margin: 0; padding: .375rem .5rem .375rem .875rem; border-radius: var(--r-rund); background: var(--senf); color: var(--senf-tinte); font-size: var(--t-text); font-weight: 800; line-height: 1.25; box-shadow: 0 3px 0 var(--senf-dunkel), 0 8px 14px rgba(0, 0, 0, .25); }
+.fl-ziel .s-b, .fl-ziel .s-r { color: inherit; }
+.fl-zahl { flex: none; display: flex; align-items: center; gap: .25rem; padding: .1875rem .5rem .1875rem .3125rem; border-radius: var(--r-rund); background: rgba(255, 255, 255, .55); }
+.fl-zahl i { width: 1rem; height: 1rem; border-radius: 50%; border: 2.5px solid var(--senf-tinte); opacity: .55; }
+.fl-zahl i.an { background: var(--nacht-2); border-color: var(--nacht-2); opacity: 1; animation: stempel .35s cubic-bezier(.2, 1.6, .4, 1) both; }
+.fl-zahl b { font-size: var(--t-klein); white-space: nowrap; }
+.fl.fertig .fl-ziel { background: #3E9B57; color: #fff; box-shadow: 0 3px 0 #2B7440, 0 8px 14px rgba(0, 0, 0, .25); }
+.fl.fertig .fl-zahl { background: rgba(255, 255, 255, .25); }
+.fl.fertig .fl-zahl i { border-color: #fff; }
+/* Der Bericht: kariertes Heftpapier mit rotem Rand und Klebestreifen */
+.fl-blatt {
+  position: relative; margin: .5rem .125rem 0; padding: .875rem .375rem .5rem 0; color: var(--tinte); border-radius: .25rem .25rem .625rem .625rem;
+  background:
+    linear-gradient(90deg, transparent 2.375rem, rgba(232, 71, 58, .5) 2.375rem, rgba(232, 71, 58, .5) calc(2.375rem + 2px), transparent calc(2.375rem + 2px)),
+    repeating-linear-gradient(0deg, rgba(60, 110, 170, .13) 0 1px, transparent 1px 1.25rem),
+    repeating-linear-gradient(90deg, rgba(60, 110, 170, .13) 0 1px, transparent 1px 1.25rem),
+    var(--papier);
+  box-shadow: 0 2px 0 #E2D7BD, 0 12px 24px rgba(0, 0, 0, .35);
+  rotate: -.4deg;
 }
-.fl-z { position: relative; border-bottom: 1.5px solid var(--linie); }
-.fl-z:last-child { border-bottom: 0; }
-.fl-z.neu { animation: hoch .35s both; }
+.fl-band { position: absolute; left: 50%; top: -.625rem; width: 6.5rem; height: 1.375rem; translate: -50% 0; rotate: 2deg; background: rgba(240, 226, 170, .85); box-shadow: 0 1px 2px rgba(0, 0, 0, .15); clip-path: polygon(0 10%, 4% 0, 96% 0, 100% 10%, 100% 90%, 96% 100%, 4% 100%, 0 90%); }
+.fl-kopf { margin: 0 .5rem .25rem 3rem; font-size: var(--t-knopf); font-weight: 800; line-height: 1.25; color: var(--nacht-2); }
+.fl-kopf .s-b, .fl-kopf .s-r { color: inherit; }
+.fl-heft { list-style: none; margin: 0; padding: 0; }
+.fl-z { position: relative; }
 .fl-z.nein { animation: wackel .4s; }
 .fl-z.zeig .fl-s { background: var(--senf-hell); }
-.fl-s { width: 100%; min-height: 3rem; display: flex; align-items: flex-start; gap: .75rem; padding: .625rem .625rem .625rem .5rem; border-radius: .5rem; text-align: left; color: inherit; font-size: var(--t-knopf); font-weight: 600; line-height: 1.35; }
-.fl-s:active:not([aria-disabled="true"]) { background: var(--papier-2); }
+.fl-s { width: 100%; min-height: var(--tipp); display: flex; align-items: flex-start; gap: .875rem; padding: .5rem .5rem .5rem .5rem; border-radius: .5rem; text-align: left; color: inherit; font-size: var(--t-knopf); font-weight: 600; line-height: 1.4; transition: background-color var(--dauer); }
+.fl-s:active:not([aria-disabled="true"]) { background: rgba(244, 194, 67, .25); }
+.fl-s:focus-visible { outline: 3px solid var(--senf); outline-offset: -3px; }
 .fl-nr { flex: none; width: 1.5rem; height: 1.5rem; margin-top: .125rem; border-radius: 50%; display: grid; place-items: center; background: var(--nacht-2); color: #fff; font-style: normal; font-size: var(--t-fein); font-weight: 800; }
 .fl-t { min-width: 0; }
+/* wahrer Satz angetippt: kurz ein grünes „stimmt“-Häkchen an der Nummer */
+.fl-z.stimmt .fl-nr { position: relative; background: #3E9B57; color: transparent; }
+.fl-z.stimmt .fl-nr::after { content: '✓'; position: absolute; inset: 0; display: grid; place-items: center; color: #fff; font-size: var(--t-text); }
+/* Flunker gefunden: blau durchgestrichen, Stempel, darunter wie es wirklich war */
 .fl-z.gef .fl-s { cursor: default; }
-.fl-z.gef .fl-satz { text-decoration: line-through; text-decoration-color: var(--nacht-2); text-decoration-thickness: 2px; opacity: .6; }
-.fl-stempel { display: inline-block; margin: .125rem 0 0 .25rem; vertical-align: .0625rem; transform: rotate(-7deg); pointer-events: none; font-size: var(--t-fein); font-weight: 800; letter-spacing: .05em; line-height: 1.2; white-space: nowrap; color: var(--nacht-2); border: 3px solid var(--nacht-2); border-radius: .5rem; padding: 0 .375rem; background: rgba(255, 252, 244, .85); animation: stempel .35s cubic-bezier(.2, 1.6, .4, 1) both; }
+.fl-z.gef .fl-nr { background: var(--rot); }
+.fl-z.gef .fl-satz { text-decoration: line-through; text-decoration-color: var(--nacht-2); text-decoration-thickness: 3px; opacity: .6; }
+.fl-stempel { display: inline-block; margin: .125rem 0 0 .25rem; vertical-align: .0625rem; transform: rotate(-7deg); pointer-events: none; font-size: var(--t-fein); font-weight: 800; letter-spacing: .05em; line-height: 1.2; white-space: nowrap; color: var(--rot); border: 3px solid var(--rot); border-radius: .5rem; padding: 0 .375rem; background: rgba(255, 252, 244, .9); animation: stempel .35s cubic-bezier(.2, 1.6, .4, 1) both; }
 .fl-stempel .s-b, .fl-stempel .s-r { color: inherit; }
-.fl-auf { display: flex; align-items: flex-start; gap: .375rem; margin: -.125rem .625rem .625rem 2.75rem; padding: .375rem .625rem; border-radius: .5rem; background: var(--senf-hell); font-size: var(--t-knopf); font-weight: 700; line-height: 1.35; animation: hoch .4s .25s both; }
-.fl-auf svg { flex: none; width: 1.25rem; height: 1.25rem; margin-top: .1875rem; color: var(--senf-dunkel); }
+.fl-auf { display: flex; align-items: flex-start; gap: .375rem; margin: -.125rem .5rem .5rem 2.875rem; padding: .375rem .625rem; border-radius: .5rem; background: #E6F6E4; border: 2px solid #8BCB8E; font-size: var(--t-knopf); font-weight: 700; line-height: 1.35; animation: hoch .4s .25s both; }
+.fl-auf svg { flex: none; width: 1.25rem; height: 1.25rem; margin-top: .1875rem; color: #3E9B57; }
 @container (max-width: 30rem) {
-  .fl-s { padding-block: .5rem; }
+  .fl-ziel { font-size: var(--t-klein); padding-left: .625rem; }
+  .fl-s { padding-block: .375rem; font-size: var(--t-text); gap: .75rem; }
+  .fl-auf { font-size: var(--t-text); }
+  .fl-kopf { font-size: var(--t-text); }
   .fl-stempel { font-size: var(--t-etikett); border-width: 2.5px; }
-}
-@container (max-width: 20rem) {
-  .fl-s, .fl-auf { font-size: var(--t-text); }
 }

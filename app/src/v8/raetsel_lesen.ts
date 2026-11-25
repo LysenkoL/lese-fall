@@ -140,12 +140,18 @@ SPIELE_LESEN.lexikon = (r, d, fertig) => {
   hook.loese = () => { if (!zu) treffer(false); };
 };
 
-/* ============================ Wunsch-Waage (Spur 18) ============================
- * Drei Kinder mit je einem Wunsch (Bild + eine Zeile). Darunter Ideen-Karten. Antippen = „anprobieren“:
- * jedes Kind schaut froh oder traurig (vorhandene Gesichter mila/ben/oskar) und sagt kurz, warum.
- * Die Idee, bei der alle froh sind, bekommt den Stempel. Probieren ist kein Fehler; nach zwei unpassenden
- * Ideen gibt die Raupe einen Tipp, nach der dritten zeigt sie die Lösung.
+/* ============================ Die rettende Idee (Spur 18, art „waage“) ============================
+ * Oben das Ziel („Finde die Idee, bei der alle drei lachen.“), darunter Mila, Ben und Oskar mit je einem Wunsch.
+ * Unten vier Ideen-Karten. Antippen = Idee ausprobieren: unter jedem Kind erscheint ✓ (Gesicht lacht) oder ✗
+ * (Gesicht traurig/besorgt) und ein kurzer Satz, warum. Die Karte merkt sich das Ergebnis (drei kleine Zeichen).
+ * Nur eine Idee bekommt drei ✓: dann jubeln alle, die Karte wird „Die rettende Idee!“, Schluss-Satz der Raupe.
+ * Probieren ist kein Fehler: 1. unpassende Idee → Satz der Raupe (`sagt`), 2. → Tipp, 3. → die Raupe zeigt auf die letzte Karte.
+ * Daten: frage (Ziel), kinder[] {id, name, text (Wunsch)}, ideen[] {id, text, sagt, <kind-id>: {froh, unter, bild?}},
+ *        ok (Band auf der Siegerkarte), tipp, hilfe, start, erfolg.
  */
+const HAKEN = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const KREUZ = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg>';
+const LAMPE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a6 6 0 0 0-3.6 10.8c.8.6 1.1 1.3 1.1 2.2h5c0-.9.3-1.6 1.1-2.2A6 6 0 0 0 12 3z" fill="#FFE07A" stroke="#C9951A" stroke-width="1.6" stroke-linejoin="round"/><path d="M9.6 18.2h4.8M10.2 20.6h3.6" stroke="#8A6A3A" stroke-width="1.8" stroke-linecap="round"/><path d="M10.4 8.6c.5-1 1.4-1.6 2.4-1.7" stroke="#fff" stroke-width="1.4" stroke-linecap="round" fill="none"/></svg>';
 SPIELE_LESEN.waage = (r, d, fertig) => {
   const K = kontext();
   const zi = $('.zi', r);
@@ -155,49 +161,56 @@ SPIELE_LESEN.waage = (r, d, fertig) => {
   const richtige = ideen.find(passt);
   const ordnung = K.mischen(ideen.map((i) => i.id));
   const probiert = new Set<string>();
-  let aktiv: string | null = null, fehl = 0, zu = false;
-  /** Gesicht: vor dem Probieren `gesicht` (sonst nachdenklich), sonst froh/traurig oder das Bild aus der Reaktion */
-  const gesicht = (k: any, idee: any, jubel = false) => {
+  let fehl = 0, zu = false;
+  /** Gesicht: vorher nachdenklich, sonst lacht (✓) oder traurig/besorgt (✗, oder das Bild aus der Reaktion) */
+  const gesicht = (k: any, idee: any) => {
     const basis = k.bild ?? k.id, re = idee?.[k.id] ?? {};
-    const art = jubel ? (k.jubel ?? 'lacht') : !idee ? (k.gesicht ?? 'denkt') : (re.bild ?? (re.froh ? 'froh' : 'traurig'));
+    const art = !idee ? (k.gesicht ?? 'denkt') : (re.bild ?? (re.froh ? 'lacht' : 'traurig'));
     return K.fig(`${basis}/${art}`);
   };
-  vorladen(kinder.flatMap((k) => [gesicht(k, null, true), ...ideen.map((i) => gesicht(k, i))]));
+  vorladen(kinder.flatMap((k) => ideen.map((i) => gesicht(k, i))));
+  const marken = (idee: any) => kinder.map((k) => `<i class="${froh(idee, k) ? 'ja' : 'nein'}">${froh(idee, k) ? HAKEN : KREUZ}</i>`).join('');
 
   zi.innerHTML = `<div class="ww">
-    <div class="ww-kinder" aria-live="polite">${kinder.map((k) => `<div class="ww-kind" data-k="${k.id}">
-      <span class="ww-rahmen"><img src="${gesicht(k, null)}" alt=""></span>
-      <div class="ww-txt"><p class="ww-wunsch"><b class="ww-name">${k.name ?? ''}</b> <span>${k.text ?? ''}</span></p><p class="ww-re" hidden></p></div>
+    ${d.frage ? `<p class="ww-ziel"><span class="ww-drei" aria-hidden="true">${kinder.map(() => `<i>${HAKEN}</i>`).join('')}</span><span class="ww-zt">${d.frage}</span></p>` : ''}
+    <div class="ww-kinder">${kinder.map((k) => `<div class="ww-kind" data-k="${k.id}">
+      <span class="ww-rahmen"><img src="${gesicht(k, null)}" alt=""><i class="ww-mark" aria-hidden="true"></i></span>
+      <div class="ww-txt"><b class="ww-name">${k.name ?? ''}</b><p class="ww-wunsch">${k.text ?? ''}</p><p class="ww-re leer" aria-live="polite">?</p></div>
     </div>`).join('')}</div>
-    <div class="ww-ideen">${ordnung.map((id) => { const i = ideen.find((x) => x.id === id)!; return `<button class="ww-idee" data-i="${id}">${i.bild ? `<img src="${K.img(i.bild)}" alt="" draggable="false">` : ''}<span>${i.text ?? ''}</span></button>`; }).join('')}</div>
+    <div class="ww-ideen">${ordnung.map((id) => { const i = ideen.find((x) => x.id === id)!; return `<button class="ww-idee" data-i="${id}" aria-pressed="false"><span class="ww-lampe">${LAMPE}</span><span class="ww-it">${i.text ?? ''}</span><span class="ww-erg" aria-hidden="true"></span></button>`; }).join('')}</div>
   </div>`;
+  const ww = $('.ww', zi);
 
   const zeigen = (idee: any) => {
-    aktiv = idee.id;
-    zi.querySelectorAll<HTMLElement>('.ww-idee').forEach((b) => { b.classList.toggle('an', b.dataset.i === aktiv); b.setAttribute('aria-pressed', String(b.dataset.i === aktiv)); });
-    kinder.forEach((k) => {
-      const el = $(`.ww-kind[data-k="${k.id}"]`, zi), re = idee[k.id] ?? {};
-      el.dataset.st = re.froh ? 'froh' : 'traurig';
+    zi.querySelectorAll<HTMLElement>('.ww-idee').forEach((b) => { const an = b.dataset.i === idee.id; b.classList.toggle('an', an); b.setAttribute('aria-pressed', String(an)); });
+    kinder.forEach((k, n) => {
+      const el = $(`.ww-kind[data-k="${k.id}"]`, zi), re = idee[k.id] ?? {}, ja = !!re.froh;
+      el.dataset.st = ja ? 'ja' : 'nein';
       $<HTMLImageElement>('img', el).src = gesicht(k, idee);
+      $('.ww-mark', el).innerHTML = ja ? HAKEN : KREUZ;
       const p = $('.ww-re', el);
       p.innerHTML = re.unter ?? '';
-      p.hidden = !re.unter;
+      p.classList.remove('leer');
+      el.style.setProperty('--n', String(n));
       el.classList.remove('neu'); void el.offsetWidth; el.classList.add('neu');
     });
+    // die Karte merkt sich das Ergebnis
+    const karte = $(`.ww-idee[data-i="${idee.id}"]`, zi);
+    $('.ww-erg', karte).innerHTML = marken(idee);
+    karte.classList.add('probiert');
     K.summ(12);
   };
   const geschafft = (mitHilfe: boolean) => {
+    if (zu && ww.classList.contains('fertig')) return;
     zu = true; hook.loese = null;
     const karte = $(`.ww-idee[data-i="${richtige.id}"]`, zi);
-    if (!mitHilfe && d.fund) sag(r, 'klatscht', d.fund);
-    spaeter(zi, 700, () => {
-      kinder.forEach((k) => { $<HTMLImageElement>(`.ww-kind[data-k="${k.id}"] img`, zi).src = gesicht(k, richtige, true); });
-      $('.ww', zi).classList.add('fertig');
-      karte.classList.add('sieger');
-      (karte as HTMLButtonElement).disabled = true;
-      hook.loese = stempeln(zi, karte, d.stempel ?? '', () => ende(r, d, fertig), { x: 78, y: 50 });
-      stempelZeigen(zi);
-    });
+    karte.classList.remove('zeig');
+    karte.classList.add('sieger');
+    karte.insertAdjacentHTML('afterbegin', `<b class="ww-band">${d.ok ?? ''}</b>`);
+    zi.querySelectorAll<HTMLButtonElement>('.ww-idee').forEach((b) => { b.disabled = true; });
+    ww.classList.add('fertig');
+    K.summ([20, 40, 60]);
+    spaeter(zi, mitHilfe ? 900 : 700, () => ende(r, d, fertig, mitHilfe ? K.UI.hilfe : ''));
   };
   const probe = (id: string) => {
     if (zu) return;
@@ -205,26 +218,30 @@ SPIELE_LESEN.waage = (r, d, fertig) => {
     if (!idee) return;
     zeigen(idee);
     if (passt(idee)) return geschafft(false);
-    if (!probiert.has(id)) { probiert.add(id); fehl++; } else return sag(r, 'denkt', idee.sagt ?? K.UI.nochmal);
-    $(`.ww-idee[data-i="${id}"]`, zi).classList.add('probiert');
+    if (probiert.has(id)) return sag(r, 'denkt', idee.sagt ?? K.UI.nochmal); // schon probiert: nur erinnern
+    probiert.add(id); fehl++;
     if (fehl === 1) return sag(r, 'staunt', idee.sagt ?? K.UI.nochmal);
-    if (fehl === 2) return sag(r, 'tipp', d.tipp ?? idee.sagt ?? K.UI.nochmal);
-    // dritte unpassende Idee: die Raupe probiert die richtige selbst
+    if (fehl === 2) return sag(r, 'tipp', [idee.sagt ?? '', d.tipp ?? ''].join(' ').trim());
+    // dritte unpassende Idee: die Raupe zeigt auf die Karte, die noch fehlt
     if (!richtige) return sag(r, 'tipp', d.tipp ?? K.UI.nochmal);
-    zu = true;
-    sag(r, 'tipp', [K.UI.hilfe, d.warum ?? ''].join(' '));
-    spaeter(zi, 1300, () => { zeigen(richtige); geschafft(true); });
+    sag(r, 'tipp', d.hilfe ?? d.tipp ?? K.UI.nochmal);
+    const k = $(`.ww-idee[data-i="${richtige.id}"]`, zi);
+    k.classList.remove('zeig'); void k.offsetWidth; k.classList.add('zeig');
+    requestAnimationFrame(() => k.scrollIntoView({ block: 'nearest', behavior: 'smooth' }));
   };
-  zi.onclick = (e) => { const b = (e.target as HTMLElement).closest<HTMLElement>('.ww-idee'); if (b) probe(b.dataset.i!); };
+  zi.onclick = (e) => { const b = (e.target as HTMLElement).closest<HTMLElement>('.ww-idee'); if (b && !(b as HTMLButtonElement).disabled) probe(b.dataset.i!); };
   unten('');
   sag(r, 'denkt', d.start ?? '');
   hook.loese = () => { if (!zu && richtige) { zeigen(richtige); geschafft(false); } };
 };
 
 /* ============================ Flunker-Finder (Fallkarte Kapitel 4) ============================
- * Die Raupe erzählt den Fall Satz für Satz („Und dann?“ unten holt den nächsten Satz). Zwei Sätze sind geflunkert
- * (`wahr: false`). Antippen → Stempel GEFLUNKERT! und darunter, wie es wirklich war (`aufloesung`).
- * Ein wahrer Satz → Wackeln + „Das stimmt doch!“ (`nein`). Läuft in jeder Rahmen-Fläche mit .zi und .zr.
+ * Der Bericht der Lese-Raupe auf kariertem Papier: alle Sätze stehen gleich da. Oben das Ziel mit Zähler
+ * („Zwei Sätze stimmen nicht. Finde die Flunker-Sätze!“ 0 / 2). Antippen:
+ *  - Flunker → Satz wird durchgestrichen, Stempel GEFLUNKERT!, darunter, wie es wirklich war (`aufloesung`), die Raupe lacht (`sagt`);
+ *  - wahrer Satz → kurzes „stimmt“-Häkchen, Wackeln, die Raupe: „Das stimmt! Lies noch mal genau.“ (`nein`).
+ * Nach zwei Fehlgriffen zeigt die Raupe den nächsten Flunker (ui.hilfe + `warum`). Läuft in jeder Fläche mit .zi und .zr.
+ * Daten: frage (Ziel), liste (Überschrift des Berichts), saetze[] {text, wahr, aufloesung?, sagt?, nein?, warum?}, start, nein, fund, warum, stempel, erfolg.
  */
 SPIELE_LESEN.flunker = (r, d, fertig) => {
   const K = kontext();
@@ -232,47 +249,42 @@ SPIELE_LESEN.flunker = (r, d, fertig) => {
   const S: any[] = d.saetze ?? [];
   const falsch = S.map((x, i) => (x.wahr === false ? i : -1)).filter((i) => i >= 0);
   const gef = new Set<number>();
-  let sicht = d.alle ? S.length : Math.min(S.length, Math.max(1, d.zuerst ?? 1));
   let fehl = 0, zu = false;
   const wahrheit = (x: any) => x.aufloesung ?? (typeof x.richtig === 'string' ? x.richtig : '');
-  const zeile = (x: any, i: number) => `<li class="fl-z" data-i="${i}"><button class="fl-s"><i class="fl-nr" aria-hidden="true">${i + 1}</i><span class="fl-t"><span class="fl-satz">${x.text ?? ''}</span></span></button></li>`;
-  zi.innerHTML = `<div class="fl"><ol class="fl-heft">${S.slice(0, sicht).map(zeile).join('')}</ol></div>`;
+  const PF = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h12M12 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const zaehler = () => `<span class="fl-zahl" aria-live="polite">${falsch.map((_, i) => `<i class="${i < gef.size ? 'an' : ''}"></i>`).join('')}<b>${gef.size} / ${falsch.length}</b></span>`;
+  zi.innerHTML = `<div class="fl">
+    ${d.frage ? `<p class="fl-ziel"><span>${d.frage}</span>${zaehler()}</p>` : ''}
+    <div class="fl-blatt"><i class="fl-band" aria-hidden="true"></i>${d.liste ? `<h3 class="fl-kopf">${d.liste}</h3>` : ''}
+      <ol class="fl-heft">${S.map((x, i) => `<li class="fl-z" data-i="${i}"><button class="fl-s"><i class="fl-nr" aria-hidden="true">${i + 1}</i><span class="fl-t"><span class="fl-satz">${x.text ?? ''}</span></span></button></li>`).join('')}</ol>
+    </div>
+  </div>`;
   const heft = $('.fl-heft', zi);
+  const zaehlen = () => { const z = zi.querySelector('.fl-zahl'); if (z) z.outerHTML = zaehler(); };
 
-  const fuss = () => unten(sicht < S.length && !zu ? knopf('mehr', d.frage ?? K.UI.weiter) : '', (a) => { if (a === 'mehr') mehr(); });
-  const mehr = (bis = sicht + 1, still = false) => {
-    while (sicht < Math.min(bis, S.length)) {
-      heft.insertAdjacentHTML('beforeend', zeile(S[sicht], sicht));
-      const neu = heft.lastElementChild as HTMLElement;
-      if (!still) neu.classList.add('neu');
-      sicht++;
-    }
-    fuss();
-    if (!still) requestAnimationFrame(() => heft.lastElementChild?.scrollIntoView({ block: 'nearest', behavior: 'smooth' }));
-  };
   const markiere = (i: number) => {
     const el = $(`.fl-z[data-i="${i}"]`, heft);
     if (!el || el.classList.contains('gef')) return;
-    el.classList.remove('zeig');
+    el.classList.remove('zeig', 'stimmt');
     el.classList.add('gef');
     $('.fl-s', el).setAttribute('aria-disabled', 'true');
-    // Stempel gleich hinter dem Satz (fließt mit, verdeckt nichts), darunter wie es wirklich war
     $('.fl-t', el).insertAdjacentHTML('beforeend', ` <b class="fl-stempel">${d.stempel ?? ''}</b>`);
-    el.insertAdjacentHTML('beforeend', `${wahrheit(S[i]) ? `<p class="fl-auf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h12M12 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>${wahrheit(S[i])}</span></p>` : ''}`);
+    if (wahrheit(S[i])) el.insertAdjacentHTML('beforeend', `<p class="fl-auf">${PF}<span>${wahrheit(S[i])}</span></p>`);
   };
   const finde = (i: number, mitHilfe: boolean) => {
     gef.add(i); fehl = 0;
     markiere(i);
+    zaehlen();
     K.summ(30);
     if (gef.size >= falsch.length) {
       zu = true; hook.loese = null;
-      mehr(S.length, true);
+      $('.fl', zi).classList.add('fertig');
       unten('');
-      return spaeter(zi, mitHilfe ? 900 : 600, () => ende(r, d, fertig));
+      return spaeter(zi, mitHilfe ? 900 : 700, () => ende(r, d, fertig));
     }
     const t = S[i].sagt ?? d.fund;
-    if (!mitHilfe && t) sag(r, 'lacht', t);
-    zu = false; fuss();
+    if (!mitHilfe && t) sag(r, 'lacht', [t, gef.size < falsch.length && S[i].sagt ? d.fund ?? '' : ''].join(' ').trim());
+    zu = false;
   };
   zi.onclick = (e) => {
     const b = (e.target as HTMLElement).closest<HTMLElement>('.fl-s');
@@ -280,19 +292,22 @@ SPIELE_LESEN.flunker = (r, d, fertig) => {
     const z = b.closest<HTMLElement>('.fl-z')!, i = +z.dataset.i!;
     if (gef.has(i)) return;
     if (S[i].wahr === false) return finde(i, false);
+    // wahrer Satz: freundlich „stimmt“, kein Durchstreichen
     wackel(z);
+    z.classList.remove('stimmt'); void z.offsetWidth; z.classList.add('stimmt');
+    setTimeout(() => z.classList.remove('stimmt'), 1600);
     if (++fehl === 1) return sag(r, 'tipp', S[i].nein ?? d.nein ?? K.UI.nochmal);
-    // 2. Fehler: die Raupe gibt den nächsten Flunker zu
+    // 2. Fehlgriff: die Raupe zeigt den nächsten Flunker
     const ziel = falsch.find((x) => !gef.has(x));
     if (ziel === undefined) return sag(r, 'tipp', S[i].nein ?? d.nein ?? K.UI.nochmal);
     zu = true;
-    mehr(ziel + 1);
-    unten('');
     sag(r, 'tipp', [K.UI.hilfe, S[ziel].warum ?? d.warum ?? ''].join(' '));
-    $(`.fl-z[data-i="${ziel}"]`, heft)?.classList.add('zeig');
-    spaeter(zi, 1100, () => finde(ziel, true));
+    const zz = $(`.fl-z[data-i="${ziel}"]`, heft);
+    zz.classList.add('zeig');
+    requestAnimationFrame(() => zz.scrollIntoView({ block: 'nearest', behavior: 'smooth' }));
+    spaeter(zi, 1400, () => finde(ziel, true));
   };
-  fuss();
+  unten('');
   sag(r, 'lacht', d.start ?? '');
-  hook.loese = () => { if (zu) return; mehr(S.length, true); falsch.forEach((i) => { if (!gef.has(i)) { gef.add(i); markiere(i); } }); zu = true; unten(''); ende(r, d, fertig); };
+  hook.loese = () => { if (zu) return; falsch.forEach((i) => { if (!gef.has(i)) { gef.add(i); markiere(i); } }); zaehlen(); zu = true; $('.fl', zi).classList.add('fertig'); unten(''); ende(r, d, fertig); };
 };

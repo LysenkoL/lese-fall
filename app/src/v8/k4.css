@@ -215,6 +215,15 @@
 .fin-f.voll { border: 0; background: var(--senf); box-shadow: 0 3px 0 var(--senf-dunkel, #C99A2E); }
 .fin-f.ok { background: #7ACB62; box-shadow: 0 3px 0 #4C9B3A; }
 .fin-karten { display: flex; justify-content: center; gap: .75rem; flex-wrap: wrap; }
+/* Die Kärtchen kommen aus dem Buchstaben-Beutel (main.ts): lose, ein wenig schief, in der Reihenfolge, in der das Kind sie bekommen hat */
+.fin-beutel { display: flex; align-items: center; justify-content: center; gap: .5rem; }
+.fin-beutel > .bt-sack { width: 2.75rem; height: 2.75rem; }
+.fin-beutel .fin-karten { gap: .625rem; }
+.fin-k:not(.zieht) { rotate: var(--r, 0deg); }
+/* nach dem 2. Fehler: der gesuchte Buchstabe (Kärtchen) und sein Feld leuchten */
+.fin-k.zeig { border-color: var(--senf); box-shadow: 0 3px 0 #D8CDB2, 0 0 0 4px rgba(244, 194, 67, .6), 0 0 22px rgba(255, 224, 130, .9); animation: puls 1s ease-in-out infinite; }
+.fin-f.zeig { border: 3px solid #FFE082; background: rgba(255, 224, 130, .25); box-shadow: 0 0 0 3px rgba(255, 224, 130, .45), 0 0 16px rgba(255, 224, 130, .8); }
+@media (prefers-reduced-motion: reduce) { .fin-k.zeig { animation: none; } }
 .fin-k.weg { opacity: .22; box-shadow: none; }
 .fin-k.zieht { z-index: 20; transition: none; box-shadow: 0 16px 24px rgba(0, 0, 0, .45); }
 .tv { position: relative; width: min(78%, 20rem); aspect-ratio: 1; margin: .375rem auto; }
@@ -258,7 +267,7 @@
   overflow: hidden;
 }
 .dipl .dt { font-weight: 800; font-size: 7.6cqw; line-height: 1.1; color: #8A5A10; white-space: nowrap; }
-/* Überschrift nach der Wahl: Meister-Detektiv oder Meister-Detektivin (beide stehen im HTML, eine ist sichtbar) */
+/* Überschrift „Meister-Detektiv“ (ohne Wahl seit 25.11.); nur ein alter Spielstand mit titel 'detektivin' zeigt „Meister-Detektivin“ */
 .dipl .dt-w, .urk[data-wahl="detektivin"] .dipl .dt-m { display: none; }
 .urk[data-wahl="detektivin"] .dipl .dt-w { display: inline; }
 .dipl .dt .s-b, .dipl .dt .s-r, .dipl .dh .s-b, .dipl .dh .s-r, .dipl .df .s-b, .dipl .df .s-r, .dipl .dl .s-b, .dipl .dl .s-r, .dipl .dp .s-b, .dipl .dp .s-r { color: inherit; }
@@ -280,35 +289,6 @@
 .dipl .dl { font-size: 4.1cqw; font-weight: 600; line-height: 1.3; }
 .dipl .dp { font-size: 4.4cqw; font-weight: 700; display: flex; align-items: center; gap: 1.6cqw; justify-content: center; flex-wrap: wrap; }
 .dipl .dp b { font-size: 6cqw; color: #8A5A10; }
-/* Wahl „Detektiv / Detektivin“ unter dem Namen: zwei Knöpfe (mind. 44 px hoch), der gewählte golden mit Haken */
-.dw { display: flex; gap: 2cqw; width: 100%; }
-.dw-b {
-  flex: 1 1 0;
-  min-width: 0;
-  min-height: 2.75rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1cqw;
-  padding: 0 1.5cqw;
-  border-radius: var(--r-rund, 999px);
-  border: .5cqw solid #D9BE85;
-  background: rgba(255, 255, 255, .6);
-  color: #6E5426;
-  font: inherit;
-  font-size: 4.3cqw;
-  font-weight: 800;
-  line-height: 1.1;
-  white-space: nowrap;
-  cursor: pointer;
-  transition: background .15s, box-shadow .15s, transform .1s;
-}
-.dw-b .s-b, .dw-b .s-r { color: inherit; }
-.dw-b .dw-h { width: 3.8cqw; height: 3.8cqw; flex: none; display: none; }
-.dw-b[aria-pressed="true"] { background: var(--senf, #F4C243); border-color: #B5841F; color: #2E2410; box-shadow: 0 .7cqw 0 #B5841F; }
-.dw-b[aria-pressed="true"] .dw-h { display: block; }
-.dw-b:active { transform: translateY(1px); }
-.dw-b:focus-visible { outline: 3px solid #1D3F9E; outline-offset: 2px; }
 .dipl .perle {
   width: 4.6cqw;
   height: 4.6cqw;

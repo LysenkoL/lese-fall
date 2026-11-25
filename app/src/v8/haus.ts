@@ -145,13 +145,31 @@ export function zeigeHaus(c: HausCtx): void {
 }
 
 /** kleiner Hinweis „Neu im Haus der Lese-Raupe: …“ – blockiert nichts, verschwindet von selbst; Tippen öffnet das Haus */
+/**
+ * „Neu im Haus der Lese-Raupe“: kleines Kärtchen direkt UNTER dem Haus-Knopf (Perlen) im Kopf, mit Spitze zum Knopf.
+ * Es liegt über dem oberen Rand der Bühne (Titel, Text) – nie über Knöpfen im Fuß. Ohne sichtbaren Kopf: oben in der Mitte.
+ * Verschwindet nach 4,5 s von selbst; Antippen öffnet das Haus.
+ */
 export function neuHinweis(app: HTMLElement, UI: Record<string, string>, id: string, oeffne: () => void): void {
   app.querySelector('.neuhaus')?.remove();
   const el = document.createElement('button');
   el.className = 'neuhaus';
   el.innerHTML = `<img src="${img('garderobe/' + id)}" alt=""><span class="nh-t"><small>${UI.neuImHaus}</small><b>${UI['d_' + id] ?? id}</b></span>`;
   app.appendChild(el);
-  const weg = () => { el.classList.add('weg'); setTimeout(() => el.remove(), 400); };
+  const kopf = app.querySelector<HTMLElement>('.kopf'), knopf = app.querySelector<HTMLElement>('#kPerl');
+  const A = app.getBoundingClientRect();
+  if (kopf && !kopf.hidden && knopf) {
+    const k = kopf.getBoundingClientRect(), p = knopf.getBoundingClientRect();
+    const rand = 8, w = el.offsetWidth;
+    // rechte Kante unter dem Perlen-Knopf, aber nie über den Rand hinaus
+    const rechts = Math.min(Math.max(A.right - p.right - 6, rand), A.width - w - rand);
+    el.style.top = `${k.bottom - A.top + 10}px`;
+    el.style.right = `${rechts}px`;
+    el.style.setProperty('--spitze', `${Math.min(Math.max(A.right - rechts - (p.left + p.width / 2), 18), w - 18)}px`);
+    el.classList.add('am-knopf');
+    knopf.classList.remove('neu-da'); void knopf.offsetWidth; knopf.classList.add('neu-da');
+  }
+  const weg = () => { el.classList.add('weg'); knopf?.classList.remove('neu-da'); setTimeout(() => el.remove(), 400); };
   el.onclick = () => { weg(); oeffne(); };
   setTimeout(weg, 4500);
 }

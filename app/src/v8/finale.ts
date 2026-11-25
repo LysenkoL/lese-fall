@@ -1,7 +1,7 @@
 /**
  * Finale nach Spur 24 (D-19: vier Bildschirme):
  * das Kind legt N-E-S-T selbst in die Felder → der Tresor öffnet sich (Tür, goldenes Licht, Konfetti),
- * drinnen liegt die goldene Lupe, die Raupe schenkt sie → Urkunde „Meister-Detektiv / Meister-Detektivin“
+ * drinnen liegt die goldene Lupe, die Raupe schenkt sie → Urkunde „Meister-Detektiv“
  * mit einem kurzen Satz der Raupe → ein stiller Abend (Epilog) und zwei Wege weiter.
  * Schritte in stand.fin: 0 Code legen · 1 Tresor offen mit Lupe · 2 Urkunde · 3 Epilog.
  * Bis 25.11.2026 hatte das Finale sieben Schritte; ein alter Spielstand wird einmal umgerechnet (finNormal).
@@ -19,6 +19,10 @@ export interface FinCtx {
   fin: any;
   /** das Code-Wort, z. B. NEST */
   wort: string;
+  /** Stellen im Wort in der Reihenfolge, in der das Kind die Buchstaben bekommen hat (Kapitel 1, 2, …) – so liegen die Kärtchen im Beutel */
+  reihe?: number[];
+  /** Bild des Buchstaben-Beutels (SVG aus main.ts) */
+  sack?: string;
   stand: { fin: number; name: string };
   speichern: () => void;
   perlen: () => number;
@@ -79,16 +83,20 @@ export function zeigeFinale(c: FinCtx): void {
   /* ---------- 0: Code in die Felder legen ---------- */
   if (st.fin === 0) {
     const wort = c.wort.split('');
-    const ordnung = [3, 1, 0, 2].filter((i) => i < wort.length);
-    wort.forEach((_, i) => { if (!ordnung.includes(i)) ordnung.push(i); }); // nie in der richtigen Reihenfolge
+    // Kärtchen kommen aus dem Beutel: in der Reihenfolge, in der das Kind sie bekommen hat (E, T, N, S) – nie schon richtig sortiert
+    let ordnung = (c.reihe ?? []).filter((i, j, a) => i >= 0 && i < wort.length && a.indexOf(i) === j);
+    wort.forEach((_, i) => { if (!ordnung.includes(i)) ordnung.push(i); });
+    if (ordnung.every((k, i) => wort[k] === wort[i])) ordnung = [...ordnung.slice(1), ordnung[0]];
     const felder: (number | null)[] = wort.map(() => null); // Feld → Kärtchen-Nr
-    let fehl = 0, gesperrt = false;
-    c.buehne.innerHTML = `<section class="zug fin" data-art="tresorcode"><div class="lampe"></div><div class="zk"><span class="tab hell">${c.UI.tresor}</span><h2>${F.code.titel}</h2></div><p class="zt1">${F.code.text}</p><div class="fin-tresor"><img src="${c.img('tresor_zu')}" alt="" draggable="false"><div class="fin-felder"></div></div><div class="fin-karten"></div><div class="zr"></div></section>`;
+    let fehl = 0, gesperrt = false, zeig = -1; // zeig: Feld, dessen Buchstabe nach dem 2. Fehler leuchtet
+    c.buehne.innerHTML = `<section class="zug fin" data-art="tresorcode"><div class="lampe"></div><div class="zk"><span class="tab hell">${c.UI.tresor}</span><h2>${F.code.titel}</h2></div><p class="zt1">${F.code.text}</p><div class="fin-tresor"><img src="${c.img('tresor_zu')}" alt="" draggable="false"><div class="fin-felder"></div></div><div class="fin-beutel">${c.sack ?? ''}<div class="fin-karten"></div></div><div class="zr"></div></section>`;
     const sec = c.buehne.querySelector<HTMLElement>('.fin')!;
     const sag = (b: string, t: string, kl = '') => { const z = sec.querySelector<HTMLElement>('.zr')!; z.innerHTML = t ? raupe(b, t, kl) : ''; if (t) requestAnimationFrame(() => z.scrollIntoView({ block: 'nearest', behavior: 'smooth' })); };
     const mal = () => {
-      sec.querySelector('.fin-felder')!.innerHTML = felder.map((k, i) => `<button class="fin-f${k !== null ? ' voll' : ''}" data-f="${i}" aria-label="Feld ${i + 1}">${k !== null ? wort[k] : ''}</button>`).join('');
-      sec.querySelector('.fin-karten')!.innerHTML = ordnung.map((k) => `<button class="fin-k${felder.includes(k) ? ' weg' : ''}" data-k="${k}" aria-label="Buchstabe ${wort[k]}" ${felder.includes(k) ? 'disabled' : ''}>${wort[k]}</button>`).join('');
+      if (zeig >= 0 && felder[zeig] !== null && wort[felder[zeig]!] === wort[zeig]) zeig = -1; // richtig gelegt: nicht mehr leuchten
+      sec.querySelector('.fin-felder')!.innerHTML = felder.map((k, i) => `<button class="fin-f${k !== null ? ' voll' : ''}${i === zeig ? ' zeig' : ''}" data-f="${i}" aria-label="Feld ${i + 1}">${k !== null ? wort[k] : ''}</button>`).join('');
+      const zeigK = zeig >= 0 ? ordnung.find((k) => wort[k] === wort[zeig] && !felder.includes(k)) : undefined;
+      sec.querySelector('.fin-karten')!.innerHTML = ordnung.map((k, j) => `<button class="fin-k${felder.includes(k) ? ' weg' : ''}${k === zeigK ? ' zeig' : ''}" data-k="${k}" style="--r:${[-6, 5, -3, 7][j % 4]}deg" aria-label="Buchstabe ${wort[k]}" ${felder.includes(k) ? 'disabled' : ''}>${wort[k]}</button>`).join('');
     };
     const pruefen = () => {
       if (felder.some((k) => k === null) || gesperrt) return;
@@ -98,9 +106,16 @@ export function zeigeFinale(c: FinCtx): void {
       sec.querySelectorAll('.fin-f').forEach((f, i) => { if (wort[felder[i]!] !== wort[i]) wackel(f); });
       c.summ(40);
       gesperrt = true;
+      const falscheRaus = () => { felder.forEach((k, i) => { if (wort[k!] !== wort[i]) felder[i] = null; }); gesperrt = false; if (sec.isConnected) mal(); };
       if (fehl === 1) {
-        sag('tipp', c.UI.nochmal + ' ' + F.code.tipp);
-        setTimeout(() => { felder.forEach((k, i) => { if (wort[k!] !== wort[i]) felder[i] = null; }); gesperrt = false; if (sec.isConnected) mal(); }, 800);
+        // 1. Fehler: eine einfache Frage (UI.tresorTipp), die falschen Buchstaben kommen zurück
+        sag('tipp', c.UI.tresorTipp ?? (c.UI.nochmal + ' ' + F.code.tipp));
+        setTimeout(falscheRaus, 800);
+      } else if (fehl === 2) {
+        // 2. Fehler: der erste Buchstabe leuchtet (Kärtchen und Feld), dazu der längere Tipp
+        zeig = wort.findIndex((ch, i) => wort[felder[i]!] !== ch);
+        sag('tipp', F.code.tipp);
+        setTimeout(falscheRaus, 800);
       } else {
         sag('tipp', F.code.hilfe);
         setTimeout(() => { if (!sec.isConnected) return; wort.forEach((ch, i) => { felder[i] = ordnung.find((k) => wort[k] === ch && !felder.slice(0, i).includes(k))!; }); mal(); gut(true); }, 1500);
@@ -196,7 +211,7 @@ export function zeigeFinale(c: FinCtx): void {
     return;
   }
 
-  /* ---------- 2: Urkunde „Meister-Detektiv / Meister-Detektivin“ und ein Satz der Raupe ---------- */
+  /* ---------- 2: Urkunde „Meister-Detektiv“ (Name eintragen) und ein Satz der Raupe ---------- */
   c.modus('haken');
   c.buehne.innerHTML = urkundeHtml(c.UI, st.name, c.perlen(), c.fig, true, F.raupeKurz);
   konfetti(c.buehne.querySelector('.urk')!);
@@ -205,52 +220,29 @@ export function zeigeFinale(c: FinCtx): void {
   nurKnopf('weiter', c.knopf('weiter', c.UI.weiter), () => gehe(3));
 }
 
-/* ---------- Urkunde: Wahl „Detektiv / Detektivin“ ---------- */
-type Wahl = 'detektiv' | 'detektivin';
+/* ---------- Urkunde ---------- */
 /**
- * Spielstand für die Wahl auf der Urkunde (Feld `titel`, nicht im Typ Stand von main.ts).
- * Im Finale setzt zeigeFinale ihn; die Urkunde aus „Fall gelöst“ → „Meine Urkunde“ ruft main.ts ohne Stand auf,
- * dort gilt main.ts' Stand über window.__v8 (oder urkundeMitStand, falls main.ts es aufruft).
+ * Seit 25.11.2026 ohne Wahl „Detektiv / Detektivin“ (Entscheidung der Besitzerin): die Überschrift bleibt „Meister-Detektiv“.
+ * Ein alter Spielstand mit `titel: 'detektivin'` behält seine Überschrift „Meister-Detektivin“.
  */
+type Wahl = 'detektiv' | 'detektivin';
 let standRef: { st: any; speichern: (() => void) | null } | null = null;
-/** Optional für main.ts: Stand und Speichern einmal übergeben, dann braucht die Urkunde window.__v8 nicht */
+/** main.ts übergibt Stand und Speichern einmal (die Urkunde liest daraus den alten Titel und den Namen) */
 export function urkundeMitStand(st: any, speichern: () => void): void { standRef = { st, speichern }; }
 const standJetzt = (): any => standRef?.st ?? (globalThis as any).__v8?.stand ?? null;
 const wahlVon = (st: any): Wahl => (st?.titel === 'detektivin' ? 'detektivin' : 'detektiv');
-const HAKEN = '<svg class="dw-h" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-
-function zeigeWahl(urk: HTMLElement, w: Wahl): void {
-  urk.dataset.wahl = w;
-  urk.querySelectorAll<HTMLElement>('.dw-b').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.wahl === w)));
-}
-/** ein Klick-Lauscher für alle Urkunden (Finale und „Meine Urkunde“), einmal beim Laden */
-document.addEventListener('click', (e) => {
-  const b = (e.target as HTMLElement | null)?.closest?.<HTMLElement>('.urk .dw-b[data-wahl]');
-  if (!b) return;
-  const urk = b.closest<HTMLElement>('.urk')!, w = b.dataset.wahl as Wahl;
-  if (urk.dataset.wahl === w) return;
-  zeigeWahl(urk, w);
-  const st = standJetzt();
-  if (!st) return;
-  st.titel = w;
-  // Speichern: im Finale direkt; bei „Meine Urkunde“ über den Lauscher, den main.ts an das Namensfeld hängt (speichert den ganzen Stand)
-  if (standRef?.speichern) standRef.speichern();
-  else urk.querySelector('#dname')?.dispatchEvent(new Event('input', { bubbles: true }));
-});
 
 /**
- * Urkunde (im Finale und aus dem Fall-Album): gleiche Gestaltung, Name und „Detektiv / Detektivin“ änderbar.
+ * Urkunde (im Finale und aus dem Fall-Album): gleiche Gestaltung, der Name ist änderbar.
  * `raupeKurz` (nur im Finale): ein Satz der Raupe als Sprechblase über der Zeile „Detektiv-Team“.
  */
 export function urkundeHtml(UI: Record<string, string>, name: string, perlen: number, fig: (n: string) => string, imFinale = false, raupeKurz?: string): string {
   const w = wahlVon(standJetzt());
   const meisterin = UI.meisterin ?? UI.meister + 'in';
-  const knopf = (x: Wahl, t: string) => `<button type="button" class="dw-b" data-wahl="${x}" aria-pressed="${w === x}">${HAKEN}<span>${t}</span></button>`;
   const team = `<p class="team"><img src="${fig('raupe/lob')}" alt=""><span>${UI.teamZeile}</span></p>`;
   return `<section class="fin urk${raupeKurz ? ' mit-rk' : ''}" data-wahl="${w}">${imFinale ? '<div class="lampe"></div>' : ''}`
     + `<div class="dipl"><div class="dipl-in"><p class="dt"><span class="dt-m">${UI.meister}</span><span class="dt-w">${meisterin}</span></p>`
     + `<input id="dname" type="text" maxlength="18" placeholder="${esc(ohneTags(UI.nameFrage))}" value="${esc(name)}" autocomplete="off" autocapitalize="words" aria-label="${esc(ohneTags(UI.nameFrage))}">`
-    + `<div class="dw" role="group" aria-label="${esc(ohneTags(UI.meister))} / ${esc(ohneTags(meisterin))}">${knopf('detektiv', UI.wahlDetektiv ?? 'Detektiv')}${knopf('detektivin', UI.wahlDetektivin ?? 'Detektivin')}</div>`
     + `<p class="dh">${UI.hatGeloest}</p><p class="df">${UI.fallName}</p><p class="dl">${UI.urkLob}</p><p class="dp"><span class="perle"></span><b>${perlen}</b><span class="dpt">${UI.perlenSumme}</span></p></div></div>`
     + (raupeKurz ? `<div class="urk-team"><p class="rk-blase">${raupeKurz}</p>${team}</div>` : team)
     + `</section>`;

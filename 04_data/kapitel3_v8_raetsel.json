@@ -20,7 +20,7 @@
   "frage": "Aber was will der Vogel bei uns auf dem Hof?",
   "stempel": "KAPITEL 3 GELÖST"
  },
- "ausblick": "Da klappen zwei Flügel auf. Der Vogel packt den weißen Faden. Und der Mond hebt ab.",
+ "ausblick": "Oben im Baum spreizt der große Vogel die Flügel. Seine Augen funkeln. Er starrt genau auf den Silberstern …",
  "ui": {
   "lupeStart": "Schiebe die Lupe über den Käse.",
   "anLupe": "Lupe"
@@ -61,7 +61,7 @@
   {
    "spur": 14,
    "bild": "k3_s14",
-   "haken": "Zwischen den Zweigen sitzt ein großer Vogel mit spitzem Schnabel und langem Schwanz. Er äugt neugierig nach unten.",
+   "haken": "„Puh, der Vogel schaut weg. Und jetzt schnell zurück zum Käse: Sind die Löcher echt?“",
    "karte": {
     "titel": "Ein Schatten",
     "bild": "objekte/vogelschatten",
@@ -91,11 +91,11 @@
   {
    "spur": 15,
    "bild": "k3_s15",
-   "haken": "Da kommen Ida, Nele, Tom und Emil über den Hof zur Bank gerannt.",
+   "haken": "„Huch, wer kommt denn da über den Hof gerannt? Alle halten etwas Gelbes in der Hand!“",
    "karte": {
     "titel": "Nur aufgeklebt",
     "bild": "k3_s15",
-    "text": "Die Flecken und die Krümel sind nur aufgeklebt. Der Kreis darunter ist ganz.",
+    "text": "Die braunen Flecken sind nur aufgeklebt. Die Krümel sind aus gelbem Papier. Der Kreis darunter ist heil.",
     "staub": false,
     "ausschnitt": {
      "x": 27,
@@ -169,7 +169,7 @@
   {
    "spur": 16,
    "bild": "k3_s16_vorher",
-   "haken": "Oskar ist ganz still geworden.",
+   "haken": "„Stern, Loch und Faden: Das ist Milas Mond! Aber was sagt Oskar jetzt?“",
    "karte": {
     "titel": "Das ist Milas Mond",
     "bild": "objekte/mond_hinten_faden",
@@ -282,10 +282,11 @@
   {
    "spur": 17,
    "bild": "k3_s17",
-   "haken": "Mila hält ihren gepunkteten Mond ratlos hoch. Was wird jetzt aus dem Theaterstück?",
+   "haken": "„Alles geklärt. Aber kann man mit einem gefleckten Mond noch Theater spielen?“",
    "karte": {
     "titel": "Ein Missverständnis",
-    "bild": "objekte/mond_auf_tablett",
+    "bild": "k3_s17",
+  "ausschnitt": { "x": 6, "y": 6, "w": 88, "h": 84 },
     "text": "Ben hat den Mond aufs Tablett für alle gelegt. Oskar hielt ihn für Papier.",
     "staub": false
    },
@@ -324,11 +325,11 @@
   {
    "spur": 18,
    "bild": "k3_s18",
-   "haken": "„Wartet mal! Ich habe eine Idee!“",
+   "haken": "„Jetzt muss nur noch einer von den dreien auf die Idee kommen!“",
    "karte": {
-    "titel": "Bens Idee",
+    "titel": "Die rettende Idee",
     "bild": "k3_s18",
-    "text": "Ein Mond mit Kratern. Für die Maus ist er ein Käse. So sind alle drei froh.",
+    "text": "Die Flecken bleiben dran. Für die Menschen ist es ein Mond mit Kratern. Für die Maus ist er ein Käse.",
     "staub": false,
     "ausschnitt": {
      "x": 20,
@@ -343,13 +344,14 @@
     "art": "waage",
     "werkzeug": "lesen",
     "titel": "Welche Idee macht alle froh?",
-    "text": "Jeder hat einen Wunsch. Welche Idee macht alle drei froh?",
-    "start": "Oje, drei Wünsche! Tipp eine Idee an. Wer freut sich?",
+    "text": "Jeder hat einen Wunsch. Tippe eine Idee an. Wer lacht? Wer nicht?",
+    "frage": "Finde die Idee, bei der alle drei lachen.",
+    "start": "Welche Idee macht alle drei froh? Komm, wir probieren die Ideen aus!",
     "kinder": [
      {
       "id": "mila",
       "name": "Mila",
-      "text": "Der Mond soll am Himmel hängen."
+      "text": "Unser Stück braucht einen Mond."
      },
      {
       "id": "ben",
@@ -377,16 +379,16 @@
       },
       "oskar": {
        "froh": false,
-       "unter": "Und meine Maus?"
+       "unter": "Und das Festessen für meine Maus?"
       },
-      "sagt": "Oje, Ben schaut ganz besorgt."
+      "sagt": "Oje, Ben schaut ganz besorgt. Die Pappe darf nicht reißen."
      },
      {
       "id": "ohne",
       "text": "Wir spielen ohne Mond.",
       "mila": {
        "froh": false,
-       "unter": "Ohne Mond? Das geht nicht!"
+       "unter": "Ohne Mond gibt es kein Stück!"
       },
       "ben": {
        "froh": true,
@@ -394,16 +396,16 @@
       },
       "oskar": {
        "froh": false,
-       "unter": "Dann gibt es keinen Käse."
+       "unter": "Dann gibt es kein Festessen."
       },
-      "sagt": "Ohne Mond ist der Himmel ja ganz leer!"
+      "sagt": "Hm. Nur Ben lacht. Ohne Mond ist der Himmel leer."
      },
      {
       "id": "neu",
       "text": "Wir basteln schnell einen neuen Mond.",
       "mila": {
        "froh": false,
-       "unter": "Das dauert viel zu lange!",
+       "unter": "Das dauert zu lange! Gleich geht das Stück los.",
        "bild": "besorgt"
       },
       "ben": {
@@ -412,16 +414,16 @@
       },
       "oskar": {
        "froh": false,
-       "unter": "Und mein Käse ist weg."
+       "unter": "Und das Festessen für meine Maus?"
       },
-      "sagt": "Hmm. Wieder sind zwei traurig."
+      "sagt": "Wieder lacht nur einer. Das ist es noch nicht."
      },
      {
       "id": "kaese",
-      "text": "Die Flecken bleiben. Für die Maus ist der Mond ein Käse!",
+      "text": "Die Flecken bleiben dran. Für die Maus ist der Mond ein Käse!",
       "mila": {
        "froh": true,
-       "unter": "Der Mond bleibt am Himmel!"
+       "unter": "Mein Mond hängt im Theater!"
       },
       "ben": {
        "froh": true,
@@ -433,11 +435,10 @@
       }
      }
     ],
-    "tipp": "Schau mal: Der echte Mond hat auch dunkle Flecken.",
-    "warum": "Die Flecken bleiben einfach dran. Für die Maus sieht der Mond aus wie ein Käse.",
-    "fund": "Alle drei sind froh!",
-    "stempel": "ALLE FROH",
-    "erfolg": "Genau das hat Ben gemeint! Für die Maus ist der Mond ein Käse. Und alle drei sind froh."
+    "tipp": "Was mag eine Maus gern? Und wie sieht der Mond mit den braunen Flecken aus?",
+    "hilfe": "Eine Idee hast du noch nicht probiert. Tipp sie an!",
+    "ok": "Die rettende Idee!",
+    "erfolg": "Das ist die rettende Idee! Jetzt muss nur noch einer von den dreien darauf kommen."
    }
   },
   {
@@ -486,6 +487,5 @@
    },
    "fragenWeg": []
   }
- ],
- "ausblickBild": "k3_elster"
+ ]
 }

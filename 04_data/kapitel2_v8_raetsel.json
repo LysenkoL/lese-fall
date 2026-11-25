@@ -30,7 +30,7 @@
   {
    "spur": 7,
    "bild": "k2_s7",
-   "haken": "„Wer sich vom blauen Tablett etwas nimmt, ist also kein Dieb. Aber wer schnippelt da draußen mit der Schere?“",
+   "haken": "„Aber einen knallgelben Mond hält doch niemand für Bastelpapier … oder?“",
    "karte": {
     "titel": "Kiste und Tablett",
     "bild": "objekte/kiste_gruen",
@@ -113,7 +113,7 @@
   {
    "spur": 8,
    "bild": "k2_s8",
-   "haken": "Wer von draußen aufs Tablett geschaut hat, sah nur einen weißen Pappkreis. Aber wer war draußen?",
+   "haken": "„Ein weißer Kreis auf dem Tablett … Wer hat ihn sich wohl geholt?“",
    "karte": {
     "titel": "Weiße Seite oben",
     "bild": "objekte/mond_hinten_feucht",
@@ -179,7 +179,7 @@
   {
    "spur": 9,
    "bild": "k2_s9",
-   "haken": "Was versteckt Oskar unter dem Seidenpapier?",
+   "haken": "„Ein Festessen unter Seidenpapier? Da muss ich genauer hinschauen!“",
    "karte": {
     "titel": "Der zugedeckte Teller",
     "bild": "objekte/teller_zugedeckt",
@@ -242,11 +242,11 @@
   },
   {
    "spur": 10,
-   "bild": "k2_s10",
-   "haken": "„Gebastelt?!“ Milas Stimme zittert ein kleines bisschen.",
+   "bild": "k2_s10_fenster",
+   "haken": "„Eine Überraschung aus einem weißen Kreis … Hoffentlich nicht aus Milas Mond!“",
    "karte": {
     "titel": "Ein weißer Kreis",
-    "bild": "objekte/tablett_leer",
+    "bild": "objekte/mond_auf_tablett",
     "text": "Oskar sagt: Ich habe einen weißen Kreis vom Tablett genommen.",
     "staub": false
    },
@@ -270,8 +270,8 @@
   },
   {
    "spur": 11,
-   "bild": "k2_s11",
-   "haken": "Neben dem Teller liegt etwas. Etwas Gelbes. Viele kleine Stücke.",
+   "bild": "k2_s11_hof",
+   "haken": "„Was liegt denn da neben dem Teller? Etwas Gelbes … in ganz vielen kleinen Stücken!“",
    "karte": {
     "titel": "Idas Schere",
     "bild": "kinder/ida",

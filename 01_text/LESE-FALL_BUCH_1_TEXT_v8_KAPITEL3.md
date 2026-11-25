@@ -1,6 +1,6 @@
-# LESE-FALL — DER VERSCHWUNDENE MOND · Text v8.8 · Kapitel 3
+# LESE-FALL — DER VERSCHWUNDENE MOND · Text v8.9 · Kapitel 3
 
-**Статус:** текст автора v8.8 от 25.11.2026 (`06_review/brainstorm/BUCH1_v8_8.md`, решение D-19). Текст не менять здесь — сначала в файле автора. Разбивку на листы делает приложение.
+**Статус:** текст автора v8.9 от 25.11.2026 (`06_review/brainstorm/BUCH1_v8_9.md`, решения D-19 и D-20). Текст не менять здесь — сначала в файле автора. Разбивку на листы делает приложение.
 
 ---
 
@@ -16,8 +16,10 @@ Mila starrt sprachlos auf den Teller, und Ben klappt der Mund auf. „Ein Käse!
 
 „Ein echter Festtagskäse für meine kleine Maus!“, verkündet Oskar stolz. „Sogar mit echten Käsekrümeln!“
 
+<!-- Raupe: lacht -->
 Oben auf dem Fensterbrett läuft der Lese-Raupe schon das Wasser im Mund zusammen: „Mmmh, Käse!“ Doch gleich darauf muss sie über sich selbst kichern: „Ach Quatsch, der ist doch aus Pappe! Mein hungriger Raupenbauch hört einfach nie richtig zu.“
 
+<!-- Raupe: tipp -->
 Sie setzt ihre Tautropfen-Lupe vors Auge und mustert den Tellerrand ganz genau. „Moment mal“, denkt sie. „An diesem Käse blitzt etwas hervor, das überhaupt nicht zu einem normalen Käse passt!“
 
 ### Spur 14 — Ein Schatten mit Flügeln
@@ -28,12 +30,13 @@ Mila beugt sich tief über den Teller auf der Bank. „Oskar, dein Käse ist ja 
 
 Oskar schaut verwirrt von Mila zu Ben. „Wie, euer Mond? Das ist doch mein Mäusekäse! Und ich dachte, der Faden hing halt noch vom Basteln dran.“
 
-Mila holt tief Luft. „Nur gelb und rund reicht als Beweis noch nicht — das habe ich heute schon beim Kreis unter den Zeitungen gelernt. Wir müssen erst prüfen, ob dein Käse kaputtgeschnitten ist.“
+Mila holt tief Luft. „Gelb und rund allein ist noch kein Beweis. Das habe ich heute schon beim Kreis unter den Zeitungen gelernt.“ Dann schaut sie auf die drei braunen Löcher und wird ganz blass. „Und wenn das doch mein Mond ist … dann hat er jetzt Löcher!“
 
 In diesem Augenblick blitzt Oskars silberne Bastelschere im Sonnenlicht auf — und plötzlich huscht ein großer Schatten mit zwei ausgebreiteten Flügeln dicht über die Bank!
 
 Die Lese-Raupe schaut blitzschnell mit ihrem Zeitlupen-Blick in die Baumkrone hinauf: Zwischen den Zweigen sitzt ein großer Vogel mit spitzem Schnabel und langem Schwanz und äugt neugierig nach unten.
 
+<!-- Raupe: staunt -->
 Schnell zieht die Raupe den Kopf ein. „Oh je, ein großer Vogel!“, denkt sie. „Vögel mögen Raupen … zum Frühstück!“
 
 ### Spur 15 — Drei braune Flecken
@@ -48,6 +51,7 @@ Zum Beweis hält er zwei dünne Bastelblätter hoch: ein braunes Papierblatt, in
 
 Mila fällt ein riesiger Stein vom Herzen: „Puh, dann ist die große Pappscheibe darunter ja noch komplett heil!“
 
+<!-- Raupe: lacht -->
 Oben am Fenster schmunzelt die Lese-Raupe: „Ein Mond im Käse-Kostüm mit drei aufgeklebten Sommersprossen!“
 
 ### Spur 16 — Die Rückseite
@@ -64,6 +68,7 @@ Ida kichert: „Und weißt du was, Mila? Als du mir heute Morgen auf dem Schulwe
 
 Mila schaut zu Ben: „Dann reicht der blaue Stern allein nicht mehr! Aber an meinem echten Mond ist hinten ja noch das kleine Loch, wo Ben den weißen Faden aufgerollt und festgeklebt hat!“
 
+<!-- Raupe: lupe -->
 Oben am Fensterbrett macht die Lese-Raupe einen langen Hals: „Jetzt wird umgedreht! Welche Rückseite verrät uns den echten Mond?“
 
 ### Spur 17 — Ein Missverständnis
@@ -80,8 +85,11 @@ Ben kratzt sich grinsend am Kopf: „Eigentlich war ich schuld, weil ich den Mon
 
 „Und ich war so tief im Schrank verschwunden, dass ich nichts gemerkt habe!“, lacht Mila.
 
+<!-- Bild -->
+<!-- Raupe: klatscht -->
 „Mein Stern!“, denkt die Lese-Raupe glücklich. „Den hat Mila nur für mich gemalt.“
 
+<!-- Raupe: lob -->
 Dann atmet die Raupe zufrieden auf: „Kein böser Dieb — nur drei gute Ideen, die sich lustig in die Quere gekommen sind!“
 
 ### Spur 18 — Die rettende Idee
@@ -96,13 +104,21 @@ Oskar schaut traurig auf seine kleine graue Maus. „Und meine Maus wollte doch 
 
 „Einen neuen Mond schaffen wir nicht mehr“, seufzt Ben. „Bald geht das Theater los.“
 
-Da schaut Ben erst auf den gefleckten Mond und dann auf Oskars kleine graue Papiermaus. Plötzlich schnippt er mit den Fingern: „Wartet mal! Ich habe eine Idee!“
+Alle drei sitzen still auf der Bank. Mila will einen Mond am Himmel. Ben will, dass nichts kaputtgeht. Und Oskar will ein Festessen für seine Maus.
 
-„Welche Idee macht alle drei froh?“, überlegt die Lese-Raupe gespannt.
+Oben am Fenster schaut die Lese-Raupe auf den gefleckten Mond. Dann auf Oskars kleine Maus. Dann wieder auf den Mond. Ihre Fühler kribbeln.
+
+<!-- Raupe: denkt -->
+„Es muss doch eine Idee geben, die alle drei froh macht!“, überlegt die Lese-Raupe.
 
 ### Spur 19 — Ein Mond mit Kratern
 
+Da schaut Ben auf den gefleckten Mond und dann auf Oskars kleine graue Papiermaus. Plötzlich schnippt er mit den Fingern: „Wartet mal! Ich habe eine Idee!“
+
 „Der echte Mond am Himmel hat doch auch dunkle Krater!“, ruft Ben. „Mit den drei braunen Flecken sieht unser Mond jetzt noch viel echter aus! Für die Menschen ist es ein Mond mit Kratern. Aber für eine hungrige kleine Maus sieht er aus wie der größte Käse der Welt!“
+
+<!-- Raupe: klatscht -->
+„Genau meine Idee!“, denkt die Lese-Raupe stolz.
 
 „Oskar, wir spielen einfach ein neues Stück“, sagt Ben. „Und du führst deine Maus auf der Bühne!“
 
@@ -117,6 +133,10 @@ Mila wickelt den weißen Faden wieder ab, damit der Mond gleich wieder am Theate
 Dann ruft Mila zu Ida und den anderen Kindern auf dem Hof: „Hey, bringt zur Aufführung alle eure Mäuse mit! Wir haben eine Riesen-Überraschung für euch!“
 
 „Au ja, wir kommen alle!“, rufen die Kinder begeistert zurück.
+
+„Und unser Plakat?“, fragt Oskar. „Da steht ja noch das alte Stück drauf!“
+
+„Dann malen wir es schnell um!“, ruft Mila.
 
 Schnell holt Ben das Theaterplakat und Stifte aus dem Klassenzimmer. Oskar malt unten eine kleine graue Maus dazu, und Mila tupft drei braune Punkte auf den gemalten Mond. Alle drei sind ganz in ihre Zeichnung vertieft. Der echte Mond liegt ganz außen am Bankrand in der Sonne. Sein Silberstern funkelt.
 

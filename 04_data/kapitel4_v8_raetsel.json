@@ -22,9 +22,10 @@
   "flunker": {
    "art": "flunker",
    "werkzeug": "lesen",
-   "text": "Die Lese-Raupe erzählt den ganzen Fall. Zweimal flunkert sie! Tippe auf die falschen Sätze.",
-   "start": "Ich erzähle dir den ganzen Fall. Aber pass auf: Zweimal flunkere ich!",
-   "frage": "Und dann?",
+   "text": "Die Lese-Raupe hat den ganzen Fall aufgeschrieben. Aber zweimal hat sie geflunkert!",
+   "start": "Hier ist mein Bericht. Lies ihn genau. Zweimal flunkere ich! Hihi.",
+   "frage": "Zwei Sätze stimmen nicht. Finde die Flunker-Sätze!",
+   "liste": "Mein Bericht: Der verschwundene Mond",
    "saetze": [
     {
      "text": "Mila hat einen gelben Mond für das Theater gebastelt.",
@@ -55,14 +56,15 @@
      "wahr": true
     }
    ],
-   "nein": "Das stimmt doch! Lies noch einmal.",
-   "fund": "Erwischt! Einmal habe ich noch geflunkert.",
+   "nein": "Das stimmt! Lies noch mal genau.",
+   "fund": "Einmal habe ich noch geflunkert. Such weiter!",
    "warum": "Die Elster liebt alles, was glänzt. Den Mond wollte sie wegen des Silbersterns.",
    "stempel": "GEFLUNKERT!",
    "erfolg": "Erwischt! Du passt aber gut auf, Partner."
   }
  },
  "ausblick": "Frau Sommer hält ihren Schlüssel in der Hand. Draußen funkelt der Nest-Schmuck der Elster. Jetzt fehlt nur noch eins: der Tresor der Lese-Raupe!",
+ "ausklangBild": "nest_finale",
  "ui": {
   "faden": "Faden ziehen",
   "tresorAuf": "Der Tresor ist offen!",
@@ -142,7 +144,7 @@
   "urkunde": {
    "titel": "Die Urkunde"
   },
-  "raupeKurz": "„Psst! Mila, Ben und Oskar denken, sie waren ganz allein. Aber wir zwei wissen es besser, Partner!“",
+  "raupeKurz": "„Psst! Mila, Ben und Oskar denken, alles ging wie von selbst. Aber wir zwei wissen es besser, Partner!“",
   "epilog": {
    "titel": "Ein stiller Abend",
    "saetze": [
@@ -156,7 +158,7 @@
    "spur": 20,
    "bild": "k4_s19_elster",
    "schluessel": true,
-   "haken": "„Was, wenn der Vogel auch Frau Sommers Schlüssel geholt hat?!“",
+   "haken": "„Etwas Silbernes im Nest … Ob das Frau Sommers Schlüssel ist?“",
    "karte": {
     "titel": "Das Nest",
     "bild": "baum",
@@ -293,10 +295,10 @@
   {
    "spur": 21,
    "bild": "k4_s21_raupe",
-   "haken": "Am Nest blitzt etwas Silbernes. Ist das der Schlüssel?",
+   "haken": "„Pst! Ganz leise jetzt. Was liegt da alles im Nest?“",
    "karte": {
     "titel": "Am Nest",
-    "bild": "nest_nah",
+    "bild": "nest_sammlung",
     "ausschnitt": {
      "x": 22,
      "y": 18,
@@ -441,12 +443,12 @@
   },
   {
    "spur": 22,
-   "bild": "k4_s20_vorher",
-   "haken": "Gleich geht der Vorhang auf!",
+   "bild": "nest_sammlung",
+   "haken": "„Ob Oskar das Blatt bemerkt?“",
    "karte": {
     "titel": "Oskars Maus",
     "bild": "objekte/maus_seite",
-    "text": "Oskars Maus steckte in seiner Kapuze. Die Raupe hat ihm mit einem Blatt geholfen.",
+    "text": "Die Maus steckte in Oskars Kapuze. Ein Blatt von der Raupe hat Oskar am Nacken gekitzelt.",
     "staub": false
    },
    "fragenNeu": [],
@@ -492,7 +494,7 @@
     "start": "Mit meiner Lupe sieht man Kleines groß. Wo ist etwas Rosafarbenes?",
     "tipp": "Schau auf Oskars Rücken. Was hat er unter dem Baum gemacht?",
     "fund": "Da! Ein rosa Mäuseschwanz in Oskars Kapuze!",
-    "erfolg": "Ich lasse ein Blatt auf Oskars Nacken segeln. Psst!",
+    "erfolg": "Die Maus steckt in Oskars Kapuze! Ich zupfe ein Blatt ab und lasse es auf seinen Nacken segeln. Dann merkt er es. Psst!",
     "werkzeug": "lupe"
    }
   },

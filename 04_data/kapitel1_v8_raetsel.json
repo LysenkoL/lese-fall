@@ -52,6 +52,8 @@
   "neu": "neu",
   "perlen": "Schimmer-Perlen",
   "code": "Der Code für den Tresor",
+  "beutel": "Meine Buchstaben für den Tresor",
+  "tresorTipp": "Tipp: Wo lag der Schlüssel?",
   "passt": "Das Wort passt",
   "passtNicht": "Das Wort passt nicht",
   "vorhin": "Vorhin",
@@ -122,7 +124,7 @@
   {
    "spur": 1,
    "bild": "k1_s1",
-   "haken": "„Wie seltsam! Bei uns in der Schule ist doch noch nie etwas einfach so verschwunden!“",
+   "haken": "„Ein verschwundener Schlüssel … Hoffentlich verschwindet heute nicht noch mehr!“",
    "karte": {
     "titel": "Milas Mond",
     "bild": "objekte/mond_hinten",
@@ -290,7 +292,7 @@
   {
    "spur": 3,
    "bild": "k1_s3",
-   "haken": "Was wäscht Ben da nur so lange von seinen Fingern?",
+   "haken": "„Kleber! Ben hat den Mond also wirklich geklebt. Aber wo liegt er jetzt?“",
    "karte": {
     "titel": "Ben am Waschbecken",
     "bild": "objekte/wasserhahn",
@@ -356,7 +358,7 @@
   {
    "spur": 4,
    "bild": "k1_s4_vorher",
-   "haken": "In der Ecke wird es plötzlich still. Ben hat das Wasser zugedreht.",
+   "haken": "„Ein Kreis ohne Faden und ohne Stern … Wo ist dann der echte Mond?“",
    "karte": {
     "titel": "Ein fremder Kreis",
     "bild": "objekte/falscher_kreis_hinten",
@@ -401,7 +403,7 @@
    "haken": "Genau dort am Fenster hat vorhin der gestreifte Ärmel zugegriffen!",
    "karte": {
     "titel": "Das blaue Tablett",
-    "bild": "objekte/kleber",
+    "bild": "objekte/tablett_leer",
     "text": "Ben hat den Mond zum Trocknen auf das blaue Tablett direkt am offenen Fenster gelegt.",
     "staub": false
    },

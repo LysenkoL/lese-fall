@@ -260,6 +260,92 @@ export function versteckt(r: HTMLElement, d: Daten, fertig: () => void) {
   hook.loese = () => wahl(d.buchstabe, zi.querySelector(`[data-o="${d.buchstabe}"]`));
 }
 
+/* ============================ Ziehen (Maus und Finger, robust) ============================ */
+/**
+ * Kärtchen ziehen und ablegen – gleich beim ersten Mal, mit Maus, Finger und Stift (Telefon, Tablet, Rechner, Safari).
+ * Warum so: Safari/iPad brechen ein Ziehen ab (pointercancel), wenn eine Textauswahl, das Lang-Drück-Menü oder natives
+ * Ziehen anspringt; ein neu gezeichnetes Kärtchen verliert die Zeiger-Bindung. Darum:
+ *  - beim Drücken preventDefault (keine Auswahl, kein natives Ziehen), dazu CSS -webkit-user-select/-webkit-touch-callout,
+ *  - Bewegen und Loslassen am Fenster (nicht am Kärtchen), auch wenn die Bindung verloren geht,
+ *  - eine schwebende Kopie (position: fixed) zieht mit; das Original bleibt blass an seinem Platz,
+ *  - Ziel = Ablage mit der größten Überdeckung (großzügig für Kinderhände); pointercancel legt dort ab, wo das Kärtchen gerade ist.
+ * `tipp` = Antippen ohne Bewegen, `ab` = nach dem Ziehen losgelassen (ziel = null: daneben).
+ */
+export function ziehbar(zi: HTMLElement, o: { stueck: string; ziel: string; darf?: (el: HTMLElement) => boolean; tipp?: (el: HTMLElement) => void; ab: (el: HTMLElement, ziel: HTMLElement | null) => void }) {
+  type Zug = { id: number; el: HTMLElement; x0: number; y0: number; x: number; y: number; bewegt: boolean; geist: HTMLElement | null; r0: DOMRect; ueber: HTMLElement | null };
+  let z: Zug | null = null, nachZug = 0;
+  const geistRect = (q: Zug) => new DOMRect(q.r0.left + q.x - q.x0, q.r0.top + q.y - q.y0, q.r0.width, q.r0.height);
+  /** Ablage unter dem Kärtchen: Zeiger darin, sonst die größte Überdeckung (mind. ein Viertel) */
+  const finde = (q: Zug): HTMLElement | null => {
+    const g = geistRect(q), ga = g.width * g.height;
+    let best: HTMLElement | null = null, bestA = 0;
+    for (const t of zi.querySelectorAll<HTMLElement>(o.ziel)) {
+      const r = t.getBoundingClientRect();
+      if (q.x >= r.left && q.x <= r.right && q.y >= r.top && q.y <= r.bottom) return t;
+      const a = Math.max(0, Math.min(g.right, r.right) - Math.max(g.left, r.left)) * Math.max(0, Math.min(g.bottom, r.bottom) - Math.max(g.top, r.top));
+      if (a > bestA) { bestA = a; best = t; }
+    }
+    return best && bestA >= 0.25 * Math.min(ga, best.offsetWidth * best.offsetHeight) ? best : null;
+  };
+  const markiere = (t: HTMLElement | null) => { if (!z || z.ueber === t) return; z.ueber?.classList.remove('ueber'); z.ueber = t; t?.classList.add('ueber'); };
+  const bewegen = (e: PointerEvent) => {
+    if (!z || e.pointerId !== z.id) return;
+    z.x = e.clientX; z.y = e.clientY;
+    if (!z.bewegt && Math.hypot(z.x - z.x0, z.y - z.y0) > 6) {
+      z.bewegt = true;
+      z.r0 = z.el.getBoundingClientRect();
+      const g = z.el.cloneNode(true) as HTMLElement;
+      g.classList.add('zieh-geist'); g.classList.remove('sel', 'nein');
+      g.setAttribute('aria-hidden', 'true');
+      Object.assign(g.style, { position: 'fixed', left: z.r0.left + 'px', top: z.r0.top + 'px', width: z.r0.width + 'px', height: z.r0.height + 'px', margin: '0', zIndex: '1000', pointerEvents: 'none', transform: 'none', translate: 'none' });
+      document.body.appendChild(g);
+      z.geist = g;
+      z.el.classList.add('zieh-weg');
+    }
+    if (!z.bewegt) return;
+    e.preventDefault();
+    z.geist!.style.transform = `translate(${z.x - z.x0}px, ${z.y - z.y0}px) rotate(3deg) scale(1.05)`;
+    markiere(finde(z));
+  };
+  const aufraeumen = () => {
+    removeEventListener('pointermove', bewegen); removeEventListener('pointerup', los); removeEventListener('pointercancel', los); removeEventListener('blur', abbruch);
+  };
+  const los = (e: PointerEvent) => {
+    if (!z || e.pointerId !== z.id) return;
+    const q = z; z = null;
+    aufraeumen();
+    if (e.type === 'pointerup') { q.x = e.clientX; q.y = e.clientY; }
+    try { if (q.el.hasPointerCapture(e.pointerId)) q.el.releasePointerCapture(e.pointerId); } catch { /* egal */ }
+    q.ueber?.classList.remove('ueber');
+    if (!q.bewegt) { q.el.classList.remove('zieh-weg'); if (e.type === 'pointerup') o.tipp?.(q.el); return; }
+    nachZug = performance.now();
+    const t = finde(q), g = q.geist!;
+    if (t || !q.el.isConnected) { g.remove(); q.el.classList.remove('zieh-weg'); o.ab(q.el, t); return; }
+    // daneben: die Kopie fliegt zurück, dann ist das Original wieder da
+    g.style.transition = 'transform .22s ease-out'; g.style.transform = 'none';
+    setTimeout(() => { g.remove(); q.el.classList.remove('zieh-weg'); o.ab(q.el, null); }, 230);
+  };
+  const abbruch = () => { if (!z) return; const q = z; z = null; aufraeumen(); q.geist?.remove(); q.ueber?.classList.remove('ueber'); q.el.classList.remove('zieh-weg'); };
+  zi.addEventListener('pointerdown', (e) => {
+    if (z || (e.pointerType === 'mouse' && e.button !== 0)) return;
+    const el = (e.target as HTMLElement).closest<HTMLElement>(o.stueck);
+    if (!el || !zi.contains(el) || (o.darf && !o.darf(el))) return;
+    e.preventDefault();
+    z = { id: e.pointerId, el, x0: e.clientX, y0: e.clientY, x: e.clientX, y: e.clientY, bewegt: false, geist: null, r0: el.getBoundingClientRect(), ueber: null };
+    try { el.setPointerCapture(e.pointerId); } catch { /* egal */ }
+    addEventListener('pointermove', bewegen, { passive: false }); addEventListener('pointerup', los); addEventListener('pointercancel', los); addEventListener('blur', abbruch);
+  });
+  // kein Lang-Drück-Menü, kein natives Bild-Ziehen auf den Kärtchen
+  zi.addEventListener('contextmenu', (e) => { if ((e.target as HTMLElement).closest(o.stueck)) e.preventDefault(); });
+  zi.addEventListener('dragstart', (e) => e.preventDefault());
+  return {
+    /** true kurz nach einem Ziehen: der folgende Klick zählt nicht noch einmal */
+    eben: () => performance.now() - nachZug < 400,
+    /** Kopie entfernen (Spiel wird neu gezeichnet oder verlassen) */
+    stopp: abbruch,
+  };
+}
+
 /* ============================ Stempel (Merkmale, Ausschluss, Fallkarte) ============================ */
 /** Stempel zum Ziehen auf `ziel` oder per Knopf „Stempeln“. Gibt eine Funktion zurück, die sofort stempelt. */
 export function stempeln(zi: HTMLElement, ziel: HTMLElement, text: string, fertig: () => void, pos?: { x: number; y: number }): () => void {
@@ -1151,34 +1237,21 @@ export function plakat(r: HTMLElement, d: Daten, fertig: () => void) {
     plaetze[p] = s;
     if (von >= 0) plaetze[von] = alt;
     sel = null; mal();
+    zi.querySelector(`.pk-platz[data-p="${p}"] .pk-st`)?.classList.add('neu');
   };
-  let drag: { el: HTMLElement; s: number; x: number; y: number; bewegt: boolean } | null = null;
-  zi.addEventListener('pointerdown', (e) => {
-    if (sperre) return;
-    const el = (e.target as HTMLElement).closest<HTMLElement>('.pk-st');
-    if (!el) return;
-    drag = { el, s: +el.dataset.s!, x: e.clientX, y: e.clientY, bewegt: false };
-    el.setPointerCapture(e.pointerId);
-  });
-  zi.addEventListener('pointermove', (e) => {
-    if (!drag) return;
-    const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
-    if (!drag.bewegt && Math.hypot(dx, dy) > 8) { drag.bewegt = true; drag.el.classList.add('zieht'); }
-    if (drag.bewegt) drag.el.style.transform = `translate(${dx}px, ${dy}px) rotate(3deg)`;
-  });
-  const ablegen = (e: PointerEvent) => {
-    if (!drag) return;
-    const { el, s, bewegt } = drag; drag = null;
-    if (!bewegt) {
+  // Ziehen (Maus, Finger) über ziehbar(): robust auch auf iPad/Safari. Antippen: erst Stück, dann leeren Platz.
+  const zug = ziehbar(zi, {
+    stueck: '.pk-st', ziel: '.pk-platz',
+    darf: () => !sperre,
+    tipp: (el) => {
+      const s = +el.dataset.s!;
       if (plaetze.includes(s)) { plaetze[plaetze.indexOf(s)] = null; sel = null; } else sel = sel === s ? null : s;
-      return mal();
-    }
-    el.classList.remove('zieht');
-    const platz = e.type === 'pointerup' ? (document.elementsFromPoint(e.clientX, e.clientY).find((x) => x.classList.contains('pk-platz')) as HTMLElement | undefined) : undefined;
-    if (platz) setze(s, +platz.dataset.p!); else { el.style.transform = ''; mal(); }
-  };
-  zi.addEventListener('pointerup', ablegen); zi.addEventListener('pointercancel', ablegen);
+      mal();
+    },
+    ab: (el, platz) => { if (platz) setze(+el.dataset.s!, +platz.dataset.p!); else mal(); },
+  });
   zi.addEventListener('click', (e) => {
+    if (zug.eben()) return;
     const p = (e.target as HTMLElement).closest<HTMLElement>('.pk-platz');
     if (p && !(e.target as HTMLElement).closest('.pk-st') && sel !== null && !sperre && plaetze[+p.dataset.p!] === null) setze(sel, +p.dataset.p!);
   });

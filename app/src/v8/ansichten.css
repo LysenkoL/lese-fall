@@ -89,21 +89,26 @@
 .brett.ueberl { position: relative; inset: auto; width: min(100%, var(--mass-spiel)); border-radius: var(--r-tafel) var(--r-tafel) 0 0; padding-bottom: calc(var(--unten) + .875rem); }
 @media (min-width: 600px) and (min-height: 600px) { .brett.ueberl { border-radius: var(--r-tafel); padding-bottom: .875rem; } }
 .brett h3 .s-b, .brett h3 .s-r, .brett .tab .s-b, .brett .tab .s-r, .wischz .s-b, .wischz .s-r { color: inherit; }
-.bkarte::before {
+/* Pinnnadel: EINE Form für alle Karten (Brett, „Neuer Fund“, große Karte). Mittig, ganz auf der Karte (wird nie von einem Rand
+   angeschnitten), Kopf mit Glanzpunkt und weichem Schatten nach rechts unten. Größe über --pin, Höhe der Mitte über --pin-y
+   (= oberer Papierrand der Karte, die Nadel sitzt also auf der Kante zwischen Rand und Bild). */
+.bkarte:not(.leer)::before, .kgross.karte::before {
   content: '';
   position: absolute;
-  top: -.3125rem;
-  left: 50%;
-  width: .6875rem;
-  height: .6875rem;
-  margin-left: -.3125rem;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #FF9A8C, var(--faden) 60%);
-  box-shadow: 0 2px 3px rgba(0, 0, 0, .3);
   z-index: 3;
+  left: 50%;
+  top: calc(var(--pin-y, .5rem) - var(--pin, .875rem) / 2);
+  width: var(--pin, .875rem);
+  height: var(--pin, .875rem);
+  margin-left: calc(var(--pin, .875rem) / -2);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 33% 28%, rgba(255, 255, 255, .95) 0 10%, rgba(255, 255, 255, 0) 26%),
+    radial-gradient(circle at 42% 38%, #F26B5A 0, var(--faden) 55%, #8C2117 100%);
+  box-shadow: inset -1px -1.5px 2px rgba(70, 0, 0, .35), 0 1px 1px rgba(50, 20, 0, .35), 1.5px 3px 4px rgba(50, 20, 0, .32);
+  pointer-events: none;
 }
-.bkarte.leer::before { display: none; }
-.bkarte.neu { overflow: hidden; }
+.kgross.karte { --pin: 1.375rem; --pin-y: .75rem; position: relative; }
 .ausschn { position: relative; width: 100%; overflow: hidden; }
 .ausschn img { position: absolute; max-width: none; }
 .bkarte p .s-b, .bkarte p .s-r { color: inherit; }
@@ -116,29 +121,30 @@
 .bkarte.fall::before { animation: nadel .2s .6s both; }
 .brett h3 { letter-spacing: .1em; text-transform: uppercase; color: #FFF3DC; font-weight: 800; text-shadow: 0 1px 0 rgba(0, 0, 0, .25); margin-top: 2px; font-size: .875rem; }
 .brett .ak .tab { white-space: nowrap; font-size: .8125rem; padding: .3125rem .625rem; }
-.bkarte:not(.leer):hover { transform: rotate(0) scale(1.03); }
-.bk-bild { display: flex; align-items: center; justify-content: center; overflow: hidden; aspect-ratio: 4 / 3; border-radius: 3px; background: #F2EADA; }
+.bk-bild { display: flex; align-items: center; justify-content: center; overflow: hidden; aspect-ratio: 4 / 3; border-radius: 3px; background: var(--papier-foto); box-shadow: inset 0 0 0 1px rgba(90, 60, 20, .08); }
 .bk-bild > img { width: 100%; height: 100%; object-fit: contain; padding: 5%; }
 .ausschn.voll { width: 100%; height: 100%; background-repeat: no-repeat; }
-.bkarte p { font-weight: 600; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; font-size: .78125rem; line-height: 1.28; }
+.bkarte p { font-weight: 700; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; font-size: .78125rem; line-height: 1.28; padding: 0 2px; text-wrap: balance; }
 .zettel.fr .klaer .s-b, .zettel.fr .klaer .s-r { color: inherit; }
-.bkarte:nth-child(even) { transform: rotate(var(--n, 0deg)); }
+/* Brettkarte wie ein Foto: schmaler Papierrand oben (dort sitzt die Nadel), breiterer unten mit dem Titel */
 .bkarte {
+  --pin: .875rem; --pin-y: .5rem;
   position: relative;
   background: var(--papier);
   display: flex;
   flex-direction: column;
   color: var(--tinte);
   cursor: pointer;
-  gap: 3px;
-  padding: .375rem .375rem .5rem;
-  border-radius: .5rem;
-  box-shadow: var(--sch-karte);
+  gap: .3125rem;
+  padding: var(--pin-y) .375rem .5rem;
+  border-radius: .375rem;
+  box-shadow: 0 1px 0 rgba(90, 60, 20, .12), 0 3px 4px rgba(60, 35, 5, .18), 0 10px 18px rgba(60, 35, 5, .22);
   transform: rotate(var(--n, 0deg));
   transition: transform .18s ease, box-shadow .18s ease;
 }
+.bkarte:focus-visible { outline: 3px solid var(--senf); outline-offset: 3px; }
 @media (hover: hover) {
-  .bkarte:not(.leer):hover { transform: translateY(-4px) rotate(0) scale(1.03); box-shadow: 0 2px 0 rgba(0, 0, 0, .06), 0 16px 26px rgba(40, 25, 0, .34); z-index: 2; }
+  .bkarte[data-k]:not(.neu, .wartet):hover { transform: translateY(-4px) rotate(0) scale(1.03); box-shadow: 0 2px 0 rgba(0, 0, 0, .06), 0 16px 26px rgba(40, 25, 0, .34); z-index: 2; }
   .zettel.fr:not(.wackelt):hover { transform: translateY(-2px) rotate(0); }
 }
 .brett-raupe {
@@ -164,7 +170,8 @@
   box-shadow: inset 0 0 0 7px #8A5A2B, inset 0 0 0 9px #6E4520, inset 0 10px 26px rgba(60, 30, 0, .35);
   background-color: #C98A47;
 }
-.bgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .625rem; }
+/* Karten nie in die Höhe gezogen (auch nicht neben einer langen Fragen-Spalte): Reihen nur so hoch wie die Karten */
+.bgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .875rem .625rem; align-content: start; align-self: start; padding-top: 2px; }
 .bkarte.leer {
   box-shadow: none;
   cursor: default;
@@ -208,8 +215,9 @@
 .fund-t .s-b, .fund-t .s-r, .fund-h .s-b, .fund-h .s-r { color: inherit; }
 .fund-h { font-weight: 700; font-size: 1.0625rem; color: #fff; text-align: center; max-width: 17.5rem; background: rgba(0, 0, 0, .3); border-radius: .875rem; padding: .5rem .875rem; }
 #app .fundov .fundk {
+  --pin: 1.125rem; --pin-y: .625rem;
   width: min(62%, 15.625rem, 40cqh);
-  padding: .5625rem .5625rem .75rem;
+  padding: var(--pin-y) .5625rem .75rem;
   gap: .4375rem;
   text-align: left;
   transform: rotate(-2deg);
@@ -288,6 +296,41 @@
   animation: hoch .4s both;
   font-size: 1rem;
 }
+
+/* ---------- Buchstaben-Beutel (main.ts, beutelHtml): die Buchstaben für den Tresor liegen lose darin, ohne Plätze im Wort ---------- */
+.beutel {
+  display: flex; align-items: center; gap: .75rem;
+  background: var(--nacht-2); color: #fff; border-radius: .875rem; padding: .5rem .875rem .5rem .5rem;
+  box-shadow: inset 0 0 0 1.5px rgba(244, 194, 67, .35), 0 6px 14px rgba(40, 20, 0, .3);
+}
+.beutel[data-a] { cursor: pointer; }
+.beutel[data-a]:focus-visible { outline: 3px solid var(--senf); outline-offset: 3px; }
+.bt-sack { width: 3.25rem; height: 3.25rem; flex: none; display: block; filter: drop-shadow(0 2px 3px rgba(0, 0, 0, .3)); transform-origin: 50% 92%; }
+.bt-sack.wackelt { animation: sackWackel .6s ease-in-out; }
+.bt-in { display: flex; flex-direction: column; gap: .375rem; min-width: 0; flex: 1; }
+.bt-t { font-weight: 800; letter-spacing: .06em; text-transform: uppercase; font-size: .78125rem; line-height: 1.2; }
+.bt-t .s-b, .bt-t .s-r { color: inherit; }
+.bt-reihe { display: flex; flex-wrap: wrap; align-items: center; gap: .4375rem; min-height: 2.125rem; padding-left: 2px; }
+.bt-k {
+  flex: none; width: 2rem; height: 2rem; display: grid; place-items: center;
+  font-style: normal; font-weight: 800; font-size: 1.25rem; line-height: 1; color: var(--senf-tinte);
+  background: linear-gradient(#FFE38C, var(--senf)); border-radius: .4375rem;
+  box-shadow: 0 3px 0 var(--senf-dunkel), 0 5px 8px rgba(0, 0, 0, .3);
+  rotate: var(--r, 0deg);
+}
+.bt-k.platz { visibility: hidden; }
+.bt-k.rein { animation: btRein .4s cubic-bezier(.3, 1.6, .5, 1); }
+/* hell: auf dem Nachthimmel (Fallkarte) und im Tresor-Fenster */
+.beutel.hell { background: rgba(255, 255, 255, .1); box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .22); }
+.tresorinfo .beutel { align-self: stretch; text-align: left; }
+/* Ausgabe am Ende des Kapitels: der neue Buchstabe groß (erst unter Staub), darunter der Beutel; dann hüpft er hinein */
+.bt-ausgabe { display: flex; flex-direction: column; align-items: center; gap: .875rem; }
+.bt-ausgabe .beutel { width: min(100%, 24rem); }
+.bt-neu .bt-k { width: 4.25rem; height: 4.25rem; font-size: 2.75rem; border-radius: .875rem; box-shadow: 0 4px 0 var(--senf-dunkel), 0 10px 20px rgba(0, 0, 0, .35); animation: fallen .8s cubic-bezier(.4, 0, .6, 1) both; }
+.bt-ausgabe.zu .bt-neu .bt-k { color: transparent; }
+@keyframes sackWackel { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-9deg) scale(1.06, .94); } 55% { transform: rotate(7deg); } 80% { transform: rotate(-3deg); } }
+@keyframes btRein { from { transform: scale(.6); } 60% { transform: scale(1.15); } }
+@media (prefers-reduced-motion: reduce) { .bt-sack.wackelt, .bt-k.rein, .bt-neu .bt-k { animation: none; } }
 
 /* ---------- Fallkarte ---------- */
 .fk > .tab { align-self: flex-start; }

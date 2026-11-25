@@ -5,7 +5,7 @@
  *   04_data/silben_kapitel1.txt                    (Silben)
  * Aufruf: node scripts/build-v8.ts [--neue-woerter]
  */
-import { readdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseAusnahmen, silbiereBuch } from '../src/core/silben.ts';
@@ -42,8 +42,63 @@ const isThought = (line: string) =>
   /Raupe\b[^.!?„“]*: „/.test(line) ||
   /Raupe\b[^„]*„[^“]*“,? (wundert|schnauft) sie/.test(line);
 
+/* ---------- Marker im Text (HTML-Kommentare, je eine eigene Zeile) ----------
+ *   <!-- Blatt -->          hier lieber ein neues Blatt beginnen
+ *   <!-- Raupe: brrr -->    Pose der Raupe für den Gedanken im nächsten Absatz (sonst rät main.ts nach ! und ?)
+ *   <!-- Bild -->           das Bild der Spur (oder des Ausklangs) steht hier statt am Anfang – vor dem nächsten Absatz
+ *   <!-- Bild: objekte/x --> ein anderes Bild (Name wie in bilder.ts) vor dem nächsten Absatz
+ */
+/** erlaubte Posen: Bild in assets/illustrationen/raupe/ UND freigestellt in app/src/gen/frei/ (das zeigt die Denkblase) */
+const POSEN_ALLE = readdirSync(P('assets/illustrationen/raupe')).filter((f) => f.endsWith('.webp')).map((f) => f.slice(0, -5)).sort();
+const POSEN = POSEN_ALLE.filter((p) => existsSync(P(`app/src/gen/frei/raupe_${p}.webp`)));
+/** Bildnamen, die bilder.ts kennt: echte Datei oder Eintrag in ERSATZ */
+const ERSATZ_TEXT = readFileSync(P('app/src/v8/bilder.ts'), 'utf8');
+const bildBekannt = (n: string) => ['assets/illustrationen', 'app/src/gen'].some((d) => existsSync(P(`${d}/${n}.webp`))) || ERSATZ_TEXT.includes(`'${n}':`);
+interface Block { id: string; typ: 'p' | 'th'; s: string[]; umbruch?: boolean; pose?: string; bild?: string }
+/**
+ * Liest die Absätze eines Abschnitts (### Spur … oder ### Ausklang …) ab Zeile `ab` bis zum nächsten ### oder ---.
+ * `bildName` = Bild des Abschnitts (für <!-- Bild -->). `bildImText`: das Bild steht im Text, nicht am Anfang.
+ */
+function abschnitt(all: string[], ab: number, wo: string, idVor: string, bildName: string | null): { blocks: Block[]; bildImText: boolean } {
+  const blocks: Block[] = [];
+  let n = 0, umbruch = false, pose: { name: string; z: number } | null = null, bild: { name: string; z: number } | null = null, bildImText = false;
+  const halt = (z: number, t: string) => { throw new Error(`${wo}, Zeile ${z + 1}: ${t}`); };
+  let j = ab + 1;
+  for (; j < all.length && !/^---$/.test(all[j]) && !/^###/.test(all[j]); j++) {
+    const l = all[j].trim();
+    if (!l) continue;
+    if (l === '<!-- Blatt -->') { umbruch = true; continue; }
+    const mp = l.match(/^<!--\s*Raupe\s*:\s*([^\s>]*)\s*-->$/);
+    if (mp) {
+      if (!POSEN.includes(mp[1])) halt(j, `unbekannte Pose „${mp[1]}“ in <!-- Raupe: … -->. ${POSEN_ALLE.includes(mp[1]) ? `Für „${mp[1]}“ fehlt noch das freigestellte Bild app/src/gen/frei/raupe_${mp[1]}.webp (scripts/freistellen.py). ` : ''}Erlaubt: ${POSEN.join(', ')}`);
+      if (pose) halt(j, `zwei <!-- Raupe: … --> hintereinander (Zeile ${pose.z + 1} und ${j + 1})`);
+      pose = { name: mp[1], z: j }; continue;
+    }
+    const mb = l.match(/^<!--\s*Bild\s*(?::\s*([^\s>]+)\s*)?-->$/);
+    if (mb) {
+      if (bild) halt(j, `zwei <!-- Bild --> hintereinander ohne Absatz dazwischen`);
+      if (mb[1]) { if (!bildBekannt(mb[1])) halt(j, `Bild „${mb[1]}“ gibt es nicht (weder assets/illustrationen/${mb[1]}.webp noch app/src/gen/${mb[1]}.webp noch ERSATZ in bilder.ts)`); bild = { name: mb[1], z: j }; }
+      else {
+        if (!bildName) halt(j, `<!-- Bild --> ohne Bild: dieser Abschnitt hat kein Bild (für ein anderes Bild: <!-- Bild: name -->)`);
+        if (bildImText) halt(j, `<!-- Bild --> steht zweimal in diesem Abschnitt`);
+        bild = { name: bildName!, z: j }; bildImText = true;
+      }
+      continue;
+    }
+    if (l.startsWith('<!--')) continue;
+    const b: Block = { id: `${idVor}-p${++n}`, typ: isThought(l) ? 'th' : 'p', s: saetze(l).map(mark) };
+    if (umbruch && blocks.length) b.umbruch = true;
+    if (pose) { if (b.typ !== 'th') halt(pose.z, `<!-- Raupe: ${pose.name} --> steht nicht vor einem Gedanken der Raupe (der nächste Absatz ist normaler Text)`); b.pose = pose.name; }
+    if (bild) b.bild = bild.name;
+    umbruch = false; pose = null; bild = null;
+    blocks.push(b);
+  }
+  if (pose) halt(pose.z, `<!-- Raupe: ${pose.name} --> am Ende des Abschnitts: danach kommt kein Absatz`);
+  if (bild) halt(bild.z, `<!-- Bild --> am Ende des Abschnitts: danach kommt kein Absatz`);
+  return { blocks, bildImText };
+}
+
 /* ---------- Text und Rätsel je Kapitel ---------- */
-interface Block { id: string; typ: 'p' | 'th'; s: string[]; umbruch?: boolean }
 const TEXT = new Set(['raupeSagt', 'raupeKurz', 'nein', 'nachLaub', 'liste', 'zuViel', 'nochMehr', 'falsch', 'ok', 'fund', 'knapp', 'frueh', 'hilfe', 'wortText', 'plakatFertig', 'start', 'regel', 'frageRaus', 'unklar', 'suche', 'nass', 'frage1', 'tipp1', 'hinweisText', 'beispiel', 'regel', 'botschaft', 'nachricht', 'text', 'titel', 'haken', 'frage', 'aufloesung', 'warum', 'warum2', 'tipp', 'erfolg', 'unklarTipp', 'vorspann', 'ausblick', 'name', 'saetze', 'unter', 'sagt', 'klebt', 'frage2', 'nicht', 'nachsehen', 'absatz', 'demo', 'jetzt', 'bedeutung']);
 function tree(v: any, key = ''): any {
   if (typeof v === 'string') return TEXT.has(key) ? mark(v) : v;
@@ -62,25 +117,24 @@ for (const kn of nummern) {
   const kopfZeile = all.find((l) => l.startsWith(`## Kapitel ${kn} — `));
   if (!kopfZeile) throw new Error(`Überschrift „## Kapitel ${kn} — …“ fehlt`);
   const start = all.indexOf(kopfZeile);
-  const texte: { spur: number; titel: string; blocks: Block[] }[] = [];
+  const rz = JSON.parse(readFileSync(P(`04_data/kapitel${kn}_v8_raetsel.json`), 'utf8'));
+  const texte: { spur: number; titel: string; blocks: Block[]; bildImText: boolean }[] = [];
+  /** Ausklang: kurze Schlussszene nach der letzten Spur (vor der Fallkarte), ohne Rätsel und Karte */
+  let ausklang: { titel: string; bild?: string; bildImText?: boolean; blocks: Block[] } | null = null;
   for (let i = start; i < all.length; i++) {
     const m = all[i].match(/^### Spur (\d+) — (.+)$/);
-    if (!m) continue;
-    const blocks: Block[] = [];
-    let n = 0, umbruch = false;
-    for (let j = i + 1; j < all.length && !/^---$/.test(all[j]) && !/^###/.test(all[j]); j++) {
-      const l = all[j].trim();
-      if (!l) continue;
-      if (l === '<!-- Blatt -->') { umbruch = true; continue; }
-      if (l.startsWith('<!--')) continue;
-      const b: Block = { id: `s${m[1]}-p${++n}`, typ: isThought(l) ? 'th' : 'p', s: saetze(l).map(mark) };
-      if (umbruch && blocks.length) b.umbruch = true;
-      umbruch = false;
-      blocks.push(b);
+    const ma = all[i].match(/^### Ausklang — (.+)$/);
+    if (m) {
+      const bildName = rz.spuren?.find((s: any) => s.spur === +m[1])?.bild ?? null;
+      texte.push({ spur: +m[1], titel: m[2], ...abschnitt(all, i, `Kapitel ${kn}, Spur ${m[1]}`, `s${m[1]}`, bildName) });
+    } else if (ma) {
+      if (ausklang) throw new Error(`Kapitel ${kn}: zwei Abschnitte „### Ausklang — …“`);
+      const a = abschnitt(all, i, `Kapitel ${kn}, Ausklang`, `a${kn}`, rz.ausklangBild ?? null);
+      if (!a.blocks.length) throw new Error(`Kapitel ${kn}, Ausklang: kein Absatz`);
+      if (rz.ausklangBild && !bildBekannt(rz.ausklangBild)) throw new Error(`kapitel${kn}_v8_raetsel.json: ausklangBild „${rz.ausklangBild}“ gibt es nicht`);
+      ausklang = { titel: mark(ma[1]), ...(rz.ausklangBild ? { bild: rz.ausklangBild } : {}), ...(a.bildImText ? { bildImText: true } : {}), blocks: a.blocks };
     }
-    texte.push({ spur: +m[1], titel: m[2], blocks });
   }
-  const rz = JSON.parse(readFileSync(P(`04_data/kapitel${kn}_v8_raetsel.json`), 'utf8'));
   // D-19: Kapitel 3 hat 7 Spuren, Kapitel 4 hat 5 (zusammen weiter 24)
   if (!texte.length) throw new Error(`Kapitel ${kn}: keine Spur gefunden`);
   if (rz.spuren.length !== texte.length) throw new Error(`Kapitel ${kn}: ${texte.length} Spuren im Text, ${rz.spuren.length} in den Rätseldaten`);
@@ -89,9 +143,9 @@ for (const kn of nummern) {
     const z = rz.spuren.find((s: any) => s.spur === t.spur);
     if (!z) throw new Error('Rätseldaten fehlen für Spur ' + t.spur);
     const { spur, bild, haken, karte, fragenNeu, fragenWeg, tipp, raetsel, schluessel } = z;
-    spuren.push({ nr: spur, kap: kn, spur, titel: mark(t.titel), bild, haken: mark(haken), blocks: t.blocks, karte: tree(karte), fragenNeu: tree(fragenNeu ?? []), fragenWeg: fragenWeg ?? [], tipp: tree(tipp ?? null), raetsel: tree(raetsel), ...(schluessel ? { schluessel } : {}) });
+    spuren.push({ nr: spur, kap: kn, spur, titel: mark(t.titel), bild, ...(t.bildImText ? { bildImText: true } : {}), haken: mark(haken), blocks: t.blocks, karte: tree(karte), fragenNeu: tree(fragenNeu ?? []), fragenWeg: fragenWeg ?? [], tipp: tree(tipp ?? null), raetsel: tree(raetsel), ...(schluessel ? { schluessel } : {}) });
   }
-  kapitel.push({ nr: kn, titel: mark(kopfZeile.replace(`## Kapitel ${kn} — `, '')), bild: rz.bild, vorspann: mark(rz.vorspann), code: rz.code, fallkarte: tree(rz.fallkarte), ausblick: mark(rz.ausblick), ...(rz.ausblickBild ? { ausblickBild: rz.ausblickBild } : {}), ...(rz.finale ? { finale: tree(rz.finale) } : {}) });
+  kapitel.push({ nr: kn, titel: mark(kopfZeile.replace(`## Kapitel ${kn} — `, '')), bild: rz.bild, vorspann: mark(rz.vorspann), code: rz.code, fallkarte: tree(rz.fallkarte), ausblick: mark(rz.ausblick), ...(rz.ausblickBild ? { ausblickBild: rz.ausblickBild } : {}), ...(ausklang ? { ausklang } : {}), ...(rz.finale ? { finale: tree(rz.finale) } : {}) });
   Object.assign(ui, rz.ui ?? {});
   if (kn === 1) { intro = tree(rz.intro); fallTitel = 'Der verschwundene Mond'; }
 }

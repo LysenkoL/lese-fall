@@ -3,7 +3,7 @@
  * Eigener Einstieg (v8.html), eigener Speicherstand (lesefall.v8). Alte App und v7 bleiben unverändert.
  */
 import { tresorSvg, werkzeugIcon, WERKZEUGE, type Werkzeug } from './zeichnen.ts';
-import { werkzeugMoment, wzChip, wzName, belohnung } from './effekte.ts';
+import { werkzeugMoment, wzChip, wzName, belohnung, weniger } from './effekte.ts';
 import './ui/tokens.css';
 import './ui/basis.css';
 import './ui/komponenten.css';
@@ -79,8 +79,8 @@ const verdient = (c: number) => { const cur = SP(stand.spur).kap; return c < cur
 const perlen = () => stand.fertig.length * 2 + stand.tippPerle;
 // Alter Speicherstand: was schon frei ist, nicht nachträglich ankündigen
 if (!stand.gesehen) { stand.gesehen = freiBei(perlen()); speichern(); }
-/** Schritte einer Spur: Lesen → [Tipp-Auflösung] → Rätsel → Brett → [Tipp-Frage] → Haken */
-type Step = 'lesen' | 'tippAufl' | 'raetsel' | 'brett' | 'tippFrage' | 'haken';
+/** Schritte einer Spur: Lesen → [Tipp-Auflösung] → Rätsel → Brett → [Tipp-Frage] → Haken; letzte Spur eines Kapitels mit Ausklang: … → Brett → Ausklang */
+type Step = 'lesen' | 'tippAufl' | 'raetsel' | 'brett' | 'tippFrage' | 'haken' | 'ausklang';
 function steps(n: number): Step[] {
   if (stand.wieder) return ['lesen', 'raetsel'];
   const out: Step[] = ['lesen'];
@@ -88,8 +88,11 @@ function steps(n: number): Step[] {
   out.push('raetsel', 'brett');
   if (SP(n).tipp) out.push('tippFrage');
   if (!letzteSpur(n)) out.push('haken'); // nach der letzten Spur des Kapitels folgt gleich die Fallkarte
+  else if (D.kapitel[SP(n).kap - 1].ausklang) out.push('ausklang'); // immer am Ende: alte Spielstände (stand.i) zeigen weiter auf denselben Schritt
   return out;
 }
+/** Schritte mit Leseblättern (beim Zurückblättern aufs letzte Blatt, beim Drehen des Geräts neu verteilen) */
+const istLesen = (st: Step | undefined) => st === 'lesen' || st === 'ausklang';
 
 /* ---------- Icons ---------- */
 const IC = {
@@ -151,12 +154,14 @@ function zeigeRaw() {
   if (stand.view === 'finale') return finale();
   if (stand.view === 'fertig') return fertigSeite();
   if (stand.view === 'album') return album();
+  stand.i = Math.max(0, Math.min(stand.i, steps(stand.spur).length - 1)); // Spielstand aus einer Fassung mit mehr Schritten
   const st = steps(stand.spur)[stand.i];
   if (st === 'lesen') return lesen();
   if (st === 'tippAufl') return tippAufl();
   if (st === 'raetsel') return raetsel();
   if (st === 'brett') return brett();
   if (st === 'tippFrage') return tippFrage();
+  if (st === 'ausklang') return lesen(ausklangVon(stand.spur));
   return haken();
 }
 /** sanftes Hineingleiten der neuen Ansicht (höchstens 300 ms, bei „weniger Bewegung“ aus) */
@@ -216,12 +221,15 @@ function kapitelKarte() {
 /* ---------- Lesen (ohne Markieren) ---------- */
 const blockHtml = (b: any) => {
   if (b.roh) return b.roh;
+  // <!-- Bild --> im Text: das Bild steht vor diesem Absatz (und wandert mit ihm aufs Blatt, nie allein ans Ende eines Blatts)
+  const bild = b.bild ? `<figure class="foto im-text"><img src="${img(b.bild)}" alt=""></figure>` : '';
   const s = b.s.map((x: string) => `<span class="satz">${T(x)}</span>`).join(' ');
-  if (b.typ !== 'th') return `<p>${s}</p>`;
-  // Gedanken der Raupe: vier Formen im Wechsel (Wolke links, Wolke rechts, Zettel, Raupe guckt über den Rand), Pose nach dem Ton des Gedankens
+  if (b.typ !== 'th') return `${bild}<p>${s}</p>`;
+  // Gedanken der Raupe: vier Formen im Wechsel (Wolke mit Raupe links, rechts, Zettel, Wolke über der Raupe).
+  // Pose: aus dem Text (<!-- Raupe: brrr --> → b.pose), sonst geraten nach dem Ton des Gedankens
   const roh = b.s.join(' '), v = (b.v ?? 0) % 4;
-  const pose = /!/.test(roh) && !/\?/.test(roh) ? (v % 2 ? 'lacht' : 'staunt') : /\?/.test(roh) ? (/!/.test(roh) ? 'traurig' : 'denkt') : (v % 2 ? 'tipp' : 'lob');
-  return `<div class="ged g${v}"><img src="${fig('raupe/' + pose)}" alt=""><p>${s}</p></div>`;
+  const pose = b.pose ?? (/!/.test(roh) && !/\?/.test(roh) ? (v % 2 ? 'lacht' : 'staunt') : /\?/.test(roh) ? (/!/.test(roh) ? 'traurig' : 'denkt') : (v % 2 ? 'tipp' : 'lob'));
+  return `${bild}<div class="ged g${v}"><img src="${fig('raupe/' + pose)}" alt=""><p>${s}</p></div>`;
 };
 /**
  * Verteilt Blöcke auf Blätter ohne Rollen: so wenige Blätter wie möglich, dann möglichst gleich voll
@@ -244,9 +252,11 @@ function blaetter(blocks: any[], kopfHtml: string): { html: string; voll: number
   blocks.forEach((b, bi) => {
     let kopf = bi === 0 ? kopfHtml : '';
     if (b.s.length < 2 || messe(kopf + blockHtml(b)) <= H) { teile.push(b); return; }
+    // langer Absatz: Satz für Satz auf Blätter verteilen; ein Bild davor gehört nur zum ersten Teil
     let akt: string[] = [], erster = true;
-    const ab = () => { teile.push({ ...b, s: akt, umbruch: erster && b.umbruch }); akt = []; erster = false; kopf = ''; };
-    for (const x of b.s) { if (akt.length && messe(kopf + blockHtml({ ...b, s: [...akt, x] })) > H) ab(); akt.push(x); }
+    const teil = () => (erster ? b : { ...b, bild: undefined, umbruch: false });
+    const ab = () => { teile.push({ ...teil(), s: akt }); akt = []; erster = false; kopf = ''; };
+    for (const x of b.s) { if (akt.length && messe(kopf + blockHtml({ ...teil(), s: [...akt, x] })) > H) ab(); akt.push(x); }
     ab();
   });
   blocks = teile;
@@ -273,19 +283,25 @@ function blaetter(blocks: any[], kopfHtml: string): { html: string; voll: number
   probe.remove();
   return out;
 }
-function lesen() {
+/** Ausklang des Kapitels (kurze Schlussszene nach der letzten Spur, vor der Fallkarte) – oder null */
+const ausklangVon = (n: number) => (letzteSpur(n) ? kapOf(n).ausklang ?? null : null);
+/** Lesen: die Spur – oder `aus` = der Ausklang des Kapitels (gleiche Blätter, ohne Spur-Etikett) */
+function lesen(aus: any = null) {
   modus('lesen');
-  const sp = SP(stand.spur);
-  const kopfH = `<div class="skopf"><span class="tab etikett">SPUR ${sp.spur}</span><h2>${sp.titelH}</h2></div><figure class="foto"><img src="${img(sp.bild)}" alt=""></figure>`;
+  const sp = SP(stand.spur), q = aus ?? sp;
+  const titelH = aus ? T(aus.titel) : sp.titelH;
+  // Bild oben – außer der Text setzt es mit <!-- Bild --> an eine spätere Stelle (bildImText)
+  const bildH = q.bild && !q.bildImText ? `<figure class="foto"><img src="${img(q.bild)}" alt=""></figure>` : '';
+  const kopfH = `<div class="skopf${aus ? ' ausklang' : ''}">${aus ? '' : `<span class="tab etikett">SPUR ${sp.spur}</span>`}<h2>${titelH}</h2></div>${bildH}`;
   buehne.innerHTML = '';
-  { let n = sp.spur; for (const b of sp.blocks) if (b.typ === 'th') b.v = n++; } // Form des Gedankens: fest je Spur und Reihenfolge
-  const seiten = blaetter(sp.blocks, kopfH);
+  { let n = sp.spur + (aus ? 1 : 0); for (const b of q.blocks) if (b.typ === 'th') b.v = n++; } // Form des Gedankens: fest je Spur und Reihenfolge
+  const seiten = blaetter(q.blocks, kopfH);
   stand.blatt = Math.min(stand.blatt, seiten.length - 1);
   let richtung = '';
   const zeig = () => {
     const s = seiten[stand.blatt], n = seiten.length, b = stand.blatt;
     buehne.innerHTML = `<div class="blatt${s.voll < 0.5 && b > 0 ? ' kurz' : ''}" data-art="lesen" data-r="${richtung}">${s.html}</div>`;
-    fuss.innerHTML = `<div class="fl"><button class="rund" data-a="prev" ${b === 0 && !hatVorher() ? 'disabled' : ''} aria-label="Zurück">${IC.zur}</button><div class="pkt${n > 12 ? ' sehr-dicht' : n > 7 ? ' dicht' : ''}" aria-label="Blatt ${b + 1} von ${n}">${[...Array(n)].map((_, k) => `<i class="${k === b ? 'an' : k < b ? 'war' : ''}"></i>`).join('')}</div>${b < n - 1 ? `<button class="rund gold" data-a="next" aria-label="Weiter">${IC.vor}</button>` : `<button class="kn haupt zugk" data-a="weiter">${IC.lupe}<span>${UI.raetsel}</span></button>`}</div>`;
+    fuss.innerHTML = `<div class="fl"><button class="rund" data-a="prev" ${b === 0 && !hatVorher() ? 'disabled' : ''} aria-label="Zurück">${IC.zur}</button><div class="pkt${n > 12 ? ' sehr-dicht' : n > 7 ? ' dicht' : ''}" aria-label="Blatt ${b + 1} von ${n}">${[...Array(n)].map((_, k) => `<i class="${k === b ? 'an' : k < b ? 'war' : ''}"></i>`).join('')}</div>${b < n - 1 ? `<button class="rund gold" data-a="next" aria-label="Weiter">${IC.vor}</button>` : aus ? `<button class="kn haupt zugk" data-a="weiter"><span>${UI.weiter}</span></button>` : `<button class="kn haupt zugk" data-a="weiter">${IC.lupe}<span>${UI.raetsel}</span></button>`}</div>`;
     richtung = '';
     speichern();
   };
@@ -356,15 +372,20 @@ function bildKarte(k: any) {
   const lage = (c: number, sk: number) => (sk <= 1.001 ? 50 : Math.min(100, Math.max(0, (((c / 100) * sk - 0.5) / (sk - 1)) * 100)));
   return `<div class="ausschn voll" style="background-image:url(${fig(k.bild)});background-size:${S * 100}% auto;background-position:${lage(a.x + a.w / 2, S)}% ${lage(a.y + a.h / 2, Sy)}%"></div>`;
 }
-/** Spurenkarten (3×2), offene Fragen (2×2) und Code. `bis` = höchste gezeigte Spur; `neu` = Spur, deren Karte unter Staub liegt */
-/** Code-Felder; Buchstaben erst, wenn die Fallkarte gelöst ist */
-function codeFelder() {
-  const felder: string[] = [...D.kapitel[0].code.wort].map(() => '');
-  for (const k of D.kapitel) if (verdient(k.nr)) felder[k.code.pos] = k.code.buchstabe;
-  return felder.map((c) => `<i>${c}</i>`).join('');
+/**
+ * Buchstaben-Beutel der Raupe: die Buchstaben für den Tresor liegen lose darin, in der Reihenfolge, in der das Kind sie bekommen hat
+ * (je gelöstes Kapitel einer). Keine Felder, keine Plätze – das Wort legt das Kind erst im Finale selbst.
+ */
+const NEIGUNG_BS = [-7, 5, -3, 8, -5, 4];
+const SACK = '<svg class="bt-sack" viewBox="0 0 64 64" aria-hidden="true"><ellipse cx="32" cy="59" rx="20" ry="3.2" fill="#3A2408" opacity=".22"/><path d="M22 20 C10 28 7 44 12 52 C16 58 48 58 52 52 C57 44 54 28 42 20 Z" fill="#B97A3C" stroke="#7A4A1C" stroke-width="2.2" stroke-linejoin="round"/><path d="M15 46 C24 52 40 52 49 46" stroke="#7A4A1C" stroke-width="1.6" fill="none" stroke-dasharray="3 3" opacity=".55"/><path d="M22 20 C20 14 24 10 26 12 C28 8 36 8 38 12 C40 10 44 14 42 20 Z" fill="#CF9150" stroke="#7A4A1C" stroke-width="2" stroke-linejoin="round"/><path d="M21 21 C27 24 37 24 43 21" stroke="#F4C243" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M43 21 C47 23 48 28 46 31 M43 21 C49 21 51 25 51 28" stroke="#F4C243" stroke-width="2.2" fill="none" stroke-linecap="round"/><circle cx="46" cy="31.5" r="2.2" fill="#F4C243"/><circle cx="51" cy="28.5" r="2.2" fill="#F4C243"/><path d="M31.5 31 l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.6-4.8 2.6.9-5.4-3.9-3.8 5.4-.8z" fill="#FFE9A6" stroke="#C9951A" stroke-width="1.1" stroke-linejoin="round"/><path d="M17 30 C15 36 15 42 17 46" stroke="#fff" stroke-width="2.4" stroke-linecap="round" fill="none" opacity=".25"/></svg>';
+/** verdiente Buchstaben in der Reihenfolge der Kapitel (so, wie das Kind sie bekommen hat) */
+const beutelBuchst = (): string[] => D.kapitel.filter((k: any) => verdient(k.nr)).map((k: any) => k.code.buchstabe);
+const bsKachel = (c: string, i: number, kl = '') => `<i class="bt-k${kl}" style="--r:${NEIGUNG_BS[i % NEIGUNG_BS.length]}deg">${c}</i>`;
+function beutelHtml(buchst: string[], kl = '', knopf = true) {
+  return `<div class="beutel${kl}"${knopf ? ' data-a="code" role="button" tabindex="0"' : ''}>${SACK}<div class="bt-in"><span class="bt-t">${UI.beutel ?? UI.code}</span><div class="bt-reihe">${buchst.map((c, i) => bsKachel(c, i)).join('')}</div></div></div>`;
 }
 function tresorInfo(zurueck: () => void) {
-  ueber.innerHTML = `<div class="schl mitte"><div class="kgross tresorinfo"><img class="tresor-bild" src="${img('tresor_zu')}" alt=""><h3>${UI.tresor}</h3><p>${UI.tresorInfo}</p><div class="wort">${codeFelder()}</div><button class="kn haupt" data-a="zu"><span>${UI.fertig}</span></button></div></div>`;
+  ueber.innerHTML = `<div class="schl mitte"><div class="kgross tresorinfo"><img class="tresor-bild" src="${img('tresor_zu')}" alt=""><h3>${UI.tresor}</h3><p>${UI.tresorInfo}</p>${beutelHtml(beutelBuchst(), ' hell', false)}<button class="kn haupt" data-a="zu"><span>${UI.fertig}</span></button></div></div>`;
   ueber.onclick = (e) => { const t = e.target as HTMLElement; if (t.closest('[data-a="zu"]') || t.classList.contains('schl')) zurueck(); };
 }
 const NEIGUNG = [-1.6, 1.1, -0.6, 1.8, -1.2, 0.7, -1.9, 1.4];
@@ -373,7 +394,7 @@ function brettHtml(bis: number, neu = 0, staubig = false, wartet = false) {
   const slots = liste.map((n) => {
     if (n > bis || !stand.fertig.includes(n)) return `<div class="bkarte leer"></div>`;
     const k = SP(n).karte;
-    return `<div class="bkarte${n === neu ? (staubig ? ' neu' : wartet ? ' wartet' : ' fall') : ''}" data-k="${n}" style="--n:${NEIGUNG[(n * 5 + 2) % NEIGUNG.length]}deg"><div class="bk-bild">${bildKarte(k)}</div><p>${k.titel ?? k.text}</p></div>`;
+    return `<div class="bkarte${n === neu ? (staubig ? ' neu' : wartet ? ' wartet' : ' fall') : ''}" data-k="${n}" role="button" tabindex="0" style="--n:${NEIGUNG[(n * 5 + 2) % NEIGUNG.length]}deg"><div class="bk-bild">${bildKarte(k)}</div><p>${k.titel ?? k.text}</p></div>`;
   }).join('');
   const fragen: { id: string; text: string; n: number }[] = [];
   for (const sp of D.spuren) if (sp.spur <= bis) sp.fragenNeu.forEach((f: any) => fragen.push({ ...f, n: sp.spur }));
@@ -381,8 +402,14 @@ function brettHtml(bis: number, neu = 0, staubig = false, wartet = false) {
   const wegBei: Record<string, number> = {};
   for (const sp of D.spuren) (sp.fragenWeg ?? []).forEach((id: string) => { wegBei[id] = sp.spur; });
   const zettel = fragen.filter((f) => !stand.geklaert.includes(f.id) && !(wegBei[f.id] < bis)).map((f) => `<div class="zettel fr${f.n === neu && (staubig || wartet) ? ' versteckt' : ''}" ${neu && weg.has(f.id) ? 'data-ok="1" ' : ''}data-q="${f.id}" style="--n:${NEIGUNG[(f.id.length * 3 + f.n) % NEIGUNG.length] * 0.8}deg"><span>${f.text}</span>${f.n === neu ? `<em class="neu">${UI.neu}</em>` : ''}${neu && weg.has(f.id) ? `<em class="klaer">${UI.klaerMich}</em>` : ''}</div>`).join('');
-  const code = codeFelder();
-  return `<div class="bgrid">${slots}</div><h3>${UI.fragen}<img class="brett-raupe" src="${fig('raupe/denkt')}" alt=""></h3><div class="fragen">${zettel}</div><div class="codez" data-a="code" role="button" tabindex="0"><img class="tresor-mini" src="${img('tresor_zu')}" alt=""><span>${UI.code}</span><div class="wort">${code}</div></div>`;
+  return `<div class="bgrid">${slots}</div><h3>${UI.fragen}<img class="brett-raupe" src="${fig('raupe/denkt')}" alt=""></h3><div class="fragen">${zettel}</div>${beutelHtml(beutelBuchst())}`;
+}
+/** Karten und Beutel sind auch mit der Tastatur erreichbar: Eingabe oder Leertaste wirkt wie ein Tipp */
+function tastenKlick(root: HTMLElement) {
+  root.addEventListener('keydown', (e) => {
+    const z = (e.target as HTMLElement).closest<HTMLElement>('.bkarte[data-k], .beutel[data-a]');
+    if (z && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); z.click(); }
+  });
 }
 function brett() {
   modus('brett');
@@ -393,6 +420,9 @@ function brett() {
   const karte = $<HTMLElement>('.bkarte.neu', sec);
   const fertigWischen = () => {
     hookStaub = null;
+    // Staubkarte ist jetzt eine ganz normale Karte (gleiche Nadel, lässt sich vergrößern). Kurz warten: der Finger, der eben gewischt hat,
+    // löst beim Loslassen noch einen Klick aus – der soll die Karte nicht gleich groß machen.
+    if (karte) setTimeout(() => karte.classList.remove('neu'), 450);
     sec.querySelector<HTMLElement>('.wischz')?.style.setProperty('display', 'none');
     sec.querySelectorAll('.zettel.versteckt').forEach((z) => z.classList.remove('versteckt'));
     sec.querySelectorAll('.zettel.fr:has(em.neu)').forEach((z) => z.classList.add('frisch'));
@@ -442,14 +472,16 @@ function brett() {
   sec.addEventListener('click', (e) => {
     const t = e.target as HTMLElement;
     if (t.closest('[data-a="code"]')) return tresorInfo(() => { ueber.innerHTML = ''; });
+    // jede Karte am Brett lässt sich vergrößern – nur nicht, solange sie noch unter Staub liegt oder auf das Anheften wartet
     const k = t.closest<HTMLElement>('.bkarte[data-k]');
-    if (k && !k.classList.contains('neu')) karteGross(+k.dataset.k!);
+    if (k && !k.matches('.neu, .staubig, .wartet')) karteGross(+k.dataset.k!);
   });
 }
-function karteGross(n: number) {
+/** Karte groß (gleiche Nadel wie am Brett); Tippen schließt. `zurueck`: wohin danach (z. B. wieder das Brett aus dem Kopf) */
+function karteGross(n: number, zurueck?: () => void) {
   const k = SP(n).karte;
-  ueber.innerHTML = `<div class="schl mitte"><div class="kgross"><div class="bk-bild">${bildKarte(k)}</div>${k.titel ? `<h3>${k.titel}</h3>` : ''}<p>${k.text}</p></div></div>`;
-  ueber.onclick = () => { ueber.innerHTML = ''; };
+  ueber.innerHTML = `<div class="schl mitte"><div class="kgross karte" role="dialog" aria-modal="true"><div class="bk-bild">${bildKarte(k)}</div>${k.titel ? `<h3>${k.titel}</h3>` : ''}<p>${k.text}</p></div></div>`;
+  ueber.onclick = () => { ueber.innerHTML = ''; zurueck?.(); };
 }
 function brettOffen() {
   const liste = kapSpuren(SP(stand.spur).kap);
@@ -460,7 +492,7 @@ function brettOffen() {
     if (t.closest('[data-a="zu"]') || t.classList.contains('schl')) { ueber.innerHTML = ''; return; }
     const k = t.closest<HTMLElement>('.bkarte[data-k]');
     if (t.closest('[data-a="code"]')) return tresorInfo(brettOffen);
-    if (k) { ueber.onclick = null; karteGross(+k.dataset.k!); }
+    if (k) { ueber.onclick = null; karteGross(+k.dataset.k!, brettOffen); } // nach dem Schließen wieder das Brett
   };
 }
 
@@ -476,7 +508,9 @@ function haken() {
 function fallkarte() {
   modus('zug');
   const f = kap().fallkarte, c = kap().code;
-  const codeHtml = `<div class="codez hell" hidden><span>${UI.code}</span><div class="wort">${c.wort.split('').map((_: string, i: number) => `<i class="${i === c.pos ? 'fall' : ''}">${i === c.pos ? c.buchstabe : (D.kapitel.find((k: any) => k.code.pos === i && verdient(k.nr))?.code.buchstabe ?? '')}</i>`).join('')}</div></div>`;
+  // Buchstabe dieses Kapitels: liegt erst unter Staub, dann springt er in den Beutel zu den anderen (ohne Plätze im Wort)
+  const frueher = D.kapitel.filter((k: any) => k.nr < kap().nr).map((k: any) => k.code.buchstabe);
+  const codeHtml = `<div class="bt-ausgabe" hidden><div class="bt-neu">${bsKachel(c.buchstabe, frueher.length, ' gross')}</div>${beutelHtml(frueher, ' hell', false)}</div>`;
   // D-19: In Kapitel 4 erzählt die Raupe den Fall und flunkert zweimal (Flunker-Finder) – statt die Fallkarte nur zu lesen
   if (f.flunker) {
     buehne.innerHTML = `<section class="zug fall" data-art="flunker"><div class="lampe"></div><div class="zk"><div class="zkr"><span class="tab hell">${UI.kapitel} ${kap().nr}</span></div><h2>${f.titel}</h2></div><p class="zt1">${f.flunker.text}</p><div class="zi"></div><div class="zr"></div>${codeHtml}</section>`;
@@ -488,22 +522,42 @@ function fallkarte() {
   const sec = $('.fall'), fk = $('.fk', sec);
   nurKnopf('stempeln', knopf('stempeln', UI.stempeln), () => stempeltAuf(sec, fk, f));
 }
-/** Stempel „Kapitel gelöst“ auf die Fallkarte (oder die Spielfläche), dann erscheint der Code-Buchstabe unter Staub */
+/** Stempel „Kapitel gelöst“ auf die Fallkarte (oder die Spielfläche), dann erscheint der neue Buchstabe unter Staub und springt in den Beutel */
 function stempeltAuf(sec: HTMLElement, fk: HTMLElement, f: any) {
   fk.classList.add('stempelziel');
   fk.insertAdjacentHTML('beforeend', `<b class="stempel abdruck">${f.stempel}</b>`);
   summ(40);
   konfetti(sec);
-  const cz = $('.codez', sec);
-  cz.classList.add('zu');
-  cz.hidden = false;
-  cz.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  const aus = $('.bt-ausgabe', sec), neu = $('.bt-neu .bt-k', aus);
+  aus.classList.add('zu');
+  aus.hidden = false;
+  aus.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
   fuss.innerHTML = '<div class="fz"><button class="kn haupt" style="visibility:hidden" tabindex="-1"><span>·</span></button></div>';
+  const weiterKnopf = () => nurKnopf('weiter', knopf('weiter', UI.weiter), () => { stand.view = D.kapitel[kap().nr] ? 'ausblick' : 'finale'; stand.fin = 0; zeige(); });
   setTimeout(() => {
-    const feld = $('.wort i.fall', sec);
-    requestAnimationFrame(() => cz.classList.remove('zu'));
-    hookStaub = staub(feld, () => { hookStaub = null; nurKnopf('weiter', knopf('weiter', UI.weiter), () => { stand.view = D.kapitel[kap().nr] ? 'ausblick' : 'finale'; stand.fin = 0; zeige(); }); });
+    requestAnimationFrame(() => aus.classList.remove('zu'));
+    hookStaub = staub(neu, () => { hookStaub = null; setTimeout(() => springInBeutel(aus, neu, weiterKnopf), 450); });
   }, 700);
+}
+/** Der freigewischte Buchstabe hüpft im Bogen in den Beutel und liegt dann lose bei den anderen */
+function springInBeutel(aus: HTMLElement, neu: HTMLElement, fertig: () => void) {
+  if (!aus.isConnected) return;
+  const reihe = $('.bt-reihe', aus), sack = $('.bt-sack', aus);
+  const platz = document.createElement('i');
+  platz.className = 'bt-k platz'; platz.textContent = neu.textContent; platz.style.cssText = neu.style.cssText;
+  reihe.appendChild(platz);
+  const v = neu.getBoundingClientRect(), z = platz.getBoundingClientRect();
+  const dx = z.left + z.width / 2 - (v.left + v.width / 2), dy = z.top + z.height / 2 - (v.top + v.height / 2), sk = z.width / v.width;
+  const hoch = Math.min(dy, 0) - Math.max(60, Math.abs(dx) * 0.35);
+  const ankommen = () => { platz.classList.remove('platz'); platz.classList.add('rein'); neu.closest('.bt-neu')?.remove(); sack.classList.add('wackelt'); summ([20, 30]); fertig(); };
+  if (weniger()) return ankommen();
+  // im Bogen: hoch, über den Beutel, hinein zu den anderen Buchstaben (ein bisschen kleiner, wie die anderen)
+  const a = neu.animate([
+    { transform: 'translate(0, 0) rotate(0) scale(1)', easing: 'cubic-bezier(.3, .7, .5, 1)' },
+    { transform: `translate(${dx * 0.55}px, ${hoch}px) rotate(-12deg) scale(${(1 + sk) / 2})`, offset: 0.45, easing: 'cubic-bezier(.5, 0, .7, .4)' },
+    { transform: `translate(${dx}px, ${dy}px) rotate(0) scale(${sk})` },
+  ], { duration: 900, fill: 'forwards' });
+  a.onfinish = ankommen;
 }
 function ausblick() {
   modus('haken');
@@ -518,7 +572,7 @@ function ausblick() {
 /** Finale nach dem letzten Kapitel: Code, Tresor mit Lupe, Urkunde, Epilog (siehe finale.ts) */
 function finale() {
   const letzt = D.kapitel[D.kapitel.length - 1];
-  zeigeFinale({ buehne, fuss, UI, img, fig, summ, fin: letzt.finale, wort: D.kapitel[0].code.wort, stand, speichern, perlen, modus, neuStart, hook: R.hook, knopf,
+  zeigeFinale({ buehne, fuss, UI, img, fig, summ, fin: letzt.finale, wort: D.kapitel[0].code.wort, reihe: D.kapitel.map((k: any) => k.code.pos), sack: SACK, stand, speichern, perlen, modus, neuStart, hook: R.hook, knopf,
     geloest: () => { if (!stand.geloest) { stand.geloest = true; speichern(); } },
     album: () => { stand.view = 'album'; zeige(); },
     haus: hausOeffnen,
@@ -575,6 +629,7 @@ function neuStart() {
 }
 
 /* ---------- Kopf-Knöpfe, Einstellungen ---------- */
+tastenKlick(buehne); tastenKlick(ueber);
 $('#bBrett').onclick = brettOffen;
 $('#kPerl').onclick = hausOeffnen;
 $('#bAa').onclick = () => {
@@ -588,7 +643,7 @@ $('#bAa').onclick = () => {
   };
 };
 let rz = 0;
-addEventListener('resize', () => { clearTimeout(rz); rz = window.setTimeout(() => { if (stand.view === 'spur' && steps(stand.spur)[stand.i] === 'lesen' && !ueber.innerHTML) zeige(); }, 200); });
+addEventListener('resize', () => { clearTimeout(rz); rz = window.setTimeout(() => { if (stand.view === 'spur' && istLesen(steps(stand.spur)[stand.i]) && !ueber.innerHTML) zeige(); }, 200); });
 
 /* ---------- Zurück und wieder vor: auf jedem Bildschirm ein Schritt zurück ---------- */
 const ersteSpur = (n: number) => kapSpuren(SP(n).kap)[0] === n;
@@ -616,12 +671,12 @@ function zurueckSchritt() {
   if (stand.view === 'album') { stand.view = 'fertig'; return zeige(); }
   if (stand.view === 'fertig') { stand.view = 'titel'; return zeige(); }
   if (stand.view === 'spur') {
-    if (stand.i > 0) { stand.i--; if (steps(stand.spur)[stand.i] === 'lesen') stand.blatt = 999; return zeige(); }
+    if (stand.i > 0) { stand.i--; if (istLesen(steps(stand.spur)[stand.i])) stand.blatt = 999; return zeige(); }
     if (stand.wieder) { stand.wieder = false; stand.view = 'album'; return zeige(); }
     if (ersteSpur(stand.spur)) { stand.view = 'kapitel'; return zeige(); }
     stand.spur--; stand.i = steps(stand.spur).length - 1; return zeige();
   }
-  if (stand.view === 'fallkarte') { stand.view = 'spur'; stand.i = steps(stand.spur).length - 1; return zeige(); }
+  if (stand.view === 'fallkarte') { stand.view = 'spur'; stand.i = steps(stand.spur).length - 1; if (istLesen(steps(stand.spur)[stand.i])) stand.blatt = 999; return zeige(); }
   if (stand.view === 'ausblick') { stand.view = 'fallkarte'; return zeige(); }
   if (stand.view === 'finale') { if (stand.fin > 0) { stand.fin--; return zeige(); } stand.view = 'fallkarte'; return zeige(); }
 }
@@ -692,9 +747,9 @@ new MutationObserver(mehrPfeil).observe(buehne, { childList: true });
 /** Android-Zurück: erst Fenster schließen, dann zurückblättern, sonst zum Titel (Stand bleibt), auf dem Titel App beenden */
 function zurueck() {
   if (ueber.innerHTML.trim()) {
-    const bg = ueber.querySelector('.schl') as HTMLElement | null;
+    const bg = ueber.querySelector('.schl') as HTMLElement | null, vorher = ueber.firstElementChild;
     if (bg) bg.click(); else ueber.innerHTML = '';
-    if (ueber.innerHTML.trim()) ueber.innerHTML = '';
+    if (ueber.firstElementChild === vorher) ueber.innerHTML = ''; // schließt sich das Fenster nicht selbst, schließen wir es; ein neues (Karte groß → Brett) bleibt
     return;
   }
   const prev = fuss.querySelector('[data-a="prev"]:not([disabled])') as HTMLElement | null;

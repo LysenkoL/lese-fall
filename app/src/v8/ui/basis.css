@@ -236,7 +236,7 @@ html :focus-visible:where(:not(.bkarte)) { box-shadow: 0 0 0 7px rgba(244, 194, 
   #buehne > .brett > .ak { grid-column: 1 / -1; }
   #buehne > .brett > .wischz { grid-column: 1; grid-row: 2; }
   #buehne > .brett > .bgrid { grid-column: 1; grid-row: 3 / span 8; }
-  #buehne > .brett > h3, #buehne > .brett > .fr-frage, #buehne > .brett > .fragen, #buehne > .brett > .codez { grid-column: 2; }
+  #buehne > .brett > h3, #buehne > .brett > .fr-frage, #buehne > .brett > .fragen, #buehne > .brett > .codez, #buehne > .brett > .beutel { grid-column: 2; }
 }
 
 /* ---------- Überlagerungen: Blatt von unten (Telefon) oder Dialog in der Mitte (ab 600 px) ---------- */

@@ -1,6 +1,6 @@
-# LESE-FALL — DER VERSCHWUNDENE MOND · Text v8.8 · Kapitel 1
+# LESE-FALL — DER VERSCHWUNDENE MOND · Text v8.9 · Kapitel 1
 
-**Статус:** текст автора v8.8 от 25.11.2026 (`06_review/brainstorm/BUCH1_v8_8.md`, решение D-19). Текст не менять здесь — сначала в файле автора. Разбивку на листы делает приложение.
+**Статус:** текст автора v8.9 от 25.11.2026 (`06_review/brainstorm/BUCH1_v8_9.md`, решения D-19 и D-20). Текст не менять здесь — сначала в файле автора. Разбивку на листы делает приложение.
 
 ---
 
@@ -26,6 +26,7 @@ Plötzlich kommt Frau Sommer herein und fächelt sich Luft zu: „Kinder, habt i
 
 Niemand hat den Schlüssel gesehen. Auf ihrem Blatt hebt die Lese-Raupe überrascht den Kopf.
 
+<!-- Raupe: staunt -->
 „Wie seltsam!“, denkt sie. „Bei uns in der Schule ist doch noch nie etwas einfach so verschwunden!“ Vor lauter Neugier beginnen ihre Fühler leise golden zu kribbeln.
 
 ### Spur 2 — Ein seltsames Frühstück
@@ -36,14 +37,17 @@ Mila hängt den gelben Mond links neben die Wolke an den Theater-Himmel. Er wack
 
 Ben bleibt am Theater stehen und tippt besorgt an den Faden. „Oje, der Knoten wackelt ja total!“, murmelt er. „Wenn der mitten in der Vorstellung aufgeht, knallt der Mond unseren Schauspielern direkt auf den Kopf. Den klebe ich lieber schnell fest!“
 
+<!-- Raupe: lob -->
 Auf ihrem Blatt nickt die Lese-Raupe weise: „Da hat Ben völlig recht! Wenn den Puppen mitten im Stück die Dekoration auf den Kopf fällt, ist das keine gute Show.“
 
+<!-- Raupe: isst -->
 Dann entdeckt die Raupe direkt neben ihrem Blumentopf ein kleines grünes Blatt. Eben lag das noch nicht da! „Oh, ein zweites Frühstück!“, denkt sie vergnügt und beißt kräftig hinein.
 
 KNURPS!
 
 „Iiiih! Pfui Spinne!“ Das ist gar kein saftiges Blatt — das ist trockenes Papier! Die Raupe spuckt und spuckt. Sie kriecht unter ihr größtes Blatt und wischt sich gründlich die Zunge ab.
 
+<!-- Raupe: muede -->
 Die Sonne scheint durch das Fenster warm auf ihr Blatt. Es ist gemütlich, und ihre Augen werden schwer. „Nur kurz die Augen zu“, denkt sie. „Nur eine Sekunde von dem Papp-Schreck erholen …“
 
 Als sie wieder blinzelt, sieht sie durch einen Spalt zwischen den Blättern gerade noch einen Ärmel mit roten und weißen Streifen. Die Streifen laufen rund um den Arm. Knöpfe sieht sie keine. Unten am Tisch greift er nach etwas — und schwupp, ist er weg!
@@ -82,12 +86,14 @@ Schnell kriecht die Raupe hin und stupst die Zeitung mit der Nase an, sodass sie
 
 Mila sieht es sofort und zieht einen großen gelben Pappkreis unter den Zeitungen hervor. „Da bist du ja, mein Mond!“, freut sie sich.
 
+<!-- Raupe: denkt -->
 Die Lese-Raupe stutzt. „Warum sollte Ben einen frisch geklebten Mond unter alte Zeitungen schieben?“, wundert sie sich und schaltet ihren Zeitlupen-Blick ein: Oben am Rand ist dieser Kreis völlig glatt.
 
 Auch Mila runzelt jetzt die Stirn. „Moment mal … Hier oben ist ja gar kein Loch mit dem weißen Faden! Und hinten müsste doch unser kleiner blauer Stern für die Raupe sein“, murmelt sie und dreht den Kreis um.
 
 Die Rückseite ist weiß und komplett leer. Kein kleiner blauer Stern, kein Loch am Rand und keine Spur von einer Schnur! „Schade, ohne Faden und ohne Stern ist das nur ein ganz normaler Bastelkreis“, seufzt Mila und legt ihn wieder auf den Tisch.
 
+<!-- Raupe: tipp -->
 „Zwei Dinge können von vorne gleich aussehen und sind trotzdem nicht dasselbe“, denkt die Raupe.
 
 Genau in diesem Moment wird es in der Ecke endlich still: Ben hat den Wasserhahn zugedreht!
@@ -100,7 +106,7 @@ Mila stemmt die Hände in die Hüften und muss trotz ihrer Sorge lachen: „Sag 
 
 „Dieser flüssige Bastelkleber hält eben wie Bärenhonig!“, grinst Ben stolz.
 
-„Aber wo genau auf dem Tisch hast du meinen Mond denn hingelegt?“, fragt Mila ungeduldig. „Ich habe hier vorne schon alles abgesucht! Unter dem Zeitungsstapel lag nur ein fremder gelber Kreis ohne Faden und ohne Stern.“
+„Aber wo genau auf dem Tisch hast du meinen Mond denn hingelegt?“, fragt Mila ungeduldig. „Ich habe hier vorne schon alles abgesucht! Unter dem Zeitungsstapel lag nur ein fremder gelber Kreis ohne Faden.“
 
 Ben schüttelt den Kopf. „Doch nicht vorne unter die Zeitungen! Als du tief im Schrank nach den Puppen getaucht bist, habe ich den lockeren Faden mit Kleber repariert und den Mond ganz hinten auf das blaue Tablett direkt am offenen Fenster gelegt!“
 
@@ -122,4 +128,5 @@ Schnell kriecht die Lese-Raupe aufs Tablett, nimmt ihre Tautropfen-Lupe und schu
 
 „Schau mal, Mila, hier klebt noch ein frischer Klecks aus meiner Kleberflasche!“, ruft Ben. „Hier hat dein Mond wirklich gelegen!“
 
+<!-- Raupe: lupe -->
 Die Raupe mustert erst Bens nasse, dunkelblaue Pulloverärmel und schaut dann hinauf zum offenen Fenster. „Ben sagt die Wahrheit — sein Pulli ist dunkelblau ohne einen einzigen Streifen“, kombiniert die Raupe. „Aber gleich nachdem Ben zum Waschbecken gegangen ist, hat der rot-weiß gestreifte Ärmel von draußen durchs Fenster zugegriffen!“

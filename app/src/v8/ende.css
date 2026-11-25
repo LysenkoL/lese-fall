@@ -120,17 +120,26 @@ button.perl:active { transform: translateY(1px); }
 .rms img { height: 100%; width: auto; display: block; object-fit: contain; }
 .rms.mitlupe .glupe { position: absolute; right: -22%; bottom: 6%; width: 50%; height: auto; transform: rotate(-18deg); filter: drop-shadow(0 0 8px rgba(255, 210, 90, .8)); }
 
-/* Hinweis „Neu im Haus“ */
-.neuhaus { position: fixed; left: 50%; bottom: calc(var(--unten) + 6rem); transform: translateX(-50%); z-index: var(--z-effekt); display: flex; align-items: center; gap: .625rem; width: max-content; max-width: min(22rem, calc(100vw - 2rem)); padding: .5rem 1rem .5rem .5rem; border-radius: 1rem; background: var(--papier); color: var(--tinte); border: 2.5px solid var(--senf); box-shadow: 0 10px 24px rgba(0, 0, 0, .35); font: inherit; text-align: left; animation: toast .35s cubic-bezier(.3, 1.4, .5, 1) both; transition: opacity .35s, transform .35s; }
-.neuhaus img { width: 2.75rem; height: 2.75rem; object-fit: contain; flex: none; }
+/* Hinweis „Neu im Haus“ (haus.ts, neuHinweis): oben unter dem Kopf, mit Spitze zum Haus-Knopf (Perlen) – nie über den Knöpfen im Fuß.
+   Ohne Kopf (Titel, Fallkarte …) oben in der Mitte. */
+.neuhaus { position: fixed; left: 50%; top: calc(var(--oben) + .75rem); transform: translateX(-50%); z-index: var(--z-effekt); display: flex; align-items: center; gap: .5rem; width: max-content; max-width: min(19rem, calc(100vw - 1rem)); padding: .375rem .875rem .375rem .375rem; border-radius: .875rem; background: var(--papier); color: var(--tinte); border: 2px solid var(--senf); box-shadow: 0 8px 20px rgba(0, 0, 0, .35); font: inherit; text-align: left; line-height: 1.2; animation: toastOben .35s cubic-bezier(.3, 1.4, .5, 1) both; transition: opacity .35s, transform .35s; }
+.neuhaus.am-knopf { left: auto; transform: none; transform-origin: calc(100% - var(--spitze, 24px)) 0; animation-name: toastKnopf; }
+/* Spitze nach oben zum Haus-Knopf */
+.neuhaus.am-knopf::before { content: ''; position: absolute; top: -.4375rem; right: calc(var(--spitze, 24px) - .4375rem); width: .75rem; height: .75rem; background: var(--papier); border: 2px solid var(--senf); border-right: 0; border-bottom: 0; border-radius: 3px 0 0 0; transform: rotate(45deg); }
+.neuhaus img { width: 2.375rem; height: 2.375rem; object-fit: contain; flex: none; }
 .neuhaus .nh-t { display: flex; flex-direction: column; min-width: 0; }
-.neuhaus small { font-size: var(--t-fein); font-weight: 700; color: var(--leise); }
-.neuhaus b { font-size: 1.0625rem; font-weight: 800; }
+.neuhaus small { font-size: var(--t-etikett); font-weight: 700; color: var(--leise); }
+.neuhaus b { font-size: 1rem; font-weight: 800; }
 .neuhaus .s-b, .neuhaus .s-r { color: inherit; }
-.neuhaus.weg { opacity: 0; transform: translate(-50%, .75rem); }
+.neuhaus.weg { opacity: 0; transform: translate(-50%, -.5rem); }
+.neuhaus.am-knopf.weg { transform: translateY(-.375rem) scale(.96); }
+@keyframes toastOben { from { opacity: 0; transform: translate(-50%, -.75rem); } }
+@keyframes toastKnopf { from { opacity: 0; transform: translateY(-.5rem) scale(.9); } }
+/* der Haus-Knopf hüpft kurz mit, damit klar ist, wohin die neue Sache gekommen ist */
+.perl.neu-da { animation: perlhupf .55s ease-in-out 3; box-shadow: inset 0 0 0 2px var(--senf), 0 0 14px rgba(244, 194, 67, .7); }
 
 @media (prefers-reduced-motion: reduce) {
-  .ep-raupe, .ep-text p, .fg-stempel, .fg-raupe .rms, .al-karte, .h-raupe.mampf, .h-raupe.zieht, .h-blase.neu, .neuhaus { animation: none !important; }
+  .ep-raupe, .ep-text p, .fg-stempel, .fg-raupe .rms, .al-karte, .h-raupe.mampf, .h-raupe.zieht, .h-blase.neu, .neuhaus, .perl.neu-da { animation: none !important; }
 }
 
 /* ---------- Feuerwerk und Herzchen ---------- */

@@ -1,6 +1,6 @@
-# LESE-FALL — DER VERSCHWUNDENE MOND · Text v8.8 · Kapitel 2
+# LESE-FALL — DER VERSCHWUNDENE MOND · Text v8.9 · Kapitel 2
 
-**Статус:** текст автора v8.8 от 25.11.2026 (`06_review/brainstorm/BUCH1_v8_8.md`, решение D-19). Текст не менять здесь — сначала в файле автора. Разбивку на листы делает приложение.
+**Статус:** текст автора v8.9 от 25.11.2026 (`06_review/brainstorm/BUCH1_v8_9.md`, решения D-19 и D-20). Текст не менять здесь — сначала в файле автора. Разбивку на листы делает приложение.
 
 ---
 
@@ -20,6 +20,7 @@ Ben wird bis zu den Ohrenspitzen rot und schlägt sich vor die Stirn. „Oh nein
 
 „Dann lag mein Mond genau dort, wo sich jeder bedienen darf“, sagt Mila leise.
 
+<!-- Raupe: denkt -->
 „Wer sich vom blauen Tablett etwas nimmt, ist also kein Dieb“, überlegt die Lese-Raupe. „Aber wer schnippelt da draußen mit der Schere?“
 
 ### Spur 8 — Ein Mond, der sich tarnt
@@ -34,6 +35,7 @@ Ben schaut nachdenklich auf seine Finger, an denen immer noch ein Rest Kleber gl
 
 „Nasser Kleber darf doch nichts berühren, sonst klebt der Mond am Tablett fest!“, ruft Ben. „Darum habe ich ihn extra andersherum aufs Tablett gelegt — mit der weißen Seite nach oben und der gelben Seite nach unten!“
 
+<!-- Raupe: tipp -->
 Die Lese-Raupe hält ihre Tautropfen-Lupe vors Auge und staunt: „Ein gelber Mond in weißer Geheimagenten-Tarnung! Wer von draußen aufs Tablett geschaut hat, sah nur einen weißen Pappkreis.“
 
 ### Spur 9 — Die Maus auf der Bank
@@ -42,16 +44,21 @@ Die Lese-Raupe hält ihre Tautropfen-Lupe vors Auge und staunt: „Ein gelber Mo
 
 Ben schüttelt den Kopf. „Nein, ganz sicher nicht! Denk doch nur an die seltsame Geschichte mit Frau Sommers verschwundenem Schlüssel heute Morgen — schon deshalb habe ich die Tür zum Flur extra zugemacht, damit vor der Aufführung niemand heimlich reinkommt oder spickt!“
 
+<!-- Raupe: tipp -->
 Auf dem Tisch spitzt die Lese-Raupe die Fühler: „Drinnen im Raum habe ich schon alles abgesucht, und die Tür war geschlossen. Dann führt die Spur für eine echte Detektivin direkt durch das offene Fenster!“
 
+<!-- Raupe: muede -->
 Eifrig kriecht die Raupe los — ein Füßchen nach dem anderen den Fensterrahmen hinauf. „Für Mila sind das zwei Schritte“, schnauft sie. „Für mich ist der Aufstieg aufs Fensterbrett eine halbe Weltreise!“
 
+<!-- Bild -->
 Oben auf dem inneren Fensterbrett angekommen, hebt sie ihre Tautropfen-Lupe und schaut hinaus in den Hof: Direkt unter dem Fenster steht die Holzbank — und dort sitzt Oskar! Sein Pulli hat leuchtend rote und weiße Streifen.
 
+<!-- Raupe: lupe -->
 „Da ist unser gestreifter Ärmel!“, denkt die Raupe.
 
 Neben Oskar sitzt seine graue Papiermaus aus dem Werkunterricht mit großen runden Ohren und einem gemalten roten Herz auf dem Bauch. Vor ihr liegt grünes Gras aus gezacktem Papier.
 
+<!-- Raupe: lacht -->
 „Aha!“, schmunzelt die Raupe. „Von Oskars Papier-Wiese ist vorhin also ein Halm durchs Fenster geweht und wurde mein scheußliches Frühstück!“
 
 Da stellt Oskar einen weißen Pappteller neben seine Maus und deckt ihn geheimnisvoll mit einem weißen Seidenpapier zu: „Heute ist dein Glückstag, kleine Maus! Gleich gibt es ein Festessen!“
@@ -86,16 +93,18 @@ Der Zettel liegt jetzt direkt neben der Lese-Raupe. Sie sieht: In der offenen Fe
 
 „Guck mal!“, ruft Ben. „In der Scheibe sieht die Schrift ganz normal aus!“
 
+<!-- Raupe: lob -->
 Wer den Zettel geschoben hat, merkt niemand. „Psst“, denkt die Raupe und lächelt.
 
 ### Spur 11 — Keine Rennmaus
 
-Kaum haben Mila und Ben die Spiegelschrift entziffert, öffnen sie die Klassenzimmertür und laufen hinaus in den Hof zu Oskar.
+Kaum haben Mila und Ben die Spiegelschrift entziffert, hüpft Oskar schon zurück zu seiner Bank. Mila und Ben laufen schnell aus dem Klassenzimmer, durch den Flur und hinaus auf den Hof.
 
 Unterwegs flüstert Ben Mila zu: „Glaubst du, auf der Bank liegt wirklich dein Mond?“
 
 „Ich hoffe es!“, flüstert Mila zurück. „Aber vorhin, als ich den Tisch abgesucht habe, lag unter den Zeitungen ja auch nur ein fremder gelber Kreis. Diesmal müssen wir ganz genau hinschauen!“
 
+<!-- Raupe: lacht -->
 Oben sitzt die Lese-Raupe schon auf dem inneren Fensterbrett. Um auf die Bank hinunterzuschauen, muss sie nur noch über das breite Außenbrett bis zur Kante kriechen. „Puh, immer diese Hektik!“, schnauft sie vergnügt. „Ich bin eine gemütliche Lese-Raupe und keine Rennmaus!“
 
 Unten im Hof raschelt das bunte Herbstlaub. Auf der Wiese sitzen Ida und Nele mit einer Schere und blauem Tonpapier. Schnipp, schnapp!
@@ -104,11 +113,11 @@ Unten im Hof raschelt das bunte Herbstlaub. Auf der Wiese sitzen Ida und Nele mi
 
 „Na klar, heute ist doch unser großer Bastel- und Theatertag!“, lacht Ida und hält eine blaue Papierkrone hoch. Dann winkt sie Oskar zu: „Und du hast vorhin auf der Bank doch auch so eifrig geschnitten, Oskar, oder? Was hast du denn Tolles für deine Maus gebastelt?“
 
-„Kommt mit zur Bank, ich zeige es euch!“, ruft Oskar stolz — genau in dem Moment, als die Lese-Raupe oben ihren Kopf über die äußere Fensterkante schiebt und ihre Leucht-Fühler zu glimmen beginnen.
+„Kommt her zur Bank, ich zeige es euch!“, ruft Oskar stolz und winkt — genau in dem Moment, als die Lese-Raupe oben ihren Kopf über die äußere Fensterkante schiebt und ihre Leucht-Fühler zu glimmen beginnen.
 
 ### Spur 12 — Oskars Rätsel
 
-Unter dem großen Baum scheint die Sonne warm durch die Zweige. Mila, Ben und Oskar bleiben vor der Holzbank stehen, wo die kleine graue Maus neben dem zugedeckten Pappteller wartet.
+Unter dem großen Baum scheint die Sonne warm durch die Zweige. Mila und Ben laufen zu Oskar an die Holzbank. Dort wartet die kleine graue Maus neben dem zugedeckten Pappteller.
 
 Bens Blick fällt sofort auf die Schere und die vielen kleinen gelben Papierschnipsel, die neben dem Teller auf der Bank verstreut liegen.
 
@@ -118,6 +127,7 @@ Mila schluckt schwer.
 
 Oskar merkt von ihrer Sorge überhaupt nichts. Er strahlt über das ganze Gesicht: „Eigentlich wollte ich aus der weißen Pappe vom Tablett zuerst nur eine kleine Wand mit einem Mauseloch basteln. Aber als ich den weißen Kreis hier draußen umgedreht habe, war die andere Seite plötzlich leuchtend gelb! Da musste ich sofort an das Lieblingsessen von Mäusen denken und hatte die allerbeste Idee, womit ich meiner Lieblingsmaus heute eine riesige Freude machen kann! Drei kleine braune Kreise habe ich auch noch draufgeklebt. Na, erratet ihr, was es ist?“
 
+<!-- Raupe: staunt -->
 Oben am Fensterrand reißt die Lese-Raupe die Augen auf: „Leuchtend gelb, kugelrund und mit Löchern — für eine kleine Maus?!“
 
 Feierlich legt Oskar die Hand auf das weiße Seidenpapier: „Drei … zwei … eins …“
