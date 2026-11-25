@@ -30,13 +30,14 @@ const fehler = [];
 p.on('pageerror', (e) => fehler.push('Seitenfehler: ' + String(e)));
 p.on('console', (m) => { if (m.type() === 'error' || m.type() === 'warning') fehler.push('Konsole: ' + m.text()); });
 let nr = 0, gemessen = 0;
-const shot = async (name) => { await sleep(500); await p.screenshot({ path: `${OUT}/${String(++nr).padStart(2, '0')}_${name}.png` }); };
+const shot = async (name) => { await sleep(500); await p.screenshot({ path: `${OUT}/${String(++nr).padStart(3, '0')}_${name}.png` }); };
 const ev = (f, a) => p.evaluate(f, a);
 /** Klick mit der Maus; das Ziel wird vorher in die Mitte der Bühne gerollt (der Pfeil „mehr unten“ liegt unten über der Fläche) */
 const klick = async (s) => {
-  await p.waitForSelector(s, { state: 'visible' });
-  await ev((s) => { const e = document.querySelector(s); if (e?.closest('#buehne')) e.scrollIntoView({ block: 'center', inline: 'nearest' }); }, s);
-  await p.click(s); await sleep(130);
+  const l = p.locator(s).first();
+  await l.waitFor({ state: 'visible' });
+  await l.evaluate((e) => { if (e.closest('#buehne')) e.scrollIntoView({ block: 'center', inline: 'nearest' }); });
+  await l.click(); await sleep(130);
 };
 /** Knopf im Fuß sichtbar und bedienbar? */
 const knopfDa = (a) => ev((a) => { const k = document.querySelector(`#fuss [data-a="${a}"]`); return !!k && !k.disabled && getComputedStyle(k).visibility !== 'hidden' && k.getClientRects().length > 0; }, a);
