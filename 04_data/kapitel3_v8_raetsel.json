@@ -327,9 +327,15 @@
    "haken": "„Wartet mal! Ich habe eine Idee!“",
    "karte": {
     "titel": "Bens Idee",
-    "bild": "objekte/plakat",
+    "bild": "k3_s18",
     "text": "Ein Mond mit Kratern. Für die Maus ist er ein Käse. So sind alle drei froh.",
-    "staub": false
+    "staub": false,
+    "ausschnitt": {
+     "x": 20,
+     "y": 10,
+     "w": 60,
+     "h": 80
+    }
    },
    "fragenNeu": [],
    "fragenWeg": [],

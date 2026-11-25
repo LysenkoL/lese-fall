@@ -2793,9 +2793,15 @@
    ],
    "karte": {
     "titel": "Bens I|dee",
-    "bild": "objekte/plakat",
+    "bild": "k3_s18",
     "text": "Ein Mond mit Kra|tern. Für die Maus ist er ein Kä|se. So sind al|le drei froh.",
-    "staub": false
+    "staub": false,
+    "ausschnitt": {
+     "x": 20,
+     "y": 10,
+     "w": 60,
+     "h": 80
+    }
    },
    "fragenNeu": [],
    "fragenWeg": [],
@@ -3049,7 +3055,7 @@
    "spur": 20,
    "titel": "Der Mond im Baum",
    "bild": "k4_s19_elster",
-   "haken": "„Was, wenn der Vo|gel auch Frau Som|mers Schlüs|sel dort hoch|ge|schleppt hat?!“",
+   "haken": "„Was, wenn der Vo|gel auch Frau Som|mers Schlüs|sel ge|holt hat?!“",
    "blocks": [
     {
      "id": "s20-p1",
@@ -3615,7 +3621,7 @@
    "spur": 23,
    "titel": "Der größ|te Kä|se der Welt",
    "bild": "k4_s22",
-   "haken": "„Ei|ne Els|ter! Wir bas|teln ihr ein Ge|schenk!“",
+   "haken": "Was schenkt man ei|nem Vo|gel, der al|les liebt, was glänzt?",
    "blocks": [
     {
      "id": "s23-p1",

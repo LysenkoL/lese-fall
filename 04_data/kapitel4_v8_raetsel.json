@@ -156,7 +156,7 @@
    "spur": 20,
    "bild": "k4_s19_elster",
    "schluessel": true,
-   "haken": "„Was, wenn der Vogel auch Frau Sommers Schlüssel dort hochgeschleppt hat?!“",
+   "haken": "„Was, wenn der Vogel auch Frau Sommers Schlüssel geholt hat?!“",
    "karte": {
     "titel": "Das Nest",
     "bild": "baum",
@@ -499,7 +499,7 @@
   {
    "spur": 23,
    "bild": "k4_s22",
-   "haken": "„Eine Elster! Wir basteln ihr ein Geschenk!“",
+   "haken": "Was schenkt man einem Vogel, der alles liebt, was glänzt?",
    "karte": {
     "titel": "Eine Elster",
     "bild": "objekte/elster",
