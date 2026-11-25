@@ -20,6 +20,8 @@ const spaeter = (el: HTMLElement, ms: number, f: () => void) => setTimeout(() =>
 const PFEIL = (rechts: boolean) => `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${rechts ? 'M9 5l7 7-7 7' : 'M15 5l-7 7 7 7'}" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 /** Bilder vorab laden, damit Gesichter beim Umschalten nicht flackern */
 const vorladen = (urls: string[]) => urls.forEach((u) => { if (u) { const i = new Image(); i.src = u; } });
+/** Stempel-Werkzeug ins Bild rollen (liegt auf dem Telefon sonst unter dem Rand) */
+const stempelZeigen = (zi: HTMLElement) => requestAnimationFrame(() => zi.querySelector('.stp-tool')?.scrollIntoView({ block: 'center', behavior: 'smooth' }));
 
 /* ============================ Vogel-Lexikon (Spur 23) ============================
  * Oben der Steckbrief (was wir aus dem Text wissen), darunter das Vogelbuch der Raupe: eine Seite je Vogel,
@@ -88,10 +90,9 @@ SPIELE_LESEN.lexikon = (r, d, fertig) => {
     knoepfe();
     K.summ(30);
     if (!mitHilfe && d.fund) sag(r, 'staunt', d.fund);
-    // Stempel auf Bild und Namen (obere Hälfte), nicht auf die Sätze
-    const kopf = $('.lx-kopf', seite), sr = seite.getBoundingClientRect(), kr = kopf.getBoundingClientRect();
-    const y = sr.height ? ((kr.top + kr.height / 2 - sr.top) / sr.height) * 100 : 30;
-    hook.loese = stempeln(zi, seite, d.stempel ?? '', () => ende(r, d, fertig), { x: 50, y });
+    // Stempel oben rechts in die Ecke der Seite: Bild, Name und Sätze bleiben frei
+    hook.loese = stempeln(zi, seite, d.stempel ?? '', () => ende(r, d, fertig), { x: 78, y: 12 });
+    stempelZeigen(zi);
   };
   const waehle = () => {
     if (zu || geloest) return;
@@ -165,8 +166,8 @@ SPIELE_LESEN.waage = (r, d, fertig) => {
 
   zi.innerHTML = `<div class="ww">
     <div class="ww-kinder" aria-live="polite">${kinder.map((k) => `<div class="ww-kind" data-k="${k.id}">
-      <figure class="ww-bild"><span class="ww-rahmen"><img src="${gesicht(k, null)}" alt=""></span><figcaption>${k.name ?? ''}</figcaption></figure>
-      <div class="ww-txt"><p class="ww-wunsch">${k.text ?? ''}</p><p class="ww-re" hidden></p></div>
+      <span class="ww-rahmen"><img src="${gesicht(k, null)}" alt=""></span>
+      <div class="ww-txt"><p class="ww-wunsch"><b class="ww-name">${k.name ?? ''}</b> <span>${k.text ?? ''}</span></p><p class="ww-re" hidden></p></div>
     </div>`).join('')}</div>
     <div class="ww-ideen">${ordnung.map((id) => { const i = ideen.find((x) => x.id === id)!; return `<button class="ww-idee" data-i="${id}">${i.bild ? `<img src="${K.img(i.bild)}" alt="" draggable="false">` : ''}<span>${i.text ?? ''}</span></button>`; }).join('')}</div>
   </div>`;
@@ -194,7 +195,8 @@ SPIELE_LESEN.waage = (r, d, fertig) => {
       $('.ww', zi).classList.add('fertig');
       karte.classList.add('sieger');
       (karte as HTMLButtonElement).disabled = true;
-      hook.loese = stempeln(zi, karte, d.stempel ?? '', () => ende(r, d, fertig));
+      hook.loese = stempeln(zi, karte, d.stempel ?? '', () => ende(r, d, fertig), { x: 78, y: 50 });
+      stempelZeigen(zi);
     });
   };
   const probe = (id: string) => {

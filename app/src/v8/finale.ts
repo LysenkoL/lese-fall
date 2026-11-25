@@ -157,8 +157,8 @@ export function zeigeFinale(c: FinCtx): void {
   /* ---------- 1: der Tresor öffnet sich (Tür, goldenes Licht, Konfetti) – drinnen die goldene Lupe, die Raupe schenkt sie ---------- */
   if (st.fin === 1) {
     const L = F.lupe ?? {};
-    c.buehne.innerHTML = `<section class="zug fin tresor-auf"><div class="lampe"></div><div class="zk"><span class="tab hell">${c.UI.tresor}</span><h2>${F.auf.titel}</h2></div><div class="tv"><div class="tv-licht"></div><img class="tv-zu" src="${c.img('tresor_zu')}" alt="" draggable="false"><img class="tv-auf" src="${c.img('tresor_auf')}" alt="" draggable="false"><div class="tv-innen tv-lupe"><img src="${c.img('objekte/goldene_lupe')}" alt="" draggable="false"></div></div><p class="zt1">${F.auf.text}</p><div class="zr"></div></section>`;
-    const sec = c.buehne.querySelector<HTMLElement>('.tresor-auf')!, tv = sec.querySelector<HTMLElement>('.tv')!;
+    c.buehne.innerHTML = `<section class="zug fin tresor-auf"><div class="lampe"></div><div class="zk"><span class="tab hell">${c.UI.tresor}</span><h2>${F.auf.titel}</h2></div><div class="tv"><div class="tv-licht"></div><img class="tv-zu" src="${c.img('tresor_zu')}" alt="" draggable="false"><img class="tv-auf" src="${c.img('tresor_auf')}" alt="" draggable="false"><div class="tv-innen tv-lupe"><img src="${c.img('objekte/goldene_lupe')}" alt="" draggable="false"></div></div><p class="zt1">${F.auf.text}</p><div class="zr wartet">${L.sagt ? raupe('lob', L.sagt, 'gut') : ''}</div></section>`;
+    const sec = c.buehne.querySelector<HTMLElement>('.tresor-auf')!, tv = sec.querySelector<HTMLElement>('.tv')!, zr = sec.querySelector<HTMLElement>('.zr')!;
     leererFuss();
     let offen = false, geschenkt = false;
     const auf = () => {
@@ -171,7 +171,7 @@ export function zeigeFinale(c: FinCtx): void {
       auf();
       tv.classList.add('lupe-da');
       if (L.titel) { const tab = sec.querySelector<HTMLElement>('.zk .tab')!; tab.innerHTML = L.titel; tab.classList.add('neu'); }
-      if (L.sagt) sec.querySelector('.zr')!.innerHTML = raupe('lob', L.sagt, 'gut');
+      zr.classList.remove('wartet'); zr.innerHTML = zr.innerHTML; // neu eingesetzt, damit die Sprechblase jetzt hereinspringt
       c.summ([20, 40]);
       nurKnopf('weiter', c.knopf('weiter', c.UI.danke), () => gehe(2));
     };

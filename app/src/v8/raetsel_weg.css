@@ -1,0 +1,194 @@
+/* Lese-Fall · v8 · Rätsel mit Weg und Formen (raetsel_weg.ts): Raupenweg (Spur 21), Passt genau (Spur 15). Je Spiel ein Block. */
+
+/* ---------- Raupenweg: die Raupe kriecht über die Äste zum Nest ---------- */
+.zug[data-art="raupenweg"] { --neben-spiel: 5.25rem; }
+.rw-hinweis {
+  display: flex;
+  align-items: center;
+  gap: .625rem;
+  align-self: center;
+  width: min(100%, calc(var(--bild-h) * 1.5));
+  min-height: 3.25rem;
+  padding: .4375rem .875rem .4375rem .5rem;
+  border-radius: var(--r-karte);
+  background: var(--papier);
+  color: var(--tinte);
+  box-shadow: 0 3px 0 var(--kante), 0 8px 16px rgba(0, 0, 0, .28);
+  rotate: -.6deg;
+  transition: opacity var(--dauer-lang);
+}
+.rw-hinweis.neu { animation: hoch .4s both; }
+.rw-hinweis.fertig { opacity: .5; }
+.rw-hinweis p { margin: 0; font-size: var(--t-knopf); font-weight: 800; line-height: 1.3; }
+.rw-hinweis .s-b, .rw-hinweis .s-r { color: inherit; }
+.rw-nr {
+  flex: none;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--senf);
+  color: var(--senf-tinte);
+  font-weight: 800;
+  font-size: var(--t-text);
+  box-shadow: 0 2px 0 var(--senf-dunkel);
+}
+.rw-bild {
+  position: relative;
+  width: min(100%, calc(var(--bild-h) * 1.5));
+  align-self: center;
+  border-radius: var(--r-feld);
+  border: var(--rahmen-bild);
+  background: #BFE0F0;
+  box-shadow: var(--sch-bild);
+  user-select: none;
+}
+.rw-hg { display: block; width: 100%; height: 100%; object-fit: fill; border-radius: calc(var(--r-feld) - 4px); pointer-events: none; }
+.rw-lage { position: absolute; inset: 0; }
+/* falscher Ast: ein runder Ausschnitt des Bildes schaukelt um die Gabel */
+.rw-zweig { position: absolute; inset: 0; border-radius: calc(var(--r-feld) - 4px); background-size: 100% 100%; pointer-events: none; animation: rw-schaukel .9s ease-in-out both; }
+@keyframes rw-schaukel { 0%, 100% { transform: rotate(0); } 18% { transform: rotate(-3.2deg); } 42% { transform: rotate(2.6deg); } 66% { transform: rotate(-1.5deg); } 86% { transform: rotate(.6deg); } }
+/* Pfeile auf den Ästen: mind. 44 px, Mitte = Punkt aus den Daten */
+.rw-wahl {
+  --rw-d: clamp(var(--tipp), 7.5%, 3.25rem);
+  position: absolute;
+  z-index: 3;
+  width: var(--rw-d);
+  height: auto;
+  aspect-ratio: 1;
+  margin: calc(var(--rw-d) / -2) 0 0 calc(var(--rw-d) / -2);
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 3px solid var(--senf);
+  background: rgba(255, 252, 244, .94);
+  color: var(--nacht-2);
+  box-shadow: 0 0 0 2px rgba(20, 30, 60, .28), 0 6px 12px rgba(0, 0, 0, .35);
+  cursor: pointer;
+  animation: ring .45s both, rw-ruf 2.2s .6s ease-in-out infinite;
+  transition: background-color var(--dauer), opacity var(--dauer), scale var(--dauer-druck);
+}
+.rw-wahl svg { width: 62%; height: 62%; rotate: var(--dreh, 0deg); pointer-events: none; }
+.rw-wahl:active:not(:disabled) { scale: .94; }
+.rw-wahl:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+.rw-wahl.nah { background: var(--senf-hell); scale: 1.12; }
+.rw-wahl.aus { opacity: .5; border-color: var(--weich); filter: grayscale(.6); animation: none; cursor: default; }
+.rw-wahl.zeig { background: var(--senf-hell); animation: puls .6s 4; }
+@keyframes rw-ruf { 0%, 100% { box-shadow: 0 0 0 2px rgba(20, 30, 60, .28), 0 6px 12px rgba(0, 0, 0, .35); } 50% { box-shadow: 0 0 0 2px rgba(20, 30, 60, .28), 0 6px 12px rgba(0, 0, 0, .35), 0 0 0 5px rgba(244, 194, 67, .4); } }
+/* die Raupe: Füße auf dem Punkt aus den Daten */
+.rw-figur {
+  position: absolute;
+  z-index: 2;
+  height: 26%;
+  aspect-ratio: .7;
+  transform: translate(-50%, -94%);
+  touch-action: none;
+  cursor: grab;
+}
+.rw-figur::before { content: ''; position: absolute; inset: -.5rem -.75rem; }
+.rw-figur img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: 50% 100%; transform-origin: 50% 100%; filter: drop-shadow(0 4px 4px rgba(0, 0, 0, .35)); pointer-events: none; }
+.rw-figur.unter img { opacity: .45; }
+.rw-figur.kriecht img { animation: rw-kriech .55s ease-in-out infinite; }
+.rw-figur.zieht { z-index: 5; cursor: grabbing; }
+.rw-figur.zieht img { filter: drop-shadow(0 10px 10px rgba(0, 0, 0, .4)); }
+.rw-figur.leuchtet::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  top: 0;
+  width: 130%;
+  aspect-ratio: 1;
+  translate: -50% -22%;
+  border-radius: 50%;
+  background: radial-gradient(rgba(255, 226, 120, .7), rgba(255, 226, 120, 0) 66%);
+  pointer-events: none;
+  animation: schein2 1.8s ease-in-out infinite;
+}
+@keyframes rw-kriech { 50% { transform: scaleX(1.06) scaleY(.93); } }
+/* Leuchtspur der Fühler */
+.rw-spur { position: absolute; inset: 0; pointer-events: none; }
+.rw-spur i { position: absolute; width: .4375rem; height: .4375rem; margin: -.21875rem 0 0 -.21875rem; border-radius: 50%; background: var(--gold-licht); box-shadow: 0 0 6px 2px rgba(255, 213, 100, .75); animation: rw-glimm .5s ease-out backwards; }
+@keyframes rw-glimm { from { opacity: 0; transform: scale(2.2); } }
+
+/* ---------- Passt genau: drei braune Flecken in die Löcher des Bogens ---------- */
+/* --k = Durchmesser des Käses; alle Flecken und Löcher rechnen damit, damit „gleich groß“ auch wirklich gleich groß ist. */
+/* hochkant: unter dem Spiel steht noch die Sprechblase der Raupe; quer steht sie links daneben */
+.zug[data-art="passtgenau"] { --neben-spiel: 11rem; }
+@container buehne (min-aspect-ratio: 5 / 4) and (min-width: 46rem) { .zug[data-art="passtgenau"] { --neben-spiel: 1rem; } }
+.pg { container: pg / inline-size; width: 100%; flex-shrink: 0; }
+.pg-in {
+  --k: min(calc(100cqw / 1.64), 18rem, max(8.5rem, calc((var(--bild-h) - 1.25rem) / 1.8)));
+  --kraft: repeating-linear-gradient(14deg, rgba(255, 255, 255, .05) 0 2px, transparent 2px 7px), repeating-linear-gradient(-32deg, rgba(60, 30, 5, .07) 0 1px, transparent 1px 6px), linear-gradient(160deg, #B27C49, #93602F);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .75rem;
+  padding: .25rem 0;
+}
+/* quer (Tablet/Rechner quer, Telefon quer): Käse und Bogen nebeneinander; hochkant untereinander, dann werden sie größer */
+@container buehne (min-aspect-ratio: 5 / 4) and (min-width: 46rem) {
+  .pg-in { --k: min(calc((100cqw - 1.5rem) / 2.64), 15rem, calc(var(--bild-h) - .5rem)); flex-direction: row; justify-content: center; gap: 1.5rem; }
+}
+.pg-kaese {
+  position: relative;
+  flex: none;
+  width: var(--k);
+  height: var(--k);
+  border-radius: 50%;
+  background: radial-gradient(circle at 36% 30%, #FFE891, #F6CB45 56%, #E9B02D);
+  box-shadow: inset 0 0 0 calc(var(--k) * .022) #E0A428, inset 0 -6px 14px rgba(160, 100, 0, .22), 0 10px 22px rgba(0, 0, 0, .35);
+}
+.pg-bogen {
+  position: relative;
+  flex: none;
+  width: calc(var(--k) * 1.6);
+  height: calc(var(--k) * .8);
+  border-radius: 3px;
+  background: var(--kraft);
+  box-shadow: inset 0 0 0 1px rgba(60, 30, 5, .25), 0 3px 0 rgba(70, 40, 10, .35), 0 12px 22px rgba(0, 0, 0, .35);
+  rotate: -1.5deg;
+}
+.pg-fleck, .pg-loch, .pg-spur {
+  --d: calc(var(--k) * var(--g) / 100);
+  position: absolute;
+  width: var(--d);
+  height: var(--d);
+  margin: calc(var(--d) / -2) 0 0 calc(var(--d) / -2);
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+}
+/* Tippfläche mind. 44 px, auch für den kleinen Fleck */
+.pg-fleck::before, .pg-loch::before { content: ''; position: absolute; inset: calc(-1 * max(.375rem, (var(--tipp) - var(--d)) / 2)); border-radius: 50%; }
+.pg-spur { background: rgba(255, 255, 255, .16); box-shadow: inset 0 0 0 1.5px rgba(190, 130, 20, .35); pointer-events: none; }
+.pg-fleck {
+  z-index: 1;
+  background: var(--kraft);
+  box-shadow: inset 0 0 0 1px rgba(60, 30, 5, .3), 0 2px 0 rgba(90, 50, 10, .35), 0 4px 8px rgba(60, 30, 0, .3);
+  cursor: grab;
+  touch-action: none;
+  transition: scale var(--dauer-druck), box-shadow var(--dauer), opacity var(--dauer);
+}
+.pg-fleck:focus-visible, .pg-loch:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+.pg-fleck.sel { scale: 1.07; outline: 3px solid var(--senf); outline-offset: 3px; box-shadow: 0 0 0 8px rgba(244, 194, 67, .3), 0 8px 14px rgba(60, 30, 0, .35); }
+.pg-fleck.zieht, .pg-fleck.faehrt { z-index: 20; }
+.pg-fleck.zieht { scale: 1.08; cursor: grabbing; box-shadow: 0 14px 20px rgba(0, 0, 0, .45); }
+.pg-fleck.probe { opacity: .3; }
+.pg-fleck.geist { z-index: 20; pointer-events: none; outline: 2.5px dashed #fff; outline-offset: 2px; }
+.pg-fleck.drin { left: 50%; top: 50%; cursor: default; pointer-events: none; box-shadow: inset 0 0 0 1px rgba(50, 25, 5, .45); }
+.pg-fleck.drin::before { content: none; }
+.pg-loch {
+  background: radial-gradient(circle at 50% 36%, #21503F, #143A30 72%);
+  box-shadow: inset 0 4px 7px rgba(0, 0, 0, .55), inset 0 0 0 1.5px rgba(50, 25, 5, .5), 0 1px 0 rgba(255, 228, 185, .35);
+  cursor: pointer;
+  transition: box-shadow var(--dauer);
+}
+.pg-loch.ueber, .pg-bogen.wahl .pg-loch:not(.zu), .pg-loch.probe { box-shadow: inset 0 4px 7px rgba(0, 0, 0, .55), 0 0 0 3px var(--senf), 0 0 12px rgba(244, 194, 67, .6); }
+.pg-loch.zeig { box-shadow: inset 0 4px 7px rgba(0, 0, 0, .55), 0 0 0 4px var(--senf); animation: puls .6s 4; }
+.pg-loch.zu { background: none; box-shadow: none; cursor: default; }
+.pg-loch.klick::after { content: ''; position: absolute; inset: -3px; border-radius: 50%; border: 3px solid var(--senf); opacity: 0; pointer-events: none; animation: pg-klick .7s ease-out both; }
+@keyframes pg-klick { from { opacity: 1; transform: scale(.9); } to { opacity: 0; transform: scale(1.5); } }
+.pg-bogen .stempel.abdruck { font-size: clamp(.875rem, calc(var(--k) * .1), 1.25rem); }
