@@ -1745,7 +1745,7 @@
      "id": "s9-p6",
      "typ": "th",
      "s": [
-      "„Da sitzt Os|kar mit dem ge|streif|ten Är|mel!“, denkt die Rau|pe."
+      "„Da ist un|ser ge|streif|ter Är|mel!“, denkt die Rau|pe."
      ],
      "pose": "lupe"
     },
@@ -3797,7 +3797,7 @@
    "kap": 4,
    "spur": 22,
    "titel": "Wo ist die Maus?",
-   "bild": "nest_sammlung",
+   "bild": "nest_spitze",
    "haken": "„Ob Os|kar das Blatt be|merkt?“",
    "blocks": [
     {
@@ -4313,112 +4313,101 @@
      "r": 34
     },
     "start": "Der Wind hat Blät|ter vor das Nest ge|weht. Wisch sie weg!",
-    "nachLaub": "Da ist das Nest! Hier glänzt so vie|les. Lies ge|nau: Wie sieht der Schlüs|sel aus?",
+    "nachLaub": "Da ist das Nest! Da lie|gen ja vier Schlüs|sel! Lies ge|nau: Wel|cher ist es?",
     "beschreibung": {
      "titel": "Frau Som|mer sagt:",
      "saetze": [
       "Mein Schlüs|sel ist aus Sil|ber.",
       "Er hängt an ei|nem wei|ßen Band.",
-      "Da|ran fun|kelt ein klei|ner Sil|ber|stern."
+      "Da|ran fun|kelt ein klei|ner Stern."
      ]
     },
     "frage": "Tip|pe auf Frau Som|mers Schlüs|sel.",
-    "tipp": "Lies noch mal: Sil|ber, ein wei|ßes Band und ein klei|ner Stern.",
-    "ziele": [
+    "tipp": "Lies noch mal ge|nau: Sil|ber, ein wei|ßes Band und ein klei|ner Stern.",
+    "ok": "Sil|ber, ein wei|ßes Band und ein klei|ner Stern. Das ist er!",
+    "varianten": [
      {
-      "id": "schluessel",
-      "x": 31.5,
-      "y": 45,
-      "r": 7.5,
-      "zonen": [
-       {
-        "x": 30.6,
-        "y": 39,
-        "r": 4.6
-       },
-       {
-        "x": 35,
-        "y": 51,
-        "r": 4
-       },
-       {
-        "x": 25,
-        "y": 45.5,
-        "r": 3.4
-       },
-       {
-        "x": 32.5,
-        "y": 22,
-        "r": 6.5
-       }
-      ],
-      "ok": "Da ist er! Aus Sil|ber, mit wei|ßem Band und ei|nem klei|nen Stern."
+      "id": "echt"
+     },
+     {
+      "id": "gold",
+      "gold": true,
+      "nein": "Der ist ja aus Gold. Frau Som|mer sagt: aus Sil|ber."
+     },
+     {
+      "id": "rot",
+      "rot": true,
+      "nein": "Das Band ist ja rot. Frau Som|mer sagt: ein wei|ßes Band."
+     },
+     {
+      "id": "herz",
+      "herz": true,
+      "nein": "Da hängt ja ein Herz. Frau Som|mer sagt: ein klei|ner Stern."
      }
     ],
+    "schluessel": {
+     "groesse": 0.7,
+     "lagen": [
+      {
+       "x": 30,
+       "y": 33,
+       "dreh": -8
+      },
+      {
+       "x": 21,
+       "y": 64,
+       "dreh": -24
+      },
+      {
+       "x": 81,
+       "y": 39,
+       "dreh": 14
+      },
+      {
+       "x": 79,
+       "y": 73,
+       "dreh": 24
+      }
+     ]
+    },
     "andere": [
-     {
-      "id": "gloeckchen",
-      "x": 32.5,
-      "y": 67,
-      "r": 5.5,
-      "nein": "Ein Glöck|chen. Es ist aus Gold, nicht aus Sil|ber."
-     },
      {
       "id": "deckel",
       "x": 50,
       "y": 47,
       "r": 6.5,
-      "nein": "Ein Kron|kor|ken. Er ist aus Sil|ber. A|ber er hat kein wei|ßes Band."
+      "nein": "Ein Kron|kor|ken. Das ist doch kein Schlüs|sel!"
      },
      {
       "id": "glas",
       "x": 69,
       "y": 47,
       "r": 6,
-      "nein": "Ei|ne Glas|scher|be. Sie ist blau, nicht sil|bern."
+      "nein": "Ei|ne Glas|scher|be. Das ist doch kein Schlüs|sel!"
      },
      {
       "id": "klammer",
       "x": 66,
       "y": 29,
       "r": 5,
-      "nein": "Ei|ne Bü|ro|klam|mer. Sie ist sil|bern. A|ber an ihr ist kein Stern."
+      "nein": "Ei|ne Bü|ro|klam|mer. Das ist doch kein Schlüs|sel!"
      },
      {
       "id": "knopf",
       "x": 50.5,
       "y": 25.5,
       "r": 6,
-      "nein": "Ein Knopf. Er ist rot, nicht sil|bern."
-     },
-     {
-      "id": "bonbon",
-      "x": 49,
-      "y": 67,
-      "r": 6,
-      "nein": "Ein Bon|bon|pa|pier. Es ist bunt und hat kein wei|ßes Band."
+      "nein": "Ein Knopf. Das ist doch kein Schlüs|sel!"
      },
      {
       "id": "dreieck",
       "x": 65,
       "y": 67,
       "r": 5.5,
-      "nein": "Ein Drei|eck aus Pap|pe. Es ist gelb, nicht sil|bern."
+      "nein": "Ein Drei|eck aus Pap|pe. Das ist doch kein Schlüs|sel!"
      }
     ],
     "ohne": "nest_sammlung",
-    "schluessel": {
-     "box": {
-      "x": 21.5,
-      "y": 12.5,
-      "w": 22,
-      "h": 46
-     },
-     "haken": {
-      "x": 34.2,
-      "y": 17.1
-     }
-    },
     "stock": {
      "x": 63,
      "y": 13,

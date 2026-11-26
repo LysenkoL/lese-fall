@@ -495,7 +495,7 @@
   },
   {
    "spur": 22,
-   "bild": "nest_sammlung",
+   "bild": "nest_spitze",
    "haken": "„Ob Oskar das Blatt bemerkt?“",
    "karte": {
     "titel": "Oskars Maus",
@@ -738,112 +738,101 @@
      "r": 34
     },
     "start": "Der Wind hat Blätter vor das Nest geweht. Wisch sie weg!",
-    "nachLaub": "Da ist das Nest! Hier glänzt so vieles. Lies genau: Wie sieht der Schlüssel aus?",
+    "nachLaub": "Da ist das Nest! Da liegen ja vier Schlüssel! Lies genau: Welcher ist es?",
     "beschreibung": {
      "titel": "Frau Sommer sagt:",
      "saetze": [
       "Mein Schlüssel ist aus Silber.",
       "Er hängt an einem weißen Band.",
-      "Daran funkelt ein kleiner Silberstern."
+      "Daran funkelt ein kleiner Stern."
      ]
     },
     "frage": "Tippe auf Frau Sommers Schlüssel.",
-    "tipp": "Lies noch mal: Silber, ein weißes Band und ein kleiner Stern.",
-    "ziele": [
+    "tipp": "Lies noch mal genau: Silber, ein weißes Band und ein kleiner Stern.",
+    "ok": "Silber, ein weißes Band und ein kleiner Stern. Das ist er!",
+    "varianten": [
      {
-      "id": "schluessel",
-      "x": 31.5,
-      "y": 45,
-      "r": 7.5,
-      "zonen": [
-       {
-        "x": 30.6,
-        "y": 39,
-        "r": 4.6
-       },
-       {
-        "x": 35,
-        "y": 51,
-        "r": 4
-       },
-       {
-        "x": 25,
-        "y": 45.5,
-        "r": 3.4
-       },
-       {
-        "x": 32.5,
-        "y": 22,
-        "r": 6.5
-       }
-      ],
-      "ok": "Da ist er! Aus Silber, mit weißem Band und einem kleinen Stern."
+      "id": "echt"
+     },
+     {
+      "id": "gold",
+      "gold": true,
+      "nein": "Der ist ja aus Gold. Frau Sommer sagt: aus Silber."
+     },
+     {
+      "id": "rot",
+      "rot": true,
+      "nein": "Das Band ist ja rot. Frau Sommer sagt: ein weißes Band."
+     },
+     {
+      "id": "herz",
+      "herz": true,
+      "nein": "Da hängt ja ein Herz. Frau Sommer sagt: ein kleiner Stern."
      }
     ],
+    "schluessel": {
+     "groesse": 0.7,
+     "lagen": [
+      {
+       "x": 30,
+       "y": 33,
+       "dreh": -8
+      },
+      {
+       "x": 21,
+       "y": 64,
+       "dreh": -24
+      },
+      {
+       "x": 81,
+       "y": 39,
+       "dreh": 14
+      },
+      {
+       "x": 79,
+       "y": 73,
+       "dreh": 24
+      }
+     ]
+    },
     "andere": [
-     {
-      "id": "gloeckchen",
-      "x": 32.5,
-      "y": 67,
-      "r": 5.5,
-      "nein": "Ein Glöckchen. Es ist aus Gold, nicht aus Silber."
-     },
      {
       "id": "deckel",
       "x": 50,
       "y": 47,
       "r": 6.5,
-      "nein": "Ein Kronkorken. Er ist aus Silber. Aber er hat kein weißes Band."
+      "nein": "Ein Kronkorken. Das ist doch kein Schlüssel!"
      },
      {
       "id": "glas",
       "x": 69,
       "y": 47,
       "r": 6,
-      "nein": "Eine Glasscherbe. Sie ist blau, nicht silbern."
+      "nein": "Eine Glasscherbe. Das ist doch kein Schlüssel!"
      },
      {
       "id": "klammer",
       "x": 66,
       "y": 29,
       "r": 5,
-      "nein": "Eine Büroklammer. Sie ist silbern. Aber an ihr ist kein Stern."
+      "nein": "Eine Büroklammer. Das ist doch kein Schlüssel!"
      },
      {
       "id": "knopf",
       "x": 50.5,
       "y": 25.5,
       "r": 6,
-      "nein": "Ein Knopf. Er ist rot, nicht silbern."
-     },
-     {
-      "id": "bonbon",
-      "x": 49,
-      "y": 67,
-      "r": 6,
-      "nein": "Ein Bonbonpapier. Es ist bunt und hat kein weißes Band."
+      "nein": "Ein Knopf. Das ist doch kein Schlüssel!"
      },
      {
       "id": "dreieck",
       "x": 65,
       "y": 67,
       "r": 5.5,
-      "nein": "Ein Dreieck aus Pappe. Es ist gelb, nicht silbern."
+      "nein": "Ein Dreieck aus Pappe. Das ist doch kein Schlüssel!"
      }
     ],
     "ohne": "nest_sammlung",
-    "schluessel": {
-     "box": {
-      "x": 21.5,
-      "y": 12.5,
-      "w": 22,
-      "h": 46
-     },
-     "haken": {
-      "x": 34.2,
-      "y": 17.1
-     }
-    },
     "stock": {
      "x": 63,
      "y": 13,

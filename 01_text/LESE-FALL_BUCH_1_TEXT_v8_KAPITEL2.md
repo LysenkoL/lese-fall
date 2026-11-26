@@ -54,7 +54,7 @@ Eifrig kriecht die Raupe los — ein Füßchen nach dem anderen den Fensterrahme
 Oben auf dem inneren Fensterbrett angekommen, hebt sie ihre Tautropfen-Lupe und schaut hinaus in den Hof: Direkt unter dem Fenster steht die Holzbank — und dort sitzt Oskar! Sein Pulli hat leuchtend rote und weiße Streifen.
 
 <!-- Raupe: lupe -->
-„Da sitzt Oskar mit dem gestreiften Ärmel!“, denkt die Raupe.
+„Da ist unser gestreifter Ärmel!“, denkt die Raupe.
 
 Neben Oskar sitzt seine graue Papiermaus aus dem Werkunterricht mit großen runden Ohren, einem rosa Schwanz und einem gemalten roten Herz auf dem Bauch. Vor ihr liegt grünes Gras aus gezacktem Papier.
 

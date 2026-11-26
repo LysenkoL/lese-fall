@@ -128,7 +128,7 @@
 .zettel.fr.faellt { animation: faellt .6s both; }
 .bkarte.fall { animation: einfall .7s cubic-bezier(.3, 1.3, .5, 1) both; }
 .bkarte.fall::before { animation: nadel .2s .6s both; }
-.brett h3 { letter-spacing: .1em; text-transform: uppercase; color: #FFF3DC; font-weight: 800; text-shadow: 0 1px 0 rgba(0, 0, 0, .25); margin-top: 2px; font-size: .875rem; }
+.brett h3 { letter-spacing: .1em; text-transform: uppercase; color: #E8F3EC; font-weight: 800; text-shadow: 0 1px 0 rgba(0, 0, 0, .25); margin-top: 2px; font-size: .875rem; }
 .brett .ak .tab { white-space: nowrap; font-size: .8125rem; padding: .3125rem .625rem; }
 .bk-bild { display: flex; align-items: center; justify-content: center; overflow: hidden; aspect-ratio: 4 / 3; border-radius: 3px; background: var(--papier-foto); box-shadow: inset 0 0 0 1px rgba(90, 60, 20, .08); }
 .bk-bild > img { width: 100%; height: 100%; object-fit: contain; padding: 5%; }
@@ -173,13 +173,12 @@
   .bkarte.leer { aspect-ratio: auto; }
   .bk-bild { aspect-ratio: 2 / 1; }
 }
+/* v8.9 (Wunsch der Besitzerin): grünes Tuch wie die Rätsel-Tafeln statt Kork, Holzrahmen bleibt */
 .brett {
-  background: #C2813F;
-  background-image: radial-gradient(rgba(90, 50, 10, .22) 1.2px, transparent 1.6px), radial-gradient(rgba(255, 230, 180, .22) 1.2px, transparent 1.6px), radial-gradient(circle at 30% 10%, rgba(255, 220, 160, .4), transparent 60%);
-  background-size: 13px 13px, 17px 17px, 100% 100%;
-  background-position: 0 0, 6px 9px, 0 0;
-  box-shadow: inset 0 0 0 7px #8A5A2B, inset 0 0 0 9px #6E4520, inset 0 10px 26px rgba(60, 30, 0, .35);
-  background-color: #C98A47;
+  background-color: #2F6B5B;
+  background-image: repeating-linear-gradient(45deg, rgba(255, 255, 255, .035) 0 2px, transparent 2px 6px), repeating-linear-gradient(-45deg, rgba(0, 0, 0, .05) 0 2px, transparent 2px 6px), radial-gradient(circle at 30% 0%, rgba(255, 255, 255, .12), transparent 60%);
+  background-size: auto, auto, 100% 100%;
+  box-shadow: inset 0 0 0 7px #8A5A2B, inset 0 0 0 9px #6E4520, inset 0 10px 26px rgba(0, 20, 10, .35);
 }
 /* Karten nie in die Höhe gezogen (auch nicht neben einer langen Fragen-Spalte): Reihen nur so hoch wie die Karten */
 .bgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .625rem; align-content: start; align-self: start; }
