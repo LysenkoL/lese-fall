@@ -3490,6 +3490,8 @@
       "id": "g1",
       "x": 43,
       "y": 53.7,
+      "mx": 37.5,
+      "my": 56,
       "r": 9,
       "name": "Ast|ga|bel 1",
       "nicht": "Hier hängt ein Vo|gel|haus. Da|von stand nichts im Text."
@@ -3506,6 +3508,8 @@
       "id": "g3",
       "x": 66.5,
       "y": 63,
+      "mx": 71,
+      "my": 69,
       "r": 9,
       "name": "Ast|ga|bel 3",
       "nicht": "Hier ist es rich|tig."
@@ -3516,12 +3520,14 @@
       "y": 10.3,
       "r": 9,
       "name": "Ast|ga|bel 4",
-      "nicht": "Hier lie|gen tro|cke|ne brau|ne Blät|ter. Das ist ganz o|ben, nicht un|ter dem Fens|ter."
+      "nicht": "Das sieht ein bis|schen aus wie ein V. A|ber es ist ganz o|ben. Das Nest ist un|ter dem Fens|ter."
      },
      {
       "id": "g5",
       "x": 72.6,
       "y": 18.1,
+      "mx": 67,
+      "my": 24,
       "r": 9,
       "name": "Ast|ga|bel 5",
       "nicht": "Hier ist ein gro|ßes Ast|loch. Da|von stand nichts im Text."
@@ -3541,7 +3547,7 @@
     "warum": "Nur die|se Ast|ga|bel ist di|rekt un|ter dem Fens|ter. Und nur hier ste|hen zwei Zwei|ge wie ein V.",
     "stempel": "HIER SITZT DAS NEST",
     "erfolg": "Da schaut das Nest aus dem Laub! Un|ter dem Fens|ter, zwi|schen zwei Zwei|gen wie ein V.",
-    "start": "Mei|ne Füh|ler leuch|ten! Sie zei|gen fünf Ast|ga|beln. Tip|pe auf die Ast|ga|bel wie ein V.",
+    "start": "Fünf Ast|ga|beln leuch|ten. Tip|pe auf die, die aus|sieht wie ein V.",
     "nachsehen": "Im Text nach|se|hen",
     "werkzeug": "fuehler"
    },

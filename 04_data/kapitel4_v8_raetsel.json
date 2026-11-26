@@ -276,6 +276,8 @@
       "id": "g1",
       "x": 43.0,
       "y": 53.7,
+      "mx": 37.5,
+      "my": 56,
       "r": 9,
       "name": "Astgabel 1",
       "nicht": "Hier hängt ein Vogelhaus. Davon stand nichts im Text."
@@ -292,6 +294,8 @@
       "id": "g3",
       "x": 66.5,
       "y": 63.0,
+      "mx": 71,
+      "my": 69,
       "r": 9,
       "name": "Astgabel 3",
       "nicht": "Hier ist es richtig."
@@ -302,12 +306,14 @@
       "y": 10.3,
       "r": 9,
       "name": "Astgabel 4",
-      "nicht": "Hier liegen trockene braune Blätter. Das ist ganz oben, nicht unter dem Fenster."
+      "nicht": "Das sieht ein bisschen aus wie ein V. Aber es ist ganz oben. Das Nest ist unter dem Fenster."
      },
      {
       "id": "g5",
       "x": 72.6,
       "y": 18.1,
+      "mx": 67,
+      "my": 24,
       "r": 9,
       "name": "Astgabel 5",
       "nicht": "Hier ist ein großes Astloch. Davon stand nichts im Text."
@@ -327,7 +333,7 @@
     "warum": "Nur diese Astgabel ist direkt unter dem Fenster. Und nur hier stehen zwei Zweige wie ein V.",
     "stempel": "HIER SITZT DAS NEST",
     "erfolg": "Da schaut das Nest aus dem Laub! Unter dem Fenster, zwischen zwei Zweigen wie ein V.",
-    "start": "Meine Fühler leuchten! Sie zeigen fünf Astgabeln. Tippe auf die Astgabel wie ein V.",
+    "start": "Fünf Astgabeln leuchten. Tippe auf die, die aussieht wie ein V.",
     "nachsehen": "Im Text nachsehen",
     "werkzeug": "fuehler"
    },

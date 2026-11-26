@@ -258,12 +258,14 @@
 .ls-flug { position: fixed; z-index: 60; translate: none; pointer-events: none; font-size: 3.5rem; font-weight: 800; line-height: 1; color: #FFE9A6; -webkit-text-stroke: .125rem #C9951A; paint-order: stroke fill; text-shadow: 0 0 1rem rgba(255, 220, 110, .95); transform: translate(-50%, -50%); }
 
 /* ---------- Raupenweg, gezeichnete Szene (raetsel_weg_szene.ts) ---------- */
-.rw-bild.gemalt { overflow: hidden; background: #CFEAF4; }
+.rw-bild.szene { overflow: hidden; background: #CFEAF4; }
 .rw-szene, .rw-vorne { position: absolute; inset: 0; width: 100%; height: 100%; display: block; border-radius: calc(var(--r-feld) - 4px); pointer-events: none; }
 .rw-vorne { z-index: 3; }
+.rw-bild:not(.gemalt) .rw-vorne { border-radius: calc(var(--r-feld) - 4px); } /* über einem echten Bild nur das große Blatt */
+.rw-bild .rw-wahl { z-index: 4; }
 .rw-bild.gemalt .rw-wahl { z-index: 4; }
-.rw-bild.gemalt .rw-figur { height: 31%; aspect-ratio: .6; }
-.rw-bild.gemalt .rw-figur.unter img { opacity: .7; }
+.rw-bild.szene .rw-figur { height: 31%; aspect-ratio: .6; }
+.rw-bild.szene .rw-figur.unter img { opacity: .7; }
 /* falscher Zweig schaukelt um seinen Ansatz */
 .rw-z { transform-box: view-box; }
 .rw-z.wackelt { animation: rw-schaukel .9s ease-in-out both; }

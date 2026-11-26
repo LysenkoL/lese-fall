@@ -39,12 +39,13 @@ function spline(pts: P[]) {
   return out;
 }
 /** Ast mit Volumen: Körper (Verlauf), Schattenkante unten, Lichtkante oben, ein paar Rindenstriche */
-function ast(pts: P[], id = ''): string {
+function ast(pts: P[], id = '', flach = ''): string {
   const s = spline(pts);
   const l = s.map((q) => `${f(q.x + q.nx * q.w / 2)} ${f(q.y + q.ny * q.w / 2)}`);
   const r = s.map((q) => `${f(q.x - q.nx * q.w / 2)} ${f(q.y - q.ny * q.w / 2)}`).reverse();
   const spitze = s[s.length - 1];
   const koerper = `M${l.join('L')}A${f(spitze.w / 2)} ${f(spitze.w / 2)} 0 0 1 ${r[0]}L${r.join('L')}Z`;
+  if (flach) return `<path d="${koerper}" fill="${flach}" stroke="#4A2C10" stroke-width="1.2" stroke-linejoin="round"/>`; // Skizze: nur die Form
   // Licht oben (Normale zeigt je nach Richtung; nimm die Seite, die weiter oben liegt)
   const oben = (q: typeof s[0]) => (q.ny < 0 ? 1 : -1);
   const licht = s.filter((_, i) => i % 1 === 0).map((q) => `${f(q.x + q.nx * q.w * 0.24 * oben(q))} ${f(q.y + q.ny * q.w * 0.24 * oben(q))}`).join('L');
@@ -89,6 +90,22 @@ function zweigBlaetter(pts: [number, number, number][], seed: number, farben = [
   return pts.map(([x, y, d], i) => blatt(x, y, d + (rnd() - 0.5) * 20, 0.55 + rnd() * 0.3, farben[i % farben.length])).join('');
 }
 
+/* ---- Lage aller Äste (viewBox 900 × 600; [x, y, Breite]) – Szene und Skizze nutzen dieselben Zahlen ---- */
+const GEO = {
+  langerAst: [[812, 352, 36], [740, 349, 27], [660, 351, 20], [580, 362, 15], [505, 382, 11.5], [440, 395, 9], [370, 402, 7], [300, 404, 5], [240, 401, 3], [206, 398, 1.6]] as P[],
+  obenAst: [[800, 150, 34], [720, 120, 22], [620, 100, 14], [520, 95, 9]] as P[],
+  oben: [[302, 403, 8], [298, 365, 5.5], [288, 326, 3.8], [292, 290, 2.4], [304, 262, 1.4]] as P[],
+  unten: [[320, 404, 8], [318, 446, 5.5], [310, 490, 3.8], [300, 528, 2.4], [292, 556, 1.4]] as P[],
+  haus: [[520, 380, 10], [540, 412, 7], [568, 442, 5], [600, 460, 3.2]] as P[],
+  gerade: [[628, 356, 8], [596, 322, 5.2], [562, 290, 3.6], [530, 260, 2.4], [504, 232, 1.4]] as P[],
+  vStiel: [[690, 350, 10], [712, 326, 8], [733, 300, 7]] as P[],
+  vLinks: [[733, 300, 6.5], [716, 262, 4.6], [702, 222, 3], [694, 186, 1.6]] as P[],
+  vRechts: [[733, 300, 6.5], [756, 262, 4.6], [782, 224, 3], [800, 190, 1.6]] as P[],
+  stamm: 'M786 600C792 520 800 440 796 380C792 330 800 260 796 190C792 120 808 60 800 0H900V600Z',
+  blatt: 'M428 390C410 368 372 362 338 372C312 380 298 396 294 412C318 422 352 426 382 418C408 411 424 402 428 390Z', // + translate(66 -4)
+  nest: 'translate(744 238) scale(.88) translate(-742 -228)',
+};
+
 /** Seitenzweig als eine Gruppe (Ast + Blätter), die bei falscher Wahl um ihren Ansatz schaukelt */
 const zweig = (z: string, o: [number, number], innen: string) => `<g class="rw-z" data-z="${z}" style="transform-origin:${o[0]}px ${o[1]}px">${innen}</g>`;
 
@@ -110,12 +127,12 @@ export function szeneHinten(): string {
   // Laub hinten (kühler, heller) für Tiefe
   const hinten = laub(520, 70, 300, 110, 120, 21, ['#6FAE57', '#7DB862', '#8DC36F', '#9ECD7E'], '#6CA853') + laub(800, 240, 52, 140, 60, 22, ['#6FAE57', '#7DB862', '#8DC36F'], '#6CA853');
   // Stamm rechts, mit Rinde und Astloch
-  const stamm = `<path d="M786 600C792 520 800 440 796 380C792 330 800 260 796 190C792 120 808 60 800 0H900V600Z" fill="url(#rwStamm)"/>`
+  const stamm = `<path d="${GEO.stamm}" fill="url(#rwStamm)"/>`
     + `<g fill="none" stroke="#4A2C10" stroke-opacity=".45" stroke-width="2.4" stroke-linecap="round"><path d="M818 40C814 90 822 130 816 180"/><path d="M842 120C838 170 846 210 840 260"/><path d="M826 300C822 350 830 390 824 440"/><path d="M856 380C852 430 860 470 854 530"/><path d="M812 470C808 510 816 550 812 600"/><path d="M870 30C866 70 874 110 868 150"/></g>`
     + `<g fill="none" stroke="#C99A62" stroke-opacity=".5" stroke-width="1.6" stroke-linecap="round"><path d="M808 210C805 240 810 270 806 300"/><path d="M832 520C829 545 834 570 830 595"/></g>`
     + `<ellipse cx="850" cy="470" rx="13" ry="22" fill="#3A2210"/><ellipse cx="850" cy="470" rx="13" ry="22" fill="none" stroke="#8A5A2E" stroke-width="5"/>`;
   // oberer Ast aus dem Stamm in die Krone (zeigt: alles hängt am Baum)
-  const obenAst = ast([[800, 150, 34], [720, 120, 22], [620, 100, 14], [520, 95, 9]]);
+  const obenAst = ast(GEO.obenAst);
   // Wand mit Fenster und Fensterbrett (links)
   const wand = `<path d="M0 0H214V600H0Z" fill="url(#rwWand)"/><path d="M206 0H216V600H206Z" fill="#B99D72" opacity=".55"/>`
     + `<g fill="#D9C39A" opacity=".55"><rect x="0" y="470" width="214" height="3"/><rect x="0" y="530" width="214" height="3"/><rect x="0" y="40" width="214" height="2"/></g>`
@@ -127,30 +144,30 @@ export function szeneHinten(): string {
     + `<path d="M8 386H226L234 402H2Z" fill="url(#rwBrett)" stroke="#8A5A2B" stroke-width="1.5" stroke-linejoin="round"/><rect x="2" y="402" width="232" height="15" fill="#A8783F" stroke="#7E5128" stroke-width="1.5"/>`
     + `<path d="M0 417H214V436C150 430 60 432 0 438Z" fill="#B49770" opacity=".55"/>`;
   // Seitenzweige am Anfang (oben/unten): zweigen sichtbar vom langen Ast ab
-  const zOben = zweig('oben', [302, 403], ast([[302, 403, 8], [298, 365, 5.5], [288, 326, 3.8], [292, 290, 2.4], [304, 262, 1.4]])
+  const zOben = zweig('oben', [302, 403], ast(GEO.oben)
     + zweigBlaetter([[292, 342, 200], [286, 306, -20], [296, 276, 210], [304, 262, -60]], 31));
-  const zUnten = zweig('unten', [320, 404], ast([[320, 404, 8], [318, 446, 5.5], [310, 490, 3.8], [300, 528, 2.4], [292, 556, 1.4]])
+  const zUnten = zweig('unten', [320, 404], ast(GEO.unten)
     + zweigBlaetter([[316, 492, 20], [304, 516, 170], [294, 550, 30]], 32));
   // Zweig zum Vogelhaus (unten), Vogelhaus hängt an einer Schnur
-  const zHaus = zweig('haus', [520, 380], ast([[520, 380, 10], [540, 412, 7], [568, 442, 5], [600, 460, 3.2]])
+  const zHaus = zweig('haus', [520, 380], ast(GEO.haus)
     + `<path d="M600 460V488" stroke="#7A5A3A" stroke-width="2"/>`
     + `<g transform="translate(600 488)"><path d="M-34 8L0 -14L34 8Z" fill="#D2503E" stroke="#8E2A1E" stroke-width="2" stroke-linejoin="round"/><rect x="-26" y="8" width="52" height="50" rx="3" fill="#DDA45F" stroke="#8A5A2B" stroke-width="2"/><circle cx="0" cy="30" r="9" fill="#3A2210"/><rect x="-2" y="44" width="4" height="12" fill="#8A5A2B"/><path d="M-26 20H26" stroke="#B9824A" stroke-width="1.2"/></g>`
     + zweigBlaetter([[528, 400, 120], [582, 452, -30]], 33));
   // gerader dünner Zweig (links oben) – kein V
-  const zGerade = zweig('gerade', [628, 356], ast([[628, 356, 8], [596, 322, 5.2], [562, 290, 3.6], [530, 260, 2.4], [504, 232, 1.4]])
+  const zGerade = zweig('gerade', [628, 356], ast(GEO.gerade)
     + zweigBlaetter([[584, 310, 150], [548, 276, -40], [516, 246, 220], [504, 232, -60]], 34));
   // V-Zweig mit dem Nest
   // V: kurzer Stiel, Gabel gut sichtbar unter dem Nest, die Arme halten das Nest links und rechts
-  const vStiel = ast([[690, 350, 10], [712, 326, 8], [733, 300, 7]]);
-  const vArme = ast([[733, 300, 6.5], [716, 262, 4.6], [702, 222, 3], [694, 186, 1.6]]) + ast([[733, 300, 6.5], [756, 262, 4.6], [782, 224, 3], [800, 190, 1.6]])
+  const vStiel = ast(GEO.vStiel);
+  const vArme = ast(GEO.vLinks) + ast(GEO.vRechts)
     + zweigBlaetter([[694, 190, 230], [800, 194, -50], [708, 206, 160], [790, 210, 20]], 36);
-  const nest = `<g id="rw-nest" transform="translate(744 238) scale(.88) translate(-742 -228)"><ellipse cx="742" cy="240" rx="56" ry="10" fill="#2A1A08" opacity=".2"/>`
+  const nest = `<g id="rw-nest" transform="${GEO.nest}"><ellipse cx="742" cy="240" rx="56" ry="10" fill="#2A1A08" opacity=".2"/>`
     + `<path d="M688 210C690 236 712 252 742 252S794 236 796 210Z" fill="url(#rwNest)"/>`
     + `<g fill="none" stroke-linecap="round" stroke-width="2"><path d="M692 218C712 230 772 232 792 218" stroke="#C99A5E"/><path d="M698 230C716 242 768 242 786 230" stroke="#9A6A36"/><path d="M694 214C716 232 748 246 776 242" stroke="#6B4320"/><path d="M790 214C768 230 736 244 708 242" stroke="#6B4320"/></g>`
     + `<ellipse cx="742" cy="209" rx="55" ry="11" fill="#7A4E26"/><ellipse cx="742" cy="209" rx="55" ry="11" fill="none" stroke="#C99A5E" stroke-width="2" stroke-dasharray="7 5"/><ellipse cx="742" cy="210" rx="43" ry="6.5" fill="#3B230E"/>`
     + `<g class="rw-glanz" transform="translate(726 205)"><path d="M0-8L1.6-1.6L8 0L1.6 1.6L0 8L-1.6 1.6L-8 0L-1.6-1.6Z" fill="#fff"/></g></g>`;
   // langer Ast: vom Stamm bis zur dünnen Spitze auf dem Fensterbrett
-  const langerAst = ast([[812, 352, 36], [740, 349, 27], [660, 351, 20], [580, 362, 15], [505, 382, 11.5], [440, 395, 9], [370, 402, 7], [300, 404, 5], [240, 401, 3], [206, 398, 1.6]], 'rw-ast');
+  const langerAst = ast(GEO.langerAst, 'rw-ast');
   const spitzeBlaetter = zweigBlaetter([[230, 398, 150], [214, 396, 200], [250, 404, 40], [268, 400, 140], [676, 360, 95], [724, 345, -85], [764, 364, 110], [470, 396, 120]], 35, ['#73B652', '#8CC65E', '#5FA444']);
   // Laub um den Stamm und oben (vor dem oberen Ast), unten rechts ein Busch
   const krone = laub(690, 60, 160, 90, 110, 41) + laub(400, 40, 170, 70, 80, 42) + laub(806, 120, 46, 110, 52, 43) + laub(800, 560, 52, 60, 46, 44) + laub(640, 160, 70, 40, 30, 45);
@@ -159,11 +176,27 @@ export function szeneHinten(): string {
   return `<svg class="rw-szene" viewBox="0 0 900 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${defs}${himmel}${fern}${hinten}${obenAst}${stamm}${krone}${nestLaub}${wand}${vArme}${nest}${zOben}${zUnten}${zHaus}${zGerade}${vStiel}${langerAst}${spitzeBlaetter}</svg>`;
 }
 /** Vordere Ebene: das große Blatt über dem langen Ast und etwas Laub am Nestrand (geht am Ende auf); die V-Gabel bleibt frei */
-export function szeneVorne(): string {
-  const grossesBlatt = `<g id="rw-blatt" transform="translate(66 -4)"><path d="M428 390C410 368 372 362 338 372C312 380 298 396 294 412C318 422 352 426 382 418C408 411 424 402 428 390Z" fill="#7BBE4E" stroke="#3F7A2A" stroke-width="2"/>`
+export function szeneVorne(nurBlatt = false): string {
+  const grossesBlatt = `<g id="rw-blatt" transform="translate(66 -4)"><path d="${GEO.blatt}" fill="#7BBE4E" stroke="#3F7A2A" stroke-width="2"/>`
     + `<path d="M426 391C392 396 340 404 298 411" fill="none" stroke="#3F7A2A" stroke-width="2"/><g fill="none" stroke="#3F7A2A" stroke-width="1.3" opacity=".8"><path d="M400 394L392 376M374 398L362 378M348 402L336 384M400 394L392 410M374 398L364 416M348 402L338 418"/></g>`
     + `<path d="M330 380C350 372 380 372 402 380" fill="none" stroke="#C3E88E" stroke-width="3" stroke-linecap="round" opacity=".7"/><path d="M428 390L440 382" stroke="#3F7A2A" stroke-width="3" stroke-linecap="round"/></g>`;
   const vorNest = `<g class="rw-vornest">${laub(700, 206, 20, 12, 12, 51, ['#5FA444', '#73B652', '#8CC65E'], '#56983E')}${laub(792, 204, 18, 11, 11, 52, ['#5FA444', '#73B652', '#8CC65E'], '#56983E')}</g>`;
   const rand = laub(810, 590, 42, 40, 26, 53); // Blätter ganz vorn (bleiben im Bild: keine Form ragt über den Rand)
-  return `<svg class="rw-vorne" viewBox="0 0 900 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${grossesBlatt}${vorNest}${rand}</svg>`;
+  return `<svg class="rw-vorne" viewBox="0 0 900 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${grossesBlatt}${nurBlatt ? '' : vorNest + rand}</svg>`;
+}
+
+/**
+ * Skizze der Komposition (Vorlage für ein gemaltes Spielbild „raupenweg.webp“, 3:2): Wand mit Fenster und Fensterbrett links,
+ * Stamm rechts, alle Äste als einfache braune Bänder in richtiger Dicke, großes Blatt, Vogelhaus, Nest in der V-Gabel,
+ * Laub nur als blasse Flächen. Ohne Pfeile, Raupe und Leuchtspur. Gleiche Zahlen wie die Szene (GEO).
+ */
+export function szeneSkizze(): string {
+  const braun = '#8A5A2E';
+  const laubFlaeche = '<g fill="#D7EBC4" stroke="#A9CF8E" stroke-width="2"><ellipse cx="690" cy="60" rx="200" ry="95"/><ellipse cx="400" cy="40" rx="180" ry="70"/><ellipse cx="820" cy="200" rx="80" ry="150"/><ellipse cx="760" cy="150" rx="80" ry="34"/><ellipse cx="800" cy="560" rx="70" ry="60"/><ellipse cx="430" cy="600" rx="260" ry="60"/></g>';
+  const wand = '<rect x="0" y="0" width="214" height="600" fill="#F1E4C8" stroke="#B99D72" stroke-width="2"/><rect x="26" y="66" width="164" height="322" rx="4" fill="#E6F2F7" stroke="#8A5A2B" stroke-width="5"/><path d="M108 66V388M26 222H190" stroke="#8A5A2B" stroke-width="5"/><path d="M8 386H226L234 402H2Z" fill="#D9AE76" stroke="#8A5A2B" stroke-width="2"/><rect x="2" y="402" width="232" height="15" fill="#B9874E" stroke="#8A5A2B" stroke-width="2"/>';
+  const haus = '<path d="M600 460V488" stroke="#5A3816" stroke-width="2"/><g transform="translate(600 488)"><path d="M-34 8L0 -14L34 8Z" fill="#D2503E" stroke="#8E2A1E" stroke-width="2"/><rect x="-26" y="8" width="52" height="50" fill="#DDA45F" stroke="#8A5A2B" stroke-width="2"/><circle cx="0" cy="30" r="9" fill="#3A2210"/></g>';
+  const nest = `<g transform="${GEO.nest}"><path d="M688 210C690 236 712 252 742 252S794 236 796 210Z" fill="#9A6A36" stroke="#5A3816" stroke-width="2"/><ellipse cx="742" cy="209" rx="55" ry="11" fill="#7A4E26" stroke="#5A3816" stroke-width="2"/><ellipse cx="742" cy="210" rx="43" ry="6.5" fill="#3B230E"/></g>`;
+  const blatt = `<g transform="translate(66 -4)"><path d="${GEO.blatt}" fill="#8FCB5F" stroke="#3F7A2A" stroke-width="2"/><path d="M426 391C392 396 340 404 298 411" fill="none" stroke="#3F7A2A" stroke-width="2"/></g>`;
+  const aeste = [GEO.obenAst, GEO.vLinks, GEO.vRechts, GEO.oben, GEO.unten, GEO.haus, GEO.gerade, GEO.vStiel, GEO.langerAst].map((p) => ast(p, '', braun)).join('');
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="1536" height="1024"><rect width="900" height="600" fill="#F7F4EC"/>${laubFlaeche}<path d="${GEO.stamm}" fill="${braun}" stroke="#4A2C10" stroke-width="2"/>${wand}${aeste}${haus}${nest}${blatt}</svg>`;
 }

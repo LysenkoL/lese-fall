@@ -1365,9 +1365,10 @@ export function astgabel(r: HTMLElement, d: Daten, fertig: () => void) {
   const baum = () => {
     $('.zt1', r).innerHTML = d.frage;
     sag(r, 'tipp', d.start);
-    // Die Leucht-Fühler zeigen die fünf Astgabeln (leises Glimmen = hier darf man tippen); das Nest ist im Laub versteckt
-    // und schaut erst nach der richtigen Wahl aus der V-Gabel hervor (`nest`: Mitte x/y und Breite w in Prozent des Bildes).
-    zi.innerHTML = `<div class="ab-bild" style="aspect-ratio:${d.ratio}"><img src="${K.img(d.bild)}" alt="" draggable="false">${d.gabeln.map((g: any, i: number) => `<i class="ab-glimm" data-g="${g.id}" style="left:${g.x}%;top:${g.y}%;--i:${i}" aria-hidden="true"></i>`).join('')}</div>`;
+    // Die Leucht-Fühler zeigen die fünf Astgabeln: kleine goldene Marken 1–5 (nur die Helligkeit atmet, nichts wird größer –
+    // sonst sieht es aus wie eine Lupe). `mx/my` setzt die Marke neben die Gabel, damit Form, Vogelhaus und Astloch frei bleiben.
+    // Das Nest ist im Laub versteckt und schaut erst nach der richtigen Wahl aus der V-Gabel hervor (`nest`: Mitte x/y, Breite w).
+    zi.innerHTML = `<div class="ab-bild" style="aspect-ratio:${d.ratio}"><img src="${K.img(d.bild)}" alt="" draggable="false">${d.gabeln.map((g: any, i: number) => `<i class="ab-marke" data-g="${g.id}" style="left:${g.mx ?? g.x}%;top:${g.my ?? g.y}%;--i:${i}" aria-hidden="true">${i + 1}</i>`).join('')}</div>`;
     const box = $('.ab-bild', zi);
     let fehl = 0, zu = false, hinOffen = false;
     const ring = (g: any, kl: string) => box.insertAdjacentHTML('beforeend', `<i class="ring ${kl}" style="left:${g.x}%;top:${g.y}%;width:${g.r * 2}%;height:auto;aspect-ratio:1;margin:0;transform:translate(-50%,-50%)"></i>`);
@@ -1399,7 +1400,7 @@ export function astgabel(r: HTMLElement, d: Daten, fertig: () => void) {
       for (const g of d.gabeln) { const dd = Math.hypot(px - g.x / 100 * rc.width, py - g.y / 100 * rc.height); if (dd <= g.r / 100 * rc.width && dd < bd) { bd = dd; beste = g; } }
       if (!beste) return; // daneben: zählt nicht
       if (beste.id === d.richtig) return loesen(false);
-      box.querySelector(`.ab-glimm[data-g="${beste.id}"]`)?.classList.add('aus');
+      box.querySelector(`.ab-marke[data-g="${beste.id}"]`)?.classList.add('aus');
       box.querySelectorAll('.ring.miss').forEach((q) => q.remove());
       box.insertAdjacentHTML('beforeend', `<i class="ring miss" style="left:${px / rc.width * 100}%;top:${py / rc.height * 100}%"></i>`);
       setTimeout(() => box.querySelector('.ring.miss')?.remove(), 900);

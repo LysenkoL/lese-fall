@@ -602,14 +602,17 @@
 .pk-st.sel { box-shadow: 0 0 0 3px var(--senf), 0 10px 18px rgba(0, 0, 0, .35); }
 
 /* ---------- Spur 20 Astgabel: die Leucht-Fühler zeigen fünf Astgabeln, das Nest schaut erst nach der richtigen Wahl hervor ---------- */
-.ab-glimm {
-  position: absolute; z-index: 1; width: clamp(1.75rem, 7%, 2.75rem); aspect-ratio: 1; translate: -50% -50%; border-radius: 50%; pointer-events: none;
-  background: radial-gradient(circle, rgba(255, 250, 215, 1) 0 14%, rgba(255, 222, 120, .7) 32%, rgba(255, 210, 90, 0) 68%);
-  box-shadow: 0 0 0 2.5px rgba(255, 236, 170, .85), 0 0 12px 3px rgba(255, 214, 100, .55);
-  animation: ab-glimm 2.4s calc(var(--i, 0) * .35s) ease-in-out infinite;
+.ab-marke {
+  position: absolute; z-index: 1; width: clamp(1.5rem, 5%, 2.125rem); aspect-ratio: 1; translate: -50% -50%; border-radius: 50%; pointer-events: none;
+  display: grid; place-items: center; font-style: normal; font-weight: 800; font-size: clamp(.75rem, 2.4vw, 1rem); line-height: 1; color: var(--senf-tinte);
+  background: radial-gradient(circle at 40% 35%, #FFF3C4, #F4C243 70%); border: 2px solid #fff;
+  box-shadow: 0 0 0 2px rgba(201, 149, 26, .55), 0 0 10px 3px rgba(255, 214, 100, .55);
+  animation: ab-leucht 2.6s calc(var(--i, 0) * .4s) ease-in-out infinite;
 }
-.ab-glimm.aus { opacity: .25; animation: none; filter: grayscale(1); }
-.ab-bild.gewaehlt .ab-glimm { opacity: 0; transition: opacity .4s; animation: none; }
+.ab-marke.aus { animation: none; filter: grayscale(1); opacity: .45; }
+.ab-bild.gewaehlt .ab-marke { opacity: 0; transition: opacity .4s; animation: none; }
+/* nur die Helligkeit atmet – keine Größenänderung (sonst wirkt es wie eine Lupe) */
+@keyframes ab-leucht { 50% { filter: brightness(1.18); box-shadow: 0 0 0 2px rgba(201, 149, 26, .55), 0 0 16px 6px rgba(255, 220, 110, .8); } }
 @keyframes ab-glimm { 0%, 100% { transform: scale(.8); opacity: .65; } 50% { transform: scale(1.15); opacity: 1; } }
 .ab-nest { position: absolute; z-index: 2; translate: -50% -50%; pointer-events: none; filter: drop-shadow(0 3px 3px rgba(40, 25, 5, .35)); transform-origin: 50% 85%; animation: ab-nest .8s .25s cubic-bezier(.2, 1.4, .4, 1) both; }
 .ab-nest svg { display: block; width: 100%; height: auto; overflow: visible; }

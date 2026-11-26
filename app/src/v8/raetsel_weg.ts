@@ -8,6 +8,7 @@ import './raetsel_weg.css';
 import { kontext, sag, unten, wackel, ende, stempeln, hook } from './raetsel.ts';
 import { laub as _laub } from './staub.ts';
 import { szeneHinten, szeneVorne } from './raetsel_weg_szene.ts';
+import { istErsatz } from './bilder.ts';
 
 type Spiel = (r: HTMLElement, d: any, fertig: () => void) => void;
 export const SPIELE_WEG: Record<string, Spiel> = {};
@@ -39,12 +40,14 @@ SPIELE_WEG.raupenweg = (r, d, fertig) => {
   let pos: Pt = { x: d.anfang?.x ?? 15, y: d.anfang?.y ?? 66 };
   let lauf: Animation | null = null;
   const lagen = (x: number, y: number) => `left:${x}%;top:${y}%`;
-  const gemalt = d.szene === 'baum';
+  // Gibt es das gemalte Spielbild (assets/illustrationen/raupenweg.webp), liegt es hinten; sonst die gezeichnete Szene.
+  // Das große Blatt (Raupe kriecht drunter durch), Leuchtspur, Pfeile und Raupe liegen in beiden Fällen gleich darüber.
+  const szene = d.szene === 'baum', gemalt = szene && istErsatz(d.bild);
   zi.innerHTML = `<div class="rw-hinweis" aria-live="polite"><b class="rw-nr"></b><p></p></div>`
-    + `<div class="rw-bild${gemalt ? ' gemalt' : ''}" style="aspect-ratio:${ratio}">${gemalt ? szeneHinten() : `<img class="rw-hg" src="${K.img(d.bild)}" alt="" draggable="false">`}`
+    + `<div class="rw-bild${gemalt ? ' gemalt' : ''}${szene ? ' szene' : ''}" style="aspect-ratio:${ratio}">${gemalt ? szeneHinten() : `<img class="rw-hg" src="${K.img(d.bild)}" alt="" draggable="false">`}`
     + `<div class="rw-lage"><svg class="rw-spur" viewBox="0 0 ${100 * ratio} 100" preserveAspectRatio="none" aria-hidden="true"></svg>`
     + `<div class="rw-figur" style="${lagen(pos.x, pos.y)}"><img src="${K.fig('raupe/brrr')}" alt="" draggable="false"></div>`
-    + `${gemalt ? szeneVorne() : ''}<div class="rw-wahlen"></div></div></div>`;
+    + `${szene ? szeneVorne(!gemalt) : ''}<div class="rw-wahlen"></div></div></div>`;
   unten('');
   const bild = $('.rw-bild', zi), lage = $('.rw-lage', zi), figur = $('.rw-figur', zi), fimg = figur.querySelector('img')!;
   const wahlen = $('.rw-wahlen', zi), spur = $('.rw-spur', zi), hinweis = $('.rw-hinweis', zi);
