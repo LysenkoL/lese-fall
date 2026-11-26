@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Neue Bilder D-19</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap">
+<style>
+/* Layout: Arbeitsliste für die Besitzerin. Oben Anleitung und „что изменилось“, dann je Bild eine Karte: wofür, nummerierte Anhänge, Prompt zum Kopieren, Status. */
+:root {
+  --nacht: #1D2E57; --nacht-tief: #131B3C; --senf: #F4C243; --senf-tinte: #2A2210; --senf-hell: #FFF3CC;
+  --grund: #EEF1F7; --karte: #FFFFFF; --papier: #FFFDF8; --tinte: #1E2438; --grau: #5D6680; --linie: #D9DEEA;
+  --gruen: #3E8A2E; --gruen-hell: #E3F2DC; --blau: #1D3F9E; --code: #F4F6FB;
+  --schatten: 0 1px 0 rgba(29,46,87,.06), 0 6px 18px rgba(29,46,87,.08);
+  --f-titel: "Bricolage Grotesque", "Inter", system-ui, sans-serif; --f-text: "Inter", system-ui, sans-serif; --f-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --grund: #0F1528; --karte: #161E33; --papier: #1A2238; --tinte: #E8ECF6; --grau: #A3ACC4; --linie: #2C3756; --gruen: #8FD07A; --gruen-hell: #1D2F1C; --senf-hell: #3A3216; --blau: #9DB4FF; --code: #10182C; --schatten: 0 1px 0 rgba(0,0,0,.3), 0 6px 18px rgba(0,0,0,.35); color-scheme: dark } }
+:root[data-theme="dark"] { --grund: #0F1528; --karte: #161E33; --papier: #1A2238; --tinte: #E8ECF6; --grau: #A3ACC4; --linie: #2C3756; --gruen: #8FD07A; --gruen-hell: #1D2F1C; --senf-hell: #3A3216; --blau: #9DB4FF; --code: #10182C; --schatten: 0 1px 0 rgba(0,0,0,.3), 0 6px 18px rgba(0,0,0,.35); color-scheme: dark }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--grund); color: var(--tinte); font: 15px/1.55 var(--f-text); }
+.wrap { max-width: 60rem; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2 { font-family: var(--f-titel); margin: 0; line-height: 1.15; text-wrap: balance; }
+.kopf { background: linear-gradient(160deg, var(--nacht-tief), var(--nacht)); color: #fff; margin-top: calc(-1 * env(safe-area-inset-top, 0px)); padding-top: calc(env(safe-area-inset-top, 0px) + 1.6rem); padding-bottom: 1.3rem; }
+.kopf .wrap { display: grid; gap: .7rem; }
+.eyebrow { font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--senf); font-weight: 700; }
+.kopf h1 { font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 800; }
+.kopf p { margin: 0; color: #D6DCEC; max-width: 44rem; }
+.kopf ol { margin: 0; padding-left: 1.2rem; color: #D6DCEC; display: grid; gap: .2rem; max-width: 46rem; }
+.kopf code { font-family: var(--f-mono); font-size: .85em; color: var(--senf); }
+.stand { display: flex; gap: .4rem; flex-wrap: wrap; }
+.pill { border-radius: 999px; padding: .2rem .65rem; font-size: .8125rem; font-weight: 600; background: rgba(255,255,255,.12); color: #fff; }
+main { padding-block: 1.25rem 3rem; display: grid; gap: 1rem; }
+.hinweis { background: var(--karte); border: 1px dashed var(--linie); border-radius: .8rem; padding: .7rem .9rem; color: var(--grau); font-size: .875rem; margin: 0; }
+.neu { background: var(--senf-hell); border: 1px solid var(--senf); border-radius: 1rem; padding: .9rem 1rem; display: grid; gap: .5rem; }
+.neu h2 { font-size: 1.1rem; font-weight: 800; }
+.neu dl { margin: 0; display: grid; gap: .45rem; }
+.neu dt { font-weight: 700; }
+.neu dd { margin: 0; font-size: .9rem; }
+.karte { background: var(--karte); border-radius: 1rem; box-shadow: var(--schatten); padding: 1rem; display: grid; gap: .7rem; border-left: .35rem solid var(--linie); }
+.karte[data-s="arbeit"] { border-left-color: var(--senf); }
+.karte[data-s="fertig"] { border-left-color: var(--gruen); }
+.karte header { display: flex; flex-wrap: wrap; gap: .35rem .7rem; align-items: baseline; }
+.karte h2 { font-size: 1.15rem; font-weight: 800; }
+.datei { font-family: var(--f-mono); font-size: .8125rem; background: var(--code); border: 1px solid var(--linie); border-radius: .4rem; padding: .1rem .4rem; overflow-wrap: anywhere; }
+.prio { font-size: .6875rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; border-radius: 999px; padding: .1rem .5rem; }
+.prio.muss { background: var(--senf); color: var(--senf-tinte); }
+.prio.kann { background: var(--grund); color: var(--grau); border: 1px solid var(--linie); }
+.zweck { margin: 0; color: var(--grau); font-size: .9rem; }
+.anhang { margin: 0; font-size: .875rem; display: grid; gap: .5rem; }
+.anhang-kopf { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; justify-content: space-between; }
+.anhang-kopf b { font-weight: 700; }
+.kacheln { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr)); gap: .5rem; }
+.kachel { position: relative; display: grid; grid-template-rows: auto 1fr auto; gap: .3rem; background: var(--papier); border: 1px solid var(--linie); border-radius: .7rem; padding: .4rem; }
+.kachel img { width: 100%; aspect-ratio: 3 / 2; object-fit: contain; background: var(--code); border-radius: .45rem; display: block; }
+.kachel .nr { position: absolute; top: .55rem; left: .55rem; min-width: 1.6rem; height: 1.6rem; border-radius: 999px; display: grid; place-items: center; background: var(--nacht); color: #fff; font: 800 .875rem/1 var(--f-text); box-shadow: 0 0 0 2px var(--karte); }
+.kachel .fn { font-family: var(--f-mono); font-size: .75rem; overflow-wrap: anywhere; }
+.kachel .rolle { color: var(--grau); font-size: .8125rem; line-height: 1.35; }
+.laden { font: 600 .8125rem var(--f-text); min-height: 2.5rem; padding: .3rem .7rem; border-radius: 999px; border: 1.5px solid var(--linie); background: var(--karte); color: var(--tinte); cursor: pointer; }
+.laden.zip { background: var(--senf); border-color: var(--senf); color: var(--senf-tinte); padding-inline: 1rem; }
+.laden:disabled { opacity: .6; cursor: progress; }
+.laden:focus-visible { outline: 3px solid var(--senf); outline-offset: 2px; }
+.ladeinfo { font-size: .8125rem; color: var(--grau); min-height: 1rem; margin: 0; }
+.kopf .laden.zip { justify-self: start; min-height: 2.75rem; }
+.ohneDl .laden { display: none; }
+.prompt { position: relative; }
+.prompt pre { margin: 0; white-space: pre-wrap; word-break: break-word; font: 13px/1.5 var(--f-mono); background: var(--code); border: 1px solid var(--linie); border-radius: .6rem; padding: .7rem .8rem 2.9rem; max-height: 22rem; overflow: auto; }
+.kopieren { position: absolute; right: .5rem; bottom: .5rem; font: 600 .875rem var(--f-text); min-height: 2.5rem; padding: .35rem .9rem; border-radius: 999px; border: 0; background: var(--nacht); color: #fff; cursor: pointer; }
+.kopieren:focus-visible, .status button:focus-visible, textarea:focus-visible { outline: 3px solid var(--senf); outline-offset: 2px; }
+.status { display: flex; flex-wrap: wrap; gap: .35rem; }
+.status button { font: 600 .875rem var(--f-text); min-height: 2.75rem; padding: .4rem .9rem; border-radius: 999px; border: 1.5px solid var(--linie); background: var(--karte); color: var(--tinte); cursor: pointer; }
+.status button[aria-pressed="true"][data-s="arbeit"] { background: var(--senf); border-color: var(--senf); color: var(--senf-tinte); }
+.status button[aria-pressed="true"][data-s="fertig"] { background: var(--gruen); border-color: var(--gruen); color: var(--karte); }
+.status button[aria-pressed="true"][data-s="offen"] { background: var(--grund); border-color: var(--grau); }
+textarea { width: 100%; min-height: 2.75rem; resize: vertical; font: 14px/1.45 var(--f-text); color: var(--tinte); background: var(--papier); border: 1px solid var(--linie); border-radius: .6rem; padding: .5rem .7rem; }
+.info { font-size: .75rem; color: var(--grau); min-height: 1rem; }
+footer { color: var(--grau); font-size: .8125rem; padding-bottom: 2rem; }
+</style></head><body>
+
+<div class="kopf"><div class="wrap">
+  <span class="eyebrow">Der verschwundene Mond · картинки v8.9 · промты переписаны 26.11.2026</span>
+  <h1>Картинки для глав 1–4</h1>
+  <p>Пока картинки нет, приложение показывает похожую готовую картинку, поэтому книга работает и без них. Порядок работы:</p>
+  <ol>
+    <li>Открой <b>новый</b> чат в ChatGPT — для каждой картинки отдельный.</li>
+    <li>Нажми у картинки «Скачать всё архивом», распакуй и приложи файлы <b>по номерам</b> 1, 2, 3 … (номер стоит в начале имени файла). Промт лежит в архиве в файле <code>00_PROMPT.txt</code>.</li>
+    <li>Нажми «Копировать» и вставь промт.</li>
+    <li>Сохрани результат как <code>assets/illustrationen/ИМЯ.webp</code> (или png, я сконвертирую) и пришли мне.</li>
+    <li>Отметь здесь «Готово». Я вижу отметки и подключу картинки.</li>
+  </ol>
+  <div class="stand" id="stand" aria-live="polite"></div>
+  <button class="laden zip" type="button" id="alles">Скачать всё для всех картинок (один архив)</button>
+  <p class="ladeinfo" id="allesInfo" aria-live="polite" style="color:#D6DCEC"></p>
+  <p class="ladeinfo" id="ohneDl" hidden style="color:#D6DCEC">Скачивание в этом окне недоступно. Общий архив есть в чате, или открой страницу в браузере на claude.ai.</p>
+</div></div>
+
+<main class="wrap" id="liste">
+  <section class="neu" aria-labelledby="neu-t">
+    <h2 id="neu-t">Что изменилось в промтах и почему</h2>
+    <dl><div><dt>Образцы</dt><dd>Почти на каждой картинке класса стоит кукольный театр, часто с луной. Старый промт говорил «бери вложения как точный образец мест» — и ChatGPT переносил театр и луну в каждую сцену. Теперь у каждого вложения в промте своя роль: «только внешность», «только как нарисованы листья». Картинку класса k1_s1 больше не прикладываем.</dd></div><div><dt>Лишние слова</dt><dd>В общем блоке стиля в каждом промте было описание луны, а запрет «No moon anywhere» тоже называет луну — генератор рисует то, что прочитал. Теперь луна есть только там, где она должна быть (облачко Бена и скамейка в Spur 19). Вместо запрета — список «на столе только …».</dd></div><div><dt>Пространство</dt><dd>Не было сказано, где стоит камера и что где находится, а про дерево было «ветка идёт от подоконника» — так генератор и рисовал. Теперь первый блок каждого промта — PLACE AND CAMERA: внутри или снаружи, откуда смотрим, что слева, в центре, справа. Для дерева: ствол стоит в нескольких метрах от стены, между ними воздух, все ветки растут из ствола, кончик ветки только лежит на подоконнике, как мостик.</dd></div><div><dt>Новый чат</dt><dd>Каждую картинку — в новом чате. В старом чате ChatGPT помнит прошлые картинки и тянет из них театр.</dd></div><div><dt>Порядок вложений</dt><dd>Прикладывай файлы в том порядке, как они пронумерованы: в промте написано «picture 1», «picture 2».</dd></div></dl>
+  </section>
+  <p class="hinweis" id="ohneDb" hidden>Отметки сейчас сохраняются только в этом браузере (страница открыта без входа или хранилище недоступно).</p>
+</main>
+<div class="wrap"><footer>Источник промтов в репозитории: <code>02_design/bilder_prompts_v8_9.py</code> (оттуда же собирается эта страница, <code>BILDER_PROMPTS_v8_9.md</code> и файлы для скачивания).</footer></div>
+
+<script>
+/* Kleiner ZIP-Bauer ohne Bibliothek: Dateien werden nur gespeichert (Bilder sind schon komprimiert). */
+const lfCrcTab = (() => { const t = new Uint32Array(256); for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; } return t; })();
+function lfCrc32(u8) { let c = 0xFFFFFFFF; for (let i = 0; i < u8.length; i++) c = lfCrcTab[(c ^ u8[i]) & 255] ^ (c >>> 8); return (c ^ 0xFFFFFFFF) >>> 0; }
+/** eintraege: [{name, bytes: Uint8Array}] -> Blob (application/zip) */
+function lfZip(eintraege) {
+  const enc = new TextEncoder(), teile = [], zentral = []; let pos = 0;
+  for (const e of eintraege) {
+    const n = enc.encode(e.name), c = lfCrc32(e.bytes), L = e.bytes.length;
+    const h = new DataView(new ArrayBuffer(30));
+    h.setUint32(0, 0x04034b50, true); h.setUint16(4, 20, true); h.setUint16(6, 0x0800, true);
+    h.setUint16(12, 0x21, true); h.setUint32(14, c, true); h.setUint32(18, L, true); h.setUint32(22, L, true); h.setUint16(26, n.length, true);
+    teile.push(h.buffer, n, e.bytes);
+    const z = new DataView(new ArrayBuffer(46));
+    z.setUint32(0, 0x02014b50, true); z.setUint16(4, 20, true); z.setUint16(6, 20, true); z.setUint16(8, 0x0800, true);
+    z.setUint16(14, 0x21, true); z.setUint32(16, c, true); z.setUint32(20, L, true); z.setUint32(24, L, true); z.setUint16(28, n.length, true); z.setUint32(42, pos, true);
+    zentral.push(z.buffer, n);
+    pos += 30 + n.length + L;
+  }
+  const groesse = zentral.reduce((s, x) => s + x.byteLength, 0);
+  const end = new DataView(new ArrayBuffer(22));
+  end.setUint32(0, 0x06054b50, true); end.setUint16(8, eintraege.length, true); end.setUint16(10, eintraege.length, true); end.setUint32(12, groesse, true); end.setUint32(16, pos, true);
+  return new Blob([...teile, ...zentral, end.buffer], { type: 'application/zip' });
+}
+</script>
+<script>
+(() => {
+  const BILDER = [
+ {
+  "id": "k1_s6_nachher",
+  "datei": "k1_s6_nachher.webp",
+  "prio": "muss",
+  "spur": "Spur 6 «Das leere Tablett» + итоговая карточка главы 1 (правки №10, №11)",
+  "zweck": "На текущей картинке нет клея и газет, а в тексте они есть. Одна генерация закрывает оба места. Имя файла то же — замени старый.",
+  "anhang": [
+   {
+    "datei": "assets/illustrationen/k1_s6_nachher.webp",
+    "ru": "k1_s6_nachher — ракурс и композиция",
+    "nr": 1,
+    "name": "1_k1_s6_nachher.jpg",
+    "url": "anh/k1_s6_nachher.jpg",
+    "klein": "anh/klein/k1_s6_nachher.jpg"
+   },
+   {
+    "datei": "assets/reference/kinder_figurenblatt.webp",
+    "ru": "лист детей — только внешность",
+    "nr": 2,
+    "name": "2_kinder_figurenblatt.jpg",
+    "url": "anh/kinder_figurenblatt.jpg",
+    "klein": "anh/klein/kinder_figurenblatt.jpg"
+   },
+   {
+    "datei": "assets/reference/raupe_figurenblatt.webp",
+    "ru": "лист гусенички — только внешность",
+    "nr": 3,
+    "name": "3_raupe_figurenblatt.jpg",
+    "url": "anh/raupe_figurenblatt.jpg",
+    "klein": "anh/klein/raupe_figurenblatt.jpg"
+   },
+   {
+    "datei": "assets/illustrationen/objekte/kleber.webp",
+    "ru": "objekte/kleber — только бутылка клея",
+    "nr": 4,
+    "name": "4_kleber.jpg",
+    "url": "anh/kleber.jpg",
+    "klein": "anh/klein/kleber.jpg"
+   },
+   {
+    "datei": "assets/illustrationen/objekte/zeitungen.webp",
+    "ru": "objekte/zeitungen — только газеты",
+    "nr": 5,
+    "name": "5_zeitungen.jpg",
+    "url": "anh/zeitungen.jpg",
+    "klein": "anh/klein/zeitungen.jpg"
+   }
+  ],
+  "text": "ATTACHED PICTURES (use each one ONLY for what is written here, copy nothing else from them):\n1. the CURRENT version of this picture: keep its camera angle and composition.\n2. ONLY how the people look (faces, hair, clothes).\n3. ONLY how the caterpillar looks.\n4. ONLY how the glue bottle looks.\n5. ONLY how the newspapers look.\n\nPLACE AND CAMERA:\nInside the classroom, a close-up. The camera sits on the inner windowsill, at the caterpillar's eye level, and looks INTO the room and down onto the big craft table that stands directly under the window.\nThe window itself is behind the camera, so we do not see it. Warm morning sunlight comes from behind the camera.\nBehind the table we only see some wooden floor and part of a round green rug. Same camera and composition as picture 1.\n\nON THE TABLE (only these things, nothing else):\n- The table has a red tablecloth.\n- In the middle: a bright-blue plastic tray. It is EMPTY except for one narrow red paper strip, pushed a little to the side.\n- On the blue plastic right next to the strip: one tiny shiny drop of wet glue.\n- To the RIGHT of the tray, clearly visible: Ben's big white glue bottle with an orange cap (like picture 4), yellow scissors and a roll of sticky tape.\n- At the front edge of the table: a small stack of old folded newspapers (like picture 5).\n\nWHO AND WHAT:\n- Mila and Ben stand behind the table and lean over the tray, shocked: eyes wide open, mouths open.\n- Ben's dark-blue sleeves are wet at the cuffs (he has just washed his hands).\n- The caterpillar sits ON the blue tray in the front, next to the drop of glue, and looks at it through her dewdrop magnifying glass (a big clear water drop in a ring of green grass).\n\nCHARACTERS:\nMila: girl, long brown braids, a small yellow hair clip, lilac-pink cardigan, blue jeans, yellow sneakers, no backpack.\nBen: boy, dark curly hair, plain dark-blue sweater with NO stripes, beige trousers.\nThe caterpillar: TINY (as small as a child's finger next to the children), bright green, dark-blue cape with a golden edge, NO hat, the little balls on her antennae glow soft gold.\n\nSTYLE: children's picture-book illustration, soft hand-painted look (watercolor and colored pencil), warm light, the same painting style and the same characters as in the attached pictures – NOT flat vector clip-art, NOT glossy 3D. Wide landscape format 3:2. No text, no letters, no numbers anywhere in the picture.",
+  "ordner": "01_k1_s6_nachher"
+ },
+ {
+  "id": "k2_s7",
+  "datei": "k2_s7.webp",
+  "prio": "muss",
+  "spur": "Spur 7 «Schnipp, schnapp» (правка №12)",
+  "zweck": "Mila должна волноваться (снаружи кто-то режет ножницами — вдруг её луну), а на текущей картинке она довольная. Имя файла то же — замени старый.",
+  "anhang": [
+   {
+    "datei": "assets/illustrationen/k2_s7.webp",
+    "ru": "k2_s7 — ракурс и композиция",
+    "nr": 1,
+    "name": "1_k2_s7.jpg",
+    "url": "anh/k2_s7.jpg",
+    "klein": "anh/klein/k2_s7.jpg"
+   },
+   {
+    "datei": "assets/reference/kinder_figurenblatt.webp",
+    "ru": "лист детей — только внешность",
+    "nr": 2,
+    "name": "2_kinder_figurenblatt.jpg",
+    "url": "anh/kinder_figurenblatt.jpg",
+    "klein": "anh/klein/kinder_figurenblatt.jpg"
+   },
+   {
+    "datei": "assets/reference/raupe_figurenblatt.webp",
+    "ru": "лист гусенички — только внешность",
+    "nr": 3,
+    "name": "3_raupe_figurenblatt.jpg",
+    "url": "anh/raupe_figurenblatt.jpg",
+    "klein": "anh/klein/raupe_figurenblatt.jpg"
+   }
+  ],
+  "text": "ATTACHED PICTURES (use each one ONLY for what is written here, copy nothing else from them):\n1. the CURRENT version of this picture: keep its camera angle and composition.\n2. ONLY how the people look (faces, hair, clothes).\n3. ONLY how the caterpillar looks.\n\nPLACE AND CAMERA:\nInside the classroom, at the big craft table by the open window. Same camera and composition as picture 1:\n- LEFT edge: the open window; on the windowsill the caterpillar's plant pot. Through the window we see the sunny school yard (daytime, blue sky).\n- MIDDLE: the craft table with the red tablecloth, the children behind it.\n- BACK: the classroom wall with a green blackboard and a low bookshelf.\nThe puppet stage is NOT in this picture: it stands on the other side of the room, behind the camera.\n\nON THE TABLE (only these things, nothing else):\n- the blue plastic tray with one narrow red paper strip on it;\n- next to it a green wooden box; in the box lie three finished hand puppets – a bear, a fox and a king.\n\nWHO AND WHAT:\n- Mila is WORRIED, not happy: she has just heard scissors snipping outside. Big anxious eyes, both hands clapped on top of her head, she looks towards the open window.\n- Ben stands next to her: red ears and cheeks, embarrassed, he slaps his hand to his forehead.\n- On the windowsill next to the plant pot the tiny caterpillar leans towards the open window and listens.\n\nCHARACTERS:\nMila: girl, long brown braids, a small yellow hair clip, lilac-pink cardigan, blue jeans, yellow sneakers, no backpack.\nBen: boy, dark curly hair, plain dark-blue sweater with NO stripes, beige trousers.\nThe caterpillar: TINY (as small as a child's finger next to the children), bright green, dark-blue cape with a golden edge, NO hat, the little balls on her antennae glow soft gold.\n\nSTYLE: children's picture-book illustration, soft hand-painted look (watercolor and colored pencil), warm light, the same painting style and the same characters as in the attached pictures – NOT flat vector clip-art, NOT glossy 3D. Wide landscape format 3:2. No text, no letters, no numbers anywhere in the picture.",
+  "ordner": "02_k2_s7"
+ },
+ {
+  "id": "k2_s8",
+  "datei": "k2_s8.webp",
+  "prio": "muss",
+  "spur": "Spur 8 «Ein Mond, der sich tarnt» (правка №15)",
+  "zweck": "Ben только что понял, что сам положил луну белой стороной вверх на поднос «для всех» — он не должен весело улыбаться. Имя файла то же — замени старый.",
+  "anhang": [
+   {
+    "datei": "assets/illustrationen/k2_s8.webp",
+    "ru": "k2_s8 — ракурс и композиция",
+    "nr": 1,
+    "name": "1_k2_s8.jpg",
+    "url": "anh/k2_s8.jpg",
+    "klein": "anh/klein/k2_s8.jpg"
+   },
+   {
+    "datei": "assets/reference/kinder_figurenblatt.webp",
+    "ru": "лист детей — только внешность",
+    "nr": 2,
+    "name": "2_kinder_figurenblatt.jpg",
+    "url": "anh/kinder_figurenblatt.jpg",
+    "klein": "anh/klein/kinder_figurenblatt.jpg"
+   },
+   {
+    "datei": "assets/reference/raupe_figurenblatt.webp",
+    "ru": "лист гусенички — только внешность",
+    "nr": 3,
+    "name": "3_raupe_figurenblatt.jpg",
+    "url": "anh/raupe_figurenblatt.jpg",
+    "klein": "anh/klein/raupe_figurenblatt.jpg"
+   },
+   {
+    "datei": "assets/illustrationen/objekte/mond_auf_tablett.webp",
+    "ru": "objekte/mond_auf_tablett — только для облачка",
+    "nr": 4,
+    "name": "4_mond_auf_tablett.jpg",
+    "url": "anh/mond_auf_tablett.jpg",
+    "klein": "anh/klein/mond_auf_tablett.jpg"
+   }
+  ],
+  "text": "ATTACHED PICTURES (use each one ONLY for what is written here, copy nothing else from them):\n1. the CURRENT version of this picture: keep its camera angle and composition.\n2. ONLY how the people look (faces, hair, clothes).\n3. ONLY how the caterpillar looks.\n4. ONLY for the small picture inside the thought bubble.\n\nPLACE AND CAMERA:\nInside the classroom, at the big craft table by the open window. Same camera and composition as picture 1:\n- LEFT edge: the open window; on the windowsill the caterpillar's plant pot. Through the window we see the sunny school yard (daytime, blue sky).\n- MIDDLE: the craft table with the red tablecloth, the children behind it.\n- BACK: the classroom wall with a green blackboard and a low bookshelf.\nThe puppet stage is NOT in this picture: it stands on the other side of the room, behind the camera.\n\nON THE TABLE (only these things, nothing else):\n- the blue plastic tray with one narrow red paper strip on it;\n- next to it the green wooden box with three hand puppets (a bear, a fox, a king).\n\nTHOUGHT BUBBLE: above Ben's head a soft white thought bubble (no text). Inside it, small: the blue tray with a round WHITE cardboard disc lying on it (like picture 4).\nOn the white disc a white thread is rolled up into a small flat spiral and stuck down with a blob of glue; near the lower edge one tiny blue star.\nThis white disc exists ONLY inside the bubble – nowhere else in the picture.\n\nWHO AND WHAT:\n- Ben has just understood his mistake: eyes wide open, one hand over his mouth, embarrassed and a little guilty – NOT smiling.\n- Mila looks at him, puzzled.\n- On the windowsill the tiny caterpillar holds her dewdrop magnifying glass in front of one eye and looks amazed.\n\nCHARACTERS:\nMila: girl, long brown braids, a small yellow hair clip, lilac-pink cardigan, blue jeans, yellow sneakers, no backpack.\nBen: boy, dark curly hair, plain dark-blue sweater with NO stripes, beige trousers.\nThe caterpillar: TINY (as small as a child's finger next to the children), bright green, dark-blue cape with a golden edge, NO hat, the little balls on her antennae glow soft gold.\n\nSTYLE: children's picture-book illustration, soft hand-painted look (watercolor and colored pencil), warm light, the same painting style and the same characters as in the attached pictures – NOT flat vector clip-art, NOT glossy 3D. Wide landscape format 3:2. No text, no letters, no numbers anywhere in the picture.",
+  "ordner": "03_k2_s8"
+ },
+ {
+  "id": "k2_s10_fenster",
+  "datei": "k2_s10_fenster.webp",
+  "prio": "muss",
+  "spur": "Spur 10 «Ein weißer Kreis» (правка №24)",
+  "zweck": "По тексту Oskar стоит СНАРУЖИ на скамейке и опирается на подоконник, а Mila и Ben внутри. Новое имя файла. Пока его нет, в книге стоит картинка из Spur 9.",
+  "anhang": [
+   {
+    "datei": "assets/reference/kinder_figurenblatt.webp",
+    "ru": "лист детей — только внешность",
+    "nr": 1,
+    "name": "1_kinder_figurenblatt.jpg",
+    "url": "anh/kinder_figurenblatt.jpg",
+    "klein": "anh/klein/kinder_figurenblatt.jpg"
+   },
+   {
+    "datei": "assets/reference/raupe_figurenblatt.webp",
+    "ru": "лист гусенички — только внешность",
+    "nr": 2,
+    "name": "2_raupe_figurenblatt.jpg",
+    "url": "anh/raupe_figurenblatt.jpg",
+    "klein": "anh/klein/raupe_figurenblatt.jpg"
+   },
+   {
+    "datei": "assets/reference/hof_referenz.webp",
+    "ru": "hof_referenz — только окно, цветок и скамейка за окном",
+    "nr": 3,
+    "name": "3_hof_referenz.jpg",
+    "url": "anh/hof_referenz.jpg",
+    "klein": "anh/klein/hof_referenz.jpg"
+   }
+  ],
+  "text": "ATTACHED PICTURES (use each one ONLY for what is written here, copy nothing else from them):\n1. ONLY how the people look (faces, hair, clothes).\n2. ONLY how the caterpillar looks.\n3. ONLY how the window, the windowsill with the plant pot and the wooden bench outside look.\n\nPLACE AND CAMERA:\nInside the classroom. The camera stands in the room, two steps away from the window, at a child's eye height, and looks straight at the window wall.\n- MIDDLE: the big window, both wings wide open. Its lower edge is at about Mila's chest height. On the inner windowsill: the plant pot.\n- Left and right of the window: a plain cream classroom wall.\n- Inside, directly under the window: the end of the craft table with the red tablecloth. On it only the blue tray with one narrow red paper strip.\n- OUTSIDE, directly under the window, stands the wooden bench of the school yard (like in picture 3). Behind it the sunny school yard with the big tree (daytime, blue sky).\nThe puppet stage is NOT in this picture: it stands on the other side of the room, behind the camera.\n\nWHO AND WHAT:\n- Oskar is OUTSIDE. He stands ON the bench, so we see him from the waist up in the window opening. He leans his striped arms on the OUTER windowsill and smiles cheerfully into the room. In one hand a small folded paper note (no writing visible).\n- Mila and Ben are INSIDE in front of the window, seen half from behind, and look at Oskar. Mila looks worried, Ben surprised.\n- On the inner windowsill next to the plant pot sits the tiny caterpillar and listens.\n\nCHARACTERS:\nMila: girl, long brown braids, a small yellow hair clip, lilac-pink cardigan, blue jeans, yellow sneakers, no backpack.\nBen: boy, dark curly hair, plain dark-blue sweater with NO stripes, beige trousers.\nOskar: boy, blond curly hair, red-and-white striped hoodie (the stripes go round the arms, no buttons), beige trousers.\nThe caterpillar: TINY (as small as a child's finger next to the children), bright green, dark-blue cape with a golden edge, NO hat, the little balls on her antennae glow soft gold.\n\nSTYLE: children's picture-book illustration, soft hand-painted look (watercolor and colored pencil), warm light, the same painting style and the same characters as in the attached pictures – NOT flat vector clip-art, NOT glossy 3D. Wide landscape format 3:2. No text, no letters, no numbers anywhere in the picture.",
+  "ordner": "04_k2_s10_fenster"
+ },
+ {
+  "id": "k2_s11_hof",
+  "datei": "k2_s11_hof.webp",
+  "prio": "muss",
+  "spur": "Spur 11 «Keine Rennmaus» (правка №27)",
+  "zweck": "Mila и Ben бегут к Оскару, а Oskar сидит на скамейке и ждёт. Новое имя файла. Пока его нет, в книге стоит виньетка скамейки с мышкой.",
+  "anhang": [
+   {
+    "datei": "assets/reference/kinder_figurenblatt.webp",
+    "ru": "лист детей — только внешность",
+    "nr": 1,
+    "name": "1_kinder_figurenblatt.jpg",
+    "url": "anh/kinder_figurenblatt.jpg",
+    "klein": "anh/klein/kinder_figurenblatt.jpg"
+   },
+   {
+    "datei": "assets/reference/raupe_figurenblatt.webp",
+    "ru": "лист гусенички — только внешность",
+    "nr": 2,
+    "name": "2_raupe_figurenblatt.jpg",
+    "url": "anh/raupe_figurenblatt.jpg",
+    "klein": "anh/klein/raupe_figurenblatt.jpg"
+   },
+   {
+    "datei": "assets/illustrationen/kinder/ida.webp",
+    "ru": "kinder/ida — только Ида",
+    "nr": 3,
+    "name": "3_ida.jpg",
+    "url": "anh/ida.jpg",
+    "klein": "anh/klein/ida.jpg"
+   },
+   {
+    "datei": "assets/illustrationen/kinder/nele.webp",
+    "ru": "kinder/nele — только Неле",
+    "nr": 4,
+    "name": "4_nele.jpg",
+    "url": "anh/nele.jpg",
+    "klein": "anh/klein/nele.jpg"
+   },
+   {
+    "datei": "assets/illustrationen/kapitel_3.webp",
+    "ru": "kapitel_3 — только скамейка, тарелка и мышка",
+    "nr": 5,
+    "name": "5_kapitel_3.jpg",
+    "url": "anh/kapitel_3.jpg",
+    "klein": "anh/klein/kapitel_3.jpg"
+   }
+  ],
+  "text": "ATTACHED PICTURES (use each one ONLY for what is written here, copy nothing else from them):\n1. ONLY how the people look (faces, hair, clothes).\n2. ONLY how the caterpillar looks.\n3. ONLY how Ida looks.\n4. ONLY how Nele looks.\n5. ONLY how the wooden bench, the covered paper plate and the paper mouse look.\n\nPLACE AND CAMERA:\nOUTSIDE in the school yard – this picture is NOT inside the classroom. The camera stands in the yard at a child's eye height and looks at the school building. Warm autumn light.\n- BACK: the school building wall (light plaster), seen straight on. On the LEFT in the wall: the open school door. On the RIGHT in the wall: the open classroom window on the ground floor (its lower edge about as high as an adult's chest).\n- Directly under this window stands the wooden bench (like picture 5). Next to it stands the big autumn tree.\n- MIDDLE: the paved yard with colorful autumn leaves.\n- FRONT: a patch of meadow.\n\nWHO AND WHAT:\n- Mila and Ben have just run out of the school door and run across the yard towards the bench.\n- Oskar SITS on the bench under the window and waves to them. Next to him on the bench: a white paper plate covered with white tissue paper, and his paper mouse.\n- In the front on the meadow: Ida and Nele (like pictures 3 and 4) sit in the grass with scissors and blue construction paper. Ida holds up a blue paper crown.\n- On the OUTER windowsill above Oskar: the tiny caterpillar pushes her head over the front edge and looks down. She is small, but easy to find: her antenna tips glow gold.\n\nCHARACTERS:\nMila: girl, long brown braids, a small yellow hair clip, lilac-pink cardigan, blue jeans, yellow sneakers, no backpack.\nBen: boy, dark curly hair, plain dark-blue sweater with NO stripes, beige trousers.\nOskar: boy, blond curly hair, red-and-white striped hoodie (the stripes go round the arms, no buttons), beige trousers.\nIda: girl, light-brown ponytail, red-and-white HORIZONTAL stripes, no hood, three white buttons at the neck.\nNele: girl, short red bob, red-and-white VERTICAL stripes, with a hood.\nThe caterpillar: TINY (as small as a child's finger next to the children), bright green, dark-blue cape with a golden edge, NO hat, the little balls on her antennae glow soft gold.\nOskar's paper mouse: small and flat, cut out of GREY paper, two big round ears, a red paper heart on its belly, a thin pink tail.\n\nSTYLE: children's picture-book illustration, soft hand-painted look (watercolor and colored pencil), warm light, the same painting style and the same characters as in the attached pictures – NOT flat vector clip-art, NOT glossy 3D. Wide landscape format 3:2. No text, no letters, no numbers anywhere in the picture.",
+  "ordner": "05_k2_s11_hof"
+ },
+ {
+  "id": "k3_s19",
+  "datei": "k3_s19.webp",
+  "prio": "muss",
+  "spur": "Spur 19 «Ein Mond mit Kratern» (глава 3, конец)",
+  "zweck": "Ты отметила «Готово», но файла k3_s19.webp в репозитории нет. Если на твоей картинке театр, лишняя луна или дерево не так — сгенерируй заново по этому промту и пришли файл. Сцена: дети перерисовывают плакат, луна лежит без присмотра, сорока смотрит на звезду, гусеничка пугается.",
+  "anhang": [
+   {
+    "datei": "assets/reference/kinder_figurenblatt.webp",
+    "ru": "лист детей — только внешность",
+    "nr": 1,
+    "name": "1_kinder_figurenblatt.jpg",
+    "url": "anh/kinder_figurenblatt.jpg",
+    "klein": "anh/klein/kinder_figurenblatt.jpg"
+   },
+   {
+    "datei": "assets/reference/raupe_figurenblatt.webp",
+    "ru": "лист гусенички — только внешность",
+    "nr": 2,
+    "name": "2_raupe_figurenblatt.jpg",
+    "url": "anh/raupe_figurenblatt.jpg",
+    "klein": "anh/klein/raupe_figurenblatt.jpg"
+   },
+   {
+    "datei": "assets/illustrationen/k3_s18.webp",
+    "ru": "k3_s18 — только место (скамейка, стена, окно)",
+    "nr": 3,
+    "name": "3_k3_s18.jpg",
+    "url": "anh/k3_s18.jpg",
+    "klein": "anh/klein/k3_s18.jpg"
+   },
+   {
+    "datei": "assets/illustrationen/objekte/voegel.webp",
+    "ru": "objekte/voegel — только первая птица (сорока)",
+    "nr": 4,
+    "name": "4_voegel.jpg",
+    "url": "anh/voegel.jpg",
+    "klein": "anh/klein/voegel.jpg"
+   }
+  ],
+  "text": "ATTACHED PICTURES (use each one ONLY for what is written here, copy nothing else from them):\n1. ONLY how the people look (faces, hair, clothes).\n2. ONLY how the caterpillar looks.\n3. ONLY how the place looks: the bench, the school wall and the window. The things on the bench and in the children's hands are NOT in our picture.\n4. ONLY the FIRST bird on the left (the magpie).\n\nPLACE AND CAMERA:\nOUTSIDE in the school yard, warm autumn afternoon, yellow leaves. The camera stands in the yard and looks at the school wall.\n- LEFT half, back: the light school wall with the open classroom window on the ground floor.\n- Directly under the window: the wooden bench.\n- RIGHT side: the trunk of the big tree. Its branches reach over the right end of the bench.\n\nWHO AND WHAT:\n- A big poster sheet lies on the bench. Mila, Ben and Oskar kneel at the bench and paint on it, completely absorbed. On the poster (only painted, no letters): a dark-blue night sky with a big round yellow moon and a white cloud. Oskar paints a small grey mouse at the bottom, Mila dabs three brown dots onto the painted moon, Ben holds a bunch of felt pens.\n- At the far RIGHT end of the bench, alone in the sun: Mila's real moon. It is a round flat yellow cardboard disc (a full circle, never a crescent) with three brown paper spots. A small shiny SILVER-FOIL star is glued at its top edge, right above a small hole. A long white thread hangs from the hole down over the edge of the bench.\n- This is the only cardboard moon in the picture; the moon on the poster is just a painting.\n- Up in the tree, half hidden in the leaves above the right end of the bench: the magpie (like the first bird in picture 4: black and white, very long tail, as big as a pigeon). It stares straight at the shining silver star.\n- On the outer windowsill of the open window: the tiny caterpillar, frightened, both little arms raised as if she calls \"watch out!\". Nobody notices her.\n\nCHARACTERS:\nMila: girl, long brown braids, a small yellow hair clip, lilac-pink cardigan, blue jeans, yellow sneakers, no backpack.\nBen: boy, dark curly hair, plain dark-blue sweater with NO stripes, beige trousers.\nOskar: boy, blond curly hair, red-and-white striped hoodie (the stripes go round the arms, no buttons), beige trousers.\nThe caterpillar: TINY (as small as a child's finger next to the children), bright green, dark-blue cape with a golden edge, NO hat, the little balls on her antennae glow soft gold.\n\nSTYLE: children's picture-book illustration, soft hand-painted look (watercolor and colored pencil), warm light, the same painting style and the same characters as in the attached pictures – NOT flat vector clip-art, NOT glossy 3D. Wide landscape format 3:2. No text, no letters, no numbers anywhere in the picture.",
+  "ordner": "06_k3_s19"
+ },
+ {
+  "id": "k4_s21_raupe",
+  "datei": "k4_s21_raupe.webp",
+  "prio": "muss",
+  "spur": "Spur 21 «Ein Schatz im Nest» (глава 4)",
+  "zweck": "Ты отметила «Готово», но файла k4_s21_raupe.webp в репозитории нет. Если ветка на твоей картинке растёт из подоконника или в кадре класс с театром — сгенерируй заново по этому промту. Сцена: все у окна, гнездо не видно за листьями, гусеничка храбро ползёт по ветке вниз к гнезду. Гусеничку лучше держать в левой верхней половине: оттуда вырезается картинка для карточки.",
+  "anhang": [
+   {
+    "datei": "assets/reference/kinder_figurenblatt.webp",
+    "ru": "лист детей — только внешность",
+    "nr": 1,
+    "name": "1_kinder_figurenblatt.jpg",
+    "url": "anh/kinder_figurenblatt.jpg",
+    "klein": "anh/klein/kinder_figurenblatt.jpg"
+   },
+   {
+    "datei": "assets/reference/raupe_figurenblatt.webp",
+    "ru": "лист гусенички — только внешность",
+    "nr": 2,
+    "name": "2_raupe_figurenblatt.jpg",
+    "url": "anh/raupe_figurenblatt.jpg",
+    "klein": "anh/klein/raupe_figurenblatt.jpg"
+   },
+   {
+    "datei": "assets/illustrationen/baum.webp",
+    "ru": "baum — только как нарисованы кора и листья",
+    "nr": 3,
+    "name": "3_baum.jpg",
+    "url": "anh/baum.jpg",
+    "klein": "anh/klein/baum.jpg"
+   }
+  ],
+  "text": "ATTACHED PICTURES (use each one ONLY for what is written here, copy nothing else from them):\n1. ONLY how the people look (faces, hair, clothes).\n2. ONLY how the caterpillar looks.\n3. ONLY how bark, leaves and light are painted. Its view (from inside through a window) is NOT our view.\n\nPLACE AND CAMERA:\nOUTSIDE, in the air in front of the school building, at the height of the classroom window – as if we were a bird sitting in the tree. We look straight at the school wall. Warm afternoon light.\n- TOP LEFT: the open classroom window in the light school wall.\n- Under the window: the OUTER windowsill, a wooden board that sticks out from the wall.\n- RIGHT EDGE: the thick trunk of the big tree. It stands in the school yard, a few metres in front of the wall. Between the trunk and the wall there is open air.\n- ALL branches grow out of the trunk. NOTHING grows out of the wall, the window or the windowsill.\n- BELOW the window, a little to the right (lower middle of the picture): a fork where two branches of the tree form a big V. In the V sits a round nest woven from twigs and white paper strips, half hidden behind thick yellow-green leaves. A tiny silver glint peeks out of the nest.\n- From this fork one long thin branch rises diagonally UP to the window. Its thin end with a few small leaves just LIES ON TOP of the windowsill. So the branch is like a bridge between the nest and the windowsill. It only rests on the sill; it is not attached to it.\n- Thick clusters of leaves between the window and the nest: that is why the people cannot see the nest.\n\nWHO AND WHAT:\n- Frau Sommer leans far out of the window with her upper body. Behind her, inside, Mila, Ben and Oskar crowd together; we see their heads and shoulders. All four squint down into the leaves, puzzled: they cannot see the nest.\n- The tiny caterpillar crawls bravely along the long branch, away from the window and DOWN towards the nest. She is still close to the window (in the upper left half of the picture). Antenna tips glowing gold, a determined but slightly nervous face, one tiny drop of sweat on her forehead. The people do not notice her.\n- No bird in this picture.\n\nCHARACTERS:\nFrau Sommer (the teacher): red hair in a bun, round glasses, green cardigan.\nMila: girl, long brown braids, a small yellow hair clip, lilac-pink cardigan, blue jeans, yellow sneakers, no backpack.\nBen: boy, dark curly hair, plain dark-blue sweater with NO stripes, beige trousers.\nOskar: boy, blond curly hair, red-and-white striped hoodie (the stripes go round the arms, no buttons), beige trousers.\nThe caterpillar: TINY (as small as a child's finger next to the children), bright green, dark-blue cape with a golden edge, NO hat, the little balls on her antennae glow soft gold.\n\nSTYLE: children's picture-book illustration, soft hand-painted look (watercolor and colored pencil), warm light, the same painting style and the same characters as in the attached pictures – NOT flat vector clip-art, NOT glossy 3D. Wide landscape format 3:2. No text, no letters, no numbers anywhere in the picture.",
+  "ordner": "07_k4_s21_raupe"
+ },
+ {
+  "id": "raupenweg",
+  "datei": "raupenweg.webp",
+  "prio": "muss",
+  "spur": "Игра Raupenweg (Spur 21), фон (правки №46, №47)",
+  "zweck": "Фон для игры. Гусеничку, стрелки и сороку НЕ рисовать: их рисует приложение поверх. Главное — эскиз v2: ветки должны лежать там же, где на эскизе, тогда стрелки игры попадут на них. Если выйдет чуть иначе — я подгоню числа под картинку. Класс k1_s1 больше НЕ прикладывать: из него приходил театр.",
+  "anhang": [
+   {
+    "datei": "02_design/skizzen/raupenweg_skizze_v2.png",
+    "ru": "raupenweg_skizze_v2 — точная раскладка (ГЛАВНОЕ)",
+    "nr": 1,
+    "name": "1_raupenweg_skizze_v2.png",
+    "url": "anh/raupenweg_skizze_v2.png",
+    "klein": "anh/klein/raupenweg_skizze_v2.jpg"
+   },
+   {
+    "datei": "assets/illustrationen/baum.webp",
+    "ru": "baum — только как нарисованы кора и листья",
+    "nr": 2,
+    "name": "2_baum.jpg",
+    "url": "anh/baum.jpg",
+    "klein": "anh/klein/baum.jpg"
+   }
+  ],
+  "text": "ATTACHED PICTURES (use each one ONLY for what is written here, copy nothing else from them):\n1. the EXACT layout: every branch, the window, the windowsill, the big leaf, the birdhouse, the nest and the trunk must be at the same place and the same size as here. Repaint it in our soft picture-book style.\n2. ONLY how bark, leaves and light are painted. Its view (from inside through a window) is NOT our view.\n\nPLACE AND CAMERA:\nOUTSIDE. We hover in the air in front of the school building, at the height of the classroom window, and look straight at it – like a bird. Calm daylight.\n- LEFT QUARTER: the outside wall of the school (light plaster) with a big window (wooden frame, glass). Under the window: the OUTER windowsill, a wooden board that sticks out from the wall. To the right of the wall there is open air (sky and soft leaves far away).\n- RIGHT EDGE: the thick trunk of the big tree. It stands in the school yard, a few metres in front of the wall. Between the trunk and the wall there is open air.\n- ALL branches grow out of the trunk. NOTHING grows out of the wall, the window or the windowsill.\n\nTHE BRANCHES (from left to right, at the same places as in the sketch):\n1. The long main branch grows out of the trunk on the right, a bit below the middle of the picture height, and runs to the LEFT across the open air, getting thinner. Its thin tip with two or three small leaves LIES ON TOP of the windowsill and reaches to the middle of the sill – like a bridge from the tree to the window. It only rests on the sill; it is not attached to it.\n2. About one third from the left edge – clearly in the open air, a hand's width to the RIGHT of the windowsill, NOT at the sill – one short thin twig grows UP from the main branch (a few tiny leaves at its end), and one short thin BARE twig grows DOWN from it. Both end freely in the air.\n3. ONE BIG green leaf lies on top of the main branch, a bit to the right of these twigs (middle-left of the picture).\n4. To the right of the big leaf a thin twig hangs down from the main branch; at its end hangs a small wooden birdhouse with a red roof.\n5. Further right (about two thirds from the left): a thin STRAIGHT twig grows up and to the left from the main branch. It does not split.\n6. Near the trunk: a thin twig grows up and to the right from the main branch and splits into a clear V. In the V sits a round twig nest (we see its rim; a tiny silver star tip glints inside).\n7. At the top: a thick branch comes out of the trunk and goes to the left, with leaves.\n\nCalm, light leafy background so that the branches read clearly. Keep the space directly above the windowsill and above the main branch calm: a small figure will be placed there later.\nNo caterpillar, no bird, no people, no arrows.\n\nSTYLE: children's picture-book illustration, soft hand-painted look (watercolor and colored pencil), warm light, the same painting style and the same characters as in the attached pictures – NOT flat vector clip-art, NOT glossy 3D. Wide landscape format 3:2. No text, no letters, no numbers anywhere in the picture.",
+  "ordner": "08_raupenweg"
+ },
+ {
+  "id": "tresor_auf",
+  "datei": "tresor_auf.webp",
+  "prio": "kann",
+  "spur": "Финал: открытый сейф",
+  "zweck": "Промт не менялся. Картинка в приложении уже правильная (внутренняя сторона дверцы без штурвала и кнопок). Если захочешь более «рисованную» версию — можно перегенерировать. Фон однотонный — я вырежу.",
+  "anhang": [
+   {
+    "datei": "assets/illustrationen/tresor_zu.webp",
+    "ru": "tresor_zu — закрытый сейф, образец",
+    "nr": 1,
+    "name": "1_tresor_zu.jpg",
+    "url": "anh/tresor_zu.jpg",
+    "klein": "anh/klein/tresor_zu.jpg"
+   },
+   {
+    "datei": "assets/illustrationen/tresor_auf.webp",
+    "ru": "tresor_auf — текущий открытый",
+    "nr": 2,
+    "name": "2_tresor_auf.jpg",
+    "url": "anh/tresor_auf.jpg",
+    "klein": "anh/klein/tresor_auf.jpg"
+   }
+  ],
+  "text": "Exactly the same treasure safe as in the attached closed-safe picture (same dark-blue body, golden crown ornament with the blue crystal on top, golden feet, same soft painted style), square 1:1, plain flat light background (#F2F2F2) so it can be cut out.\nThe safe is now OPEN: the door has swung open to the LEFT on its hinges, and we see the INSIDE of the door: a smooth dark-blue inner panel with four small golden rivets in the corners. The wheel handle and the four code windows are on the OUTSIDE of the door, so they are NOT visible at all in this picture.\nInside the safe: warm golden light shining out, golden rays from the top, the inside is empty (nothing in it).\nNo text, no letters, no numbers, no stars.",
+  "ordner": "09_tresor_auf"
+ }
+];
+
+  const el = (t, c, x) => { const e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; };
+  const STATUS = [['offen', 'Не начато'], ['arbeit', 'В работе'], ['fertig', 'Готово']];
+  const zustand = {}, refs = {};
+  let db = null;
+
+  function zeichne() {
+    const box = document.getElementById('liste');
+    for (const b of BILDER) {
+      const k = el('article', 'karte'); k.id = 'b-' + b.id;
+      const h = el('header'); h.append(el('h2', null, b.spur), el('span', 'datei', b.datei), el('span', 'prio ' + b.prio, b.prio === 'muss' ? 'нужно' : 'по желанию'));
+      const z = el('p', 'zweck', b.zweck);
+      const a = el('div', 'anhang');
+      const ak = el('div', 'anhang-kopf'); ak.append(el('b', null, 'Приложить по номерам:'));
+      const zb = el('button', 'laden zip', 'Скачать всё архивом'); zb.type = 'button';
+      const zinfo = el('p', 'ladeinfo'); zinfo.setAttribute('aria-live', 'polite');
+      zb.addEventListener('click', () => ladeZip([b], b.id + '_anhaenge.zip', zb, zinfo));
+      ak.append(zb); a.append(ak);
+      const ol = el('ol', 'kacheln');
+      for (const x of b.anhang) {
+        const li = el('li', 'kachel');
+        const img = el('img'); img.src = x.klein; img.alt = x.name; img.loading = 'lazy';
+        const fb = el('button', 'laden', 'Скачать'); fb.type = 'button';
+        fb.addEventListener('click', () => ladeDatei(x, fb, zinfo));
+        li.append(el('span', 'nr', String(x.nr)), img, el('div', null), fb);
+        li.children[2].append(el('div', 'fn', x.name), el('div', 'rolle', x.ru.replace(/^[^—]*— /, '')));
+        ol.append(li);
+      }
+      a.append(ol, zinfo);
+      const pr = el('div', 'prompt'); const pre = el('pre', null, b.text); pre.lang = 'en'; pre.id = 'p-' + b.id;
+      const kb = el('button', 'kopieren', 'Копировать'); kb.type = 'button';
+      kb.addEventListener('click', () => {
+        const fertig = () => { kb.textContent = 'Скопировано'; setTimeout(() => { kb.textContent = 'Копировать'; }, 1600); };
+        const markiere = () => { const r = document.createRange(); r.selectNodeContents(pre); const s = getSelection(); s.removeAllRanges(); s.addRange(r); kb.textContent = 'Выделено — нажми Ctrl+C'; };
+        try { navigator.clipboard.writeText(pre.textContent).then(fertig, markiere); } catch { markiere(); }
+      });
+      pr.append(pre, kb);
+      const st = el('div', 'status'); st.setAttribute('role', 'group'); st.setAttribute('aria-label', 'Статус картинки');
+      const knoepfe = STATUS.map(([w, t]) => { const x = el('button', null, t); x.type = 'button'; x.dataset.s = w; x.setAttribute('aria-pressed', 'false'); x.addEventListener('click', () => speichere(b.id, { s: w })); st.append(x); return x; });
+      const ta = el('textarea'); ta.id = 'n-' + b.id; ta.placeholder = 'Заметка (например: что не вышло)'; ta.setAttribute('aria-label', 'Заметка');
+      let t = 0; ta.addEventListener('input', () => { clearTimeout(t); t = setTimeout(() => speichere(b.id, { notiz: ta.value }), 900); });
+      const info = el('div', 'info'); info.setAttribute('aria-live', 'polite');
+      k.append(h, z, a, pr, st, ta, info); box.append(k);
+      refs[b.id] = { k, knoepfe, ta, info };
+    }
+  }
+  function zeige(id) {
+    const r = refs[id], s = zustand[id] ?? {};
+    r.knoepfe.forEach((x) => x.setAttribute('aria-pressed', String(x.dataset.s === (s.s || 'offen'))));
+    r.k.dataset.s = s.s || 'offen';
+    if (document.activeElement !== r.ta && (s.notiz ?? '') !== r.ta.value) r.ta.value = s.notiz ?? '';
+  }
+  function zaehle() {
+    const f = BILDER.filter((b) => zustand[b.id]?.s === 'fertig').length;
+    const box = document.getElementById('stand'); box.textContent = '';
+    box.append(el('span', 'pill', `Готово: ${f} из ${BILDER.length}`));
+  }
+  async function speichere(id, teil) {
+    zustand[id] = { ...(zustand[id] ?? {}), ...teil }; zeige(id); zaehle();
+    const info = refs[id].info;
+    if (!db) { try { localStorage.setItem('bilder.' + id, JSON.stringify(zustand[id])); } catch {} info.textContent = 'Сохранено только в этом браузере'; return; }
+    try { info.textContent = 'Сохраняю…'; await db.collection('bilder').doc(id).set({ s: zustand[id].s ?? 'offen', notiz: zustand[id].notiz ?? '', zeit: new Date().toISOString() }); info.textContent = 'Сохранено'; }
+    catch (e) { info.textContent = 'Не сохранилось: ' + (e?.message || e?.code || 'ошибка') + '. Попробуй ещё раз.'; }
+  }
+  let dl = null;
+  const FEHLER = { declined: 'Отменено.', rate_limited: 'Подожди секунду и нажми ещё раз.', host_unavailable: 'Здесь сохранить нельзя: открой страницу в браузере на компьютере.' };
+  const fehlerText = (e) => FEHLER[e?.code] || ('Не получилось: ' + (e?.message || e?.code || 'ошибка'));
+  async function holen(x) { const r = await fetch(x.url); if (!r.ok) throw { message: 'файл ' + x.name + ' не загрузился' }; return r.blob(); }
+  async function ladeDatei(x, knopf, info) {
+    if (!dl) return;
+    knopf.disabled = true; info.textContent = 'Готовлю ' + x.name + ' …';
+    try { await dl.save({ filename: x.name, data: await holen(x) }); info.textContent = 'Сохранено: ' + x.name; }
+    catch (e) { info.textContent = fehlerText(e); }
+    finally { knopf.disabled = false; }
+  }
+  async function ladeZip(liste, name, knopf, info) {
+    if (!dl) return;
+    knopf.disabled = true; info.textContent = 'Собираю архив …';
+    try {
+      const enc = new TextEncoder(), eintraege = [];
+      for (const b of liste) {
+        const vor = liste.length > 1 ? b.ordner + '/' : '';
+        eintraege.push({ name: vor + '00_PROMPT.txt', bytes: enc.encode(b.text.replace(/\n/g, '\r\n')) });
+        for (const x of b.anhang) eintraege.push({ name: vor + x.name, bytes: new Uint8Array(await (await holen(x)).arrayBuffer()) });
+      }
+      const blob = lfZip(eintraege);
+      await dl.save({ filename: name, data: blob });
+      info.textContent = 'Сохранено: ' + name + '. Распакуй и прикладывай файлы по номерам.';
+    } catch (e) { info.textContent = fehlerText(e); }
+    finally { knopf.disabled = false; }
+  }
+  zeichne(); BILDER.forEach((b) => zeige(b.id)); zaehle();
+  const allesKnopf = document.getElementById('alles');
+  allesKnopf.addEventListener('click', () => ladeZip(BILDER, 'Bilder_v8_9_alle.zip', allesKnopf, document.getElementById('allesInfo')));
+  (async () => {
+    try { dl = window.claude?.use ? await window.claude.use('downloads') : null; } catch { dl = null; }
+    if (!dl) { document.body.classList.add('ohneDl'); document.getElementById('ohneDl').hidden = false; }
+  })();
+  (async () => {
+    try { db = window.claude?.use ? await window.claude.use('db') : null; } catch { db = null; }
+    const h = document.getElementById('ohneDb');
+    if (!db) { h.hidden = false; for (const b of BILDER) { try { const v = localStorage.getItem('bilder.' + b.id); if (v) { zustand[b.id] = JSON.parse(v); zeige(b.id); } } catch {} } zaehle(); return; }
+    const timer = setTimeout(() => { h.hidden = false; }, 10000);
+    db.collection('bilder').onSnapshot((snap) => {
+      clearTimeout(timer); h.hidden = true;
+      for (const d of snap.docs) { if (!refs[d.id]) continue; const v = d.data(); zustand[d.id] = { s: v?.s || 'offen', notiz: v?.notiz || '' }; zeige(d.id); }
+      zaehle();
+    }, () => { clearTimeout(timer); h.hidden = false; });
+  })();
+})();
+</script>
+</body></html>
