@@ -6,3 +6,6 @@ __pycache__/
 03_screens/v8/telefon/
 03_screens/v8/rechner/
 03_screens/v8_ende/
+
+# Vorbereitete Anhänge für die Bilder-Seite (aus 02_design/bilder_prompts_v8_9.py, nicht versioniert)
+02_design/_anhang/

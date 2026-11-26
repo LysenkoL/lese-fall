@@ -3,6 +3,7 @@
 Запуск: python3 02_design/bilder_prompts_v8_9.py
   -> 02_design/BILDER_PROMPTS_v8_9.html  (страница-артефакт с кнопками «Копировать» и отметками)
   -> 02_design/BILDER_PROMPTS_v8_9.md    (то же текстом, для истории)
+  -> 02_design/_anhang/                  (вложения для страницы и общий архив Bilder_v8_9.zip; не в git)
 
 Почему переписаны (жалоба владелицы: «везде театр, сзади луна, дерево растёт из подоконника»):
 1. Образцы. Почти на каждой картинке класса стоит кукольный театр, часто с луной. Старый промт начинался с
@@ -17,6 +18,10 @@
 import html
 import json
 import pathlib
+import shutil
+import zipfile
+
+from PIL import Image
 
 # ---------------------------------------------------------------- общие куски (без театра и без луны)
 STYLE = ("STYLE: children's picture-book illustration, soft hand-painted look (watercolor and colored pencil), warm light, "
@@ -55,13 +60,11 @@ def prompt(refs, ort, inhalt, figuren):
 
 
 BILDER = []
-# Файлы, которые лежат прямо на странице (скачать): путь в репозитории -> имя на странице
-LINKS = {"02_design/skizzen/raupenweg_skizze_v2.png": "raupenweg_skizze_v2.png"}
 
 
 def bild(id, spur, zweck, refs, ort, inhalt, figuren, prio="muss"):
     BILDER.append(dict(id=id, datei=f"{id}.webp", prio=prio, spur=spur, zweck=zweck,
-                       anhang=[dict(datei=r[0], ru=r[2], **({"link": LINKS[r[0]]} if r[0] in LINKS else {})) for r in refs],
+                       anhang=[dict(datei=r[0], ru=r[2]) for r in refs],
                        text=prompt(refs, ort, inhalt, figuren)))
 
 
@@ -301,12 +304,22 @@ main { padding-block: 1.25rem 3rem; display: grid; gap: 1rem; }
 .prio.muss { background: var(--senf); color: var(--senf-tinte); }
 .prio.kann { background: var(--grund); color: var(--grau); border: 1px solid var(--linie); }
 .zweck { margin: 0; color: var(--grau); font-size: .9rem; }
-.anhang { margin: 0; font-size: .875rem; display: grid; gap: .25rem; }
-.anhang b { font-weight: 700; }
-.anhang ol { margin: 0; padding-left: 1.4rem; display: grid; gap: .15rem; }
-.anhang code { font-family: var(--f-mono); font-size: .8125rem; overflow-wrap: anywhere; }
-.anhang .rolle { color: var(--grau); }
-.anhang a { color: var(--blau); font-weight: 600; }
+.anhang { margin: 0; font-size: .875rem; display: grid; gap: .5rem; }
+.anhang-kopf { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; justify-content: space-between; }
+.anhang-kopf b { font-weight: 700; }
+.kacheln { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr)); gap: .5rem; }
+.kachel { position: relative; display: grid; grid-template-rows: auto 1fr auto; gap: .3rem; background: var(--papier); border: 1px solid var(--linie); border-radius: .7rem; padding: .4rem; }
+.kachel img { width: 100%; aspect-ratio: 3 / 2; object-fit: contain; background: var(--code); border-radius: .45rem; display: block; }
+.kachel .nr { position: absolute; top: .55rem; left: .55rem; min-width: 1.6rem; height: 1.6rem; border-radius: 999px; display: grid; place-items: center; background: var(--nacht); color: #fff; font: 800 .875rem/1 var(--f-text); box-shadow: 0 0 0 2px var(--karte); }
+.kachel .fn { font-family: var(--f-mono); font-size: .75rem; overflow-wrap: anywhere; }
+.kachel .rolle { color: var(--grau); font-size: .8125rem; line-height: 1.35; }
+.laden { font: 600 .8125rem var(--f-text); min-height: 2.5rem; padding: .3rem .7rem; border-radius: 999px; border: 1.5px solid var(--linie); background: var(--karte); color: var(--tinte); cursor: pointer; }
+.laden.zip { background: var(--senf); border-color: var(--senf); color: var(--senf-tinte); padding-inline: 1rem; }
+.laden:disabled { opacity: .6; cursor: progress; }
+.laden:focus-visible { outline: 3px solid var(--senf); outline-offset: 2px; }
+.ladeinfo { font-size: .8125rem; color: var(--grau); min-height: 1rem; margin: 0; }
+.kopf .laden.zip { justify-self: start; min-height: 2.75rem; }
+.ohneDl .laden { display: none; }
 .prompt { position: relative; }
 .prompt pre { margin: 0; white-space: pre-wrap; word-break: break-word; font: 13px/1.5 var(--f-mono); background: var(--code); border: 1px solid var(--linie); border-radius: .6rem; padding: .7rem .8rem 2.9rem; max-height: 22rem; overflow: auto; }
 .kopieren { position: absolute; right: .5rem; bottom: .5rem; font: 600 .875rem var(--f-text); min-height: 2.5rem; padding: .35rem .9rem; border-radius: 999px; border: 0; background: var(--nacht); color: #fff; cursor: pointer; }
@@ -327,12 +340,15 @@ footer { color: var(--grau); font-size: .8125rem; padding-bottom: 2rem; }
   <p>Пока картинки нет, приложение показывает похожую готовую картинку, поэтому книга работает и без них. Порядок работы:</p>
   <ol>
     <li>Открой <b>новый</b> чат в ChatGPT — для каждой картинки отдельный.</li>
-    <li>Приложи файлы из списка «Приложить» <b>в том же порядке</b> (1, 2, 3 …).</li>
+    <li>Нажми у картинки «Скачать всё архивом», распакуй и приложи файлы <b>по номерам</b> 1, 2, 3 … (номер стоит в начале имени файла). Промт лежит в архиве в файле <code>00_PROMPT.txt</code>.</li>
     <li>Нажми «Копировать» и вставь промт.</li>
     <li>Сохрани результат как <code>assets/illustrationen/ИМЯ.webp</code> (или png, я сконвертирую) и пришли мне.</li>
     <li>Отметь здесь «Готово». Я вижу отметки и подключу картинки.</li>
   </ol>
   <div class="stand" id="stand" aria-live="polite"></div>
+  <button class="laden zip" type="button" id="alles">Скачать всё для всех картинок (один архив)</button>
+  <p class="ladeinfo" id="allesInfo" aria-live="polite" style="color:#D6DCEC"></p>
+  <p class="ladeinfo" id="ohneDl" hidden style="color:#D6DCEC">Скачивание в этом окне недоступно. Общий архив есть в чате, или открой страницу в браузере на claude.ai.</p>
 </div></div>
 
 <main class="wrap" id="liste">
@@ -342,8 +358,33 @@ footer { color: var(--grau); font-size: .8125rem; padding-bottom: 2rem; }
   </section>
   <p class="hinweis" id="ohneDb" hidden>Отметки сейчас сохраняются только в этом браузере (страница открыта без входа или хранилище недоступно).</p>
 </main>
-<div class="wrap"><footer>Источник промтов в репозитории: <code>02_design/bilder_prompts_v8_9.py</code> (оттуда же собирается эта страница и <code>BILDER_PROMPTS_v8_9.md</code>).</footer></div>
+<div class="wrap"><footer>Источник промтов в репозитории: <code>02_design/bilder_prompts_v8_9.py</code> (оттуда же собирается эта страница, <code>BILDER_PROMPTS_v8_9.md</code> и файлы для скачивания).</footer></div>
 
+<script>
+/* Kleiner ZIP-Bauer ohne Bibliothek: Dateien werden nur gespeichert (Bilder sind schon komprimiert). */
+const lfCrcTab = (() => { const t = new Uint32Array(256); for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; } return t; })();
+function lfCrc32(u8) { let c = 0xFFFFFFFF; for (let i = 0; i < u8.length; i++) c = lfCrcTab[(c ^ u8[i]) & 255] ^ (c >>> 8); return (c ^ 0xFFFFFFFF) >>> 0; }
+/** eintraege: [{name, bytes: Uint8Array}] -> Blob (application/zip) */
+function lfZip(eintraege) {
+  const enc = new TextEncoder(), teile = [], zentral = []; let pos = 0;
+  for (const e of eintraege) {
+    const n = enc.encode(e.name), c = lfCrc32(e.bytes), L = e.bytes.length;
+    const h = new DataView(new ArrayBuffer(30));
+    h.setUint32(0, 0x04034b50, true); h.setUint16(4, 20, true); h.setUint16(6, 0x0800, true);
+    h.setUint16(12, 0x21, true); h.setUint32(14, c, true); h.setUint32(18, L, true); h.setUint32(22, L, true); h.setUint16(26, n.length, true);
+    teile.push(h.buffer, n, e.bytes);
+    const z = new DataView(new ArrayBuffer(46));
+    z.setUint32(0, 0x02014b50, true); z.setUint16(4, 20, true); z.setUint16(6, 20, true); z.setUint16(8, 0x0800, true);
+    z.setUint16(14, 0x21, true); z.setUint32(16, c, true); z.setUint32(20, L, true); z.setUint32(24, L, true); z.setUint16(28, n.length, true); z.setUint32(42, pos, true);
+    zentral.push(z.buffer, n);
+    pos += 30 + n.length + L;
+  }
+  const groesse = zentral.reduce((s, x) => s + x.byteLength, 0);
+  const end = new DataView(new ArrayBuffer(22));
+  end.setUint32(0, 0x06054b50, true); end.setUint16(8, eintraege.length, true); end.setUint16(10, eintraege.length, true); end.setUint32(12, groesse, true); end.setUint32(16, pos, true);
+  return new Blob([...teile, ...zentral, end.buffer], { type: 'application/zip' });
+}
+</script>
 <script>
 (() => {
   const BILDER = __BILDER__;
@@ -359,10 +400,23 @@ footer { color: var(--grau); font-size: .8125rem; padding-bottom: 2rem; }
       const k = el('article', 'karte'); k.id = 'b-' + b.id;
       const h = el('header'); h.append(el('h2', null, b.spur), el('span', 'datei', b.datei), el('span', 'prio ' + b.prio, b.prio === 'muss' ? 'нужно' : 'по желанию'));
       const z = el('p', 'zweck', b.zweck);
-      const a = el('div', 'anhang'); a.append(el('b', null, 'Приложить (по порядку):'));
-      const ol = el('ol');
-      for (const x of b.anhang) { const li = el('li'); li.append(el('code', null, x.datei), document.createTextNode(' '), el('span', 'rolle', '— ' + x.ru.replace(/^[^—]*— /, ''))); if (x.link) { const l = el('a', null, 'скачать'); l.href = x.link; l.download = x.link; li.append(document.createTextNode(' · '), l); } ol.append(li); }
-      a.append(ol);
+      const a = el('div', 'anhang');
+      const ak = el('div', 'anhang-kopf'); ak.append(el('b', null, 'Приложить по номерам:'));
+      const zb = el('button', 'laden zip', 'Скачать всё архивом'); zb.type = 'button';
+      const zinfo = el('p', 'ladeinfo'); zinfo.setAttribute('aria-live', 'polite');
+      zb.addEventListener('click', () => ladeZip([b], b.id + '_anhaenge.zip', zb, zinfo));
+      ak.append(zb); a.append(ak);
+      const ol = el('ol', 'kacheln');
+      for (const x of b.anhang) {
+        const li = el('li', 'kachel');
+        const img = el('img'); img.src = x.klein; img.alt = x.name; img.loading = 'lazy';
+        const fb = el('button', 'laden', 'Скачать'); fb.type = 'button';
+        fb.addEventListener('click', () => ladeDatei(x, fb, zinfo));
+        li.append(el('span', 'nr', String(x.nr)), img, el('div', null), fb);
+        li.children[2].append(el('div', 'fn', x.name), el('div', 'rolle', x.ru.replace(/^[^—]*— /, '')));
+        ol.append(li);
+      }
+      a.append(ol, zinfo);
       const pr = el('div', 'prompt'); const pre = el('pre', null, b.text); pre.lang = 'en'; pre.id = 'p-' + b.id;
       const kb = el('button', 'kopieren', 'Копировать'); kb.type = 'button';
       kb.addEventListener('click', () => {
@@ -398,7 +452,40 @@ footer { color: var(--grau); font-size: .8125rem; padding-bottom: 2rem; }
     try { info.textContent = 'Сохраняю…'; await db.collection('bilder').doc(id).set({ s: zustand[id].s ?? 'offen', notiz: zustand[id].notiz ?? '', zeit: new Date().toISOString() }); info.textContent = 'Сохранено'; }
     catch (e) { info.textContent = 'Не сохранилось: ' + (e?.message || e?.code || 'ошибка') + '. Попробуй ещё раз.'; }
   }
+  let dl = null;
+  const FEHLER = { declined: 'Отменено.', rate_limited: 'Подожди секунду и нажми ещё раз.', host_unavailable: 'Здесь сохранить нельзя: открой страницу в браузере на компьютере.' };
+  const fehlerText = (e) => FEHLER[e?.code] || ('Не получилось: ' + (e?.message || e?.code || 'ошибка'));
+  async function holen(x) { const r = await fetch(x.url); if (!r.ok) throw { message: 'файл ' + x.name + ' не загрузился' }; return r.blob(); }
+  async function ladeDatei(x, knopf, info) {
+    if (!dl) return;
+    knopf.disabled = true; info.textContent = 'Готовлю ' + x.name + ' …';
+    try { await dl.save({ filename: x.name, data: await holen(x) }); info.textContent = 'Сохранено: ' + x.name; }
+    catch (e) { info.textContent = fehlerText(e); }
+    finally { knopf.disabled = false; }
+  }
+  async function ladeZip(liste, name, knopf, info) {
+    if (!dl) return;
+    knopf.disabled = true; info.textContent = 'Собираю архив …';
+    try {
+      const enc = new TextEncoder(), eintraege = [];
+      for (const b of liste) {
+        const vor = liste.length > 1 ? b.ordner + '/' : '';
+        eintraege.push({ name: vor + '00_PROMPT.txt', bytes: enc.encode(b.text.replace(/\n/g, '\r\n')) });
+        for (const x of b.anhang) eintraege.push({ name: vor + x.name, bytes: new Uint8Array(await (await holen(x)).arrayBuffer()) });
+      }
+      const blob = lfZip(eintraege);
+      await dl.save({ filename: name, data: blob });
+      info.textContent = 'Сохранено: ' + name + '. Распакуй и прикладывай файлы по номерам.';
+    } catch (e) { info.textContent = fehlerText(e); }
+    finally { knopf.disabled = false; }
+  }
   zeichne(); BILDER.forEach((b) => zeige(b.id)); zaehle();
+  const allesKnopf = document.getElementById('alles');
+  allesKnopf.addEventListener('click', () => ladeZip(BILDER, 'Bilder_v8_9_alle.zip', allesKnopf, document.getElementById('allesInfo')));
+  (async () => {
+    try { dl = window.claude?.use ? await window.claude.use('downloads') : null; } catch { dl = null; }
+    if (!dl) { document.body.classList.add('ohneDl'); document.getElementById('ohneDl').hidden = false; }
+  })();
   (async () => {
     try { db = window.claude?.use ? await window.claude.use('db') : null; } catch { db = null; }
     const h = document.getElementById('ohneDb');
@@ -427,8 +514,60 @@ def markdown():
     return "\n".join(z) + "\n"
 
 
+LIESMICH = """Картинки v8.9 — вложения для ChatGPT
+
+В каждой папке одна картинка:
+- 00_PROMPT.txt — промт, скопировать целиком;
+- 1_..., 2_..., 3_... — файлы, приложить в этом порядке (в промте они называются picture 1, picture 2 ...).
+
+Для каждой картинки открывай новый чат в ChatGPT.
+Готовую картинку сохрани под именем папки без номера (например k2_s7.webp или .png) и пришли.
+"""
+
+
+def baue_anhaenge(root):
+    """Готовит вложения: полноразмерные JPG (схема — PNG как есть), миниатюры и общий архив."""
+    repo, out = root.parent, root / "_anhang"
+    shutil.rmtree(out, ignore_errors=True)
+    (out / "anh" / "klein").mkdir(parents=True)
+    fertig = {}
+    for n, b in enumerate(BILDER, 1):
+        b["ordner"] = f"{n:02d}_{b['id']}"
+        for i, a in enumerate(b["anhang"], 1):
+            src = repo / a["datei"]
+            s = src.stem
+            if s not in fertig:
+                im = Image.open(src)
+                if src.suffix == ".png":
+                    ext = "png"
+                    shutil.copyfile(src, out / "anh" / f"{s}.png")
+                else:
+                    ext = "jpg"
+                    rgb = im.convert("RGBA")
+                    weiss = Image.new("RGB", rgb.size, "white")
+                    weiss.paste(rgb, mask=rgb.split()[3])
+                    weiss.save(out / "anh" / f"{s}.jpg", quality=92)
+                kl = im.convert("RGBA")
+                kl.thumbnail((360, 240))
+                grund = Image.new("RGB", kl.size, "white")
+                grund.paste(kl, mask=kl.split()[3])
+                grund.save(out / "anh" / "klein" / f"{s}.jpg", quality=80)
+                fertig[s] = ext
+            ext = fertig[s]
+            a.update(nr=i, name=f"{i}_{s}.{ext}", url=f"anh/{s}.{ext}", klein=f"anh/klein/{s}.jpg")
+    with zipfile.ZipFile(out / "Bilder_v8_9.zip", "w", zipfile.ZIP_DEFLATED) as z:
+        z.writestr("Bilder_v8_9/00_LIES_MICH.txt", LIESMICH.replace("\n", "\r\n"))
+        for b in BILDER:
+            z.writestr(f"Bilder_v8_9/{b['ordner']}/00_PROMPT.txt", b["text"].replace("\n", "\r\n"))
+            for a in b["anhang"]:
+                z.write(out / a["url"], f"Bilder_v8_9/{b['ordner']}/{a['name']}")
+    return out
+
+
 if __name__ == "__main__":
     root = pathlib.Path(__file__).parent
+    out = baue_anhaenge(root)
+    print("Anhänge ->", out, sorted(p.name for p in (out / "anh").glob("*.*")))
     warum = "".join(f"<div><dt>{html.escape(t)}</dt><dd>{html.escape(x)}</dd></div>" for t, x in WARUM)
     daten = json.dumps(BILDER, ensure_ascii=False, indent=1).replace("</", "<\\/")
     (root / "BILDER_PROMPTS_v8_9.html").write_text(SEITE.replace("__WARUM__", warum).replace("__BILDER__", daten), encoding="utf-8")
