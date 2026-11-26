@@ -3671,7 +3671,6 @@
     "text": "Hilf der Le|se-Rau|pe ü|ber die Äs|te zum Nest. Lies den Hin|weis. Dann tip|pe auf den rich|ti|gen Pfeil.",
     "werkzeug": "fuehler",
     "bild": "raupenweg",
-    "szene": "baum",
     "ratio": 1.5,
     "start": "Lies den Hin|weis. Dann zeig mir den Weg!",
     "anfang": {
@@ -3818,7 +3817,6 @@
         "x": 32.2,
         "y": 55,
         "name": "Nach o|ben",
-        "zweig": "oben",
         "dreh": -62,
         "nicht": "Hui, der Zweig wa|ckelt! Da ist kein gro|ßes Blatt."
        },
@@ -3849,7 +3847,6 @@
         "x": 34.9,
         "y": 78.3,
         "name": "Nach un|ten",
-        "zweig": "unten",
         "dreh": 62,
         "nicht": "Hui, der Zweig schau|kelt! Da un|ten ist kein gro|ßes Blatt."
        }
@@ -3864,7 +3861,6 @@
         "x": 61.3,
         "y": 71.3,
         "name": "Nach un|ten",
-        "zweig": "haus",
         "nicht": "Oh nein, da hängt das Vo|gel|haus! Da will ich nicht hin."
        },
        {
@@ -3890,7 +3886,6 @@
         "x": 58.9,
         "y": 43.7,
         "name": "Nach links o|ben",
-        "zweig": "gerade",
         "nicht": "Der Zweig ist dünn. A|ber er ist ganz ge|ra|de. Er teilt sich nicht."
        },
        {

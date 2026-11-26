@@ -7,8 +7,6 @@
 import './raetsel_weg.css';
 import { kontext, sag, unten, wackel, ende, stempeln, hook } from './raetsel.ts';
 import { laub as _laub } from './staub.ts';
-import { szeneHinten, szeneVorne } from './raetsel_weg_szene.ts';
-import { istErsatz } from './bilder.ts';
 
 type Spiel = (r: HTMLElement, d: any, fertig: () => void) => void;
 export const SPIELE_WEG: Record<string, Spiel> = {};
@@ -24,12 +22,12 @@ const PFEIL = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h12M12 
 
 /* ============================ Raupenweg (Spur 21): die Raupe kriecht über die Äste zum Nest ============================ */
 /**
- * Daten: szene ("baum" = gezeichnete Szene aus raetsel_weg_szene.ts, sonst Bild `bild`), ratio, anfang {x,y} (Prozent),
- *   vorne? [[x,y], …] (Prozent; nur mit gemaltem Bild: dieser Umriss des Bildes – das große Blatt – liegt über Raupe und Leuchtspur;
- *   ohne `vorne` liegt dort das gezeichnete Blatt aus der Szene), punkte[3] = Gabeln:
+ * Daten: bild (gemaltes Spielbild, z. B. raupenweg), ratio, anfang {x,y} (Prozent),
+ *   vorne? [[x,y], …] (Prozent: dieser Umriss des Bildes – das große Blatt – liegt als Ausschnitt desselben Bildes über Raupe und Leuchtspur),
+ *   punkte[3] = Gabeln:
  *   { text (Hinweis), ok (Raupe nach richtiger Wahl), warum (Erklärung bei Hilfe),
  *     wege[2–3]: { x, y (Tipp-Ziel auf dem Ast), richtig?, vor?/weg?: [{x,y,unter?}] (Punkte vor dem Ziel bzw. weiter bis zur nächsten Gabel), nicht (Raupe bei falscher Wahl),
- *                  zweig? (data-z des Zweigs in der Szene, der bei falscher Wahl wackelt), dreh? (Pfeilrichtung in Grad), name? (nur für aria) } }
+ *                  dreh? (Pfeilrichtung in Grad), name? (nur für aria) } }
  * Der letzte Punkt des richtigen Weges der letzten Gabel ist der Nestrand. Die Leuchtspur ist eine goldene Linie, die mitwächst.
  */
 SPIELE_WEG.raupenweg = (r, d, fertig) => {
@@ -42,18 +40,16 @@ SPIELE_WEG.raupenweg = (r, d, fertig) => {
   let pos: Pt = { x: d.anfang?.x ?? 15, y: d.anfang?.y ?? 66 };
   let lauf: Animation | null = null;
   const lagen = (x: number, y: number) => `left:${x}%;top:${y}%`;
-  // Gibt es das gemalte Spielbild (assets/illustrationen/raupenweg.webp), liegt es hinten; sonst die gezeichnete Szene.
-  // Leuchtspur, Pfeile und Raupe liegen in beiden Fällen gleich darüber. Das große Blatt (Raupe kriecht drunter durch):
-  // beim gemalten Bild ein Ausschnitt desselben Bildes (Umriss `vorne`), bei der gezeichneten Szene das gezeichnete Blatt.
-  const szene = d.szene === 'baum', gemalt = szene && istErsatz(d.bild);
-  const vorneBild = !gemalt && Array.isArray(d.vorne) && d.vorne.length > 2
+  // Hinten das gemalte Spielbild; darüber Leuchtspur, Raupe, das große Blatt (Raupe kriecht drunter durch: Ausschnitt desselben Bildes
+  // mit dem Umriss `vorne`) und ganz oben die Pfeile.
+  const vorneBild = Array.isArray(d.vorne) && d.vorne.length > 2
     ? `<div class="rw-vorbild" style="background-image:url(&quot;${K.img(d.bild)}&quot;);clip-path:polygon(${d.vorne.map((q: number[]) => `${q[0]}% ${q[1]}%`).join(',')})"></div>`
     : '';
   zi.innerHTML = `<div class="rw-hinweis" aria-live="polite"><b class="rw-nr"></b><p></p></div>`
-    + `<div class="rw-bild${gemalt ? ' gemalt' : ''}${szene ? ' szene' : ''}" style="aspect-ratio:${ratio}">${gemalt ? szeneHinten() : `<img class="rw-hg" src="${K.img(d.bild)}" alt="" draggable="false">`}`
+    + `<div class="rw-bild" style="aspect-ratio:${ratio}"><img class="rw-hg" src="${K.img(d.bild)}" alt="" draggable="false">`
     + `<div class="rw-lage"><svg class="rw-spur" viewBox="0 0 ${100 * ratio} 100" preserveAspectRatio="none" aria-hidden="true"></svg>`
     + `<div class="rw-figur" style="${lagen(pos.x, pos.y)}"><img src="${K.fig('raupe/brrr')}" alt="" draggable="false"></div>`
-    + `${vorneBild || (szene ? szeneVorne(!gemalt) : '')}<div class="rw-wahlen"></div></div></div>`;
+    + `${vorneBild}<div class="rw-wahlen"></div></div></div>`;
   unten('');
   const bild = $('.rw-bild', zi), lage = $('.rw-lage', zi), figur = $('.rw-figur', zi), fimg = figur.querySelector('img')!;
   const wahlen = $('.rw-wahlen', zi), spur = $('.rw-spur', zi), hinweis = $('.rw-hinweis', zi);
@@ -95,14 +91,8 @@ SPIELE_WEG.raupenweg = (r, d, fertig) => {
     }).join('');
   };
 
-  /** Falscher Ast: er schaukelt (gemalte Szene: der Zweig selbst um seinen Ansatz; Bild: ein Ausschnitt um die Gabel), die Raupe erschrickt kurz */
+  /** Falscher Ast: ein runder Ausschnitt des Bildes um das Tipp-Ziel schaukelt, die Raupe erschrickt kurz */
   const schaukeln = (w: any) => {
-    if (gemalt) { // der dicke Ast (ohne `zweig`) wackelt nicht
-      if (!w.zweig) return;
-      bild.querySelectorAll<SVGElement>(`[data-z="${w.zweig}"]`).forEach((g) => { g.classList.remove('wackelt'); void (g as any).getBBox?.(); g.classList.add('wackelt'); });
-      nach(zi, 1000, () => bild.querySelectorAll('.wackelt').forEach((g) => g.classList.remove('wackelt')));
-      return;
-    }
     const z = document.createElement('div');
     const rc = bild.getBoundingClientRect(), rad = Math.max(40, rc.width * 0.12);
     z.className = 'rw-zweig';
@@ -172,7 +162,6 @@ SPIELE_WEG.raupenweg = (r, d, fertig) => {
     hinweis.classList.add('fertig');
     pose('staunt');
     figur.classList.add('leuchtet');
-    bild.classList.add('am-nest'); // das Laub vor dem Nest geht auf
     ende(r, d, fertig);
   };
 

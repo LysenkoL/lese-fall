@@ -1,5 +1,5 @@
 {
- "_info": "Rätsel, Ermittlungsbrett, Fallkarte und Finale zu Kapitel 4 (Spuren 20–24), Konzept v8. Texte ohne Silben; app/scripts/build-v8.ts setzt Silben. Positionen in Prozent. Bilder, die es noch nicht gibt (baum, baum_nest, nest_finale, voegel, kinder_hinten, raum_leer, …), ersetzt app/src/v8/bilder.ts.",
+ "_info": "Rätsel, Ermittlungsbrett, Fallkarte und Finale zu Kapitel 4 (Spuren 20–24), Konzept v8. Texte ohne Silben; app/scripts/build-v8.ts setzt Silben. Positionen in Prozent. Bildnamen löst app/src/v8/bilder.ts auf.",
  "kapitel": 4,
  "bild": "kapitel_4",
  "vorspann": "Ein Vogel mit einem langen Schwanz. Ein Nest in der Astgabel. Und etwas, das darin blitzt.",
@@ -368,7 +368,6 @@
     "text": "Hilf der Lese-Raupe über die Äste zum Nest. Lies den Hinweis. Dann tippe auf den richtigen Pfeil.",
     "werkzeug": "fuehler",
     "bild": "raupenweg",
-    "szene": "baum",
     "ratio": 1.5,
     "start": "Lies den Hinweis. Dann zeig mir den Weg!",
     "anfang": {
@@ -386,7 +385,6 @@
         "x": 32.2,
         "y": 55.0,
         "name": "Nach oben",
-        "zweig": "oben",
         "dreh": -62,
         "nicht": "Hui, der Zweig wackelt! Da ist kein großes Blatt."
        },
@@ -417,7 +415,6 @@
         "x": 34.9,
         "y": 78.3,
         "name": "Nach unten",
-        "zweig": "unten",
         "dreh": 62,
         "nicht": "Hui, der Zweig schaukelt! Da unten ist kein großes Blatt."
        }
@@ -432,7 +429,6 @@
         "x": 61.3,
         "y": 71.3,
         "name": "Nach unten",
-        "zweig": "haus",
         "nicht": "Oh nein, da hängt das Vogelhaus! Da will ich nicht hin."
        },
        {
@@ -458,7 +454,6 @@
         "x": 58.9,
         "y": 43.7,
         "name": "Nach links oben",
-        "zweig": "gerade",
         "nicht": "Der Zweig ist dünn. Aber er ist ganz gerade. Er teilt sich nicht."
        },
        {
