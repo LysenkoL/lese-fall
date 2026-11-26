@@ -180,7 +180,7 @@ function lesen(n: number, opts: { anker?: string; letzte?: boolean; dir?: number
 function zeigeBlatt(dir: number) {
   const n = R.teil, s = R.sheets[R.idx];
   const last = R.idx === R.sheets.length - 1;
-  header(n === 0 ? 'Vorgeschichte' : `Kapitel 1 · Spur ${n}`, n === 0 ? 'Lese-Fall' : undefined);
+  header(n === 0 ? 'Vorgeschichte' : `Kapitel 1 · Spur ${n}`, n === 0 ? 'Spuren-Raupe' : undefined);
   if (!R.ev) ort('read', n, s[0]);
   const html = s.map((id) => itemHTML(n, id)).join('');
   const prev = `<button class="nav" data-a="prev" ${R.idx === 0 ? 'disabled' : ''} aria-label="Vorheriges Blatt">‹</button>`;
@@ -609,7 +609,7 @@ let vorGarderobe: typeof stand.ort | null = null;
 function garderobe() {
   if (!vorGarderobe) vorGarderobe = { ...stand.ort };
   R.ev = null;
-  header('Garderobe', 'Lese-Fall');
+  header('Garderobe', 'Spuren-Raupe');
   const g = stand.garderobe, frei = verfuegbar(PREISE);
   const karten = G.dinge.map((d: any) => {
     const hat = g.gekauft.includes(d.id), traegt = g.traegt === d.id, fehlt = d.preis - frei;
@@ -653,10 +653,10 @@ $('pearls').addEventListener('click', () => { if (!vorGarderobe) garderobe(); })
 
 /* ====================== Titelbild ====================== */
 function cover() {
-  header('Lese-Fall', 'Spur im Text');
+  header('Spuren-Raupe', 'Spur im Text');
   const weiter = stand.ort.view !== 'cover' || stand.vorgeschichte;
   const html = `<div class="cover"><div class="art" style="background-image:url('${img('cover')}')" role="img" aria-label="Titelbild: Die Lese-Raupe mit Lupe"></div>
-    <h1>Lese-Fall</h1><div class="sub">Fall ${DATA.fall.nr}: ${T(DATA.fall.titel)}</div></div>`;
+    <h1>Spuren-Raupe</h1><div class="sub">Fall ${DATA.fall.nr}: ${T(DATA.fall.titel)}</div></div>`;
   setView(html, `${weiter ? '<button class="btn" data-a="wand">Spurenwand</button>' : ''}<button class="btn cta" data-a="los">${weiter ? 'Weiterlesen' : 'Los geht’s'} ›</button>`);
 }
 actions.los = () => resume(true);

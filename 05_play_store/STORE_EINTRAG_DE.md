@@ -9,9 +9,13 @@ Stand: 17.11.2026, nach App-Stand v8 (Ветка `ccr-df1be5c7-gwvgon`). Пер�
 ## App-Name (max. 30 Zeichen)
 
 ```
-Lese-Fall: Spur im Text
+Spuren-Raupe
 ```
-23 знака. Решение D-03.
+12 знаков. Решение D-21 (26.11.2026, было «Lese-Fall: Spur im Text», D-03).
+
+Варианты с пояснением (выбрать перед публикацией):
+- `Spuren-Raupe: Lesekrimi` (23)
+- `Spuren-Raupe: Krimi lesen` (25)
 
 ## Kurzbeschreibung (max. 80 Zeichen)
 
@@ -31,7 +35,7 @@ Ein Krimi zum Selberlesen: lesen, Rätsel lösen, den verschwundenen Mond finden
 ```
 Heute ist Theater-Tag! Mila hat einen großen gelben Mond aus Pappe gebastelt. Doch kurz vor der Aufführung ist er weg. Und Frau Sommer sucht auch noch ihren Schlüssel mit dem Glitzer-Stern. Wer hilft beim Suchen? Die Lese-Raupe – und du!
 
-„Lese-Fall: Spur im Text“ ist ein Krimi zum Selberlesen für Kinder ab etwa 8 Jahren. Das Kind liest die Geschichte selbst, Seite für Seite. Nach jeder Spur wartet ein Rätsel, das zur Geschichte passt. So wird aus Lesen eine echte Ermittlung.
+„Spuren-Raupe“ ist ein Krimi zum Selberlesen für Kinder ab etwa 8 Jahren. Das Kind liest die Geschichte selbst, Seite für Seite. Nach jeder Spur wartet ein Rätsel, das zur Geschichte passt. So wird aus Lesen eine echte Ermittlung.
 
 FALL 1: DER VERSCHWUNDENE MOND
 • 4 Kapitel mit 24 Spuren

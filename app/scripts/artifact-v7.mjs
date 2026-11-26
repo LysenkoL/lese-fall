@@ -16,7 +16,7 @@ while (queue.length) {
   const t = readFileSync('dist/' + f, 'utf8');
   for (const m of t.matchAll(/[\w.-]+-[\w-]{8}\.(?:webp|woff2|js|css|png|svg)/g)) { const g = 'assets/' + m[0]; if (!seen.has(g) && existsSync('dist/' + g)) { seen.add(g); queue.push(g); } }
 }
-writeFileSync('dist/artifact_v7.html', `<title>Lese-Fall Vorschau</title>
+writeFileSync('dist/artifact_v7.html', `<title>Spuren-Raupe Vorschau</title>
 <link rel="stylesheet" href="./${css}">
 <style>
   :root { --safe-area-inset-top: 0px; --safe-area-inset-bottom: 0px; }

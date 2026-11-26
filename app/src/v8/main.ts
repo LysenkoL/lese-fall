@@ -190,7 +190,7 @@ const himmel = () => `<div class="himmel" aria-hidden="true"><span class="mondg"
 function titel() {
   modus('titel');
   const angefangen = stand.fertig.length > 0 || stand.i > 0 || stand.spur > 1 || stand.weiter === 'fallkarte' || stand.weiter === 'ausblick' || stand.weiter === 'finale';
-  buehne.innerHTML = `<section class="titel"><div class="lampe"></div>${himmel()}<p class="tl">LESE-FALL · FALL 1</p><h1>${T(D.fall.titel)}</h1><figure class="foto gross"><img src="${img('cover')}" alt=""></figure><p class="tu">Ein Krimi zum Selberlesen</p><img class="t-raupe" src="${fig('raupe/lacht')}" alt=""></section>`;
+  buehne.innerHTML = `<section class="titel"><div class="lampe"></div>${himmel()}<p class="tl">SPUREN-RAUPE · FALL 1</p><h1>${T(D.fall.titel)}</h1><figure class="foto gross"><img src="${img('cover')}" alt=""></figure><p class="tu">Ein Krimi zum Selberlesen</p><img class="t-raupe" src="${fig('raupe/lacht')}" alt=""></section>`;
   fuss.innerHTML = `<div class="fz">${knopf('start', stand.geloest ? UI.weiter : angefangen ? UI.weiterFall : UI.start)}${angefangen ? knopf('neu', UI.neuStart, 'still') : ''}</div>`;
   fuss.onclick = (e) => {
     const a = (e.target as HTMLElement).closest<HTMLElement>('[data-a]')?.dataset.a;
@@ -622,7 +622,7 @@ function finale() {
 /* ---------- Nach dem Fall: Seite „Fall gelöst“, Fall-Album, Haus der Lese-Raupe ---------- */
 function fertigSeite() {
   modus('titel');
-  buehne.innerHTML = `<section class="titel fertig"><div class="lampe"></div>${himmel()}<p class="tl">LESE-FALL · FALL 1</p><h1>${T(D.fall.titel)}</h1><figure class="foto gross fg-cover"><img src="${img('cover')}" alt=""><b class="fg-stempel">${UI.geloestStempel}</b></figure><button class="fg-raupe" data-a="haus" aria-label="Haus der Lese-Raupe">${raupeMitSache(stand.traegt, fig)}</button><p class="forts">${UI.fortsetzung}</p><button class="fg-urk" data-a="urkunde"><span>${UI.meineUrkunde}</span></button></section>`;
+  buehne.innerHTML = `<section class="titel fertig"><div class="lampe"></div>${himmel()}<p class="tl">SPUREN-RAUPE · FALL 1</p><h1>${T(D.fall.titel)}</h1><figure class="foto gross fg-cover"><img src="${img('cover')}" alt=""><b class="fg-stempel">${UI.geloestStempel}</b></figure><button class="fg-raupe" data-a="haus" aria-label="Haus der Lese-Raupe">${raupeMitSache(stand.traegt, fig)}</button><p class="forts">${UI.fortsetzung}</p><button class="fg-urk" data-a="urkunde"><span>${UI.meineUrkunde}</span></button></section>`;
   feuerwerk($('.fertig', buehne), 3, 0.2);
   fuss.innerHTML = `<div class="fz">${knopf('album', UI.album)}${knopf('haus', UI.zurRaupe, 'still')}</div>`;
   const tu = (a?: string) => { if (a === 'album') { stand.view = 'album'; zeige(); } else if (a === 'haus') hausOeffnen(); else if (a === 'urkunde') urkundeOffen(); };
