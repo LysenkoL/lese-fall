@@ -1485,107 +1485,177 @@ export function faden(r: HTMLElement, d: Daten, fertig: () => void) {
 
 /* ============================ 7.3 Wo ist der Schlüssel? (nest, Finale des Buches) ============================ */
 /**
- * Drei Schritte auf dem Nest-Bild (nest_nah):
+ * Drei Schritte auf dem Nest-Bild:
  *  1) Laub wegwischen (Finger/Maus, staub.ts),
- *  2) lesen und finden: Frau Sommer beschreibt ihren Schlüssel (`beschreibung.saetze`); andere Glitzersachen → die Raupe
- *     sagt mit dem Text, warum es nicht passt (`andere[].nein`),
- *  3) Frau Sommer hält ihren Zeigestock aus dem Fenster (er ragt von oben rechts ins Bild). Das Kind zieht den Schlüssel
- *     an der weißen Schlaufe zur Spitze → „Klick!“, die Schlaufe hängt am Stock, der Stock fährt mit dem Schlüssel nach oben.
- * Der Schlüssel ist ein Ausschnitt des gemalten Bildes (Maske SCHLUESSEL_MASKE, Pixel von nest_nah 1536 × 1024),
- * damit er genau so aussieht wie im Bild; darunter wird nest_sammlung (`ohne`, dasselbe Bild ohne Schlüssel) gezeigt.
- * Hilfe: nach zwei Fehlgriffen beim Suchen zeigt die Raupe den Schlüssel; tippt das Kind beim Stock nur (zieht nicht)
- * oder lässt zweimal zu früh los, hängt die Raupe die Schlaufe selbst an (ui.hilfe).
- * Daten: bild, ratio, zone (Laub), start, nachLaub, frage, beschreibung {titel, saetze[]}, tipp,
- *        ziele[0] {id, x, y, r, ok, zonen?[]}, andere[] {id, x, y, r, nein}, ohne (Bild ohne Schlüssel), schluessel {box {x,y,w,h}, haken {x,y}},
- *        stock {x, y, winkel}, jetzt (Stock-Aufgabe), knapp (zu früh losgelassen), erfolg.
+ *  2) lesen und vergleichen: Frau Sommer beschreibt ihren Schlüssel in drei Sätzen (Silber, weißes Band, Stern).
+ *     Im Nest liegen vier Schlüssel; drei passen nur in zwei Punkten (Gold / rotes Band / Herz statt Stern).
+ *     Antippen: die drei Sätze bekommen ✓ oder ✗ (wie im Vogelbuch), die Raupe sagt, was nicht passt (`varianten[].nein`).
+ *  3) Frau Sommer hält ihren Zeigestock aus dem Fenster. Das Kind zieht den richtigen Schlüssel am weißen Band zur Spitze
+ *     → „Klick!“, der Stock fährt mit dem Schlüssel nach oben aus dem Bild.
+ * Die Schlüssel sind aus dem gemalten Bild ausgeschnitten (nest_nah, 1536 × 1024, Kasten KB) und freigestellt
+ * (Farbe statt Maske: Zweige sind satt braun, Schlüssel und Band blass). Gold und rotes Band werden umgefärbt,
+ * das Herz ersetzt den Stern. Darunter liegt nest_sammlung (`ohne`): dasselbe Nest ohne Schlüssel.
+ * Hilfe: nach zwei falschen Schlüsseln ein Tipp, nach dem dritten zeigt die Raupe den richtigen; beim Stock:
+ * dreimal nur getippt oder zweimal zu früh losgelassen → die Raupe hängt das Band an (ui.hilfe).
+ * Daten: bild (Quelle der Schlüssel), ohne, ratio, zone (Laub), start, nachLaub, frage, beschreibung {titel, saetze[3]},
+ *        tipp, ok, schluessel {groesse, lagen[{x,y,dreh}]}, varianten[] {id, gold?, rot?, herz?, merkmal?, nein?},
+ *        andere[] {id,x,y,r,nein}, stock {x,y,winkel}, jetzt, knapp, erfolg.
  */
-/** Umriss von Schlüssel, Ring, Stern und Schlaufe in nest_nah (Pixel); Ausschnitt-Kasten 330/128, 338 × 471 */
-const SCHLUESSEL_MASKE = (vb: string) => `<svg xmlns='http://www.w3.org/2000/svg' viewBox='${vb}' preserveAspectRatio='none'><g fill='#fff' stroke='#fff' stroke-linecap='round' stroke-linejoin='round'>`
-  + `<path d='M452 372C440 340 418 300 404 262C398 230 405 200 432 178C468 152 520 150 562 160C600 168 626 190 628 214C630 244 604 262 574 276C540 292 508 318 490 348' fill='none' stroke-width='42'/>`
-  + `<ellipse cx='471' cy='402' rx='68' ry='58' stroke='none'/>`
-  + `<path d='M492 446L548 578' fill='none' stroke-width='50'/>`
-  + `<path d='M536 492H604V570H536Z' stroke-width='6'/>`
-  + `<circle cx='384' cy='466' r='47' stroke='none'/><circle cx='405' cy='414' r='24' stroke='none'/></g></svg>`;
+const KB = { x: 330, y: 128, w: 338, h: 471 }; // Schlüssel-Kasten in nest_nah (Pixel)
+const HAKEN_KB = { x: 195 / 338, y: 47 / 471 }; // oben in der Schlaufe: hier greift der Zeigestock
+type SchlArt = { gold?: boolean; rot?: boolean; herz?: boolean };
+/** Mittellinie des weißen Bandes (Kasten-Koordinaten), Strichbreite 44 */
+const BAND_D = 'M122 244C110 212 88 172 74 134C68 102 75 72 102 50C138 24 190 22 232 32C270 40 296 62 298 86C300 116 274 134 244 148C210 164 178 190 160 220';
+/** Schlüssel-Bild (data-URL): freigestellt, auf Wunsch Gold, rotes Band oder Herz */
+function schluesselBild(src: HTMLImageElement, art: SchlArt): string {
+  const s = (src.naturalWidth || 1536) / 1536, W = KB.w, H = KB.h;
+  const leinwand = () => { const c = document.createElement('canvas'); c.width = W; c.height = H; return [c, c.getContext('2d', { willReadFrequently: true })!] as const; };
+  const maske = (mal: (g: CanvasRenderingContext2D) => void) => { const [, g] = leinwand(); g.fillStyle = g.strokeStyle = '#fff'; g.lineCap = 'round'; g.lineJoin = 'round'; mal(g); return g.getImageData(0, 0, W, H).data; };
+  const mB = maske((g) => { g.lineWidth = 44; g.stroke(new Path2D(BAND_D)); });
+  const mM = maske((g) => { g.beginPath(); g.ellipse(141, 274, 68, 58, 0, 0, 7); g.fill(); g.lineWidth = 50; g.beginPath(); g.moveTo(162, 318); g.lineTo(218, 450); g.stroke(); g.fillRect(206, 364, 68, 78); g.beginPath(); g.arc(75, 286, 24, 0, 7); g.fill(); });
+  const mS = maske((g) => { g.beginPath(); g.arc(54, 338, 47, 0, 7); g.fill(); });
+  const mK = maske((g) => { g.beginPath(); g.arc(75, 286, 24, 0, 7); g.fill(); });
+  const [c, g] = leinwand();
+  g.drawImage(src, KB.x * s, KB.y * s, W * s, H * s, 0, 0, W, H);
+  const bild = g.getImageData(0, 0, W, H), p = bild.data;
+  for (let i = 0; i < p.length; i += 4) {
+    const inB = mB[i + 3] > 127, inM = mM[i + 3] > 127, inS = mS[i + 3] > 127;
+    if (!inB && !inM && !inS) { p[i + 3] = 0; continue; }
+    const r = p[i] / 255, gr = p[i + 1] / 255, b = p[i + 2] / 255;
+    const mx = Math.max(r, gr, b), mn = Math.min(r, gr, b), sat = mx ? (mx - mn) / mx : 0, L = (r + gr + b) / 3;
+    // freistellen: satte braune Zweige und dunkle Lücken weg, Silber und Band bleiben
+    let a = Math.min(1, Math.max(0, (0.5 - sat) / 0.15));
+    a = Math.max(a, Math.min(1, Math.max(0, (L - 0.72) / 0.1)));
+    a *= Math.min(1, Math.max(0, (L - 0.1) / 0.08));
+    const x = (i / 4) % W, y = Math.floor(i / 4 / W);
+    const istBand = inB && ((r - gr > 0.105 && L > 0.45) || (!inM && !inS) || (x >= 104 && x <= 166 && y >= 200 && y <= 262 && L > 0.55));
+    if (art.herz && inS && mK[i + 3] < 128) a = 0; // der Stern verschwindet, das Herz wird gleich gemalt
+    if (art.gold && !istBand && (inM || inS)) { p[i] = 255 * Math.min(1, L * 1.15 + 0.07); p[i + 1] = 255 * Math.min(1, L * 0.9 + 0.02); p[i + 2] = 255 * L * 0.5; }
+    if (art.rot && istBand) { p[i] = 255 * Math.min(1, 1.05 * L); p[i + 1] = 255 * 0.25 * L; p[i + 2] = 255 * 0.22 * L; }
+    p[i + 3] = Math.round(p[i + 3] * a);
+  }
+  g.putImageData(bild, 0, 0);
+  if (art.herz) { // silbernes Herz am kleinen Ring, gleich groß wie der Stern
+    g.save(); g.translate(52, 342);
+    const v = g.createLinearGradient(-30, -30, 30, 30); v.addColorStop(0, '#FBF6F0'); v.addColorStop(0.5, '#D9CFC4'); v.addColorStop(1, '#A89A8C');
+    const herz = new Path2D('M0 30C-6 22-34 6-34-12C-34-26-22-34-12-34C-5-34 0-29 0-24C0-29 5-34 12-34C22-34 34-26 34-12C34 6 6 22 0 30Z');
+    g.fillStyle = v; g.fill(herz); g.lineWidth = 3; g.strokeStyle = '#8C7E70'; g.stroke(herz);
+    g.fillStyle = 'rgba(255,255,255,.75)'; g.beginPath(); g.ellipse(-16, -18, 8, 4.5, -0.6, 0, 7); g.fill();
+    g.restore();
+    g.strokeStyle = '#B5A99C'; g.lineWidth = 3; g.beginPath(); g.moveTo(64, 300); g.lineTo(58, 310); g.stroke();
+  }
+  return c.toDataURL();
+}
 const STOCK_SVG = `<svg viewBox="0 0 400 24" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="ntSt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E9C48A"/><stop offset=".45" stop-color="#C8914E"/><stop offset="1" stop-color="#8A5A2B"/></linearGradient><linearGradient id="ntGu" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E2564A"/><stop offset="1" stop-color="#8E2018"/></linearGradient></defs>`
   + `<rect x="18" y="4" width="390" height="16" rx="3" fill="url(#ntSt)" stroke="#6E4520" stroke-width="1.2"/><path d="M60 9H400M120 15H400" stroke="#B07A3E" stroke-width="1" opacity=".6"/>`
   + `<path d="M22 3.5C10 3.5 2 7 2 12S10 20.5 22 20.5Z" fill="url(#ntGu)" stroke="#6A140E" stroke-width="1.2"/><ellipse cx="11" cy="8.5" rx="5" ry="2" fill="#fff" opacity=".4"/></svg>`;
+const HAKEN_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const KREUZ_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg>';
 export function nest(r: HTMLElement, d: Daten, fertig: () => void) {
   const zi = $('.zi', r);
-  const B = d.beschreibung;
-  zi.innerHTML = `${B ? `<div class="nt-karte"><span class="nt-kt">${SCHLUESSEL_ICON}<b>${B.titel ?? ''}</b></span><p>${(B.saetze ?? []).join(' ')}</p></div>` : ''}<p class="nt-frage"></p><div class="nt-bild" style="aspect-ratio:${d.ratio}"><div class="nt-zoom"><img src="${K.img(d.bild)}" alt="" draggable="false"></div></div>`;
+  const B = d.beschreibung ?? { saetze: [] };
+  const SS: string[] = B.saetze ?? [];
+  zi.innerHTML = `<p class="nt-frage"></p><div class="nt-bild" style="aspect-ratio:${d.ratio}"><div class="nt-zoom"><img src="${K.img(d.ohne ?? d.bild)}" alt="" draggable="false"></div></div>`;
+  // Frau Sommers Beschreibung steht vor der Spielfläche: quer links unter der Aufgabe (Bild bleibt groß), hochkant darüber
+  r.querySelector('.nt-karte')?.remove();
+  const karte = document.createElement('div');
+  karte.className = 'nt-karte';
+  karte.innerHTML = `<span class="nt-kt">${SCHLUESSEL_ICON}<b>${B.titel ?? ''}</b></span><ul class="nt-merk">${SS.map((t, i) => `<li data-m="${i}"><i class="nt-ck" aria-hidden="true"></i><span>${t}</span></li>`).join('')}</ul>`;
+  r.insertBefore(karte, zi);
   unten('');
   const box = $('.nt-bild', zi), nah = $('.nt-zoom', zi);
-  if (d.ohne) new Image().src = K.img(d.ohne); // vorladen: Nest ohne Schlüssel
-  sag(r, 'tipp', d.start);
-  const Z: any[] = d.ziele, X: any[] = d.andere ?? [], erklaert = new Set<string>();
+  const V: any[] = d.varianten ?? [{ id: 'echt' }];
+  const echt = V.find((v) => !v.gold && !v.rot && !v.herz) ?? V[0];
+  const SK = d.schluessel ?? {}, gr: number = SK.groesse ?? 0.7, lagen: any[] = SK.lagen ?? [{ x: 31, y: 34, dreh: 0 }];
+  const kw = 22 * gr, kh = 46 * gr; // Größe eines Schlüssels in Prozent des Bildes (Kasten 22 % × 46 %)
+  const reihe = K.mischen(V.map((v) => v.id));
+  const X: any[] = d.andere ?? [];
   let fehl = 0, phase: 'laub' | 'suchen' | 'stock' | 'aus' = 'laub';
   const frage = (t = '') => { $('.nt-frage', zi).innerHTML = t; };
-  const ring = (z: any, kl: string) => nah.insertAdjacentHTML('beforeend', `<i class="ring ${kl}" style="left:${z.x}%;top:${z.y}%;width:${z.r * 2.1}%;height:auto;aspect-ratio:1;margin:0;transform:translate(-50%,-50%)"></i>`);
-  const S = d.schluessel ?? { box: { x: 21.5, y: 12.5, w: 22, h: 46 }, haken: { x: 34.2, y: 17.1 } }, kb = S.box;
-  const vb = `${(kb.x / 100) * 1536} ${(kb.y / 100) * 1024} ${(kb.w / 100) * 1536} ${(kb.h / 100) * 1024}`;
-  const maske = `url("data:image/svg+xml;utf8,${encodeURIComponent(SCHLUESSEL_MASKE(vb))}")`;
-  /** Ausschnitt des gemalten Schlüssels als eigenes Element (gleiches Bild, gleiche Lage) */
-  const ausschnitt = (kl: string) => {
-    const el = document.createElement('div');
-    el.className = kl;
-    Object.assign(el.style, { left: kb.x + '%', top: kb.y + '%', width: kb.w + '%', height: kb.h + '%', backgroundImage: `url(${K.img(d.bild)})`, backgroundSize: `${10000 / kb.w}% ${10000 / kb.h}%`, backgroundPosition: `${(kb.x / (100 - kb.w)) * 100}% ${(kb.y / (100 - kb.h)) * 100}%`, webkitMaskImage: maske, maskImage: maske });
-    el.style.setProperty('-webkit-mask-size', '100% 100%'); el.style.setProperty('mask-size', '100% 100%');
-    return el;
-  };
-  const trifft = (q: any, px: number, py: number, rc: DOMRect) => (q.zonen ?? [q]).some((z: any) => Math.hypot(px - z.x / 100 * rc.width, py - z.y / 100 * rc.height) <= (z.r / 100) * rc.width * 1.15);
+  sag(r, 'tipp', d.start);
 
-  /* ---- 2) Lesen und finden ---- */
+  // Schlüssel-Bilder aus dem gemalten Nest bauen (einmal, wenn das Bild geladen ist)
+  const quelle = new Image();
+  quelle.src = K.img(d.bild);
+  const fertigGemalt = quelle.decode().then(() => {
+    if (!zi.isConnected) return;
+    reihe.forEach((id, i) => {
+      const v = V.find((q) => q.id === id), l = lagen[i % lagen.length];
+      const el = document.createElement('button');
+      el.className = 'nt-schluessel'; el.dataset.v = id;
+      el.setAttribute('aria-label', klarText(`${B.titel ?? ''} ${i + 1}`));
+      Object.assign(el.style, { left: `${l.x - kw / 2}%`, top: `${l.y - kh / 2}%`, width: `${kw}%`, height: `${kh}%`, rotate: `${l.dreh ?? 0}deg`, backgroundImage: `url(${schluesselBild(quelle, v)})` });
+      el.style.setProperty('--dreh', `${l.dreh ?? 0}deg`);
+      nah.appendChild(el);
+    });
+  }).catch(() => { /* ohne Bild: Spiel bleibt beim Laub stehen, loese() hilft */ });
+  const schlEl = (id: string) => nah.querySelector<HTMLElement>(`.nt-schluessel[data-v="${id}"]`);
+  const merkmale = (v: any) => SS.map((_, m) => !((v.gold && m === 0) || (v.rot && m === 1) || (v.herz && m === 2)));
+  const zeigeMerkmale = (ok: boolean[], schrittweise = false, danach?: () => void) => {
+    karte.querySelectorAll<HTMLElement>('.nt-merk li').forEach((li) => { li.classList.remove('ja', 'nein'); li.querySelector('.nt-ck')!.innerHTML = ''; });
+    ok.forEach((j, m) => setTimeout(() => {
+      if (!zi.isConnected) return;
+      const li = karte.querySelector<HTMLElement>(`.nt-merk li[data-m="${m}"]`); if (!li) return;
+      li.classList.add(j ? 'ja' : 'nein'); li.querySelector('.nt-ck')!.innerHTML = j ? HAKEN_SVG : KREUZ_SVG;
+      if (m === ok.length - 1) danach?.();
+    }, schrittweise ? 380 * (m + 1) : 0));
+  };
+
+  /* ---- 2) Lesen und vergleichen ---- */
   const suche = () => {
     phase = 'suchen';
-    zi.querySelector('.nt-karte')?.classList.add('an');
+    karte.classList.add('an');
     frage(d.frage ?? '');
     sag(r, 'tipp', d.nachLaub ?? '');
-    hook.loese = () => gefunden(false);
+    hook.loese = () => { fertigGemalt.then(() => gefunden(false)); };
   };
   const gefunden = (hilfe: boolean) => {
     if (phase !== 'suchen') return;
-    phase = 'stock'; fehl = 0;
-    const z = Z[0];
-    ring(z, hilfe ? 'da blink' : 'da');
+    phase = 'stock'; hook.loese = null;
+    const el = schlEl(echt.id);
+    nah.querySelectorAll('.nt-schluessel').forEach((q) => q.classList.toggle('weg', q !== el));
+    el?.classList.add('gewaehlt');
     K.summ(30);
-    sag(r, 'lob', (hilfe ? K.UI.hilfe + ' ' : '') + (z.ok ?? ''), 'gut');
-    setTimeout(() => { if (zi.isConnected) stockKommt(); }, 1700);
+    zeigeMerkmale(merkmale(echt), true, () => {
+      sag(r, 'lob', (hilfe ? K.UI.hilfe + ' ' : '') + (d.ok ?? ''), 'gut');
+      setTimeout(() => { if (zi.isConnected) stockKommt(); }, 1500);
+    });
   };
-  const nein = (x: any) => {
-    const el = document.createElement('i'); el.className = 'ring nicht'; el.style.cssText = `left:${x.x}%;top:${x.y}%;width:${x.r * 2.1}%`; nah.appendChild(el);
-    setTimeout(() => el.remove(), 1200);
+  const falsch = (v: any, el: HTMLElement) => {
+    if (el.classList.contains('aus')) return sag(r, 'tipp', v.nein ?? K.UI.nochmal);
+    wackel(el); el.classList.add('aus');
+    zeigeMerkmale(merkmale(v));
+    K.summ(15);
     fehl++;
-    if (!erklaert.has(x.id)) { erklaert.add(x.id); if (fehl < 3) return sag(r, 'tipp', x.nein); }
-    if (fehl >= 3) return gefunden(true);
-    sag(r, 'tipp', [x.nein, d.tipp ?? ''].join(' '));
+    const offen = V.filter((q) => q !== echt && !schlEl(q.id)?.classList.contains('aus'));
+    if (!offen.length) { sag(r, 'tipp', [v.nein ?? '', d.tipp ?? ''].join(' ').trim()); schlEl(echt.id)?.classList.add('zeig'); return void setTimeout(() => zi.isConnected && gefunden(true), 2200); }
+    sag(r, 'tipp', [v.nein ?? K.UI.nochmal, fehl >= 2 ? d.tipp ?? '' : ''].join(' ').trim());
   };
   box.addEventListener('click', (e) => {
     if (phase !== 'suchen') return;
+    const el = (e.target as HTMLElement).closest<HTMLElement>('.nt-schluessel');
+    if (el) { const v = V.find((q) => q.id === el.dataset.v); return v === echt ? gefunden(false) : falsch(v, el); }
     const rc = nah.getBoundingClientRect(), px = e.clientX - rc.left, py = e.clientY - rc.top;
-    if (Z.some((q) => trifft(q, px, py, rc))) return gefunden(false);
-    const x = X.filter((q) => trifft(q, px, py, rc)).sort((a, b) => Math.hypot(px - a.x / 100 * rc.width, py - a.y / 100 * rc.height) - Math.hypot(px - b.x / 100 * rc.width, py - b.y / 100 * rc.height))[0];
-    if (x) return nein(x);
-    nah.insertAdjacentHTML('beforeend', `<i class="ring miss" style="left:${px / rc.width * 100}%;top:${py / rc.height * 100}%"></i>`);
-    setTimeout(() => box.querySelector('.ring.miss')?.remove(), 800);
+    const x = X.filter((q) => Math.hypot(px - q.x / 100 * rc.width, py - q.y / 100 * rc.height) <= (q.r / 100) * rc.width * 1.15)[0];
+    if (x) { const el2 = document.createElement('i'); el2.className = 'ring nicht'; el2.style.cssText = `left:${x.x}%;top:${x.y}%;width:${x.r * 2.1}%`; nah.appendChild(el2); setTimeout(() => el2.remove(), 1200); return sag(r, 'tipp', x.nein); }
   });
 
-  /* ---- 3) Der Zeigestock: Schlaufe an die Spitze ziehen ---- */
-  const st = d.stock ?? { x: 64, y: 24, winkel: -30 };
+  /* ---- 3) Der Zeigestock: Band an die Spitze ziehen ---- */
+  const st = d.stock ?? { x: 63, y: 13, winkel: -27 };
   let schl: HTMLElement, stock: HTMLElement, fuehrung: HTMLElement, zuFrueh = 0, tipps = 0;
+  /** Haken (oben in der Schlaufe) des gewählten Schlüssels in Prozent des Bildes, wenn er um dx/dy Pixel verschoben ist */
+  const hakenBei = (dx = 0, dy = 0) => { const rc = nah.getBoundingClientRect(), l = parseFloat(schl.style.left), t = parseFloat(schl.style.top); return { x: l + HAKEN_KB.x * kw + (dx / rc.width) * 100, y: t + HAKEN_KB.y * kh + (dy / rc.height) * 100 }; };
   const stockKommt = () => {
-    nah.querySelectorAll('.ring').forEach((q) => q.remove());
     frage('');
-    // Der Schlüssel wird ein eigenes Teil; darunter liegt dasselbe Bild ohne Schlüssel (`ohne`, pixelgleich), sonst eine dunkle Mulde
-    if (d.ohne) { const ohne = new Image(); ohne.onload = () => { if (zi.isConnected) $<HTMLImageElement>('img', nah).src = ohne.src; }; ohne.src = K.img(d.ohne); }
-    else nah.appendChild(ausschnitt('nt-mulde'));
-    schl = ausschnitt('nt-schluessel'); schl.setAttribute('role', 'button'); schl.setAttribute('aria-label', klarText(d.frage2 ?? 'Schlüssel'));
-    nah.appendChild(schl);
+    schl = schlEl(echt.id)!;
+    schl.classList.remove('gewaehlt'); schl.classList.add('aufrecht');
+    schl.style.rotate = '0deg'; // dreht sich aufrecht, das Band oben
+    schl.setAttribute('aria-label', klarText(d.jetzt ?? ''));
     stock = document.createElement('div'); stock.className = 'nt-stock';
     Object.assign(stock.style, { left: st.x + '%', top: st.y + '%', rotate: `${st.winkel}deg` });
     stock.innerHTML = `<span class="nt-stab">${STOCK_SVG}</span><i class="nt-spitze"></i>`;
     nah.appendChild(stock);
-    // Führungslinie: von der Schlaufe zur Spitze (gestrichelt, pulsiert)
-    const h = S.haken;
+    const h = hakenBei();
     fuehrung = document.createElement('div'); fuehrung.className = 'nt-fuehrung';
     fuehrung.innerHTML = `<svg viewBox="0 0 150 100" preserveAspectRatio="none" aria-hidden="true"><path d="M${h.x * 1.5} ${h.y}Q${(h.x + st.x) * 0.75} ${Math.min(h.y, st.y) - 12} ${st.x * 1.5} ${st.y}" fill="none" stroke="#FFE9A6" stroke-width="3.5" stroke-dasharray="7 7" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>`;
     nah.appendChild(fuehrung);
@@ -1593,9 +1663,7 @@ export function nest(r: HTMLElement, d: Daten, fertig: () => void) {
     hook.loese = () => anhaengen(false);
     ziehen();
   };
-  /** Lage des Hakens (Schlaufe oben) in Prozent des Bildes, wenn der Schlüssel um dx/dy Pixel verschoben ist */
-  const hakenBei = (dx: number, dy: number) => { const rc = nah.getBoundingClientRect(); return { x: S.haken.x + (dx / rc.width) * 100, y: S.haken.y + (dy / rc.height) * 100 }; };
-  const nahDran = (p: { x: number; y: number }) => Math.hypot((p.x - st.x) * 1.5, p.y - st.y) < 9;
+  const nahDran = (q: { x: number; y: number }) => Math.hypot((q.x - st.x) * 1.5, q.y - st.y) < 9;
   const ziehen = () => {
     let zug: { id: number; x0: number; y0: number; dx: number; dy: number; bewegt: boolean } | null = null;
     const bewegen = (e: PointerEvent) => {
@@ -1636,18 +1704,18 @@ export function nest(r: HTMLElement, d: Daten, fertig: () => void) {
     });
     schl.addEventListener('contextmenu', (e) => e.preventDefault());
   };
-  /** Klick! Die Schlaufe hängt an der Spitze; der Stock fährt mit dem Schlüssel nach oben aus dem Bild */
+  /** Klick! Das Band hängt an der Spitze; der Stock fährt mit dem Schlüssel nach oben aus dem Bild */
   const anhaengen = (vomKind: boolean, dx0 = 0, dy0 = 0, hilfe = false) => {
     if (phase !== 'stock') return;
     phase = 'aus'; hook.loese = null;
-    const rc = nah.getBoundingClientRect();
-    const zx = ((st.x - S.haken.x) / 100) * rc.width, zy = ((st.y - S.haken.y) / 100) * rc.height;
+    const rc = nah.getBoundingClientRect(), h0 = hakenBei();
+    const zx = ((st.x - h0.x) / 100) * rc.width, zy = ((st.y - h0.y) / 100) * rc.height;
     fuehrung.remove();
     if (hilfe) sag(r, 'tipp', K.UI.hilfe);
     const still = (() => { try { return matchMedia('(prefers-reduced-motion: reduce)').matches; } catch { return false; } })();
     const dauerHin = vomKind ? 180 : hilfe ? 1100 : 500;
     schl.classList.remove('zieht');
-    schl.style.transformOrigin = `${((S.haken.x - kb.x) / kb.w) * 100}% ${((S.haken.y - kb.y) / kb.h) * 100}%`;
+    schl.style.transformOrigin = `${HAKEN_KB.x * 100}% ${HAKEN_KB.y * 100}%`;
     const hin = still ? null : schl.animate([{ translate: `${dx0}px ${dy0}px` }, { translate: `${zx}px ${zy}px` }], { duration: dauerHin, easing: 'ease-in-out', fill: 'forwards' });
     schl.style.translate = `${zx}px ${zy}px`;
     const dann = () => {
@@ -1656,7 +1724,6 @@ export function nest(r: HTMLElement, d: Daten, fertig: () => void) {
       stock.classList.add('klick'); schl.classList.add('haengt');
       box.insertAdjacentHTML('beforeend', `<b class="nt-klick" style="left:${st.x}%;top:${st.y}%">${d.klick ?? 'Klick!'}</b>`);
       K.summ([30, 40, 30]);
-      // Stock und Schlüssel fahren gemeinsam nach oben rechts hinaus
       const weg = `${rc.width * 0.35}px calc(-50% - ${rc.height * 1.1}px)`;
       setTimeout(() => {
         if (!zi.isConnected) return;
