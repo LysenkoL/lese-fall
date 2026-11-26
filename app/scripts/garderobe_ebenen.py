@@ -42,3 +42,24 @@ for sache, (vergleich, kasten) in AUFLAGEN.items():
     ziel = os.path.join(G, f'auflage_{sache}.webp')
     bild.save(ziel, 'WEBP', quality=88, method=6)
     print('✓', os.path.basename(ziel))
+
+# Mondbrosche rechts: Taschenlampe und Notizbuch hält die Raupe links vor dem Umhang – genau dort sitzt die Brosche.
+# Trägt sie beides, steckt die Brosche an der rechten Umhangecke (frei von grüner und goldener Lupe).
+# Die Brosche ist eine runde Scheibe: Kreis aus raupe_mondbrosche ausschneiden (Mitte und Radius von Hand abgelesen),
+# etwas kleiner an die rechte Ecke setzen. Ergebnis: auflage_mondbrosche_rechts.webp (640 × 640).
+BROSCHE_MITTE, BROSCHE_R = (230.5, 382.0), 27
+RECHTS_MITTE, RECHTS_SKALA = (420, 395), 0.85
+quelle = lade('mondbrosche')
+x, y, r = BROSCHE_MITTE[0], BROSCHE_MITTE[1], BROSCHE_R
+kreis = quelle.crop((int(x - r - 2), int(y - r - 2), int(x + r + 2), int(y + r + 2)))
+maske = Image.new('L', kreis.size, 0)
+ImageDraw.Draw(maske).ellipse((2, 2, 2 + 2 * r, 2 + 2 * r), fill=255)
+maske = maske.filter(ImageFilter.GaussianBlur(0.8))
+kreis.putalpha(ImageChops.multiply(kreis.getchannel('A'), maske))
+neu = int(kreis.size[0] * RECHTS_SKALA)
+kreis = kreis.resize((neu, neu), Image.LANCZOS)
+ebene = Image.new('RGBA', quelle.size, (0, 0, 0, 0))
+ebene.alpha_composite(kreis, (RECHTS_MITTE[0] - neu // 2, RECHTS_MITTE[1] - neu // 2))
+ziel = os.path.join(G, 'auflage_mondbrosche_rechts.webp')
+ebene.save(ziel, 'WEBP', quality=88, method=6)
+print('✓', os.path.basename(ziel))

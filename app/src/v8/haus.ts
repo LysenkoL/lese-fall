@@ -78,6 +78,9 @@ const PLATZ: Record<string, string[]> = {
   hut: ['kopf'], brille: ['augen'], fliege: ['hals'], mondbrosche: ['brosche'],
   schal: ['bild', 'hals'], notizbuch: ['bild'], taschenlampe: ['bild'], tasche: ['bild'], lupe: ['hand'],
 };
+/** Taschenlampe und Notizbuch hält die Raupe links vor dem Umhang – dort sitzt sonst die Mondbrosche. Trägt sie beides,
+ *  steckt die Brosche an der rechten Umhangecke (eigene Auflage `auflage_mondbrosche_rechts`, scripts/garderobe_ebenen.py). */
+const LINKS_IN_DER_HAND = ['taschenlampe', 'notizbuch'];
 /** getragene Sachen aus dem Speicherstand: "hut,brille" (ältere Stände: nur eine Sache, z. B. "hut") */
 export const getragen = (t: string): string[] => [...new Set((t || '').split(',').filter((id) => PLATZ[id]))];
 
@@ -96,7 +99,8 @@ export function raupeMitSache(traegt: string, fig: (n: string) => string, pose =
   const auf = AUFLAGEN.filter((d) => d !== grund && dinge.includes(d));
   const grundBild = `<img src="${img('garderobe/raupe_' + grund)}" alt="">`;
   if (!auf.length && !lupe) return `<span class="rms gard">${grundBild}</span>`;
-  return `<span class="rms gard kombi">${grundBild}${auf.map((d) => `<img class="auf" src="${img('garderobe/auflage_' + d)}" alt="">`).join('')}${lupe ? `<img class="auf glupe" src="${img('objekte/goldene_lupe')}" alt="">` : ''}</span>`;
+  const ebene = (d: string) => (d === 'mondbrosche' && LINKS_IN_DER_HAND.includes(grund) ? 'mondbrosche_rechts' : d);
+  return `<span class="rms gard kombi">${grundBild}${auf.map((d) => `<img class="auf" src="${img('garderobe/auflage_' + ebene(d))}" alt="">`).join('')}${lupe ? `<img class="auf glupe" src="${img('objekte/goldene_lupe')}" alt="">` : ''}</span>`;
 }
 
 /** Zeiten im Haus (ms) */
