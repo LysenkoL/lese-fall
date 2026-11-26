@@ -74,10 +74,7 @@
 .al-karte .tab.etikett { margin-top: -.875rem; margin-left: .25rem; }
 .al-karte b { font-size: 1rem; line-height: 1.25; font-weight: 800; padding: 0 .25rem; overflow-wrap: anywhere; }
 
-/* ---------- Perlen im Kopf: Knopf zum Haus ---------- */
-button.perl { border: 0; color: inherit; font-family: inherit; cursor: pointer; min-height: 2.75rem; }
-.kopf button.perl { color: #fff; }
-button.perl:active { transform: translateY(1px); }
+/* Perlen im Kopf (Knopf zum Haus): Form und Größe wie die anderen Kopf-Knöpfe, siehe .kk in ui/basis.css */
 
 /* Haus der Lese-Raupe (Dialog) und Raupe mit Sachen: haus.css */
 .neuhaus .perle { width: 1rem; height: 1rem; border-radius: 50%; background: var(--perle); flex: none; }
@@ -98,7 +95,8 @@ button.perl:active { transform: translateY(1px); }
 @keyframes toastOben { from { opacity: 0; transform: translate(-50%, -.75rem); } }
 @keyframes toastKnopf { from { opacity: 0; transform: translateY(-.5rem) scale(.9); } }
 /* der Haus-Knopf hüpft kurz mit, damit klar ist, wohin die neue Sache gekommen ist */
-.perl.neu-da { animation: perlhupf .55s ease-in-out 3; box-shadow: inset 0 0 0 2px var(--senf), 0 0 14px rgba(244, 194, 67, .7); }
+.perl.neu-da { animation: perlLeucht .8s ease-in-out 4; box-shadow: inset 0 0 0 2px var(--senf), 0 0 14px rgba(244, 194, 67, .7); }
+@keyframes perlLeucht { 50% { box-shadow: inset 0 0 0 2px var(--senf), 0 0 22px 4px rgba(244, 194, 67, .95); } } /* leuchten statt hüpfen: die Beschriftung bleibt ruhig */
 
 @media (prefers-reduced-motion: reduce) {
   .ep-raupe, .ep-text p, .fg-stempel, .fg-raupe .rms, .al-karte, .neuhaus, .perl.neu-da { animation: none !important; }

@@ -313,7 +313,7 @@ const IM_BROWSER = ({ insets, max, vp }) => {
     if (R(kopf).height === 0 && kopf.children.length) add('fuss-ab', kopf, '.kopf hat Höhe 0 trotz Inhalt', '.kopf (Höhe 0)');
     const teile = [];
     const nimm = (e, wie) => { if (!e || !vis(e)) return; let r = R(e); if (wie === 'text') { const rs = []; const t = document.createTreeWalker(e, NodeFilter.SHOW_TEXT); for (let n = t.nextNode(); n; n = t.nextNode()) if (n.nodeValue.trim()) rs.push(...textRect(n)); if (!rs.length) return; r = unionR(rs); if (clipper(e)) { const b = box(e); r = { left: Math.max(r.left, b.l), top: Math.max(r.top, b.t), right: Math.min(r.right, b.r), bottom: Math.min(r.bottom, b.b) }; } } teile.push({ e, r: { left: r.left, top: r.top, right: r.right, bottom: r.bottom }, name: wie === 'text' ? basis(e) + '(Text)' : basis(e) }); };
-    kopf.querySelectorAll('.kb').forEach((e) => nimm(e, 'box'));
+    kopf.querySelectorAll('.kk').forEach((e) => nimm(e, 'box'));
     nimm(kopf.querySelector('.kt b'), 'text'); nimm(kopf.querySelector('.kt span'), 'text'); nimm(kopf.querySelector('.perl'), 'text');
     nimm(kopf.querySelector('.mondp'), 'box'); nimm(kopf.querySelector('.kweg'), 'box'); nimm(kopf.querySelector('.kweg img'), 'box');
     for (let i = 0; i < teile.length; i++) for (let j = i + 1; j < teile.length; j++) {
@@ -327,7 +327,7 @@ const IM_BROWSER = ({ insets, max, vp }) => {
   /* ---------- 13 safe-area ---------- */
   if (insets) {
     const zeile = (e, was, wert, grenze) => add('safe-area', e, `${was}: ${r1(wert)} (Grenze ${r1(grenze)})`);
-    if (kopf && !kopf.hidden && R(kopf).height > 0) kopf.querySelectorAll('.kb, .kt, .perl').forEach((e) => { const r = R(e); if (r.top < insO - 0.5) zeile(e, 'Kopf oben im Sicherheitsrand', r.top, insO); });
+    if (kopf && !kopf.hidden && R(kopf).height > 0) kopf.querySelectorAll('.kk, .kt').forEach((e) => { const r = R(e); if (r.top < insO - 0.5) zeile(e, 'Kopf oben im Sicherheitsrand', r.top, insO); });
     else {
       const bu = document.getElementById('buehne');
       for (const e of alle) if (bu && bu.contains(e) && vis(e) && !e.matches(DECO) && (ia(e) || eigenerText(e)) && !e.closest('.zug, .blatt, .brett') && R(e).top < insO - 0.5) zeile(e, 'Inhalt oben im Sicherheitsrand', R(e).top, insO);

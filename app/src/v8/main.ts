@@ -107,7 +107,9 @@ const IC = {
 
 /* ---------- Gerüst ---------- */
 const app = $('#app');
-app.innerHTML = `<header class="kopf"><div class="k-seite k-links"><button class="kb brettb" id="bBrett" aria-label="Brett">${IC.akte}<span>Brett</span></button><span class="mondp" id="kMond" aria-hidden="true"></span></div><div class="kt"><b id="kT1"></b><span id="kT2"></span></div><div class="k-seite k-rechts"><button class="perl" id="kPerl" aria-label="Haus der Lese-Raupe"></button><button class="kb aa" id="bAa" aria-label="Schrift">Aa<span>Schrift</span></button></div><div class="kweg" aria-hidden="true"><i></i><img id="kWegR" alt=""></div></header><main id="buehne"></main><footer id="fuss"></footer><div id="ueber"></div>`;
+// Kopf: vier gleich große runde Knöpfe mit Beschriftung darunter, spiegelgleich um den Titel in der Mitte.
+// Außen die Werkzeuge (Brett, Schrift), innen der Fortschritt (Mond = so viel vom Fall gelöst, Perlen → Haus der Raupe).
+app.innerHTML = `<header class="kopf"><div class="k-seite k-links"><button class="kk brettb" id="bBrett" aria-label="Brett">${IC.akte}<span class="kk-t">Brett</span></button><button class="kk mond" id="bMond" aria-label="Mond: so viel vom Fall ist gelöst"><span class="mondp" id="kMond" aria-hidden="true"></span><span class="kk-t">Mond</span></button></div><div class="kt"><b id="kT1"></b><span id="kT2"></span></div><div class="k-seite k-rechts"><button class="kk perl" id="kPerl" aria-label="Haus der Lese-Raupe"><b id="kPerlZ"></b><span class="kk-t">Perlen</span></button><button class="kk aa" id="bAa" aria-label="Schrift">Aa<span class="kk-t">Schrift</span></button></div><div class="kweg" aria-hidden="true"><i></i><img id="kWegR" alt=""></div></header><main id="buehne"></main><footer id="fuss"></footer><div id="ueber"></div>`;
 const buehne = $('#buehne'), fuss = $('#fuss'), ueber = $('#ueber');
 const modus = (m: string) => { app.dataset.m = m; buehne.ontouchstart = buehne.ontouchend = null; /* Blättern per Wisch gilt nur beim Lesen */ };
 /** Mond im Kopf: füllt sich mit jeder gelösten Spur, am Ende ist Vollmond */
@@ -118,9 +120,11 @@ function mondPhase(f: number): string {
 }
 function kopf() {
   $('.kopf').hidden = stand.view !== 'spur';
+  // Kärtchen am Kopf (Neu im Haus, Mond) gehören zum Kopf: ohne Kopf (Fallkarte, Finale, Album …) sofort weg
+  if (stand.view !== 'spur') app.querySelectorAll('.neuhaus, .kblase').forEach((e) => e.remove());
   $('#kT1').textContent = `Spur ${SP(stand.spur).spur}`;
   $('#kT2').innerHTML = `${UI.kapitel} ${kap().nr}<span class="kt-titel"> · ${kap().titelH}</span>`;
-  $('#kPerl').textContent = String(perlen());
+  $('#kPerlZ').textContent = String(perlen());
   { const li = kapSpuren(kap().nr); const kw = $('.kweg'); kw.style.setProperty('--weg', (li.filter((n) => stand.fertig.includes(n)).length / li.length * 100) + '%'); kw.style.setProperty('--teile', String(li.length)); ($('#kWegR') as HTMLImageElement).src = fig('raupe/lacht'); }
   $('#kMond').innerHTML = mondPhase(Math.min(1, stand.fertig.length / D.spuren.length));
   document.documentElement.style.setProperty('--fs', stand.fs + 'px');
@@ -453,7 +457,9 @@ function brett() {
     }, 500 + i * 1300));
     hookStaub = () => offen().forEach(klaere);
   };
-  if (staubig) hookStaub = staub(karte, fertigWischen);
+  // Spur noch nicht gelöst (alter oder kaputter Spielstand): keine neue Karte zum Anheften – das Brett trotzdem zeigen
+  if (!sec.querySelector('.bkarte.neu, .bkarte.wartet')) fertigWischen();
+  else if (staubig) hookStaub = staub(karte, fertigWischen);
   else {
     // Neuer Fund: das Kind hängt die Karte selbst ans Brett
     const ziel = $<HTMLElement>('.bkarte.wartet', sec);
@@ -638,6 +644,20 @@ function neuStart() {
 /* ---------- Kopf-Knöpfe, Einstellungen ---------- */
 tastenKlick(buehne); tastenKlick(ueber);
 $('#bBrett').onclick = brettOffen;
+/** Mond im Kopf antippen: ein kleines Kärtchen darunter sagt, was er zeigt („3 von 24 Spuren gelöst“), und verschwindet von selbst */
+$('#bMond').onclick = () => {
+  app.querySelector('.kblase')?.remove();
+  const el = document.createElement('div');
+  el.className = 'kblase'; el.setAttribute('role', 'status');
+  el.innerHTML = (UI.mondInfo ?? '{1} / {2}').replace('{1}', String(stand.fertig.length)).replace('{2}', String(D.spuren.length));
+  app.appendChild(el);
+  const A = app.getBoundingClientRect(), k = $('#bMond').getBoundingClientRect(), mitte = k.left + k.width / 2 - A.left;
+  const links = Math.max(8, Math.min(mitte - 26, A.width - el.offsetWidth - 8));
+  el.style.top = `${$('.kopf').getBoundingClientRect().bottom - A.top + 10}px`;
+  el.style.left = `${links}px`;
+  el.style.setProperty('--spitze', `${mitte - links}px`);
+  setTimeout(() => { el.classList.add('weg'); setTimeout(() => el.remove(), 350); }, 2800);
+};
 $('#kPerl').onclick = hausOeffnen;
 $('#bAa').onclick = () => {
   ueber.innerHTML = `<div class="schl"><section class="einst"><header><b>${UI.schrift}</b><button class="kb" data-a="zu" aria-label="Schließen">${IC.zu}</button></header><div class="er"><button class="kn zwei" data-f="-2">A−</button><button class="kn zwei" data-f="2">A+</button></div><div class="er"><button class="kn zwei${stand.silben ? ' an' : ''}" data-si="1"><span>${UI.silben}: ${stand.silben ? 'an' : 'aus'}</span></button></div><div class="er">${knopf('neu', UI.neuStart, 'still')}</div></section></div>`;

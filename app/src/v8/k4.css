@@ -218,7 +218,9 @@
 /* Die Kärtchen kommen aus dem Buchstaben-Beutel (main.ts): lose, ein wenig schief, in der Reihenfolge, in der das Kind sie bekommen hat */
 .fin-beutel { display: flex; align-items: center; justify-content: center; gap: .5rem; }
 .fin-beutel > .bt-sack { width: 2.75rem; height: 2.75rem; }
-.fin-beutel .fin-karten { gap: .625rem; }
+.fin-beutel .fin-karten { gap: .625rem; flex-wrap: nowrap; }
+/* schmale Bühne: die vier Kärtchen bleiben in einer Reihe neben dem Beutel (werden etwas schmaler) */
+.fin-beutel .fin-k { width: min(4rem, calc((100cqw - 2 * var(--rand) - 2.75rem - .5rem - 3 * .625rem) / 4)); }
 .fin-k:not(.zieht) { rotate: var(--r, 0deg); }
 /* nach dem 2. Fehler: der gesuchte Buchstabe (Kärtchen) und sein Feld leuchten */
 .fin-k.zeig { border-color: var(--senf); box-shadow: 0 3px 0 #D8CDB2, 0 0 0 4px rgba(244, 194, 67, .6), 0 0 22px rgba(255, 224, 130, .9); animation: puls 1s ease-in-out infinite; }

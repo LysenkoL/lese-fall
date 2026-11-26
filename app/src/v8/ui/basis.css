@@ -94,12 +94,37 @@ html :focus-visible:where(:not(.bkarte)) { box-shadow: 0 0 0 7px rgba(244, 194, 
   background: radial-gradient(120% 140% at 80% -40%, #34478A 0, transparent 60%), linear-gradient(var(--kopf-1), var(--kopf-2));
   box-shadow: 0 1px 0 rgba(244, 194, 67, .35), 0 8px 18px rgba(0, 0, 0, .28);
 }
-/* drei Zonen: links Brett + Mond, Mitte Spur/Kapitel, rechts Perlen + Schrift – die Mitte steht wirklich in der Mitte */
-.k-seite { display: flex; align-items: flex-start; gap: var(--a-2); min-width: 0; }
+/* drei Zonen: links Brett + Mond, Mitte Spur/Kapitel, rechts Perlen + Schrift – die Mitte steht wirklich in der Mitte
+   (zwei gleich breite Seitenspalten). Seiten spiegelgleich: vier runde Knöpfe gleicher Größe auf einer Achse,
+   Beschriftung darunter in einer Zeile; außen die Werkzeuge (weißer Ring), innen der Fortschritt (goldener Ring). */
+.k-seite { display: flex; align-items: flex-start; gap: .625rem; min-width: 0; }
 .k-links { justify-self: start; }
 .k-rechts { justify-self: end; }
-.k-seite > .mondp, .k-seite > .perl { margin-top: calc((var(--kopf-knopf) - 1.875rem) / 2); }
-.kt { min-width: 0; display: flex; flex-direction: column; align-items: center; text-align: center; line-height: var(--zh-eng); padding-top: .25rem; }
+.kk {
+  position: relative; flex: none; width: var(--kopf-knopf); height: var(--kopf-knopf); margin-bottom: 1.125rem; padding: 0;
+  display: flex; align-items: center; justify-content: center; border: 0; border-radius: 50%;
+  background: rgba(255, 255, 255, .08); box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .28);
+  color: #fff; font: inherit; cursor: pointer;
+  transition: transform var(--dauer-druck) ease, box-shadow var(--dauer-druck) ease, filter .2s;
+}
+.kk:active { transform: translateY(1px) scale(.97); }
+.kk > .kk-t { position: absolute; top: calc(100% + .25rem); left: 50%; translate: -50% 0; font-size: var(--t-etikett); font-weight: 700; line-height: 1; letter-spacing: .02em; white-space: nowrap; color: var(--auf-nacht-leise); pointer-events: none; }
+.kk.mond, .kk.perl { background: rgba(0, 0, 0, .22); box-shadow: inset 0 0 0 1.5px rgba(244, 194, 67, .6); }
+.kk.brettb { color: var(--senf-hell); }
+.kk.brettb svg { width: 1.375rem; height: 1.375rem; }
+.kk.aa { font-weight: 800; font-size: var(--t-text); }
+/* Perlen: Perle und Zahl im Kreis (bis 49 passt es) */
+.kk.perl { gap: .1875rem; font-weight: 800; font-size: var(--t-klein); line-height: 1; }
+.kk.perl::before { content: ''; flex: none; width: .8125rem; height: .8125rem; border-radius: 50%; background: var(--perle); }
+.kk.perl b { font-weight: 800; }
+/* Mond antippen: kleines Kärtchen unter dem Kopf mit Spitze zum Mond (main.ts) */
+.kblase { position: absolute; z-index: var(--z-effekt); max-width: min(16rem, calc(100% - 1rem)); padding: .4375rem .75rem; border-radius: .75rem; background: var(--papier); color: var(--tinte); border: 2px solid var(--senf); box-shadow: 0 8px 20px rgba(0, 0, 0, .35); font-size: var(--t-klein); font-weight: 700; line-height: 1.25; animation: kblaseRein .25s ease-out both; transition: opacity .3s; }
+.kblase::before { content: ''; position: absolute; top: -.4375rem; left: calc(var(--spitze, 24px) - .375rem); width: .75rem; height: .75rem; background: var(--papier); border: 2px solid var(--senf); border-right: 0; border-bottom: 0; border-radius: 3px 0 0 0; transform: rotate(45deg); }
+.kblase.weg { opacity: 0; }
+.kblase .s-b, .kblase .s-r { color: inherit; }
+@keyframes kblaseRein { from { opacity: 0; transform: translateY(-.375rem); } }
+/* Titel: zwei Zeilen, mittig auf der Achse der Knöpfe */
+.kt { min-width: 0; height: var(--kopf-knopf); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; line-height: var(--zh-eng); }
 .kt b { font-weight: 800; font-size: var(--t-knopf); letter-spacing: .01em; white-space: nowrap; }
 .kt span { font-size: var(--t-fein); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--auf-nacht-leise); }
 .kt .s-b, .kt .s-r { color: inherit; }
@@ -113,22 +138,8 @@ html :focus-visible:where(:not(.bkarte)) { box-shadow: 0 0 0 7px rgba(244, 194, 
 }
 .kb:active { transform: translateY(2px) scale(.985); }
 .kb.aa { font-weight: 800; font-size: var(--t-text); }
-.kopf .kb.aa { border-radius: 50%; background: rgba(255, 255, 255, .08); box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .28); }
-/* Brett und Schrift: gleiche runde Knöpfe, kleine Beschriftung darunter */
-.kopf .kb.brettb, .kopf .kb.aa { width: var(--kopf-knopf); min-width: 0; height: var(--kopf-knopf); padding: 0; border-radius: 50%; margin-bottom: 1rem; display: grid; place-items: center; }
-.kopf .kb.brettb > span, .kopf .kb.aa > span { position: absolute; top: calc(100% + .1875rem); left: 50%; translate: -50% 0; font-size: var(--t-etikett); font-weight: 700; line-height: 1; letter-spacing: .02em; white-space: nowrap; color: var(--auf-nacht-leise); }
-.kopf .kb.brettb > span { color: var(--senf-hell); }
-.kb.brettb { width: auto; min-width: var(--kopf-knopf); justify-content: center; padding: 0 var(--a-3) 0 .625rem; gap: .375rem; display: flex; align-items: center; font-weight: 800; font-size: var(--t-klein); }
-.kb.brettb svg { width: 1.375rem; height: 1.375rem; }
-.kopf .kb.brettb { background: rgba(255, 255, 255, .08); color: var(--senf-hell); border-radius: 50%; box-shadow: inset 0 0 0 1.5px rgba(244, 194, 67, .6); }
-.kopf .kb.brettb:active { transform: translateY(1px); box-shadow: inset 0 0 0 1.5px rgba(244, 194, 67, .9); }
 @media (max-width: 359px) { .k-seite { gap: var(--a-1); } }
-.perl {
-  font-weight: 800; font-size: var(--t-klein); display: flex; align-items: center; gap: .3125rem; flex: none;
-  background: rgba(0, 0, 0, .28); box-shadow: inset 0 0 0 1.5px rgba(244, 194, 67, .55); border-radius: var(--r-rund); padding: .3125rem .6875rem .3125rem .4375rem;
-}
-.perl::before { content: ''; width: 1rem; height: 1rem; border-radius: 50%; background: var(--perle); }
-.mondp { flex: none; display: block; width: 1.875rem; height: 1.875rem; filter: drop-shadow(0 0 6px rgba(246, 211, 91, .55)); }
+.mondp { flex: none; display: block; width: 1.75rem; height: 1.75rem; filter: drop-shadow(0 0 5px rgba(246, 211, 91, .5)); }
 .mondp svg { width: 100%; height: 100%; display: block; }
 .mondp svg.voll { filter: drop-shadow(0 0 5px rgba(246, 211, 91, .9)); }
 /* Weg der Raupe: Schiene unten in der zweiten Zeile, die Raupe steht darauf */
