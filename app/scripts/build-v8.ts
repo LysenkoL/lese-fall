@@ -52,9 +52,8 @@ const isThought = (line: string) =>
 /** erlaubte Posen: Bild in assets/illustrationen/raupe/ UND freigestellt in app/src/gen/frei/ (das zeigt die Denkblase) */
 const POSEN_ALLE = readdirSync(P('assets/illustrationen/raupe')).filter((f) => f.endsWith('.webp')).map((f) => f.slice(0, -5)).sort();
 const POSEN = POSEN_ALLE.filter((p) => existsSync(P(`app/src/gen/frei/raupe_${p}.webp`)));
-/** Bildnamen, die bilder.ts kennt: echte Datei oder Eintrag in ERSATZ */
-const ERSATZ_TEXT = readFileSync(P('app/src/v8/bilder.ts'), 'utf8');
-const bildBekannt = (n: string) => ['assets/illustrationen', 'app/src/gen'].some((d) => existsSync(P(`${d}/${n}.webp`))) || ERSATZ_TEXT.includes(`'${n}':`);
+/** Bildname mit echter Datei (Platzhalter gibt es nicht mehr; neue Szenenbilder zusätzlich in die Liste in app/src/v8/bilder.ts) */
+const bildBekannt = (n: string) => ['assets/illustrationen', 'app/src/gen'].some((d) => existsSync(P(`${d}/${n}.webp`)));
 interface Block { id: string; typ: 'p' | 'th'; s: string[]; umbruch?: boolean; pose?: string; bild?: string }
 /**
  * Liest die Absätze eines Abschnitts (### Spur … oder ### Ausklang …) ab Zeile `ab` bis zum nächsten ### oder ---.
@@ -78,7 +77,7 @@ function abschnitt(all: string[], ab: number, wo: string, idVor: string, bildNam
     const mb = l.match(/^<!--\s*Bild\s*(?::\s*([^\s>]+)\s*)?-->$/);
     if (mb) {
       if (bild) halt(j, `zwei <!-- Bild --> hintereinander ohne Absatz dazwischen`);
-      if (mb[1]) { if (!bildBekannt(mb[1])) halt(j, `Bild „${mb[1]}“ gibt es nicht (weder assets/illustrationen/${mb[1]}.webp noch app/src/gen/${mb[1]}.webp noch ERSATZ in bilder.ts)`); bild = { name: mb[1], z: j }; }
+      if (mb[1]) { if (!bildBekannt(mb[1])) halt(j, `Bild „${mb[1]}“ gibt es nicht (weder assets/illustrationen/${mb[1]}.webp noch app/src/gen/${mb[1]}.webp)`); bild = { name: mb[1], z: j }; }
       else {
         if (!bildName) halt(j, `<!-- Bild --> ohne Bild: dieser Abschnitt hat kein Bild (für ein anderes Bild: <!-- Bild: name -->)`);
         if (bildImText) halt(j, `<!-- Bild --> steht zweimal in diesem Abschnitt`);
