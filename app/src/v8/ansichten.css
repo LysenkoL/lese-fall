@@ -199,6 +199,7 @@
   .bgrid:has(> :nth-child(7)) .bk-bild { aspect-ratio: 3 / 2; }
   .bgrid:has(> :nth-child(7)) .bkarte.leer { min-height: clamp(2.75rem, 9cqh, 4.5rem); }
 }
+@media (min-width: 900px) { .bgrid:has(> :nth-child(7)) .bk-bild { aspect-ratio: 5 / 2; } } /* breit: drei volle Reihen passen auch auf 1280×800 */
 .bkarte.leer::after { content: '?'; font-weight: 800; font-size: 1.625rem; color: rgba(255, 243, 220, .38); }
 #app .bkarte.wartet {
   visibility: visible;

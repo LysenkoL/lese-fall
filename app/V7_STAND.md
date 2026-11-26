@@ -75,7 +75,7 @@ Alle Zusatz-Stile stehen in `app/src/v8/runde3.css` (wird nach `politur.css` gel
 
 ## Ссылки
 
-- **Артефакт v8.8 (D-19), вся книга:** https://claude.ai/artifact/LpyyxbsacqFDjQ83NgpxVu — 313 файлов, публикуется в два захода (лимит 255 файлов за раз): `npm run build && node scripts/artifact-v8.mjs`, затем Artifact с `file_path` = `app/dist/artifact_v8.html`, `root` = `app`, `files` из `dist/artifact_v8.json` (первые 250, потом остальные с тем же `url`).
+- **Артефакт v8.9 (D-20), вся книга:** https://claude.ai/artifact/LpyyxbsacqFDjQ83NgpxVu (та же ссылка, обновлено 26.11.2026) — 317 файлов, публикуется в два захода (лимит 255 файлов за раз): `npm run build && node scripts/artifact-v8.mjs`, затем Artifact с `file_path` = `app/dist/artifact_v8.html`, `root` = `app`, `files` из `dist/artifact_v8.json` (первые 250, потом остальные с тем же `url`).
 
 - Артефакт v8, Глава 1: https://claude.ai/artifact/NejzAvfd2FxeZJJYRJUpc9
 
@@ -107,3 +107,13 @@ Alle Zusatz-Stile stehen in `app/src/v8/runde3.css` (wird nach `politur.css` gel
 - **Finale (finale.ts):** 4 Schritte `fin` 0 Code · 1 Tresor mit Lupe · 2 Urkunde (Detektiv/Detektivin, `stand.titel`) · 3 Epilog; alter Speicherstand wird einmal umgerechnet (`finV`). `e2e-v8-ende.mjs` grün (390×844, 360×740, 800×1280).
 - **Neue Bilder** (Platzhalter aktiv, Prompts auf der Bilder-Seite): `k3_s19` (Ersatz `k3_elster`), `k4_s21_raupe` (Ersatz `baum`), `raupenweg` (Ersatz `ersatz/weg_raupenweg.svg`, Skizze `02_design/skizzen/raupenweg_skizze.png`). Neue Szenenbilder brauchen einen Eintrag im ECHT-Glob in `bilder.ts`.
 - **Silben:** neue Wörter am Ende von `04_data/silben_kapitel1.txt` (von Hand geprüft, Regeln wie Leseraupe).
+
+## Korrekturen nach dem Durchspielen (D-20, Text v8.9, 26.11.2026)
+
+- **Liste aller 63 Anmerkungen der Besitzerin** mit Lösung, Screenshot und ihrem „Принято / Не так“: Artifact https://claude.ai/artifact/ViLNQ4EmiHU1KKLiNDVBXn (Sammlung `pruefung` in der Artifact-DB).
+- **Text:** `06_review/brainstorm/BUCH1_v8_9.md` → `01_text/…KAPITEL1–4.md`. Neue Marker: `<!-- Raupe: pose -->` (Pose für den nächsten Gedanken), `<!-- Bild -->` / `<!-- Bild: name -->` (Bild im Text), Abschnitt `### Ausklang — Titel` nach der letzten Spur eines Kapitels (Bild: `ausklangBild` im Kapitel-JSON).
+- **Oberfläche:** Kopfzeile symmetrisch (Brett, Mond | Titel | Perlen, Schrift), eine Stecknadel für alle Karten, alle Karten vergrößerbar, Toast „Neu im Haus“ unter der Kopfzeile, Gedankenblasen mit Bläschen zur Raupe, Buchstaben-Beutel statt Code-Feldern, Urkunde ohne Detektiv/Detektivin. Text-Schlüssel für Silben: `app/src/v8/textschluessel.ts` (main.ts und build-v8.ts).
+- **Spiele:** `ziehbar()` (raetsel.ts) für zuverlässiges Ziehen; Raupenweg neu gezeichnet (`raetsel_weg_szene.ts`); Waage, Vogelbuch, Astgabel, Nest mit Zeigestock, Flunker-Finder (`.flk`), neue Laub-Spur BANK (S11).
+- **Haus der Lese-Raupe:** eigene `haus.css`, Reaktionen aufs Essen, Hicks, Kitzeln, Einschlafen, Wunsch-Wolke, kombinierbare Sachen (`stand.traegt` = Liste mit Komma), Taschenlampe.
+- **Neue Bilder (Prompts auf https://claude.ai/artifact/4HSaJjwJt2jFCGTw28szJd):** `k1_s6_nachher`, `k2_s7`, `k2_s8` (Datei ersetzen), `k2_s10_fenster`, `k2_s11_hof` (neu, bis dahin Ersatz in `bilder.ts`); `k3_s19` und `k4_s21_raupe` sind auf der Seite als fertig markiert, die Dateien fehlen noch im Repo.
+- **Tests:** `e2e-v8.mjs` (390×844, 24 Spuren, 281 Bildschirme) und `e2e-v8-ende.mjs` grün am 26.11.2026.
