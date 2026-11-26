@@ -9,3 +9,8 @@ __pycache__/
 
 # Vorbereitete Anhänge für die Bilder-Seite (aus 02_design/bilder_prompts_v8_9.py, nicht versioniert)
 02_design/_anhang/
+
+# Bilder und Rohdaten der UI-Audits (scripts/ui-audit.mjs); im Repo bleibt nur kurz.md je Lauf
+03_screens/v8/audit/*/*/
+03_screens/v8/audit/*/*.png
+03_screens/v8/audit/*/audit.json
