@@ -67,6 +67,7 @@ html :focus-visible:where(:not(.bkarte)) { box-shadow: 0 0 0 7px rgba(244, 194, 
   position: fixed; inset: 0; padding: 0 var(--rechts) 0 var(--links);
   display: grid; grid-template: auto minmax(0, 1fr) auto / minmax(0, 1fr);
   overflow: hidden; isolation: isolate; touch-action: manipulation; /* kein Doppeltipp-Zoom */
+  hyphens: none; /* Lesetext wird nie getrennt; schmale Beschriftungen erlauben es nur an Silbengrenzen (.trennt, T() setzt &shy;) */
   background: linear-gradient(var(--nacht-hell), var(--nacht-1) 70%);
 }
 #app[data-m="zug"], #app[data-m="haken"], #app[data-m="titel"] { color: #fff; }
@@ -213,26 +214,34 @@ html :focus-visible:where(:not(.bkarte)) { box-shadow: 0 0 0 7px rgba(244, 194, 
 :where(.zug) > :where(:not(.lampe, .wzfx)) { position: relative; flex-shrink: 0; }
 /* Mehr unten (mehrPfeil() in main.ts): solange unter dem Rand noch Karten liegen, ein dunkler Verlauf und ein runder Pfeil */
 #buehne > .mehr {
-  position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; height: 4.75rem;
-  display: flex; align-items: flex-end; justify-content: center; padding-bottom: var(--a-2);
-  background: linear-gradient(rgba(12, 20, 48, 0), rgba(12, 20, 48, .82) 70%); pointer-events: none;
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 3; height: 3.25rem;
+  display: flex; align-items: flex-end; justify-content: flex-end; padding: 0 max(2px, calc(var(--rand) - 1.25rem)) var(--a-1); /* Pfeil ragt in den Rand, deckt wenig vom Inhalt */
+  background: linear-gradient(rgba(12, 20, 48, 0), rgba(12, 20, 48, .62)); pointer-events: none;
 }
 #buehne > .mehr[hidden] { display: none; }
-#buehne > .mehr .rund { width: var(--tipp); height: var(--tipp); pointer-events: auto; background: var(--senf); color: var(--senf-tinte); box-shadow: 0 3px 0 var(--senf-dunkel), 0 8px 16px rgba(0, 0, 0, .35); animation: mehrHuepf 1.8s ease-in-out infinite; }
-#buehne > .mehr .rund svg { width: 1.5rem; height: 1.5rem; }
+/* Knopf 44 px (Tippfläche), sichtbar ein kleinerer Senf-Kreis darin */
+#buehne > .mehr .rund { position: relative; width: var(--tipp); height: var(--tipp); pointer-events: auto; background: none; box-shadow: none; color: var(--senf-tinte); animation: mehrHuepf 1.8s ease-in-out infinite; }
+#buehne > .mehr .rund::before { content: ''; position: absolute; inset: .25rem; border-radius: 50%; background: var(--senf); box-shadow: 0 3px 0 var(--senf-dunkel), 0 8px 16px rgba(0, 0, 0, .35); }
+#buehne > .mehr .rund svg { position: relative; width: 1.25rem; height: 1.25rem; }
 @keyframes mehrHuepf { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(.25rem); } }
 .zr { margin-top: auto; min-height: var(--a-1); color: var(--tinte); }
+/* Neue Sätze der Raupe (nach einer Antwort) rollen ganz ins Bild: sag() → zeigeRaupe() in raetsel.ts. Die Raupe klebt bewusst NICHT unten –
+   sie würde sonst Antworten, Karten und Hinweise des Spiels verdecken. */
 /* breite, niedrige Bühne (Tablet quer): Aufgabe und Raupe links, Spielfläche rechts in voller Höhe */
 @container buehne (min-aspect-ratio: 5 / 4) and (min-width: 46rem) {
   .zug[data-art] {
     --neben-kopf: 4.5rem;
-    display: grid; grid-template-columns: minmax(15rem, 32%) minmax(0, 1fr); grid-template-rows: auto auto 1fr;
+    display: grid; grid-template-columns: minmax(15rem, 32%) minmax(0, 1fr); grid-template-rows: auto auto minmax(min-content, 1fr); /* Raupe nie kleiner als ihr Text, sonst überlappt sie */
     column-gap: var(--a-5); align-content: start;
     padding-inline: max(var(--rand), calc((100cqw - var(--mass-spiel-quer)) / 2));
   }
   .zug[data-art] > .zk { grid-area: 1 / 1; }
   .zug[data-art] > .zt1 { grid-area: 2 / 1; }
   .zug[data-art] > .zr { grid-area: 3 / 1; align-self: safe end; margin-top: 0; } /* safe: wenig Höhe → Raupe rutscht unter den Text, nie darüber */
+  /* Ist die Spielfläche rechts höher als die Bühne, rollt alles zusammen – dann bleibt die Raupe unten links im Bild (sticky).
+     .raupe-unten setzt main.ts (mehrPfeil) nur, wenn die ganze linke Spalte in die Bühne passt: nur dann ist unter Titel und Aufgabe
+     genug Luft, und die Raupe schiebt sich nie darüber (Chrome hält sticky nicht in der Rasterzelle). Hochkant nie (dort läge sie auf dem Spiel). */
+  .zug.raupe-unten[data-art] > .zr { position: sticky; bottom: 0; }
   .zug[data-art] > .zi { grid-area: 1 / 2 / -1 / 2; align-self: safe center; margin-top: 0; }
 }
 
@@ -335,7 +344,9 @@ html :focus-visible:where(:not(.bkarte)) { box-shadow: 0 0 0 7px rgba(244, 194, 
 }
 
 /* ---------- Zurück / Vor neben dem Haupt-Knopf (main.ts: nav) ---------- */
-#fuss.mitnav { display: grid; grid-template-columns: 3rem minmax(0, 1fr) 3rem; column-gap: var(--a-2); align-items: center; }
+#fuss.mitnav { display: grid; grid-template-columns: 3rem minmax(0, 1fr) 3rem; column-gap: var(--a-2); align-items: start; }
+/* Pfeile stehen auf Höhe des ersten (Haupt-)Knopfs, auch wenn darunter ein zweiter Knopf oder „Überspringen“ folgt */
+#fuss.mitnav > .znav { margin-top: calc((var(--knopf-h) - 3rem) / 2); }
 #fuss.mitnav > .fz { grid-column: 2; grid-row: 1; width: min(100%, var(--mass-knopf)); justify-self: center; }
 #fuss.mitnav > .znav { width: 3rem; height: 3rem; min-width: 0; justify-self: center; }
 #fuss.mitnav > .zback { grid-column: 1; grid-row: 1; }
@@ -343,3 +354,7 @@ html :focus-visible:where(:not(.bkarte)) { box-shadow: 0 0 0 7px rgba(244, 194, 
 .rund.znav { background: transparent; color: rgba(255, 255, 255, .85); box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .28); }
 .rund.znav svg { width: 1.375rem; height: 1.375rem; }
 .rund.znav:active:not(:disabled) { box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .7); }
+
+/* Schmale Beschriftungen: lange Wörter brechen an Silbengrenzen mit Trennstrich (ab-neh-men), nie mitten in der Silbe.
+   Nicht bei Titeln (text-wrap: balance) und Brettkarten (line-clamp): dort bricht Chrome am &shy; ohne sichtbaren Strich – sie bleiben ungetrennt. */
+:is(.rh-karte span, .ub-k span, .al-karte b, .so-ding span, .as-n) { hyphens: manual; }

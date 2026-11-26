@@ -225,5 +225,12 @@
   .flk-kopf { font-size: var(--t-text); }
   .flk-stempel { font-size: var(--t-etikett); border-width: 2.5px; }
 }
-/* Stempel „Kapitel gelöst“ (main.ts setzt ihn mitten auf die Fläche): oben auf die Überschrift des Berichts, die Sätze bleiben lesbar */
-.zug[data-art="flunker"] .zi > .stempel.abdruck { top: 6.25rem; font-size: var(--t-knopf); }
+/* Stempel „Kapitel gelöst“ (main.ts setzt ihn aufs Blatt, mittig auf die Höhe der Überschrift): quer über die Überschrift, die Sätze bleiben lesbar;
+   ist rechts neben der Überschrift Platz, rückt main.ts (stempelNebenKopf) ihn dorthin und er verdeckt nichts */
+.flk-blatt > .stempel.abdruck { top: 2rem; font-size: var(--t-knopf); white-space: nowrap; max-width: none; }
+.flk-blatt > .stempel.abdruck.kl { font-size: var(--t-text); padding: .25rem .625rem; border-width: 3px; }
+/* breite Bühne: der Beutel mit dem neuen Buchstaben kommt links unter die Raupe (eigene Zeile im Raster) – nicht unter das ganze Blatt, sonst rollt der Stempel aus dem Bild */
+@container buehne (min-aspect-ratio: 5 / 4) and (min-width: 46rem) {
+  .zug[data-art="flunker"] { grid-template-rows: auto auto minmax(min-content, 1fr) auto; }
+  .zug[data-art="flunker"] > .bt-ausgabe { grid-area: 4 / 1; margin-top: var(--a-3); }
+}

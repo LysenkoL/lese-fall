@@ -89,12 +89,14 @@ export function zeigeFinale(c: FinCtx): void {
     if (ordnung.every((k, i) => wort[k] === wort[i])) ordnung = [...ordnung.slice(1), ordnung[0]];
     const felder: (number | null)[] = wort.map(() => null); // Feld → Kärtchen-Nr
     let fehl = 0, gesperrt = false, zeig = -1; // zeig: Feld, dessen Buchstabe nach dem 2. Fehler leuchtet
-    c.buehne.innerHTML = `<section class="zug fin" data-art="tresorcode"><div class="lampe"></div><div class="zk"><span class="tab hell">${c.UI.tresor}</span><h2>${F.code.titel}</h2></div><p class="zt1">${F.code.text}</p><div class="fin-tresor"><img src="${c.img('tresor_zu')}" alt="" draggable="false"><div class="fin-felder"></div></div><div class="fin-beutel">${c.sack ?? ''}<div class="fin-karten"></div></div><div class="zr"></div></section>`;
+    c.buehne.innerHTML = `<section class="zug fin" data-art="tresorcode"><div class="lampe"></div><div class="zk"><span class="tab hell">${c.UI.tresor}</span><h2>${F.code.titel}</h2></div><p class="zt1">${F.code.text}</p><div class="fin-tresor"><img src="${c.img('tresor_zu')}" alt="" draggable="false"><div class="fin-felder" aria-hidden="true"></div></div><div class="fin-reihe"></div><div class="fin-beutel">${c.sack ?? ''}<div class="fin-karten"></div></div><div class="zr"></div></section>`;
     const sec = c.buehne.querySelector<HTMLElement>('.fin')!;
     const sag = (b: string, t: string, kl = '') => { const z = sec.querySelector<HTMLElement>('.zr')!; z.innerHTML = t ? raupe(b, t, kl) : ''; if (t) requestAnimationFrame(() => z.scrollIntoView({ block: 'nearest', behavior: 'smooth' })); };
     const mal = () => {
       if (zeig >= 0 && felder[zeig] !== null && wort[felder[zeig]!] === wort[zeig]) zeig = -1; // richtig gelegt: nicht mehr leuchten
-      sec.querySelector('.fin-felder')!.innerHTML = felder.map((k, i) => `<button class="fin-f${k !== null ? ' voll' : ''}${i === zeig ? ' zeig' : ''}" data-f="${i}" aria-label="Feld ${i + 1}">${k !== null ? wort[k] : ''}</button>`).join('');
+      // Die Felder zum Legen liegen groß unter dem Tresor (gut zu treffen, auch zum Zurücknehmen); auf der Tür nur ihr kleines Abbild
+      sec.querySelector('.fin-reihe')!.innerHTML = felder.map((k, i) => `<button class="fin-f${k !== null ? ' voll' : ''}${i === zeig ? ' zeig' : ''}" data-f="${i}" aria-label="Feld ${i + 1}">${k !== null ? wort[k] : ''}</button>`).join('');
+      sec.querySelector('.fin-felder')!.innerHTML = felder.map((k) => `<i class="fin-m${k !== null ? ' voll' : ''}">${k !== null ? wort[k] : ''}</i>`).join('');
       const zeigK = zeig >= 0 ? ordnung.find((k) => wort[k] === wort[zeig] && !felder.includes(k)) : undefined;
       sec.querySelector('.fin-karten')!.innerHTML = ordnung.map((k, j) => `<button class="fin-k${felder.includes(k) ? ' weg' : ''}${k === zeigK ? ' zeig' : ''}" data-k="${k}" style="--r:${[-6, 5, -3, 7][j % 4]}deg" aria-label="Buchstabe ${wort[k]}" ${felder.includes(k) ? 'disabled' : ''}>${wort[k]}</button>`).join('');
     };
@@ -123,7 +125,7 @@ export function zeigeFinale(c: FinCtx): void {
     };
     const gut = (mitHilfe = false) => {
       gesperrt = true; c.hook.loese = null;
-      sec.querySelectorAll('.fin-f').forEach((f) => f.classList.add('ok'));
+      sec.querySelectorAll('.fin-f, .fin-m').forEach((f) => f.classList.add('ok'));
       if (!mitHilfe) sag('lob', F.code.erfolg, 'gut');
       c.summ([20, 40, 60]);
       setTimeout(() => sec.isConnected && gehe(1), mitHilfe ? 1600 : 1900);

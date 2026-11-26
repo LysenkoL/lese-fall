@@ -24,7 +24,7 @@
    "werkzeug": "lesen",
    "text": "Die Lese-Raupe hat den ganzen Fall aufgeschrieben. Aber zweimal hat sie geflunkert!",
    "start": "Hier ist mein Bericht. Lies ihn genau. Zweimal flunkere ich! Hihi.",
-   "frage": "Zwei Sätze stimmen nicht. Finde die Flunker-Sätze!",
+   "frage": "Zwei Sätze stimmen nicht. Tippe die Flunker-Sätze an!",
    "liste": "Mein Bericht: Der verschwundene Mond",
    "saetze": [
     {

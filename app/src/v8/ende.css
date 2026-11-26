@@ -26,7 +26,11 @@
 
 /* ---------- Urkunde aus „Meine Urkunde“ (gleiches HTML wie im Finale, urkundeHtml in finale.ts) ---------- */
 
-.urk-box { width: min(100%, 27.5rem); display: flex; flex-direction: column; gap: var(--a-3); padding: var(--a-3) 0; }
+/* Urkunde aus der Seite „Fall gelöst“: eigener, fast deckender Himmel – darunter liegende Knöpfe scheinen nicht durch */
+.schl.urk-schl { background: var(--nacht-0); padding-inline: var(--rand); } /* deckend: nichts scheint durch */
+#app:has(.urk-schl) #fuss { visibility: hidden; }
+.urk-box { width: min(100%, 27.5rem); display: flex; flex-direction: column; align-items: stretch; gap: var(--a-3); padding: var(--a-3) 0; }
+.urk-box .team { align-self: center; }
 .urk-box .fin.urk { min-height: 0; padding: 0; }
 .urk-box .fin.urk .dipl { width: min(100%, 27.5rem, calc((100cqh - 12rem) * .75)); }
 
@@ -92,6 +96,10 @@
 .neuhaus .s-b, .neuhaus .s-r { color: inherit; }
 .neuhaus.weg { opacity: 0; transform: translate(-50%, -.5rem); }
 .neuhaus.am-knopf.weg { transform: translateY(-.375rem) scale(.96); }
+/* daneben (Rechner): Spitze rechts in der Mitte, zeigt auf den Perlen-Knopf */
+.neuhaus.am-knopf.daneben { transform-origin: 100% 50%; }
+.neuhaus.am-knopf.daneben::before { top: calc(50% - .375rem); right: -.4375rem; border: 2px solid var(--senf); border-left: 0; border-bottom: 0; border-radius: 0 3px 0 0; }
+.neuhaus.am-knopf.daneben.weg { transform: translateX(.375rem) scale(.96); }
 @keyframes toastOben { from { opacity: 0; transform: translate(-50%, -.75rem); } }
 @keyframes toastKnopf { from { opacity: 0; transform: translateY(-.5rem) scale(.9); } }
 /* der Haus-Knopf hüpft kurz mit, damit klar ist, wohin die neue Sache gekommen ist */

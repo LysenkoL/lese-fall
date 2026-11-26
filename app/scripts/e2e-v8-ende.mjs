@@ -82,7 +82,7 @@ const urkunde = (sel) => ev((sel) => {
 const pruefeUrkunde = (u, wo, wahl) => {
   if (!u) return fehler.push(`${wo}: Urkunde fehlt`);
   if (u.wahl !== wahl) fehler.push(`${wo}: Wahl ist „${u.wahl}“, erwartet „${wahl}“`);
-  if (!u.titel.replace(/\|/g, '').endsWith(wahl === 'detektivin' ? 'Detektivin' : 'Detektiv')) fehler.push(`${wo}: Überschrift „${u.titel}“ passt nicht zu „${wahl}“`);
+  if (!u.titel.replace(/\|/g, '').replace(/\u00ad/g, '').endsWith(wahl === 'detektivin' ? 'Detektivin' : 'Detektiv')) fehler.push(`${wo}: Überschrift „${u.titel}“ passt nicht zu „${wahl}“`);
   if (u.knoepfe) fehler.push(`${wo}: Wahl-Knöpfe Detektiv/Detektivin sind noch da`);
   // gleichmäßige Abstände (justify-content: space-evenly): keine Lücke mehr als doppelt so groß wie die kleinste
   if (u.luecken.length && Math.max(...u.luecken) > 2 * Math.max(4, Math.min(...u.luecken)) + 6) fehler.push(`${wo}: Abstände in der Urkunde ungleich (${u.luecken.join('/')} px)`);
@@ -107,7 +107,7 @@ async function finale() {
   for (const k of await karten()) { await p.click(`.fin-k[data-k="${k.k}"]`); await sleep(80); }
   await sleep(300); await S('finale_code_falsch'); await sleep(1200);
   const tipp = await ev(() => document.querySelector('.fin .zr .rp p')?.textContent ?? '');
-  if (D.ui.tresorTipp && tipp.replace(/\|/g, '') !== D.ui.tresorTipp.replace(/\|/g, '')) fehler.push(`Finale: nach dem 1. Fehler nicht der Tipp „${D.ui.tresorTipp}“`);
+  if (D.ui.tresorTipp && tipp.replace(/\|/g, '').replace(/\u00ad/g, '') !== D.ui.tresorTipp.replace(/\|/g, '')) fehler.push(`Finale: nach dem 1. Fehler nicht der Tipp „${D.ui.tresorTipp}“`);
   // danach: fehlende Felder von links nach rechts füllen, das erste Kärtchen mit der Maus ziehen
   let gezogen = false;
   for (let i = 0; i < wort.length; i++) {
@@ -271,7 +271,20 @@ await klick('[data-a="start"]'); await sleep(600);
 await ev((n) => { window.__v8.stand.i = window.__v8.steps(n).indexOf('raetsel'); window.__v8.zeige(); }, MITTE); await sleep(500);
 for (let k = 0; k < 8 && !(await ev((n) => window.__v8.stand.fertig.includes(n), MITTE)); k++) { await loese(); await sleep(500); } // Rätsel mit mehreren Phasen
 await sleep(2200);
-if (!(await p.$('.neuhaus'))) fehler.push('Haus: neue Sache bei 6 Perlen nicht angekündigt');
+// Der Hinweis kommt erst in einem ruhigen Moment (nicht über dem gelösten Rätsel)
+if (await p.$('.neuhaus')) fehler.push('Haus: Hinweis „Neu im Haus“ schon über dem Rätsel');
+await klick('#fuss [data-a="weiter"]'); await sleep(900);
+for (let k = 0; k < 12; k++) {
+  const fertigB = await ev(() => { const w = document.querySelector('#fuss [data-a="weiter"]'); return !!w && !w.disabled && getComputedStyle(w).visibility !== 'hidden'; });
+  if (fertigB) break;
+  const karte = await p.$('.bkarte.wartet, .bkarte.neu');
+  if (karte) await karte.click({ force: true }); else await ev(() => window.__v8.loese());
+  await sleep(900);
+}
+// … und nach dem Brett auf dem ruhigen Haken-Bildschirm (Spur mit Haken; ohne Haken käme er auf dem fertigen Brett)
+if (await ev(() => window.__v8.steps(window.__v8.stand.spur).includes('haken'))) { await klick('#fuss [data-a="weiter"]'); }
+await sleep(1500);
+if (!(await p.$('.neuhaus'))) fehler.push('Haus: neue Sache bei 6 Perlen nicht angekündigt (nach dem Brett)');
 else {
   // Hinweis liegt oben unter dem Kopf (Spitze zum Haus-Knopf) und nie über den Knöpfen im Fuß
   const lage = await ev(() => { const t = document.querySelector('.neuhaus').getBoundingClientRect(); return { ueber: [...document.querySelectorAll('#fuss button, .kopf button')].filter((k) => { const r = k.getBoundingClientRect(); return r.width && r.left < t.right && r.right > t.left && r.top < t.bottom && r.bottom > t.top; }).map((k) => k.dataset.a || k.id || k.className), unterKopf: t.top >= document.querySelector('.kopf').getBoundingClientRect().bottom - 1 }; });

@@ -181,7 +181,9 @@
   box-shadow: inset 0 0 0 7px #8A5A2B, inset 0 0 0 9px #6E4520, inset 0 10px 26px rgba(0, 20, 10, .35);
 }
 /* Karten nie in die Höhe gezogen (auch nicht neben einer langen Fragen-Spalte): Reihen nur so hoch wie die Karten */
-.bgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .625rem; align-content: start; align-self: start; }
+/* alle Fragen geklärt: keine leere Überschrift „Offene Fragen“ */
+.brett h3:has(+ .fragen:empty) { display: none; }
+.bgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .625rem; align-content: start; align-self: start; width: 100%; } /* volle Breite auch mit nur 5 Karten (Kapitel 4) */
 .bkarte.leer {
   box-shadow: none;
   cursor: default;
@@ -199,6 +201,11 @@
   .bgrid:has(> :nth-child(7)) .bkarte.leer { min-height: clamp(2.75rem, 9cqh, 4.5rem); }
 }
 @media (min-width: 900px) { .bgrid:has(> :nth-child(7)) .bk-bild { aspect-ratio: 5 / 2; } } /* breit: drei volle Reihen passen auch auf 1280×800 */
+/* niedrige Bühne (z. B. 360×740): alle Brettbilder flacher, leere Plätze niedriger – das Brett passt ohne Rollen */
+@container buehne (max-height: 36rem) and (max-width: 899px) {
+  .bgrid .bk-bild { aspect-ratio: 2 / 1; }
+  .bgrid .bkarte.leer { min-height: clamp(2.5rem, 8cqh, 4rem); }
+}
 .bkarte.leer::after { content: '?'; font-weight: 800; font-size: 1.625rem; color: rgba(255, 243, 220, .38); }
 #app .bkarte.wartet {
   visibility: visible;
@@ -378,6 +385,17 @@
 .fk li { font-weight: 600; padding-left: 1.2em; position: relative; font-size: 1.03125rem; line-height: 1.35; text-wrap: pretty; }
 .fk ul { margin: .375rem 0 .25rem; padding: 0; list-style: none; display: flex; flex-direction: column; gap: .5rem; }
 .zug.fall { padding-bottom: .5rem; gap: .625rem; }
+/* breite Bühne: Fallkarte zweispaltig (Bild links, Sätze und Frage rechts) – kurze Zeilen, und nach dem Stempel passt der Beutel noch darunter */
+@container buehne (min-aspect-ratio: 5 / 4) and (min-width: 46rem) {
+  .zug.fall:not([data-art]) .fk { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); column-gap: 1.375rem; row-gap: .4375rem; align-items: start; }
+  .zug.fall:not([data-art]) .fk > :is(.tab, h2) { grid-column: 1 / -1; }
+  .zug.fall:not([data-art]) .fk > .tab { justify-self: start; }
+  .zug.fall:not([data-art]) .fk > .stempel.abdruck { left: 20%; top: 58%; } /* auf dem Bild, nicht auf den Sätzen */
+  .zug.fall:not([data-art]) .fk > .foto { grid-column: 1; grid-row: 3 / span 2; width: 100%; margin: .625rem 0 0; } /* Luft für die Klebestreifen unter der Überschrift */
+  .zug.fall:not([data-art]) > .bt-ausgabe .beutel { width: min(100%, 30rem); } /* Beschriftung in einer Zeile */
+  .zug.fall:not([data-art]) .fk > ul { grid-column: 2; grid-row: 3; margin-top: 0; }
+  .zug.fall:not([data-art]) .fk > .fk-frage { grid-column: 2; grid-row: 4; align-self: end; }
+}
 
 /* ---------- Gedanken der Lese-Raupe: vier Formen im Wechsel ----------
    Die Raupe steht immer NEBEN oder UNTER ihrer Blase (nie darin), und eine Spur aus drei Bläschen – groß an der Blase,
@@ -430,6 +448,6 @@
 /* Neuer Fund: passt auch auf niedrige Bühnen (Telefon quer) und rollt notfalls selbst */
 .fundov { justify-content: safe center; overflow-y: auto; }
 /* Große Überschriften trennen lange Wörter statt über den Rand zu laufen (große Systemschrift) */
-.titel h1, .kapk h1, .haken h2, .zk h2, .fk h2 { overflow-wrap: anywhere; hyphens: auto; text-wrap: balance; }
+.titel h1, .kapk h1, .haken h2, .zk h2, .fk h2 { overflow-wrap: anywhere; text-wrap: balance; } /* Trennung: basis.css (an Silbengrenzen) */
 .titel h1 { font-size: min(2.125rem, 10.5cqw); }
 .kapk h1 { font-size: min(2.125rem, 10.5cqw); }

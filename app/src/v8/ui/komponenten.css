@@ -8,7 +8,7 @@
 .kn.still { background: rgba(255, 255, 255, .14); color: inherit; border: 2px solid currentColor; opacity: .85; min-height: 3rem; font-size: 1rem; }
 .kn.zwei { flex: 1; background: #fff; color: var(--tinte); border: 2px solid var(--linie); box-shadow: 0 3px 0 var(--linie); font-size: 1.03125rem; padding: .625rem .5rem; }
 .kn.zwei.an { border-color: var(--senf-dunkel); background: var(--senf-hell); }
-.leise { align-self: center; min-height: 2.5rem; padding: .25rem 1rem; font-size: .9375rem; font-weight: 700; color: rgba(255, 255, 255, .7); text-decoration: underline; text-underline-offset: 3px; }
+.leise { align-self: center; min-height: var(--tipp); padding: .25rem 1rem; font-size: .9375rem; font-weight: 700; color: rgba(255, 255, 255, .7); text-decoration: underline; text-underline-offset: 3px; }
 .leise .s-b, .leise .s-r { color: inherit; }
 .kn {
   min-height: 3.375rem;
@@ -89,7 +89,7 @@
 .tab.etikett::before, .tab.etikett::after { content: none; }
 
 /* ---------- Seitenpunkte ---------- */
-.pkt { flex: 1; min-width: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: .4375rem; }
+.pkt { flex: 1; min-width: 0; display: flex; flex-wrap: nowrap; align-items: center; justify-content: center; gap: .4375rem; } /* nie zweizeilig */
 .pkt.hell { flex: none; }
 /* viele Blätter (große Schrift): kleinere Perlen, immer in einer Reihe */
 .pkt.dicht, .pkt.sehr-dicht { flex-wrap: nowrap; align-items: center; }
@@ -124,6 +124,11 @@
   box-shadow: 0 0 0 4px rgba(244, 194, 67, .28), 0 0 12px rgba(244, 194, 67, .7);
   animation: perlAn .45s cubic-bezier(.3, 1.6, .5, 1);
 }
+
+/* Lesen mit vielen Blättern (ab 6): Perlen enger und kleiner, damit sie neben „Rätsel“ in eine Reihe passen */
+#app[data-m="lesen"] .pkt.dicht { gap: .3125rem; }
+#app[data-m="lesen"] .pkt.dicht i, #app[data-m="lesen"] .pkt.dicht i.war { width: .625rem; height: .625rem; }
+#app[data-m="lesen"] .pkt.dicht i.an { width: 1rem; height: 1rem; box-shadow: 0 0 0 3px rgba(244, 194, 67, .28), 0 0 10px rgba(244, 194, 67, .7); }
 
 /* ---------- Antwortknöpfe ---------- */
 .opts { display: flex; flex-direction: column; gap: .625rem; }

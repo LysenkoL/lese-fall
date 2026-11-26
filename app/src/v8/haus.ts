@@ -389,8 +389,9 @@ export function zeigeHaus(c: HausCtx): void {
 }
 
 /**
- * „Neu im Haus der Lese-Raupe“: kleines Kärtchen direkt UNTER dem Haus-Knopf (Perlen) im Kopf, mit Spitze zum Knopf.
- * Es liegt über dem oberen Rand der Bühne (Titel, Text) – nie über Knöpfen im Fuß. Ohne sichtbaren Kopf: oben in der Mitte.
+ * „Neu im Haus der Lese-Raupe“: kleines Kärtchen am Haus-Knopf (Perlen) im Kopf, mit Spitze zum Knopf – auf dem Rechner links daneben
+ * in der Kopfzeile, sonst darunter über dem oberen Rand der Bühne; nie über Knöpfen im Fuß. Ohne sichtbaren Kopf: oben in der Mitte.
+ * Gezeigt wird es, wenn das Brett fertig ist (main.ts: zeigNeuImHaus), nicht über einem Rätsel.
  * Verschwindet nach 4,5 s von selbst; Antippen öffnet das Haus.
  */
 export function neuHinweis(app: HTMLElement, UI: Record<string, string>, id: string, oeffne: () => void): void {
@@ -403,14 +404,28 @@ export function neuHinweis(app: HTMLElement, UI: Record<string, string>, id: str
   const A = app.getBoundingClientRect();
   if (kopf && !kopf.hidden && knopf) {
     const k = kopf.getBoundingClientRect(), p = knopf.getBoundingClientRect();
-    const rand = 8, w = el.offsetWidth;
+    // Breiter Kopf (Rechner): links neben dem Perlen-Knopf in der Kopfzeile, Spitze nach rechts – liegt dann über nichts.
+    // Ist die Lücke etwas zu schmal (langer Kapiteltitel), darf der Name umbrechen, statt dass der Hinweis über die Spur rutscht.
+    const titel = kopf.querySelector<HTMLElement>('.kt')?.getBoundingClientRect();
+    const luecke = titel ? p.left - titel.right - 28 : 0;
+    if (luecke >= 200 && luecke < el.offsetWidth) el.style.maxWidth = `${Math.floor(luecke)}px`;
+    const rand = 8, w = el.offsetWidth, h = el.offsetHeight;
+    if (titel && luecke >= w) {
+      el.style.top = `${Math.max(k.top + 4, p.top + p.height / 2 - h / 2) - A.top}px`; // umbrochen höher als der Knopf: nicht oben aus dem Bild
+      el.style.right = `${A.right - p.left + 14}px`;
+      el.classList.add('am-knopf', 'daneben');
+      knopf.classList.remove('neu-da'); void knopf.offsetWidth; knopf.classList.add('neu-da');
+    } else {
+    el.style.maxWidth = '';
+    const wu = el.offsetWidth;
     // rechte Kante unter dem Perlen-Knopf, aber nie über den Rand hinaus
-    const rechts = Math.min(Math.max(A.right - p.right - 6, rand), A.width - w - rand);
+    const rechts = Math.min(Math.max(A.right - p.right - 6, rand), A.width - wu - rand);
     el.style.top = `${k.bottom - A.top + 10}px`;
     el.style.right = `${rechts}px`;
-    el.style.setProperty('--spitze', `${Math.min(Math.max(A.right - rechts - (p.left + p.width / 2), 18), w - 18)}px`);
+    el.style.setProperty('--spitze', `${Math.min(Math.max(A.right - rechts - (p.left + p.width / 2), 18), wu - 18)}px`);
     el.classList.add('am-knopf');
     knopf.classList.remove('neu-da'); void knopf.offsetWidth; knopf.classList.add('neu-da');
+    }
   }
   const weg = () => { el.classList.add('weg'); knopf?.classList.remove('neu-da'); setTimeout(() => el.remove(), 400); };
   el.onclick = () => { weg(); oeffne(); };

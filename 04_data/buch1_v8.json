@@ -99,7 +99,7 @@
      "werkzeug": "lesen",
      "text": "Die Le|se-Rau|pe hat den gan|zen Fall auf|ge|schrie|ben. A|ber zwei|mal hat sie ge|flun|kert!",
      "start": "Hier ist mein Be|richt. Lies ihn ge|nau. Zwei|mal flun|ke|re ich! Hi|hi.",
-     "frage": "Zwei Sät|ze stim|men nicht. Fin|de die Flun|ker-Sät|ze!",
+     "frage": "Zwei Sät|ze stim|men nicht. Tip|pe die Flun|ker-Sät|ze an!",
      "liste": "Mein Be|richt: Der ver|schwun|de|ne Mond",
      "saetze": [
       {
@@ -3241,7 +3241,8 @@
      "s": [
       "„Und un|ser Pla|kat?“, fragt Os|kar.",
       "„Da steht ja noch das al|te Stück drauf!“"
-     ]
+     ],
+     "bild": "k3_s19"
     },
     {
      "id": "s19-p12",
@@ -3259,8 +3260,7 @@
       "Al|le drei sind ganz in ih|re Zeich|nung ver|tieft.",
       "Der ech|te Mond liegt ganz au|ßen am Bank|rand in der Son|ne.",
       "Sein Sil|ber|stern fun|kelt."
-     ],
-     "bild": "k3_s19"
+     ]
     },
     {
      "id": "s19-p14",

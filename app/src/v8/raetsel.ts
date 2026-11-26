@@ -37,7 +37,16 @@ function sag(r: HTMLElement, b: string, t: string, kl = '') {
   if (t && K.UI.hilfe && t.includes(K.UI.hilfe)) chipLeuchtet(r); // die Raupe hilft: ihr Werkzeug leuchtet auf
   // Der erste Satz der Raupe kommt mit dem Rätsel: dann NICHT nach unten rollen, sonst sind Titel und Aufgabe abgeschnitten.
   // Ab dem zweiten Satz (Hinweis nach einem Fehler) rollt die Sprechblase ins Bild.
-  if (t) { if (r.dataset.gesagt) requestAnimationFrame(() => z.scrollIntoView({ block: 'nearest', behavior: 'smooth' })); r.dataset.gesagt = '1'; }
+  if (t) { if (r.dataset.gesagt) requestAnimationFrame(() => zeigeRaupe(r, z)); r.dataset.gesagt = '1'; }
+}
+/** Sprechblase ganz ins Bild rollen. Ist sie das Letzte im Rätsel, bis ganz ans Ende (sonst bleibt das Polster stehen und der Mehr-Pfeil liegt auf ihr).
+ *  Ist sie schon ganz zu sehen, rollt nichts. */
+function zeigeRaupe(r: HTMLElement, z: HTMLElement) {
+  const zug = r.closest<HTMLElement>('.zug') ?? r;
+  const R = z.getBoundingClientRect(), Z = zug.getBoundingClientRect();
+  if (R.top >= Z.top && R.bottom <= Z.bottom - (parseFloat(getComputedStyle(zug).paddingBottom) || 0) + 1) return;
+  if (!z.nextElementSibling || z.nextElementSibling.matches('.wzfx, .lampe')) zug.scrollTo({ top: zug.scrollHeight, behavior: 'smooth' });
+  else z.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
 }
 const knopf = (a: string, t: string, dis = false) => `<button class="kn haupt" data-a="${a}" ${dis ? 'disabled' : ''}><span>${t}</span></button>`;
 /** Knopf unten; ohne Inhalt bleibt ein unsichtbarer Platzhalter, damit nichts springt */
