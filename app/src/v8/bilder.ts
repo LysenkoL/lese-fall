@@ -48,13 +48,7 @@ export const ERSATZ: Record<string, string> = {
   'nest_finale': 'k4_s24',
   'objekte/kinder_hinten': 'ersatz/kinder_hinten',
   'objekte/raum_leer': 'ersatz/raum_leer',
-  // D-19: neue Szenenbilder (Prompts für die Besitzerin), bis dahin ein passendes vorhandenes Bild
-  'k3_s19': 'kapitel_4', // nicht k3_elster: das zeigt schon den Raub aus Spur 20
-  'k4_s21_raupe': 'baum',
-  // v8.9: Spur 10 (Oskar draußen am Fenster) und Spur 11 (Oskar wartet auf der Bank), bis dahin ein ruhiges Bild ohne falsche Szene
-  'k2_s10_fenster': 'k2_s9',
-  'k2_s11_hof': 'kapitel_3',
-  'raupenweg': 'ersatz/weg_raupenweg', // Spielbild Raupenweg (Spur 21), Komposition siehe Bilder-Seite
+  // D-19/D-20: k3_s19, k4_s21_raupe, k2_s10_fenster, k2_s11_hof und das Spielbild raupenweg sind gemalt (26.11.2026) – kein Ersatz mehr nötig
   'kinder/lina': 'kind/lina', 'kinder/tom': 'kind/tom', 'kinder/ida': 'kind/ida', 'kinder/emil': 'kind/emil', 'kinder/nele': 'kind/nele',
 };
 /** Pullis der Kinder (wie in Kapitel 1) für die gezeichneten Platzhalter */

@@ -262,6 +262,8 @@
 .rw-szene, .rw-vorne { position: absolute; inset: 0; width: 100%; height: 100%; display: block; border-radius: calc(var(--r-feld) - 4px); pointer-events: none; }
 .rw-vorne { z-index: 3; }
 .rw-bild:not(.gemalt) .rw-vorne { border-radius: calc(var(--r-feld) - 4px); } /* über einem echten Bild nur das große Blatt */
+/* gemaltes Spielbild: das große Blatt als Ausschnitt desselben Bildes über Raupe und Leuchtspur (Umriss aus den Daten: `vorne`) */
+.rw-vorbild { position: absolute; inset: 0; z-index: 3; background-size: 100% 100%; background-repeat: no-repeat; pointer-events: none; }
 .rw-bild .rw-wahl { z-index: 4; }
 .rw-bild.gemalt .rw-wahl { z-index: 4; }
 .rw-bild.szene .rw-figur { height: 31%; aspect-ratio: .6; }

@@ -3144,6 +3144,7 @@
    "spur": 19,
    "titel": "Ein Mond mit Kra|tern",
    "bild": "k3_s19",
+   "bildImText": true,
    "haken": "O|ben im Baum legt der schwarz-wei|ße Vo|gel den Kopf schief. Er starrt auf den fun|keln|den Sil|ber|stern.",
    "blocks": [
     {
@@ -3258,7 +3259,8 @@
       "Al|le drei sind ganz in ih|re Zeich|nung ver|tieft.",
       "Der ech|te Mond liegt ganz au|ßen am Bank|rand in der Son|ne.",
       "Sein Sil|ber|stern fun|kelt."
-     ]
+     ],
+     "bild": "k3_s19"
     },
     {
      "id": "s19-p14",
@@ -3559,6 +3561,7 @@
    "spur": 21,
    "titel": "Ein Schatz im Nest",
    "bild": "k4_s21_raupe",
+   "bildImText": true,
    "haken": "„Pst! Ganz lei|se jetzt. Was liegt da al|les im Nest?“",
    "blocks": [
     {
@@ -3620,7 +3623,8 @@
       "Al|le lau|fen zu|rück ins Klas|sen|zim|mer, di|rekt ans of|fe|ne Fens|ter.",
       "Frau Som|mer beugt sich weit hi|naus.",
       "Doch die Blät|ter sind so dicht, dass sie das Nest nicht se|hen kann."
-     ]
+     ],
+     "bild": "k4_s21_raupe"
     },
     {
      "id": "s21-p7",
@@ -3645,9 +3649,9 @@
     "titel": "Der lan|ge Zweig",
     "bild": "k4_s21_raupe",
     "ausschnitt": {
-     "x": 22,
-     "y": 18,
-     "w": 26,
+     "x": 15,
+     "y": 34,
+     "w": 30,
      "h": 36
     },
     "text": "Vom Fens|ter|brett führt ein lan|ger Zweig hi|nun|ter zum Nest. Die Rau|pe hat Angst. A|ber sie kriecht los.",
@@ -3674,6 +3678,136 @@
      "x": 15.8,
      "y": 66.3
     },
+    "vorne": [
+     [
+      39,
+      68.6
+     ],
+     [
+      39.6,
+      67.3
+     ],
+     [
+      40,
+      65.7
+     ],
+     [
+      40.8,
+      64
+     ],
+     [
+      41.8,
+      62.7
+     ],
+     [
+      42.9,
+      61.6
+     ],
+     [
+      44,
+      60.9
+     ],
+     [
+      45,
+      60.3
+     ],
+     [
+      46,
+      59.9
+     ],
+     [
+      47,
+      59.6
+     ],
+     [
+      48,
+      59.6
+     ],
+     [
+      49,
+      59.8
+     ],
+     [
+      50,
+      60.3
+     ],
+     [
+      51,
+      61
+     ],
+     [
+      52,
+      61.8
+     ],
+     [
+      53,
+      62.6
+     ],
+     [
+      53.8,
+      63
+     ],
+     [
+      54.6,
+      62.4
+     ],
+     [
+      55.3,
+      62.3
+     ],
+     [
+      54.9,
+      62.9
+     ],
+     [
+      54.1,
+      63.6
+     ],
+     [
+      53.8,
+      64.9
+     ],
+     [
+      53.3,
+      66.1
+     ],
+     [
+      52.3,
+      67.3
+     ],
+     [
+      51,
+      68.1
+     ],
+     [
+      50,
+      68.8
+     ],
+     [
+      48.5,
+      69.4
+     ],
+     [
+      47,
+      69.7
+     ],
+     [
+      45,
+      69.8
+     ],
+     [
+      43.5,
+      69.5
+     ],
+     [
+      42,
+      68.9
+     ],
+     [
+      40.5,
+      68.6
+     ]
+    ],
     "punkte": [
      {
       "text": "Kriech un|ter dem gro|ßen Blatt durch.",
@@ -3773,16 +3907,20 @@
         ],
         "weg": [
          {
-          "x": 81.4,
-          "y": 50
+          "x": 81.2,
+          "y": 49.4
          },
          {
-          "x": 82.2,
-          "y": 43.7
+          "x": 82.9,
+          "y": 45.7
          },
          {
-          "x": 82.7,
-          "y": 37.7
+          "x": 84,
+          "y": 43.3
+         },
+         {
+          "x": 83.2,
+          "y": 37.9
          }
         ]
        },

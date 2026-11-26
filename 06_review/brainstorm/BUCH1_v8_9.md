@@ -401,6 +401,7 @@ Dann ruft Mila zu Ida und den anderen Kindern auf dem Hof: „Hey, bringt zur Au
 
 „Dann malen wir es schnell um!“, ruft Mila.
 
+<!-- Bild -->
 Schnell holt Ben das Theaterplakat und Stifte aus dem Klassenzimmer. Oskar malt unten eine kleine graue Maus dazu, und Mila tupft drei braune Punkte auf den gemalten Mond. Alle drei sind ganz in ihre Zeichnung vertieft. Der echte Mond liegt ganz außen am Bankrand in der Sonne. Sein Silberstern funkelt.
 
 Oben am Fenster erschrickt die Lese-Raupe: Im Baum sitzt wieder der große Vogel. Er starrt genau auf den funkelnden Silberstern! „Passt auf euren Mond auf!“, ruft die Raupe. Doch die Menschen können sie ja nicht hören …
@@ -440,6 +441,7 @@ Da kommt Frau Sommer aus der Schultür. „Was macht ihr denn da?“, ruft sie. 
 
 Frau Sommer schaut verblüfft zum Baum hinauf. „Mein Schlüssel? In einem Nest?“ Dann schüttelt sie den Kopf. „Auf den Baum klettert hier niemand. Das ist viel zu gefährlich! Wir schauen vom Klassenzimmer aus. Das Fenster ist direkt über dem Nest. Kommt mit, und bringt den Mond mit!“
 
+<!-- Bild -->
 Alle laufen zurück ins Klassenzimmer, direkt ans offene Fenster. Frau Sommer beugt sich weit hinaus. Doch die Blätter sind so dicht, dass sie das Nest nicht sehen kann.
 
 Die Lese-Raupe sitzt auf dem Fensterbrett. Von hier führt ein langer Zweig hinunter bis zum Nest. „Mein Herz klopft“, flüstert sie. „Aber ich bin eine Detektivin!“

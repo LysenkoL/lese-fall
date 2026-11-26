@@ -39,6 +39,7 @@ Da kommt Frau Sommer aus der Schultür. „Was macht ihr denn da?“, ruft sie. 
 
 Frau Sommer schaut verblüfft zum Baum hinauf. „Mein Schlüssel? In einem Nest?“ Dann schüttelt sie den Kopf. „Auf den Baum klettert hier niemand. Das ist viel zu gefährlich! Wir schauen vom Klassenzimmer aus. Das Fenster ist direkt über dem Nest. Kommt mit, und bringt den Mond mit!“
 
+<!-- Bild -->
 Alle laufen zurück ins Klassenzimmer, direkt ans offene Fenster. Frau Sommer beugt sich weit hinaus. Doch die Blätter sind so dicht, dass sie das Nest nicht sehen kann.
 
 Die Lese-Raupe sitzt auf dem Fensterbrett. Von hier führt ein langer Zweig hinunter bis zum Nest. „Mein Herz klopft“, flüstert sie. „Aber ich bin eine Detektivin!“
