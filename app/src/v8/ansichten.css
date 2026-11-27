@@ -522,3 +522,5 @@
 .perl-tipp .perle { display: inline-block; width: .875rem; height: .875rem; border-radius: 50%; background: var(--perle); vertical-align: -.125rem; margin-right: .375rem; }
 .perl-tipp .s-b, .perl-tipp .s-r { color: inherit; }
 @media (prefers-reduced-motion: reduce) { .sperle i { animation: none; } .perle-flug { animation-duration: .01s; } }
+/* ganz breite Karte (Kap. 3): nur ein Hauch Neigung, sonst ragt die gedrehte lange Karte seitlich über das Brett */
+.bgrid > :nth-child(3n + 1):last-child { transform: rotate(calc(var(--n, 0deg) * .2)); }
