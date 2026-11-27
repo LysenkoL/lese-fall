@@ -392,7 +392,11 @@ function raetsel() {
   modus('zug');
   const z = SP(stand.spur).raetsel;
   const wz: Werkzeug | '' = (WERKZEUGE as string[]).includes(z.werkzeug) ? z.werkzeug : '';
-  buehne.innerHTML = `<section class="zug" data-art="${z.art}"${wz ? ` data-wz="${wz}"` : ''}><div class="lampe"></div>${wz ? '<div class="wzfx" aria-hidden="true"></div>' : ''}<div class="zk"><div class="zkr"><span class="tab hell">${UI.raetsel}</span>${wz ? wzChip(UI, wz) : ''}</div><h2>${z.titel}</h2></div><p class="zt1">${z.text}</p><div class="zi"></div><div class="zr"></div></section>`;
+  buehne.innerHTML = `<section class="zug" data-art="${z.art}"${wz ? ` data-wz="${wz}"` : ''}><div class="lampe"></div>${wz ? '<div class="wzfx" aria-hidden="true"></div>' : ''}<div class="zk"><div class="zkr"><span class="tab hell">${UI.raetsel}</span>${wz ? wzChip(UI, wz) : ''}</div><h2>${z.titel}</h2></div><p class="zt1 kurz">${z.text}</p><button class="zt1-mehr" type="button" hidden aria-expanded="false">${UI.mehrLesen}</button><div class="zi"></div><div class="zr"></div></section>`;
+  // Aufgabentext auf zwei Zeilen gekürzt, damit das ganze Spiel ohne Rollen auf den Bildschirm passt; „mehr“ klappt ihn auf
+  { const zt = $('.zt1', buehne), mk = $<HTMLButtonElement>('.zt1-mehr', buehne);
+    if (zt.scrollHeight > zt.clientHeight + 2) mk.hidden = false;
+    mk.onclick = () => { const auf = zt.classList.toggle('kurz') === false; mk.setAttribute('aria-expanded', String(auf)); mk.innerHTML = auf ? UI.wenigerLesen : UI.mehrLesen; }; }
   fuss.innerHTML = '<div class="fz"><button class="kn haupt" style="visibility:hidden" tabindex="-1" aria-hidden="true"><span>·</span></button></div>';
   const fertig = () => {
     if (!stand.fertig.includes(stand.spur)) {
