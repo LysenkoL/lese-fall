@@ -474,36 +474,25 @@ function tastenKlick(root: HTMLElement) {
     if (z && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); z.click(); }
   });
 }
-/** Die Raupe stellt eine neue Frage: Denkwolke über der Raupe mit dem Fragetext, dann fliegt der Zettel aus der Wolke an seinen Platz */
-function denkwolke(sec: HTMLElement, q: HTMLElement, fertig: () => void) {
-  const raupe = sec.querySelector<HTMLImageElement>('.brett-raupe');
-  const S = sec.getBoundingClientRect();
-  if (getComputedStyle(sec).position === 'static') sec.style.position = 'relative';
-  const r = raupe?.getBoundingClientRect() ?? q.getBoundingClientRect();
-  const w = document.createElement('div');
-  w.className = 'fr-wolke';
-  w.innerHTML = `<span>${q.querySelector('.fr-vorn span')?.innerHTML ?? ''}</span>`;
-  sec.appendChild(w);
-  // Wolke rechts über der Raupe, nie über den Rand hinaus
-  const rechts = Math.max(8, S.right - r.right - 4);
-  w.style.right = `${rechts}px`;
-  w.style.bottom = `${S.bottom - r.top + 6}px`;
-  w.style.setProperty('--spitze', `${Math.max(16, S.right - rechts - (r.left + r.width / 2))}px`);
-  if (raupe) { raupe.src = fig('raupe/denkt'); raupe.classList.add('denkt'); }
+/**
+ * Neue Frage – wie „Neuer Fund!“: groß über dem Brett die nachdenkliche Raupe und der Zettel; das Kind tippt ihn an,
+ * dann fliegt er an seinen Platz bei den offenen Fragen. Kein Zeitablauf: das Kind bestimmt das Tempo.
+ */
+function frageZeigen(sec: HTMLElement, q: HTMLElement, fertig: () => void) {
+  sec.insertAdjacentHTML('beforeend', `<div class="fundov frageov"><p class="fund-t">${UI.neueFrage}</p><img class="fr-raupe" src="${fig('raupe/denkt')}" alt=""><button class="zettel fr fundz">${q.querySelector('.fr-vorn span')?.outerHTML ?? ''}</button><p class="fund-h">${UI.frageTipp}</p></div>`);
+  const ov = sec.querySelector<HTMLElement>('.frageov:last-of-type')!, z = ov.querySelector<HTMLElement>('.fundz')!;
   summ(15);
-  setTimeout(() => {
-    if (!sec.isConnected) return;
-    // FLIP: Zettel startet klein in der Wolke und gleitet an seinen Platz
-    q.classList.remove('versteckt');
-    const W = w.getBoundingClientRect(), Z = q.getBoundingClientRect();
-    q.style.transition = 'none';
-    q.style.transform = `translate(${W.left + W.width / 2 - (Z.left + Z.width / 2)}px, ${W.top + W.height / 2 - (Z.top + Z.height / 2)}px) scale(.3)`;
-    void q.offsetWidth;
-    w.classList.add('weg');
-    q.style.transition = 'transform .6s cubic-bezier(.3, 1.2, .5, 1)';
-    q.style.transform = '';
-    setTimeout(() => { w.remove(); q.style.transition = ''; raupe?.classList.remove('denkt'); if (sec.isConnected) setTimeout(fertig, 350); }, 650);
-  }, 2600);
+  let weg = false;
+  const haengen = () => {
+    if (weg) return; weg = true;
+    q.classList.remove('versteckt'); q.style.visibility = 'hidden'; // Platz ist schon da, der Zettel landet genau dort
+    const ziel = q.getBoundingClientRect(), v = z.getBoundingClientRect();
+    ov.classList.add('fliegt');
+    z.style.transform = `translate(${ziel.left - v.left}px, ${ziel.top - v.top}px) scale(${ziel.width / v.width})`;
+    setTimeout(() => { ov.remove(); q.style.visibility = ''; q.classList.add('gepinnt'); if (sec.isConnected) fertig(); }, 560);
+  };
+  ov.addEventListener('click', (e) => { e.stopPropagation(); haengen(); });
+  return haengen;
 }
 /** Neue Sache im Haus der Lese-Raupe (beim Lösen gemerkt): kurz zeigen auf dem Haken-Bildschirm nach dem Brett
  *  (oder, wenn die Spur keinen hat, auf dem fertigen Brett). Jeder Wechsel des Bildschirms nimmt den Hinweis weg (zeige()). */
@@ -544,12 +533,14 @@ function brett() {
       if (!stand.geklaert.includes(q.dataset.q!)) stand.geklaert.push(q.dataset.q!);
       speichern();
       setTimeout(() => sec.isConnected && q.insertAdjacentHTML('beforeend', `<b class="stempel klein2">${UI.geklaert}</b>`), 450);
-      setTimeout(() => { if (sec.isConnected) inKiste(q); }, 2600);
-      if (!offen().length) { hookStaub = null; setTimeout(() => sec.isConnected && zeigWeiter(), 3300); }
+      // Antwort lesen lassen, dann in die Kiste; „Weiter“ erst, wenn der letzte Zettel in der Kiste liegt
+      setTimeout(() => { if (sec.isConnected) inKiste(q, !offen().length); }, 2200);
+      if (!offen().length) hookStaub = null;
     };
-    const inKiste = (q: HTMLElement) => {
+    const inKiste = (q: HTMLElement, letzter: boolean) => {
       const ki = sec.querySelector<HTMLElement>('.kiste');
-      if (!ki) { q.remove(); return; }
+      const danach = () => { if (letzter && sec.isConnected) zeigWeiter(); };
+      if (!ki) { q.remove(); return danach(); }
       const z = ki.getBoundingClientRect(), v = q.getBoundingClientRect();
       q.classList.add('fliegt');
       q.style.transform = `translate(${z.left + z.width / 2 - (v.left + v.width / 2)}px, ${z.top + z.height / 2 - (v.top + v.height / 2)}px) scale(.15) rotate(20deg)`;
@@ -558,26 +549,30 @@ function brett() {
         ki.outerHTML = kisteHtml();
         sec.querySelector('.kiste')?.classList.add('wackelt');
         summ(20);
+        danach();
       }, 650);
     };
+    // solange das Kind noch etwas antippen soll: statt eines grauen Knopfs ein Hinweis, was zu tun ist
+    const tippHinweis = () => { fuss.innerHTML = `<div class="fz"><p class="fuss-tipp">${UI.klaerTipp}</p></div>`; fuss.onclick = null; };
     const klaerenStarten = () => {
       if (!offen().length) return zeigWeiter();
-      fuss.innerHTML = `<div class="fz">${knopf('warte', UI.weiter, 'haupt', true)}</div>`;
+      tippHinweis();
       offen()[0]?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
       hookStaub = () => offen().forEach(klaere);
     };
     sec.addEventListener('click', (e) => { const q = (e.target as HTMLElement).closest<HTMLElement>('.zettel[data-ok]'); if (q) klaere(q); });
     sec.addEventListener('keydown', (e) => { const q = (e.target as HTMLElement).closest<HTMLElement>('.zettel[data-ok]'); if (q && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); klaere(q); } });
     if (!neue.length) return klaerenStarten();
+    // erst alle neuen Fragen (nacheinander, das Kind tippt jede an), dann die geklärten
     let n = 0;
     const naechste = () => {
       if (!sec.isConnected) return;
       const q = neue[n++];
       if (!q) { hookStaub = null; return klaerenStarten(); }
-      denkwolke(sec, q, naechste);
+      fuss.innerHTML = ''; fuss.onclick = null;
+      hookStaub = frageZeigen(sec, q, naechste);
     };
-    hookStaub = () => { neue.forEach((q) => q.classList.remove('versteckt')); sec.querySelector('.fr-wolke')?.remove(); n = neue.length; klaerenStarten(); };
-    setTimeout(naechste, 400);
+    naechste();
   };
   // Spur noch nicht gelöst (alter oder kaputter Spielstand): keine neue Karte zum Anheften – das Brett trotzdem zeigen
   if (!sec.querySelector('.bkarte.neu, .bkarte.wartet')) fertigWischen();

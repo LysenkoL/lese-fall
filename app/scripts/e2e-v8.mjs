@@ -189,11 +189,13 @@ async function brett(spur, kap) {
   } else if (await p.$('.fundov')) { // neuer Fund: das Kind tippt die Karte an, sie fliegt ans Brett
     await shot(`s${spur}_brett_fund`);
     await p.click('.fundov .fundk', { force: true }); await sleep(900); // die Karte wackelt ohne Ende, deshalb ohne Warten auf Stillstand
-    if (await p.$('.fundov')) fehler.push(`Spur ${spur}: Fundkarte hängt nicht am Brett`);
+    if (await p.$('.fundov:not(.frageov)')) fehler.push(`Spur ${spur}: Fundkarte hängt nicht am Brett`);
   } else fehler.push(`Spur ${spur}: Brett ohne Staub und ohne neue Fundkarte`);
   // geklärte Fragen („Geklärt! Tippe mich an.“): das Kind tippt jede an (sie wackeln ohne Ende, deshalb force);
-  // neue Fragen stellt die Raupe vorher in einer Denkwolke (je etwa 3,5 s)
-  for (let t = 0; t < 30 && (await p.$('.zettel[data-ok]:not(.um), .fr-wolke')); t++) {
+  // neue Fragen kommen vorher groß („Neue Frage!“), das Kind tippt sie an
+  for (let t = 0; t < 30 && (await p.$('.zettel[data-ok]:not(.um), .frageov')); t++) {
+    const neu = await p.$('.frageov:not(.fliegt) .fundz');
+    if (neu) { if (!t) await shot(`s${spur}_brett_neue_frage`); await neu.click({ force: true }).catch(() => {}); await sleep(800); continue; }
     const q = await p.$('.zettel[data-ok]:not(.um)');
     if (q) { if (!t) await shot(`s${spur}_brett_frage`); await q.click({ force: true }).catch(() => {}); await sleep(600); }
     else await sleep(500);

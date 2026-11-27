@@ -478,19 +478,15 @@
 .zettel.fr.fliegt { transition: transform .6s cubic-bezier(.5, 0, .7, .4), opacity .6s; opacity: .2; animation: none; pointer-events: none; z-index: 5; }
 @keyframes frDreh { 0% { transform: rotate(var(--n, 0deg)) rotateY(90deg); } 100% { transform: rotate(var(--n, 0deg)) rotateY(0); } }
 
-/* Denkwolke der Raupe mit der neuen Frage */
-.fr-wolke {
-  position: absolute; z-index: 6; max-width: min(16rem, 80%);
-  background: #fff; color: var(--tinte); font-weight: 800; font-size: 1rem; line-height: 1.3;
-  border-radius: 1.5rem 1.375rem 1.625rem 1.25rem; padding: .75rem 1rem;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, .3); animation: hoch .35s both;
-}
-.fr-wolke::before, .fr-wolke::after { content: ''; position: absolute; background: #fff; border-radius: 50%; box-shadow: 0 2px 4px rgba(0, 0, 0, .2); }
-.fr-wolke::before { width: .75rem; height: .75rem; bottom: -.625rem; right: calc(var(--spitze, 2rem) - .375rem); }
-.fr-wolke::after { width: .4375rem; height: .4375rem; bottom: -1.125rem; right: calc(var(--spitze, 2rem) - .5rem); }
-.fr-wolke .s-b, .fr-wolke .s-r { color: inherit; }
-.fr-wolke.weg { opacity: 0; transform: scale(.8); transition: opacity .3s, transform .3s; }
-.brett-raupe.denkt { animation: wipp 1.2s ease-in-out infinite; }
+/* Neue Frage (wie „Neuer Fund!“): nachdenkliche Raupe und großer Zettel über dem Brett */
+.frageov .fr-raupe { height: min(7.5rem, 18cqh); width: auto; filter: drop-shadow(0 6px 10px rgba(0, 0, 0, .35)); animation: wipp 3s ease-in-out infinite; }
+#app .frageov .fundz { width: min(80%, 17rem); font-size: 1.1875rem; line-height: 1.3; padding: 1rem 1rem .875rem; transform: rotate(-2deg); transform-origin: top left; transition: transform .55s cubic-bezier(.3, 1.1, .5, 1); box-shadow: 0 0 0 4px rgba(255, 224, 130, .5), 0 18px 36px rgba(0, 0, 0, .45); animation: fundWipp 1.6s ease-in-out infinite; cursor: pointer; border: 0; font-family: inherit; color: var(--tinte); text-align: left; }
+#app .frageov.fliegt .fundz { animation: none; }
+.frageov.fliegt .fr-raupe { opacity: 0; transition: opacity .2s; }
+.zettel.fr.gepinnt { animation: pinnwipp .5s ease-out; }
+/* Fuß: was jetzt zu tun ist (statt eines grauen „Weiter“) */
+.fuss-tipp { margin: 0 auto; display: block; padding-block: .75rem; line-height: 1.5rem; font-weight: 800; font-size: 1.0625rem; color: #FFE082; text-align: center; }
+.fuss-tipp .s-b, .fuss-tipp .s-r { color: inherit; }
 
 /* Beutel und Kiste nebeneinander */
 .bt-zeile { display: flex; gap: .5rem; align-items: stretch; }
@@ -514,7 +510,7 @@
 .ki-liste .zettel.fr { align-items: stretch; }
 .ki-a { font-weight: 800; color: #2E6B1F; }
 .ki-a .s-b, .ki-a .s-r { color: inherit; }
-@media (prefers-reduced-motion: reduce) { .zettel.fr.um, .fr-wolke { animation: none; } .zettel.fr.fliegt { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .zettel.fr.um, .frageov .fr-raupe { animation: none; } .zettel.fr.fliegt { transition: none; } }
 /* Plakette „Geklärt! Tippe mich an.“ liegt auf der Unterkante des Zettels: macht ihn nicht höher (Brett passt auf das Telefon) */
 .zettel.fr .klaer { position: absolute; right: .375rem; bottom: -.625rem; white-space: nowrap; font-size: .6875rem; z-index: 2; }
 
