@@ -524,3 +524,6 @@
 @media (prefers-reduced-motion: reduce) { .sperle i { animation: none; } .perle-flug { animation-duration: .01s; } }
 /* ganz breite Karte (Kap. 3): nur ein Hauch Neigung, sonst ragt die gedrehte lange Karte seitlich über das Brett */
 .bgrid > :nth-child(3n + 1):last-child { transform: rotate(calc(var(--n, 0deg) * .2)); }
+/* ganz breiter leerer Platz, der auf die Karte wartet: pulsiert mit Leuchten statt Vergrößern (sonst ragt er seitlich hinaus) */
+#app .bgrid > :nth-child(3n + 1):last-child.wartet { animation: wartLeucht 1s ease-in-out infinite; }
+@keyframes wartLeucht { 50% { box-shadow: 0 0 0 7px rgba(244, 194, 67, .45); } }
