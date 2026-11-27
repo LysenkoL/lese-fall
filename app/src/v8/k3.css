@@ -426,5 +426,16 @@
   width: min(100%, 18.75rem, calc(38cqh * .75));
   height: auto;
 }
+/* breite Bühne: Plakat und Stücke nebeneinander und größer (die Höhe reicht, die Breite ist frei); Fragen danach über die ganze Breite */
+@container buehne (min-aspect-ratio: 5 / 4) and (min-width: 46rem) {
+  .zug[data-art="plakat"] .zi { display: grid; grid-template-columns: auto auto; justify-content: center; align-items: center; column-gap: 2rem; }
+  .zug[data-art="plakat"] .zi > :not(.pk-brett, .pk-pool) { grid-column: 1 / -1; }
+  .zug[data-art="plakat"] .pk-brett { width: min(21rem, calc(64cqh * .75)); }
+  /* Stücke so groß wie die Plätze und im selben Raster wie das Plakat: das Kind sieht sofort, was wohin passt */
+  .zug[data-art="plakat"] .pk-pool { width: min(21rem, calc(64cqh * .75)); grid-template-columns: repeat(var(--sp), minmax(0, 1fr)); gap: .5rem; padding: .375rem; }
+  /* fertig: das Plakat steht in der Mitte und macht Platz für „Was wissen wir jetzt sicher?“ */
+  .zug[data-art="plakat"] .zi:has(.pk-brett.fest) { grid-template-columns: auto; }
+  .zug[data-art="plakat"] .pk-brett.fest { width: min(13rem, calc(34cqh * .75)); justify-self: center; }
+}
 
 .kr-leg > span > b { font-weight: inherit; min-width: 0; } /* Silben bleiben ein Wort, keine Lücken */

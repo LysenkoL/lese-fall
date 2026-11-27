@@ -1,4 +1,4 @@
-package app.lesefall;
+package app.spurenraupe;
 
 import com.getcapacitor.BridgeActivity;
 

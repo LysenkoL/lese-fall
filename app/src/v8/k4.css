@@ -194,9 +194,20 @@
 }
 
 /* ---------- Finale (finale.ts): 0 Code, 1 Tresor offen mit goldener Lupe, 2 Urkunde, 3 Epilog (ende.css) ---------- */
-.fin-tresor { position: relative; container-type: inline-size; width: min(62%, 15.625rem, max(10rem, calc(100cqh - 31rem))); margin: 0 auto; }
-.fin-tresor .fin-felder { position: absolute; left: 28.7%; width: 42.6%; top: 65%; height: 8.6%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 4.3%; }
-.fin-tresor .fin-f { width: 100%; height: 100%; border-radius: 2.6cqw; font-size: 7cqw; border-width: .6cqw; }
+.fin-tresor { position: relative; container-type: inline-size; width: min(62%, 15.625rem, max(9rem, calc(100cqh - 35rem))); margin: 0 auto; }
+.fin-tresor .fin-felder { position: absolute; left: 28.7%; width: 42.6%; top: 65%; height: 8.6%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 4.3%; pointer-events: none; }
+/* kleines Abbild der Felder auf der Tresortür (nicht antippbar) */
+.fin-m { display: grid; place-items: center; border-radius: 2.6cqw; border: .6cqw dashed rgba(255, 255, 255, .55); background: rgba(255, 255, 255, .08); color: var(--senf-tinte, #26221C); font-style: normal; font-weight: 800; font-size: 7cqw; line-height: 1; }
+.fin-m.voll { border: 0; background: var(--senf); }
+.fin-m.ok { background: #7ACB62; }
+/* breite Bühne: der Tresor-Code bleibt eine Spalte in der Mitte (Tresor, Felder, Kärtchen untereinander – wie auf dem Telefon) */
+@container buehne (min-aspect-ratio: 5 / 4) and (min-width: 46rem) {
+  .zug.fin[data-art="tresorcode"] { display: flex; padding-inline: max(var(--rand), calc((100cqw - 34rem) / 2)); }
+  .zug.fin[data-art="tresorcode"] > .zr { margin-top: auto; }
+}
+/* die Felder zum Legen: groß unter dem Tresor */
+.fin-reihe { display: flex; justify-content: center; gap: .625rem; }
+.fin-reihe .fin-f { width: 3.5rem; height: 3.875rem; font-size: 2.125rem; }
 .fin-felder { display: flex; justify-content: center; gap: .625rem; }
 .fin-f {
   width: 3.875rem;
@@ -216,11 +227,13 @@
 .fin-f.ok { background: #7ACB62; box-shadow: 0 3px 0 #4C9B3A; }
 .fin-karten { display: flex; justify-content: center; gap: .75rem; flex-wrap: wrap; }
 /* Die Kärtchen kommen aus dem Buchstaben-Beutel (main.ts): lose, ein wenig schief, in der Reihenfolge, in der das Kind sie bekommen hat */
-.fin-beutel { display: flex; align-items: center; justify-content: center; gap: .5rem; }
-.fin-beutel > .bt-sack { width: 2.75rem; height: 2.75rem; }
+/* Raster: Beutel links außen, die Kärtchen genau in der Mitte – also genau unter den vier Feldern (rechts eine gleich breite leere Spalte).
+   Ist es zu eng, gibt nur die rechte Spalte nach (minmax(0, …)); der Beutel wird nie überdeckt. */
+.fin-beutel { display: grid; grid-template-columns: minmax(auto, 1fr) auto minmax(0, 1fr); align-items: center; column-gap: .5rem; }
+.fin-beutel > .bt-sack { width: 2.75rem; height: 2.75rem; justify-self: end; }
 .fin-beutel .fin-karten { gap: .625rem; flex-wrap: nowrap; }
-/* schmale Bühne: die vier Kärtchen bleiben in einer Reihe neben dem Beutel (werden etwas schmaler) */
-.fin-beutel .fin-k { width: min(4rem, calc((100cqw - 2 * var(--rand) - 2.75rem - .5rem - 3 * .625rem) / 4)); }
+/* so groß wie die Felder darüber (.fin-reihe .fin-f); schmale Bühne: die vier bleiben in einer Reihe neben dem Beutel (werden etwas schmaler) */
+.fin-beutel .fin-k { width: min(3.5rem, calc((100cqw - 2 * var(--rand) - 2.75rem - .5rem - 3 * .625rem) / 4)); height: 3.875rem; font-size: 2.125rem; }
 .fin-k:not(.zieht) { rotate: var(--r, 0deg); }
 /* nach dem 2. Fehler: der gesuchte Buchstabe (Kärtchen) und sein Feld leuchten */
 .fin-k.zeig { border-color: var(--senf); box-shadow: 0 3px 0 #D8CDB2, 0 0 0 4px rgba(244, 194, 67, .6), 0 0 22px rgba(255, 224, 130, .9); animation: puls 1s ease-in-out infinite; }
@@ -301,7 +314,7 @@
   display: inline-block;
 }
 .zug.fin { overflow-x: clip; }
-.fin.urk { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .625rem; padding: .375rem .25rem 0; min-height: 100%; overflow-x: clip; }
+.fin.urk { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .625rem; padding: .375rem var(--rand) 0; min-height: 100%; overflow-x: clip; }
 /* im Finale füllt die Urkunde die Bühne; reicht die Höhe doch nicht, rollt sie statt abzuschneiden */
 #buehne > .fin.urk { position: absolute; inset: 0; min-height: 0; justify-content: safe center; overflow: hidden auto; padding-bottom: .5rem; }
 .tv-innen {

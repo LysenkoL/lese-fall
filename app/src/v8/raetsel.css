@@ -124,6 +124,18 @@
 .ub-schalter button { border-radius: var(--r-rund); padding: .5rem 1.375rem; font-weight: 800; font-size: 1rem; color: #fff; background: transparent; min-width: 6.875rem; min-height: var(--tipp); }
 .ub-schalter button.an { background: linear-gradient(#FFD564, #F0B62E); color: #26221C; box-shadow: 0 3px 0 #B8851A; }
 .ub-schalter button span span { color: inherit; }
+/* Lupe (S2): kleines Zeichen auf jedem Bild; Antippen zeigt beide Bilder groß untereinander über der Bühne */
+.ub-zwei .ub-bild { cursor: zoom-in; }
+.ub-lupe { position: absolute; right: .25rem; bottom: .25rem; z-index: 4; width: 1.75rem; height: 1.75rem; display: grid; place-items: center; border-radius: 50%; background: var(--senf); color: var(--senf-tinte); box-shadow: 0 2px 0 var(--senf-dunkel); pointer-events: none; }
+.ub-lupe svg { width: 1.125rem; height: 1.125rem; }
+.ub-gross { position: absolute; inset: 0; z-index: 6; display: flex; align-items: center; justify-content: center; padding: var(--a-3) var(--rand); background: rgba(12, 20, 48, .94); animation: ein .2s both; cursor: zoom-out; }
+.ub-gross-in { display: flex; flex-direction: column; align-items: center; gap: .625rem; width: min(100%, calc((100cqh - 5rem) / 2 * 1.5)); }
+@container buehne (min-aspect-ratio: 5 / 4) { .ub-gross-in { flex-direction: row; width: min(100%, calc((100cqh - 4rem) * 1.5 * 2 + .625rem)); } }
+.ub-gross .ub { width: 100%; }
+.ub-gross .ub-lupe { display: none; }
+.ub-gross .ub-bild .ring:not(.miss) { width: 3.5rem; height: 3.5rem; margin: -1.75rem 0 0 -1.75rem; }
+.ub-zu { position: absolute; top: var(--a-2); right: var(--a-2); color: var(--tinte); }
+.ub-zu svg { width: 1.5rem; height: 1.5rem; }
 .ub-hin { text-align: center; color: #fff; font-size: .875rem; font-weight: 600; opacity: .85; }
 .ub-hin .s-b, .ub-hin .s-r { color: inherit; }
 
@@ -173,6 +185,10 @@
   transition: transform .2s;
 }
 .mm-box.gross { flex: none; width: 100%; }
+/* breite Bühne: der Staub-Kreis passt ganz in die Höhe, sonst müsste man zum Wischen scrollen */
+@container buehne (min-aspect-ratio: 5 / 4) and (min-width: 46rem) {
+  .mm-box.gross { width: min(100%, calc((100cqh - 5rem) * 4 / 3)); align-self: center; }
+}
 .mm-box.dreh1 { transform: perspective(500px) rotateY(90deg); }
 .mm-box.dreh2 { animation: dreh2 .2s both; }
 .mm-ding { width: 78%; height: 78%; object-fit: contain; pointer-events: none; }
@@ -423,9 +439,9 @@
 .so-ziele.vier .so-kopf b { font-size: .875rem; text-align: left; }
 .so-ziele.vier .so-drin { gap: .25rem; display: flex; flex-wrap: wrap; justify-content: center; }
 .so-ziele.vier .so-ding.klein { width: 4rem; }
-.so-ding span { font-size: .84375rem; font-weight: 800; line-height: 1.15; text-align: center; overflow-wrap: normal; word-break: normal; hyphens: none; }
+.so-ding span { font-size: .84375rem; font-weight: 800; line-height: 1.15; text-align: center; overflow-wrap: normal; word-break: normal; }
 .so-ding.klein { min-height: 0; padding: 3px; cursor: default; box-shadow: none; width: 5.75rem; }
-.so-ding.klein span { overflow-wrap: normal; word-break: normal; hyphens: none; font-size: var(--t-etikett); }
+.so-ding.klein span { overflow-wrap: normal; word-break: normal; font-size: var(--t-etikett); }
 .so-ziel.nein { animation: wackel .4s; border-color: var(--weich); background: var(--weich-bg); }
 .so-ding.nein { animation: wackel .4s; border-color: var(--weich); }
 
@@ -487,6 +503,7 @@
 .sb-liste .s-b, .sb-liste .s-r { color: inherit; }
 .sb-bild { position: relative; aspect-ratio: 3 / 2; border-radius: .75rem; border: 4px solid #fff; box-shadow: 0 10px 22px rgba(0, 0, 0, .35); overflow: hidden; cursor: crosshair; }
 .sb-bild img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
+.sb-bild img.aus { position: absolute; max-width: none; object-fit: fill; } /* Ausschnitt (S9): nur Oskar auf der Bank, groß */
 .sb-bild .ring.miss { width: 2.75rem; height: 2.75rem; margin: -1.375rem 0 0 -1.375rem; border-width: 4px; }
 .sb-ring.blink { animation: ring .5s both, puls .7s .5s 3; }
 .sb-ring {
@@ -579,6 +596,11 @@
 .ab-wort:has(> i:nth-child(6)) { gap: .375rem; }
 .ab-wort:has(> i:nth-child(6)) > i { width: min(3.25rem, calc((100cqw - 2 * var(--rand) - 2rem) / 6)); height: 3.25rem; font-size: 1.75rem; }
 .ab-wort i.da.vor { background: var(--papier); box-shadow: 0 3px 0 #D8CDB2; animation: none; }
+/* breite Bühne: die Wort-Felder stehen rechts direkt über der Spielfläche (dort liegen die Buchstaben), nicht unten links */
+@container buehne (min-aspect-ratio: 5 / 4) and (min-width: 46rem) {
+  .zug:is([data-art="wort"], [data-art="astgabel"]) > .ab-wort { grid-column: 2; grid-row: 1; align-self: end; margin: 0 0 .25rem; }
+  .zug:is([data-art="wort"], [data-art="astgabel"]) > .zi { grid-row: 2 / -1; }
+}
 
 /* ---------- Ziehen (ziehbar in raetsel.ts): schwebende Kopie, blasses Original, Ziel leuchtet ---------- */
 /* Safari/iPad: ohne -webkit-Präfixe starten Textauswahl oder Lang-Drück-Menü und brechen das Ziehen ab */
@@ -622,7 +644,12 @@
 
 /* ---------- Spur 24 Nest (Finale): Beschreibung lesen, Schlüssel finden, an den Zeigestock hängen ---------- */
 .zug.zug[data-art="nest"] { --neben-spiel: 12.5rem; } /* stärker als k4.css: hochkant steht die Karte mit drei Sätzen über dem Bild */
-@container buehne (min-aspect-ratio: 5 / 4) and (min-width: 46rem) { .zug.zug[data-art="nest"] { --neben-spiel: 2.5rem; } } /* quer steht sie links */
+@container buehne (min-aspect-ratio: 5 / 4) and (min-width: 46rem) { /* quer steht sie links: Aufgabe · Karte · Raupe untereinander, Merkmale je eine Zeile */
+  .zug.zug[data-art="nest"] { --neben-spiel: 2.5rem; grid-template-rows: auto auto auto minmax(min-content, 1fr); }
+  .zug[data-art="nest"] > .nt-karte { grid-area: 3 / 1; width: 100%; }
+  .zug[data-art="nest"] > .zr { grid-area: 4 / 1; }
+  .zug[data-art="nest"] .nt-merk li { font-size: 1rem; line-height: 1.3; }
+}
 .nt-karte { align-self: center; width: min(100%, 32rem); display: flex; flex-direction: column; gap: .125rem; padding: .5rem .875rem .625rem; border-radius: var(--r-feld); background: var(--papier); color: var(--tinte); box-shadow: 0 3px 0 var(--kante), 0 8px 16px rgba(0, 0, 0, .28); rotate: -.6deg; transition: box-shadow var(--dauer); }
 .nt-karte p { margin: 0; font-size: var(--t-knopf); font-weight: 700; line-height: 1.4; }
 .nt-kt { display: flex; align-items: center; gap: .375rem; font-size: var(--t-klein); font-weight: 800; color: var(--nacht-2); }

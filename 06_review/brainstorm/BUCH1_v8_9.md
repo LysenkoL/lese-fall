@@ -397,11 +397,11 @@ Dann ruft Mila zu Ida und den anderen Kindern auf dem Hof: „Hey, bringt zur Au
 
 „Au ja, wir kommen alle!“, rufen die Kinder begeistert zurück.
 
+<!-- Bild -->
 „Und unser Plakat?“, fragt Oskar. „Da steht ja noch das alte Stück drauf!“
 
 „Dann malen wir es schnell um!“, ruft Mila.
 
-<!-- Bild -->
 Schnell holt Ben das Theaterplakat und Stifte aus dem Klassenzimmer. Oskar malt unten eine kleine graue Maus dazu, und Mila tupft drei braune Punkte auf den gemalten Mond. Alle drei sind ganz in ihre Zeichnung vertieft. Der echte Mond liegt ganz außen am Bankrand in der Sonne. Sein Silberstern funkelt.
 
 Oben am Fenster erschrickt die Lese-Raupe: Im Baum sitzt wieder der große Vogel. Er starrt genau auf den funkelnden Silberstern! „Passt auf euren Mond auf!“, ruft die Raupe. Doch die Menschen können sie ja nicht hören …
@@ -414,6 +414,7 @@ Wusch! Der große schwarz-weiße Vogel schießt aus den Zweigen herab. Er schnap
 
 „Mein Mond!“, schreit Mila. „Der Vogel klaut unseren Himmelskäse!“
 
+<!-- Bild -->
 Alle schauen nach oben. Der Vogel fliegt zu einer Astgabel direkt unter dem Klassenzimmerfenster. Dort sitzt sein rundes Nest, zwischen zwei Zweigen wie in einem großen V. Der Vogel ist so groß wie eine Taube. Aber der Mond ist viel zu groß für das Nest. Trotzdem zerrt und ruckelt der Vogel wie verrückt am Faden.
 
 Mila, Ben und Oskar rennen zum Baumstamm. „Hey, du frecher Dieb!“, ruft Mila und winkt mit beiden Armen. „Gib den sofort wieder her!“

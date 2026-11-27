@@ -1,6 +1,6 @@
-# Lese-Fall: Debug-APK auf Windows bauen (PowerShell).
+# Spuren-Raupe: Debug-APK auf Windows bauen (PowerShell).
 # Holt den neuesten Stand von main, baut die Web-Teile (v8), synchronisiert Android und baut die APK.
-# Die fertige APK liegt danach auf dem Desktop: Lese-Fall-debug.apk
+# Die fertige APK liegt danach auf dem Desktop: Spuren-Raupe-debug.apk
 #
 # Aufruf im Projektordner (dort, wo README.md liegt), vorher einmal: git pull origin main
 #   powershell -ExecutionPolicy Bypass -File app\scripts\apk-bauen.ps1
@@ -73,7 +73,7 @@ Set-Location "$Root\app\android"
 $apk = "$Root\app\android\app\build\outputs\apk\debug\app-debug.apk"
 if (-not (Test-Path $apk)) { Fehler "APK nicht gefunden: $apk" }
 $desktop = [Environment]::GetFolderPath('Desktop')
-$ziel = Join-Path $desktop 'Lese-Fall-debug.apk'
+$ziel = Join-Path $desktop 'Spuren-Raupe-debug.apk'
 Copy-Item $apk $ziel -Force
 
 Schritt 'Fertig'

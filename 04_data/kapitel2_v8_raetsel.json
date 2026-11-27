@@ -202,6 +202,7 @@
     "titel": "Was sieht die Raupe?",
     "text": "Die Raupe schaut aus dem Fenster. Finde alles auf der Liste. Tippe es im Bild an.",
     "bild": "k2_s9",
+    "ausschnitt": {"x": 39.5, "y": 20, "w": 45, "h": 45},
     "dinge": [
      {
       "id": "maus",

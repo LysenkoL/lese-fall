@@ -14,7 +14,9 @@ import './k4.css';
 import './effekte.css';
 import './ende.css';
 import DATA_ from '../../../04_data/buch1_v8.json';
-import { T } from '../text';
+import { T as silbenHtml } from '../text';
+/** Silben-HTML der v8 mit weichen Trennstellen zwischen den Silben (umgebrochen wird nur, wo CSS `hyphens: manual` erlaubt) */
+const T = (t: string) => silbenHtml(t, true);
 import { TEXT_SCHLUESSEL } from './textschluessel.ts';
 import { bildUrl as img } from './bilder';
 import { staub } from './staub';
@@ -137,7 +139,9 @@ function kopf() {
   document.documentElement.classList.toggle('ohne-silben', !stand.silben);
 }
 const raupe = (b: string, t: string, kl = '') => `<div class="rp ${kl}"><img src="${fig('raupe/' + b)}" alt=""><p>${t}</p></div>`;
-const knopf = (a: string, t: string, kl = 'haupt', dis = false) => `<button class="kn ${kl}" data-a="${a}" ${dis ? 'disabled' : ''}>${t.startsWith('<svg') ? t : `<span>${t}</span>`}</button>`;
+/** lange Beschriftung (z. B. „Weiter zu Kapitel 2 ›“): etwas kleinere Schrift statt zweiter Zeile – der Knopf bleibt überall gleich hoch */
+const lang = (t: string) => (t.replace(/<[^>]*>|&shy;|\u00ad|\|/g, '').length > 14 ? ' lang' : '');
+const knopf = (a: string, t: string, kl = 'haupt', dis = false) => `<button class="kn ${kl}${lang(t)}" data-a="${a}" ${dis ? 'disabled' : ''}>${t.startsWith('<svg') ? t : `<span>${t}</span>`}</button>`;
 const nurKnopf = (a: string, html: string, f: () => void) => { fuss.innerHTML = `<div class="fz">${html}</div>`; fuss.onclick = (e) => { if ((e.target as HTMLElement).closest(`[data-a="${a}"]`)) f(); }; };
 const klick = (a: string, f: () => void) => { fuss.onclick = (e) => { if ((e.target as HTMLElement).closest(`[data-a="${a}"]`)) f(); }; };
 
@@ -151,7 +155,7 @@ let momentWeg: (() => void) | null = null;
 const loese = () => { momentWeg?.(); (R.hook.loese ?? hookStaub)?.(); };
 
 /* ---------- Ablauf ---------- */
-function zeige() { zeigeRaw(); wechsel(); if (stand.view !== 'titel') { stand.weit = Math.max(stand.weit, pos()); speichern(); } nav(); }
+function zeige() { app.querySelectorAll('.neuhaus').forEach((e) => e.remove()); zeigeRaw(); wechsel(); if (stand.view !== 'titel') { stand.weit = Math.max(stand.weit, pos()); speichern(); } nav(); }
 function zeigeRaw() {
   ueber.innerHTML = ''; R.hook.loese = null; hookStaub = null; fuss.onclick = null; buehne.onclick = null;
   momentWeg?.(); momentWeg = null; $('.wzm', buehne)?.remove();
@@ -194,8 +198,8 @@ const himmel = () => `<div class="himmel" aria-hidden="true"><span class="mondg"
 function titel() {
   modus('titel');
   const angefangen = stand.fertig.length > 0 || stand.i > 0 || stand.spur > 1 || stand.weiter === 'fallkarte' || stand.weiter === 'ausblick' || stand.weiter === 'finale';
-  buehne.innerHTML = `<section class="titel"><div class="lampe"></div>${himmel()}<p class="tl">LESE-FALL · FALL 1</p><h1>${T(D.fall.titel)}</h1><figure class="foto gross"><img src="${img('cover')}" alt=""></figure><p class="tu">Ein Krimi zum Selberlesen</p><img class="t-raupe" src="${fig('raupe/lacht')}" alt=""></section>`;
-  fuss.innerHTML = `<div class="fz">${knopf('start', angefangen ? UI.weiterFall : UI.start)}${angefangen ? knopf('neu', UI.neuStart, 'still') : ''}</div>`;
+  buehne.innerHTML = `<section class="titel"><div class="lampe"></div>${himmel()}<p class="tl">SPUREN-RAUPE · FALL 1</p><h1>${T(D.fall.titel)}</h1><figure class="foto gross"><img src="${img('cover')}" alt=""></figure><p class="tu">Ein Krimi zum Selberlesen</p><img class="t-raupe" src="${fig('raupe/lacht')}" alt=""></section>`;
+  fuss.innerHTML = `<div class="fz">${knopf('start', stand.geloest ? UI.weiter : angefangen ? UI.weiterFall : UI.start)}${angefangen ? knopf('neu', UI.neuStart, 'still') : ''}</div>`;
   fuss.onclick = (e) => {
     const a = (e.target as HTMLElement).closest<HTMLElement>('[data-a]')?.dataset.a;
     if (a === 'start' && stand.geloest) { stand.wieder = false; stand.view = 'fertig'; zeige(); }
@@ -342,7 +346,7 @@ function lesen(aus: any = null) {
   const zeig = () => {
     const s = seiten[stand.blatt], n = seiten.length, b = stand.blatt;
     buehne.innerHTML = `<div class="blatt${s.voll < 0.5 && b > 0 ? ' kurz' : ''}" data-art="lesen" data-r="${richtung}">${s.html}</div>`;
-    fuss.innerHTML = `<div class="fl"><button class="rund" data-a="prev" ${b === 0 && !hatVorher() ? 'disabled' : ''} aria-label="Zurück">${IC.zur}</button><div class="pkt${n > 12 ? ' sehr-dicht' : n > 7 ? ' dicht' : ''}" aria-label="Blatt ${b + 1} von ${n}">${[...Array(n)].map((_, k) => `<i class="${k === b ? 'an' : k < b ? 'war' : ''}"></i>`).join('')}</div>${b < n - 1 ? `<button class="rund gold" data-a="next" aria-label="Weiter">${IC.vor}</button>` : aus ? `<button class="kn haupt zugk" data-a="weiter"><span>${UI.weiter}</span></button>` : `<button class="kn haupt zugk" data-a="weiter">${IC.lupe}<span>${UI.raetsel}</span></button>`}</div>`;
+    fuss.innerHTML = `<div class="fl"><button class="rund" data-a="prev" ${b === 0 && !hatVorher() ? 'disabled' : ''} aria-label="Zurück">${IC.zur}</button><div class="pkt${n > 12 ? ' sehr-dicht' : n > 5 ? ' dicht' : ''}" aria-label="Blatt ${b + 1} von ${n}">${[...Array(n)].map((_, k) => `<i class="${k === b ? 'an' : k < b ? 'war' : ''}"></i>`).join('')}</div>${b < n - 1 ? `<button class="rund gold" data-a="next" aria-label="Weiter">${IC.vor}</button>` : aus ? `<button class="kn haupt zugk" data-a="weiter"><span>${UI.weiter}</span></button>` : `<button class="kn haupt zugk" data-a="weiter">${IC.lupe}<span>${UI.raetsel}</span></button>`}</div>`;
     richtung = '';
     speichern();
   };
@@ -501,6 +505,14 @@ function denkwolke(sec: HTMLElement, q: HTMLElement, fertig: () => void) {
     setTimeout(() => { w.remove(); q.style.transition = ''; raupe?.classList.remove('denkt'); if (sec.isConnected) setTimeout(fertig, 350); }, 650);
   }, 2600);
 }
+/** Neue Sache im Haus der Lese-Raupe (beim Lösen gemerkt): kurz zeigen auf dem Haken-Bildschirm nach dem Brett
+ *  (oder, wenn die Spur keinen hat, auf dem fertigen Brett). Jeder Wechsel des Bildschirms nimmt den Hinweis weg (zeige()). */
+let neuWartet: string | null = null;
+function zeigNeuImHaus() {
+  const id = neuWartet; neuWartet = null;
+  const hier = `${stand.view}:${stand.spur}:${stand.i}`; // nur auf genau diesem Bildschirm zeigen, nicht auf dem nächsten
+  if (id) setTimeout(() => { if (`${stand.view}:${stand.spur}:${stand.i}` === hier) neuHinweis(app, UI, id, hausOeffnen); }, 600);
+}
 function brett() {
   modus('brett');
   const nr = stand.spur, staubig = SP(nr).karte.staub === true;
@@ -516,6 +528,7 @@ function brett() {
     sec.querySelector<HTMLElement>('.wischz')?.style.setProperty('display', 'none');
     const zeigWeiter = () => {
       fuss.innerHTML = `<div class="fz">${knopf('weiter', UI.weiter)}</div>`;
+      if (!steps(nr).includes('haken')) zeigNeuImHaus(); // ohne Haken-Bildschirm danach (letzte Spur): hier auf dem fertigen Brett
       klick('weiter', () => { SP(nr).fragenWeg.forEach((id: string) => { if (!stand.geklaert.includes(id)) stand.geklaert.push(id); }); speichern(); weiter(); });
     };
     summ(25);
@@ -620,6 +633,7 @@ function haken() {
   const sp = SP(stand.spur);
   buehne.innerHTML = `<section class="haken"><div class="lampe"></div><img class="hr" src="${fig('raupe/staunt')}" alt=""><p>${sp.haken}</p></section>`;
   nurKnopf('weiter', knopf('weiter', letzteSpur(stand.spur) ? UI.weiter : `${UI.weiterlesen} ›`), weiter);
+  zeigNeuImHaus(); // ruhiger Bildschirm mit viel Platz: hier kommt „Neu im Haus der Lese-Raupe“
 }
 
 /* ---------- Fallkarte, Ausblick ---------- */
@@ -633,26 +647,40 @@ function fallkarte() {
   if (f.flunker) {
     buehne.innerHTML = `<section class="zug fall" data-art="flunker"><div class="lampe"></div><div class="zk"><div class="zkr"><span class="tab hell">${UI.kapitel} ${kap().nr}</span></div><h2>${f.titel}</h2></div><p class="zt1">${f.flunker.text}</p><div class="zi"></div><div class="zr"></div>${codeHtml}</section>`;
     const sec = $('.fall');
-    SPIELE_LESEN.flunker(sec, f.flunker, () => nurKnopf('stempeln', knopf('stempeln', UI.stempeln), () => stempeltAuf(sec, $('.zi', sec), f)));
+    SPIELE_LESEN.flunker(sec, f.flunker, () => nurKnopf('stempeln', knopf('stempeln', UI.stempeln), () => stempeltAuf(sec, $('.flk-blatt', sec), f)));
     return;
   }
   buehne.innerHTML = `<section class="zug fall"><div class="lampe"></div><article class="fk"><span class="tab">${UI.kapitel} ${kap().nr}</span><h2>${f.titel}</h2><figure class="foto"><img src="${img(f.bild)}" alt=""></figure><ul>${f.saetze.map((s: string) => `<li>${s}</li>`).join('')}</ul><p class="fk-frage">${f.frage}</p></article>${codeHtml}</section>`;
   const sec = $('.fall'), fk = $('.fk', sec);
   nurKnopf('stempeln', knopf('stempeln', UI.stempeln), () => stempeltAuf(sec, fk, f));
 }
+/** Kapitel 4 (Bericht der Raupe): Stempel auf die Höhe der Überschrift; rechts daneben, wenn dort Platz ist, sonst quer darüber */
+function stempelNebenKopf(blatt: HTMLElement, st: HTMLElement) {
+  const kopf = blatt.querySelector(':scope > .flk-kopf');
+  if (!kopf) return;
+  const r = document.createRange();
+  r.selectNodeContents(kopf);
+  const T = r.getBoundingClientRect(), B = blatt.getBoundingClientRect();
+  st.style.top = `${T.top - B.top + T.height / 2 - 6}px`; // etwas höher: oben ist Rand frei, unten beginnt der erste Satz
+  st.classList.add('kl'); // daneben etwas kleiner, damit die schräge Ecke nicht in den ersten Satz ragt
+  if (B.right - T.right - 28 < st.offsetWidth) return st.classList.remove('kl');
+  st.style.left = `${B.width - 14 - st.offsetWidth / 2}px`;
+}
 /** Stempel „Kapitel gelöst“ auf die Fallkarte (oder die Spielfläche), dann erscheint der neue Buchstabe unter Staub und springt in den Beutel */
 function stempeltAuf(sec: HTMLElement, fk: HTMLElement, f: any) {
   fk.classList.add('stempelziel');
   fk.insertAdjacentHTML('beforeend', `<b class="stempel abdruck">${f.stempel}</b>`);
+  if (fk.classList.contains('flk-blatt')) stempelNebenKopf(fk, fk.lastElementChild as HTMLElement);
+  fk.lastElementChild?.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); // der Stempel landet im Bild, auch wenn das Kind weiter unten liest
   summ(40);
   konfetti(sec);
   const aus = $('.bt-ausgabe', sec), neu = $('.bt-neu .bt-k', aus);
   aus.classList.add('zu');
   aus.hidden = false;
-  aus.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
   fuss.innerHTML = '<div class="fz"><button class="kn haupt" style="visibility:hidden" tabindex="-1"><span>·</span></button></div>';
   const weiterKnopf = () => nurKnopf('weiter', knopf('weiter', UI.weiter), () => { stand.view = D.kapitel[kap().nr] ? 'ausblick' : 'finale'; stand.fin = 0; zeige(); });
-  setTimeout(() => {
+  setTimeout(() => { // erst den Stempel sehen lassen, dann zum Buchstaben rollen (Telefon: der Beutel liegt unter dem Blatt)
+    aus.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
     requestAnimationFrame(() => aus.classList.remove('zu'));
     hookStaub = staub(neu, () => { hookStaub = null; setTimeout(() => springInBeutel(aus, neu, weiterKnopf), 450); });
   }, 700);
@@ -706,7 +734,7 @@ function finale() {
 /* ---------- Nach dem Fall: Seite „Fall gelöst“, Fall-Album, Haus der Lese-Raupe ---------- */
 function fertigSeite() {
   modus('titel');
-  buehne.innerHTML = `<section class="titel fertig"><div class="lampe"></div>${himmel()}<p class="tl">LESE-FALL · FALL 1</p><h1>${T(D.fall.titel)}</h1><figure class="foto gross fg-cover"><img src="${img('cover')}" alt=""><b class="fg-stempel">${UI.geloestStempel}</b></figure><button class="fg-raupe" data-a="haus" aria-label="Haus der Lese-Raupe">${raupeMitSache(stand.traegt, fig)}</button><p class="forts">${UI.fortsetzung}</p><button class="fg-urk" data-a="urkunde"><span>${UI.meineUrkunde}</span></button></section>`;
+  buehne.innerHTML = `<section class="titel fertig"><div class="lampe"></div>${himmel()}<p class="tl">SPUREN-RAUPE · FALL 1</p><h1>${T(D.fall.titel)}</h1><figure class="foto gross fg-cover"><img src="${img('cover')}" alt=""><b class="fg-stempel">${UI.geloestStempel}</b></figure><button class="fg-raupe" data-a="haus" aria-label="Haus der Lese-Raupe">${raupeMitSache(stand.traegt, fig)}</button><p class="forts">${UI.fortsetzung}</p><button class="fg-urk" data-a="urkunde"><span>${UI.meineUrkunde}</span></button></section>`;
   feuerwerk($('.fertig', buehne), 3, 0.2);
   fuss.innerHTML = `<div class="fz">${knopf('album', UI.album)}${knopf('haus', UI.zurRaupe, 'still')}</div>`;
   const tu = (a?: string) => { if (a === 'album') { stand.view = 'album'; zeige(); } else if (a === 'haus') hausOeffnen(); else if (a === 'urkunde') urkundeOffen(); };
@@ -714,7 +742,7 @@ function fertigSeite() {
   buehne.onclick = (e) => tu((e.target as HTMLElement).closest<HTMLElement>('[data-a]')?.dataset.a);
 }
 function urkundeOffen() {
-  ueber.innerHTML = `<div class="schl mitte"><div class="urk-box">${urkundeHtml(UI, stand.name, perlenVon(), fig)}<div class="fz">${knopf('zu', UI.fertig)}</div></div></div>`;
+  ueber.innerHTML = `<div class="schl mitte urk-schl"><div class="urk-box">${urkundeHtml(UI, stand.name, perlenVon(), fig)}<div class="fz">${knopf('zu', UI.fertig)}</div></div></div>`;
   const inp = $<HTMLInputElement>('#dname', ueber);
   inp.addEventListener('input', () => { stand.name = inp.value; speichern(); });
   ueber.onclick = (e) => { const t = e.target as HTMLElement; if (t.closest('[data-a="zu"]') || t.classList.contains('schl')) ueber.innerHTML = ''; };
@@ -851,6 +879,17 @@ fuss.addEventListener('click', (e) => {
  * Ganz unten verschwindet beides. Neu gebunden, sobald eine neue .zug auf der Bühne steht.
  */
 let mehrZug: HTMLElement | null = null, mehrAus: (() => void) | null = null;
+/** Nebeneinander: passt die linke Spalte (Titel, Aufgabe, Raupe …) ganz in die Bühne? Nur dann darf die Raupe unten kleben (basis.css .raupe-unten). */
+function linksPasst(z: HTMLElement, I: DOMRect): boolean {
+  const cs = getComputedStyle(z), innen = z.clientHeight - (parseFloat(cs.paddingTop) || 0) - (parseFloat(cs.paddingBottom) || 0);
+  let h = 0, n = 0;
+  for (const e of z.children) {
+    const E = e.getBoundingClientRect(), es = getComputedStyle(e);
+    if (!E.height || E.right > I.left + 1 || es.position === 'absolute' || es.position === 'fixed') continue;
+    h += E.height + (parseFloat(es.marginTop) || 0) + (parseFloat(es.marginBottom) || 0); n++;
+  }
+  return h + Math.max(0, n - 1) * (parseFloat(cs.rowGap) || 0) + 8 <= innen;
+}
 function mehrPfeil() {
   const z = buehne.querySelector<HTMLElement>(':scope > .zug');
   if (z === mehrZug) return;
@@ -868,7 +907,16 @@ function mehrPfeil() {
     raf = requestAnimationFrame(() => {
       if (!z.isConnected) return;
       for (const k of z.children) ro.observe(k);
-      m.hidden = z.scrollHeight - z.clientHeight - z.scrollTop <= 8;
+      // Pfeil nur, wenn wirklich Inhalt fehlt – nicht für Polster und Rahmen unten (sonst lernt das Kind, ihn zu übersehen)
+      const rest = z.scrollHeight - z.clientHeight - z.scrollTop - (parseFloat(getComputedStyle(z).paddingBottom) || 0);
+      m.hidden = rest <= 28;
+      // Nebeneinander (Rechner, Tablet quer): Verlauf und Pfeil nur über der Spielfläche, nicht über Aufgabe und Raupe links
+      const zr = z.querySelector<HTMLElement>(':scope > .zr'), zi = z.querySelector<HTMLElement>(':scope > .zi');
+      const B = buehne.getBoundingClientRect(), R = zr?.getBoundingClientRect(), I = zi?.getBoundingClientRect();
+      const neben = !!(R && I && R.width && I.left >= R.right - 1);
+      if (neben && I) { m.style.left = Math.round(I.left - B.left) + 'px'; m.style.right = Math.round(B.right - I.right) + 'px'; }
+      else m.style.left = m.style.right = '';
+      z.classList.toggle('raupe-unten', neben && linksPasst(z, I!));
     });
   };
   z.addEventListener('scroll', pruef, { passive: true });

@@ -1,6 +1,6 @@
 # Android-сборка (APK / AAB)
 
-Проект Capacitor уже создан в `app/android` (appId `app.lesefall`, minSdk 24, targetSdk/compileSdk 36, иконки и заставка из `assets/icon`).
+Проект Capacitor уже создан в `app/android` (appId `app.spurenraupe`, Name „Spuren-Raupe“ — D-21; до 26.11.2026 `app.lesefall`, minSdk 24, targetSdk/compileSdk 36, иконки и заставка из `assets/icon`).
 В облачном окружении Claude Android SDK скачать нельзя, поэтому APK собирается у тебя на компьютере.
 
 ## Один раз
@@ -12,7 +12,7 @@
 ```powershell
 powershell -ExecutionPolicy Bypass -File app\scripts\apk-bauen.ps1
 ```
-Скрипт сам: проверит Node, Java (берёт из Android Studio) и Android SDK → подтянет свежий `main` → `npm install` → `npm run android` → `gradlew assembleDebug` → положит **`Lese-Fall-debug.apk` на рабочий стол**.
+Скрипт сам: проверит Node, Java (берёт из Android Studio) и Android SDK → подтянет свежий `main` → `npm install` → `npm run android` → `gradlew assembleDebug` → положит **`Spuren-Raupe-debug.apk` на рабочий стол**.
 
 ## Каждый раз — вручную
 ```bash
