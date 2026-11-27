@@ -137,8 +137,9 @@ export function zeigeHaus(c: HausCtx): void {
   const label = (id: string) => UI['d_' + id] ?? id;
   const p = c.perlen(), frei = freiBei(p);
   const sachen = [
-    `<button class="h-sache" data-s=""><span class="h-bild h-ohne" aria-hidden="true"></span><b>${UI.ohneSachen}</b></button>`,
-    ...(c.lupe() ? [`<button class="h-sache gold" data-s="lupe"><span class="h-bild">${LUPE_SVG}</span><b>${label('lupe')}</b></button>`] : []),
+    // immer 9 Plätze (3 × 3): die goldene Lupe steht von Anfang an da, bis zum gelösten Fall nur als Umriss
+    c.lupe() ? `<button class="h-sache gold" data-s="lupe"><span class="h-bild">${LUPE_SVG}</span><b>${label('lupe')}</b></button>`
+      : `<div class="h-sache zu" aria-label="lupe"><span class="h-bild">${LUPE_SVG}</span><b>${UI.lupeZu}</b></div>`,
     ...DINGE.map((d) => frei.includes(d.id)
       ? `<button class="h-sache" data-s="${d.id}"><span class="h-bild"><img src="${img('garderobe/' + d.id)}" alt=""></span><b>${label(d.id)}</b></button>`
       : `<div class="h-sache zu" aria-label="${d.id}"><span class="h-bild"><img src="${img('garderobe/' + d.id)}" alt=""></span><b>${UI.abWort} ${d.ab} ${UI.perlenWort}</b></div>`),
@@ -147,7 +148,7 @@ export function zeigeHaus(c: HausCtx): void {
 <div class="h-buehne${HAUS_BILD ? ' mitbild' : ''}"${HAUS_BILD ? ` style="background-image:url(${HAUS_BILD})"` : ''}><div class="h-dunkel" aria-hidden="true"><i></i></div><button class="h-raupe" type="button" aria-label="Lese-Raupe kitzeln"></button><div class="h-rede"><p class="h-blase" aria-live="polite"></p></div><span class="h-wunsch" aria-hidden="true" hidden></span></div></div>
 <div class="h-unten"><p class="h-perl"><span class="perle" aria-hidden="true"></span><span>${UI.duHast} <b>${p}</b> ${UI.perlen}</span></p>
 <h4>${UI.futter}</h4><div class="h-futter">${FUTTER_IDS.map((f) => `<button class="h-essen" data-f="${f}" aria-label="${f}">${FUTTER[f]}</button>`).join('')}</div>
-<h4>${UI.anziehen}</h4><div class="h-sachen">${sachen}</div></div></section></div>`;
+<div class="h-zeile"><h4>${UI.anziehen}</h4><button class="h-aus" data-s="">${UI.ohneSachen}</button></div><div class="h-sachen">${sachen}</div></div></section></div>`;
   const haus = ueber.querySelector<HTMLElement>('.haus')!, buehne = haus.querySelector<HTMLElement>('.h-buehne')!;
   const raupe = haus.querySelector<HTMLElement>('.h-raupe')!, blase = haus.querySelector<HTMLElement>('.h-blase')!, wolke = haus.querySelector<HTMLElement>('.h-wunsch')!;
 
@@ -339,7 +340,7 @@ export function zeigeHaus(c: HausCtx): void {
   /* ---------- Anziehen: antippen = an, noch einmal = aus; Sachen am selben Platz tauschen sich ---------- */
   const knoepfe = () => {
     const ids = getragen(c.traegt());
-    haus.querySelectorAll<HTMLElement>('button.h-sache').forEach((k) => {
+    haus.querySelectorAll<HTMLElement>('button.h-sache, button.h-aus').forEach((k) => {
       const an = k.dataset.s ? ids.includes(k.dataset.s) : !ids.length;
       k.classList.toggle('an', an);
       k.setAttribute('aria-pressed', String(an));
@@ -379,7 +380,7 @@ export function zeigeHaus(c: HausCtx): void {
     const f = t.closest<HTMLElement>('.h-essen');
     if (f) { fuettern(f); return; }
     if (t.closest('.h-raupe')) { kitzeln(); return; }
-    const s = t.closest<HTMLElement>('button.h-sache');
+    const s = t.closest<HTMLElement>('button.h-sache, button.h-aus');
     if (s) anziehen(s.dataset.s ?? '');
   };
 
