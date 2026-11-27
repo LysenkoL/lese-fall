@@ -407,10 +407,10 @@
        "unter": "Gut, dann reißt nichts."
       },
       "oskar": {
-       "froh": false,
-       "unter": "Dann hat meine Maus im Stück kein Festessen."
+       "froh": true,
+       "unter": "Super! Dann bleibt der Käse für meine Maus."
       },
-      "sagt": "Hm. Nur Ben lacht. Ohne Mond ist der Himmel leer."
+      "sagt": "Hm. Ben und Oskar lachen. Aber Mila nicht: Ohne Mond ist der Himmel leer."
      },
      {
       "id": "neu",

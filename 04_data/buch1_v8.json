@@ -3182,10 +3182,10 @@
        "unter": "Gut, dann reißt nichts."
       },
       "oskar": {
-       "froh": false,
-       "unter": "Dann hat mei|ne Maus im Stück kein Fest|es|sen."
+       "froh": true,
+       "unter": "Su|per! Dann bleibt der Kä|se für mei|ne Maus."
       },
-      "sagt": "Hm. Nur Ben lacht. Oh|ne Mond ist der Him|mel leer."
+      "sagt": "Hm. Ben und Os|kar la|chen. A|ber Mi|la nicht: Oh|ne Mond ist der Him|mel leer."
      },
      {
       "id": "neu",
