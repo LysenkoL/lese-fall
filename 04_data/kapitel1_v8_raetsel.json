@@ -53,6 +53,9 @@
   "perlen": "Schimmer-Perlen",
   "code": "Der Code für den Tresor",
   "beutel": "Meine Buchstaben für den Tresor",
+  "kiste": "Geklärt",
+  "kisteTitel": "Geklärte Fragen",
+  "kisteLeer": "Noch ist keine Frage geklärt.",
   "tresorTipp": "Tipp: Wo lag der Schlüssel?",
   "mondInfo": "{1} von {2} Spuren gelöst",
   "passt": "Das Wort passt",
@@ -135,7 +138,8 @@
    "fragenNeu": [
     {
      "id": "schluessel",
-     "text": "Wo ist Frau Sommers Schlüssel?"
+     "text": "Wo ist Frau Sommers Schlüssel?",
+     "antwort": "Im Nest der Elster."
     }
    ],
    "tipp": {
@@ -213,11 +217,13 @@
    "fragenNeu": [
     {
      "id": "mond",
-     "text": "Wo ist der Mond?"
+     "text": "Wo ist der Mond?",
+     "antwort": "Der Käse ist Milas Mond!"
     },
     {
      "id": "aermel",
-     "text": "Wem gehört der Ärmel?"
+     "text": "Wem gehört der Ärmel?",
+     "antwort": "Der Ärmel gehört Oskar."
     }
    ],
    "raetsel": {

@@ -40,7 +40,8 @@
    "fragenNeu": [
     {
      "id": "schneider",
-     "text": "Wer schneidet da draußen?"
+     "text": "Wer schneidet da draußen?",
+     "antwort": "Ida. Sie bastelt eine Krone."
     }
    ],
    "raetsel": {
@@ -189,7 +190,8 @@
    "fragenNeu": [
     {
      "id": "seide",
-     "text": "Was liegt unter dem Seidenpapier?"
+     "text": "Was liegt unter dem Seidenpapier?",
+     "antwort": "Ein Käse mit einem Faden."
     }
    ],
    "raetsel": {
@@ -440,7 +442,8 @@
    "fragenNeu": [
     {
      "id": "zerschnitten",
-     "text": "Hat Oskar den Mond zerschnitten?"
+     "text": "Hat Oskar den Mond zerschnitten?",
+     "antwort": "Nein! Die Flecken sind nur aufgeklebt."
     }
    ]
   }

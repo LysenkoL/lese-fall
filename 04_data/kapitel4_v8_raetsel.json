@@ -211,7 +211,8 @@
    "fragenNeu": [
     {
      "id": "k3plan",
-     "text": "Warum stiehlt der Vogel unsere Sachen?"
+     "text": "Warum stiehlt der Vogel unsere Sachen?",
+     "antwort": "Die Elster liebt alles, was glänzt."
     }
    ],
    "raetsel": {
@@ -356,12 +357,7 @@
     "text": "Vom Fensterbrett führt ein langer Zweig hinunter zum Nest. Die Raupe hat Angst. Aber sie kriecht los.",
     "staub": false
    },
-   "fragenNeu": [
-    {
-     "id": "k4nest",
-     "text": "Liegt Frau Sommers Schlüssel im Nest?"
-    }
-   ],
+   "fragenNeu": [],
    "fragenWeg": [],
    "raetsel": {
     "art": "raupenweg",
@@ -730,8 +726,7 @@
    "fragenNeu": [],
    "fragenWeg": [
     "schluessel",
-    "k3plan",
-    "k4nest"
+    "k3plan"
    ],
    "raetsel": {
     "art": "nest",

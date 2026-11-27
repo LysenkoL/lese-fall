@@ -443,3 +443,57 @@
 .titel h1, .kapk h1, .haken h2, .zk h2, .fk h2 { overflow-wrap: anywhere; hyphens: auto; text-wrap: balance; }
 .titel h1 { font-size: min(2.125rem, 10.5cqw); }
 .kapk h1 { font-size: min(2.125rem, 10.5cqw); }
+
+/* ---------- Offene Fragen (27.11.2026): Raupe stellt die Frage, Kind dreht die geklärte um, sie fliegt in die Kiste ---------- */
+.fr-vorn { display: flex; flex-direction: column; gap: 3px; align-items: flex-start; }
+.fr-rueck { display: none; }
+.zettel.fr[data-ok] { cursor: pointer; }
+.zettel.fr.um { animation: frDreh .45s ease-out both; background: linear-gradient(160deg, #E4F7CF, #C6EBA0); }
+.zettel.fr.um .fr-vorn { display: none; }
+.zettel.fr.um .fr-rueck { display: flex; align-items: center; gap: .5rem; }
+.fr-rueck b { font-weight: 800; font-size: .875rem; line-height: 1.25; }
+.fr-rueck b .s-b, .fr-rueck b .s-r { color: inherit; }
+.fr-bild { flex: none; width: 3.25rem; aspect-ratio: 4 / 3; border-radius: 3px; overflow: hidden; background: var(--papier-foto); box-shadow: 0 1px 3px rgba(0, 0, 0, .25); display: flex; }
+.fr-bild > img { width: 100%; height: 100%; object-fit: contain; }
+.zettel.fr .stempel.klein2 { position: absolute; left: .125rem; top: auto; bottom: .25rem; right: auto; transform: rotate(-12deg); font-size: .625rem; padding: 1px .3125rem; }
+.zettel.fr { position: relative; }
+.zettel.fr.fliegt { transition: transform .6s cubic-bezier(.5, 0, .7, .4), opacity .6s; opacity: .2; animation: none; pointer-events: none; z-index: 5; }
+@keyframes frDreh { 0% { transform: rotate(var(--n, 0deg)) rotateY(90deg); } 100% { transform: rotate(var(--n, 0deg)) rotateY(0); } }
+
+/* Denkwolke der Raupe mit der neuen Frage */
+.fr-wolke {
+  position: absolute; z-index: 6; max-width: min(16rem, 80%);
+  background: #fff; color: var(--tinte); font-weight: 800; font-size: 1rem; line-height: 1.3;
+  border-radius: 1.5rem 1.375rem 1.625rem 1.25rem; padding: .75rem 1rem;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, .3); animation: hoch .35s both;
+}
+.fr-wolke::before, .fr-wolke::after { content: ''; position: absolute; background: #fff; border-radius: 50%; box-shadow: 0 2px 4px rgba(0, 0, 0, .2); }
+.fr-wolke::before { width: .75rem; height: .75rem; bottom: -.625rem; right: calc(var(--spitze, 2rem) - .375rem); }
+.fr-wolke::after { width: .4375rem; height: .4375rem; bottom: -1.125rem; right: calc(var(--spitze, 2rem) - .5rem); }
+.fr-wolke .s-b, .fr-wolke .s-r { color: inherit; }
+.fr-wolke.weg { opacity: 0; transform: scale(.8); transition: opacity .3s, transform .3s; }
+.brett-raupe.denkt { animation: wipp 1.2s ease-in-out infinite; }
+
+/* Beutel und Kiste nebeneinander */
+.bt-zeile { display: flex; gap: .5rem; align-items: stretch; }
+.bt-zeile > .beutel { flex: 1; min-width: 0; }
+.kiste {
+  flex: none; display: flex; align-items: center; gap: .375rem; padding: .25rem .625rem .25rem .375rem; border: 0; font: inherit; cursor: pointer;
+  background: var(--nacht-2); color: #fff; border-radius: .875rem;
+  box-shadow: inset 0 0 0 1.5px rgba(244, 194, 67, .35), 0 6px 14px rgba(40, 20, 0, .3);
+}
+.kiste:focus-visible { outline: 3px solid var(--senf); outline-offset: 3px; }
+.ki-svg { width: 2.25rem; height: 2.25rem; flex: none; display: block; transform-origin: 50% 90%; }
+.kiste.wackelt .ki-svg { animation: sackWackel .6s ease-in-out; }
+.ki-t { font-weight: 800; letter-spacing: .04em; text-transform: uppercase; font-size: var(--t-etikett); }
+.ki-t .s-b, .ki-t .s-r { color: inherit; }
+.ki-z { font-size: 1.125rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+.ki-z small { font-size: .75rem; opacity: .7; }
+@media (max-width: 420px) { .ki-t { display: none; } }
+.kisteinfo { display: flex; flex-direction: column; align-items: center; gap: .75rem; max-height: 85svh; overflow-y: auto; }
+.kisteinfo > .ki-svg { width: 4rem; height: 4rem; }
+.ki-liste { list-style: none; margin: 0; padding: .5rem 0 0; display: grid; gap: .875rem; width: min(100%, 22rem); }
+.ki-liste .zettel.fr { align-items: stretch; }
+.ki-a { font-weight: 800; color: #2E6B1F; }
+.ki-a .s-b, .ki-a .s-r { color: inherit; }
+@media (prefers-reduced-motion: reduce) { .zettel.fr.um, .fr-wolke { animation: none; } .zettel.fr.fliegt { transition: none; } }

@@ -304,6 +304,9 @@
   "perlen": "Schim|mer-Per|len",
   "code": "Der Co|de für den Tre|sor",
   "beutel": "Mei|ne Buch|sta|ben für den Tre|sor",
+  "kiste": "Ge|klärt",
+  "kisteTitel": "Ge|klär|te Fra|gen",
+  "kisteLeer": "Noch ist kei|ne Fra|ge ge|klärt.",
   "tresorTipp": "Tipp: Wo lag der Schlüs|sel?",
   "mondInfo": "{1} von {2} Spu|ren ge|löst",
   "passt": "Das Wort passt",
@@ -564,7 +567,8 @@
    "fragenNeu": [
     {
      "id": "schluessel",
-     "text": "Wo ist Frau Som|mers Schlüs|sel?"
+     "text": "Wo ist Frau Som|mers Schlüs|sel?",
+     "antwort": "Im Nest der Elster."
     }
    ],
    "fragenWeg": [],
@@ -749,11 +753,13 @@
    "fragenNeu": [
     {
      "id": "mond",
-     "text": "Wo ist der Mond?"
+     "text": "Wo ist der Mond?",
+     "antwort": "Der Käse ist Milas Mond!"
     },
     {
      "id": "aermel",
-     "text": "Wem ge|hört der Är|mel?"
+     "text": "Wem ge|hört der Är|mel?",
+     "antwort": "Der Ärmel gehört Oskar."
     }
    ],
    "fragenWeg": [],
@@ -1494,7 +1500,8 @@
    "fragenNeu": [
     {
      "id": "schneider",
-     "text": "Wer schnei|det da drau|ßen?"
+     "text": "Wer schnei|det da drau|ßen?",
+     "antwort": "Ida. Sie bastelt eine Krone."
     }
    ],
    "fragenWeg": [],
@@ -1792,7 +1799,8 @@
    "fragenNeu": [
     {
      "id": "seide",
-     "text": "Was liegt un|ter dem Sei|den|pa|pier?"
+     "text": "Was liegt un|ter dem Sei|den|pa|pier?",
+     "antwort": "Ein Käse mit einem Faden."
     }
    ],
    "fragenWeg": [],
@@ -2223,7 +2231,8 @@
    "fragenNeu": [
     {
      "id": "zerschnitten",
-     "text": "Hat Os|kar den Mond zer|schnit|ten?"
+     "text": "Hat Os|kar den Mond zer|schnit|ten?",
+     "antwort": "Nein! Die Flecken sind nur aufgeklebt."
     }
    ],
    "fragenWeg": [],
@@ -2484,7 +2493,8 @@
    "fragenNeu": [
     {
      "id": "k3vogel",
-     "text": "Wer ist der Vo|gel mit dem lan|gen Schwanz?"
+     "text": "Wer ist der Vo|gel mit dem lan|gen Schwanz?",
+     "antwort": "Eine Elster."
     }
    ],
    "fragenWeg": [],
@@ -3425,7 +3435,8 @@
    "fragenNeu": [
     {
      "id": "k3plan",
-     "text": "Wa|rum stiehlt der Vo|gel un|se|re Sa|chen?"
+     "text": "Wa|rum stiehlt der Vo|gel un|se|re Sa|chen?",
+     "antwort": "Die Elster liebt alles, was glänzt."
     }
    ],
    "fragenWeg": [],
@@ -3658,12 +3669,7 @@
     "text": "Vom Fens|ter|brett führt ein lan|ger Zweig hi|nun|ter zum Nest. Die Rau|pe hat Angst. A|ber sie kriecht los.",
     "staub": false
    },
-   "fragenNeu": [
-    {
-     "id": "k4nest",
-     "text": "Liegt Frau Som|mers Schlüs|sel im Nest?"
-    }
-   ],
+   "fragenNeu": [],
    "fragenWeg": [],
    "tipp": null,
    "raetsel": {
@@ -4437,8 +4443,7 @@
    "fragenNeu": [],
    "fragenWeg": [
     "schluessel",
-    "k3plan",
-    "k4nest"
+    "k3plan"
    ],
    "tipp": null,
    "raetsel": {

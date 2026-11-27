@@ -401,13 +401,34 @@ function brettHtml(bis: number, neu = 0, staubig = false, wartet = false) {
     const k = SP(n).karte;
     return `<div class="bkarte${n === neu ? (staubig ? ' neu' : wartet ? ' wartet' : ' fall') : ''}" data-k="${n}" role="button" tabindex="0" style="--n:${NEIGUNG[(n * 5 + 2) % NEIGUNG.length]}deg"><div class="bk-bild">${bildKarte(k)}</div><p>${k.titel ?? k.text}</p></div>`;
   }).join('');
-  const fragen: { id: string; text: string; n: number }[] = [];
+  const fragen: { id: string; text: string; antwort?: string; n: number }[] = [];
   for (const sp of D.spuren) if (sp.spur <= bis) sp.fragenNeu.forEach((f: any) => fragen.push({ ...f, n: sp.spur }));
   const weg = new Set<string>(SP(bis).fragenWeg);
   const wegBei: Record<string, number> = {};
   for (const sp of D.spuren) (sp.fragenWeg ?? []).forEach((id: string) => { wegBei[id] = sp.spur; });
-  const zettel = fragen.filter((f) => !stand.geklaert.includes(f.id) && !(wegBei[f.id] < bis)).map((f) => `<div class="zettel fr${f.n === neu && (staubig || wartet) ? ' versteckt' : ''}" ${neu && weg.has(f.id) ? 'data-ok="1" ' : ''}data-q="${f.id}" style="--n:${NEIGUNG[(f.id.length * 3 + f.n) % NEIGUNG.length] * 0.8}deg"><span>${f.text}</span>${f.n === neu ? `<em class="neu">${UI.neu}</em>` : ''}${neu && weg.has(f.id) ? `<em class="klaer">${UI.klaerMich}</em>` : ''}</div>`).join('');
-  return `<div class="bgrid">${slots}</div><h3>${UI.fragen}<img class="brett-raupe" src="${fig('raupe/denkt')}" alt=""></h3><div class="fragen">${zettel}</div>${beutelHtml(beutelBuchst())}`;
+  const zettel = fragen.filter((f) => !stand.geklaert.includes(f.id) && !(wegBei[f.id] < bis)).map((f) => {
+    const ok = !!neu && weg.has(f.id);
+    // Rückseite: kleines Bild der Karte, die die Frage beantwortet, und die Antwort – sichtbar erst nach dem Umdrehen
+    const rueck = ok ? `<div class="fr-rueck"><div class="fr-bild">${bildKarte(SP(bis).karte)}</div><b>${f.antwort ?? ''}</b></div>` : '';
+    return `<div class="zettel fr${f.n === neu && (staubig || wartet) ? ' versteckt' : ''}${ok ? ' zeig' : ''}" ${ok ? 'data-ok="1" role="button" tabindex="0" ' : ''}data-q="${f.id}" style="--n:${NEIGUNG[(f.id.length * 3 + f.n) % NEIGUNG.length] * 0.8}deg"><div class="fr-vorn"><span>${f.text}</span>${f.n === neu ? `<em class="neu">${UI.neu}</em>` : ''}${ok ? `<em class="klaer">${UI.klaerMich}</em>` : ''}</div>${rueck}</div>`;
+  }).join('');
+  return `<div class="bgrid">${slots}</div><h3>${UI.fragen}<img class="brett-raupe" src="${fig('raupe/denkt')}" alt=""></h3><div class="fragen">${zettel}</div><div class="bt-zeile">${beutelHtml(beutelBuchst())}${kisteHtml()}</div>`;
+}
+/** alle Fragen des Buchs mit Antwort, in der Reihenfolge, in der sie auftauchen */
+const ALLE_FRAGEN: { id: string; text: string; antwort?: string }[] = D.spuren.flatMap((sp: any) => sp.fragenNeu);
+const geklaertListe = () => ALLE_FRAGEN.filter((f) => stand.geklaert.includes(f.id));
+const KISTE = '<svg class="ki-svg" viewBox="0 0 64 64" aria-hidden="true"><ellipse cx="32" cy="58" rx="22" ry="3.2" fill="#2A1A06" opacity=".25"/><path d="M10 26 L54 26 L50 55 L14 55 Z" fill="#C98A4B" stroke="#7A4A1C" stroke-width="2.2" stroke-linejoin="round"/><path d="M12 36 L52 36 M13 46 L51 46" stroke="#7A4A1C" stroke-width="1.6" opacity=".5"/><path d="M8 20 L56 20 L54 27 L10 27 Z" fill="#DDA262" stroke="#7A4A1C" stroke-width="2.2" stroke-linejoin="round"/><rect x="18" y="8" width="13" height="15" rx="1.5" fill="#FFF3A6" stroke="#B9971C" stroke-width="1.4" transform="rotate(-10 24 15)"/><rect x="32" y="9" width="13" height="14" rx="1.5" fill="#D9F2B4" stroke="#6E9A3C" stroke-width="1.4" transform="rotate(8 38 16)"/><path d="M26 39 l4 4 l8 -9" stroke="#3E8E3A" stroke-width="3.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+/** Kiste „Geklärt“ neben dem Beutel: Zähler (geklärt / alle), antippen zeigt alle geklärten Fragen mit Antwort */
+function kisteHtml() {
+  return `<button class="kiste" data-a="kiste" aria-label="${UI.kisteTitel.replace(/<[^>]+>/g, '').replace(/\|/g, '')}">${KISTE}<span class="ki-t">${UI.kiste}</span><b class="ki-z">${geklaertListe().length}<small>/${ALLE_FRAGEN.length}</small></b></button>`;
+}
+function kisteOffen(zurueck: () => void) {
+  const liste = geklaertListe();
+  const inhalt = liste.length
+    ? `<ul class="ki-liste">${liste.map((f, i) => `<li class="zettel fr" style="--n:${NEIGUNG[i % NEIGUNG.length] * 0.6}deg"><span>${f.text}</span><b class="ki-a">${f.antwort ?? ''}</b></li>`).join('')}</ul>`
+    : `<p>${UI.kisteLeer}</p>`;
+  ueber.innerHTML = `<div class="schl mitte"><div class="kgross kisteinfo">${KISTE}<h3>${UI.kisteTitel}</h3>${inhalt}<button class="kn haupt" data-a="zu"><span>${UI.fertig}</span></button></div></div>`;
+  ueber.onclick = (e) => { const t = e.target as HTMLElement; if (t.closest('[data-a="zu"]') || t.classList.contains('schl')) zurueck(); };
 }
 /** Karten und Beutel sind auch mit der Tastatur erreichbar: Eingabe oder Leertaste wirkt wie ein Tipp */
 function tastenKlick(root: HTMLElement) {
@@ -415,6 +436,37 @@ function tastenKlick(root: HTMLElement) {
     const z = (e.target as HTMLElement).closest<HTMLElement>('.bkarte[data-k], .beutel[data-a]');
     if (z && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); z.click(); }
   });
+}
+/** Die Raupe stellt eine neue Frage: Denkwolke über der Raupe mit dem Fragetext, dann fliegt der Zettel aus der Wolke an seinen Platz */
+function denkwolke(sec: HTMLElement, q: HTMLElement, fertig: () => void) {
+  const raupe = sec.querySelector<HTMLImageElement>('.brett-raupe');
+  const S = sec.getBoundingClientRect();
+  if (getComputedStyle(sec).position === 'static') sec.style.position = 'relative';
+  const r = raupe?.getBoundingClientRect() ?? q.getBoundingClientRect();
+  const w = document.createElement('div');
+  w.className = 'fr-wolke';
+  w.innerHTML = `<span>${q.querySelector('.fr-vorn span')?.innerHTML ?? ''}</span>`;
+  sec.appendChild(w);
+  // Wolke rechts über der Raupe, nie über den Rand hinaus
+  const rechts = Math.max(8, S.right - r.right - 4);
+  w.style.right = `${rechts}px`;
+  w.style.bottom = `${S.bottom - r.top + 6}px`;
+  w.style.setProperty('--spitze', `${Math.max(16, S.right - rechts - (r.left + r.width / 2))}px`);
+  if (raupe) { raupe.src = fig('raupe/denkt'); raupe.classList.add('denkt'); }
+  summ(15);
+  setTimeout(() => {
+    if (!sec.isConnected) return;
+    // FLIP: Zettel startet klein in der Wolke und gleitet an seinen Platz
+    q.classList.remove('versteckt');
+    const W = w.getBoundingClientRect(), Z = q.getBoundingClientRect();
+    q.style.transition = 'none';
+    q.style.transform = `translate(${W.left + W.width / 2 - (Z.left + Z.width / 2)}px, ${W.top + W.height / 2 - (Z.top + Z.height / 2)}px) scale(.3)`;
+    void q.offsetWidth;
+    w.classList.add('weg');
+    q.style.transition = 'transform .6s cubic-bezier(.3, 1.2, .5, 1)';
+    q.style.transform = '';
+    setTimeout(() => { w.remove(); q.style.transition = ''; raupe?.classList.remove('denkt'); if (sec.isConnected) setTimeout(fertig, 350); }, 650);
+  }, 2600);
 }
 function brett() {
   modus('brett');
@@ -429,33 +481,57 @@ function brett() {
     // löst beim Loslassen noch einen Klick aus – der soll die Karte nicht gleich groß machen.
     if (karte) setTimeout(() => karte.classList.remove('neu'), 450);
     sec.querySelector<HTMLElement>('.wischz')?.style.setProperty('display', 'none');
-    sec.querySelectorAll('.zettel.versteckt').forEach((z) => z.classList.remove('versteckt'));
-    sec.querySelectorAll('.zettel.fr:has(em.neu)').forEach((z) => z.classList.add('frisch'));
     const zeigWeiter = () => {
-    fuss.innerHTML = `<div class="fz">${knopf('weiter', UI.weiter)}</div>`;
-    klick('weiter', () => { SP(nr).fragenWeg.forEach((id: string) => { if (!stand.geklaert.includes(id)) stand.geklaert.push(id); }); speichern(); weiter(); });
+      fuss.innerHTML = `<div class="fz">${knopf('weiter', UI.weiter)}</div>`;
+      klick('weiter', () => { SP(nr).fragenWeg.forEach((id: string) => { if (!stand.geklaert.includes(id)) stand.geklaert.push(id); }); speichern(); weiter(); });
     };
     summ(25);
-    // Geklärte Fragen bekommen von selbst den Stempel „geklärt“ (nacheinander), dann kommt „Weiter“
-    const offen = () => [...sec.querySelectorAll<HTMLElement>('.zettel[data-ok]')].filter((z) => !z.querySelector('.stempel'));
-    if (!offen().length) return zeigWeiter();
-    fuss.innerHTML = `<div class="fz">${knopf('warte', UI.weiter, 'haupt', true)}</div>`;
+    // 1) Neue Fragen stellt die Raupe selbst: Denkwolke mit der Frage, dann fliegt der Zettel aus der Wolke an seinen Platz
+    const neue = [...sec.querySelectorAll<HTMLElement>('.zettel.versteckt')];
+    // 2) Beantwortete Fragen wackeln; das Kind tippt sie an: Zettel dreht sich um (Antwort + Bild), Stempel, fliegt in die Kiste
+    const offen = () => [...sec.querySelectorAll<HTMLElement>('.zettel[data-ok]')].filter((z) => !z.classList.contains('um'));
     const klaere = (q: HTMLElement) => {
-      if (q.querySelector('.stempel')) return;
-      q.insertAdjacentHTML('beforeend', `<b class="stempel klein2">${UI.geklaert}</b>`);
+      if (q.classList.contains('um')) return;
+      q.classList.add('um');
+      q.classList.remove('zeig');
       summ(30);
       if (!stand.geklaert.includes(q.dataset.q!)) stand.geklaert.push(q.dataset.q!);
       speichern();
-      setTimeout(() => q.classList.add('faellt'), 1100);
-      setTimeout(() => q.remove(), 1700);
-      if (!offen().length) { hookStaub = null; setTimeout(() => sec.isConnected && zeigWeiter(), 1300); }
+      setTimeout(() => sec.isConnected && q.insertAdjacentHTML('beforeend', `<b class="stempel klein2">${UI.geklaert}</b>`), 450);
+      setTimeout(() => { if (sec.isConnected) inKiste(q); }, 2600);
+      if (!offen().length) { hookStaub = null; setTimeout(() => sec.isConnected && zeigWeiter(), 3300); }
     };
-    offen().forEach((q, i) => setTimeout(() => {
+    const inKiste = (q: HTMLElement) => {
+      const ki = sec.querySelector<HTMLElement>('.kiste');
+      if (!ki) { q.remove(); return; }
+      const z = ki.getBoundingClientRect(), v = q.getBoundingClientRect();
+      q.classList.add('fliegt');
+      q.style.transform = `translate(${z.left + z.width / 2 - (v.left + v.width / 2)}px, ${z.top + z.height / 2 - (v.top + v.height / 2)}px) scale(.15) rotate(20deg)`;
+      setTimeout(() => {
+        q.remove();
+        ki.outerHTML = kisteHtml();
+        sec.querySelector('.kiste')?.classList.add('wackelt');
+        summ(20);
+      }, 650);
+    };
+    const klaerenStarten = () => {
+      if (!offen().length) return zeigWeiter();
+      fuss.innerHTML = `<div class="fz">${knopf('warte', UI.weiter, 'haupt', true)}</div>`;
+      offen()[0]?.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      hookStaub = () => offen().forEach(klaere);
+    };
+    sec.addEventListener('click', (e) => { const q = (e.target as HTMLElement).closest<HTMLElement>('.zettel[data-ok]'); if (q) klaere(q); });
+    sec.addEventListener('keydown', (e) => { const q = (e.target as HTMLElement).closest<HTMLElement>('.zettel[data-ok]'); if (q && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); klaere(q); } });
+    if (!neue.length) return klaerenStarten();
+    let n = 0;
+    const naechste = () => {
       if (!sec.isConnected) return;
-      q.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-      setTimeout(() => sec.isConnected && klaere(q), 500);
-    }, 500 + i * 1300));
-    hookStaub = () => offen().forEach(klaere);
+      const q = neue[n++];
+      if (!q) { hookStaub = null; return klaerenStarten(); }
+      denkwolke(sec, q, naechste);
+    };
+    hookStaub = () => { neue.forEach((q) => q.classList.remove('versteckt')); sec.querySelector('.fr-wolke')?.remove(); n = neue.length; klaerenStarten(); };
+    setTimeout(naechste, 400);
   };
   // Spur noch nicht gelöst (alter oder kaputter Spielstand): keine neue Karte zum Anheften – das Brett trotzdem zeigen
   if (!sec.querySelector('.bkarte.neu, .bkarte.wartet')) fertigWischen();
@@ -479,6 +555,7 @@ function brett() {
   sec.addEventListener('click', (e) => {
     const t = e.target as HTMLElement;
     if (t.closest('[data-a="code"]')) return tresorInfo(() => { ueber.innerHTML = ''; });
+    if (t.closest('[data-a="kiste"]')) return kisteOffen(() => { ueber.innerHTML = ''; ueber.onclick = null; });
     // jede Karte am Brett lässt sich vergrößern – nur nicht, solange sie noch unter Staub liegt oder auf das Anheften wartet
     const k = t.closest<HTMLElement>('.bkarte[data-k]');
     if (k && !k.matches('.neu, .staubig, .wartet')) karteGross(+k.dataset.k!);
@@ -499,6 +576,7 @@ function brettOffen() {
     if (t.closest('[data-a="zu"]') || t.classList.contains('schl')) { ueber.innerHTML = ''; return; }
     const k = t.closest<HTMLElement>('.bkarte[data-k]');
     if (t.closest('[data-a="code"]')) return tresorInfo(brettOffen);
+    if (t.closest('[data-a="kiste"]')) return kisteOffen(brettOffen);
     if (k) { ueber.onclick = null; karteGross(+k.dataset.k!, brettOffen); } // nach dem Schließen wieder das Brett
   };
 }
