@@ -2402,3 +2402,4 @@ sil|ber
 gold
 glas|scher|be
 bau|en
+wa|ckeln

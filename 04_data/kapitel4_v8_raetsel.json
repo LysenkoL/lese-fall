@@ -374,148 +374,18 @@
      "x": 15.8,
      "y": 66.3
     },
-    "vorne": [
-     [
-      39.0,
-      68.6
-     ],
-     [
-      39.6,
-      67.3
-     ],
-     [
-      40.0,
-      65.7
-     ],
-     [
-      40.8,
-      64.0
-     ],
-     [
-      41.8,
-      62.7
-     ],
-     [
-      42.9,
-      61.6
-     ],
-     [
-      44.0,
-      60.9
-     ],
-     [
-      45.0,
-      60.3
-     ],
-     [
-      46.0,
-      59.9
-     ],
-     [
-      47.0,
-      59.6
-     ],
-     [
-      48.0,
-      59.6
-     ],
-     [
-      49.0,
-      59.8
-     ],
-     [
-      50.0,
-      60.3
-     ],
-     [
-      51.0,
-      61.0
-     ],
-     [
-      52.0,
-      61.8
-     ],
-     [
-      53.0,
-      62.6
-     ],
-     [
-      53.8,
-      63.0
-     ],
-     [
-      54.6,
-      62.4
-     ],
-     [
-      55.3,
-      62.3
-     ],
-     [
-      54.9,
-      62.9
-     ],
-     [
-      54.1,
-      63.6
-     ],
-     [
-      53.8,
-      64.9
-     ],
-     [
-      53.3,
-      66.1
-     ],
-     [
-      52.3,
-      67.3
-     ],
-     [
-      51.0,
-      68.1
-     ],
-     [
-      50.0,
-      68.8
-     ],
-     [
-      48.5,
-      69.4
-     ],
-     [
-      47.0,
-      69.7
-     ],
-     [
-      45.0,
-      69.8
-     ],
-     [
-      43.5,
-      69.5
-     ],
-     [
-      42.0,
-      68.9
-     ],
-     [
-      40.5,
-      68.6
-     ]
-    ],
     "punkte": [
      {
-      "text": "Kriech unter dem großen Blatt durch.",
-      "ok": "Pst! Unter dem Blatt sieht mich keiner.",
-      "warum": "Das große Blatt liegt auf dem langen Ast. Da kriechen wir drunter durch.",
+      "text": "Bleib auf dem dicken Ast.",
+      "ok": "Gut. Der dicke Ast trägt mich sicher.",
+      "warum": "Die dünnen Zweige wackeln. Der dicke Ast führt zum Baum.",
       "wege": [
        {
         "x": 32.3,
         "y": 43,
         "name": "Nach oben",
         "dreh": -62,
-        "nicht": "Hui, der Zweig wackelt! Da ist kein großes Blatt."
+        "nicht": "Hui, der Zweig wackelt! Er ist viel zu dünn."
        },
        {
         "x": 41,
@@ -526,13 +396,11 @@
         "weg": [
          {
           "x": 43.9,
-          "y": 66.8,
-          "unter": true
+          "y": 66.8
          },
          {
           "x": 50.0,
-          "y": 65.7,
-          "unter": true
+          "y": 65.7
          },
          {
           "x": 56.9,
@@ -545,7 +413,7 @@
         "y": 87,
         "name": "Nach unten",
         "dreh": 62,
-        "nicht": "Hui, der Zweig schaukelt! Da unten ist kein großes Blatt."
+        "nicht": "Hui, der Zweig schaukelt! Er ist viel zu dünn."
        }
       ]
      },
