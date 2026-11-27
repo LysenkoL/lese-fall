@@ -28,6 +28,7 @@
  "spuren": [
   {
    "spur": 13,
+   "perle": { "x": 53.0, "y": 45.0 },
    "bild": "k3_s13",
    "haken": "„Ob Mila und Ben den Faden auch entdecken?“",
    "karte": {
@@ -60,6 +61,7 @@
   },
   {
    "spur": 14,
+   "perle": { "x": 88.0, "y": 21.0 },
    "bild": "k3_s14",
    "haken": "„Puh, der Vogel schaut weg. Und jetzt schnell zurück zum Käse: Sind die Löcher echt?“",
    "karte": {
@@ -91,6 +93,7 @@
   },
   {
    "spur": 15,
+   "perle": { "x": 52.0, "y": 30.0 },
    "bild": "k3_s15",
    "haken": "„Huch, wer kommt denn da über den Hof gerannt? Alle halten etwas Gelbes in der Hand!“",
    "karte": {
@@ -169,6 +172,7 @@
   },
   {
    "spur": 16,
+   "perle": { "x": 78.0, "y": 82.0 },
    "bild": "k3_s16_vorher",
    "haken": "„Armer Oskar! Er wollte seiner Maus doch nur eine Freude machen.“",
    "karte": {
@@ -282,6 +286,7 @@
   },
   {
    "spur": 17,
+   "perle": { "x": 67.0, "y": 86.0 },
    "bild": "k3_s17",
    "haken": "„Alles geklärt. Aber kann man mit einem gefleckten Mond noch Theater spielen?“",
    "karte": {
@@ -325,6 +330,7 @@
   },
   {
    "spur": 18,
+   "perle": { "x": 70.0, "y": 23.0 },
    "bild": "k3_s18",
    "haken": "„Ben schaut so komisch auf den Mond. Hat er etwa auch eine Idee?“",
    "karte": {
@@ -444,6 +450,7 @@
   },
   {
    "spur": 19,
+   "perle": { "x": 72.0, "y": 82.0 },
    "bild": "k3_s19",
    "haken": "Oben im Baum legt der schwarz-weiße Vogel den Kopf schief. Er starrt auf den funkelnden Silberstern.",
    "karte": {

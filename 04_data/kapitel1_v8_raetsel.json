@@ -54,6 +54,8 @@
   "code": "Der Code für den Tresor",
   "beutel": "Meine Buchstaben für den Tresor",
   "kiste": "Geklärt",
+  "perleTipp": "In jedem Bild ist eine Schimmer-Perle versteckt. Findest du sie?",
+  "vonWort": "von",
   "kisteTitel": "Geklärte Fragen",
   "kisteLeer": "Noch ist keine Frage geklärt.",
   "tresorTipp": "Tipp: Wo lag der Schlüssel?",
@@ -127,6 +129,7 @@
  "spuren": [
   {
    "spur": 1,
+   "perle": { "x": 22.0, "y": 45.0 },
    "bild": "k1_s1",
    "haken": "„Ein verschwundener Schlüssel … Hoffentlich verschwindet heute nicht noch mehr!“",
    "karte": {
@@ -200,6 +203,7 @@
   },
   {
    "spur": 2,
+   "perle": { "x": 34.0, "y": 38.0 },
    "bild": "k1_s2_vorher",
    "haken": "„Gleich kommt Mila mit den Puppen zurück. Oje … was sagt sie zum leeren Himmel?“",
    "karte": {
@@ -298,6 +302,7 @@
   },
   {
    "spur": 3,
+   "perle": { "x": 62.0, "y": 72.0 },
    "bild": "k1_s3",
    "haken": "„Auf dem Tisch soll der Mond liegen? Aber da hat doch vorhin der gestreifte Ärmel zugegriffen …“",
    "karte": {
@@ -364,6 +369,7 @@
   },
   {
    "spur": 4,
+   "perle": { "x": 34.0, "y": 64.0 },
    "bild": "k1_s4_vorher",
    "haken": "„Kein Faden, kein Stern … Gleich sagt Ben hoffentlich, wo der echte Mond liegt!“",
    "karte": {
@@ -406,6 +412,7 @@
   },
   {
    "spur": 5,
+   "perle": { "x": 58.0, "y": 84.0 },
    "bild": "k1_s5",
    "haken": "Genau dort am Fenster hat vorhin der gestreifte Ärmel zugegriffen!",
    "karte": {
@@ -454,6 +461,7 @@
   },
   {
    "spur": 6,
+   "perle": { "x": 79.0, "y": 74.0 },
    "bild": "k1_s6_nachher",
    "haken": "Sechs Kinder, sechs Pullis. Einer davon war es.",
    "karte": {

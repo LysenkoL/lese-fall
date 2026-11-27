@@ -1,7 +1,8 @@
 /**
  * Haus der Lese-Raupe (nach der Entscheidung der Besitzerin, 17.11.2026):
- * füttern und anziehen, alles ohne Bezahlen. Perlen werden nie ausgegeben — sie schalten Sachen frei
- * (alle 6 Perlen eine Sache, also etwa alle 3 Spuren). Die goldene Lupe gibt es nur für den gelösten Fall.
+ * füttern und anziehen, alles ohne Bezahlen. Perlen werden nie ausgegeben — sie schalten Sachen frei.
+ * Seit 27.11.2026 findet das Kind die Perlen selbst (eine versteckt in jedem Spur-Bild, 24 im Buch): alle 2 Perlen
+ * eine Sache, die letzte bei 16 – so ist alles frei, auch wenn ein paar Perlen unentdeckt bleiben. Die goldene Lupe gibt es nur für den gelösten Fall.
  * Die Raupe wird nie hungrig, krank oder traurig; nichts geht verloren, nichts drängt.
  * Damit das Haus lebt (Rückmeldung der Besitzerin, 25.11.2026: „ein bisschen Spaß und Quatsch“), reagiert die Raupe ohne
  * lange Texte: jedes Essen anders (Eis: Zittern, Käse: „Ist das etwa der Mond?“), nach vielen Happen pappsatt mit Schluckauf,
@@ -28,8 +29,8 @@ export const schlaeftBild = (): string | null => SCHLAEFT ?? null;
 export const mitLupeBild = (): string | null => MIT_LUPE ?? null;
 
 export const DINGE: { id: string; ab: number }[] = [
-  { id: 'fliege', ab: 6 }, { id: 'schal', ab: 12 }, { id: 'brille', ab: 18 }, { id: 'notizbuch', ab: 24 },
-  { id: 'taschenlampe', ab: 30 }, { id: 'hut', ab: 36 }, { id: 'mondbrosche', ab: 42 }, { id: 'tasche', ab: 48 },
+  { id: 'fliege', ab: 2 }, { id: 'schal', ab: 4 }, { id: 'brille', ab: 6 }, { id: 'notizbuch', ab: 8 },
+  { id: 'taschenlampe', ab: 10 }, { id: 'hut', ab: 12 }, { id: 'mondbrosche', ab: 14 }, { id: 'tasche', ab: 16 },
 ];
 /** Sachen, die bei dieser Perlenzahl frei sind (die Lupe zählt extra, siehe `lupeFrei`) */
 export const freiBei = (p: number) => DINGE.filter((d) => p >= d.ab).map((d) => d.id);

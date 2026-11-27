@@ -44,7 +44,7 @@ LESEN MIT FARBIGEN SILBEN
 Die Silben sind abwechselnd blau und rot gefärbt. Das hilft beim Lesen langer Wörter. Die Farben lassen sich mit einem Tipp ausschalten. Die Schriftgröße ist einstellbar.
 
 HILFE OHNE DRUCK
-Klappt ein Rätsel nicht sofort, gibt die Lese-Raupe einen Tipp. Beim zweiten Fehler zeigt sie die Lösung. Niemand bleibt hängen, die Geschichte geht immer weiter. Für jedes Rätsel gibt es Schimmer-Perlen.
+Klappt ein Rätsel nicht sofort, gibt die Lese-Raupe einen Tipp. Beim zweiten Fehler zeigt sie die Lösung. Niemand bleibt hängen, die Geschichte geht immer weiter. In jedem Bild ist eine Schimmer-Perle versteckt.
 
 RUHIG UND SICHER
 • Keine Werbung

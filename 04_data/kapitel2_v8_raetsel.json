@@ -29,6 +29,7 @@
  "spuren": [
   {
    "spur": 7,
+   "perle": { "x": 16.0, "y": 78.0 },
    "bild": "k2_s7",
    "haken": "„Aber einen knallgelben Mond hält doch niemand für Bastelpapier … oder?“",
    "karte": {
@@ -113,6 +114,7 @@
   },
   {
    "spur": 8,
+   "perle": { "x": 63.0, "y": 86.0 },
    "bild": "k2_s8",
    "haken": "„Mila und Ben wissen noch nichts vom gestreiften Ärmel. Ich muss nachsehen, was Oskar draußen macht!“",
    "karte": {
@@ -179,6 +181,7 @@
   },
   {
    "spur": 9,
+   "perle": { "x": 63.0, "y": 67.0 },
    "bild": "k2_s9",
    "haken": "„Huch! Oskar steht auf. Er kommt zu unserem Fenster!“",
    "karte": {
@@ -244,6 +247,7 @@
   },
   {
    "spur": 10,
+   "perle": { "x": 70.0, "y": 61.0 },
    "bild": "k2_s10_fenster",
    "haken": "„Eine Überraschung aus einem weißen Kreis … Hoffentlich nicht aus Milas Mond!“",
    "karte": {
@@ -272,6 +276,7 @@
   },
   {
    "spur": 11,
+   "perle": { "x": 85.0, "y": 79.0 },
    "bild": "k2_s11_hof",
    "haken": "„Was liegt denn da neben dem Teller? Etwas Gelbes … in ganz vielen kleinen Stücken!“",
    "karte": {
@@ -345,6 +350,7 @@
   },
   {
    "spur": 12,
+   "perle": { "x": 13.0, "y": 86.0 },
    "bild": "k2_s12",
    "haken": "Drei … zwei … eins …",
    "karte": {

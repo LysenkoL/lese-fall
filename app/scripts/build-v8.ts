@@ -142,8 +142,8 @@ for (const kn of nummern) {
   for (const t of texte) {
     const z = rz.spuren.find((s: any) => s.spur === t.spur);
     if (!z) throw new Error('Rätseldaten fehlen für Spur ' + t.spur);
-    const { spur, bild, haken, karte, fragenNeu, fragenWeg, tipp, raetsel, schluessel } = z;
-    spuren.push({ nr: spur, kap: kn, spur, titel: mark(t.titel), bild, ...(t.bildImText ? { bildImText: true } : {}), haken: mark(haken), blocks: t.blocks, karte: tree(karte), fragenNeu: tree(fragenNeu ?? []), fragenWeg: fragenWeg ?? [], tipp: tree(tipp ?? null), raetsel: tree(raetsel), ...(schluessel ? { schluessel } : {}) });
+    const { spur, bild, haken, karte, fragenNeu, fragenWeg, tipp, raetsel, schluessel, perle } = z;
+    spuren.push({ nr: spur, kap: kn, spur, titel: mark(t.titel), bild, ...(t.bildImText ? { bildImText: true } : {}), haken: mark(haken), blocks: t.blocks, karte: tree(karte), fragenNeu: tree(fragenNeu ?? []), fragenWeg: fragenWeg ?? [], tipp: tree(tipp ?? null), raetsel: tree(raetsel), ...(schluessel ? { schluessel } : {}), ...(perle ? { perle } : {}) });
   }
   kapitel.push({ nr: kn, titel: mark(kopfZeile.replace(`## Kapitel ${kn} — `, '')), bild: rz.bild, vorspann: mark(rz.vorspann), code: rz.code, fallkarte: tree(rz.fallkarte), ausblick: mark(rz.ausblick), ...(rz.ausblickBild ? { ausblickBild: rz.ausblickBild } : {}), ...(ausklang ? { ausklang } : {}), ...(rz.finale ? { finale: tree(rz.finale) } : {}) });
   Object.assign(ui, rz.ui ?? {});

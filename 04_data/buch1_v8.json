@@ -305,6 +305,8 @@
   "code": "Der Co|de für den Tre|sor",
   "beutel": "Mei|ne Buch|sta|ben für den Tre|sor",
   "kiste": "Ge|klärt",
+  "perleTipp": "In je|dem Bild ist ei|ne Schim|mer-Per|le ver|steckt. Fin|dest du sie?",
+  "vonWort": "von",
   "kisteTitel": "Ge|klär|te Fra|gen",
   "kisteLeer": "Noch ist kei|ne Fra|ge ge|klärt.",
   "tresorTipp": "Tipp: Wo lag der Schlüs|sel?",
@@ -625,6 +627,10 @@
     ],
     "erfolg": "Du hast schar|fe Au|gen für Buch|sta|ben!",
     "werkzeug": "lesen"
+   },
+   "perle": {
+    "x": 22,
+    "y": 45
    }
   },
   {
@@ -831,6 +837,10 @@
       "nein": "Das ist auf bei|den Bil|dern gleich. Schau noch ein|mal ge|nau hin."
      }
     ]
+   },
+   "perle": {
+    "x": 34,
+    "y": 38
    }
   },
   {
@@ -980,6 +990,10 @@
     ],
     "erfolg": "KLE|BER! Da|mit hat Ben den Fa|den am Mond fest|ge|klebt.",
     "werkzeug": "fuehler"
+   },
+   "perle": {
+    "x": 62,
+    "y": 72
    }
   },
   {
@@ -1101,6 +1115,10 @@
     "stempel": "NICHT MILAS MOND",
     "erfolg": "Gelb und rund reicht nicht. Das ist nur ein Bas|tel|kreis.",
     "werkzeug": "zeit"
+   },
+   "perle": {
+    "x": 34,
+    "y": 64
    }
   },
   {
@@ -1210,6 +1228,10 @@
     ],
     "erfolg": "Ge|nau so hat Ben es er|zählt.",
     "werkzeug": "zeit"
+   },
+   "perle": {
+    "x": 58,
+    "y": 84
    }
   },
   {
@@ -1417,7 +1439,11 @@
     "erfolg": "Ge|nau. Si|cher ist nur: Der Är|mel ge|hört Os|kar. Was hat er vom Tab|lett ge|nom|men?",
     "werkzeug": "lesen"
    },
-   "schluessel": true
+   "schluessel": true,
+   "perle": {
+    "x": 79,
+    "y": 74
+   }
   },
   {
    "nr": 7,
@@ -1570,6 +1596,10 @@
     ],
     "erfolg": "Der Mond ge|hört in die grü|ne Kis|te. A|ber er lag auf dem Tab|lett. Dort darf sich je|der Pa|pier neh|men.",
     "werkzeug": "lesen"
+   },
+   "perle": {
+    "x": 16,
+    "y": 78
    }
   },
   {
@@ -1693,6 +1723,10 @@
     "warum": "Der Kle|ber war noch nass. Er durf|te das Tab|lett nicht be|rüh|ren.",
     "erfolg": "Die wei|ße Sei|te lag o|ben. So hat der nas|se Kle|ber das Tab|lett nicht be|rührt. Von o|ben sah der Mond weiß aus, nicht gelb.",
     "werkzeug": "lupe"
+   },
+   "perle": {
+    "x": 63,
+    "y": 86
    }
   },
   {
@@ -1850,6 +1884,10 @@
     ],
     "erfolg": "Al|les ge|fun|den. Nur ei|nes sieht die Rau|pe nicht: was un|ter dem Sei|den|pa|pier liegt.",
     "werkzeug": "lupe"
+   },
+   "perle": {
+    "x": 63,
+    "y": 67
    }
   },
   {
@@ -2004,6 +2042,10 @@
     "warum": "Im Spie|gel steht al|les ver|kehrt he|rum. Lies von rechts nach links.",
     "erfolg": "Fest für Maus! Das ist die Ein|la|dung für Os|kars Maus.",
     "werkzeug": "lesen"
+   },
+   "perle": {
+    "x": 70,
+    "y": 61
    }
   },
   {
@@ -2152,6 +2194,10 @@
     ],
     "erfolg": "BANK! Die Spur führt zu Os|kars Bank.",
     "werkzeug": "fuehler"
+   },
+   "perle": {
+    "x": 85,
+    "y": 79
    }
   },
   {
@@ -2321,7 +2367,11 @@
     "erfolg": "Ge|nau. Si|cher ist nur, was Os|kar ge|sagt hat. Ob es Mi|las Mond war, weiß noch nie|mand.",
     "werkzeug": "lesen"
    },
-   "schluessel": true
+   "schluessel": true,
+   "perle": {
+    "x": 13,
+    "y": 86
+   }
   },
   {
    "nr": 13,
@@ -2411,6 +2461,10 @@
     "tipp": "Schau am Rand ent|lang. Es ist et|was Dün|nes, Wei|ßes.",
     "erfolg": "Ein klei|nes Stück wei|ßer Fa|den! Seit wann hat ein Kä|se ei|nen Fa|den? Mi|las Mond hat ei|nen!",
     "werkzeug": "lupe"
+   },
+   "perle": {
+    "x": 53,
+    "y": 45
    }
   },
   {
@@ -2510,6 +2564,10 @@
     "warum": "Nur bei die|sem Vo|gel liegt das Blau ge|nau auf dem Schat|ten. Schna|bel und Schwanz pas|sen.",
     "erfolg": "Die|ser Vo|gel passt zum Schat|ten. A|ber war er es wirk|lich? Das ist erst ein Ver|dacht.",
     "werkzeug": "zeit"
+   },
+   "perle": {
+    "x": 88,
+    "y": 21
    }
   },
   {
@@ -2643,6 +2701,10 @@
     "warum": "Klei|ner Fleck, klei|nes Loch. Gro|ßer Fleck, gro|ßes Loch.",
     "stempel": "PASST GENAU",
     "erfolg": "Al|le drei Fle|cken pas|sen ge|nau. Os|kar hat sie aus dem brau|nen Bo|gen ge|schnit|ten. Der gel|be Kreis da|run|ter ist heil!"
+   },
+   "perle": {
+    "x": 52,
+    "y": 30
    }
   },
   {
@@ -2825,6 +2887,10 @@
     "stempel": "MILAS MOND",
     "erfolg": "Das ist Mi|las Mond! Nur die|ser Kreis hat hin|ten den blau|en Stern, o|ben das Loch und den auf|ge|roll|ten Fa|den.",
     "werkzeug": "zeit"
+   },
+   "perle": {
+    "x": 78,
+    "y": 82
    }
   },
   {
@@ -2952,6 +3018,10 @@
     "tipp": "Zäh|le in je|dem Wort mit: 1 bleibt, 2 weg, 3 bleibt, 4 weg.",
     "erfolg": "Tut mir leid! Os|kar hat den Mond nicht mit Ab|sicht ge|nom|men. Es war ein Miss|ver|ständ|nis.",
     "werkzeug": "lesen"
+   },
+   "perle": {
+    "x": 67,
+    "y": 86
    }
   },
   {
@@ -3147,6 +3217,10 @@
     "hilfe": "Ei|ne I|dee hast du noch nicht pro|biert. Tipp sie an!",
     "ok": "Die ret|ten|de I|dee!",
     "erfolg": "Das ist die ret|ten|de I|dee! Jetzt muss nur noch ei|ner von den drei|en da|rauf kom|men."
+   },
+   "perle": {
+    "x": 70,
+    "y": 23
    }
   },
   {
@@ -3325,7 +3399,11 @@
     "plakatFertig": "Das Pla|kat ist fer|tig: Die Maus springt zu ih|rem Kä|se!",
     "werkzeug": "lesen"
    },
-   "schluessel": true
+   "schluessel": true,
+   "perle": {
+    "x": 72,
+    "y": 82
+   }
   },
   {
    "nr": 20,
@@ -3565,7 +3643,11 @@
     "nachsehen": "Im Text nach|se|hen",
     "werkzeug": "fuehler"
    },
-   "schluessel": true
+   "schluessel": true,
+   "perle": {
+    "x": 60,
+    "y": 80
+   }
   },
   {
    "nr": 21,
@@ -3936,6 +4018,10 @@
      }
     ],
     "erfolg": "Ich bin am Nest! Pst … Da blitzt et|was. Ist das die Spit|ze von ei|nem Stern?"
+   },
+   "perle": {
+    "x": 62,
+    "y": 41
    }
   },
   {
@@ -4086,6 +4172,10 @@
     "fund": "Da! Ein ro|sa Mäu|se|schwanz in Os|kars Ka|pu|ze!",
     "erfolg": "Die Maus steckt in Os|kars Ka|pu|ze! Ich zup|fe ein Blatt ab und las|se es auf sei|nen Na|cken se|geln. Dann merkt er es. Psst!",
     "werkzeug": "lupe"
+   },
+   "perle": {
+    "x": 70,
+    "y": 80
    }
   },
   {
@@ -4360,6 +4450,10 @@
     "warum": "Schau hier: Bei die|sem Vo|gel pas|sen al|le vier Punk|te.",
     "fund": "Al|le vier Punk|te pas|sen!",
     "erfolg": "Ei|ne Els|ter! Al|le vier Punk|te pas|sen. Gut ge|le|sen, Part|ner!"
+   },
+   "perle": {
+    "x": 32,
+    "y": 62
    }
   },
   {
@@ -4562,6 +4656,10 @@
     "knapp": "Noch ein Stück! Das wei|ße Band muss an die Spit|ze.",
     "erfolg": "Klick! Das wei|ße Band hängt an der Spit|ze vom Zei|ge|stock. Frau Som|mer zieht den Schlüs|sel hoch. Ge|schafft! Psst … sie denkt, das ging von selbst.",
     "werkzeug": "lupe"
+   },
+   "perle": {
+    "x": 78,
+    "y": 27
    }
   }
  ]

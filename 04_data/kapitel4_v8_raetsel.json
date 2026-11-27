@@ -193,6 +193,7 @@
  "spuren": [
   {
    "spur": 20,
+   "perle": { "x": 60.0, "y": 80.0 },
    "bild": "k4_s19_elster",
    "schluessel": true,
    "haken": "„Hoffentlich will jetzt keiner zu dem Vogel hinaufklettern …“",
@@ -343,6 +344,7 @@
   },
   {
    "spur": 21,
+   "perle": { "x": 62.0, "y": 41.0 },
    "bild": "k4_s21_raupe",
    "haken": "„Pst! Ganz leise jetzt. Was liegt da alles im Nest?“",
    "karte": {
@@ -498,6 +500,7 @@
   },
   {
    "spur": 22,
+   "perle": { "x": 70.0, "y": 80.0 },
    "bild": "nest_spitze",
    "haken": "„Ob Oskar das Blatt bemerkt?“",
    "karte": {
@@ -555,6 +558,7 @@
   },
   {
    "spur": 23,
+   "perle": { "x": 32.0, "y": 62.0 },
    "bild": "k4_s22",
    "haken": "„Ein Tausch mit einer Elster? Ob das klappt?“",
    "karte": {
@@ -709,6 +713,7 @@
   },
   {
    "spur": 24,
+   "perle": { "x": 78.0, "y": 27.0 },
    "bild": "k4_s24_fenster",
    "haken": "Das Nest! Und was liegt darin?",
    "karte": {

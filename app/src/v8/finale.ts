@@ -25,7 +25,8 @@ export interface FinCtx {
   sack?: string;
   stand: { fin: number; name: string };
   speichern: () => void;
-  perlen: () => number;
+  /** z. B. „19 von 24“ (gefundene Schimmer-Perlen) */
+  perlen: () => number | string;
   modus: (m: string) => void;
   neuStart: () => void;
   hook: { loese: (() => void) | null };
@@ -236,7 +237,7 @@ const wahlVon = (st: any): Wahl => (st?.titel === 'detektivin' ? 'detektivin' : 
  * Urkunde (im Finale und aus dem Fall-Album): gleiche Gestaltung, der Name ist änderbar.
  * `raupeKurz` (nur im Finale): ein Satz der Raupe als Sprechblase über der Zeile „Detektiv-Team“.
  */
-export function urkundeHtml(UI: Record<string, string>, name: string, perlen: number, fig: (n: string) => string, imFinale = false, raupeKurz?: string): string {
+export function urkundeHtml(UI: Record<string, string>, name: string, perlen: number | string, fig: (n: string) => string, imFinale = false, raupeKurz?: string): string {
   const w = wahlVon(standJetzt());
   const meisterin = UI.meisterin ?? UI.meister + 'in';
   const team = `<p class="team"><img src="${fig('raupe/lob')}" alt=""><span>${UI.teamZeile}</span></p>`;

@@ -48,7 +48,9 @@ interface Stand {
   view: 'titel' | 'intro' | 'kapitel' | 'spur' | 'fallkarte' | 'ausblick' | 'finale' | 'fertig' | 'album';
   weiter: 'intro' | 'kapitel' | 'spur' | 'fallkarte' | 'ausblick' | 'finale' | 'fertig' | 'album';
   spur: number; i: number; blatt: number;
-  fertig: number[]; tipps: Record<number, string>; tippPerle: number; geklaert: string[]; mix: string[];
+  fertig: number[]; tipps: Record<number, string>; tippPerle: number;
+  /** Spuren, in deren Bild das Kind die versteckte Schimmer-Perle gefunden hat (eine je Spur, 27.11.2026) */
+  perlen: number[]; geklaert: string[]; mix: string[];
   intro: boolean; fs: number; silben: boolean;
   /** Finale (finale.ts, D-19): 0 Code, 1 Tresor offen mit Lupe, 2 Urkunde, 3 Epilog; Name und Titel (Detektiv/Detektivin) auf der Urkunde */
   fin: number; name: string; titel?: 'detektiv' | 'detektivin'; finV?: number;
@@ -64,7 +66,7 @@ interface Stand {
   traegt: string; gesehen: string[] | null;
 }
 const KEY = 'lesefall.v8';
-const START: Stand = { view: 'titel', weiter: 'intro', spur: 1, i: 0, blatt: 0, fertig: [], tipps: {}, tippPerle: 0, geklaert: [], mix: [], intro: false, fs: 20, silben: true, fin: 0, name: '', weit: 0, geloest: false, wieder: false, albumKap: 1, traegt: '', gesehen: null };
+const START: Stand = { view: 'titel', weiter: 'intro', spur: 1, i: 0, blatt: 0, fertig: [], tipps: {}, tippPerle: 0, perlen: [], geklaert: [], mix: [], intro: false, fs: 20, silben: true, fin: 0, name: '', weit: 0, geloest: false, wieder: false, albumKap: 1, traegt: '', gesehen: null };
 const stand: Stand = (() => { try { const r = localStorage.getItem(KEY); if (r) return { ...structuredClone(START), ...JSON.parse(r) }; } catch { /* ohne Speichern weiter */ } return structuredClone(START); })();
 const speichern = () => { try { localStorage.setItem(KEY, JSON.stringify(stand)); } catch { /* egal */ } };
 urkundeMitStand(stand, speichern); // „Meine Urkunde“ liest und speichert Name und Titel direkt im Stand
@@ -77,7 +79,11 @@ const letzteSpur = (n: number) => !D.spuren[n] || D.spuren[n].kap !== SP(n).kap;
 const kapSpuren = (k: number): number[] => D.spuren.filter((s: any) => s.kap === k).map((s: any) => s.nr);
 /** Buchstabe von Kapitel c ist verdient: Fallkarte gelöst (bei uns schon beim Ausblick) oder ein späteres Kapitel läuft */
 const verdient = (c: number) => { const cur = SP(stand.spur).kap; return c < cur || (c === cur && (stand.weiter === 'ausblick' || stand.weiter === 'finale')); };
-const perlen = () => stand.fertig.length * 2 + stand.tippPerle;
+/** Schimmer-Perlen: in jedem Spur-Bild ist eine versteckt; gezählt wird, was das Kind gefunden hat (höchstens 24) */
+const perlen = () => stand.perlen.length;
+const PERLEN_GESAMT = D.spuren.filter((sp: any) => sp.perle).length;
+/** für die Urkunde: „19 von 24“ */
+const perlenVon = () => `${perlen()} ${UI.vonWort} ${PERLEN_GESAMT}`;
 // Alter Speicherstand: was schon frei ist, nicht nachträglich ankündigen
 if (!stand.gesehen) { stand.gesehen = freiBei(perlen()); speichern(); }
 /** Schritte einer Spur: Lesen → [Tipp-Auflösung] → Rätsel → Brett → [Tipp-Frage] → Haken; letzte Spur eines Kapitels mit Ausklang: … → Brett → Ausklang */
@@ -227,7 +233,7 @@ function kapitelKarte() {
 const blockHtml = (b: any) => {
   if (b.roh) return b.roh;
   // <!-- Bild --> im Text: das Bild steht vor diesem Absatz (und wandert mit ihm aufs Blatt, nie allein ans Ende eines Blatts)
-  const bild = b.bild ? `<figure class="foto im-text"><img src="${img(b.bild)}" alt=""></figure>` : '';
+  const bild = b.bild ? `<figure class="foto im-text"><img src="${img(b.bild)}" alt="">${perleHtml(b.bild)}</figure>` : '';
   const s = b.s.map((x: string) => `<span class="satz">${T(x)}</span>`).join(' ');
   if (b.typ !== 'th') return `${bild}<p>${s}</p>`;
   // Gedanken der Raupe: vier Formen im Wechsel (Wolke mit Raupe links, rechts, Zettel, Wolke über der Raupe).
@@ -288,6 +294,36 @@ function blaetter(blocks: any[], kopfHtml: string): { html: string; voll: number
   probe.remove();
   return out;
 }
+/** Versteckte Schimmer-Perle im Bild der laufenden Spur (nur einmal zu finden; Lage in % aus den Daten, `perle`) */
+function perleHtml(bild: string) {
+  const sp = SP(stand.spur), p = sp.perle;
+  if (!p || sp.bild !== bild || stand.perlen.includes(sp.spur)) return '';
+  return `<button class="sperle" type="button" style="left:${p.x}%;top:${p.y}%" aria-label="${ohneTags(UI.perlen)}"><i></i></button>`;
+}
+const ohneTags = (h: string) => h.replace(/<[^>]+>/g, '').replace(/\|/g, '');
+/** Perle gefunden: sie fliegt zum Perlen-Knopf im Kopf; ist dadurch eine neue Sache im Haus frei, kurz zeigen */
+function perleGefunden(pb: HTMLElement) {
+  const n = stand.spur;
+  if (stand.perlen.includes(n)) return;
+  stand.perlen.push(n);
+  speichern();
+  summ([20, 40, 20]);
+  const ziel = $('#kPerl'), a = pb.getBoundingClientRect(), z = ziel.getBoundingClientRect();
+  const fl = document.createElement('i');
+  fl.className = 'perle-flug';
+  fl.style.left = `${a.left + a.width / 2}px`; fl.style.top = `${a.top + a.height / 2}px`;
+  fl.style.setProperty('--dx', `${z.left + z.width / 2 - (a.left + a.width / 2)}px`);
+  fl.style.setProperty('--dy', `${z.top + z.height / 2 - (a.top + a.height / 2)}px`);
+  document.body.appendChild(fl);
+  pb.remove();
+  app.querySelector('.perl-tipp')?.remove();
+  setTimeout(() => {
+    fl.remove(); kopf();
+    ziel.classList.remove('neu-da'); void ziel.offsetWidth; ziel.classList.add('neu-da');
+    const neu = freiBei(perlen()).filter((id) => !stand.gesehen!.includes(id));
+    if (neu.length) { stand.gesehen!.push(...neu); speichern(); neuHinweis(app, UI, neu[neu.length - 1], hausOeffnen); }
+  }, 750);
+}
 /** Ausklang des Kapitels (kurze Schlussszene nach der letzten Spur, vor der Fallkarte) – oder null */
 const ausklangVon = (n: number) => (letzteSpur(n) ? kapOf(n).ausklang ?? null : null);
 /** Lesen: die Spur – oder `aus` = der Ausklang des Kapitels (gleiche Blätter, ohne Spur-Etikett) */
@@ -296,8 +332,8 @@ function lesen(aus: any = null) {
   const sp = SP(stand.spur), q = aus ?? sp;
   const titelH = aus ? T(aus.titel) : sp.titelH;
   // Bild oben – außer der Text setzt es mit <!-- Bild --> an eine spätere Stelle (bildImText)
-  const bildH = q.bild && !q.bildImText ? `<figure class="foto"><img src="${img(q.bild)}" alt=""></figure>` : '';
-  const kopfH = `<div class="skopf${aus ? ' ausklang' : ''}">${aus ? '' : `<span class="tab etikett">SPUR ${sp.spur}</span>`}<h2>${titelH}</h2></div>${bildH}`;
+  const bildH = q.bild && !q.bildImText ? `<figure class="foto"><img src="${img(q.bild)}" alt="">${aus ? '' : perleHtml(q.bild)}</figure>` : '';
+  const kopfH = `<div class="skopf${aus ? ' ausklang' : ''}">${aus ? '' : `<span class="tab etikett">SPUR ${sp.spur}</span>`}<h2>${titelH}</h2></div>${bildH}${!aus && !stand.perlen.length && sp.spur <= 3 && sp.perle ? `<p class="perl-tipp"><span class="perle"></span>${UI.perleTipp}</p>` : ''}`;
   buehne.innerHTML = '';
   { let n = sp.spur + (aus ? 1 : 0); for (const b of q.blocks) if (b.typ === 'th') b.v = n++; } // Form des Gedankens: fest je Spur und Reihenfolge
   const seiten = blaetter(q.blocks, kopfH);
@@ -311,6 +347,7 @@ function lesen(aus: any = null) {
     speichern();
   };
   zeig();
+  buehne.onclick = (e) => { const pb = (e.target as HTMLElement).closest<HTMLElement>('.sperle'); if (pb) perleGefunden(pb); };
   fuss.onclick = (e) => {
     const a = (e.target as HTMLElement).closest<HTMLElement>('[data-a]')?.dataset.a;
     if (a === 'prev') { if (stand.blatt === 0) return zurueckSchritt(); stand.blatt--; richtung = 'z'; zeig(); } else if (a === 'next') { stand.blatt++; richtung = 'v'; zeig(); } else if (a === 'weiter') weiter();
@@ -341,7 +378,6 @@ function tippFrage() {
 function tippAufl() {
   modus('haken');
   const t = SP(1).tipp, richtig = stand.tipps[1] === t.richtig;
-  if (richtig && !stand.tippPerle) { stand.tippPerle = 1; speichern(); kopf(); }
   buehne.innerHTML = `<section class="haken aufl"><div class="lampe"></div><img class="hr" src="${fig('raupe/' + (richtig ? 'lob' : 'staunt'))}" alt=""><h2>${richtig ? UI.tippRichtig : UI.tippFalsch}</h2><p>${t.aufloesung}</p></section>`;
   nurKnopf('weiter', knopf('weiter', UI.weiter), weiter);
 }
@@ -356,10 +392,7 @@ function raetsel() {
   fuss.innerHTML = '<div class="fz"><button class="kn haupt" style="visibility:hidden" tabindex="-1" aria-hidden="true"><span>·</span></button></div>';
   const fertig = () => {
     if (!stand.fertig.includes(stand.spur)) {
-      stand.fertig.push(stand.spur); kopf(); belohnung($('.zr .rp img', buehne) ?? $('.zr', buehne), $('#kPerl'), $('#kMond'));
-      // neue Sache im Haus? kurz zeigen, ohne das Lesen aufzuhalten
-      const neu = freiBei(perlen()).filter((id) => !stand.gesehen!.includes(id));
-      if (neu.length) { stand.gesehen!.push(...neu); setTimeout(() => { if (stand.view === 'spur') neuHinweis(app, UI, neu[neu.length - 1], hausOeffnen); }, 1700); }
+      stand.fertig.push(stand.spur); kopf(); belohnung($('.zr .rp img', buehne) ?? $('.zr', buehne), $('#kMond'), null);
     }
     speichern();
     nurKnopf('weiter', knopf('weiter', stand.wieder ? UI.zumAlbum : UI.weiter), weiter);
@@ -471,7 +504,7 @@ function denkwolke(sec: HTMLElement, q: HTMLElement, fertig: () => void) {
 function brett() {
   modus('brett');
   const nr = stand.spur, staubig = SP(nr).karte.staub === true;
-  buehne.innerHTML = `<section class="brett"><div class="ak"><span class="tab hell">${UI.brett}</span><span class="plus"><span>+2 ${UI.perlen}</span></span></div>${staubig ? `<p class="wischz">${wzChip(UI, 'fuehler', 'klein')} ${UI.wisch}</p>` : ''}${brettHtml(nr, nr, staubig, !staubig)}</section>`;
+  buehne.innerHTML = `<section class="brett"><div class="ak"><span class="tab hell">${UI.brett}</span></div>${staubig ? `<p class="wischz">${wzChip(UI, 'fuehler', 'klein')} ${UI.wisch}</p>` : ''}${brettHtml(nr, nr, staubig, !staubig)}</section>`;
   fuss.innerHTML = `<div class="fz"><button class="kn haupt" data-a="weiter" style="visibility:hidden" tabindex="-1"><span>${UI.weiter}</span></button></div>`;
   const sec = $('.brett');
   const karte = $<HTMLElement>('.bkarte.neu', sec);
@@ -663,7 +696,7 @@ function ausblick() {
 /** Finale nach dem letzten Kapitel: Code, Tresor mit Lupe, Urkunde, Epilog (siehe finale.ts) */
 function finale() {
   const letzt = D.kapitel[D.kapitel.length - 1];
-  zeigeFinale({ buehne, fuss, UI, img, fig, summ, fin: letzt.finale, wort: D.kapitel[0].code.wort, reihe: D.kapitel.map((k: any) => k.code.pos), sack: SACK, stand, speichern, perlen, modus, neuStart, hook: R.hook, knopf,
+  zeigeFinale({ buehne, fuss, UI, img, fig, summ, fin: letzt.finale, wort: D.kapitel[0].code.wort, reihe: D.kapitel.map((k: any) => k.code.pos), sack: SACK, stand, speichern, perlen: perlenVon, modus, neuStart, hook: R.hook, knopf,
     geloest: () => { if (!stand.geloest) { stand.geloest = true; speichern(); } },
     album: () => { stand.view = 'album'; zeige(); },
     haus: hausOeffnen,
@@ -681,7 +714,7 @@ function fertigSeite() {
   buehne.onclick = (e) => tu((e.target as HTMLElement).closest<HTMLElement>('[data-a]')?.dataset.a);
 }
 function urkundeOffen() {
-  ueber.innerHTML = `<div class="schl mitte"><div class="urk-box">${urkundeHtml(UI, stand.name, perlen(), fig)}<div class="fz">${knopf('zu', UI.fertig)}</div></div></div>`;
+  ueber.innerHTML = `<div class="schl mitte"><div class="urk-box">${urkundeHtml(UI, stand.name, perlenVon(), fig)}<div class="fz">${knopf('zu', UI.fertig)}</div></div></div>`;
   const inp = $<HTMLInputElement>('#dname', ueber);
   inp.addEventListener('input', () => { stand.name = inp.value; speichern(); });
   ueber.onclick = (e) => { const t = e.target as HTMLElement; if (t.closest('[data-a="zu"]') || t.classList.contains('schl')) ueber.innerHTML = ''; };
