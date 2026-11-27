@@ -286,7 +286,12 @@
    "karte": {
     "titel": "Ein Missverständnis",
     "bild": "k3_s17",
-  "ausschnitt": { "x": 6, "y": 6, "w": 88, "h": 84 },
+    "ausschnitt": {
+     "x": 6,
+     "y": 6,
+     "w": 88,
+     "h": 84
+    },
     "text": "Ben hat den Mond aufs Tablett für alle gelegt. Oskar hielt ihn für Papier.",
     "staub": false
    },
@@ -361,7 +366,7 @@
      {
       "id": "oskar",
       "name": "Oskar",
-      "text": "Meine Maus soll ein Festessen haben."
+      "text": "Meine Maus soll im Stück ein Festessen haben."
      }
     ],
     "ideen": [
@@ -379,7 +384,7 @@
       },
       "oskar": {
        "froh": false,
-       "unter": "Und das Festessen für meine Maus?"
+       "unter": "Ohne Flecken sieht er nicht mehr wie Käse aus!"
       },
       "sagt": "Oje, Ben schaut ganz besorgt. Die Pappe darf nicht reißen."
      },
@@ -396,7 +401,7 @@
       },
       "oskar": {
        "froh": false,
-       "unter": "Dann gibt es kein Festessen."
+       "unter": "Dann hat meine Maus im Stück kein Festessen."
       },
       "sagt": "Hm. Nur Ben lacht. Ohne Mond ist der Himmel leer."
      },
@@ -413,10 +418,10 @@
        "unter": "Gut, dann reißt nichts."
       },
       "oskar": {
-       "froh": false,
-       "unter": "Und das Festessen für meine Maus?"
+       "froh": true,
+       "unter": "Dann bekommt meine Maus den alten Mond als Käse!"
       },
-      "sagt": "Wieder lacht nur einer. Das ist es noch nicht."
+      "sagt": "Zwei lachen. Aber Mila nicht. Das ist es noch nicht."
      },
      {
       "id": "kaese",

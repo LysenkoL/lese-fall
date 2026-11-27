@@ -183,7 +183,7 @@ export function unterschiede(r: HTMLElement, d: Daten, fertig: () => void) {
   /** Eigenschaften einer Sache je Seite: `vorhin`/`jetzt` darf ein Objekt sein ({x, y, rot, bild}) */
   const pos = (x: any, art: 'vorhin' | 'jetzt') => (x[art] && typeof x[art] === 'object' ? { ...x, ...x[art] } : x);
   const ding = (x: any, art: 'vorhin' | 'jetzt') => { const q = pos(x, art); return q.bild ? `<img class="ding" data-d="${x.id}" src="${K.img(q.bild)}" alt="" style="left:${q.x}%;top:${q.y}%;width:${q.w}%${q.rot ? `;transform:translate(-50%,-50%) rotate(${q.rot}deg)` : ''}">` : ''; };
-  const pane = (art: 'vorhin' | 'jetzt') => `<figure class="ub" data-p="${art}"><span class="tab hell">${K.UI[art]}</span><div class="ub-bild" style="background-image:url(${K.img(d.basis)})">${(d.deko ?? []).filter((x: any) => x[art]).map((x: any) => `<img class="ding" src="${K.img(x.bild)}" alt="" style="left:${x.x}%;top:${x.y}%;width:${x.w}%${x.clip ? `;clip-path:${x.clip}` : ''}">`).join('')}${dinge.filter((x) => x[art]).map((x) => ding(x, art)).join('')}</div></figure>`;
+  const pane = (art: 'vorhin' | 'jetzt') => `<figure class="ub" data-p="${art}"><span class="tab hell">${K.UI[art]}</span><div class="ub-bild" style="background-image:url(${K.img(d.basis)})"><i class="ub-lupe" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6" fill="none" stroke="currentColor" stroke-width="2.6"/><path d="M15 15l5.5 5.5" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></i>${(d.deko ?? []).filter((x: any) => x[art]).map((x: any) => `<img class="ding" src="${K.img(x.bild)}" alt="" style="left:${x.x}%;top:${x.y}%;width:${x.w}%${x.clip ? `;clip-path:${x.clip}` : ''}">`).join('')}${dinge.filter((x) => x[art]).map((x) => ding(x, art)).join('')}</div></figure>`;
   // Beide Bilder stehen untereinander (kein Umschalten). Das Kind tippt große Karten an: Was ist anders?
   const andere: any[] = d.andere ?? [];
   const karten = K.mischen([...dinge.map((x) => x.id), ...andere.map((x) => x.id)]).map((id: string) => dinge.find((x) => x.id === id) ?? andere.find((x) => x.id === id));
@@ -211,7 +211,18 @@ export function unterschiede(r: HTMLElement, d: Daten, fertig: () => void) {
     sag(r, 'tipp', d.sortieren.start);
     sortieren(r, { ...d.sortieren, erfolg: d.erfolg }, fertig);
   };
+  /** Lupe: Bild antippen → beide Bilder groß untereinander (auf dem Telefon sind sie nebeneinander klein); Antippen schließt */
+  const gross = () => {
+    const b = r.closest<HTMLElement>('#buehne') ?? r;
+    b.querySelector(':scope > .ub-gross')?.remove();
+    const o = document.createElement('div');
+    o.className = 'ub-gross';
+    o.innerHTML = `<div class="ub-gross-in">${[...zi.querySelectorAll('.ub-zwei > .ub')].map((f) => f.outerHTML).join('')}</div><button class="rund ub-zu" aria-label="Schließen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.800" stroke-linecap="round"/></svg></button>`;
+    o.onclick = () => o.remove();
+    b.appendChild(o);
+  };
   zi.onclick = (e) => {
+    if ((e.target as HTMLElement).closest('.ub-zwei .ub-bild')) return gross();
     const k = (e.target as HTMLElement).closest<HTMLElement>('.ub-k');
     if (!k || fertigig || k.classList.contains('da')) return;
     const x = dinge.find((q) => q.id === k.dataset.k);
@@ -602,8 +613,10 @@ export function ausschluss(r: HTMLElement, d: Daten, fertig: () => void) {
     gesperrt = true; sel.clear();
     ids.forEach((id) => { gestr.add(id); neuGestr.add(id); });
     mal();
-    if (mitRaupe) await warte(900); else await warte(700);
-    sag(r, 'tipp', '');
+    // Spannendes über die Vögel (Spur 23): beim Streichen erzählt die Raupe kurz von ihnen, die Blase bleibt beim nächsten Hinweis stehen
+    const fakten = ids.map((id) => kand.find((c) => c.id === id)?.fakt).filter(Boolean);
+    if (fakten.length) { sag(r, 'lacht', fakten.join(' ')); await warte(900); }
+    else { await warte(mitRaupe ? 900 : 700); sag(r, 'tipp', ''); }
     weiter();
   };
   const pruefen = () => {
@@ -762,10 +775,13 @@ export function umdrehen(r: HTMLElement, d: Daten, fertig: () => void) {
 /* ============================ 5.3 Was sieht die Raupe? (suchbild) ============================ */
 export function suchbild(r: HTMLElement, d: Daten, fertig: () => void) {
   const zi = $('.zi', r);
-  const dinge: any[] = d.dinge, gef = new Set<string>();
+  // ausschnitt {x, y, w, h} in % des Bildes: nur dieser Teil wird gezeigt (größer zum Antippen); Lagen der Dinge werden umgerechnet
+  const A = d.ausschnitt ?? { x: 0, y: 0, w: 100, h: 100 };
+  const dinge: any[] = d.dinge.map((x: any) => ({ ...x, x: ((x.x - A.x) / A.w) * 100, y: ((x.y - A.y) / A.h) * 100, w: (x.w / A.w) * 100, h: (x.h / A.h) * 100 }));
+  const gef = new Set<string>();
   let fehl = 0, aus = false;
   const liste = () => `<ul class="sb-liste">${dinge.map((x) => `<li class="${gef.has(x.id) ? 'da' : ''}"><i></i><span>${x.name}</span></li>`).join('')}</ul>`;
-  zi.innerHTML = `${liste()}<div class="sb-bild"><img src="${K.img(d.bild)}" alt="" draggable="false"></div>`;
+  zi.innerHTML = `${liste()}<div class="sb-bild"><img src="${K.img(d.bild)}" alt="" draggable="false"${d.ausschnitt ? ` class="aus" style="width:${10000 / A.w}%;height:${10000 / A.h}%;left:${(-A.x / A.w) * 100}%;top:${(-A.y / A.h) * 100}%"` : ''}></div>`;
   const finde = (x: any, blink = false) => {
     gef.add(x.id);
     $('.sb-liste', zi).outerHTML = liste();

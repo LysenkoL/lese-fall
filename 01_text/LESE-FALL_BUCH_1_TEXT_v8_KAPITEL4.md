@@ -12,6 +12,7 @@ Wusch! Der große schwarz-weiße Vogel schießt aus den Zweigen herab. Er schnap
 
 „Mein Mond!“, schreit Mila. „Der Vogel klaut unseren Himmelskäse!“
 
+<!-- Bild -->
 Alle schauen nach oben. Der Vogel fliegt zu einer Astgabel direkt unter dem Klassenzimmerfenster. Dort sitzt sein rundes Nest, zwischen zwei Zweigen wie in einem großen V. Der Vogel ist so groß wie eine Taube. Aber der Mond ist viel zu groß für das Nest. Trotzdem zerrt und ruckelt der Vogel wie verrückt am Faden.
 
 Mila, Ben und Oskar rennen zum Baumstamm. „Hey, du frecher Dieb!“, ruft Mila und winkt mit beiden Armen. „Gib den sofort wieder her!“

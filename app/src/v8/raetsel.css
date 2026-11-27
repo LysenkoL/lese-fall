@@ -124,6 +124,18 @@
 .ub-schalter button { border-radius: var(--r-rund); padding: .5rem 1.375rem; font-weight: 800; font-size: 1rem; color: #fff; background: transparent; min-width: 6.875rem; min-height: var(--tipp); }
 .ub-schalter button.an { background: linear-gradient(#FFD564, #F0B62E); color: #26221C; box-shadow: 0 3px 0 #B8851A; }
 .ub-schalter button span span { color: inherit; }
+/* Lupe (S2): kleines Zeichen auf jedem Bild; Antippen zeigt beide Bilder groß untereinander über der Bühne */
+.ub-zwei .ub-bild { cursor: zoom-in; }
+.ub-lupe { position: absolute; right: .25rem; bottom: .25rem; z-index: 4; width: 1.75rem; height: 1.75rem; display: grid; place-items: center; border-radius: 50%; background: var(--senf); color: var(--senf-tinte); box-shadow: 0 2px 0 var(--senf-dunkel); pointer-events: none; }
+.ub-lupe svg { width: 1.125rem; height: 1.125rem; }
+.ub-gross { position: absolute; inset: 0; z-index: 6; display: flex; align-items: center; justify-content: center; padding: var(--a-3) var(--rand); background: rgba(12, 20, 48, .94); animation: ein .2s both; cursor: zoom-out; }
+.ub-gross-in { display: flex; flex-direction: column; align-items: center; gap: .625rem; width: min(100%, calc((100cqh - 5rem) / 2 * 1.5)); }
+@container buehne (min-aspect-ratio: 5 / 4) { .ub-gross-in { flex-direction: row; width: min(100%, calc((100cqh - 4rem) * 1.5 * 2 + .625rem)); } }
+.ub-gross .ub { width: 100%; }
+.ub-gross .ub-lupe { display: none; }
+.ub-gross .ub-bild .ring:not(.miss) { width: 3.5rem; height: 3.5rem; margin: -1.75rem 0 0 -1.75rem; }
+.ub-zu { position: absolute; top: var(--a-2); right: var(--a-2); color: var(--tinte); }
+.ub-zu svg { width: 1.5rem; height: 1.5rem; }
 .ub-hin { text-align: center; color: #fff; font-size: .875rem; font-weight: 600; opacity: .85; }
 .ub-hin .s-b, .ub-hin .s-r { color: inherit; }
 
@@ -491,6 +503,7 @@
 .sb-liste .s-b, .sb-liste .s-r { color: inherit; }
 .sb-bild { position: relative; aspect-ratio: 3 / 2; border-radius: .75rem; border: 4px solid #fff; box-shadow: 0 10px 22px rgba(0, 0, 0, .35); overflow: hidden; cursor: crosshair; }
 .sb-bild img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
+.sb-bild img.aus { position: absolute; max-width: none; object-fit: fill; } /* Ausschnitt (S9): nur Oskar auf der Bank, groß */
 .sb-bild .ring.miss { width: 2.75rem; height: 2.75rem; margin: -1.375rem 0 0 -1.375rem; border-width: 4px; }
 .sb-ring.blink { animation: ring .5s both, puls .7s .5s 3; }
 .sb-ring {

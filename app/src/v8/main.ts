@@ -133,7 +133,9 @@ function kopf() {
   document.documentElement.classList.toggle('ohne-silben', !stand.silben);
 }
 const raupe = (b: string, t: string, kl = '') => `<div class="rp ${kl}"><img src="${fig('raupe/' + b)}" alt=""><p>${t}</p></div>`;
-const knopf = (a: string, t: string, kl = 'haupt', dis = false) => `<button class="kn ${kl}" data-a="${a}" ${dis ? 'disabled' : ''}>${t.startsWith('<svg') ? t : `<span>${t}</span>`}</button>`;
+/** lange Beschriftung (z. B. „Weiter zu Kapitel 2 ›“): etwas kleinere Schrift statt zweiter Zeile – der Knopf bleibt überall gleich hoch */
+const lang = (t: string) => (t.replace(/<[^>]*>|&shy;|\u00ad|\|/g, '').length > 14 ? ' lang' : '');
+const knopf = (a: string, t: string, kl = 'haupt', dis = false) => `<button class="kn ${kl}${lang(t)}" data-a="${a}" ${dis ? 'disabled' : ''}>${t.startsWith('<svg') ? t : `<span>${t}</span>`}</button>`;
 const nurKnopf = (a: string, html: string, f: () => void) => { fuss.innerHTML = `<div class="fz">${html}</div>`; fuss.onclick = (e) => { if ((e.target as HTMLElement).closest(`[data-a="${a}"]`)) f(); }; };
 const klick = (a: string, f: () => void) => { fuss.onclick = (e) => { if ((e.target as HTMLElement).closest(`[data-a="${a}"]`)) f(); }; };
 

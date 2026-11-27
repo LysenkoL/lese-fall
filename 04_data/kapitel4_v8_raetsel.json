@@ -302,11 +302,11 @@
      },
      {
       "id": "g4",
-      "x": 48.2,
-      "y": 10.3,
+      "x": 51,
+      "y": 19,
       "r": 9,
       "name": "Astgabel 4",
-      "nicht": "Das sieht ein bisschen aus wie ein V. Aber es ist ganz oben. Das Nest ist unter dem Fenster."
+      "nicht": "Das ist auch ein V. Aber es ist ganz oben im Baum. Das Nest ist direkt unter dem Fenster."
      },
      {
       "id": "g5",
@@ -320,7 +320,7 @@
      }
     ],
     "richtig": "g3",
-    "frage": "Das Nest ist im Laub versteckt. Wo ist die Astgabel wie ein V?",
+    "frage": "Das Nest ist im Laub versteckt. Welche Astgabel wie ein V ist direkt unter dem Fenster?",
     "nest": {
      "x": 67.6,
      "y": 59,
@@ -333,7 +333,7 @@
     "warum": "Nur diese Astgabel ist direkt unter dem Fenster. Und nur hier stehen zwei Zweige wie ein V.",
     "stempel": "HIER SITZT DAS NEST",
     "erfolg": "Da schaut das Nest aus dem Laub! Unter dem Fenster, zwischen zwei Zweigen wie ein V.",
-    "start": "Fünf Astgabeln leuchten. Tippe auf die, die aussieht wie ein V.",
+    "start": "Fünf Astgabeln leuchten. Welche ist wie ein V und direkt unter dem Fenster?",
     "nachsehen": "Im Text nachsehen",
     "werkzeug": "fuehler"
    },
@@ -374,7 +374,136 @@
      "x": 15.8,
      "y": 66.3
     },
-    "vorne": [[39.0, 68.6], [39.6, 67.3], [40.0, 65.7], [40.8, 64.0], [41.8, 62.7], [42.9, 61.6], [44.0, 60.9], [45.0, 60.3], [46.0, 59.9], [47.0, 59.6], [48.0, 59.6], [49.0, 59.8], [50.0, 60.3], [51.0, 61.0], [52.0, 61.8], [53.0, 62.6], [53.8, 63.0], [54.6, 62.4], [55.3, 62.3], [54.9, 62.9], [54.1, 63.6], [53.8, 64.9], [53.3, 66.1], [52.3, 67.3], [51.0, 68.1], [50.0, 68.8], [48.5, 69.4], [47.0, 69.7], [45.0, 69.8], [43.5, 69.5], [42.0, 68.9], [40.5, 68.6]],
+    "vorne": [
+     [
+      39.0,
+      68.6
+     ],
+     [
+      39.6,
+      67.3
+     ],
+     [
+      40.0,
+      65.7
+     ],
+     [
+      40.8,
+      64.0
+     ],
+     [
+      41.8,
+      62.7
+     ],
+     [
+      42.9,
+      61.6
+     ],
+     [
+      44.0,
+      60.9
+     ],
+     [
+      45.0,
+      60.3
+     ],
+     [
+      46.0,
+      59.9
+     ],
+     [
+      47.0,
+      59.6
+     ],
+     [
+      48.0,
+      59.6
+     ],
+     [
+      49.0,
+      59.8
+     ],
+     [
+      50.0,
+      60.3
+     ],
+     [
+      51.0,
+      61.0
+     ],
+     [
+      52.0,
+      61.8
+     ],
+     [
+      53.0,
+      62.6
+     ],
+     [
+      53.8,
+      63.0
+     ],
+     [
+      54.6,
+      62.4
+     ],
+     [
+      55.3,
+      62.3
+     ],
+     [
+      54.9,
+      62.9
+     ],
+     [
+      54.1,
+      63.6
+     ],
+     [
+      53.8,
+      64.9
+     ],
+     [
+      53.3,
+      66.1
+     ],
+     [
+      52.3,
+      67.3
+     ],
+     [
+      51.0,
+      68.1
+     ],
+     [
+      50.0,
+      68.8
+     ],
+     [
+      48.5,
+      69.4
+     ],
+     [
+      47.0,
+      69.7
+     ],
+     [
+      45.0,
+      69.8
+     ],
+     [
+      43.5,
+      69.5
+     ],
+     [
+      42.0,
+      68.9
+     ],
+     [
+      40.5,
+      68.6
+     ]
+    ],
     "punkte": [
      {
       "text": "Kriech unter dem großen Blatt durch.",
@@ -382,15 +511,15 @@
       "warum": "Das große Blatt liegt auf dem langen Ast. Da kriechen wir drunter durch.",
       "wege": [
        {
-        "x": 32.2,
-        "y": 55.0,
+        "x": 32.3,
+        "y": 43,
         "name": "Nach oben",
         "dreh": -62,
         "nicht": "Hui, der Zweig wackelt! Da ist kein großes Blatt."
        },
        {
-        "x": 38.4,
-        "y": 67.2,
+        "x": 41,
+        "y": 66.5,
         "name": "Geradeaus",
         "dreh": 0,
         "richtig": true,
@@ -412,8 +541,8 @@
         ]
        },
        {
-        "x": 34.9,
-        "y": 78.3,
+        "x": 33,
+        "y": 87,
         "name": "Nach unten",
         "dreh": 62,
         "nicht": "Hui, der Zweig schaukelt! Da unten ist kein großes Blatt."
@@ -426,14 +555,14 @@
       "warum": "Der untere Zweig führt zum Vogelhaus. Wir bleiben auf dem langen Ast.",
       "wege": [
        {
-        "x": 61.3,
-        "y": 71.3,
+        "x": 64.5,
+        "y": 77,
         "name": "Nach unten",
         "nicht": "Oh nein, da hängt das Vogelhaus! Da will ich nicht hin."
        },
        {
-        "x": 67.3,
-        "y": 59.7,
+        "x": 72,
+        "y": 58,
         "name": "Weiter auf dem Ast",
         "richtig": true,
         "weg": [
@@ -457,8 +586,8 @@
         "nicht": "Der Zweig ist dünn. Aber er ist ganz gerade. Er teilt sich nicht."
        },
        {
-        "x": 79.1,
-        "y": 54.7,
+        "x": 80,
+        "y": 45,
         "name": "Nach rechts oben",
         "dreh": -50,
         "richtig": true,
@@ -488,8 +617,8 @@
         ]
        },
        {
-        "x": 87.2,
-        "y": 58.7,
+        "x": 88.5,
+        "y": 59.5,
         "name": "Nach rechts",
         "nicht": "Das ist der dicke Ast. Er geht zum Stamm. Das ist kein V."
        }
@@ -571,143 +700,96 @@
     "k3vogel"
    ],
    "raetsel": {
-    "art": "lexikon",
+    "art": "ausschluss",
     "werkzeug": "lesen",
-    "titel": "Das Vogelbuch",
-    "text": "Lies den Steckbrief. Dann lies im Vogelbuch. Welcher Vogel passt zu allen vier Punkten?",
-    "start": "Schwarz-weiß, langer Schwanz … Wie heißt der Vogel? Lies jede Seite genau!",
-    "steckbrief": {
-     "titel": "Steckbrief",
-     "saetze": [
-      "schwarz-weiß",
-      "langer Schwanz",
-      "groß wie eine Taube",
-      "mag alles, was glänzt"
-     ]
-    },
-    "buch": {
-     "titel": "Mein Vogelbuch"
-    },
-    "ok": "Das ist unser Vogel!",
-    "voegel": [
-     {
-      "id": "amsel",
-      "titel": "Vogel 1",
-      "name": "die Amsel",
-      "crop": {
-       "bild": "objekte/voegel",
-       "n": 5,
-       "i": 3
-      },
-      "saetze": [
-       {
-        "text": "Er ist ganz schwarz.",
-        "m": 0,
-        "ja": false
-       },
-       {
-        "text": "Er hat einen gelben Schnabel."
-       },
-       {
-        "text": "Er singt am Abend sehr schön."
-       }
-      ],
-      "nicht": "Hier steht: Er ist ganz schwarz. Unser Vogel ist aber schwarz-weiß.",
-      "merkmal": 0
-     },
-     {
-      "id": "bachstelze",
-      "titel": "Vogel 2",
-      "name": "die Bachstelze",
-      "crop": {
-       "bild": "objekte/voegel",
-       "n": 5,
-       "i": 1
-      },
-      "saetze": [
-       {
-        "text": "Er ist schwarz-weiß.",
-        "m": 0,
-        "ja": true
-       },
-       {
-        "text": "Er hat einen langen Schwanz. Damit wippt er.",
-        "m": 1,
-        "ja": true
-       },
-       {
-        "text": "Er ist klein, nur so groß wie ein Spatz.",
-        "m": 2,
-        "ja": false
-       }
-      ],
-      "nicht": "Hier steht: Er ist nur so groß wie ein Spatz. Unser Vogel ist aber groß wie eine Taube.",
-      "merkmal": 2
-     },
-     {
-      "id": "specht",
-      "titel": "Vogel 3",
-      "name": "der Buntspecht",
-      "crop": {
-       "bild": "objekte/voegel",
-       "n": 5,
-       "i": 2
-      },
-      "saetze": [
-       {
-        "text": "Er ist schwarz-weiß und hat rote Federn.",
-        "m": 0,
-        "ja": true
-       },
-       {
-        "text": "Sein Schwanz ist kurz.",
-        "m": 1,
-        "ja": false
-       },
-       {
-        "text": "Er klopft mit dem Schnabel an die Bäume."
-       }
-      ],
-      "nicht": "Hier steht: Sein Schwanz ist kurz. Unser Vogel hat aber einen langen Schwanz.",
-      "merkmal": 1
-     },
+    "titel": "Welcher Vogel war es?",
+    "text": "Schwarz-weiß, langer Schwanz, groß wie eine Taube. Lies jeden Hinweis und tippe alle Vögel an, die nicht passen.",
+    "rausText": "raus",
+    "kandidaten": [
      {
       "id": "elster",
-      "titel": "Vogel 4",
-      "name": "die Elster",
+      "name": "Elster",
       "crop": {
        "bild": "objekte/voegel",
        "n": 5,
        "i": 0
       },
-      "saetze": [
-       {
-        "text": "Er ist schwarz-weiß.",
-        "m": 0,
-        "ja": true
-       },
-       {
-        "text": "Er hat einen langen Schwanz.",
-        "m": 1,
-        "ja": true
-       },
-       {
-        "text": "Er ist so groß wie eine Taube.",
-        "m": 2,
-        "ja": true
-       },
-       {
-        "text": "Er sammelt gern Sachen, die glänzen.",
-        "m": 3,
-        "ja": true
-       }
+      "cm": 46,
+      "skala": 1.0
+     },
+     {
+      "id": "bachstelze",
+      "name": "Bachstelze",
+      "crop": {
+       "bild": "objekte/voegel",
+       "n": 5,
+       "i": 1
+      },
+      "cm": 18,
+      "skala": 0.63,
+      "fakt": "Die Bachstelze wippt immer mit ihrem langen Schwanz. Aber sie ist nur so groß wie ein Spatz."
+     },
+     {
+      "id": "specht",
+      "name": "Buntspecht",
+      "crop": {
+       "bild": "objekte/voegel",
+       "n": 5,
+       "i": 2
+      },
+      "cm": 23,
+      "skala": 0.7,
+      "fakt": "Der Buntspecht hat einen kurzen, harten Schwanz. Damit stützt er sich am Baum ab, wenn er klopft."
+     },
+     {
+      "id": "amsel",
+      "name": "Amsel",
+      "crop": {
+       "bild": "objekte/voegel",
+       "n": 5,
+       "i": 3
+      },
+      "cm": 25,
+      "skala": 0.72,
+      "fakt": "Die Amsel ist ganz schwarz. Am Abend singt sie gern oben auf dem Dach."
+     },
+     {
+      "id": "meise",
+      "name": "Kohlmeise",
+      "crop": {
+       "bild": "objekte/voegel",
+       "n": 5,
+       "i": 4
+      },
+      "cm": 14,
+      "skala": 0.58,
+      "fakt": "Die Kohlmeise hat einen gelben Bauch. Im Winter frisst sie gern Meisenknödel."
+     }
+    ],
+    "hinweise": [
+     {
+      "text": "Er ist schwarz und weiß.",
+      "raus": [
+       "amsel",
+       "meise"
+      ]
+     },
+     {
+      "text": "Sein Schwanz ist sehr lang.",
+      "raus": [
+       "specht"
+      ]
+     },
+     {
+      "text": "Er ist groß, so groß wie eine Taube. Das sind mehr als 30 cm.",
+      "raus": [
+       "bachstelze"
       ]
      }
     ],
     "loesung": "elster",
-    "warum": "Schau hier: Bei diesem Vogel passen alle vier Punkte.",
-    "fund": "Alle vier Punkte passen!",
-    "erfolg": "Eine Elster! Alle vier Punkte passen. Gut gelesen, Partner!"
+    "stempel": "DER VOGEL: ELSTER",
+    "erfolg": "Es war eine Elster! Elstern bauen ihr Nest mit einem Dach aus Zweigen. So ist ihr Schatz gut versteckt."
    }
   },
   {

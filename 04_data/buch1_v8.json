@@ -768,7 +768,7 @@
       "bild": "objekte/mond_vorne",
       "x": 50.5,
       "y": 21,
-      "w": 9,
+      "w": 13,
       "vorhin": true,
       "jetzt": false,
       "tipp": "Schau ü|ber den ro|ten Vor|hang.",
@@ -779,7 +779,7 @@
       "bild": "objekte/blatt_papier",
       "x": 18,
       "y": 60,
-      "w": 7.5,
+      "w": 11,
       "vorhin": false,
       "jetzt": true,
       "tipp": "Schau ne|ben den Blu|men|topf.",
@@ -790,7 +790,7 @@
       "bild": "objekte/kleber",
       "x": 38,
       "y": 44,
-      "w": 5.5,
+      "w": 8,
       "vorhin": false,
       "jetzt": true,
       "tipp": "Schau auf den Tisch.",
@@ -801,7 +801,7 @@
       "bild": "objekte/bleistift_gruen",
       "x": 52,
       "y": 80,
-      "w": 7,
+      "w": 10,
       "vorhin": false,
       "jetzt": true,
       "tipp": "Schau un|ter den Tisch.",
@@ -1801,6 +1801,12 @@
     "titel": "Was sieht die Rau|pe?",
     "text": "Die Rau|pe schaut aus dem Fens|ter. Fin|de al|les auf der Lis|te. Tip|pe es im Bild an.",
     "bild": "k2_s9",
+    "ausschnitt": {
+     "x": 39.5,
+     "y": 20,
+     "w": 45,
+     "h": 45
+    },
     "dinge": [
      {
       "id": "maus",
@@ -3058,7 +3064,7 @@
      {
       "id": "oskar",
       "name": "Os|kar",
-      "text": "Mei|ne Maus soll ein Fest|es|sen ha|ben."
+      "text": "Mei|ne Maus soll im Stück ein Fest|es|sen ha|ben."
      }
     ],
     "ideen": [
@@ -3076,7 +3082,7 @@
       },
       "oskar": {
        "froh": false,
-       "unter": "Und das Fest|es|sen für mei|ne Maus?"
+       "unter": "Oh|ne Fle|cken sieht er nicht mehr wie Kä|se aus!"
       },
       "sagt": "O|je, Ben schaut ganz be|sorgt. Die Pap|pe darf nicht rei|ßen."
      },
@@ -3093,7 +3099,7 @@
       },
       "oskar": {
        "froh": false,
-       "unter": "Dann gibt es kein Fest|es|sen."
+       "unter": "Dann hat mei|ne Maus im Stück kein Fest|es|sen."
       },
       "sagt": "Hm. Nur Ben lacht. Oh|ne Mond ist der Him|mel leer."
      },
@@ -3110,10 +3116,10 @@
        "unter": "Gut, dann reißt nichts."
       },
       "oskar": {
-       "froh": false,
-       "unter": "Und das Fest|es|sen für mei|ne Maus?"
+       "froh": true,
+       "unter": "Dann be|kommt mei|ne Maus den al|ten Mond als Kä|se!"
       },
-      "sagt": "Wie|der lacht nur ei|ner. Das ist es noch nicht."
+      "sagt": "Zwei la|chen. A|ber Mi|la nicht. Das ist es noch nicht."
      },
      {
       "id": "kaese",
@@ -3322,6 +3328,7 @@
    "spur": 20,
    "titel": "Der Mond im Baum",
    "bild": "k4_s19_elster",
+   "bildImText": true,
    "haken": "„Hof|fent|lich will jetzt kei|ner zu dem Vo|gel hi|nauf|klet|tern …“",
    "blocks": [
     {
@@ -3351,7 +3358,8 @@
       "Der Vo|gel ist so groß wie ei|ne Tau|be.",
       "A|ber der Mond ist viel zu groß für das Nest.",
       "Trotz|dem zerrt und ru|ckelt der Vo|gel wie ver|rückt am Fa|den."
-     ]
+     ],
+     "bild": "k4_s19_elster"
     },
     {
      "id": "s20-p4",
@@ -3518,11 +3526,11 @@
      },
      {
       "id": "g4",
-      "x": 48.2,
-      "y": 10.3,
+      "x": 51,
+      "y": 19,
       "r": 9,
       "name": "Ast|ga|bel 4",
-      "nicht": "Das sieht ein bis|schen aus wie ein V. A|ber es ist ganz o|ben. Das Nest ist un|ter dem Fens|ter."
+      "nicht": "Das ist auch ein V. A|ber es ist ganz o|ben im Baum. Das Nest ist di|rekt un|ter dem Fens|ter."
      },
      {
       "id": "g5",
@@ -3536,7 +3544,7 @@
      }
     ],
     "richtig": "g3",
-    "frage": "Das Nest ist im Laub ver|steckt. Wo ist die Ast|ga|bel wie ein V?",
+    "frage": "Das Nest ist im Laub ver|steckt. Wel|che Ast|ga|bel wie ein V ist di|rekt un|ter dem Fens|ter?",
     "nest": {
      "x": 67.6,
      "y": 59,
@@ -3549,7 +3557,7 @@
     "warum": "Nur die|se Ast|ga|bel ist di|rekt un|ter dem Fens|ter. Und nur hier ste|hen zwei Zwei|ge wie ein V.",
     "stempel": "HIER SITZT DAS NEST",
     "erfolg": "Da schaut das Nest aus dem Laub! Un|ter dem Fens|ter, zwi|schen zwei Zwei|gen wie ein V.",
-    "start": "Fünf Ast|ga|beln leuch|ten. Tip|pe auf die, die aus|sieht wie ein V.",
+    "start": "Fünf Ast|ga|beln leuch|ten. Wel|che ist wie ein V und di|rekt un|ter dem Fens|ter?",
     "nachsehen": "Im Text nach|se|hen",
     "werkzeug": "fuehler"
    },
@@ -3814,15 +3822,15 @@
       "warum": "Das gro|ße Blatt liegt auf dem lan|gen Ast. Da krie|chen wir drun|ter durch.",
       "wege": [
        {
-        "x": 32.2,
-        "y": 55,
+        "x": 32.3,
+        "y": 43,
         "name": "Nach o|ben",
         "dreh": -62,
         "nicht": "Hui, der Zweig wa|ckelt! Da ist kein gro|ßes Blatt."
        },
        {
-        "x": 38.4,
-        "y": 67.2,
+        "x": 41,
+        "y": 66.5,
         "name": "Ge|ra|de|aus",
         "dreh": 0,
         "richtig": true,
@@ -3844,8 +3852,8 @@
         ]
        },
        {
-        "x": 34.9,
-        "y": 78.3,
+        "x": 33,
+        "y": 87,
         "name": "Nach un|ten",
         "dreh": 62,
         "nicht": "Hui, der Zweig schau|kelt! Da un|ten ist kein gro|ßes Blatt."
@@ -3858,14 +3866,14 @@
       "warum": "Der un|te|re Zweig führt zum Vo|gel|haus. Wir blei|ben auf dem lan|gen Ast.",
       "wege": [
        {
-        "x": 61.3,
-        "y": 71.3,
+        "x": 64.5,
+        "y": 77,
         "name": "Nach un|ten",
         "nicht": "Oh nein, da hängt das Vo|gel|haus! Da will ich nicht hin."
        },
        {
-        "x": 67.3,
-        "y": 59.7,
+        "x": 72,
+        "y": 58,
         "name": "Wei|ter auf dem Ast",
         "richtig": true,
         "weg": [
@@ -3889,8 +3897,8 @@
         "nicht": "Der Zweig ist dünn. A|ber er ist ganz ge|ra|de. Er teilt sich nicht."
        },
        {
-        "x": 79.1,
-        "y": 54.7,
+        "x": 80,
+        "y": 45,
         "name": "Nach rechts o|ben",
         "dreh": -50,
         "richtig": true,
@@ -3920,8 +3928,8 @@
         ]
        },
        {
-        "x": 87.2,
-        "y": 58.7,
+        "x": 88.5,
+        "y": 59.5,
         "name": "Nach rechts",
         "nicht": "Das ist der di|cke Ast. Er geht zum Stamm. Das ist kein V."
        }
@@ -4216,143 +4224,96 @@
    ],
    "tipp": null,
    "raetsel": {
-    "art": "lexikon",
+    "art": "ausschluss",
     "werkzeug": "lesen",
-    "titel": "Das Vo|gel|buch",
-    "text": "Lies den Steck|brief. Dann lies im Vo|gel|buch. Wel|cher Vo|gel passt zu al|len vier Punk|ten?",
-    "start": "Schwarz-weiß, lan|ger Schwanz … Wie heißt der Vo|gel? Lies je|de Sei|te ge|nau!",
-    "steckbrief": {
-     "titel": "Steck|brief",
-     "saetze": [
-      "schwarz-weiß",
-      "lan|ger Schwanz",
-      "groß wie ei|ne Tau|be",
-      "mag al|les, was glänzt"
-     ]
-    },
-    "buch": {
-     "titel": "Mein Vo|gel|buch"
-    },
-    "ok": "Das ist un|ser Vo|gel!",
-    "voegel": [
-     {
-      "id": "amsel",
-      "titel": "Vo|gel 1",
-      "name": "die Am|sel",
-      "crop": {
-       "bild": "objekte/voegel",
-       "n": 5,
-       "i": 3
-      },
-      "saetze": [
-       {
-        "text": "Er ist ganz schwarz.",
-        "m": 0,
-        "ja": false
-       },
-       {
-        "text": "Er hat ei|nen gel|ben Schna|bel."
-       },
-       {
-        "text": "Er singt am A|bend sehr schön."
-       }
-      ],
-      "nicht": "Hier steht: Er ist ganz schwarz. Un|ser Vo|gel ist a|ber schwarz-weiß.",
-      "merkmal": 0
-     },
-     {
-      "id": "bachstelze",
-      "titel": "Vo|gel 2",
-      "name": "die Bach|stel|ze",
-      "crop": {
-       "bild": "objekte/voegel",
-       "n": 5,
-       "i": 1
-      },
-      "saetze": [
-       {
-        "text": "Er ist schwarz-weiß.",
-        "m": 0,
-        "ja": true
-       },
-       {
-        "text": "Er hat ei|nen lan|gen Schwanz. Da|mit wippt er.",
-        "m": 1,
-        "ja": true
-       },
-       {
-        "text": "Er ist klein, nur so groß wie ein Spatz.",
-        "m": 2,
-        "ja": false
-       }
-      ],
-      "nicht": "Hier steht: Er ist nur so groß wie ein Spatz. Un|ser Vo|gel ist a|ber groß wie ei|ne Tau|be.",
-      "merkmal": 2
-     },
-     {
-      "id": "specht",
-      "titel": "Vo|gel 3",
-      "name": "der Bunt|specht",
-      "crop": {
-       "bild": "objekte/voegel",
-       "n": 5,
-       "i": 2
-      },
-      "saetze": [
-       {
-        "text": "Er ist schwarz-weiß und hat ro|te Fe|dern.",
-        "m": 0,
-        "ja": true
-       },
-       {
-        "text": "Sein Schwanz ist kurz.",
-        "m": 1,
-        "ja": false
-       },
-       {
-        "text": "Er klopft mit dem Schna|bel an die Bäu|me."
-       }
-      ],
-      "nicht": "Hier steht: Sein Schwanz ist kurz. Un|ser Vo|gel hat a|ber ei|nen lan|gen Schwanz.",
-      "merkmal": 1
-     },
+    "titel": "Wel|cher Vo|gel war es?",
+    "text": "Schwarz-weiß, lan|ger Schwanz, groß wie ei|ne Tau|be. Lies je|den Hin|weis und tip|pe al|le Vö|gel an, die nicht pas|sen.",
+    "rausText": "raus",
+    "kandidaten": [
      {
       "id": "elster",
-      "titel": "Vo|gel 4",
-      "name": "die Els|ter",
+      "name": "Els|ter",
       "crop": {
        "bild": "objekte/voegel",
        "n": 5,
        "i": 0
       },
-      "saetze": [
-       {
-        "text": "Er ist schwarz-weiß.",
-        "m": 0,
-        "ja": true
-       },
-       {
-        "text": "Er hat ei|nen lan|gen Schwanz.",
-        "m": 1,
-        "ja": true
-       },
-       {
-        "text": "Er ist so groß wie ei|ne Tau|be.",
-        "m": 2,
-        "ja": true
-       },
-       {
-        "text": "Er sam|melt gern Sa|chen, die glän|zen.",
-        "m": 3,
-        "ja": true
-       }
+      "cm": 46,
+      "skala": 1
+     },
+     {
+      "id": "bachstelze",
+      "name": "Bach|stel|ze",
+      "crop": {
+       "bild": "objekte/voegel",
+       "n": 5,
+       "i": 1
+      },
+      "cm": 18,
+      "skala": 0.63,
+      "fakt": "Die Bachstelze wippt immer mit ihrem langen Schwanz. Aber sie ist nur so groß wie ein Spatz."
+     },
+     {
+      "id": "specht",
+      "name": "Bunt|specht",
+      "crop": {
+       "bild": "objekte/voegel",
+       "n": 5,
+       "i": 2
+      },
+      "cm": 23,
+      "skala": 0.7,
+      "fakt": "Der Buntspecht hat einen kurzen, harten Schwanz. Damit stützt er sich am Baum ab, wenn er klopft."
+     },
+     {
+      "id": "amsel",
+      "name": "Am|sel",
+      "crop": {
+       "bild": "objekte/voegel",
+       "n": 5,
+       "i": 3
+      },
+      "cm": 25,
+      "skala": 0.72,
+      "fakt": "Die Amsel ist ganz schwarz. Am Abend singt sie gern oben auf dem Dach."
+     },
+     {
+      "id": "meise",
+      "name": "Kohl|mei|se",
+      "crop": {
+       "bild": "objekte/voegel",
+       "n": 5,
+       "i": 4
+      },
+      "cm": 14,
+      "skala": 0.58,
+      "fakt": "Die Kohlmeise hat einen gelben Bauch. Im Winter frisst sie gern Meisenknödel."
+     }
+    ],
+    "hinweise": [
+     {
+      "text": "Er ist schwarz und weiß.",
+      "raus": [
+       "amsel",
+       "meise"
+      ]
+     },
+     {
+      "text": "Sein Schwanz ist sehr lang.",
+      "raus": [
+       "specht"
+      ]
+     },
+     {
+      "text": "Er ist groß, so groß wie ei|ne Tau|be. Das sind mehr als 30 cm.",
+      "raus": [
+       "bachstelze"
       ]
      }
     ],
     "loesung": "elster",
-    "warum": "Schau hier: Bei die|sem Vo|gel pas|sen al|le vier Punk|te.",
-    "fund": "Al|le vier Punk|te pas|sen!",
-    "erfolg": "Ei|ne Els|ter! Al|le vier Punk|te pas|sen. Gut ge|le|sen, Part|ner!"
+    "stempel": "DER VOGEL: ELSTER",
+    "erfolg": "Es war ei|ne Els|ter! Els|tern bau|en ihr Nest mit ei|nem Dach aus Zwei|gen. So ist ihr Schatz gut ver|steckt."
    }
   },
   {

@@ -347,6 +347,10 @@ html :focus-visible:where(:not(.bkarte)) { box-shadow: 0 0 0 7px rgba(244, 194, 
 #fuss.mitnav { display: grid; grid-template-columns: 3rem minmax(0, 1fr) 3rem; column-gap: var(--a-2); align-items: start; }
 /* Pfeile stehen auf Höhe des ersten (Haupt-)Knopfs, auch wenn darunter ein zweiter Knopf oder „Überspringen“ folgt */
 #fuss.mitnav > .znav { margin-top: calc((var(--knopf-h) - 3rem) / 2); }
+/* Hauptknopf im Fuß: immer genau eine Zeile und gleich hoch (Telefon wie Tablet), sonst rutschen die runden Pfeile daneben aus der Mitte */
+#fuss .kn.haupt { height: var(--knopf-h); min-height: 0; white-space: nowrap; overflow: hidden; }
+#fuss .kn.haupt > span { overflow: hidden; text-overflow: ellipsis; }
+#fuss .kn.haupt.lang { font-size: 1rem; padding-inline: .75rem; letter-spacing: -.01em; }
 #fuss.mitnav > .fz { grid-column: 2; grid-row: 1; width: min(100%, var(--mass-knopf)); justify-self: center; }
 #fuss.mitnav > .znav { width: 3rem; height: 3rem; min-width: 0; justify-self: center; }
 #fuss.mitnav > .zback { grid-column: 1; grid-row: 1; }
