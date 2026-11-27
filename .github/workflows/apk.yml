@@ -1,0 +1,47 @@
+# Baut nach jedem Push auf main die Android-App (Debug-APK) und legt sie als Release „neueste“ ab.
+# Fester Link zum Herunterladen auf Telefon/Tablet:
+#   https://github.com/LysenkoL/lese-fall/releases/download/neueste/Spuren-Raupe.apk
+name: APK bauen
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: apk
+  cancel-in-progress: true
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - run: npm ci
+      - run: npm run android
+      - name: Gradle assembleDebug
+        working-directory: app/android
+        run: chmod +x gradlew && ./gradlew assembleDebug --no-daemon
+      - run: cp android/app/build/outputs/apk/debug/app-debug.apk ../Spuren-Raupe.apk
+      - name: Release „neueste“ ersetzen
+        working-directory: .
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release delete neueste --yes --cleanup-tag || true
+          gh release create neueste Spuren-Raupe.apk --title "Spuren-Raupe – neueste Version" --notes "Automatisch gebaut aus main (${GITHUB_SHA::7}). Auf dem Android-Telefon öffnen und installieren." --prerelease
