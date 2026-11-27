@@ -335,6 +335,7 @@
     },
     "warum": "Nur diese Astgabel ist direkt unter dem Fenster. Und nur hier stehen zwei Zweige wie ein V.",
     "stempel": "HIER SITZT DAS NEST",
+    "stempelPos": { "x": 67.6, "y": 76 },
     "erfolg": "Da schaut das Nest aus dem Laub! Unter dem Fenster, zwischen zwei Zweigen wie ein V.",
     "start": "Fünf Astgabeln leuchten. Welche ist wie ein V und direkt unter dem Fenster?",
     "nachsehen": "Im Text nachsehen",

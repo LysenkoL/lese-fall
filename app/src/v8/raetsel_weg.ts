@@ -303,9 +303,7 @@ SPIELE_WEG.passtgenau = (r, d, fertig) => {
     fertigig = true; sperre = true;
     if (!mitHilfe) sag(r, 'lob', d.ok ?? K.UI.stimmt, 'gut');
     const bogen = $('.pg-bogen', zi);
-    // Stempel direkt unter dem Nest (nicht irgendwo aufs Fensterbrett)
-    const pos = d.nest ? { x: d.nest.x, y: d.nest.y + d.nest.w * 1.25 } : undefined;
-    nach(zi, still ? 0 : 700, () => { hook.loese = stempeln(zi, bogen, d.stempel ?? '', () => { hook.loese = null; ende(r, d, fertig); }, pos); });
+    nach(zi, still ? 0 : 700, () => { hook.loese = stempeln(zi, bogen, d.stempel ?? '', () => { hook.loese = null; ende(r, d, fertig); }); });
   };
 
   /** Fleck passt nicht: er fährt zum Loch, wackelt (zu klein) oder stößt an (zu groß) und kommt zurück */

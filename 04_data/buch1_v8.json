@@ -3649,6 +3649,10 @@
     },
     "warum": "Nur die|se Ast|ga|bel ist di|rekt un|ter dem Fens|ter. Und nur hier ste|hen zwei Zwei|ge wie ein V.",
     "stempel": "HIER SITZT DAS NEST",
+    "stempelPos": {
+     "x": 67.6,
+     "y": 76
+    },
     "erfolg": "Da schaut das Nest aus dem Laub! Un|ter dem Fens|ter, zwi|schen zwei Zwei|gen wie ein V.",
     "start": "Fünf Ast|ga|beln leuch|ten. Wel|che ist wie ein V und di|rekt un|ter dem Fens|ter?",
     "nachsehen": "Im Text nach|se|hen",
