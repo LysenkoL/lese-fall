@@ -541,3 +541,12 @@
 /* ganz breiter leerer Platz, der auf die Karte wartet: pulsiert mit Leuchten statt Vergrößern (sonst ragt er seitlich hinaus) */
 #app .bgrid > :nth-child(3n + 1):last-child.wartet { animation: wartLeucht 1s ease-in-out infinite; }
 @keyframes wartLeucht { 50% { box-shadow: 0 0 0 7px rgba(244, 194, 67, .45); } }
+
+/* 27.11.2026: feste Farbe je Frage (statt nach Platz), Raupe neben „Offene Fragen“ statt über den Karten */
+.zettel.fr.fc0 { background: linear-gradient(160deg, #FFF3A6, #FFE56B); box-shadow: 0 6px 10px rgba(60, 30, 0, .28), inset -10px -10px 14px -10px rgba(160, 120, 0, .35); }
+.zettel.fr.fc1 { background: linear-gradient(160deg, #D9F2B4, #BFE48A); box-shadow: 0 6px 10px rgba(60, 30, 0, .28), inset -10px -10px 14px -10px rgba(70, 120, 0, .35); }
+.zettel.fr.fc2 { background: linear-gradient(160deg, #FFD9E4, #FFBDD0); box-shadow: 0 6px 10px rgba(60, 30, 0, .28), inset -10px -10px 14px -10px rgba(160, 40, 80, .3); }
+#app .brett h3 .brett-raupe { float: none; height: 1.875rem; margin: -.375rem 0 -.375rem .5rem; vertical-align: middle; }
+.fundov.frageov { transition: background-color .35s, backdrop-filter .35s; }
+.frageov.fliegt .fund-t, .frageov.fliegt .fund-h { transition: opacity .25s; }
+.zettel.fr.um.um { background: linear-gradient(160deg, #E4F7CF, #C6EBA0); }

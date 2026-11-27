@@ -447,12 +447,14 @@ function brettHtml(bis: number, neu = 0, staubig = false, wartet = false) {
     const ok = !!neu && weg.has(f.id);
     // Rückseite: kleines Bild der Karte, die die Frage beantwortet, und die Antwort – sichtbar erst nach dem Umdrehen
     const rueck = ok ? `<div class="fr-rueck"><div class="fr-bild">${bildKarte(SP(bis).karte)}</div><b>${f.antwort ?? ''}</b></div>` : '';
-    return `<div class="zettel fr${f.n === neu && (staubig || wartet) ? ' versteckt' : ''}${ok ? ' zeig' : ''}" ${ok ? 'data-ok="1" role="button" tabindex="0" ' : ''}data-q="${f.id}" style="--n:${NEIGUNG[(f.id.length * 3 + f.n) % NEIGUNG.length] * 0.8}deg"><div class="fr-vorn"><span>${f.text}</span>${f.n === neu ? `<em class="neu">${UI.neu}</em>` : ''}${ok ? `<em class="klaer">${UI.klaerMich}</em>` : ''}</div>${rueck}</div>`;
+    return `<div class="zettel fr ${farbe(f.id)}${f.n === neu && (staubig || wartet) ? ' versteckt' : ''}${ok ? ' zeig' : ''}" ${ok ? 'data-ok="1" role="button" tabindex="0" ' : ''}data-q="${f.id}" style="--n:${NEIGUNG[(f.id.length * 3 + f.n) % NEIGUNG.length] * 0.8}deg"><div class="fr-vorn"><span>${f.text}</span>${f.n === neu ? `<em class="neu">${UI.neu}</em>` : ''}${ok ? `<em class="klaer">${UI.klaerMich}</em>` : ''}</div>${rueck}</div>`;
   }).join('');
   return `<div class="bgrid">${slots}</div><h3>${UI.fragen}<img class="brett-raupe" src="${fig('raupe/denkt')}" alt=""></h3><div class="fragen">${zettel}</div><div class="bt-zeile">${beutelHtml(beutelBuchst())}${kisteHtml()}</div>`;
 }
 /** alle Fragen des Buchs mit Antwort, in der Reihenfolge, in der sie auftauchen */
 const ALLE_FRAGEN: { id: string; text: string; antwort?: string }[] = D.spuren.flatMap((sp: any) => sp.fragenNeu);
+/** feste Farbe je Frage (gelb, grün, rosa), unabhängig vom Platz am Brett – der Zettel wechselt nie die Farbe */
+const farbe = (id: string) => `fc${Math.max(0, ALLE_FRAGEN.findIndex((f) => f.id === id)) % 3}`;
 const geklaertListe = () => ALLE_FRAGEN.filter((f) => stand.geklaert.includes(f.id));
 const KISTE = '<svg class="ki-svg" viewBox="0 0 64 64" aria-hidden="true"><ellipse cx="32" cy="58" rx="22" ry="3.2" fill="#2A1A06" opacity=".25"/><path d="M10 26 L54 26 L50 55 L14 55 Z" fill="#C98A4B" stroke="#7A4A1C" stroke-width="2.2" stroke-linejoin="round"/><path d="M12 36 L52 36 M13 46 L51 46" stroke="#7A4A1C" stroke-width="1.6" opacity=".5"/><path d="M8 20 L56 20 L54 27 L10 27 Z" fill="#DDA262" stroke="#7A4A1C" stroke-width="2.2" stroke-linejoin="round"/><rect x="18" y="8" width="13" height="15" rx="1.5" fill="#FFF3A6" stroke="#B9971C" stroke-width="1.4" transform="rotate(-10 24 15)"/><rect x="32" y="9" width="13" height="14" rx="1.5" fill="#D9F2B4" stroke="#6E9A3C" stroke-width="1.4" transform="rotate(8 38 16)"/><path d="M26 39 l4 4 l8 -9" stroke="#3E8E3A" stroke-width="3.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 /** Kiste „Geklärt“ neben dem Beutel: Zähler (geklärt / alle), antippen zeigt alle geklärten Fragen mit Antwort */
@@ -462,7 +464,7 @@ function kisteHtml() {
 function kisteOffen(zurueck: () => void) {
   const liste = geklaertListe();
   const inhalt = liste.length
-    ? `<ul class="ki-liste">${liste.map((f, i) => `<li class="zettel fr" style="--n:${NEIGUNG[i % NEIGUNG.length] * 0.6}deg"><span>${f.text}</span><b class="ki-a">${f.antwort ?? ''}</b></li>`).join('')}</ul>`
+    ? `<ul class="ki-liste">${liste.map((f, i) => `<li class="zettel fr ${farbe(f.id)}" style="--n:${NEIGUNG[i % NEIGUNG.length] * 0.6}deg"><span>${f.text}</span><b class="ki-a">${f.antwort ?? ''}</b></li>`).join('')}</ul>`
     : `<p>${UI.kisteLeer}</p>`;
   ueber.innerHTML = `<div class="schl mitte"><div class="kgross kisteinfo">${KISTE}<h3>${UI.kisteTitel}</h3>${inhalt}<button class="kn haupt" data-a="zu"><span>${UI.fertig}</span></button></div></div>`;
   ueber.onclick = (e) => { const t = e.target as HTMLElement; if (t.closest('[data-a="zu"]') || t.classList.contains('schl')) zurueck(); };
@@ -479,17 +481,23 @@ function tastenKlick(root: HTMLElement) {
  * dann fliegt er an seinen Platz bei den offenen Fragen. Kein Zeitablauf: das Kind bestimmt das Tempo.
  */
 function frageZeigen(sec: HTMLElement, q: HTMLElement, fertig: () => void) {
-  sec.insertAdjacentHTML('beforeend', `<div class="fundov frageov"><p class="fund-t">${UI.neueFrage}</p><img class="fr-raupe" src="${fig('raupe/denkt')}" alt=""><button class="zettel fr fundz">${q.querySelector('.fr-vorn span')?.outerHTML ?? ''}</button><p class="fund-h">${UI.frageTipp}</p></div>`);
+  sec.insertAdjacentHTML('beforeend', `<div class="fundov frageov"><p class="fund-t">${UI.neueFrage}</p><img class="fr-raupe" src="${fig('raupe/denkt')}" alt=""><button class="zettel fr fundz ${farbe(q.dataset.q!)}">${q.querySelector('.fr-vorn span')?.outerHTML ?? ''}</button><p class="fund-h">${UI.frageTipp}</p></div>`);
   const ov = sec.querySelector<HTMLElement>('.frageov:last-of-type')!, z = ov.querySelector<HTMLElement>('.fundz')!;
   summ(15);
   let weg = false;
   const haengen = () => {
     if (weg) return; weg = true;
-    q.classList.remove('versteckt'); q.style.visibility = 'hidden'; // Platz ist schon da, der Zettel landet genau dort
-    const ziel = q.getBoundingClientRect(), v = z.getBoundingClientRect();
+    // FLIP: der Zettel am Brett startet genau dort, wo der große Zettel liegt, und gleitet weich an seinen Platz
+    const v = z.getBoundingClientRect();
+    q.classList.remove('versteckt');
+    const ziel = q.getBoundingClientRect(), k = v.width / ziel.width;
+    Object.assign(q.style, { transition: 'none', transformOrigin: 'top left', zIndex: '7', transform: `translate(${v.left - ziel.left}px, ${v.top - ziel.top}px) scale(${k})` });
+    z.style.visibility = 'hidden';
     ov.classList.add('fliegt');
-    z.style.transform = `translate(${ziel.left - v.left}px, ${ziel.top - v.top}px) scale(${ziel.width / v.width})`;
-    setTimeout(() => { ov.remove(); q.style.visibility = ''; q.classList.add('gepinnt'); if (sec.isConnected) fertig(); }, 560);
+    void q.offsetWidth;
+    q.style.transition = 'transform .65s cubic-bezier(.25, .9, .35, 1)';
+    q.style.transform = '';
+    setTimeout(() => { ov.remove(); Object.assign(q.style, { transition: '', transformOrigin: '', zIndex: '' }); if (sec.isConnected) fertig(); }, 700);
   };
   ov.addEventListener('click', (e) => { e.stopPropagation(); haengen(); });
   return haengen;
