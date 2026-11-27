@@ -184,16 +184,12 @@
 /* alle Fragen geklärt: keine leere Überschrift „Offene Fragen“ */
 .brett h3:has(+ .fragen:empty) { display: none; }
 .bgrid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .625rem; align-content: start; align-self: start; width: 100%; }
-/* Drei Karten je Reihe (jede 2 von 6 Spalten). Bleibt am Ende eine Reihe unvollständig (Kap. 3: 7 Spuren, Kap. 4: 5),
-   füllen die letzten Karten die Reihe: eine allein = ganz breit (Bild links, Titel rechts), zwei = je halb.
-   Das Bild behält Größe und Form der übrigen Karten, damit Ausschnitte (bildKarte) gleich bleiben. */
+/* Drei Karten je Reihe (jede 2 von 6 Spalten). Unvollständige letzte Reihe (Kap. 3: 7 Karten, Kap. 4: 5): gleich große Karten,
+   mittig – eine allein in der Mitte, zwei zusammen in der Mitte. (Breite Karten sahen leer aus und flogen riesig ans Brett.) */
 .bgrid > * { grid-column: span 2; }
-.bgrid > :nth-child(3n + 1):nth-last-child(2), .bgrid > :nth-child(3n + 2):last-child { grid-column: span 3; }
-.bgrid > :nth-child(3n + 1):last-child { grid-column: 1 / -1; }
-.bgrid > :nth-child(3n + 1):nth-last-child(2) > .bk-bild, .bgrid > :nth-child(3n + 2):last-child > .bk-bild { width: 66%; align-self: center; }
-.bgrid > :nth-child(3n + 1):last-child:not(.leer) { flex-direction: row; align-items: center; gap: .625rem; }
-.bgrid > :nth-child(3n + 1):last-child > .bk-bild { width: calc(33.3% - .25rem); flex: none; }
-.bgrid > :nth-child(3n + 1):last-child > p { flex: 1; font-size: .9375rem; text-align: center; }
+.bgrid > :nth-child(3n + 1):last-child { grid-column: 3 / 5; }
+.bgrid > :nth-child(3n + 1):nth-last-child(2) { grid-column: 2 / 4; }
+.bgrid > :nth-child(3n + 2):last-child { grid-column: 4 / 6; }
 .bkarte.leer {
   box-shadow: none;
   cursor: default;
@@ -536,11 +532,6 @@
 .perl-tipp .perle { display: inline-block; width: .875rem; height: .875rem; border-radius: 50%; background: var(--perle); vertical-align: -.125rem; margin-right: .375rem; }
 .perl-tipp .s-b, .perl-tipp .s-r { color: inherit; }
 @media (prefers-reduced-motion: reduce) { .sperle i { animation: none; } .perle-flug { animation-duration: .01s; } }
-/* ganz breite Karte (Kap. 3): nur ein Hauch Neigung, sonst ragt die gedrehte lange Karte seitlich über das Brett */
-.bgrid > :nth-child(3n + 1):last-child { transform: rotate(calc(var(--n, 0deg) * .2)); }
-/* ganz breiter leerer Platz, der auf die Karte wartet: pulsiert mit Leuchten statt Vergrößern (sonst ragt er seitlich hinaus) */
-#app .bgrid > :nth-child(3n + 1):last-child.wartet { animation: wartLeucht 1s ease-in-out infinite; }
-@keyframes wartLeucht { 50% { box-shadow: 0 0 0 7px rgba(244, 194, 67, .45); } }
 
 /* 27.11.2026: feste Farbe je Frage (statt nach Platz), Raupe neben „Offene Fragen“ statt über den Karten */
 .zettel.fr.fc0 { background: linear-gradient(160deg, #FFF3A6, #FFE56B); box-shadow: 0 6px 10px rgba(60, 30, 0, .28), inset -10px -10px 14px -10px rgba(160, 120, 0, .35); }
