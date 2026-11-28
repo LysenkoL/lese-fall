@@ -12,7 +12,7 @@
   "bild": "k3_s18",
   "titel": "Das wissen wir jetzt",
   "saetze": [
-   "Der Käse mit den drei braunen Flecken ist Milas Mond. Hinten hat er den blauen Stern und den aufgerollten Faden.",
+   "Der Käse mit den drei braunen Flecken ist Alexandras Mond. Hinten hat er den blauen Stern und den aufgerollten Faden.",
    "Oskar hat ihn nicht zerschnitten. Er hat nur Flecken aufgeklebt.",
    "Es war ein Missverständnis. Niemand wollte den Mond stehlen.",
    "Ein großer Vogel mit langem Schwanz starrt auf den Silberstern am Mond."
@@ -30,7 +30,7 @@
    "spur": 13,
    "perle": { "x": 53.0, "y": 45.0 },
    "bild": "k3_s13",
-   "haken": "„Ob Mila und Ben den Faden auch entdecken?“",
+   "haken": "„Ob Alexandra und Ben den Faden auch entdecken?“",
    "karte": {
     "titel": "Ein Faden am Käse",
     "bild": "objekte/kaese_auf_teller",
@@ -52,7 +52,7 @@
     },
     "start": "Mit meiner Lupe sieht man Kleines groß. Schiebe sie über den Käse.",
     "tipp": "Schau am Rand entlang. Es ist etwas Dünnes, Weißes.",
-    "erfolg": "Ein kleines Stück weißer Faden! Seit wann hat ein Käse einen Faden? Milas Mond hat einen!",
+    "erfolg": "Ein kleines Stück weißer Faden! Seit wann hat ein Käse einen Faden? Alexandras Mond hat einen!",
     "werkzeug": "lupe"
    },
    "fragenWeg": [
@@ -176,9 +176,9 @@
    "bild": "k3_s16_vorher",
    "haken": "„Armer Oskar! Er wollte seiner Maus doch nur eine Freude machen.“",
    "karte": {
-    "titel": "Das ist Milas Mond",
+    "titel": "Das ist Alexandras Mond",
     "bild": "objekte/mond_hinten_faden",
-    "text": "Milas Mond: hinten ein blauer Stern und der aufgerollte Faden.",
+    "text": "Alexandras Mond: hinten ein blauer Stern und der aufgerollte Faden.",
     "staub": false
    },
    "fragenWeg": [
@@ -186,11 +186,11 @@
    ],
    "raetsel": {
     "art": "kreise",
-    "titel": "Welcher Kreis ist Milas Mond?",
+    "titel": "Welcher Kreis ist Alexandras Mond?",
     "text": "Fünf gelbe Kreise mit braunen Flecken. Von vorn sehen sie gleich aus. Erst erinnerst du dich, dann vergleichst du.",
     "erinnern": {
-     "text": "Was weißt du über Milas Mond? Wähle die drei Merkmale, die zu ihm gehören.",
-     "start": "Denk an das, was Mila und Ben erzählt haben. Nicht alles auf den Karten stimmt!",
+     "text": "Was weißt du über Alexandras Mond? Wähle die drei Merkmale, die zu ihm gehören.",
+     "start": "Denk an das, was Alexandra und Ben erzählt haben. Nicht alles auf den Karten stimmt!",
      "karten": [
       {
        "id": "stern",
@@ -223,9 +223,9 @@
        "richtig": false
       }
      ],
-     "tipp": "Mila hat etwas hinten aufgemalt. Ben hat oben etwas festgeklebt. Und der Faden geht durch etwas hindurch.",
+     "tipp": "Alexandra hat etwas hinten aufgemalt. Ben hat oben etwas festgeklebt. Und der Faden geht durch etwas hindurch.",
      "erfolg": "Richtig! Stern hinten, Faden aufgerollt, Loch oben. Das sind die drei Merkmale.",
-     "warum": "Mila hat hinten einen blauen Stern gemalt. Ben hat den Faden oben aufgerollt und festgeklebt. Und der Faden geht durch ein kleines Loch. Ein rotes Herz, einen Namen oder eine gelbe Rückseite hat Milas Mond nicht."
+     "warum": "Alexandra hat hinten einen blauen Stern gemalt. Ben hat den Faden oben aufgerollt und festgeklebt. Und der Faden geht durch ein kleines Loch. Ein rotes Herz, einen Namen oder eine gelbe Rückseite hat Alexandras Mond nicht."
     },
     "vorne": "objekte/gelbe_kreise_vorne",
     "hinten": "objekte/gelbe_kreise_hinten",
@@ -271,7 +271,7 @@
     "vergleichen": {
      "text": "Tippe einen Kreis an, dann dreht er sich um. Es ist immer nur ein Kreis umgedreht. Merke dir, was du siehst. Streiche Kreise aus, die nicht passen.",
      "start": "Von vorn sieht man das nicht. Tippe einen Kreis an, dann dreht er sich um.",
-     "liste": "Milas Mond hat:",
+     "liste": "Alexandras Mond hat:",
      "frage": "Streiche jeden Kreis aus, dem ein Merkmal fehlt. Tippe dafür auf das Kreuz unter dem Kreis. Oder drücke lange auf den Kreis.",
      "zuViel": "Hm, ein Kreis ist zu Unrecht ausgestrichen. Hat er vielleicht doch alle drei Merkmale? Dreh ihn noch einmal um.",
      "nochMehr": "Es sind noch mehrere Kreise übrig. Hat wirklich jeder von ihnen alle drei Merkmale?",
@@ -279,7 +279,7 @@
      "warum": "Nur ein Kreis hat hinten den Stern, oben den aufgerollten Faden und das Loch."
     },
     "stempel": "MILAS MOND",
-    "erfolg": "Das ist Milas Mond! Nur dieser Kreis hat hinten den blauen Stern, oben das Loch und den aufgerollten Faden.",
+    "erfolg": "Das ist Alexandras Mond! Nur dieser Kreis hat hinten den blauen Stern, oben das Loch und den aufgerollten Faden.",
     "werkzeug": "zeit"
    },
    "fragenNeu": []
@@ -362,7 +362,7 @@
     "kinder": [
      {
       "id": "mila",
-      "name": "Mila",
+      "name": "Alexandra",
       "text": "Unser Stück braucht einen Mond."
      },
      {
@@ -410,7 +410,7 @@
        "froh": true,
        "unter": "Super! Dann bleibt der Käse für meine Maus."
       },
-      "sagt": "Hm. Ben und Oskar lachen. Aber Mila nicht: Ohne Mond ist der Himmel leer."
+      "sagt": "Hm. Ben und Oskar lachen. Aber Alexandra nicht: Ohne Mond ist der Himmel leer."
      },
      {
       "id": "neu",
@@ -428,7 +428,7 @@
        "froh": true,
        "unter": "Dann bekommt meine Maus den alten Mond als Käse!"
       },
-      "sagt": "Zwei lachen. Aber Mila nicht. Das ist es noch nicht."
+      "sagt": "Zwei lachen. Aber Alexandra nicht. Das ist es noch nicht."
      },
      {
       "id": "kaese",
@@ -475,12 +475,12 @@
     "zeilen": 3,
     "ratio": 0.75,
     "tipp": "Oben ist das Dach vom Theater mit der Wolke. Der Käse und die Maus sind in der Mitte. Unten ist der Boden der Bühne.",
-    "erfolg": "Genau. Sicher ist nur, was wir bewiesen haben: Der Käse ist Milas Mond. Alles andere ist erst ein Verdacht.",
+    "erfolg": "Genau. Sicher ist nur, was wir bewiesen haben: Der Käse ist Alexandras Mond. Alles andere ist erst ein Verdacht.",
     "schluss": {
      "frage": "Was wissen wir jetzt sicher?",
      "optionen": [
       {
-       "text": "Der Käse ist Milas Mond. Hinten hat er den blauen Stern und den aufgerollten Faden.",
+       "text": "Der Käse ist Alexandras Mond. Hinten hat er den blauen Stern und den aufgerollten Faden.",
        "sicher": true
       },
       {

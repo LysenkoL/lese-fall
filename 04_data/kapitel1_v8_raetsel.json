@@ -138,9 +138,9 @@
    "bild": "k1_s1",
    "haken": "„Ein verschwundener Schlüssel … Hoffentlich verschwindet heute nicht noch mehr!“",
    "karte": {
-    "titel": "Milas Mond",
+    "titel": "Alexandras Mond",
     "bild": "objekte/mond_hinten",
-    "text": "Milas Mond: gelb, oben ein weißer Faden, hinten ein blauer Stern.",
+    "text": "Alexandras Mond: gelb, oben ein weißer Faden, hinten ein blauer Stern.",
     "staub": false
    },
    "fragenNeu": [
@@ -210,7 +210,7 @@
    "spur": 2,
    "perle": { "x": 34.0, "y": 38.0 },
    "bild": "k1_s2_vorher",
-   "haken": "„Gleich kommt Mila mit den Puppen zurück. Oje … was sagt sie zum leeren Himmel?“",
+   "haken": "„Gleich kommt Alexandra mit den Puppen zurück. Oje … was sagt sie zum leeren Himmel?“",
    "karte": {
     "titel": "Der Mond ist weg",
     "bild": "k1_s2_nachher",
@@ -227,7 +227,7 @@
     {
      "id": "mond",
      "text": "Wo ist der Mond?",
-     "antwort": "Der Käse ist Milas Mond!"
+     "antwort": "Der Käse ist Alexandras Mond!"
     },
     {
      "id": "aermel",
@@ -380,13 +380,13 @@
    "karte": {
     "titel": "Ein fremder Kreis",
     "bild": "objekte/falscher_kreis_hinten",
-    "text": "Der gelbe Kreis unter den Zeitungen ist nicht Milas Mond.",
+    "text": "Der gelbe Kreis unter den Zeitungen ist nicht Alexandras Mond.",
     "staub": false
    },
    "fragenNeu": [],
    "raetsel": {
     "art": "merkmale",
-    "titel": "Ist das Milas Mond?",
+    "titel": "Ist das Alexandras Mond?",
     "text": "Wisch zuerst den Staub vom Kreis. Dann prüfe ihn genau.",
     "vorne": "objekte/falscher_kreis_vorne",
     "hinten": "objekte/falscher_kreis_hinten",

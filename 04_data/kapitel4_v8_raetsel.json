@@ -28,7 +28,7 @@
    "liste": "Mein Bericht: Der verschwundene Mond",
    "saetze": [
     {
-     "text": "Mila hat einen gelben Mond für das Theater gebastelt.",
+     "text": "Alexandra hat einen gelben Mond für das Theater gebastelt.",
      "wahr": true
     },
     {
@@ -181,7 +181,7 @@
   "urkunde": {
    "titel": "Die Urkunde"
   },
-  "raupeKurz": "„Psst! Ben und Oskar denken, alles ging wie von selbst. Mila lächelt nur. Aber wir zwei wissen es genau, Partner!“",
+  "raupeKurz": "„Psst! Ben und Oskar denken, alles ging wie von selbst. Alexandra lächelt nur. Aber wir zwei wissen es genau, Partner!“",
   "epilog": {
    "titel": "Ein stiller Abend",
    "saetze": [
@@ -544,7 +544,7 @@
       "x": 52,
       "y": 72,
       "r": 6,
-      "text": "Mila sucht unter dem Tisch. Da ist keine Maus."
+      "text": "Alexandra sucht unter dem Tisch. Da ist keine Maus."
      }
     ],
     "start": "Mit meiner Lupe sieht man Kleines groß. Wo ist etwas Rosafarbenes?",

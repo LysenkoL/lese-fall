@@ -10,18 +10,18 @@
 
 Wusch! Der große schwarz-weiße Vogel schießt aus den Zweigen herab. Er schnappt sich den Faden am Mond und flattert damit in die Luft!
 
-„Mein Mond!“, schreit Mila. „Der Vogel klaut unseren Himmelskäse!“
+„Mein Mond!“, schreit Alexandra. „Der Vogel klaut unseren Himmelskäse!“
 
 <!-- Bild -->
 Alle schauen nach oben. Der Vogel fliegt zu einer Astgabel direkt unter dem Klassenzimmerfenster. Dort sitzt sein rundes Nest, zwischen zwei Zweigen wie in einem großen V. Der Vogel ist so groß wie eine Taube. Aber der Mond ist viel zu groß für das Nest. Trotzdem zerrt und ruckelt der Vogel wie verrückt am Faden.
 
-Mila, Ben und Oskar rennen zum Baumstamm. „Hey, du frecher Dieb!“, ruft Mila und winkt mit beiden Armen. „Gib den sofort wieder her!“
+Alexandra, Ben und Oskar rennen zum Baumstamm. „Hey, du frecher Dieb!“, ruft Alexandra und winkt mit beiden Armen. „Gib den sofort wieder her!“
 
-„Schack-schack! Kräääh!“, krächzt der Vogel. Er öffnet den Schnabel — und der Mond segelt herunter, direkt in Milas Arme!
+„Schack-schack! Kräääh!“, krächzt der Vogel. Er öffnet den Schnabel — und der Mond segelt herunter, direkt in Alexandras Arme!
 
 Beleidigt schlägt der Vogel mit den Flügeln. Dann fliegt er davon, hoch hinauf auf das Schuldach.
 
-„Gerettet!“, jubelt Mila. Ben grinst stolz: „Seht ihr? Mein Spezial-Kleber hält sogar, wenn ein Vogel daran zerrt!“
+„Gerettet!“, jubelt Alexandra. Ben grinst stolz: „Seht ihr? Mein Spezial-Kleber hält sogar, wenn ein Vogel daran zerrt!“
 
 Oskar hält seine Papiermaus fest und zeigt hoch zum Nest: „Schaut mal! Da oben blitzt noch etwas in der Sonne! Was, wenn der Vogel auch Frau Sommers Schlüssel geholt hat?!“
 
@@ -62,7 +62,7 @@ Oskar greift in seine Taschen. Er tastet über den Tisch. Dann wird er kreideble
 
 Erschrocken schaut er zum Fenster. „Hat der Vogel etwa auch meine Maus geholt? Ganz heimlich, als ich nicht aufgepasst habe?“
 
-„Ich glaube nicht“, sagt Mila. „Der Vogel holt sich nur Sachen, die glitzern. Und deine Maus glitzert doch gar nicht.“
+„Ich glaube nicht“, sagt Alexandra. „Der Vogel holt sich nur Sachen, die glitzern. Und deine Maus glitzert doch gar nicht.“
 
 „Nimm doch eine andere Papiermaus“, sagt Ben. Doch Oskar schüttelt den Kopf. „Nein! Das ist meine Lieblingsmaus. Ohne sie kann ich nicht auftreten!“
 
@@ -79,7 +79,7 @@ Schnell räumen alle den Tisch auf. Dabei findet Frau Sommer auf dem Tisch den g
 Dann geht die Tür auf. Die Kinder der Gruppe strömen herein, jedes mit seiner Papiermaus in der Hand.
 
 <!-- Bild -->
-Mila zieht den roten Vorhang auf. Oskars Maus hüpft auf die Bühne und piepst: „Oh weh, mein Bauch ist so leer!“ Die Kinder kichern. Oskars Hände zittern nicht mehr.
+Alexandra zieht den roten Vorhang auf. Oskars Maus hüpft auf die Bühne und piepst: „Oh weh, mein Bauch ist so leer!“ Die Kinder kichern. Oskars Hände zittern nicht mehr.
 
 Die Maus schaut hoch zum Mond mit den drei braunen Flecken. „Juhu! Da oben hängt der größte Käse der Welt!“ Immer wenn sie hochspringt, zieht Ben den Mond am Faden ein Stück höher. Und alle Kinder lassen ihre Mäuse im Takt mithüpfen!
 
@@ -88,11 +88,11 @@ Am Ende rufen alle: „Zugabe! Zugabe!“ Oskar glüht vor Glück. „Ich habe m
 <!-- Raupe: lob -->
 „Ich mich auch“, denkt die Lese-Raupe auf dem Fensterbrett und lächelt.
 
-Da zeigt Mila zum Fenster. Draußen auf dem Zweig sitzt der große schwarz-weiße Vogel mit dem langen Schwanz. Er schaut sehnsüchtig zum Silberstern am Mond.
+Da zeigt Alexandra zum Fenster. Draußen auf dem Zweig sitzt der große schwarz-weiße Vogel mit dem langen Schwanz. Er schaut sehnsüchtig zum Silberstern am Mond.
 
 „Was für ein kluges Tier!“, sagt Frau Sommer. „Dieser Vogel erkennt sich sogar selbst im Spiegel. Und er liebt alles, was glänzt.“
 
-„Dann schenken wir ihm etwas Glänzendes!“, ruft Mila. „Vielleicht gibt er uns dafür den Schlüssel zurück!“
+„Dann schenken wir ihm etwas Glänzendes!“, ruft Alexandra. „Vielleicht gibt er uns dafür den Schlüssel zurück!“
 
 <!-- Raupe: denkt -->
 Die Lese-Raupe nickt eifrig mit den Fühlern: „Schwarz-weiß, langer Schwanz und verrückt nach allem, was glänzt — wie heißt dieser schlaue Vogel gleich noch mal?“
@@ -103,7 +103,7 @@ Die Lese-Raupe nickt eifrig mit den Fühlern: „Schwarz-weiß, langer Schwanz u
 
 Alle holen Glitzerfolie, Pappe und bunte Bänder. Gemeinsam basteln sie einen funkelnden Nest-Schmuck mit einer kleinen Silberkrone.
 
-Dann verabschieden sich die anderen Kinder. Nur Mila, Ben, Oskar und Frau Sommer treten leise ans Fenster.
+Dann verabschieden sich die anderen Kinder. Nur Alexandra, Ben, Oskar und Frau Sommer treten leise ans Fenster.
 
 Sie hängen den Schmuck an einen Zweig direkt vor dem Fenster. Die Elster legt den Kopf schief. Sie hüpft näher. Dann schnappt sie sich den Schmuck und trägt ihn stolz in ihr Nest! Zufrieden flattert sie davon, hoch auf das Schuldach.
 
@@ -117,13 +117,13 @@ Ganz langsam zieht Frau Sommer den Zeigestock zurück ins Klassenzimmer. Am Ende
 
 „Mein Schlüssel!“, ruft Frau Sommer. „Ich hatte im Lehrerzimmer das Fenster weit offen. Da hat ihn sich die Elster geholt!“ Dann lacht sie. „Heute Nacht muss ich also doch nicht auf dem Klassenteppich schlafen!“ Alle lachen mit.
 
-„Und der Hausmeister bekommt auch keinen Wutanfall“, kichert Mila.
+„Und der Hausmeister bekommt auch keinen Wutanfall“, kichert Alexandra.
 
 Ben kratzt sich am Kopf. „Aber wie ist das Band an den Stock gekommen?“
 
 „Wie von selbst!“, staunt Oskar.
 
-Mila schaut zum Fensterbrett. Dort sitzt die Lese-Raupe und putzt sich ganz unschuldig die Fühler. Mila lächelt. „Wie von selbst … na klar.“
+Alexandra schaut zum Fensterbrett. Dort sitzt die Lese-Raupe und putzt sich ganz unschuldig die Fühler. Alexandra lächelt. „Wie von selbst … na klar.“
 
 Draußen kommt die Elster zurück zu ihrem Nest. Stolz setzt sie sich neben ihren neuen Schmuck. „Schack-schack!“, ruft sie. Es klingt fast wie ein Dankeschön.
 

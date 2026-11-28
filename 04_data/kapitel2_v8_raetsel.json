@@ -16,7 +16,7 @@
    "Auf dem Tablett darf sich jedes Kind Papier nehmen.",
    "Oskar sagt: Ich habe einen weißen Kreis vom Tablett genommen."
   ],
-  "frage": "Aber war es Milas Mond? Und was liegt unter dem Seidenpapier?",
+  "frage": "Aber war es Alexandras Mond? Und was liegt unter dem Seidenpapier?",
   "stempel": "KAPITEL 2 GELÖST"
  },
  "ausblick": "Drei … zwei … eins … Gleich zieht Oskar das Seidenpapier weg!",
@@ -88,7 +88,7 @@
      {
       "id": "mond",
       "bild": "objekte/mond_vorne_kurz",
-      "name": "Milas Mond",
+      "name": "Alexandras Mond",
       "ziel": "kiste",
       "warum": "Der Mond ist fertig. Er gehört in die grüne Kiste. Auf dem Tablett lag er nur zufällig."
      },
@@ -116,11 +116,11 @@
    "spur": 8,
    "perle": { "x": 63.0, "y": 86.0 },
    "bild": "k2_s8",
-   "haken": "„Mila und Ben wissen noch nichts vom gestreiften Ärmel. Ich muss nachsehen, was Oskar draußen macht!“",
+   "haken": "„Alexandra und Ben wissen noch nichts vom gestreiften Ärmel. Ich muss nachsehen, was Oskar draußen macht!“",
    "karte": {
     "titel": "Weiße Seite oben",
     "bild": "objekte/mond_hinten_feucht",
-    "text": "Milas Mond lag mit der weißen Seite oben. Der Kleber war noch nass.",
+    "text": "Alexandras Mond lag mit der weißen Seite oben. Der Kleber war noch nass.",
     "staub": false
    },
    "raetsel": {
@@ -250,7 +250,7 @@
    "spur": 10,
    "perle": { "x": 70.0, "y": 61.0 },
    "bild": "k2_s10_fenster",
-   "haken": "„Eine Überraschung aus einem weißen Kreis … Hoffentlich nicht aus Milas Mond!“",
+   "haken": "„Eine Überraschung aus einem weißen Kreis … Hoffentlich nicht aus Alexandras Mond!“",
    "karte": {
     "titel": "Ein weißer Kreis",
     "bild": "objekte/mond_auf_tablett",
@@ -432,18 +432,18 @@
        "sicher": true
       },
       {
-       "text": "Der weiße Kreis war Milas Mond.",
+       "text": "Der weiße Kreis war Alexandras Mond.",
        "sicher": false,
        "tipp": "Das ist erst ein Verdacht. Den Kreis hat noch niemand gesehen."
       },
       {
-       "text": "Oskar hat Milas Mond zerschnitten.",
+       "text": "Oskar hat Alexandras Mond zerschnitten.",
        "sicher": false,
        "tipp": "Das ist erst ein Verdacht. Wir sehen eine Schere und Schnipsel. Aber niemand hat gesehen, was geschnitten wurde."
       }
      ]
     },
-    "erfolg": "Genau. Sicher ist nur, was Oskar gesagt hat. Ob es Milas Mond war, weiß noch niemand.",
+    "erfolg": "Genau. Sicher ist nur, was Oskar gesagt hat. Ob es Alexandras Mond war, weiß noch niemand.",
     "werkzeug": "lesen"
    },
    "fragenNeu": [

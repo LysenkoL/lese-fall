@@ -44,7 +44,7 @@
      "Auf dem Tab|lett darf sich je|des Kind Pa|pier neh|men.",
      "Os|kar sagt: Ich ha|be ei|nen wei|ßen Kreis vom Tab|lett ge|nom|men."
     ],
-    "frage": "A|ber war es Mi|las Mond? Und was liegt un|ter dem Sei|den|pa|pier?",
+    "frage": "A|ber war es A|le|xan|dras Mond? Und was liegt un|ter dem Sei|den|pa|pier?",
     "stempel": "KAPITEL 2 GELÖST"
    },
    "ausblick": "Drei … zwei … eins … Gleich zieht Os|kar das Sei|den|pa|pier weg!"
@@ -63,7 +63,7 @@
     "bild": "k3_s18",
     "titel": "Das wis|sen wir jetzt",
     "saetze": [
-     "Der Kä|se mit den drei brau|nen Fle|cken ist Mi|las Mond. Hin|ten hat er den blau|en Stern und den auf|ge|roll|ten Fa|den.",
+     "Der Kä|se mit den drei brau|nen Fle|cken ist A|le|xan|dras Mond. Hin|ten hat er den blau|en Stern und den auf|ge|roll|ten Fa|den.",
      "Os|kar hat ihn nicht zer|schnit|ten. Er hat nur Fle|cken auf|ge|klebt.",
      "Es war ein Miss|ver|ständ|nis. Nie|mand woll|te den Mond steh|len.",
      "Ein gro|ßer Vo|gel mit lan|gem Schwanz starrt auf den Sil|ber|stern am Mond."
@@ -103,7 +103,7 @@
      "liste": "Mein Be|richt: Der ver|schwun|de|ne Mond",
      "saetze": [
       {
-       "text": "Mi|la hat ei|nen gel|ben Mond für das The|a|ter ge|bas|telt.",
+       "text": "A|le|xan|dra hat ei|nen gel|ben Mond für das The|a|ter ge|bas|telt.",
        "wahr": true
       },
       {
@@ -168,7 +168,7 @@
       "id": "a4-p3",
       "typ": "p",
       "s": [
-       "„Und der Haus|meis|ter be|kommt auch kei|nen Wut|an|fall“, ki|chert Mi|la."
+       "„Und der Haus|meis|ter be|kommt auch kei|nen Wut|an|fall“, ki|chert A|le|xan|dra."
       ]
      },
      {
@@ -190,9 +190,9 @@
       "id": "a4-p6",
       "typ": "p",
       "s": [
-       "Mi|la schaut zum Fens|ter|brett.",
+       "A|le|xan|dra schaut zum Fens|ter|brett.",
        "Dort sitzt die Le|se-Rau|pe und putzt sich ganz un|schul|dig die Füh|ler.",
-       "Mi|la lä|chelt.",
+       "A|le|xan|dra lä|chelt.",
        "„Wie von selbst … na klar.“"
       ]
      },
@@ -237,7 +237,7 @@
     "urkunde": {
      "titel": "Die Ur|kun|de"
     },
-    "raupeKurz": "„Psst! Ben und Os|kar den|ken, al|les ging wie von selbst. Mi|la lä|chelt nur. A|ber wir zwei wis|sen es ge|nau, Part|ner!“",
+    "raupeKurz": "„Psst! Ben und Os|kar den|ken, al|les ging wie von selbst. A|le|xan|dra lä|chelt nur. A|ber wir zwei wis|sen es ge|nau, Part|ner!“",
     "epilog": {
      "titel": "Ein stil|ler A|bend",
      "saetze": [
@@ -489,7 +489,7 @@
      "id": "s1-p3",
      "typ": "p",
      "s": [
-      "Mi|la kommt he|rein und winkt fröh|lich zum Blu|men|topf hi|nü|ber.",
+      "A|le|xan|dra kommt he|rein und winkt fröh|lich zum Blu|men|topf hi|nü|ber.",
       "„Gu|ten Mor|gen, Rau|pe!",
       "Schau mal, was ich für un|se|ren The|a|ter-Him|mel ge|bas|telt ha|be!“"
      ]
@@ -500,14 +500,14 @@
      "s": [
       "Sie hält ei|nen gro|ßen gel|ben Mond aus Pap|pe dicht vor das Blatt der Le|se-Rau|pe.",
       "O|ben geht ein lan|ger wei|ßer Fa|den durch ein klei|nes Loch im Rand.",
-      "Dann dreht Mi|la den Mond ge|heim|nis|voll um: Die Rück|sei|te ist weiß, und dort leuch|tet ein win|zi|ger blau|er Stern."
+      "Dann dreht A|le|xan|dra den Mond ge|heim|nis|voll um: Die Rück|sei|te ist weiß, und dort leuch|tet ein win|zi|ger blau|er Stern."
      ]
     },
     {
      "id": "s1-p5",
      "typ": "p",
      "s": [
-      "„Da|ran er|ken|ne ich mei|nen Mond im|mer wie|der“, flüs|tert Mi|la.",
+      "„Da|ran er|ken|ne ich mei|nen Mond im|mer wie|der“, flüs|tert A|le|xan|dra.",
       "„Und der Stern ist na|tür|lich für dich, Rau|pe!",
       "Un|se|re klei|ne Ge|heim|spra|che.“"
      ]
@@ -517,7 +517,7 @@
      "typ": "p",
      "s": [
       "Die Le|se-Rau|pe freut sich rie|sig.",
-      "Im|mer wenn Mi|la et|was für das The|a|ter bas|telt, malt sie hin|ten ein win|zi|ges Ge|heim|zei|chen nur für die Rau|pe.",
+      "Im|mer wenn A|le|xan|dra et|was für das The|a|ter bas|telt, malt sie hin|ten ein win|zi|ges Ge|heim|zei|chen nur für die Rau|pe.",
       "Letz|te Wo|che war es ein Ma|ri|en|kä|fer.",
       "Da|vor war es ei|ne Mi|ni-Kro|ne.",
       "Und heu|te ist es die|ser wun|der|schö|ne blau|e Stern!"
@@ -538,11 +538,12 @@
      "s": [
       "Plötz|lich kommt Frau Som|mer he|rein und fä|chelt sich Luft zu: „Kin|der, habt ihr mei|nen Schlüs|sel ge|se|hen?",
       "Er hängt an ei|nem wei|ßen Band mit ei|nem fun|keln|den sil|ber|nen Glit|zer-Stern!",
-      "Vor|hin ha|be ich ihn im Leh|rer|zim|mer auf den Tisch ge|legt.",
-      "Dort war es so sti|ckig.",
-      "Da ha|be ich das Fens|ter weit auf|ge|macht.",
-      "Und jetzt ist der Schlüs|sel weg!",
-      "Ich ha|be schon ü|ber|all ge|sucht.",
+      "Nor|ma|ler|wei|se schlie|ße ich ihn im|mer in mei|ner Schu|bla|de ein.",
+      "A|ber vor|hin im Leh|rer|zim|mer ha|be ich ihn ein|fach auf den Tisch ge|wor|fen.",
+      "Dort war es so sti|ckig!",
+      "Ich bin so|fort ans Fens|ter ge|lau|fen und ha|be es weit auf|ge|ris|sen.",
+      "Und den Schlüs|sel ha|be ich glatt ver|ges|sen!",
+      "Jetzt ha|be ich schon al|les ab|ge|sucht, a|ber er ist nir|gends zu fin|den.",
       "Wenn er weg|bleibt, muss ich heu|te Nacht wohl hier auf dem Klas|sen|tep|pich schla|fen — o|der un|ser Haus|meis|ter be|kommt ei|nen Wut|an|fall!“"
      ]
     },
@@ -566,9 +567,9 @@
     }
    ],
    "karte": {
-    "titel": "Mi|las Mond",
+    "titel": "A|le|xan|dras Mond",
     "bild": "objekte/mond_hinten",
-    "text": "Mi|las Mond: gelb, o|ben ein wei|ßer Fa|den, hin|ten ein blau|er Stern.",
+    "text": "A|le|xan|dras Mond: gelb, o|ben ein wei|ßer Fa|den, hin|ten ein blau|er Stern.",
     "staub": false
    },
    "fragenNeu": [
@@ -644,13 +645,13 @@
    "spur": 2,
    "titel": "Ein selt|sa|mes Früh|stück",
    "bild": "k1_s2_vorher",
-   "haken": "„Gleich kommt Mi|la mit den Pup|pen zu|rück. O|je … was sagt sie zum lee|ren Him|mel?“",
+   "haken": "„Gleich kommt A|le|xan|dra mit den Pup|pen zu|rück. O|je … was sagt sie zum lee|ren Him|mel?“",
    "blocks": [
     {
      "id": "s2-p1",
      "typ": "p",
      "s": [
-      "Mi|la hängt den gel|ben Mond links ne|ben die Wol|ke an den The|a|ter-Him|mel.",
+      "A|le|xan|dra hängt den gel|ben Mond links ne|ben die Wol|ke an den The|a|ter-Him|mel.",
       "Er wa|ckelt ziem|lich an sei|nem lo|cke|ren Fa|den."
      ]
     },
@@ -658,7 +659,7 @@
      "id": "s2-p2",
      "typ": "p",
      "s": [
-      "„Wun|der|bar!“, ruft Mi|la.",
+      "„Wun|der|bar!“, ruft A|le|xan|dra.",
       "„Jetzt ho|le ich nur noch schnell die Pup|pen für un|ser Stück!“",
       "Sie flitzt zum gro|ßen Schrank am an|de|ren En|de des Rau|mes."
      ]
@@ -765,7 +766,7 @@
     {
      "id": "mond",
      "text": "Wo ist der Mond?",
-     "antwort": "Der Käse ist Milas Mond!"
+     "antwort": "Der Käse ist Alexandras Mond!"
     },
     {
      "id": "aermel",
@@ -860,7 +861,7 @@
      "id": "s3-p1",
      "typ": "p",
      "s": [
-      "Mi|la kommt gut ge|launt mit dem Bä|ren, dem Fuchs und dem Kö|nig vom Schrank zu|rück.",
+      "A|le|xan|dra kommt gut ge|launt mit dem Bä|ren, dem Fuchs und dem Kö|nig vom Schrank zu|rück.",
       "Sie setzt die drei Pup|pen auf die Büh|ne, klopft ih|nen den Staub vom Fell und sagt: „So, ihr drei, schaut mal nach o|ben, wie schön un|ser Nacht|him|mel aus|sieht!“"
      ]
     },
@@ -878,7 +879,7 @@
      "s": [
       "„Na|nu?!",
       "Ben!",
-      "Wo ist denn mein Mond hin?!“, ruft Mi|la er|schro|cken."
+      "Wo ist denn mein Mond hin?!“, ruft A|le|xan|dra er|schro|cken."
      ]
     },
     {
@@ -904,14 +905,14 @@
      "typ": "p",
      "s": [
       "„Ben!",
-      "Hörst du mich nicht?“, ruft Mi|la noch lau|ter."
+      "Hörst du mich nicht?“, ruft A|le|xan|dra noch lau|ter."
      ]
     },
     {
      "id": "s3-p7",
      "typ": "p",
      "s": [
-      "End|lich ruft Ben ü|ber die Schul|ter ge|gen das rau|schen|de Was|ser an: „Ich kom|me gleich, Mi|la!",
+      "End|lich ruft Ben ü|ber die Schul|ter ge|gen das rau|schen|de Was|ser an: „Ich kom|me gleich, A|le|xan|dra!",
       "Die|ses kle|bri|ge Zeug geht ein|fach nicht von mei|nen Fin|gern ab!",
       "Dein Mond wä|re fast ab|ge|stürzt — ich ha|be den Fa|den frisch fest|ge|klebt!",
       "Er liegt drü|ben auf dem gro|ßen Tisch zum Trock|nen!“"
@@ -1013,7 +1014,7 @@
      "id": "s4-p1",
      "typ": "p",
      "s": [
-      "„Ach so, er trock|net auf dem Tisch!“, at|met Mi|la er|leich|tert auf und läuft so|fort um den gro|ßen The|a|ter|tisch he|rum, um nach ih|rem Mond zu schau|en."
+      "„Ach so, er trock|net auf dem Tisch!“, at|met A|le|xan|dra er|leich|tert auf und läuft so|fort um den gro|ßen The|a|ter|tisch he|rum, um nach ih|rem Mond zu schau|en."
      ]
     },
     {
@@ -1035,7 +1036,7 @@
      "id": "s4-p4",
      "typ": "p",
      "s": [
-      "Mi|la hört das Ra|scheln und zieht ei|nen gro|ßen gel|ben Papp|kreis un|ter den Zei|tun|gen her|vor.",
+      "A|le|xan|dra hört das Ra|scheln und zieht ei|nen gro|ßen gel|ben Papp|kreis un|ter den Zei|tun|gen her|vor.",
       "„Da bist du ja, mein Mond!“, freut sie sich."
      ]
     },
@@ -1052,7 +1053,7 @@
      "id": "s4-p6",
      "typ": "p",
      "s": [
-      "Auch Mi|la run|zelt jetzt die Stirn.",
+      "Auch A|le|xan|dra run|zelt jetzt die Stirn.",
       "„Mo|ment mal …",
       "Hier o|ben ist ja gar kein Loch mit dem wei|ßen Fa|den!",
       "Und hin|ten müss|te doch un|ser klei|ner blau|er Stern für die Rau|pe sein“, mur|melt sie und dreht den Kreis um."
@@ -1064,7 +1065,7 @@
      "s": [
       "Die Rück|sei|te ist weiß und kom|plett leer.",
       "Kein klei|ner blau|er Stern, kein Loch am Rand und kei|ne Spur von ei|ner Schnur!",
-      "„Scha|de, oh|ne Fa|den und oh|ne Stern ist das nur ein ganz nor|ma|ler Bas|tel|kreis“, seufzt Mi|la und legt ihn wie|der auf den Tisch."
+      "„Scha|de, oh|ne Fa|den und oh|ne Stern ist das nur ein ganz nor|ma|ler Bas|tel|kreis“, seufzt A|le|xan|dra und legt ihn wie|der auf den Tisch."
      ]
     },
     {
@@ -1086,7 +1087,7 @@
    "karte": {
     "titel": "Ein frem|der Kreis",
     "bild": "objekte/falscher_kreis_hinten",
-    "text": "Der gel|be Kreis un|ter den Zei|tun|gen ist nicht Mi|las Mond.",
+    "text": "Der gel|be Kreis un|ter den Zei|tun|gen ist nicht A|le|xan|dras Mond.",
     "staub": false
    },
    "fragenNeu": [],
@@ -1094,7 +1095,7 @@
    "tipp": null,
    "raetsel": {
     "art": "merkmale",
-    "titel": "Ist das Mi|las Mond?",
+    "titel": "Ist das A|le|xan|dras Mond?",
     "text": "Wisch zu|erst den Staub vom Kreis. Dann prü|fe ihn ge|nau.",
     "vorne": "objekte/falscher_kreis_vorne",
     "hinten": "objekte/falscher_kreis_hinten",
@@ -1145,7 +1146,7 @@
      "id": "s5-p2",
      "typ": "p",
      "s": [
-      "Mi|la stemmt die Hän|de in die Hüf|ten und muss trotz ih|rer Sor|ge la|chen: „Sag mal, Ben, du hast ge|ra|de fast das gan|ze Was|ser aus dem Welt|meer ver|braucht — und an dei|nen Fin|gern klebt im|mer noch Kle|ber!“"
+      "A|le|xan|dra stemmt die Hän|de in die Hüf|ten und muss trotz ih|rer Sor|ge la|chen: „Sag mal, Ben, du hast ge|ra|de fast das gan|ze Was|ser aus dem Welt|meer ver|braucht — und an dei|nen Fin|gern klebt im|mer noch Kle|ber!“"
      ]
     },
     {
@@ -1159,7 +1160,7 @@
      "id": "s5-p4",
      "typ": "p",
      "s": [
-      "„A|ber wo ge|nau auf dem Tisch hast du mei|nen Mond denn hin|ge|legt?“, fragt Mi|la un|ge|dul|dig.",
+      "„A|ber wo ge|nau auf dem Tisch hast du mei|nen Mond denn hin|ge|legt?“, fragt A|le|xan|dra un|ge|dul|dig.",
       "„Ich ha|be hier vor|ne schon al|les ab|ge|sucht!",
       "Un|ter dem Zei|tungs|sta|pel lag nur ein frem|der gel|ber Kreis oh|ne Fa|den.“"
      ]
@@ -1177,7 +1178,7 @@
      "id": "s5-p6",
      "typ": "p",
      "s": [
-      "„Komm mit“, sagt Ben zu|ver|sicht|lich und geht mit Mi|la zur Fens|ter|sei|te des gro|ßen Ti|sches.",
+      "„Komm mit“, sagt Ben zu|ver|sicht|lich und geht mit A|le|xan|dra zur Fens|ter|sei|te des gro|ßen Ti|sches.",
       "„Du wirst se|hen: Auf dem blau|en Tab|lett liegt er, und der Fa|den hält jetzt bom|ben|fest!“"
      ]
     },
@@ -1245,6 +1246,7 @@
    "spur": 6,
    "titel": "Das lee|re Tab|lett",
    "bild": "k1_s6_nachher",
+   "bildImText": true,
    "haken": "Sechs Kin|der, sechs Pul|lis. Ei|ner da|von war es.",
    "blocks": [
     {
@@ -1258,7 +1260,7 @@
      "id": "s6-p2",
      "typ": "p",
      "s": [
-      "Mi|la und Ben beu|gen sich da|rü|ber.",
+      "A|le|xan|dra und Ben beu|gen sich da|rü|ber.",
       "Rechts ne|ben dem Tab|lett ste|hen Bens di|cke Kle|ber|fla|sche, ei|ne Sche|re und ei|ne Rol|le Kle|be|band.",
       "Auf dem blau|en Tab|lett selbst liegt nur ein schma|ler ro|ter Pa|pier|strei|fen.",
       "Sonst nichts!"
@@ -1268,7 +1270,7 @@
      "id": "s6-p3",
      "typ": "p",
      "s": [
-      "„Hier ist kein Mond!“, ruft Mi|la er|schro|cken."
+      "„Hier ist kein Mond!“, ruft A|le|xan|dra er|schro|cken."
      ]
     },
     {
@@ -1287,13 +1289,14 @@
       "Schnell kriecht die Le|se-Rau|pe aufs Tab|lett, nimmt ih|re Tau|trop|fen-Lu|pe und schubst den ro|ten Pa|pier|strei|fen ein Stück|chen zur Sei|te.",
       "Da!",
       "Di|rekt da|run|ter glänzt ein klei|ner, noch feuch|ter Trop|fen auf dem blau|en Plas|tik: Kle|ber!"
-     ]
+     ],
+     "bild": "k1_s6_nachher"
     },
     {
      "id": "s6-p6",
      "typ": "p",
      "s": [
-      "„Schau mal, Mi|la, hier klebt noch ein fri|scher Klecks aus mei|ner Kle|ber|fla|sche!“, ruft Ben.",
+      "„Schau mal, A|le|xan|dra, hier klebt noch ein fri|scher Klecks aus mei|ner Kle|ber|fla|sche!“, ruft Ben.",
       "„Hier hat dein Mond wirk|lich ge|le|gen!“"
      ]
     },
@@ -1471,7 +1474,7 @@
      "id": "s7-p2",
      "typ": "p",
      "s": [
-      "Mi|la zuckt zu|sam|men.",
+      "A|le|xan|dra zuckt zu|sam|men.",
       "„Hörst du das?",
       "Da drau|ßen auf dem Hof schnei|det je|mand!",
       "Hof|fent|lich nicht mei|nen Mond!“"
@@ -1489,7 +1492,7 @@
      "id": "s7-p4",
      "typ": "p",
      "s": [
-      "„Ach, Ben!“, ruft Mi|la ver|zwei|felt.",
+      "„Ach, Ben!“, ruft A|le|xan|dra ver|zwei|felt.",
       "„Wa|rum hast du mei|nen Mond denn aus|ge|rech|net auf das blau|e Tab|lett ge|legt?!",
       "Du kennst doch un|se|re Re|gel am Bas|tel|tisch: In die grü|ne Kis|te kom|men die fer|ti|gen Fi|gu|ren und The|a|ter|sa|chen, die nie|mand an|rüh|ren darf!",
       "A|ber auf das blau|e Tab|lett le|gen wir das Bas|tel|pa|pier, von dem sich je|des Kind frei be|die|nen darf!“"
@@ -1509,7 +1512,7 @@
      "id": "s7-p6",
      "typ": "p",
      "s": [
-      "„Dann lag mein Mond ge|nau dort, wo sich je|der be|die|nen darf“, sagt Mi|la lei|se."
+      "„Dann lag mein Mond ge|nau dort, wo sich je|der be|die|nen darf“, sagt A|le|xan|dra lei|se."
      ]
     },
     {
@@ -1580,7 +1583,7 @@
      {
       "id": "mond",
       "bild": "objekte/mond_vorne_kurz",
-      "name": "Mi|las Mond",
+      "name": "A|le|xan|dras Mond",
       "ziel": "kiste",
       "warum": "Der Mond ist fer|tig. Er ge|hört in die grü|ne Kis|te. Auf dem Tab|lett lag er nur zu|fäl|lig."
      },
@@ -1613,13 +1616,13 @@
    "spur": 8,
    "titel": "Ein Mond, der sich tarnt",
    "bild": "k2_s8",
-   "haken": "„Mi|la und Ben wis|sen noch nichts vom ge|streif|ten Är|mel. Ich muss nach|se|hen, was Os|kar drau|ßen macht!“",
+   "haken": "„A|le|xan|dra und Ben wis|sen noch nichts vom ge|streif|ten Är|mel. Ich muss nach|se|hen, was Os|kar drau|ßen macht!“",
    "blocks": [
     {
      "id": "s8-p1",
      "typ": "p",
      "s": [
-      "Mi|la schüt|telt trotz|dem rat|los den Kopf.",
+      "A|le|xan|dra schüt|telt trotz|dem rat|los den Kopf.",
       "„A|ber mein Mond ist doch knall|gelb und hat ei|nen Fa|den!“, wun|dert sie sich.",
       "„So ei|nen gro|ßen gel|ben Mond nimmt doch kein Kind aus Ver|se|hen als Bas|tel|pa|pier mit!“"
      ]
@@ -1670,7 +1673,7 @@
    "karte": {
     "titel": "Wei|ße Sei|te o|ben",
     "bild": "objekte/mond_hinten_feucht",
-    "text": "Mi|las Mond lag mit der wei|ßen Sei|te o|ben. Der Kle|ber war noch nass.",
+    "text": "A|le|xan|dras Mond lag mit der wei|ßen Sei|te o|ben. Der Kle|ber war noch nass.",
     "staub": false
    },
    "fragenNeu": [],
@@ -1747,7 +1750,7 @@
      "id": "s9-p1",
      "typ": "p",
      "s": [
-      "„Ist denn vor|hin je|mand hier ins Klas|sen|zim|mer rein|ge|kom|men?“, fragt Mi|la."
+      "„Ist denn vor|hin je|mand hier ins Klas|sen|zim|mer rein|ge|kom|men?“, fragt A|le|xan|dra."
      ]
     },
     {
@@ -1774,7 +1777,7 @@
      "typ": "th",
      "s": [
       "Ei|frig kriecht die Rau|pe los — ein Füß|chen nach dem an|de|ren den Fens|ter|rah|men hi|nauf.",
-      "„Für Mi|la sind das zwei Schrit|te“, schnauft sie.",
+      "„Für A|le|xan|dra sind das zwei Schrit|te“, schnauft sie.",
       "„Für mich ist der Auf|stieg aufs Fens|ter|brett ei|ne hal|be Welt|rei|se!“"
      ],
      "pose": "lacht"
@@ -1907,7 +1910,7 @@
    "spur": 10,
    "titel": "Ein wei|ßer Kreis",
    "bild": "k2_s10_fenster",
-   "haken": "„Ei|ne Ü|ber|ra|schung aus ei|nem wei|ßen Kreis … Hof|fent|lich nicht aus Mi|las Mond!“",
+   "haken": "„Ei|ne Ü|ber|ra|schung aus ei|nem wei|ßen Kreis … Hof|fent|lich nicht aus A|le|xan|dras Mond!“",
    "blocks": [
     {
      "id": "s10-p1",
@@ -1922,7 +1925,7 @@
      "typ": "p",
      "s": [
       "„Hal|lo, ihr zwei!“, ruft Os|kar fröh|lich durchs Fens|ter he|rein.",
-      "Dann sieht er Mi|las be|sorg|tes Ge|sicht.",
+      "Dann sieht er A|le|xan|dras be|sorg|tes Ge|sicht.",
       "„Na|nu, was ist denn mit euch los?“"
      ]
     },
@@ -1930,7 +1933,7 @@
      "id": "s10-p3",
      "typ": "p",
      "s": [
-      "„Mein gel|ber Mond für das The|a|ter ist ver|schwun|den“, sagt Mi|la trau|rig.",
+      "„Mein gel|ber Mond für das The|a|ter ist ver|schwun|den“, sagt A|le|xan|dra trau|rig.",
       "„Er lag di|rekt hier auf dem blau|en Tab|lett!“"
      ]
     },
@@ -1950,7 +1953,7 @@
      "id": "s10-p5",
      "typ": "p",
      "s": [
-      "Mi|la und Ben schau|en sich mit gro|ßen Au|gen an.",
+      "A|le|xan|dra und Ben schau|en sich mit gro|ßen Au|gen an.",
       "„Ei|nen wei|ßen Papp|kreis vom blau|en Tab|lett …“, flüs|tert Ben."
      ]
     },
@@ -1958,7 +1961,7 @@
      "id": "s10-p6",
      "typ": "p",
      "s": [
-      "„Und wo ist die|ser Kreis jetzt, Os|kar?“, fragt Mi|la auf|ge|regt."
+      "„Und wo ist die|ser Kreis jetzt, Os|kar?“, fragt A|le|xan|dra auf|ge|regt."
      ]
     },
     {
@@ -1974,7 +1977,7 @@
      "id": "s10-p8",
      "typ": "p",
      "s": [
-      "„Ge|bas|telt?!“, wie|der|holt Mi|la, und ih|re Stim|me zit|tert ein klei|nes bis|schen."
+      "„Ge|bas|telt?!“, wie|der|holt A|le|xan|dra, und ih|re Stim|me zit|tert ein klei|nes bis|schen."
      ]
     },
     {
@@ -1991,7 +1994,7 @@
      "id": "s10-p10",
      "typ": "p",
      "s": [
-      "„Jetzt so|fort?“, stöhnt Ben, a|ber Mi|la stupst ihn an: „Na klar le|sen wir sie!",
+      "„Jetzt so|fort?“, stöhnt Ben, a|ber A|le|xan|dra stupst ihn an: „Na klar le|sen wir sie!",
       "Dann zeigt uns Os|kar be|stimmt so|fort sei|ne Ü|ber|ra|schung auf der Bank!“"
      ]
     },
@@ -1999,7 +2002,7 @@
      "id": "s10-p11",
      "typ": "p",
      "s": [
-      "Mi|la legt den Zet|tel auf das Fens|ter|brett und dreht ihn hin und her.",
+      "A|le|xan|dra legt den Zet|tel auf das Fens|ter|brett und dreht ihn hin und her.",
       "„Das ist ja Kau|der|welsch!“"
      ]
     },
@@ -2071,22 +2074,22 @@
      "id": "s11-p1",
      "typ": "p",
      "s": [
-      "Kaum ha|ben Mi|la und Ben die Spie|gel|schrift ent|zif|fert, hüpft Os|kar schon zu|rück zu sei|ner Bank.",
-      "Mi|la und Ben lau|fen schnell aus dem Klas|sen|zim|mer, durch den Flur und hi|naus auf den Hof."
+      "Kaum ha|ben A|le|xan|dra und Ben die Spie|gel|schrift ent|zif|fert, hüpft Os|kar schon zu|rück zu sei|ner Bank.",
+      "A|le|xan|dra und Ben lau|fen schnell aus dem Klas|sen|zim|mer, durch den Flur und hi|naus auf den Hof."
      ]
     },
     {
      "id": "s11-p2",
      "typ": "p",
      "s": [
-      "Un|ter|wegs flüs|tert Ben Mi|la zu: „Glaubst du, auf der Bank liegt wirk|lich dein Mond?“"
+      "Un|ter|wegs flüs|tert Ben A|le|xan|dra zu: „Glaubst du, auf der Bank liegt wirk|lich dein Mond?“"
      ]
     },
     {
      "id": "s11-p3",
      "typ": "p",
      "s": [
-      "„Ich hof|fe es!“, flüs|tert Mi|la zu|rück.",
+      "„Ich hof|fe es!“, flüs|tert A|le|xan|dra zu|rück.",
       "„A|ber vor|hin, als ich den Tisch ab|ge|sucht ha|be, lag un|ter den Zei|tun|gen ja auch nur ein frem|der gel|ber Kreis.",
       "Dies|mal müs|sen wir ganz ge|nau hin|schau|en!“"
      ]
@@ -2115,7 +2118,7 @@
      "id": "s11-p6",
      "typ": "p",
      "s": [
-      "„Ach, du warst das mit der Sche|re, I|da!“, ruft Mi|la er|leich|tert."
+      "„Ach, du warst das mit der Sche|re, I|da!“, ruft A|le|xan|dra er|leich|tert."
      ]
     },
     {
@@ -2224,7 +2227,7 @@
      "typ": "p",
      "s": [
       "Un|ter dem gro|ßen Baum scheint die Son|ne warm durch die Zwei|ge.",
-      "Mi|la und Ben lau|fen zu Os|kar an die Holz|bank.",
+      "A|le|xan|dra und Ben lau|fen zu Os|kar an die Holz|bank.",
       "Dort war|tet die klei|ne grau|e Maus ne|ben dem zu|ge|deck|ten Papp|tel|ler."
      ]
     },
@@ -2239,7 +2242,7 @@
      "id": "s12-p3",
      "typ": "p",
      "s": [
-      "Ben wird blass und stupst Mi|la an: „O|je, Mi|la, sieh dir die gel|ben Schnip|sel an …",
+      "Ben wird blass und stupst A|le|xan|dra an: „O|je, A|le|xan|dra, sieh dir die gel|ben Schnip|sel an …",
       "Hat er dei|nen Mond et|wa doch klein ge|schnit|ten?“"
      ]
     },
@@ -2247,7 +2250,7 @@
      "id": "s12-p4",
      "typ": "p",
      "s": [
-      "Mi|la schluckt schwer."
+      "A|le|xan|dra schluckt schwer."
      ]
     },
     {
@@ -2364,18 +2367,18 @@
        "sicher": true
       },
       {
-       "text": "Der wei|ße Kreis war Mi|las Mond.",
+       "text": "Der wei|ße Kreis war A|le|xan|dras Mond.",
        "sicher": false,
        "tipp": "Das ist erst ein Ver|dacht. Den Kreis hat noch nie|mand ge|se|hen."
       },
       {
-       "text": "Os|kar hat Mi|las Mond zer|schnit|ten.",
+       "text": "Os|kar hat A|le|xan|dras Mond zer|schnit|ten.",
        "sicher": false,
        "tipp": "Das ist erst ein Ver|dacht. Wir se|hen ei|ne Sche|re und Schnip|sel. A|ber nie|mand hat ge|se|hen, was ge|schnit|ten wur|de."
       }
      ]
     },
-    "erfolg": "Ge|nau. Si|cher ist nur, was Os|kar ge|sagt hat. Ob es Mi|las Mond war, weiß noch nie|mand.",
+    "erfolg": "Ge|nau. Si|cher ist nur, was Os|kar ge|sagt hat. Ob es A|le|xan|dras Mond war, weiß noch nie|mand.",
     "werkzeug": "lesen"
    },
    "schluessel": true,
@@ -2390,7 +2393,7 @@
    "spur": 13,
    "titel": "Ta|daa!",
    "bild": "k3_s13",
-   "haken": "„Ob Mi|la und Ben den Fa|den auch ent|de|cken?“",
+   "haken": "„Ob A|le|xan|dra und Ben den Fa|den auch ent|de|cken?“",
    "blocks": [
     {
      "id": "s13-p1",
@@ -2412,7 +2415,7 @@
      "id": "s13-p3",
      "typ": "p",
      "s": [
-      "Mi|la starrt sprach|los auf den Tel|ler, und Ben klappt der Mund auf.",
+      "A|le|xan|dra starrt sprach|los auf den Tel|ler, und Ben klappt der Mund auf.",
       "„Ein Kä|se!“, bringt Ben he|raus."
      ]
     },
@@ -2470,7 +2473,7 @@
     },
     "start": "Mit mei|ner Lu|pe sieht man Klei|nes groß. Schie|be sie ü|ber den Kä|se.",
     "tipp": "Schau am Rand ent|lang. Es ist et|was Dün|nes, Wei|ßes.",
-    "erfolg": "Ein klei|nes Stück wei|ßer Fa|den! Seit wann hat ein Kä|se ei|nen Fa|den? Mi|las Mond hat ei|nen!",
+    "erfolg": "Ein klei|nes Stück wei|ßer Fa|den! Seit wann hat ein Kä|se ei|nen Fa|den? A|le|xan|dras Mond hat ei|nen!",
     "werkzeug": "lupe"
    },
    "perle": {
@@ -2490,7 +2493,7 @@
      "id": "s14-p1",
      "typ": "p",
      "s": [
-      "Mi|la beugt sich tief ü|ber den Tel|ler auf der Bank.",
+      "A|le|xan|dra beugt sich tief ü|ber den Tel|ler auf der Bank.",
       "„Os|kar, dein Kä|se ist ja auf den Mil|li|me|ter ge|nau|so groß wie mein Mond!“, sagt sie lei|se."
      ]
     },
@@ -2506,7 +2509,7 @@
      "id": "s14-p3",
      "typ": "p",
      "s": [
-      "Os|kar schaut ver|wirrt von Mi|la zu Ben.",
+      "Os|kar schaut ver|wirrt von A|le|xan|dra zu Ben.",
       "„Wie, eu|er Mond?",
       "Das ist doch mein Mäu|se|kä|se!",
       "Und ich dach|te, der Fa|den hing halt noch vom Bas|teln dran.“",
@@ -2517,7 +2520,7 @@
      "id": "s14-p4",
      "typ": "p",
      "s": [
-      "Mi|la holt tief Luft.",
+      "A|le|xan|dra holt tief Luft.",
       "„Gelb und rund al|lein ist noch kein Be|weis.",
       "Das ha|be ich heu|te schon beim Kreis un|ter den Zei|tun|gen ge|lernt.“",
       "Dann schaut sie auf die drei brau|nen Lö|cher und wird ganz blass.",
@@ -2627,7 +2630,7 @@
      "id": "s15-p5",
      "typ": "p",
      "s": [
-      "Mi|la fällt ein rie|si|ger Stein vom Her|zen: „Puh, dann ist die gro|ße Papp|schei|be da|run|ter ja noch kom|plett heil!“"
+      "A|le|xan|dra fällt ein rie|si|ger Stein vom Her|zen: „Puh, dann ist die gro|ße Papp|schei|be da|run|ter ja noch kom|plett heil!“"
      ]
     },
     {
@@ -2757,7 +2760,7 @@
      "id": "s16-p4",
      "typ": "p",
      "s": [
-      "„Ach du lie|be Zeit!“, japst Mi|la.",
+      "„Ach du lie|be Zeit!“, japst A|le|xan|dra.",
       "„Wel|cher von den fünf Krei|sen ist denn jetzt mein Mond?!“"
      ]
     },
@@ -2775,7 +2778,7 @@
      "id": "s16-p6",
      "typ": "p",
      "s": [
-      "„Auch ein blau|er Stern …“, flüs|tert Mi|la er|schro|cken.",
+      "„Auch ein blau|er Stern …“, flüs|tert A|le|xan|dra er|schro|cken.",
       "Dann sagt sie laut: „Mein Mond hat hin|ten ein klei|nes Loch.",
       "Und da klebt Bens auf|ge|roll|ter Fa|den!“"
      ]
@@ -2791,9 +2794,9 @@
     }
    ],
    "karte": {
-    "titel": "Das ist Mi|las Mond",
+    "titel": "Das ist A|le|xan|dras Mond",
     "bild": "objekte/mond_hinten_faden",
-    "text": "Mi|las Mond: hin|ten ein blau|er Stern und der auf|ge|roll|te Fa|den.",
+    "text": "A|le|xan|dras Mond: hin|ten ein blau|er Stern und der auf|ge|roll|te Fa|den.",
     "staub": false
    },
    "fragenNeu": [],
@@ -2803,11 +2806,11 @@
    "tipp": null,
    "raetsel": {
     "art": "kreise",
-    "titel": "Wel|cher Kreis ist Mi|las Mond?",
+    "titel": "Wel|cher Kreis ist A|le|xan|dras Mond?",
     "text": "Fünf gel|be Krei|se mit brau|nen Fle|cken. Von vorn se|hen sie gleich aus. Erst er|in|nerst du dich, dann ver|gleichst du.",
     "erinnern": {
-     "text": "Was weißt du ü|ber Mi|las Mond? Wäh|le die drei Merk|ma|le, die zu ihm ge|hö|ren.",
-     "start": "Denk an das, was Mi|la und Ben er|zählt ha|ben. Nicht al|les auf den Kar|ten stimmt!",
+     "text": "Was weißt du ü|ber A|le|xan|dras Mond? Wäh|le die drei Merk|ma|le, die zu ihm ge|hö|ren.",
+     "start": "Denk an das, was A|le|xan|dra und Ben er|zählt ha|ben. Nicht al|les auf den Kar|ten stimmt!",
      "karten": [
       {
        "id": "stern",
@@ -2840,9 +2843,9 @@
        "richtig": false
       }
      ],
-     "tipp": "Mi|la hat et|was hin|ten auf|ge|malt. Ben hat o|ben et|was fest|ge|klebt. Und der Fa|den geht durch et|was hin|durch.",
+     "tipp": "A|le|xan|dra hat et|was hin|ten auf|ge|malt. Ben hat o|ben et|was fest|ge|klebt. Und der Fa|den geht durch et|was hin|durch.",
      "erfolg": "Rich|tig! Stern hin|ten, Fa|den auf|ge|rollt, Loch o|ben. Das sind die drei Merk|ma|le.",
-     "warum": "Mi|la hat hin|ten ei|nen blau|en Stern ge|malt. Ben hat den Fa|den o|ben auf|ge|rollt und fest|ge|klebt. Und der Fa|den geht durch ein klei|nes Loch. Ein ro|tes Herz, ei|nen Na|men o|der ei|ne gel|be Rück|sei|te hat Mi|las Mond nicht."
+     "warum": "A|le|xan|dra hat hin|ten ei|nen blau|en Stern ge|malt. Ben hat den Fa|den o|ben auf|ge|rollt und fest|ge|klebt. Und der Fa|den geht durch ein klei|nes Loch. Ein ro|tes Herz, ei|nen Na|men o|der ei|ne gel|be Rück|sei|te hat A|le|xan|dras Mond nicht."
     },
     "vorne": "objekte/gelbe_kreise_vorne",
     "hinten": "objekte/gelbe_kreise_hinten",
@@ -2888,7 +2891,7 @@
     "vergleichen": {
      "text": "Tip|pe ei|nen Kreis an, dann dreht er sich um. Es ist im|mer nur ein Kreis um|ge|dreht. Mer|ke dir, was du siehst. Strei|che Krei|se aus, die nicht pas|sen.",
      "start": "Von vorn sieht man das nicht. Tip|pe ei|nen Kreis an, dann dreht er sich um.",
-     "liste": "Mi|las Mond hat:",
+     "liste": "A|le|xan|dras Mond hat:",
      "frage": "Strei|che je|den Kreis aus, dem ein Merk|mal fehlt. Tip|pe da|für auf das Kreuz un|ter dem Kreis. O|der drü|cke lan|ge auf den Kreis.",
      "zuViel": "Hm, ein Kreis ist zu Un|recht aus|ge|stri|chen. Hat er viel|leicht doch al|le drei Merk|ma|le? Dreh ihn noch ein|mal um.",
      "nochMehr": "Es sind noch meh|re|re Krei|se ü|brig. Hat wirk|lich je|der von ih|nen al|le drei Merk|ma|le?",
@@ -2896,7 +2899,7 @@
      "warum": "Nur ein Kreis hat hin|ten den Stern, o|ben den auf|ge|roll|ten Fa|den und das Loch."
     },
     "stempel": "MILAS MOND",
-    "erfolg": "Das ist Mi|las Mond! Nur die|ser Kreis hat hin|ten den blau|en Stern, o|ben das Loch und den auf|ge|roll|ten Fa|den.",
+    "erfolg": "Das ist A|le|xan|dras Mond! Nur die|ser Kreis hat hin|ten den blau|en Stern, o|ben das Loch und den auf|ge|roll|ten Fa|den.",
     "werkzeug": "zeit"
    },
    "perle": {
@@ -2929,7 +2932,7 @@
      "s": [
       "Os|kar wird ganz blass um die Na|se.",
       "„Oh weh …",
-      "Es war wirk|lich dein The|a|ter-Mond, Mi|la!“, flüs|tert er er|schro|cken.",
+      "Es war wirk|lich dein The|a|ter-Mond, A|le|xan|dra!“, flüs|tert er er|schro|cken.",
       "„Und ich ha|be ein|fach drei brau|ne Kä|se|fle|cken vor|ne drauf|ge|klebt!“"
      ]
     },
@@ -2938,7 +2941,7 @@
      "typ": "p",
      "s": [
       "Er ist so ver|le|gen, dass er schnell ei|nen klei|nen lee|ren No|tiz|zet|tel und ei|nen kur|zen Blei|stift|stum|mel aus sei|ner Ho|sen|ta|sche zieht.",
-      "Auf sei|nem Knie krit|zelt er ei|lig ein paar Wör|ter da|rauf und reicht den Zet|tel Mi|la: „Ich schrei|be mei|ne Ent|schul|di|gung lie|ber als Ge|heim|a|gen|ten-Bot|schaft auf.",
+      "Auf sei|nem Knie krit|zelt er ei|lig ein paar Wör|ter da|rauf und reicht den Zet|tel A|le|xan|dra: „Ich schrei|be mei|ne Ent|schul|di|gung lie|ber als Ge|heim|a|gen|ten-Bot|schaft auf.",
       "Ein ech|ter A|gent bringt so et|was kaum laut ü|ber die Lip|pen.“"
      ]
     },
@@ -2946,7 +2949,7 @@
      "id": "s17-p4",
      "typ": "p",
      "s": [
-      "Mi|la liest den Zet|tel und legt Os|kar so|fort trös|tend den Arm um die Schul|ter.",
+      "A|le|xan|dra liest den Zet|tel und legt Os|kar so|fort trös|tend den Arm um die Schul|ter.",
       "„Ach Os|kar, du konn|test es doch gar nicht wis|sen!",
       "Du warst ja drau|ßen auf der Bank.",
       "Du hast mei|nen Mond nie ge|se|hen.“"
@@ -2963,7 +2966,7 @@
      "id": "s17-p6",
      "typ": "p",
      "s": [
-      "„Und ich war so tief im Schrank ver|schwun|den, dass ich nichts ge|merkt ha|be!“, lacht Mi|la."
+      "„Und ich war so tief im Schrank ver|schwun|den, dass ich nichts ge|merkt ha|be!“, lacht A|le|xan|dra."
      ]
     },
     {
@@ -2971,7 +2974,7 @@
      "typ": "th",
      "s": [
       "„Mein Stern!“, denkt die Le|se-Rau|pe glück|lich.",
-      "„Den hat Mi|la nur für mich ge|malt.“"
+      "„Den hat A|le|xan|dra nur für mich ge|malt.“"
      ],
      "pose": "klatscht",
      "bild": "k3_s17"
@@ -3048,7 +3051,7 @@
      "typ": "p",
      "s": [
       "I|da und die an|de|ren Kin|der lau|fen mit ih|ren Kä|sen zu|rück auf die Wie|se.",
-      "Nur Mi|la, Ben und Os|kar blei|ben an der Bank."
+      "Nur A|le|xan|dra, Ben und Os|kar blei|ben an der Bank."
      ]
     },
     {
@@ -3063,7 +3066,7 @@
      "id": "s18-p3",
      "typ": "p",
      "s": [
-      "Mi|la hält ih|ren ge|punk|te|ten Mond rat|los hoch.",
+      "A|le|xan|dra hält ih|ren ge|punk|te|ten Mond rat|los hoch.",
       "„A|ber was ma|chen wir denn jetzt mit un|se|rem The|a|ter|stück?",
       "Mit den brau|nen Fle|cken sieht er aus wie ein Kä|se.",
       "So kann ich ihn doch nicht an den Nacht|him|mel hän|gen!“"
@@ -3090,7 +3093,7 @@
      "typ": "p",
      "s": [
       "Al|le drei sit|zen still auf der Bank.",
-      "Mi|la will ei|nen Mond am Him|mel.",
+      "A|le|xan|dra will ei|nen Mond am Him|mel.",
       "Ben will, dass nichts ka|putt|geht.",
       "Und Os|kar will ein Fest|es|sen für sei|ne Maus."
      ]
@@ -3139,7 +3142,7 @@
     "kinder": [
      {
       "id": "mila",
-      "name": "Mi|la",
+      "name": "A|le|xan|dra",
       "text": "Un|ser Stück braucht ei|nen Mond."
      },
      {
@@ -3187,7 +3190,7 @@
        "froh": true,
        "unter": "Su|per! Dann bleibt der Kä|se für mei|ne Maus."
       },
-      "sagt": "Hm. Ben und Os|kar la|chen. A|ber Mi|la nicht: Oh|ne Mond ist der Him|mel leer."
+      "sagt": "Hm. Ben und Os|kar la|chen. A|ber A|le|xan|dra nicht: Oh|ne Mond ist der Him|mel leer."
      },
      {
       "id": "neu",
@@ -3205,7 +3208,7 @@
        "froh": true,
        "unter": "Dann be|kommt mei|ne Maus den al|ten Mond als Kä|se!"
       },
-      "sagt": "Zwei la|chen. A|ber Mi|la nicht. Das ist es noch nicht."
+      "sagt": "Zwei la|chen. A|ber A|le|xan|dra nicht. Das ist es noch nicht."
      },
      {
       "id": "kaese",
@@ -3292,7 +3295,7 @@
      "id": "s19-p6",
      "typ": "p",
      "s": [
-      "„Ja, un|be|dingt!“, ruft Mi|la und hüpft vor Freu|de.",
+      "„Ja, un|be|dingt!“, ruft A|le|xan|dra und hüpft vor Freu|de.",
       "„Das wird noch tau|send|mal lus|ti|ger als un|ser al|tes Stück!",
       "Du musst dei|ne Maus nur auf die Büh|ne hüp|fen las|sen!“"
      ]
@@ -3309,7 +3312,7 @@
      "id": "s19-p8",
      "typ": "p",
      "s": [
-      "Mi|la zupft das Fa|den|en|de vor|sich|tig los, da|mit der Mond gleich wie|der am The|a|ter hän|gen kann.",
+      "A|le|xan|dra zupft das Fa|den|en|de vor|sich|tig los, da|mit der Mond gleich wie|der am The|a|ter hän|gen kann.",
       "„Und da|mit un|ser Mond be|son|ders ma|gisch aus|sieht, kriegt er noch ei|nen Glit|zer|stern!“, ruft sie.",
       "Aus ih|rer Ja|cken|ta|sche zieht sie ei|nen klei|nen Stern aus Sil|ber|fo|lie.",
       "Den hat|te sie ei|gent|lich für die Kro|ne vom Kö|nig ge|bas|telt.",
@@ -3320,7 +3323,7 @@
      "id": "s19-p9",
      "typ": "p",
      "s": [
-      "Dann ruft Mi|la zu I|da und den an|de|ren Kin|dern auf dem Hof: „Hey, bringt zur Auf|füh|rung al|le eu|re Mäu|se mit!",
+      "Dann ruft A|le|xan|dra zu I|da und den an|de|ren Kin|dern auf dem Hof: „Hey, bringt zur Auf|füh|rung al|le eu|re Mäu|se mit!",
       "Wir ha|ben ei|ne Rie|sen-Ü|ber|ra|schung für euch!“"
      ]
     },
@@ -3344,7 +3347,7 @@
      "id": "s19-p12",
      "typ": "p",
      "s": [
-      "„Dann ma|len wir es schnell um!“, ruft Mi|la."
+      "„Dann ma|len wir es schnell um!“, ruft A|le|xan|dra."
      ]
     },
     {
@@ -3352,7 +3355,7 @@
      "typ": "p",
      "s": [
       "Schnell holt Ben das The|a|ter|pla|kat und Stif|te aus dem Klas|sen|zim|mer.",
-      "Os|kar malt un|ten ei|ne klei|ne grau|e Maus da|zu, und Mi|la tupft drei brau|ne Punk|te auf den ge|mal|ten Mond.",
+      "Os|kar malt un|ten ei|ne klei|ne grau|e Maus da|zu, und A|le|xan|dra tupft drei brau|ne Punk|te auf den ge|mal|ten Mond.",
       "Al|le drei sind ganz in ih|re Zeich|nung ver|tieft.",
       "Der ech|te Mond liegt ganz au|ßen am Bank|rand in der Son|ne.",
       "Sein Sil|ber|stern fun|kelt."
@@ -3387,12 +3390,12 @@
     "zeilen": 3,
     "ratio": 0.75,
     "tipp": "O|ben ist das Dach vom The|a|ter mit der Wol|ke. Der Kä|se und die Maus sind in der Mit|te. Un|ten ist der Bo|den der Büh|ne.",
-    "erfolg": "Ge|nau. Si|cher ist nur, was wir be|wie|sen ha|ben: Der Kä|se ist Mi|las Mond. Al|les an|de|re ist erst ein Ver|dacht.",
+    "erfolg": "Ge|nau. Si|cher ist nur, was wir be|wie|sen ha|ben: Der Kä|se ist A|le|xan|dras Mond. Al|les an|de|re ist erst ein Ver|dacht.",
     "schluss": {
      "frage": "Was wis|sen wir jetzt si|cher?",
      "optionen": [
       {
-       "text": "Der Kä|se ist Mi|las Mond. Hin|ten hat er den blau|en Stern und den auf|ge|roll|ten Fa|den.",
+       "text": "Der Kä|se ist A|le|xan|dras Mond. Hin|ten hat er den blau|en Stern und den auf|ge|roll|ten Fa|den.",
        "sicher": true
       },
       {
@@ -3438,7 +3441,7 @@
      "id": "s20-p2",
      "typ": "p",
      "s": [
-      "„Mein Mond!“, schreit Mi|la.",
+      "„Mein Mond!“, schreit A|le|xan|dra.",
       "„Der Vo|gel klaut un|se|ren Him|mels|kä|se!“"
      ]
     },
@@ -3459,8 +3462,8 @@
      "id": "s20-p4",
      "typ": "p",
      "s": [
-      "Mi|la, Ben und Os|kar ren|nen zum Baum|stamm.",
-      "„Hey, du fre|cher Dieb!“, ruft Mi|la und winkt mit bei|den Ar|men.",
+      "A|le|xan|dra, Ben und Os|kar ren|nen zum Baum|stamm.",
+      "„Hey, du fre|cher Dieb!“, ruft A|le|xan|dra und winkt mit bei|den Ar|men.",
       "„Gib den so|fort wie|der her!“"
      ]
     },
@@ -3470,7 +3473,7 @@
      "s": [
       "„Schack-schack!",
       "Kräääh!“, krächzt der Vo|gel.",
-      "Er öff|net den Schna|bel — und der Mond se|gelt he|run|ter, di|rekt in Mi|las Ar|me!"
+      "Er öff|net den Schna|bel — und der Mond se|gelt he|run|ter, di|rekt in A|le|xan|dras Ar|me!"
      ]
     },
     {
@@ -3485,7 +3488,7 @@
      "id": "s20-p7",
      "typ": "p",
      "s": [
-      "„Ge|ret|tet!“, ju|belt Mi|la.",
+      "„Ge|ret|tet!“, ju|belt A|le|xan|dra.",
       "Ben grinst stolz: „Seht ihr?",
       "Mein Spe|zi|al-Kle|ber hält so|gar, wenn ein Vo|gel da|ran zerrt!“"
      ]
@@ -3979,7 +3982,7 @@
      "id": "s22-p7",
      "typ": "p",
      "s": [
-      "„Ich glau|be nicht“, sagt Mi|la.",
+      "„Ich glau|be nicht“, sagt A|le|xan|dra.",
       "„Der Vo|gel holt sich nur Sa|chen, die glit|zern.",
       "Und dei|ne Maus glit|zert doch gar nicht.“"
      ]
@@ -4049,7 +4052,7 @@
       "x": 52,
       "y": 72,
       "r": 6,
-      "text": "Mi|la sucht un|ter dem Tisch. Da ist kei|ne Maus."
+      "text": "A|le|xan|dra sucht un|ter dem Tisch. Da ist kei|ne Maus."
      }
     ],
     "start": "Mit mei|ner Lu|pe sieht man Klei|nes groß. Wo ist et|was Ro|sa|far|be|nes?",
@@ -4115,7 +4118,7 @@
      "id": "s23-p5",
      "typ": "p",
      "s": [
-      "Mi|la zieht den ro|ten Vor|hang auf.",
+      "A|le|xan|dra zieht den ro|ten Vor|hang auf.",
       "Os|kars Maus hüpft auf die Büh|ne und piepst: „Oh weh, mein Bauch ist so leer!“",
       "Die Kin|der ki|chern.",
       "Os|kars Hän|de zit|tern nicht mehr."
@@ -4155,7 +4158,7 @@
      "id": "s23-p9",
      "typ": "p",
      "s": [
-      "Da zeigt Mi|la zum Fens|ter.",
+      "Da zeigt A|le|xan|dra zum Fens|ter.",
       "Drau|ßen auf dem Zweig sitzt der gro|ße schwarz-wei|ße Vo|gel mit dem lan|gen Schwanz.",
       "Er schaut sehn|süch|tig zum Sil|ber|stern am Mond."
      ]
@@ -4173,7 +4176,7 @@
      "id": "s23-p11",
      "typ": "p",
      "s": [
-      "„Dann schen|ken wir ihm et|was Glän|zen|des!“, ruft Mi|la.",
+      "„Dann schen|ken wir ihm et|was Glän|zen|des!“, ruft A|le|xan|dra.",
       "„Viel|leicht gibt er uns da|für den Schlüs|sel zu|rück!“"
      ]
     },
@@ -4323,7 +4326,7 @@
      "typ": "p",
      "s": [
       "Dann ver|ab|schie|den sich die an|de|ren Kin|der.",
-      "Nur Mi|la, Ben, Os|kar und Frau Som|mer tre|ten lei|se ans Fens|ter."
+      "Nur A|le|xan|dra, Ben, Os|kar und Frau Som|mer tre|ten lei|se ans Fens|ter."
      ]
     },
     {
