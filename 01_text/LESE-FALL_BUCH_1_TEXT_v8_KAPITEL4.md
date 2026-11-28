@@ -115,7 +115,7 @@ Das ist der große Einsatz für die Lese-Raupe! Diesmal klopft ihr Herz nur noch
 
 Ganz langsam zieht Frau Sommer den Zeigestock zurück ins Klassenzimmer. Am Ende baumelt ein weißes Band. Und am Band hängt ein Schlüssel mit einem silbernen Glitzer-Stern!
 
-„Mein Schlüssel!“, ruft Frau Sommer. „Ich hatte im Lehrerzimmer das Fenster weit offen. Da hat ihn sich die Elster geholt!“ Dann lacht sie. „Heute Nacht muss ich also doch nicht auf dem Klassenteppich schlafen!“ Alle lachen mit.
+„Mein Schlüssel!“, ruft Frau Sommer. „Ich hatte im Lehrerzimmer das Fenster weit offen. Da hat ihn sich die Elster geholt!“ Dann lacht sie. „Dann muss ich heute Nacht ja doch nicht in der Schule schlafen!“ Alle lachen mit.
 
 „Und der Hausmeister bekommt auch keinen Wutanfall“, kichert Alexandra.
 

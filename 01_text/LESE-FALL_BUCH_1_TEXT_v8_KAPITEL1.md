@@ -22,7 +22,7 @@ Die Lese-Raupe freut sich riesig. Immer wenn Alexandra etwas für das Theater ba
 
 Draußen vor dem offenen Fenster sitzt Oskar auf der Bank im Hof. Im Werkunterricht haben heute alle Kinder kleine graue Mäuse aus Papier gebastelt. Oskar streichelt seine Maus stolz und murmelt: „Du bist die allerbeste Maus der Welt.“
 
-Plötzlich kommt Frau Sommer herein und fächelt sich Luft zu: „Kinder, habt ihr meinen Schlüssel gesehen? Er hängt an einem weißen Band mit einem funkelnden silbernen Glitzer-Stern! Normalerweise schließe ich ihn immer in meiner Schublade ein. Aber vorhin im Lehrerzimmer habe ich ihn einfach auf den Tisch geworfen. Dort war es so stickig! Ich bin sofort ans Fenster gelaufen und habe es weit aufgerissen. Und den Schlüssel habe ich glatt vergessen! Jetzt habe ich schon alles abgesucht, aber er ist nirgends zu finden. Wenn er wegbleibt, muss ich heute Nacht wohl hier auf dem Klassenteppich schlafen — oder unser Hausmeister bekommt einen Wutanfall!“
+Plötzlich kommt Frau Sommer herein und fächelt sich Luft zu: „Kinder, habt ihr meinen Schlüssel gesehen? Er hängt an einem weißen Band mit einem funkelnden silbernen Glitzer-Stern! Normalerweise schließe ich ihn immer in meiner Schublade ein. Aber vorhin im Lehrerzimmer habe ich ihn einfach auf den Tisch geworfen. Dort war es so stickig! Ich bin sofort ans Fenster gelaufen und habe es weit aufgerissen. Und den Schlüssel habe ich glatt vergessen! Jetzt habe ich schon alles abgesucht, aber er ist nirgends zu finden. Ohne Schlüssel komme ich heute Abend nicht nach Hause. Dann muss ich in der Schule übernachten – auf zwei Stühlen, mit der Landkarte als Decke!“
 
 Niemand hat den Schlüssel gesehen. Auf ihrem Blatt hebt die Lese-Raupe überrascht den Kopf.
 
